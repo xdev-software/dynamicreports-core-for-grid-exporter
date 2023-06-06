@@ -3,7 +3,9 @@
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=xdev-software_dynamicreports-core-for-grid-exporter&metric=alert_status)](https://sonarcloud.io/dashboard?id=xdev-software_dynamicreports-core-for-grid-exporter)
 
 # dynamicreports-core-for-grid-exporter
-This is a fork of [dynamicreports-core](https://github.com/dynamicreports/dynamicreports) and specially designed for [XDEV's Vaadin Grid Exporer](https://github.com/xdev-software/vaadin-grid-exporter).
+This is a fork of [dynamicreports-core](https://github.com/dynamicreports/dynamicreports) and specially designed for [XDEV's Vaadin Grid Exporter](https://github.com/xdev-software/vaadin-grid-exporter).
+
+Differences from the original project are roughly described in the [changelog](./CHANGELOG.md).
 
 ## Installation
 [Installation guide for the latest release](https://github.com/xdev-software/dynamicreports-core-for-grid-exporter/releases/latest#Installation)
