@@ -31,6 +31,15 @@ import javax.imageio.ImageIO;
 
 import org.apache.commons.lang3.Validate;
 
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.export.JRGraphics2DExporter;
+import net.sf.jasperreports.export.Exporter;
+import net.sf.jasperreports.export.ExporterInput;
+import net.sf.jasperreports.export.SimpleExporterInput;
+import net.sf.jasperreports.export.SimpleGraphics2DExporterConfiguration;
+import net.sf.jasperreports.export.SimpleGraphics2DExporterOutput;
+import net.sf.jasperreports.export.SimpleGraphics2DReportConfiguration;
 import software.xdev.dynamicreports.jasper.base.export.AbstractJasperExporter;
 import software.xdev.dynamicreports.jasper.base.reporthandler.JasperReportBuilderHandler;
 import software.xdev.dynamicreports.jasper.builder.export.AbstractJasperExporterBuilder;
@@ -50,15 +59,6 @@ import software.xdev.dynamicreports.jasper.definition.JasperReportHandler;
 import software.xdev.dynamicreports.jasper.transformation.ExporterTransform;
 import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.exception.DRException;
-import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.export.JRGraphics2DExporter;
-import net.sf.jasperreports.export.Exporter;
-import net.sf.jasperreports.export.ExporterInput;
-import net.sf.jasperreports.export.SimpleExporterInput;
-import net.sf.jasperreports.export.SimpleGraphics2DExporterConfiguration;
-import net.sf.jasperreports.export.SimpleGraphics2DExporterOutput;
-import net.sf.jasperreports.export.SimpleGraphics2DReportConfiguration;
 
 /**
  * This report builder allows concatenating several separated reports into one single document. Each report starts on a new page with its own page dimension.
@@ -119,6 +119,7 @@ public class JasperConcatenatedReportBuilder implements Serializable {
      * @return a {@link software.xdev.dynamicreports.jasper.builder.JasperConcatenatedReportBuilder} object.
      * @throws software.xdev.dynamicreports.report.exception.DRException if any.
      */
+    @SuppressWarnings("java:S2184") // FP: int - int != float?
     public JasperConcatenatedReportBuilder toPng(final OutputStream outputStream, final float zoom) throws DRException {
         Validate.notNull(outputStream, "outputStream must not be null");
         Validate.isTrue(zoom > 0, "zoom must be > 0");
