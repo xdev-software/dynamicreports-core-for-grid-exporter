@@ -1,3 +1,6 @@
+# 1.1.1
+* Removed unused resources
+
 # 1.0.0
 
 Initial release of the fork
