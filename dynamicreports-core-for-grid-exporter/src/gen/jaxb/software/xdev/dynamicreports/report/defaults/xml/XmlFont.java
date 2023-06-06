@@ -8,9 +8,9 @@ import jakarta.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java-Klasse für Font complex type.
+ * <p>Java class for Font complex type.
  * 
- * <p>Das folgende Schemafragment gibt den erwarteten Content an, der in dieser Klasse enthalten ist.
+ * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>{@code
  * <complexType name="Font">
@@ -44,7 +44,7 @@ public class XmlFont {
     protected Boolean pdfEmbedded;
 
     /**
-     * Ruft den Wert der fontName-Eigenschaft ab.
+     * Gets the value of the fontName property.
      * 
      * @return
      *     possible object is
@@ -56,7 +56,7 @@ public class XmlFont {
     }
 
     /**
-     * Legt den Wert der fontName-Eigenschaft fest.
+     * Sets the value of the fontName property.
      * 
      * @param value
      *     allowed object is
@@ -68,7 +68,7 @@ public class XmlFont {
     }
 
     /**
-     * Ruft den Wert der fontSize-Eigenschaft ab.
+     * Gets the value of the fontSize property.
      * 
      * @return
      *     possible object is
@@ -80,7 +80,7 @@ public class XmlFont {
     }
 
     /**
-     * Legt den Wert der fontSize-Eigenschaft fest.
+     * Sets the value of the fontSize property.
      * 
      * @param value
      *     allowed object is
@@ -92,7 +92,7 @@ public class XmlFont {
     }
 
     /**
-     * Ruft den Wert der pdfFontName-Eigenschaft ab.
+     * Gets the value of the pdfFontName property.
      * 
      * @return
      *     possible object is
@@ -104,7 +104,7 @@ public class XmlFont {
     }
 
     /**
-     * Legt den Wert der pdfFontName-Eigenschaft fest.
+     * Sets the value of the pdfFontName property.
      * 
      * @param value
      *     allowed object is
@@ -116,7 +116,7 @@ public class XmlFont {
     }
 
     /**
-     * Ruft den Wert der pdfEncoding-Eigenschaft ab.
+     * Gets the value of the pdfEncoding property.
      * 
      * @return
      *     possible object is
@@ -128,7 +128,7 @@ public class XmlFont {
     }
 
     /**
-     * Legt den Wert der pdfEncoding-Eigenschaft fest.
+     * Sets the value of the pdfEncoding property.
      * 
      * @param value
      *     allowed object is
@@ -140,7 +140,7 @@ public class XmlFont {
     }
 
     /**
-     * Ruft den Wert der pdfEmbedded-Eigenschaft ab.
+     * Gets the value of the pdfEmbedded property.
      * 
      * @return
      *     possible object is
@@ -152,7 +152,7 @@ public class XmlFont {
     }
 
     /**
-     * Legt den Wert der pdfEmbedded-Eigenschaft fest.
+     * Sets the value of the pdfEmbedded property.
      * 
      * @param value
      *     allowed object is

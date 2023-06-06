@@ -8,9 +8,9 @@ import jakarta.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java-Klasse für DataType complex type.
+ * <p>Java class for DataType complex type.
  * 
- * <p>Das folgende Schemafragment gibt den erwarteten Content an, der in dieser Klasse enthalten ist.
+ * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>{@code
  * <complexType name="DataType">
@@ -35,7 +35,7 @@ public class XmlDataType {
     protected XmlHorizontalAlignment horizontalAlignment;
 
     /**
-     * Ruft den Wert der pattern-Eigenschaft ab.
+     * Gets the value of the pattern property.
      * 
      * @return
      *     possible object is
@@ -47,7 +47,7 @@ public class XmlDataType {
     }
 
     /**
-     * Legt den Wert der pattern-Eigenschaft fest.
+     * Sets the value of the pattern property.
      * 
      * @param value
      *     allowed object is
@@ -59,7 +59,7 @@ public class XmlDataType {
     }
 
     /**
-     * Ruft den Wert der horizontalAlignment-Eigenschaft ab.
+     * Gets the value of the horizontalAlignment property.
      * 
      * @return
      *     possible object is
@@ -71,7 +71,7 @@ public class XmlDataType {
     }
 
     /**
-     * Legt den Wert der horizontalAlignment-Eigenschaft fest.
+     * Sets the value of the horizontalAlignment property.
      * 
      * @param value
      *     allowed object is

@@ -209,6 +209,8 @@
 					<noFileHeader>true</noFileHeader>
 					<!-- Episode file contains current timestamps and localized messages so disable it -->
 					<episode>false</episode>
+					<!-- Reproducible locale = World Standard = English -->
+					<locale>en</locale>
 					<!-- Generate into a persistent directory so that changes are noticeable -->
 					<generateDirectory>src/gen/jaxb</generateDirectory>
 					<schemaIncludes>

@@ -7,9 +7,9 @@ import jakarta.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java-Klasse für DynamicReports complex type.
+ * <p>Java class for DynamicReports complex type.
  * 
- * <p>Das folgende Schemafragment gibt den erwarteten Content an, der in dieser Klasse enthalten ist.
+ * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>{@code
  * <complexType name="DynamicReports">
@@ -109,7 +109,7 @@ public class XmlDynamicReports {
     protected Boolean loadSystemFonts;
 
     /**
-     * Ruft den Wert der font-Eigenschaft ab.
+     * Gets the value of the font property.
      * 
      * @return
      *     possible object is
@@ -121,7 +121,7 @@ public class XmlDynamicReports {
     }
 
     /**
-     * Legt den Wert der font-Eigenschaft fest.
+     * Sets the value of the font property.
      * 
      * @param value
      *     allowed object is
@@ -133,7 +133,7 @@ public class XmlDynamicReports {
     }
 
     /**
-     * Ruft den Wert der bigDecimalType-Eigenschaft ab.
+     * Gets the value of the bigDecimalType property.
      * 
      * @return
      *     possible object is
@@ -145,7 +145,7 @@ public class XmlDynamicReports {
     }
 
     /**
-     * Legt den Wert der bigDecimalType-Eigenschaft fest.
+     * Sets the value of the bigDecimalType property.
      * 
      * @param value
      *     allowed object is
@@ -157,7 +157,7 @@ public class XmlDynamicReports {
     }
 
     /**
-     * Ruft den Wert der bigIntegerType-Eigenschaft ab.
+     * Gets the value of the bigIntegerType property.
      * 
      * @return
      *     possible object is
@@ -169,7 +169,7 @@ public class XmlDynamicReports {
     }
 
     /**
-     * Legt den Wert der bigIntegerType-Eigenschaft fest.
+     * Sets the value of the bigIntegerType property.
      * 
      * @param value
      *     allowed object is
@@ -181,7 +181,7 @@ public class XmlDynamicReports {
     }
 
     /**
-     * Ruft den Wert der byteType-Eigenschaft ab.
+     * Gets the value of the byteType property.
      * 
      * @return
      *     possible object is
@@ -193,7 +193,7 @@ public class XmlDynamicReports {
     }
 
     /**
-     * Legt den Wert der byteType-Eigenschaft fest.
+     * Sets the value of the byteType property.
      * 
      * @param value
      *     allowed object is
@@ -205,7 +205,7 @@ public class XmlDynamicReports {
     }
 
     /**
-     * Ruft den Wert der doubleType-Eigenschaft ab.
+     * Gets the value of the doubleType property.
      * 
      * @return
      *     possible object is
@@ -217,7 +217,7 @@ public class XmlDynamicReports {
     }
 
     /**
-     * Legt den Wert der doubleType-Eigenschaft fest.
+     * Sets the value of the doubleType property.
      * 
      * @param value
      *     allowed object is
@@ -229,7 +229,7 @@ public class XmlDynamicReports {
     }
 
     /**
-     * Ruft den Wert der floatType-Eigenschaft ab.
+     * Gets the value of the floatType property.
      * 
      * @return
      *     possible object is
@@ -241,7 +241,7 @@ public class XmlDynamicReports {
     }
 
     /**
-     * Legt den Wert der floatType-Eigenschaft fest.
+     * Sets the value of the floatType property.
      * 
      * @param value
      *     allowed object is
@@ -253,7 +253,7 @@ public class XmlDynamicReports {
     }
 
     /**
-     * Ruft den Wert der integerType-Eigenschaft ab.
+     * Gets the value of the integerType property.
      * 
      * @return
      *     possible object is
@@ -265,7 +265,7 @@ public class XmlDynamicReports {
     }
 
     /**
-     * Legt den Wert der integerType-Eigenschaft fest.
+     * Sets the value of the integerType property.
      * 
      * @param value
      *     allowed object is
@@ -277,7 +277,7 @@ public class XmlDynamicReports {
     }
 
     /**
-     * Ruft den Wert der longType-Eigenschaft ab.
+     * Gets the value of the longType property.
      * 
      * @return
      *     possible object is
@@ -289,7 +289,7 @@ public class XmlDynamicReports {
     }
 
     /**
-     * Legt den Wert der longType-Eigenschaft fest.
+     * Sets the value of the longType property.
      * 
      * @param value
      *     allowed object is
@@ -301,7 +301,7 @@ public class XmlDynamicReports {
     }
 
     /**
-     * Ruft den Wert der shortType-Eigenschaft ab.
+     * Gets the value of the shortType property.
      * 
      * @return
      *     possible object is
@@ -313,7 +313,7 @@ public class XmlDynamicReports {
     }
 
     /**
-     * Legt den Wert der shortType-Eigenschaft fest.
+     * Sets the value of the shortType property.
      * 
      * @param value
      *     allowed object is
@@ -325,7 +325,7 @@ public class XmlDynamicReports {
     }
 
     /**
-     * Ruft den Wert der dateType-Eigenschaft ab.
+     * Gets the value of the dateType property.
      * 
      * @return
      *     possible object is
@@ -337,7 +337,7 @@ public class XmlDynamicReports {
     }
 
     /**
-     * Legt den Wert der dateType-Eigenschaft fest.
+     * Sets the value of the dateType property.
      * 
      * @param value
      *     allowed object is
@@ -349,7 +349,7 @@ public class XmlDynamicReports {
     }
 
     /**
-     * Ruft den Wert der dateYearToMonthType-Eigenschaft ab.
+     * Gets the value of the dateYearToMonthType property.
      * 
      * @return
      *     possible object is
@@ -361,7 +361,7 @@ public class XmlDynamicReports {
     }
 
     /**
-     * Legt den Wert der dateYearToMonthType-Eigenschaft fest.
+     * Sets the value of the dateYearToMonthType property.
      * 
      * @param value
      *     allowed object is
@@ -373,7 +373,7 @@ public class XmlDynamicReports {
     }
 
     /**
-     * Ruft den Wert der dateYearToHourType-Eigenschaft ab.
+     * Gets the value of the dateYearToHourType property.
      * 
      * @return
      *     possible object is
@@ -385,7 +385,7 @@ public class XmlDynamicReports {
     }
 
     /**
-     * Legt den Wert der dateYearToHourType-Eigenschaft fest.
+     * Sets the value of the dateYearToHourType property.
      * 
      * @param value
      *     allowed object is
@@ -397,7 +397,7 @@ public class XmlDynamicReports {
     }
 
     /**
-     * Ruft den Wert der dateYearToMinuteType-Eigenschaft ab.
+     * Gets the value of the dateYearToMinuteType property.
      * 
      * @return
      *     possible object is
@@ -409,7 +409,7 @@ public class XmlDynamicReports {
     }
 
     /**
-     * Legt den Wert der dateYearToMinuteType-Eigenschaft fest.
+     * Sets the value of the dateYearToMinuteType property.
      * 
      * @param value
      *     allowed object is
@@ -421,7 +421,7 @@ public class XmlDynamicReports {
     }
 
     /**
-     * Ruft den Wert der dateYearToSecondType-Eigenschaft ab.
+     * Gets the value of the dateYearToSecondType property.
      * 
      * @return
      *     possible object is
@@ -433,7 +433,7 @@ public class XmlDynamicReports {
     }
 
     /**
-     * Legt den Wert der dateYearToSecondType-Eigenschaft fest.
+     * Sets the value of the dateYearToSecondType property.
      * 
      * @param value
      *     allowed object is
@@ -445,7 +445,7 @@ public class XmlDynamicReports {
     }
 
     /**
-     * Ruft den Wert der dateYearToFractionType-Eigenschaft ab.
+     * Gets the value of the dateYearToFractionType property.
      * 
      * @return
      *     possible object is
@@ -457,7 +457,7 @@ public class XmlDynamicReports {
     }
 
     /**
-     * Legt den Wert der dateYearToFractionType-Eigenschaft fest.
+     * Sets the value of the dateYearToFractionType property.
      * 
      * @param value
      *     allowed object is
@@ -469,7 +469,7 @@ public class XmlDynamicReports {
     }
 
     /**
-     * Ruft den Wert der dateYearType-Eigenschaft ab.
+     * Gets the value of the dateYearType property.
      * 
      * @return
      *     possible object is
@@ -481,7 +481,7 @@ public class XmlDynamicReports {
     }
 
     /**
-     * Legt den Wert der dateYearType-Eigenschaft fest.
+     * Sets the value of the dateYearType property.
      * 
      * @param value
      *     allowed object is
@@ -493,7 +493,7 @@ public class XmlDynamicReports {
     }
 
     /**
-     * Ruft den Wert der dateMonthType-Eigenschaft ab.
+     * Gets the value of the dateMonthType property.
      * 
      * @return
      *     possible object is
@@ -505,7 +505,7 @@ public class XmlDynamicReports {
     }
 
     /**
-     * Legt den Wert der dateMonthType-Eigenschaft fest.
+     * Sets the value of the dateMonthType property.
      * 
      * @param value
      *     allowed object is
@@ -517,7 +517,7 @@ public class XmlDynamicReports {
     }
 
     /**
-     * Ruft den Wert der dateDayType-Eigenschaft ab.
+     * Gets the value of the dateDayType property.
      * 
      * @return
      *     possible object is
@@ -529,7 +529,7 @@ public class XmlDynamicReports {
     }
 
     /**
-     * Legt den Wert der dateDayType-Eigenschaft fest.
+     * Sets the value of the dateDayType property.
      * 
      * @param value
      *     allowed object is
@@ -541,7 +541,7 @@ public class XmlDynamicReports {
     }
 
     /**
-     * Ruft den Wert der timeHourToMinuteType-Eigenschaft ab.
+     * Gets the value of the timeHourToMinuteType property.
      * 
      * @return
      *     possible object is
@@ -553,7 +553,7 @@ public class XmlDynamicReports {
     }
 
     /**
-     * Legt den Wert der timeHourToMinuteType-Eigenschaft fest.
+     * Sets the value of the timeHourToMinuteType property.
      * 
      * @param value
      *     allowed object is
@@ -565,7 +565,7 @@ public class XmlDynamicReports {
     }
 
     /**
-     * Ruft den Wert der timeHourToSecondType-Eigenschaft ab.
+     * Gets the value of the timeHourToSecondType property.
      * 
      * @return
      *     possible object is
@@ -577,7 +577,7 @@ public class XmlDynamicReports {
     }
 
     /**
-     * Legt den Wert der timeHourToSecondType-Eigenschaft fest.
+     * Sets the value of the timeHourToSecondType property.
      * 
      * @param value
      *     allowed object is
@@ -589,7 +589,7 @@ public class XmlDynamicReports {
     }
 
     /**
-     * Ruft den Wert der timeHourToFractionType-Eigenschaft ab.
+     * Gets the value of the timeHourToFractionType property.
      * 
      * @return
      *     possible object is
@@ -601,7 +601,7 @@ public class XmlDynamicReports {
     }
 
     /**
-     * Legt den Wert der timeHourToFractionType-Eigenschaft fest.
+     * Sets the value of the timeHourToFractionType property.
      * 
      * @param value
      *     allowed object is
@@ -613,7 +613,7 @@ public class XmlDynamicReports {
     }
 
     /**
-     * Ruft den Wert der percentageType-Eigenschaft ab.
+     * Gets the value of the percentageType property.
      * 
      * @return
      *     possible object is
@@ -625,7 +625,7 @@ public class XmlDynamicReports {
     }
 
     /**
-     * Legt den Wert der percentageType-Eigenschaft fest.
+     * Sets the value of the percentageType property.
      * 
      * @param value
      *     allowed object is
@@ -637,7 +637,7 @@ public class XmlDynamicReports {
     }
 
     /**
-     * Ruft den Wert der booleanType-Eigenschaft ab.
+     * Gets the value of the booleanType property.
      * 
      * @return
      *     possible object is
@@ -649,7 +649,7 @@ public class XmlDynamicReports {
     }
 
     /**
-     * Legt den Wert der booleanType-Eigenschaft fest.
+     * Sets the value of the booleanType property.
      * 
      * @param value
      *     allowed object is
@@ -661,7 +661,7 @@ public class XmlDynamicReports {
     }
 
     /**
-     * Ruft den Wert der characterType-Eigenschaft ab.
+     * Gets the value of the characterType property.
      * 
      * @return
      *     possible object is
@@ -673,7 +673,7 @@ public class XmlDynamicReports {
     }
 
     /**
-     * Legt den Wert der characterType-Eigenschaft fest.
+     * Sets the value of the characterType property.
      * 
      * @param value
      *     allowed object is
@@ -685,7 +685,7 @@ public class XmlDynamicReports {
     }
 
     /**
-     * Ruft den Wert der stringType-Eigenschaft ab.
+     * Gets the value of the stringType property.
      * 
      * @return
      *     possible object is
@@ -697,7 +697,7 @@ public class XmlDynamicReports {
     }
 
     /**
-     * Legt den Wert der stringType-Eigenschaft fest.
+     * Sets the value of the stringType property.
      * 
      * @param value
      *     allowed object is
@@ -709,7 +709,7 @@ public class XmlDynamicReports {
     }
 
     /**
-     * Ruft den Wert der loadSystemFonts-Eigenschaft ab.
+     * Gets the value of the loadSystemFonts property.
      * 
      * @return
      *     possible object is
@@ -721,7 +721,7 @@ public class XmlDynamicReports {
     }
 
     /**
-     * Legt den Wert der loadSystemFonts-Eigenschaft fest.
+     * Sets the value of the loadSystemFonts property.
      * 
      * @param value
      *     allowed object is
