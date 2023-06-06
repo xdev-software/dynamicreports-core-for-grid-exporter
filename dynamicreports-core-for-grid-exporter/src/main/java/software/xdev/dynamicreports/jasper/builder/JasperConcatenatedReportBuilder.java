@@ -54,7 +54,6 @@ import software.xdev.dynamicreports.jasper.builder.export.JasperPptxExporterBuil
 import software.xdev.dynamicreports.jasper.builder.export.JasperRtfExporterBuilder;
 import software.xdev.dynamicreports.jasper.builder.export.JasperTextExporterBuilder;
 import software.xdev.dynamicreports.jasper.builder.export.JasperXlsxExporterBuilder;
-import software.xdev.dynamicreports.jasper.builder.export.JasperXmlExporterBuilder;
 import software.xdev.dynamicreports.jasper.definition.JasperReportHandler;
 import software.xdev.dynamicreports.jasper.transformation.ExporterTransform;
 import software.xdev.dynamicreports.report.constant.Constants;
@@ -414,30 +413,6 @@ public class JasperConcatenatedReportBuilder implements Serializable {
      */
     public JasperConcatenatedReportBuilder toXlsx(final JasperXlsxExporterBuilder xlsxExporterBuilder) throws DRException {
         return this.export(xlsxExporterBuilder);
-    }
-
-    // xml
-
-    /**
-     * <p>toXml.</p>
-     *
-     * @param outputStream a {@link java.io.OutputStream} object.
-     * @return a {@link software.xdev.dynamicreports.jasper.builder.JasperConcatenatedReportBuilder} object.
-     * @throws software.xdev.dynamicreports.report.exception.DRException if any.
-     */
-    public JasperConcatenatedReportBuilder toXml(final OutputStream outputStream) throws DRException {
-        return this.toXml(Exporters.xmlExporter(outputStream));
-    }
-
-    /**
-     * <p>toXml.</p>
-     *
-     * @param xmlExporterBuilder a {@link software.xdev.dynamicreports.jasper.builder.export.JasperXmlExporterBuilder} object.
-     * @return a {@link software.xdev.dynamicreports.jasper.builder.JasperConcatenatedReportBuilder} object.
-     * @throws software.xdev.dynamicreports.report.exception.DRException if any.
-     */
-    public JasperConcatenatedReportBuilder toXml(final JasperXmlExporterBuilder xmlExporterBuilder) throws DRException {
-        return this.export(xmlExporterBuilder);
     }
 
     // pptx

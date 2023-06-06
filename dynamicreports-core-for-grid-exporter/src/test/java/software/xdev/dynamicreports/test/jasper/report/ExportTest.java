@@ -27,12 +27,11 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import net.sf.jasperreports.engine.JRDataSource;
 import software.xdev.dynamicreports.jasper.builder.JasperConcatenatedReportBuilder;
 import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
-import software.xdev.dynamicreports.jasper.constant.ImageType;
 import software.xdev.dynamicreports.report.datasource.DRDataSource;
 import software.xdev.dynamicreports.report.exception.DRException;
-import net.sf.jasperreports.engine.JRDataSource;
 
 
 /**
@@ -60,7 +59,6 @@ class ExportTest
 		try
 		{
 			this.report.toJrXml(new ByteArrayOutputStream());
-			this.report.toImage(new ByteArrayOutputStream(), ImageType.PNG);
 			this.report.toCsv(new ByteArrayOutputStream());
 			this.report.toDocx(new ByteArrayOutputStream());
 			this.report.toHtml(new ByteArrayOutputStream());
@@ -70,7 +68,6 @@ class ExportTest
 			this.report.toRtf(new ByteArrayOutputStream());
 			this.report.toText(new ByteArrayOutputStream());
 			this.report.toXlsx(new ByteArrayOutputStream());
-			this.report.toXml(new ByteArrayOutputStream());
 			this.report.toPptx(new ByteArrayOutputStream());
 		}
 		catch(final DRException e)
@@ -95,7 +92,6 @@ class ExportTest
 			this.concatenatedReport.toRtf(new ByteArrayOutputStream());
 			this.concatenatedReport.toText(new ByteArrayOutputStream());
 			this.concatenatedReport.toXlsx(new ByteArrayOutputStream());
-			this.concatenatedReport.toXml(new ByteArrayOutputStream());
 			this.concatenatedReport.toPptx(new ByteArrayOutputStream());
 		}
 		catch(final DRException e)

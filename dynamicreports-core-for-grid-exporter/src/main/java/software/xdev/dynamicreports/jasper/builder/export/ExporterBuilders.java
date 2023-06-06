@@ -21,8 +21,6 @@ import java.io.File;
 import java.io.OutputStream;
 import java.io.Writer;
 
-import software.xdev.dynamicreports.jasper.constant.ImageType;
-
 
 /**
  * A set of methods of creating exporters
@@ -446,52 +444,6 @@ public class ExporterBuilders
         return Exporters.xlsxExporter(outputFileName);
     }
     
-    // xml
-    
-    /**
-     * <p>xmlExporter.</p>
-     *
-     * @param outputWriter a {@link java.io.Writer} object.
-     * @return a {@link software.xdev.dynamicreports.jasper.builder.export.JasperXmlExporterBuilder} object.
-     */
-    public JasperXmlExporterBuilder xmlExporter(final Writer outputWriter)
-    {
-        return Exporters.xmlExporter(outputWriter);
-    }
-    
-    /**
-     * <p>xmlExporter.</p>
-     *
-     * @param outputStream a {@link java.io.OutputStream} object.
-     * @return a {@link software.xdev.dynamicreports.jasper.builder.export.JasperXmlExporterBuilder} object.
-     */
-    public JasperXmlExporterBuilder xmlExporter(final OutputStream outputStream)
-    {
-        return Exporters.xmlExporter(outputStream);
-    }
-    
-    /**
-     * <p>xmlExporter.</p>
-     *
-     * @param outputFile a {@link java.io.File} object.
-     * @return a {@link software.xdev.dynamicreports.jasper.builder.export.JasperXmlExporterBuilder} object.
-     */
-    public JasperXmlExporterBuilder xmlExporter(final File outputFile)
-    {
-        return Exporters.xmlExporter(outputFile);
-    }
-    
-    /**
-     * <p>xmlExporter.</p>
-     *
-     * @param outputFileName a {@link java.lang.String} object.
-     * @return a {@link software.xdev.dynamicreports.jasper.builder.export.JasperXmlExporterBuilder} object.
-     */
-    public JasperXmlExporterBuilder xmlExporter(final String outputFileName)
-    {
-        return Exporters.xmlExporter(outputFileName);
-    }
-    
     // pptx
     
     /**
@@ -536,43 +488,5 @@ public class ExporterBuilders
     public JasperPptxExporterBuilder pptxExporter(final String outputFileName)
     {
         return Exporters.pptxExporter(outputFileName);
-    }
-    
-    // image
-    
-    /**
-     * <p>imageExporter.</p>
-     *
-     * @param outputStream a {@link java.io.OutputStream} object.
-     * @param imageType    a {@link software.xdev.dynamicreports.jasper.constant.ImageType} object.
-     * @return a {@link software.xdev.dynamicreports.jasper.builder.export.JasperImageExporterBuilder} object.
-     */
-    public JasperImageExporterBuilder imageExporter(final OutputStream outputStream, final ImageType imageType)
-    {
-        return Exporters.imageExporter(outputStream, imageType);
-    }
-    
-    /**
-     * <p>imageExporter.</p>
-     *
-     * @param outputFile a {@link java.io.File} object.
-     * @param imageType  a {@link software.xdev.dynamicreports.jasper.constant.ImageType} object.
-     * @return a {@link software.xdev.dynamicreports.jasper.builder.export.JasperImageExporterBuilder} object.
-     */
-    public JasperImageExporterBuilder imageExporter(final File outputFile, final ImageType imageType)
-    {
-        return Exporters.imageExporter(outputFile, imageType);
-    }
-    
-    /**
-     * <p>imageExporter.</p>
-     *
-     * @param outputFileName a {@link java.lang.String} object.
-     * @param imageType      a {@link software.xdev.dynamicreports.jasper.constant.ImageType} object.
-     * @return a {@link software.xdev.dynamicreports.jasper.builder.export.JasperImageExporterBuilder} object.
-     */
-    public JasperImageExporterBuilder imageExporter(final String outputFileName, final ImageType imageType)
-    {
-        return Exporters.imageExporter(outputFileName, imageType);
     }
 }

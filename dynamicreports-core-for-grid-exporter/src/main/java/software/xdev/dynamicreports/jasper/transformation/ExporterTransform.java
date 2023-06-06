@@ -19,24 +19,6 @@ package software.xdev.dynamicreports.jasper.transformation;
 
 import java.io.File;
 
-import software.xdev.dynamicreports.design.transformation.StyleResolver;
-import software.xdev.dynamicreports.jasper.definition.export.JasperICsvExporter;
-import software.xdev.dynamicreports.jasper.definition.export.JasperIDocxExporter;
-import software.xdev.dynamicreports.jasper.definition.export.JasperIExcelExporter;
-import software.xdev.dynamicreports.jasper.definition.export.JasperIExporter;
-import software.xdev.dynamicreports.jasper.definition.export.JasperIHtmlExporter;
-import software.xdev.dynamicreports.jasper.definition.export.JasperIOdsExporter;
-import software.xdev.dynamicreports.jasper.definition.export.JasperIOdtExporter;
-import software.xdev.dynamicreports.jasper.definition.export.JasperIPdfExporter;
-import software.xdev.dynamicreports.jasper.definition.export.JasperIPptxExporter;
-import software.xdev.dynamicreports.jasper.definition.export.JasperIRtfExporter;
-import software.xdev.dynamicreports.jasper.definition.export.JasperITextExporter;
-import software.xdev.dynamicreports.jasper.definition.export.JasperIXlsxExporter;
-import software.xdev.dynamicreports.jasper.definition.export.JasperIXmlExporter;
-import software.xdev.dynamicreports.jasper.exception.JasperDesignException;
-import software.xdev.dynamicreports.report.base.style.DRFont;
-import software.xdev.dynamicreports.report.defaults.Defaults;
-import software.xdev.dynamicreports.report.exception.DRException;
 import net.sf.jasperreports.engine.export.FileHtmlResourceHandler;
 import net.sf.jasperreports.engine.export.HtmlExporter;
 import net.sf.jasperreports.engine.export.HtmlResourceHandler;
@@ -44,7 +26,6 @@ import net.sf.jasperreports.engine.export.JRCsvExporter;
 import net.sf.jasperreports.engine.export.JRPdfExporter;
 import net.sf.jasperreports.engine.export.JRRtfExporter;
 import net.sf.jasperreports.engine.export.JRTextExporter;
-import net.sf.jasperreports.engine.export.JRXmlExporter;
 import net.sf.jasperreports.engine.export.oasis.JROdsExporter;
 import net.sf.jasperreports.engine.export.oasis.JROdtExporter;
 import net.sf.jasperreports.engine.export.ooxml.JRDocxExporter;
@@ -57,7 +38,6 @@ import net.sf.jasperreports.export.SimpleCsvExporterConfiguration;
 import net.sf.jasperreports.export.SimpleCsvReportConfiguration;
 import net.sf.jasperreports.export.SimpleDocxExporterConfiguration;
 import net.sf.jasperreports.export.SimpleDocxReportConfiguration;
-import net.sf.jasperreports.export.SimpleExporterConfiguration;
 import net.sf.jasperreports.export.SimpleHtmlExporterConfiguration;
 import net.sf.jasperreports.export.SimpleHtmlExporterOutput;
 import net.sf.jasperreports.export.SimpleHtmlReportConfiguration;
@@ -78,8 +58,24 @@ import net.sf.jasperreports.export.SimpleTextReportConfiguration;
 import net.sf.jasperreports.export.SimpleWriterExporterOutput;
 import net.sf.jasperreports.export.SimpleXlsxExporterConfiguration;
 import net.sf.jasperreports.export.SimpleXlsxReportConfiguration;
-import net.sf.jasperreports.export.SimpleXmlExporterOutput;
 import net.sf.jasperreports.web.util.WebHtmlResourceHandler;
+import software.xdev.dynamicreports.design.transformation.StyleResolver;
+import software.xdev.dynamicreports.jasper.definition.export.JasperICsvExporter;
+import software.xdev.dynamicreports.jasper.definition.export.JasperIDocxExporter;
+import software.xdev.dynamicreports.jasper.definition.export.JasperIExcelExporter;
+import software.xdev.dynamicreports.jasper.definition.export.JasperIExporter;
+import software.xdev.dynamicreports.jasper.definition.export.JasperIHtmlExporter;
+import software.xdev.dynamicreports.jasper.definition.export.JasperIOdsExporter;
+import software.xdev.dynamicreports.jasper.definition.export.JasperIOdtExporter;
+import software.xdev.dynamicreports.jasper.definition.export.JasperIPdfExporter;
+import software.xdev.dynamicreports.jasper.definition.export.JasperIPptxExporter;
+import software.xdev.dynamicreports.jasper.definition.export.JasperIRtfExporter;
+import software.xdev.dynamicreports.jasper.definition.export.JasperITextExporter;
+import software.xdev.dynamicreports.jasper.definition.export.JasperIXlsxExporter;
+import software.xdev.dynamicreports.jasper.exception.JasperDesignException;
+import software.xdev.dynamicreports.report.base.style.DRFont;
+import software.xdev.dynamicreports.report.defaults.Defaults;
+import software.xdev.dynamicreports.report.exception.DRException;
 
 
 /**
@@ -146,10 +142,6 @@ public class ExporterTransform
         else if(this.jasperExporter instanceof JasperITextExporter)
         {
             jrExporter = this.text((JasperITextExporter)this.jasperExporter);
-        }
-        else if(this.jasperExporter instanceof JasperIXmlExporter)
-        {
-            jrExporter = this.xml((JasperIXmlExporter)this.jasperExporter);
         }
         else if(this.jasperExporter instanceof JasperIPptxExporter)
         {
@@ -276,54 +268,6 @@ public class ExporterTransform
         return null;
     }
     
-    private SimpleXmlExporterOutput simpleXmlExporterOutput(final JasperIXmlExporter jasperExporter)
-    {
-        if(jasperExporter.getOutputWriter() != null)
-        {
-            return new SimpleXmlExporterOutput(jasperExporter.getOutputWriter());
-        }
-        if(jasperExporter.getOutputStream() != null)
-        {
-            if(jasperExporter.getCharacterEncoding() != null)
-            {
-                return new SimpleXmlExporterOutput(
-                    jasperExporter.getOutputStream(),
-                    jasperExporter.getCharacterEncoding());
-            }
-            else
-            {
-                return new SimpleXmlExporterOutput(jasperExporter.getOutputStream());
-            }
-        }
-        if(jasperExporter.getOutputFile() != null)
-        {
-            if(jasperExporter.getCharacterEncoding() != null)
-            {
-                return new SimpleXmlExporterOutput(
-                    jasperExporter.getOutputFile(),
-                    jasperExporter.getCharacterEncoding());
-            }
-            else
-            {
-                return new SimpleXmlExporterOutput(jasperExporter.getOutputFile());
-            }
-        }
-        if(jasperExporter.getOutputFileName() != null)
-        {
-            if(jasperExporter.getCharacterEncoding() != null)
-            {
-                return new SimpleXmlExporterOutput(
-                    jasperExporter.getOutputFileName(),
-                    jasperExporter.getCharacterEncoding());
-            }
-            else
-            {
-                return new SimpleXmlExporterOutput(jasperExporter.getOutputFileName());
-            }
-        }
-        return null;
-    }
-    
     private void reportExportConfiguration(
         final SimpleReportExportConfiguration reportExportConfiguration,
         final JasperIExporter jasperExporter)
@@ -348,24 +292,6 @@ public class ExporterTransform
         {
             reportExportConfiguration.setOffsetY(jasperExporter.getOffsetY());
         }
-    }
-    
-    private JRXmlExporter xml(final JasperIXmlExporter jasperExporter)
-    {
-        final SimpleXmlExporterOutput exporterOutput = this.simpleXmlExporterOutput(jasperExporter);
-        if(jasperExporter.getEmbeddingImages() != null)
-        {
-            exporterOutput.setEmbeddingImages(jasperExporter.getEmbeddingImages());
-        }
-        final SimpleReportExportConfiguration reportExportConfiguration = new SimpleReportExportConfiguration();
-        this.reportExportConfiguration(reportExportConfiguration, jasperExporter);
-        final SimpleExporterConfiguration exporterConfiguration = new SimpleExporterConfiguration();
-        
-        final JRXmlExporter jrExporter = new JRXmlExporter();
-        jrExporter.setExporterOutput(exporterOutput);
-        jrExporter.setConfiguration(reportExportConfiguration);
-        jrExporter.setConfiguration(exporterConfiguration);
-        return jrExporter;
     }
     
     private JRPptxExporter pptx(final JasperIPptxExporter jasperExporter)

@@ -17,12 +17,7 @@
  */
 package software.xdev.dynamicreports.jasper.builder;
 
-import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.image.BufferedImage;
-import java.awt.image.RenderedImage;
 import java.io.File;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URL;
@@ -32,43 +27,8 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.imageio.ImageIO;
-
 import org.apache.commons.lang3.Validate;
 
-import software.xdev.dynamicreports.design.base.DRDesignReport;
-import software.xdev.dynamicreports.design.definition.DRIDesignReport;
-import software.xdev.dynamicreports.jasper.base.JasperReportDesign;
-import software.xdev.dynamicreports.jasper.base.export.AbstractJasperExporter;
-import software.xdev.dynamicreports.jasper.base.export.JasperImageExporter;
-import software.xdev.dynamicreports.jasper.base.tableofcontents.JasperTocReport;
-import software.xdev.dynamicreports.jasper.base.templatedesign.JasperEmptyTemplateDesign;
-import software.xdev.dynamicreports.jasper.base.templatedesign.JasperTemplateDesign;
-import software.xdev.dynamicreports.jasper.builder.export.AbstractJasperExporterBuilder;
-import software.xdev.dynamicreports.jasper.builder.export.Exporters;
-import software.xdev.dynamicreports.jasper.builder.export.JasperCsvExporterBuilder;
-import software.xdev.dynamicreports.jasper.builder.export.JasperDocxExporterBuilder;
-import software.xdev.dynamicreports.jasper.builder.export.JasperHtmlExporterBuilder;
-import software.xdev.dynamicreports.jasper.builder.export.JasperImageExporterBuilder;
-import software.xdev.dynamicreports.jasper.builder.export.JasperOdsExporterBuilder;
-import software.xdev.dynamicreports.jasper.builder.export.JasperOdtExporterBuilder;
-import software.xdev.dynamicreports.jasper.builder.export.JasperPdfExporterBuilder;
-import software.xdev.dynamicreports.jasper.builder.export.JasperPptxExporterBuilder;
-import software.xdev.dynamicreports.jasper.builder.export.JasperRtfExporterBuilder;
-import software.xdev.dynamicreports.jasper.builder.export.JasperTextExporterBuilder;
-import software.xdev.dynamicreports.jasper.builder.export.JasperXlsxExporterBuilder;
-import software.xdev.dynamicreports.jasper.builder.export.JasperXmlExporterBuilder;
-import software.xdev.dynamicreports.jasper.constant.ImageType;
-import software.xdev.dynamicreports.jasper.exception.JasperDesignException;
-import software.xdev.dynamicreports.jasper.transformation.ExporterTransform;
-import software.xdev.dynamicreports.jasper.transformation.JasperTransform;
-import software.xdev.dynamicreports.report.builder.DynamicReports;
-import software.xdev.dynamicreports.report.builder.QueryBuilder;
-import software.xdev.dynamicreports.report.builder.ReportBuilder;
-import software.xdev.dynamicreports.report.constant.Constants;
-import software.xdev.dynamicreports.report.constant.QueryLanguage;
-import software.xdev.dynamicreports.report.definition.DRITemplateDesign;
-import software.xdev.dynamicreports.report.exception.DRException;
 import net.sf.jasperreports.engine.JRDataSource;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JRParameter;
@@ -82,16 +42,40 @@ import net.sf.jasperreports.engine.JasperPrintManager;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.design.JasperDesign;
-import net.sf.jasperreports.engine.export.JRGraphics2DExporter;
 import net.sf.jasperreports.engine.xml.JRXmlWriter;
 import net.sf.jasperreports.export.Exporter;
 import net.sf.jasperreports.export.ExporterInput;
 import net.sf.jasperreports.export.SimpleExporterInput;
-import net.sf.jasperreports.export.SimpleGraphics2DExporterConfiguration;
-import net.sf.jasperreports.export.SimpleGraphics2DExporterOutput;
-import net.sf.jasperreports.export.SimpleGraphics2DReportConfiguration;
 import net.sf.jasperreports.view.JasperDesignViewer;
 import net.sf.jasperreports.view.JasperViewer;
+import software.xdev.dynamicreports.design.base.DRDesignReport;
+import software.xdev.dynamicreports.design.definition.DRIDesignReport;
+import software.xdev.dynamicreports.jasper.base.JasperReportDesign;
+import software.xdev.dynamicreports.jasper.base.export.AbstractJasperExporter;
+import software.xdev.dynamicreports.jasper.base.tableofcontents.JasperTocReport;
+import software.xdev.dynamicreports.jasper.base.templatedesign.JasperEmptyTemplateDesign;
+import software.xdev.dynamicreports.jasper.base.templatedesign.JasperTemplateDesign;
+import software.xdev.dynamicreports.jasper.builder.export.AbstractJasperExporterBuilder;
+import software.xdev.dynamicreports.jasper.builder.export.Exporters;
+import software.xdev.dynamicreports.jasper.builder.export.JasperCsvExporterBuilder;
+import software.xdev.dynamicreports.jasper.builder.export.JasperDocxExporterBuilder;
+import software.xdev.dynamicreports.jasper.builder.export.JasperHtmlExporterBuilder;
+import software.xdev.dynamicreports.jasper.builder.export.JasperOdsExporterBuilder;
+import software.xdev.dynamicreports.jasper.builder.export.JasperOdtExporterBuilder;
+import software.xdev.dynamicreports.jasper.builder.export.JasperPdfExporterBuilder;
+import software.xdev.dynamicreports.jasper.builder.export.JasperPptxExporterBuilder;
+import software.xdev.dynamicreports.jasper.builder.export.JasperRtfExporterBuilder;
+import software.xdev.dynamicreports.jasper.builder.export.JasperTextExporterBuilder;
+import software.xdev.dynamicreports.jasper.builder.export.JasperXlsxExporterBuilder;
+import software.xdev.dynamicreports.jasper.transformation.ExporterTransform;
+import software.xdev.dynamicreports.jasper.transformation.JasperTransform;
+import software.xdev.dynamicreports.report.builder.DynamicReports;
+import software.xdev.dynamicreports.report.builder.QueryBuilder;
+import software.xdev.dynamicreports.report.builder.ReportBuilder;
+import software.xdev.dynamicreports.report.constant.Constants;
+import software.xdev.dynamicreports.report.constant.QueryLanguage;
+import software.xdev.dynamicreports.report.definition.DRITemplateDesign;
+import software.xdev.dynamicreports.report.exception.DRException;
 
 /**
  * The most used report builder for creating reports. It allows constructing and customizing the whole report content. A report consists of bands, columns, subtotals, groups, and other parts. Each
@@ -471,122 +455,6 @@ public class JasperReportBuilder extends ReportBuilder<JasperReportBuilder> {
     }
 
     /**
-     * <p>toImage.</p>
-     *
-     * @param outputStream a {@link java.io.OutputStream} object.
-     * @param imageType    a {@link software.xdev.dynamicreports.jasper.constant.ImageType} object.
-     * @return a {@link software.xdev.dynamicreports.jasper.builder.JasperReportBuilder} object.
-     * @throws software.xdev.dynamicreports.report.exception.DRException if any.
-     */
-    public JasperReportBuilder toImage(final OutputStream outputStream, final ImageType imageType) throws DRException {
-        return this.toImage(Exporters.imageExporter(outputStream, imageType));
-    }
-
-    /**
-     * <p>toImage.</p>
-     *
-     * @param imageExporterBuilder a {@link software.xdev.dynamicreports.jasper.builder.export.JasperImageExporterBuilder} object.
-     * @return a {@link software.xdev.dynamicreports.jasper.builder.JasperReportBuilder} object.
-     * @throws software.xdev.dynamicreports.report.exception.DRException if any.
-     */
-    public JasperReportBuilder toImage(final JasperImageExporterBuilder imageExporterBuilder) throws DRException {
-        Validate.notNull(imageExporterBuilder, "imageExporterBuilder must not be null");
-
-        final JasperImageExporter imageExporter = imageExporterBuilder.build();
-
-        final JasperPrint jasperPrint = this.toJasperPrint();
-        Integer fromPage = null;
-        Integer toPage = null;
-        float zoom = 1;
-        final String imageType = imageExporter.getImageType().name().toLowerCase();
-        int offsetX = 0;
-        int offsetY = 0;
-        int pageGap = 0;
-
-        if (imageExporter.getZoomRatio() != null) {
-            zoom = imageExporter.getZoomRatio();
-        }
-        if (imageExporter.getOffsetX() != null) {
-            offsetX = imageExporter.getOffsetX();
-        }
-        if (imageExporter.getOffsetY() != null) {
-            offsetY = imageExporter.getOffsetY();
-        }
-        if (imageExporter.getPageGap() != null) {
-            pageGap = imageExporter.getPageGap();
-        }
-
-        if (imageExporter.getPageIndex() != null && imageExporter.getPageIndex() >= 0) {
-            fromPage = imageExporter.getPageIndex();
-            toPage = imageExporter.getPageIndex() + 1;
-        } else {
-            if (imageExporter.getStartPageIndex() != null) {
-                fromPage = imageExporter.getStartPageIndex();
-            }
-            if (imageExporter.getEndPageIndex() != null) {
-                toPage = imageExporter.getEndPageIndex();
-            }
-        }
-        if (fromPage == null) {
-            fromPage = 0;
-        }
-        if (toPage == null) {
-            toPage = jasperPrint.getPages().size();
-        }
-
-        final int pages = toPage - fromPage;
-
-        final int pageWidth = (int) (jasperPrint.getPageWidth() * zoom);
-        final int pageHeight = (int) (jasperPrint.getPageHeight() * zoom);
-        final int width = pageWidth * pages + pages - 1 + offsetX * 2;
-        final int height = (int) (jasperPrint.getPageHeight() * zoom) + offsetY * 2;
-        final Image image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
-
-        int offset = offsetX;
-        for (int i = 0; i < pages; i++) {
-            try {
-                final SimpleExporterInput exporterInput = new SimpleExporterInput(jasperPrint);
-                final SimpleGraphics2DExporterOutput exporterOutput = new SimpleGraphics2DExporterOutput();
-                final Image pageImage = new BufferedImage(pageWidth, pageHeight, BufferedImage.TYPE_INT_RGB);
-                exporterOutput.setGraphics2D((Graphics2D) pageImage.getGraphics());
-                final SimpleGraphics2DReportConfiguration reportExportConfiguration = new SimpleGraphics2DReportConfiguration();
-                reportExportConfiguration.setPageIndex(fromPage);
-                reportExportConfiguration.setZoomRatio(zoom);
-                final SimpleGraphics2DExporterConfiguration exporterConfiguration = new SimpleGraphics2DExporterConfiguration();
-
-                final JRGraphics2DExporter jrExporter = new JRGraphics2DExporter();
-                jrExporter.setExporterInput(exporterInput);
-                jrExporter.setExporterOutput(exporterOutput);
-                jrExporter.setConfiguration(reportExportConfiguration);
-                jrExporter.setConfiguration(exporterConfiguration);
-
-                jrExporter.exportReport();
-                ((Graphics2D) image.getGraphics()).drawImage(pageImage, offset, offsetY, null);
-                fromPage++;
-                offset += pageWidth + pageGap;
-            } catch (final JRException e) {
-                throw new DRException(e);
-            }
-        }
-        try {
-            if (imageExporter.getOutputStream() != null) {
-                ImageIO.write((RenderedImage) image, imageType, imageExporter.getOutputStream());
-            } else if (imageExporter.getOutputFileName() != null) {
-                ImageIO.write((RenderedImage) image, imageType, new File(imageExporter.getOutputFileName()));
-            } else if (imageExporter.getOutputFile() != null) {
-                ImageIO.write((RenderedImage) image, imageType, imageExporter.getOutputFile());
-            } else {
-                throw new JasperDesignException("ImageExporter output not supported");
-            }
-        } catch (final IOException e) {
-            throw new DRException(e);
-        }
-        return this;
-    }
-
-    // image
-
-    /**
      * <p>toCsv.</p>
      *
      * @param outputStream a {@link java.io.OutputStream} object.
@@ -801,30 +669,6 @@ public class JasperReportBuilder extends ReportBuilder<JasperReportBuilder> {
     }
 
     // xlsx
-
-    /**
-     * <p>toXml.</p>
-     *
-     * @param outputStream a {@link java.io.OutputStream} object.
-     * @return a {@link software.xdev.dynamicreports.jasper.builder.JasperReportBuilder} object.
-     * @throws software.xdev.dynamicreports.report.exception.DRException if any.
-     */
-    public JasperReportBuilder toXml(final OutputStream outputStream) throws DRException {
-        return this.toXml(Exporters.xmlExporter(outputStream));
-    }
-
-    /**
-     * <p>toXml.</p>
-     *
-     * @param xmlExporterBuilder a {@link software.xdev.dynamicreports.jasper.builder.export.JasperXmlExporterBuilder} object.
-     * @return a {@link software.xdev.dynamicreports.jasper.builder.JasperReportBuilder} object.
-     * @throws software.xdev.dynamicreports.report.exception.DRException if any.
-     */
-    public JasperReportBuilder toXml(final JasperXmlExporterBuilder xmlExporterBuilder) throws DRException {
-        return this.export(xmlExporterBuilder);
-    }
-
-    // xml
 
     /**
      * <p>toPptx.</p>
