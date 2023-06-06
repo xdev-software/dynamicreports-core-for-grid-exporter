@@ -17,54 +17,69 @@
  */
 package software.xdev.dynamicreports.report.builder.expression;
 
+import java.math.BigDecimal;
+import java.util.List;
+
+import org.apache.commons.lang3.Validate;
+
 import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.definition.ReportParameters;
 import software.xdev.dynamicreports.report.definition.expression.DRIExpression;
-import org.apache.commons.lang3.Validate;
 
-import java.math.BigDecimal;
-import java.util.List;
 
 /**
  * @author Ricardo Mariaca
  */
-abstract class CalculationExpression extends AbstractComplexExpression<BigDecimal> {
+abstract class CalculationExpression extends AbstractComplexExpression<BigDecimal>
+{
     private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
-
-    @SafeVarargs
+    
     /**
      * <p>Constructor for CalculationExpression.</p>
      *
      * @param expressions a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
      */
-    protected CalculationExpression(DRIExpression<? extends Number>... expressions) {
+    @SafeVarargs
+    protected CalculationExpression(final DRIExpression<? extends Number>... expressions)
+    {
         Validate.notNull(expressions, "expressions must not be null");
         Validate.noNullElements(expressions, "expressions must not contains null expression");
-        for (DRIExpression<? extends Number> expression : expressions) {
-            addExpression(expression);
+        for(final DRIExpression<? extends Number> expression : expressions)
+        {
+            this.addExpression(expression);
         }
     }
-
-    /** {@inheritDoc} */
+    
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public BigDecimal evaluate(List<?> values, ReportParameters reportParameters) {
+    public BigDecimal evaluate(final List<?> values, final ReportParameters reportParameters)
+    {
         BigDecimal result = null;
-        for (Object value : values) {
-            BigDecimal bigDecimalValue;
-            if (value instanceof BigDecimal) {
-                bigDecimalValue = (BigDecimal) value;
-            } else {
-                bigDecimalValue = new BigDecimal(((Number) value).doubleValue());
+        for(final Object value : values)
+        {
+            final BigDecimal bigDecimalValue;
+            if(value instanceof final BigDecimal bd)
+            {
+                bigDecimalValue = bd;
             }
-            if (result == null) {
+            else
+            {
+                bigDecimalValue = BigDecimal.valueOf(((Number)value).doubleValue());
+            }
+            if(result == null)
+            {
                 result = bigDecimalValue;
-            } else {
-                result = calculate(result, bigDecimalValue);
+            }
+            else
+            {
+                result = this.calculate(result, bigDecimalValue);
             }
         }
         return result;
     }
-
+    
     /**
      * <p>calculate.</p>
      *

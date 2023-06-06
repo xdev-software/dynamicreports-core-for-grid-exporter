@@ -21,9 +21,6 @@ import java.awt.Color;
 
 import org.junit.jupiter.api.Assertions;
 
-import software.xdev.dynamicreports.report.builder.column.ColumnBuilder;
-import software.xdev.dynamicreports.report.builder.group.GroupBuilder;
-import software.xdev.dynamicreports.report.builder.subtotal.SubtotalBuilder;
 import net.sf.jasperreports.engine.JRImageAlignment;
 import net.sf.jasperreports.engine.JRStyle;
 import net.sf.jasperreports.engine.JRTextAlignment;
@@ -33,6 +30,9 @@ import net.sf.jasperreports.engine.type.HorizontalTextAlignEnum;
 import net.sf.jasperreports.engine.type.LineStyleEnum;
 import net.sf.jasperreports.engine.type.VerticalImageAlignEnum;
 import net.sf.jasperreports.engine.type.VerticalTextAlignEnum;
+import software.xdev.dynamicreports.report.builder.column.ColumnBuilder;
+import software.xdev.dynamicreports.report.builder.group.GroupBuilder;
+import software.xdev.dynamicreports.report.builder.subtotal.SubtotalBuilder;
 
 
 /**
@@ -144,7 +144,7 @@ public abstract class AbstractJasperStyleTest extends AbstractJasperTest
 		if(verticalAlignment == null)
 		{
 			Assertions.assertEquals(
-				VerticalTextAlignEnum.TOP,
+				VerticalImageAlignEnum.TOP,
 				element.getVerticalImageAlign());
 		}
 		Assertions.assertEquals(verticalAlignment, element.getVerticalImageAlign());

@@ -17,11 +17,11 @@
  */
 package software.xdev.dynamicreports.report.builder.datatype;
 
+import java.math.BigDecimal;
+
 import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.constant.HorizontalTextAlignment;
 import software.xdev.dynamicreports.report.defaults.Defaults;
-
-import java.math.BigDecimal;
 
 /**
  * <p>BigDecimalType class.</p>
@@ -46,7 +46,7 @@ public class BigDecimalType extends NumberType<BigDecimal> {
 
     /** {@inheritDoc} */
     @Override
-    protected BigDecimal numberToValue(Number number) {
-        return new BigDecimal(number.doubleValue());
+    protected BigDecimal numberToValue(final Number number) {
+        return BigDecimal.valueOf(number.doubleValue());
     }
 }
