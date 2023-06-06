@@ -15,28 +15,15 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package software.xdev.dynamicreports.report.defaults;
+package software.xdev.dynamicreports;
 
-import java.util.ServiceLoader;
+import software.xdev.dynamicreports.report.defaults.Default;
 
 
-public final class Defaults
+public class TestDefault extends Default
 {
-    private static Default instance = ServiceLoader.load(Default.class)
-        .findFirst()
-        .orElseGet(Default::new);
-    
-    private Defaults()
-    {
-    }
-    
-    public static Default getDefaults()
-    {
-        return instance;
-    }
-    
-    public static void setDefault(final Default d)
-    {
-        instance = d;
-    }
+	public TestDefault()
+	{
+		this.getFont().setFontName("Arimo");
+	}
 }

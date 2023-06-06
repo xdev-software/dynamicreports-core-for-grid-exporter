@@ -64,202 +64,201 @@ import software.xdev.dynamicreports.report.definition.style.DRIStyle;
  */
 public class Default
 {
-	private String reportName;
-	private Locale locale;
-	private boolean showColumnTitle;
-	private boolean showColumnValues;
-	private boolean ignorePagination;
-	private WhenNoDataType whenNoDataType;
-	private WhenResourceMissingType whenResourceMissingType;
-	private boolean titleOnANewPage;
-	private boolean summaryOnANewPage;
-	private boolean summaryWithPageHeaderAndFooter;
-	private boolean floatColumnFooter;
-	private Orientation printOrder;
-	private RunDirection columnDirection;
-	private String language;
-	private boolean useFieldNameAsDescription;
+	protected String reportName;
+	protected Locale locale;
+	protected boolean showColumnTitle;
+	protected boolean showColumnValues;
+	protected boolean ignorePagination;
+	protected WhenNoDataType whenNoDataType;
+	protected WhenResourceMissingType whenResourceMissingType;
+	protected boolean titleOnANewPage;
+	protected boolean summaryOnANewPage;
+	protected boolean summaryWithPageHeaderAndFooter;
+	protected boolean floatColumnFooter;
+	protected Orientation printOrder;
+	protected RunDirection columnDirection;
+	protected String language;
+	protected boolean useFieldNameAsDescription;
 	// style
-	private boolean highlightDetailOddRows;
-	private DRSimpleStyle detailOddRowStyle;
-	private boolean highlightDetailEvenRows;
-	private DRSimpleStyle detailEvenRowStyle;
-	private DRStyle textStyle;
-	private DRStyle columnTitleStyle;
-	private DRStyle columnStyle;
-	private DRStyle groupTitleStyle;
-	private DRStyle groupStyle;
-	private DRStyle subtotalStyle;
-	private DRStyle imageStyle;
+	protected boolean highlightDetailOddRows;
+	protected DRSimpleStyle detailOddRowStyle;
+	protected boolean highlightDetailEvenRows;
+	protected DRSimpleStyle detailEvenRowStyle;
+	protected DRStyle textStyle;
+	protected DRStyle columnTitleStyle;
+	protected DRStyle columnStyle;
+	protected DRStyle groupTitleStyle;
+	protected DRStyle groupStyle;
+	protected DRStyle subtotalStyle;
+	protected DRStyle imageStyle;
 	// page
-	private int pageWidth;
-	private int pageHeight;
-	private PageOrientation pageOrientation;
-	private DRMargin pageMargin;
-	private DRMargin subreportPageMargin;
-	private int pageColumnsPerPage;
-	private int pageColumnSpace;
-	private boolean ignorePageWidth;
+	protected int pageWidth;
+	protected int pageHeight;
+	protected PageOrientation pageOrientation;
+	protected DRMargin pageMargin;
+	protected DRMargin subreportPageMargin;
+	protected int pageColumnsPerPage;
+	protected int pageColumnSpace;
+	protected boolean ignorePageWidth;
 	// column
-	private boolean columnPrintRepeatedDetailValues;
-	private int columnWidth;
+	protected boolean columnPrintRepeatedDetailValues;
+	protected int columnWidth;
 	// component
-	private boolean removeLineWhenBlank;
-	private boolean printInFirstWholeBand;
-	private boolean printWhenDetailOverflows;
+	protected boolean removeLineWhenBlank;
+	protected boolean printInFirstWholeBand;
+	protected boolean printWhenDetailOverflows;
 	// group
-	private GroupHeaderLayout groupHeaderLayout;
-	private boolean groupHideColumn;
-	private boolean groupShowColumnHeaderAndFooter;
-	private int groupPadding;
-	private boolean groupStartInNewPage;
-	private boolean groupStartInNewColumn;
-	private boolean groupReprintHeaderOnEachPage;
-	private boolean groupResetPageNumber;
-	private Integer groupMinHeightToStartNewPage;
-	private GroupFooterPosition groupFooterPosition;
-	private boolean groupKeepTogether;
-	private boolean groupHeaderWithSubtotal;
-	private boolean groupByDataType;
+	protected GroupHeaderLayout groupHeaderLayout;
+	protected boolean groupHideColumn;
+	protected boolean groupShowColumnHeaderAndFooter;
+	protected int groupPadding;
+	protected boolean groupStartInNewPage;
+	protected boolean groupStartInNewColumn;
+	protected boolean groupReprintHeaderOnEachPage;
+	protected boolean groupResetPageNumber;
+	protected Integer groupMinHeightToStartNewPage;
+	protected GroupFooterPosition groupFooterPosition;
+	protected boolean groupKeepTogether;
+	protected boolean groupHeaderWithSubtotal;
+	protected boolean groupByDataType;
 	// subtotal
-	private Position subtotalLabelPosition;
+	protected Position subtotalLabelPosition;
 	// table of contents
-	private boolean tableOfContents;
-	private DRITableOfContentsCustomizer tableOfContentsCustomizer;
-	private boolean addGroupToTableOfContents;
-	private TableOfContentsPosition tableOfContentsPosition;
+	protected boolean tableOfContents;
+	protected DRITableOfContentsCustomizer tableOfContentsCustomizer;
+	protected boolean addGroupToTableOfContents;
+	protected TableOfContentsPosition tableOfContentsPosition;
 	// text field
-	private int textFieldWidth;
-	private boolean textFieldPrintRepeatedValues;
-	private boolean textFieldStretchWithOverflow;
-	private TextAdjust textFieldTextAdjust;
+	protected int textFieldWidth;
+	protected boolean textFieldPrintRepeatedValues;
+	protected boolean textFieldStretchWithOverflow;
 	// image
-	private int imageWidth;
-	private int imageHeight;
+	protected int imageWidth;
+	protected int imageHeight;
 	// filler
-	private int fillerWidth;
-	private int fillerHeight;
+	protected int fillerWidth;
+	protected int fillerHeight;
 	// line
-	private int lineWidth;
-	private int lineHeight;
+	protected int lineWidth;
+	protected int lineHeight;
 	// ellipse
-	private int ellipseWidth;
-	private int ellipseHeight;
+	protected int ellipseWidth;
+	protected int ellipseHeight;
 	// rectangle
-	private Integer rectangleRadius;
-	private int rectangleWidth;
-	private int rectangleHeight;
+	protected Integer rectangleRadius;
+	protected int rectangleWidth;
+	protected int rectangleHeight;
 	// map
-	private int mapWidth;
-	private int mapHeight;
+	protected int mapWidth;
+	protected int mapHeight;
 	// custom component
-	private int customComponentWidth;
-	private int customComponentHeight;
+	protected int customComponentWidth;
+	protected int customComponentHeight;
 	// break
-	private int breakWidth;
-	private int breakHeight;
+	protected int breakWidth;
+	protected int breakHeight;
 	// generic element
-	private int genericElementWidth;
-	private int genericElementHeight;
+	protected int genericElementWidth;
+	protected int genericElementHeight;
 	// list
-	private Integer listWidth;
-	private Integer listHeight;
-	private int listgap;
-	private HorizontalCellComponentAlignment horizontalCellComponentAlignment;
-	private VerticalCellComponentAlignment verticalCellComponentAlignment;
+	protected Integer listWidth;
+	protected Integer listHeight;
+	protected int listgap;
+	protected HorizontalCellComponentAlignment horizontalCellComponentAlignment;
+	protected VerticalCellComponentAlignment verticalCellComponentAlignment;
 	// multi page list
-	private int multiPageListWidth;
-	private int multiPageListHeight;
+	protected int multiPageListWidth;
+	protected int multiPageListHeight;
 	// subreport
-	private int subreportWidth;
-	private int subreportHeight;
+	protected int subreportWidth;
+	protected int subreportHeight;
 	// crosstab
-	private int crosstabWidth;
-	private int crosstabHeight;
-	private CrosstabTotalPosition crosstabColumnGroupTotalPosition;
-	private CrosstabTotalPosition crosstabRowGroupTotalPosition;
-	private boolean crosstabColumnGroupShowTotal;
-	private boolean crosstabRowGroupShowTotal;
-	private int crosstabColumnGroupTotalHeaderMaxWidth;
-	private int crosstabRowGroupHeaderMaxWidth;
-	private int crosstabCellMaxWidth;
-	private boolean crosstabHighlightOddRows;
-	private DRSimpleStyle crosstabOddRowStyle;
-	private boolean crosstabHighlightEvenRows;
-	private DRSimpleStyle crosstabEvenRowStyle;
-	private DRStyle crosstabGroupStyle;
-	private DRStyle crosstabGroupTotalStyle;
-	private DRStyle crosstabGrandTotalStyle;
-	private DRStyle crosstabCellStyle;
-	private DRStyle crosstabMeasureTitleStyle;
-	private CrosstabPercentageType crosstabPercentageType;
+	protected int crosstabWidth;
+	protected int crosstabHeight;
+	protected CrosstabTotalPosition crosstabColumnGroupTotalPosition;
+	protected CrosstabTotalPosition crosstabRowGroupTotalPosition;
+	protected boolean crosstabColumnGroupShowTotal;
+	protected boolean crosstabRowGroupShowTotal;
+	protected int crosstabColumnGroupTotalHeaderMaxWidth;
+	protected int crosstabRowGroupHeaderMaxWidth;
+	protected int crosstabCellMaxWidth;
+	protected boolean crosstabHighlightOddRows;
+	protected DRSimpleStyle crosstabOddRowStyle;
+	protected boolean crosstabHighlightEvenRows;
+	protected DRSimpleStyle crosstabEvenRowStyle;
+	protected DRStyle crosstabGroupStyle;
+	protected DRStyle crosstabGroupTotalStyle;
+	protected DRStyle crosstabGrandTotalStyle;
+	protected DRStyle crosstabCellStyle;
+	protected DRStyle crosstabMeasureTitleStyle;
+	protected CrosstabPercentageType crosstabPercentageType;
 	// boolean
-	private BooleanComponentType booleanComponentType;
-	private boolean booleanEmptyWhenNullValue;
-	private int booleanImageWidth;
-	private int booleanImageHeight;
-	private DRStyle booleanColumnStyle;
-	private HorizontalImageAlignment booleanHorizontalImageAlignment;
+	protected BooleanComponentType booleanComponentType;
+	protected boolean booleanEmptyWhenNullValue;
+	protected int booleanImageWidth;
+	protected int booleanImageHeight;
+	protected DRStyle booleanColumnStyle;
+	protected HorizontalImageAlignment booleanHorizontalImageAlignment;
 	// split
-	private SplitType defaultSplitType;
-	private SplitType titleSplitType;
-	private SplitType pageHeaderSplitType;
-	private SplitType pageFooterSplitType;
-	private SplitType columnHeaderSplitType;
-	private SplitType columnFooterSplitType;
-	private SplitType groupHeaderSplitType;
-	private SplitType groupFooterSplitType;
-	private SplitType detailHeaderSplitType;
-	private SplitType detailSplitType;
-	private SplitType detailFooterSplitType;
-	private SplitType lastPageFooterSplitType;
-	private SplitType summarySplitType;
-	private SplitType noDataSplitType;
-	private SplitType backgroundSplitType;
+	protected SplitType defaultSplitType;
+	protected SplitType titleSplitType;
+	protected SplitType pageHeaderSplitType;
+	protected SplitType pageFooterSplitType;
+	protected SplitType columnHeaderSplitType;
+	protected SplitType columnFooterSplitType;
+	protected SplitType groupHeaderSplitType;
+	protected SplitType groupFooterSplitType;
+	protected SplitType detailHeaderSplitType;
+	protected SplitType detailSplitType;
+	protected SplitType detailFooterSplitType;
+	protected SplitType lastPageFooterSplitType;
+	protected SplitType summarySplitType;
+	protected SplitType noDataSplitType;
+	protected SplitType backgroundSplitType;
 	// band style
-	private DRIStyle bandStyle;
+	protected DRIStyle bandStyle;
 	// band background component
-	private DRIComponent bandBackgroundComponent;
+	protected DRIComponent bandBackgroundComponent;
 	// font
-	private DRFont font;
+	protected DRFont font;
 	// datatype
-	private DRDataType<Number, BigDecimal> bigDecimalType;
-	private DRDataType<Number, BigInteger> bigIntegerType;
-	private DRDataType<Number, Byte> byteType;
-	private DRDataType<Number, Double> doubleType;
-	private DRDataType<Number, Float> floatType;
-	private DRDataType<Number, Integer> integerType;
-	private DRDataType<Number, Long> longType;
-	private DRDataType<Number, Short> shortType;
-	private DRDataType<Date, Date> dateType;
-	private DRDataType<Date, Date> dateYearToMonthType;
-	private DRDataType<Date, Date> dateYearToHourType;
-	private DRDataType<Date, Date> dateYearToMinuteType;
-	private DRDataType<Date, Date> dateYearToSecondType;
-	private DRDataType<Date, Date> dateYearToFractionType;
-	private DRDataType<Date, Date> dateYearType;
-	private DRDataType<Date, Date> dateMonthType;
-	private DRDataType<Date, Date> dateDayType;
-	private DRDataType<Date, Date> timeHourToMinuteType;
-	private DRDataType<Date, Date> timeHourToSecondType;
-	private DRDataType<Date, Date> timeHourToFractionType;
-	private DRDataType<Number, Double> percentageType;
-	private DRDataType<Boolean, Boolean> booleanType;
-	private DRDataType<Character, Character> characterType;
-	private DRDataType<String, String> stringType;
-	private HorizontalTextAlignment pageXofYHorizontalTextAlignment;
+	protected DRDataType<Number, BigDecimal> bigDecimalType;
+	protected DRDataType<Number, BigInteger> bigIntegerType;
+	protected DRDataType<Number, Byte> byteType;
+	protected DRDataType<Number, Double> doubleType;
+	protected DRDataType<Number, Float> floatType;
+	protected DRDataType<Number, Integer> integerType;
+	protected DRDataType<Number, Long> longType;
+	protected DRDataType<Number, Short> shortType;
+	protected DRDataType<Date, Date> dateType;
+	protected DRDataType<Date, Date> dateYearToMonthType;
+	protected DRDataType<Date, Date> dateYearToHourType;
+	protected DRDataType<Date, Date> dateYearToMinuteType;
+	protected DRDataType<Date, Date> dateYearToSecondType;
+	protected DRDataType<Date, Date> dateYearToFractionType;
+	protected DRDataType<Date, Date> dateYearType;
+	protected DRDataType<Date, Date> dateMonthType;
+	protected DRDataType<Date, Date> dateDayType;
+	protected DRDataType<Date, Date> timeHourToMinuteType;
+	protected DRDataType<Date, Date> timeHourToSecondType;
+	protected DRDataType<Date, Date> timeHourToFractionType;
+	protected DRDataType<Number, Double> percentageType;
+	protected DRDataType<Boolean, Boolean> booleanType;
+	protected DRDataType<Character, Character> characterType;
+	protected DRDataType<String, String> stringType;
+	protected HorizontalTextAlignment pageXofYHorizontalTextAlignment;
 	// system fonts
-	private boolean loadSystemFonts;
+	protected boolean loadSystemFonts;
 	
 	/**
 	 * <p>Constructor for Default.</p>
 	 */
 	public Default()
 	{
-        this.init();
+		this.init();
 	}
 	
-	private void init()
+	protected void init()
 	{
 		this.reportName = "Report";
 		this.locale = Locale.getDefault();
@@ -336,7 +335,6 @@ public class Default
 		this.textFieldWidth = 100;
 		this.textFieldPrintRepeatedValues = true;
 		this.textFieldStretchWithOverflow = true;
-		this.textFieldTextAdjust = TextAdjust.STRETCH_HEIGHT;
 		
 		this.imageWidth = 100;
 		this.imageHeight = 100;
@@ -362,9 +360,6 @@ public class Default
 		
 		this.breakWidth = 1;
 		this.breakHeight = 1;
-		
-		this.genericElementWidth = 100;
-		this.genericElementHeight = 100;
 		
 		this.genericElementWidth = 100;
 		this.genericElementHeight = 100;

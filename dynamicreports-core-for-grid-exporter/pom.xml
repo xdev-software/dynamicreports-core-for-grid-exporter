@@ -85,19 +85,6 @@
 	</distributionManagement>
 
 	<dependencies>
-		<!-- XML API -->
-		<dependency>
-			<groupId>jakarta.xml.bind</groupId>
-			<artifactId>jakarta.xml.bind-api</artifactId>
-			<version>4.0.0</version>
-		</dependency>
-		<!-- ...and default implementation -->
-		<dependency>
-			<groupId>org.glassfish.jaxb</groupId>
-			<artifactId>jaxb-runtime</artifactId>
-			<version>4.0.2</version>
-		</dependency>
-
 		<!-- Used for reports -->
 		<dependency>
 			<groupId>net.sf.jasperreports</groupId>
@@ -190,64 +177,6 @@
 						<goals>
 							<goal>jar-no-fork</goal>
 						</goals>
-					</execution>
-				</executions>
-			</plugin>
-
-			<!-- Original plugin can't handle Jakarta - as of June 2023 -->
-			<!-- https://github.com/highsource/maven-jaxb2-plugin/issues/253 -->
-			<!-- Switched to fork -->
-			<plugin>
-				<groupId>com.helger.maven</groupId>
-				<artifactId>jaxb40-maven-plugin</artifactId>
-				<version>0.16.1</version>
-				<configuration>
-					<!-- We have no m2e or Eclipse IDE so ignore the warnings -->
-					<!-- Alternative is to use the maven clean plugin inside that directory -->
-					<forceRegenerate>true</forceRegenerate>
-					<!-- We want reproducible files! -->
-					<noFileHeader>true</noFileHeader>
-					<!-- Episode file contains current timestamps and localized messages so disable it -->
-					<episode>false</episode>
-					<!-- Reproducible locale = World Standard = English -->
-					<locale>en</locale>
-					<!-- Generate into a persistent directory so that changes are noticeable -->
-					<generateDirectory>src/gen/jaxb</generateDirectory>
-					<schemaIncludes>
-						<schemaInclude>**/dynamicreports.xsd</schemaInclude>
-					</schemaIncludes>
-					<bindingIncludes>
-						<bindingInclude>**/dynamicreports.xjb</bindingInclude>
-					</bindingIncludes>
-					<removeOldOutput>true</removeOldOutput>
-				</configuration>
-				<executions>
-					<execution>
-						<id>jaxb</id>
-						<phase>generate-sources</phase>
-						<goals>
-							<goal>generate</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>build-helper-maven-plugin</artifactId>
-				<version>3.4.0</version>
-				<executions>
-					<execution>
-						<id>add-source</id>
-						<phase>generate-sources</phase>
-						<goals>
-							<goal>add-source</goal>
-						</goals>
-						<configuration>
-							<sources>
-								<source>${basedir}/src/gen/jaxb</source>
-							</sources>
-						</configuration>
 					</execution>
 				</executions>
 			</plugin>

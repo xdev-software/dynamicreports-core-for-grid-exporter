@@ -8,6 +8,9 @@ Initial release of the fork
   * Added ``jakarta.xml.bind-api``
   * Replaced ``maven-jaxb2-plugin`` with ``jaxb40-maven-plugin``
 * Dependency shedding
+  * Removed default-XML subsystem; can be supplied manually to the builder or using Java Service Loading
+    * ``jakarta.xml.bind:jakarta.xml.bind-api``
+    * ``org.glassfish.jaxb:jaxb-runtime``
   * Removed barcode subsystem
     * Barbecue
     * ``net.sf.barcode4j:barcode4j``
