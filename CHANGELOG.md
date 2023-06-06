@@ -3,6 +3,7 @@
 Initial release of the fork
 
 ## Differences to [dynamicreports/dynamicreports-core](https://github.com/dynamicreports/dynamicreports/tree/f7d73961462f3f13cbc27c91df90d4cc3ccc669e/dynamicreports-core)
+* Renamed ``net.sf.dynamicreports`` to ``software.xdev.dynamicreports`` to prevent conflicts with existing installations
 * Changed from ``javax`` to ``jakarta``
   * Added ``jakarta.xml.bind-api``
   * Replaced ``maven-jaxb2-plugin`` with ``jaxb40-maven-plugin``
