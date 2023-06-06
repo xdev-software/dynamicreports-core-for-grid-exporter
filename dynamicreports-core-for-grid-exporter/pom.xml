@@ -84,6 +84,25 @@
 		</repository>
 	</distributionManagement>
 
+	<dependencies>
+		<dependency>
+			<groupId>jakarta.xml.bind</groupId>
+			<artifactId>jakarta.xml.bind-api</artifactId>
+			<version>4.0.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>net.sf.jasperreports</groupId>
+			<artifactId>jasperreports</artifactId>
+			<version>6.20.5</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.12.0</version>
+		</dependency>
+	</dependencies>
+
 	<build>
 		<plugins>
 			<plugin>
@@ -158,6 +177,54 @@
 					</execution>
 				</executions>
 			</plugin>
+
+			<!-- Original plugin can't handle Jakarta - as of June 2023 -->
+			<!-- https://github.com/highsource/maven-jaxb2-plugin/issues/253 -->
+			<!-- Switched to fork -->
+			<plugin>
+				<groupId>com.helger.maven</groupId>
+				<artifactId>jaxb40-maven-plugin</artifactId>
+				<version>0.16.1</version>
+				<configuration>
+					<schemaIncludes>
+						<schemaInclude>**/dynamicreports.xsd</schemaInclude>
+					</schemaIncludes>
+					<bindingIncludes>
+						<bindingInclude>**/dynamicreports.xjb</bindingInclude>
+					</bindingIncludes>
+					<removeOldOutput>true</removeOldOutput>
+				</configuration>
+				<executions>
+					<execution>
+						<id>jaxb</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<version>3.4.0</version>
+				<executions>
+					<execution>
+						<id>add-source</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>add-source</goal>
+						</goals>
+						<configuration>
+							<sources>
+								<source>${basedir}/target/generated-sources/xjc</source>
+							</sources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
 		</plugins>
 	</build>
 	<profiles>

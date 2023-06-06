@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bindings xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xmlns="https://jakarta.ee/xml/ns/jaxb" version="3.0"
+          xsi:schemaLocation="https://jakarta.ee/xml/ns/jaxb https://jakarta.ee/xml/ns/jaxb/bindingschema_3_0.xsd">
+
+    <bindings schemaLocation="dynamicreports.xsd" node="/xsd:schema">
+        <schemaBindings>
+            <package name="net.sf.dynamicreports.report.defaults.xml"/>
+            <nameXmlTransform>
+                <typeName prefix="Xml"/>
+            </nameXmlTransform>
+        </schemaBindings>
+    </bindings>
+</bindings>
