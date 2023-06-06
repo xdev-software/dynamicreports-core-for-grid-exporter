@@ -17,6 +17,8 @@
  */
 package net.sf.dynamicreports.jasper.transformation;
 
+import java.io.File;
+
 import net.sf.dynamicreports.design.transformation.StyleResolver;
 import net.sf.dynamicreports.jasper.definition.export.JasperICsvExporter;
 import net.sf.dynamicreports.jasper.definition.export.JasperIDocxExporter;
@@ -29,7 +31,6 @@ import net.sf.dynamicreports.jasper.definition.export.JasperIPdfExporter;
 import net.sf.dynamicreports.jasper.definition.export.JasperIPptxExporter;
 import net.sf.dynamicreports.jasper.definition.export.JasperIRtfExporter;
 import net.sf.dynamicreports.jasper.definition.export.JasperITextExporter;
-import net.sf.dynamicreports.jasper.definition.export.JasperIXlsExporter;
 import net.sf.dynamicreports.jasper.definition.export.JasperIXlsxExporter;
 import net.sf.dynamicreports.jasper.definition.export.JasperIXmlExporter;
 import net.sf.dynamicreports.jasper.exception.JasperDesignException;
@@ -43,7 +44,6 @@ import net.sf.jasperreports.engine.export.JRCsvExporter;
 import net.sf.jasperreports.engine.export.JRPdfExporter;
 import net.sf.jasperreports.engine.export.JRRtfExporter;
 import net.sf.jasperreports.engine.export.JRTextExporter;
-import net.sf.jasperreports.engine.export.JRXlsExporter;
 import net.sf.jasperreports.engine.export.JRXmlExporter;
 import net.sf.jasperreports.engine.export.oasis.JROdsExporter;
 import net.sf.jasperreports.engine.export.oasis.JROdtExporter;
@@ -76,668 +76,873 @@ import net.sf.jasperreports.export.SimpleRtfReportConfiguration;
 import net.sf.jasperreports.export.SimpleTextExporterConfiguration;
 import net.sf.jasperreports.export.SimpleTextReportConfiguration;
 import net.sf.jasperreports.export.SimpleWriterExporterOutput;
-import net.sf.jasperreports.export.SimpleXlsExporterConfiguration;
-import net.sf.jasperreports.export.SimpleXlsReportConfiguration;
 import net.sf.jasperreports.export.SimpleXlsxExporterConfiguration;
 import net.sf.jasperreports.export.SimpleXlsxReportConfiguration;
 import net.sf.jasperreports.export.SimpleXmlExporterOutput;
 import net.sf.jasperreports.web.util.WebHtmlResourceHandler;
 
-import java.io.File;
 
 /**
  * <p>ExporterTransform class.</p>
  *
  * @author Ricardo Mariaca
- * 
  */
-public class ExporterTransform {
-    private JasperIExporter jasperExporter;
-
+public class ExporterTransform
+{
+    private final JasperIExporter jasperExporter;
+    
     /**
      * <p>Constructor for ExporterTransform.</p>
      *
      * @param jasperExporter a {@link net.sf.dynamicreports.jasper.definition.export.JasperIExporter} object.
      */
-    public ExporterTransform(JasperIExporter jasperExporter) {
+    public ExporterTransform(final JasperIExporter jasperExporter)
+    {
         this.jasperExporter = jasperExporter;
     }
-
+    
     /**
      * <p>transform.</p>
      *
      * @return a {@link net.sf.jasperreports.export.Exporter} object.
      * @throws net.sf.dynamicreports.report.exception.DRException if any.
      */
-    public Exporter<?, ?, ?, ?> transform() throws DRException {
-        Exporter<?, ?, ?, ?> jrExporter;
-
-        if (jasperExporter instanceof JasperICsvExporter) {
-            jrExporter = csv((JasperICsvExporter) jasperExporter);
-        } else if (jasperExporter instanceof JasperIDocxExporter) {
-            jrExporter = docx((JasperIDocxExporter) jasperExporter);
-        } else if (jasperExporter instanceof JasperIXlsExporter) {
-            jrExporter = xls((JasperIXlsExporter) jasperExporter);
-        } else if (jasperExporter instanceof JasperIXlsxExporter) {
-            jrExporter = xlsx((JasperIXlsxExporter) jasperExporter);
-        } else if (jasperExporter instanceof JasperIHtmlExporter) {
-            jrExporter = html((JasperIHtmlExporter) jasperExporter);
-        } else if (jasperExporter instanceof JasperIOdsExporter) {
-            jrExporter = ods((JasperIOdsExporter) jasperExporter);
-        } else if (jasperExporter instanceof JasperIOdtExporter) {
-            jrExporter = odt((JasperIOdtExporter) jasperExporter);
-        } else if (jasperExporter instanceof JasperIPdfExporter) {
-            jrExporter = pdf((JasperIPdfExporter) jasperExporter);
-        } else if (jasperExporter instanceof JasperIRtfExporter) {
-            jrExporter = rtf((JasperIRtfExporter) jasperExporter);
-        } else if (jasperExporter instanceof JasperITextExporter) {
-            jrExporter = text((JasperITextExporter) jasperExporter);
-        } else if (jasperExporter instanceof JasperIXmlExporter) {
-            jrExporter = xml((JasperIXmlExporter) jasperExporter);
-        } else if (jasperExporter instanceof JasperIPptxExporter) {
-            jrExporter = pptx((JasperIPptxExporter) jasperExporter);
-        } else {
-            throw new JasperDesignException("Exporter " + jasperExporter.getClass().getName() + " not supported");
+    public Exporter<?, ?, ?, ?> transform() throws DRException
+    {
+        final Exporter<?, ?, ?, ?> jrExporter;
+        
+        if(this.jasperExporter instanceof JasperICsvExporter)
+        {
+            jrExporter = this.csv((JasperICsvExporter)this.jasperExporter);
         }
-
+        else if(this.jasperExporter instanceof JasperIDocxExporter)
+        {
+            jrExporter = this.docx((JasperIDocxExporter)this.jasperExporter);
+        }
+        else if(this.jasperExporter instanceof JasperIXlsxExporter)
+        {
+            jrExporter = this.xlsx((JasperIXlsxExporter)this.jasperExporter);
+        }
+        else if(this.jasperExporter instanceof JasperIHtmlExporter)
+        {
+            jrExporter = this.html((JasperIHtmlExporter)this.jasperExporter);
+        }
+        else if(this.jasperExporter instanceof JasperIOdsExporter)
+        {
+            jrExporter = this.ods((JasperIOdsExporter)this.jasperExporter);
+        }
+        else if(this.jasperExporter instanceof JasperIOdtExporter)
+        {
+            jrExporter = this.odt((JasperIOdtExporter)this.jasperExporter);
+        }
+        else if(this.jasperExporter instanceof JasperIPdfExporter)
+        {
+            jrExporter = this.pdf((JasperIPdfExporter)this.jasperExporter);
+        }
+        else if(this.jasperExporter instanceof JasperIRtfExporter)
+        {
+            jrExporter = this.rtf((JasperIRtfExporter)this.jasperExporter);
+        }
+        else if(this.jasperExporter instanceof JasperITextExporter)
+        {
+            jrExporter = this.text((JasperITextExporter)this.jasperExporter);
+        }
+        else if(this.jasperExporter instanceof JasperIXmlExporter)
+        {
+            jrExporter = this.xml((JasperIXmlExporter)this.jasperExporter);
+        }
+        else if(this.jasperExporter instanceof JasperIPptxExporter)
+        {
+            jrExporter = this.pptx((JasperIPptxExporter)this.jasperExporter);
+        }
+        else
+        {
+            throw new JasperDesignException("Exporter " + this.jasperExporter.getClass().getName() + " not supported");
+        }
+        
         return jrExporter;
     }
-
-    private SimpleWriterExporterOutput simpleWriterExporterOutput(JasperIExporter jasperExporter) {
-        if (jasperExporter.getOutputWriter() != null) {
+    
+    private SimpleWriterExporterOutput simpleWriterExporterOutput(final JasperIExporter jasperExporter)
+    {
+        if(jasperExporter.getOutputWriter() != null)
+        {
             return new SimpleWriterExporterOutput(jasperExporter.getOutputWriter());
         }
-        if (jasperExporter.getOutputStream() != null) {
-            if (jasperExporter.getCharacterEncoding() != null) {
-                return new SimpleWriterExporterOutput(jasperExporter.getOutputStream(), jasperExporter.getCharacterEncoding());
-            } else {
+        if(jasperExporter.getOutputStream() != null)
+        {
+            if(jasperExporter.getCharacterEncoding() != null)
+            {
+                return new SimpleWriterExporterOutput(
+                    jasperExporter.getOutputStream(),
+                    jasperExporter.getCharacterEncoding());
+            }
+            else
+            {
                 return new SimpleWriterExporterOutput(jasperExporter.getOutputStream());
             }
         }
-        if (jasperExporter.getOutputFile() != null) {
-            if (jasperExporter.getCharacterEncoding() != null) {
-                return new SimpleWriterExporterOutput(jasperExporter.getOutputFile(), jasperExporter.getCharacterEncoding());
-            } else {
+        if(jasperExporter.getOutputFile() != null)
+        {
+            if(jasperExporter.getCharacterEncoding() != null)
+            {
+                return new SimpleWriterExporterOutput(
+                    jasperExporter.getOutputFile(),
+                    jasperExporter.getCharacterEncoding());
+            }
+            else
+            {
                 return new SimpleWriterExporterOutput(jasperExporter.getOutputFile());
             }
         }
-        if (jasperExporter.getOutputFileName() != null) {
-            if (jasperExporter.getCharacterEncoding() != null) {
-                return new SimpleWriterExporterOutput(jasperExporter.getOutputFileName(), jasperExporter.getCharacterEncoding());
-            } else {
+        if(jasperExporter.getOutputFileName() != null)
+        {
+            if(jasperExporter.getCharacterEncoding() != null)
+            {
+                return new SimpleWriterExporterOutput(
+                    jasperExporter.getOutputFileName(),
+                    jasperExporter.getCharacterEncoding());
+            }
+            else
+            {
                 return new SimpleWriterExporterOutput(jasperExporter.getOutputFileName());
             }
         }
         return null;
     }
-
-    private SimpleOutputStreamExporterOutput simpleOutputStreamExporterOutput(JasperIExporter jasperExporter) {
-        if (jasperExporter.getOutputStream() != null) {
+    
+    private SimpleOutputStreamExporterOutput simpleOutputStreamExporterOutput(final JasperIExporter jasperExporter)
+    {
+        if(jasperExporter.getOutputStream() != null)
+        {
             return new SimpleOutputStreamExporterOutput(jasperExporter.getOutputStream());
         }
-        if (jasperExporter.getOutputFile() != null) {
+        if(jasperExporter.getOutputFile() != null)
+        {
             return new SimpleOutputStreamExporterOutput(jasperExporter.getOutputFile());
         }
-        if (jasperExporter.getOutputFileName() != null) {
+        if(jasperExporter.getOutputFileName() != null)
+        {
             return new SimpleOutputStreamExporterOutput(jasperExporter.getOutputFileName());
         }
         return null;
     }
-
-    private SimpleHtmlExporterOutput simpleHtmlExporterOutput(JasperIExporter jasperExporter) {
-        if (jasperExporter.getOutputWriter() != null) {
+    
+    private SimpleHtmlExporterOutput simpleHtmlExporterOutput(final JasperIExporter jasperExporter)
+    {
+        if(jasperExporter.getOutputWriter() != null)
+        {
             return new SimpleHtmlExporterOutput(jasperExporter.getOutputWriter());
         }
-        if (jasperExporter.getOutputStream() != null) {
-            if (jasperExporter.getCharacterEncoding() != null) {
-                return new SimpleHtmlExporterOutput(jasperExporter.getOutputStream(), jasperExporter.getCharacterEncoding());
-            } else {
+        if(jasperExporter.getOutputStream() != null)
+        {
+            if(jasperExporter.getCharacterEncoding() != null)
+            {
+                return new SimpleHtmlExporterOutput(
+                    jasperExporter.getOutputStream(),
+                    jasperExporter.getCharacterEncoding());
+            }
+            else
+            {
                 return new SimpleHtmlExporterOutput(jasperExporter.getOutputStream());
             }
         }
-        if (jasperExporter.getOutputFile() != null) {
-            if (jasperExporter.getCharacterEncoding() != null) {
-                return new SimpleHtmlExporterOutput(jasperExporter.getOutputFile(), jasperExporter.getCharacterEncoding());
-            } else {
+        if(jasperExporter.getOutputFile() != null)
+        {
+            if(jasperExporter.getCharacterEncoding() != null)
+            {
+                return new SimpleHtmlExporterOutput(
+                    jasperExporter.getOutputFile(),
+                    jasperExporter.getCharacterEncoding());
+            }
+            else
+            {
                 return new SimpleHtmlExporterOutput(jasperExporter.getOutputFile());
             }
         }
-        if (jasperExporter.getOutputFileName() != null) {
-            if (jasperExporter.getCharacterEncoding() != null) {
-                return new SimpleHtmlExporterOutput(jasperExporter.getOutputFileName(), jasperExporter.getCharacterEncoding());
-            } else {
+        if(jasperExporter.getOutputFileName() != null)
+        {
+            if(jasperExporter.getCharacterEncoding() != null)
+            {
+                return new SimpleHtmlExporterOutput(
+                    jasperExporter.getOutputFileName(),
+                    jasperExporter.getCharacterEncoding());
+            }
+            else
+            {
                 return new SimpleHtmlExporterOutput(jasperExporter.getOutputFileName());
             }
         }
         return null;
     }
-
-    private SimpleXmlExporterOutput simpleXmlExporterOutput(JasperIXmlExporter jasperExporter) {
-        if (jasperExporter.getOutputWriter() != null) {
+    
+    private SimpleXmlExporterOutput simpleXmlExporterOutput(final JasperIXmlExporter jasperExporter)
+    {
+        if(jasperExporter.getOutputWriter() != null)
+        {
             return new SimpleXmlExporterOutput(jasperExporter.getOutputWriter());
         }
-        if (jasperExporter.getOutputStream() != null) {
-            if (jasperExporter.getCharacterEncoding() != null) {
-                return new SimpleXmlExporterOutput(jasperExporter.getOutputStream(), jasperExporter.getCharacterEncoding());
-            } else {
+        if(jasperExporter.getOutputStream() != null)
+        {
+            if(jasperExporter.getCharacterEncoding() != null)
+            {
+                return new SimpleXmlExporterOutput(
+                    jasperExporter.getOutputStream(),
+                    jasperExporter.getCharacterEncoding());
+            }
+            else
+            {
                 return new SimpleXmlExporterOutput(jasperExporter.getOutputStream());
             }
         }
-        if (jasperExporter.getOutputFile() != null) {
-            if (jasperExporter.getCharacterEncoding() != null) {
-                return new SimpleXmlExporterOutput(jasperExporter.getOutputFile(), jasperExporter.getCharacterEncoding());
-            } else {
+        if(jasperExporter.getOutputFile() != null)
+        {
+            if(jasperExporter.getCharacterEncoding() != null)
+            {
+                return new SimpleXmlExporterOutput(
+                    jasperExporter.getOutputFile(),
+                    jasperExporter.getCharacterEncoding());
+            }
+            else
+            {
                 return new SimpleXmlExporterOutput(jasperExporter.getOutputFile());
             }
         }
-        if (jasperExporter.getOutputFileName() != null) {
-            if (jasperExporter.getCharacterEncoding() != null) {
-                return new SimpleXmlExporterOutput(jasperExporter.getOutputFileName(), jasperExporter.getCharacterEncoding());
-            } else {
+        if(jasperExporter.getOutputFileName() != null)
+        {
+            if(jasperExporter.getCharacterEncoding() != null)
+            {
+                return new SimpleXmlExporterOutput(
+                    jasperExporter.getOutputFileName(),
+                    jasperExporter.getCharacterEncoding());
+            }
+            else
+            {
                 return new SimpleXmlExporterOutput(jasperExporter.getOutputFileName());
             }
         }
         return null;
     }
-
-    private void reportExportConfiguration(SimpleReportExportConfiguration reportExportConfiguration, JasperIExporter jasperExporter) {
-        if (jasperExporter.getPageIndex() != null) {
+    
+    private void reportExportConfiguration(
+        final SimpleReportExportConfiguration reportExportConfiguration,
+        final JasperIExporter jasperExporter)
+    {
+        if(jasperExporter.getPageIndex() != null)
+        {
             reportExportConfiguration.setPageIndex(jasperExporter.getPageIndex());
         }
-        if (jasperExporter.getStartPageIndex() != null) {
+        if(jasperExporter.getStartPageIndex() != null)
+        {
             reportExportConfiguration.setStartPageIndex(jasperExporter.getStartPageIndex());
         }
-        if (jasperExporter.getEndPageIndex() != null) {
+        if(jasperExporter.getEndPageIndex() != null)
+        {
             reportExportConfiguration.setEndPageIndex(jasperExporter.getEndPageIndex());
         }
-        if (jasperExporter.getOffsetX() != null) {
+        if(jasperExporter.getOffsetX() != null)
+        {
             reportExportConfiguration.setOffsetX(jasperExporter.getOffsetX());
         }
-        if (jasperExporter.getOffsetY() != null) {
+        if(jasperExporter.getOffsetY() != null)
+        {
             reportExportConfiguration.setOffsetY(jasperExporter.getOffsetY());
         }
     }
-
-    private JRXmlExporter xml(JasperIXmlExporter jasperExporter) {
-        SimpleXmlExporterOutput exporterOutput = simpleXmlExporterOutput(jasperExporter);
-        if (jasperExporter.getEmbeddingImages() != null) {
+    
+    private JRXmlExporter xml(final JasperIXmlExporter jasperExporter)
+    {
+        final SimpleXmlExporterOutput exporterOutput = this.simpleXmlExporterOutput(jasperExporter);
+        if(jasperExporter.getEmbeddingImages() != null)
+        {
             exporterOutput.setEmbeddingImages(jasperExporter.getEmbeddingImages());
         }
-        SimpleReportExportConfiguration reportExportConfiguration = new SimpleReportExportConfiguration();
-        reportExportConfiguration(reportExportConfiguration, jasperExporter);
-        SimpleExporterConfiguration exporterConfiguration = new SimpleExporterConfiguration();
-
-        JRXmlExporter jrExporter = new JRXmlExporter();
+        final SimpleReportExportConfiguration reportExportConfiguration = new SimpleReportExportConfiguration();
+        this.reportExportConfiguration(reportExportConfiguration, jasperExporter);
+        final SimpleExporterConfiguration exporterConfiguration = new SimpleExporterConfiguration();
+        
+        final JRXmlExporter jrExporter = new JRXmlExporter();
         jrExporter.setExporterOutput(exporterOutput);
         jrExporter.setConfiguration(reportExportConfiguration);
         jrExporter.setConfiguration(exporterConfiguration);
         return jrExporter;
     }
-
-    private JRPptxExporter pptx(JasperIPptxExporter jasperExporter) {
-        SimpleOutputStreamExporterOutput exporterOutput = simpleOutputStreamExporterOutput(jasperExporter);
-        SimplePptxReportConfiguration reportExportConfiguration = new SimplePptxReportConfiguration();
-        reportExportConfiguration(reportExportConfiguration, jasperExporter);
-        if (jasperExporter.getIgnoreHyperLink() != null) {
+    
+    private JRPptxExporter pptx(final JasperIPptxExporter jasperExporter)
+    {
+        final SimpleOutputStreamExporterOutput exporterOutput = this.simpleOutputStreamExporterOutput(jasperExporter);
+        final SimplePptxReportConfiguration reportExportConfiguration = new SimplePptxReportConfiguration();
+        this.reportExportConfiguration(reportExportConfiguration, jasperExporter);
+        if(jasperExporter.getIgnoreHyperLink() != null)
+        {
             reportExportConfiguration.setIgnoreHyperlink(jasperExporter.getIgnoreHyperLink());
         }
-        SimplePptxExporterConfiguration exporterConfiguration = new SimplePptxExporterConfiguration();
-
-        JRPptxExporter jrExporter = new JRPptxExporter();
+        final SimplePptxExporterConfiguration exporterConfiguration = new SimplePptxExporterConfiguration();
+        
+        final JRPptxExporter jrExporter = new JRPptxExporter();
         jrExporter.setExporterOutput(exporterOutput);
         jrExporter.setConfiguration(reportExportConfiguration);
         jrExporter.setConfiguration(exporterConfiguration);
         return jrExporter;
     }
-
-    private JRTextExporter text(JasperITextExporter jasperExporter) {
-        SimpleWriterExporterOutput exporterOutput = simpleWriterExporterOutput(jasperExporter);
-        SimpleTextReportConfiguration reportExportConfiguration = new SimpleTextReportConfiguration();
-        reportExportConfiguration(reportExportConfiguration, jasperExporter);
-        if (jasperExporter.getCharacterWidth() != null) {
+    
+    private JRTextExporter text(final JasperITextExporter jasperExporter)
+    {
+        final SimpleWriterExporterOutput exporterOutput = this.simpleWriterExporterOutput(jasperExporter);
+        final SimpleTextReportConfiguration reportExportConfiguration = new SimpleTextReportConfiguration();
+        this.reportExportConfiguration(reportExportConfiguration, jasperExporter);
+        if(jasperExporter.getCharacterWidth() != null)
+        {
             reportExportConfiguration.setCharWidth(jasperExporter.getCharacterWidth());
-        } else {
-            DRFont font = Defaults.getDefaults().getFont();
-            reportExportConfiguration.setCharWidth((float) StyleResolver.getFontWidth(font));
         }
-        if (jasperExporter.getCharacterHeight() != null) {
+        else
+        {
+            final DRFont font = Defaults.getDefaults().getFont();
+            reportExportConfiguration.setCharWidth((float)StyleResolver.getFontWidth(font));
+        }
+        if(jasperExporter.getCharacterHeight() != null)
+        {
             reportExportConfiguration.setCharHeight(jasperExporter.getCharacterHeight());
-        } else {
-            DRFont font = Defaults.getDefaults().getFont();
-            reportExportConfiguration.setCharHeight((float) StyleResolver.getFontHeight(font));
         }
-        if (jasperExporter.getPageWidthInChars() != null) {
+        else
+        {
+            final DRFont font = Defaults.getDefaults().getFont();
+            reportExportConfiguration.setCharHeight((float)StyleResolver.getFontHeight(font));
+        }
+        if(jasperExporter.getPageWidthInChars() != null)
+        {
             reportExportConfiguration.setPageWidthInChars(jasperExporter.getPageWidthInChars());
         }
-        if (jasperExporter.getPageHeightInChars() != null) {
+        if(jasperExporter.getPageHeightInChars() != null)
+        {
             reportExportConfiguration.setPageHeightInChars(jasperExporter.getPageHeightInChars());
         }
-        SimpleTextExporterConfiguration exporterConfiguration = new SimpleTextExporterConfiguration();
-        if (jasperExporter.getPageSeparator() != null) {
+        final SimpleTextExporterConfiguration exporterConfiguration = new SimpleTextExporterConfiguration();
+        if(jasperExporter.getPageSeparator() != null)
+        {
             exporterConfiguration.setPageSeparator(jasperExporter.getPageSeparator());
         }
-        if (jasperExporter.getLineSeparator() != null) {
+        if(jasperExporter.getLineSeparator() != null)
+        {
             exporterConfiguration.setLineSeparator(jasperExporter.getLineSeparator());
         }
-        if (jasperExporter.getTrimLineRight() != null) {
+        if(jasperExporter.getTrimLineRight() != null)
+        {
             exporterConfiguration.setTrimLineRight(jasperExporter.getTrimLineRight());
         }
-
-        JRTextExporter jrExporter = new JRTextExporter();
+        
+        final JRTextExporter jrExporter = new JRTextExporter();
         jrExporter.setExporterOutput(exporterOutput);
         jrExporter.setConfiguration(reportExportConfiguration);
         jrExporter.setConfiguration(exporterConfiguration);
         return jrExporter;
     }
-
-    private JRRtfExporter rtf(JasperIRtfExporter jasperExporter) {
-        SimpleWriterExporterOutput exporterOutput = simpleWriterExporterOutput(jasperExporter);
-        SimpleRtfReportConfiguration reportExportConfiguration = new SimpleRtfReportConfiguration();
-        reportExportConfiguration(reportExportConfiguration, jasperExporter);
-        if (jasperExporter.getIgnoreHyperLink() != null) {
+    
+    private JRRtfExporter rtf(final JasperIRtfExporter jasperExporter)
+    {
+        final SimpleWriterExporterOutput exporterOutput = this.simpleWriterExporterOutput(jasperExporter);
+        final SimpleRtfReportConfiguration reportExportConfiguration = new SimpleRtfReportConfiguration();
+        this.reportExportConfiguration(reportExportConfiguration, jasperExporter);
+        if(jasperExporter.getIgnoreHyperLink() != null)
+        {
             reportExportConfiguration.setIgnoreHyperlink(jasperExporter.getIgnoreHyperLink());
         }
-        SimpleRtfExporterConfiguration exporterConfiguration = new SimpleRtfExporterConfiguration();
-
-        JRRtfExporter jrExporter = new JRRtfExporter();
+        final SimpleRtfExporterConfiguration exporterConfiguration = new SimpleRtfExporterConfiguration();
+        
+        final JRRtfExporter jrExporter = new JRRtfExporter();
         jrExporter.setExporterOutput(exporterOutput);
         jrExporter.setConfiguration(reportExportConfiguration);
         jrExporter.setConfiguration(exporterConfiguration);
         return jrExporter;
     }
-
-    private JRPdfExporter pdf(JasperIPdfExporter jasperExporter) {
-        SimpleOutputStreamExporterOutput exporterOutput = simpleOutputStreamExporterOutput(jasperExporter);
-        SimplePdfReportConfiguration reportExportConfiguration = new SimplePdfReportConfiguration();
-        reportExportConfiguration(reportExportConfiguration, jasperExporter);
-        if (jasperExporter.getForceSvgShapes() != null) {
+    
+    private JRPdfExporter pdf(final JasperIPdfExporter jasperExporter)
+    {
+        final SimpleOutputStreamExporterOutput exporterOutput = this.simpleOutputStreamExporterOutput(jasperExporter);
+        final SimplePdfReportConfiguration reportExportConfiguration = new SimplePdfReportConfiguration();
+        this.reportExportConfiguration(reportExportConfiguration, jasperExporter);
+        if(jasperExporter.getForceSvgShapes() != null)
+        {
             reportExportConfiguration.setForceSvgShapes(jasperExporter.getForceSvgShapes());
         }
-        if (jasperExporter.getCollapseMissingBookmarkLevels() != null) {
+        if(jasperExporter.getCollapseMissingBookmarkLevels() != null)
+        {
             reportExportConfiguration.setCollapseMissingBookmarkLevels(jasperExporter.getCollapseMissingBookmarkLevels());
         }
-        if (jasperExporter.getSizePageToContent() != null) {
+        if(jasperExporter.getSizePageToContent() != null)
+        {
             reportExportConfiguration.setSizePageToContent(jasperExporter.getSizePageToContent());
         }
-        if (jasperExporter.getIgnoreHyperLink() != null) {
+        if(jasperExporter.getIgnoreHyperLink() != null)
+        {
             reportExportConfiguration.setIgnoreHyperlink(jasperExporter.getIgnoreHyperLink());
         }
-        if (jasperExporter.getForceLineBreakPolicy() != null) {
+        if(jasperExporter.getForceLineBreakPolicy() != null)
+        {
             reportExportConfiguration.setForceLineBreakPolicy(jasperExporter.getForceLineBreakPolicy());
         }
-        SimplePdfExporterConfiguration exporterConfiguration = new SimplePdfExporterConfiguration();
-        if (jasperExporter.getCreatingBatchModeBookmarks() != null) {
+        final SimplePdfExporterConfiguration exporterConfiguration = new SimplePdfExporterConfiguration();
+        if(jasperExporter.getCreatingBatchModeBookmarks() != null)
+        {
             exporterConfiguration.setCreatingBatchModeBookmarks(jasperExporter.getCreatingBatchModeBookmarks());
         }
-        if (jasperExporter.getCompressed() != null) {
+        if(jasperExporter.getCompressed() != null)
+        {
             exporterConfiguration.setCompressed(jasperExporter.getCompressed());
         }
-        if (jasperExporter.getEncrypted() != null) {
+        if(jasperExporter.getEncrypted() != null)
+        {
             exporterConfiguration.setEncrypted(jasperExporter.getEncrypted());
         }
-        if (jasperExporter.getBitKey128() != null) {
+        if(jasperExporter.getBitKey128() != null)
+        {
             exporterConfiguration.set128BitKey(jasperExporter.getBitKey128());
         }
-        if (jasperExporter.getUserPassword() != null) {
+        if(jasperExporter.getUserPassword() != null)
+        {
             exporterConfiguration.setUserPassword(jasperExporter.getUserPassword());
         }
-        if (jasperExporter.getOwnerPassword() != null) {
+        if(jasperExporter.getOwnerPassword() != null)
+        {
             exporterConfiguration.setOwnerPassword(jasperExporter.getOwnerPassword());
         }
-        if (jasperExporter.getPermissions() != null && !jasperExporter.getPermissions().isEmpty()) {
+        if(jasperExporter.getPermissions() != null && !jasperExporter.getPermissions().isEmpty())
+        {
             exporterConfiguration.setPermissions(ConstantTransform.pdfPermission(jasperExporter.getPermissions()));
         }
-        if (jasperExporter.getPdfVersion() != null) {
+        if(jasperExporter.getPdfVersion() != null)
+        {
             exporterConfiguration.setPdfVersion(ConstantTransform.pdfVersion(jasperExporter.getPdfVersion()));
         }
-        if (jasperExporter.getMetadataTitle() != null) {
+        if(jasperExporter.getMetadataTitle() != null)
+        {
             exporterConfiguration.setMetadataTitle(jasperExporter.getMetadataTitle());
         }
-        if (jasperExporter.getMetadataAuthor() != null) {
+        if(jasperExporter.getMetadataAuthor() != null)
+        {
             exporterConfiguration.setMetadataAuthor(jasperExporter.getMetadataAuthor());
         }
-        if (jasperExporter.getMetadataSubject() != null) {
+        if(jasperExporter.getMetadataSubject() != null)
+        {
             exporterConfiguration.setMetadataSubject(jasperExporter.getMetadataSubject());
         }
-        if (jasperExporter.getMetadataKeyWords() != null) {
+        if(jasperExporter.getMetadataKeyWords() != null)
+        {
             exporterConfiguration.setMetadataKeywords(jasperExporter.getMetadataKeyWords());
         }
-        if (jasperExporter.getMetadataCreator() != null) {
+        if(jasperExporter.getMetadataCreator() != null)
+        {
             exporterConfiguration.setMetadataCreator(jasperExporter.getMetadataCreator());
         }
-        if (jasperExporter.getPdfJavaScript() != null) {
+        if(jasperExporter.getPdfJavaScript() != null)
+        {
             exporterConfiguration.setPdfJavaScript(jasperExporter.getPdfJavaScript());
         }
-        if (jasperExporter.getTagged() != null) {
+        if(jasperExporter.getTagged() != null)
+        {
             exporterConfiguration.setTagged(jasperExporter.getTagged());
         }
-        if (jasperExporter.getTagLanguage() != null) {
+        if(jasperExporter.getTagLanguage() != null)
+        {
             exporterConfiguration.setTagLanguage(jasperExporter.getTagLanguage());
         }
-        if (jasperExporter.getPrintScaling() != null) {
+        if(jasperExporter.getPrintScaling() != null)
+        {
             exporterConfiguration.setPrintScaling(ConstantTransform.pdfPrintScaling(jasperExporter.getPrintScaling()));
         }
-        if (jasperExporter.getPdfaConformance() != null) {
+        if(jasperExporter.getPdfaConformance() != null)
+        {
             exporterConfiguration.setPdfaConformance(ConstantTransform.pdfaConformance(jasperExporter.getPdfaConformance()));
         }
-        if (jasperExporter.getIccProfilePath() != null) {
+        if(jasperExporter.getIccProfilePath() != null)
+        {
             exporterConfiguration.setIccProfilePath(jasperExporter.getIccProfilePath());
         }
-        if (jasperExporter.getAllowedPermissionsHint() != null) {
+        if(jasperExporter.getAllowedPermissionsHint() != null)
+        {
             exporterConfiguration.setAllowedPermissionsHint(jasperExporter.getAllowedPermissionsHint());
         }
-        if (jasperExporter.getDeniedPermissionsHint() != null) {
+        if(jasperExporter.getDeniedPermissionsHint() != null)
+        {
             exporterConfiguration.setDeniedPermissionsHint(jasperExporter.getDeniedPermissionsHint());
         }
-        if (jasperExporter.getDisplayMetadataTitle() != null) {
+        if(jasperExporter.getDisplayMetadataTitle() != null)
+        {
             exporterConfiguration.setDisplayMetadataTitle(jasperExporter.getDisplayMetadataTitle());
         }
-
-        JRPdfExporter jrExporter = new JRPdfExporter();
+        
+        final JRPdfExporter jrExporter = new JRPdfExporter();
         jrExporter.setExporterOutput(exporterOutput);
         jrExporter.setConfiguration(reportExportConfiguration);
         jrExporter.setConfiguration(exporterConfiguration);
         return jrExporter;
     }
-
-    private JROdtExporter odt(JasperIOdtExporter jasperExporter) {
-        SimpleOutputStreamExporterOutput exporterOutput = simpleOutputStreamExporterOutput(jasperExporter);
-        SimpleOdtReportConfiguration reportExportConfiguration = new SimpleOdtReportConfiguration();
-        reportExportConfiguration(reportExportConfiguration, jasperExporter);
-        if (jasperExporter.getFlexibleRowHeight() != null) {
+    
+    private JROdtExporter odt(final JasperIOdtExporter jasperExporter)
+    {
+        final SimpleOutputStreamExporterOutput exporterOutput = this.simpleOutputStreamExporterOutput(jasperExporter);
+        final SimpleOdtReportConfiguration reportExportConfiguration = new SimpleOdtReportConfiguration();
+        this.reportExportConfiguration(reportExportConfiguration, jasperExporter);
+        if(jasperExporter.getFlexibleRowHeight() != null)
+        {
             reportExportConfiguration.setFlexibleRowHeight(jasperExporter.getFlexibleRowHeight());
         }
-        if (jasperExporter.getIgnoreHyperLink() != null) {
+        if(jasperExporter.getIgnoreHyperLink() != null)
+        {
             reportExportConfiguration.setIgnoreHyperlink(jasperExporter.getIgnoreHyperLink());
         }
-        SimpleOdtExporterConfiguration exporterConfiguration = new SimpleOdtExporterConfiguration();
-
-        JROdtExporter jrExporter = new JROdtExporter();
+        final SimpleOdtExporterConfiguration exporterConfiguration = new SimpleOdtExporterConfiguration();
+        
+        final JROdtExporter jrExporter = new JROdtExporter();
         jrExporter.setExporterOutput(exporterOutput);
         jrExporter.setConfiguration(reportExportConfiguration);
         jrExporter.setConfiguration(exporterConfiguration);
         return jrExporter;
     }
-
-    private JROdsExporter ods(JasperIOdsExporter jasperExporter) {
-        SimpleOutputStreamExporterOutput exporterOutput = simpleOutputStreamExporterOutput(jasperExporter);
-        SimpleOdsReportConfiguration reportExportConfiguration = new SimpleOdsReportConfiguration();
-        reportExcelExportConfiguration(reportExportConfiguration, jasperExporter);
-        if (jasperExporter.getFlexibleRowHeight() != null) {
+    
+    private JROdsExporter ods(final JasperIOdsExporter jasperExporter)
+    {
+        final SimpleOutputStreamExporterOutput exporterOutput = this.simpleOutputStreamExporterOutput(jasperExporter);
+        final SimpleOdsReportConfiguration reportExportConfiguration = new SimpleOdsReportConfiguration();
+        this.reportExcelExportConfiguration(reportExportConfiguration, jasperExporter);
+        if(jasperExporter.getFlexibleRowHeight() != null)
+        {
             reportExportConfiguration.setFlexibleRowHeight(jasperExporter.getFlexibleRowHeight());
         }
-        SimpleOdsExporterConfiguration exporterConfiguration = new SimpleOdsExporterConfiguration();
-        reportExcelExporterConfiguration(exporterConfiguration, jasperExporter);
-
-        JROdsExporter jrExporter = new JROdsExporter();
+        final SimpleOdsExporterConfiguration exporterConfiguration = new SimpleOdsExporterConfiguration();
+        this.reportExcelExporterConfiguration(exporterConfiguration, jasperExporter);
+        
+        final JROdsExporter jrExporter = new JROdsExporter();
         jrExporter.setExporterOutput(exporterOutput);
         jrExporter.setConfiguration(reportExportConfiguration);
         jrExporter.setConfiguration(exporterConfiguration);
         return jrExporter;
     }
-
-    private HtmlExporter html(JasperIHtmlExporter jasperExporter) {
-        SimpleHtmlExporterOutput exporterOutput = simpleHtmlExporterOutput(jasperExporter);
-        Boolean outputImagesToDir = jasperExporter.getOutputImagesToDir();
-        String imagesUri = jasperExporter.getImagesURI();
+    
+    private HtmlExporter html(final JasperIHtmlExporter jasperExporter)
+    {
+        final SimpleHtmlExporterOutput exporterOutput = this.simpleHtmlExporterOutput(jasperExporter);
+        final Boolean outputImagesToDir = jasperExporter.getOutputImagesToDir();
+        final String imagesUri = jasperExporter.getImagesURI();
         HtmlResourceHandler imageHandler = null;
-        if (outputImagesToDir == null || outputImagesToDir) {
+        if(outputImagesToDir == null || outputImagesToDir)
+        {
             File imagesDir = null;
-            String imagesDirName = jasperExporter.getImagesDirName();
-            if (imagesDirName != null) {
+            final String imagesDirName = jasperExporter.getImagesDirName();
+            if(imagesDirName != null)
+            {
                 imagesDir = new File(imagesDirName);
             }
-            if (imagesDir != null) {
-                imageHandler = new FileHtmlResourceHandler(imagesDir, imagesUri == null ? imagesDir.getName() + "/{0}" : imagesUri + "{0}");
+            if(imagesDir != null)
+            {
+                imageHandler = new FileHtmlResourceHandler(
+                    imagesDir,
+                    imagesUri == null ? imagesDir.getName() + "/{0}" : imagesUri + "{0}");
             }
         }
-        if (imageHandler == null && imagesUri != null) {
+        if(imageHandler == null && imagesUri != null)
+        {
             imageHandler = new WebHtmlResourceHandler(imagesUri + "{0}");
         }
-        if (imageHandler != null) {
+        if(imageHandler != null)
+        {
             exporterOutput.setImageHandler(imageHandler);
         }
-        SimpleHtmlReportConfiguration reportExportConfiguration = new SimpleHtmlReportConfiguration();
-        reportExportConfiguration(reportExportConfiguration, jasperExporter);
-        if (jasperExporter.getRemoveEmptySpaceBetweenRows() != null) {
+        final SimpleHtmlReportConfiguration reportExportConfiguration = new SimpleHtmlReportConfiguration();
+        this.reportExportConfiguration(reportExportConfiguration, jasperExporter);
+        if(jasperExporter.getRemoveEmptySpaceBetweenRows() != null)
+        {
             reportExportConfiguration.setRemoveEmptySpaceBetweenRows(jasperExporter.getRemoveEmptySpaceBetweenRows());
         }
-        if (jasperExporter.getWhitePageBackground() != null) {
+        if(jasperExporter.getWhitePageBackground() != null)
+        {
             reportExportConfiguration.setWhitePageBackground(jasperExporter.getWhitePageBackground());
         }
-        if (jasperExporter.getWrapBreakWord() != null) {
+        if(jasperExporter.getWrapBreakWord() != null)
+        {
             reportExportConfiguration.setWrapBreakWord(jasperExporter.getWrapBreakWord());
         }
-        if (jasperExporter.getSizeUnit() != null) {
+        if(jasperExporter.getSizeUnit() != null)
+        {
             reportExportConfiguration.setSizeUnit(ConstantTransform.sizeUnit(jasperExporter.getSizeUnit()));
         }
-        if (jasperExporter.getIgnorePageMargins() != null) {
+        if(jasperExporter.getIgnorePageMargins() != null)
+        {
             reportExportConfiguration.setIgnorePageMargins(jasperExporter.getIgnorePageMargins());
         }
-        if (jasperExporter.getBorderCollapse() != null) {
+        if(jasperExporter.getBorderCollapse() != null)
+        {
             reportExportConfiguration.setBorderCollapse(jasperExporter.getBorderCollapse());
         }
-        if (jasperExporter.getAccessibleHtml() != null) {
+        if(jasperExporter.getAccessibleHtml() != null)
+        {
             reportExportConfiguration.setAccessibleHtml(jasperExporter.getAccessibleHtml());
         }
-        if (jasperExporter.getZoomRatio() != null) {
+        if(jasperExporter.getZoomRatio() != null)
+        {
             reportExportConfiguration.setZoomRatio(jasperExporter.getZoomRatio());
         }
-        if (jasperExporter.getIgnoreHyperLink() != null) {
+        if(jasperExporter.getIgnoreHyperLink() != null)
+        {
             reportExportConfiguration.setIgnoreHyperlink(jasperExporter.getIgnoreHyperLink());
         }
-        SimpleHtmlExporterConfiguration exporterConfiguration = new SimpleHtmlExporterConfiguration();
-        if (jasperExporter.getHtmlHeader() != null) {
+        final SimpleHtmlExporterConfiguration exporterConfiguration = new SimpleHtmlExporterConfiguration();
+        if(jasperExporter.getHtmlHeader() != null)
+        {
             exporterConfiguration.setHtmlHeader(jasperExporter.getHtmlHeader());
         }
-        if (jasperExporter.getBetweenPagesHtml() != null) {
+        if(jasperExporter.getBetweenPagesHtml() != null)
+        {
             exporterConfiguration.setBetweenPagesHtml(jasperExporter.getBetweenPagesHtml());
         }
-        if (jasperExporter.getHtmlFooter() != null) {
+        if(jasperExporter.getHtmlFooter() != null)
+        {
             exporterConfiguration.setHtmlFooter(jasperExporter.getHtmlFooter());
         }
-        if (jasperExporter.getFlushOutput() != null) {
+        if(jasperExporter.getFlushOutput() != null)
+        {
             exporterConfiguration.setFlushOutput(jasperExporter.getFlushOutput());
         }
-
-        HtmlExporter jrExporter = new HtmlExporter();
+        
+        final HtmlExporter jrExporter = new HtmlExporter();
         jrExporter.setExporterOutput(exporterOutput);
         jrExporter.setConfiguration(reportExportConfiguration);
         jrExporter.setConfiguration(exporterConfiguration);
         return jrExporter;
     }
-
-    private void reportExcelExportConfiguration(AbstractXlsReportConfiguration reportExportConfiguration, JasperIExcelExporter jasperExporter) {
-        reportExportConfiguration(reportExportConfiguration, jasperExporter);
-        if (jasperExporter.getOnePagePerSheet() != null) {
+    
+    private void reportExcelExportConfiguration(
+        final AbstractXlsReportConfiguration reportExportConfiguration,
+        final JasperIExcelExporter jasperExporter)
+    {
+        this.reportExportConfiguration(reportExportConfiguration, jasperExporter);
+        if(jasperExporter.getOnePagePerSheet() != null)
+        {
             reportExportConfiguration.setOnePagePerSheet(jasperExporter.getOnePagePerSheet());
         }
-        if (jasperExporter.getRemoveEmptySpaceBetweenRows() != null) {
+        if(jasperExporter.getRemoveEmptySpaceBetweenRows() != null)
+        {
             reportExportConfiguration.setRemoveEmptySpaceBetweenRows(jasperExporter.getRemoveEmptySpaceBetweenRows());
         }
-        if (jasperExporter.getRemoveEmptySpaceBetweenColumns() != null) {
+        if(jasperExporter.getRemoveEmptySpaceBetweenColumns() != null)
+        {
             reportExportConfiguration.setRemoveEmptySpaceBetweenColumns(jasperExporter.getRemoveEmptySpaceBetweenColumns());
         }
-        if (jasperExporter.getWhitePageBackground() != null) {
+        if(jasperExporter.getWhitePageBackground() != null)
+        {
             reportExportConfiguration.setWhitePageBackground(jasperExporter.getWhitePageBackground());
         }
-        if (jasperExporter.getDetectCellType() != null) {
+        if(jasperExporter.getDetectCellType() != null)
+        {
             reportExportConfiguration.setDetectCellType(jasperExporter.getDetectCellType());
         }
-        if (jasperExporter.getSheetNames() != null && !jasperExporter.getSheetNames().isEmpty()) {
-            String[] sheetNames = jasperExporter.getSheetNames().toArray(new String[jasperExporter.getSheetNames().size()]);
+        if(jasperExporter.getSheetNames() != null && !jasperExporter.getSheetNames().isEmpty())
+        {
+            final String[] sheetNames =
+                jasperExporter.getSheetNames().toArray(new String[jasperExporter.getSheetNames().size()]);
             reportExportConfiguration.setSheetNames(sheetNames);
         }
-        if (jasperExporter.getFontSizeFixEnabled() != null) {
+        if(jasperExporter.getFontSizeFixEnabled() != null)
+        {
             reportExportConfiguration.setFontSizeFixEnabled(jasperExporter.getFontSizeFixEnabled());
         }
-        if (jasperExporter.getImageBorderFixEnabled() != null) {
+        if(jasperExporter.getImageBorderFixEnabled() != null)
+        {
             reportExportConfiguration.setImageBorderFixEnabled(jasperExporter.getImageBorderFixEnabled());
         }
-        if (jasperExporter.getMaxRowsPerSheet() != null) {
+        if(jasperExporter.getMaxRowsPerSheet() != null)
+        {
             reportExportConfiguration.setMaxRowsPerSheet(jasperExporter.getMaxRowsPerSheet());
         }
-        if (jasperExporter.getIgnoreGraphics() != null) {
+        if(jasperExporter.getIgnoreGraphics() != null)
+        {
             reportExportConfiguration.setIgnoreGraphics(jasperExporter.getIgnoreGraphics());
         }
-        if (jasperExporter.getCollapseRowSpan() != null) {
+        if(jasperExporter.getCollapseRowSpan() != null)
+        {
             reportExportConfiguration.setCollapseRowSpan(jasperExporter.getCollapseRowSpan());
         }
-        if (jasperExporter.getIgnoreCellBorder() != null) {
+        if(jasperExporter.getIgnoreCellBorder() != null)
+        {
             reportExportConfiguration.setIgnoreCellBorder(jasperExporter.getIgnoreCellBorder());
         }
-        if (jasperExporter.getIgnoreCellBackground() != null) {
+        if(jasperExporter.getIgnoreCellBackground() != null)
+        {
             reportExportConfiguration.setIgnoreCellBackground(jasperExporter.getIgnoreCellBackground());
         }
-        if (jasperExporter.getPassword() != null) {
+        if(jasperExporter.getPassword() != null)
+        {
             reportExportConfiguration.setPassword(jasperExporter.getPassword());
         }
-        if (jasperExporter.getIgnorePageMargins() != null) {
+        if(jasperExporter.getIgnorePageMargins() != null)
+        {
             reportExportConfiguration.setIgnorePageMargins(jasperExporter.getIgnorePageMargins());
         }
-        if (jasperExporter.getWrapText() != null) {
+        if(jasperExporter.getWrapText() != null)
+        {
             reportExportConfiguration.setWrapText(jasperExporter.getWrapText());
         }
-        if (jasperExporter.getCellLocked() != null) {
+        if(jasperExporter.getCellLocked() != null)
+        {
             reportExportConfiguration.setCellLocked(jasperExporter.getCellLocked());
         }
-        if (jasperExporter.getCellHidden() != null) {
+        if(jasperExporter.getCellHidden() != null)
+        {
             reportExportConfiguration.setCellHidden(jasperExporter.getCellHidden());
         }
-        if (jasperExporter.getSheetHeaderLeft() != null) {
+        if(jasperExporter.getSheetHeaderLeft() != null)
+        {
             reportExportConfiguration.setSheetHeaderLeft(jasperExporter.getSheetHeaderLeft());
         }
-        if (jasperExporter.getSheetHeaderCenter() != null) {
+        if(jasperExporter.getSheetHeaderCenter() != null)
+        {
             reportExportConfiguration.setSheetHeaderCenter(jasperExporter.getSheetHeaderCenter());
         }
-        if (jasperExporter.getSheetHeaderRight() != null) {
+        if(jasperExporter.getSheetHeaderRight() != null)
+        {
             reportExportConfiguration.setSheetHeaderRight(jasperExporter.getSheetHeaderRight());
         }
-        if (jasperExporter.getSheetFooterLeft() != null) {
+        if(jasperExporter.getSheetFooterLeft() != null)
+        {
             reportExportConfiguration.setSheetFooterLeft(jasperExporter.getSheetFooterLeft());
         }
-        if (jasperExporter.getSheetFooterCenter() != null) {
+        if(jasperExporter.getSheetFooterCenter() != null)
+        {
             reportExportConfiguration.setSheetFooterCenter(jasperExporter.getSheetFooterCenter());
         }
-        if (jasperExporter.getSheetFooterRight() != null) {
+        if(jasperExporter.getSheetFooterRight() != null)
+        {
             reportExportConfiguration.setSheetFooterRight(jasperExporter.getSheetFooterRight());
         }
-        if (jasperExporter.getFormatPatternsMap() != null) {
+        if(jasperExporter.getFormatPatternsMap() != null)
+        {
             reportExportConfiguration.setFormatPatternsMap(jasperExporter.getFormatPatternsMap());
         }
-        if (jasperExporter.getIgnoreHyperLink() != null) {
+        if(jasperExporter.getIgnoreHyperLink() != null)
+        {
             reportExportConfiguration.setIgnoreHyperlink(jasperExporter.getIgnoreHyperLink());
         }
-        if (jasperExporter.getIgnoreAnchors() != null) {
+        if(jasperExporter.getIgnoreAnchors() != null)
+        {
             reportExportConfiguration.setIgnoreAnchors(jasperExporter.getIgnoreAnchors());
         }
-        if (jasperExporter.getFitWidth() != null) {
+        if(jasperExporter.getFitWidth() != null)
+        {
             reportExportConfiguration.setFitWidth(jasperExporter.getFitWidth());
         }
-        if (jasperExporter.getFitHeight() != null) {
+        if(jasperExporter.getFitHeight() != null)
+        {
             reportExportConfiguration.setFitHeight(jasperExporter.getFitHeight());
         }
-        if (jasperExporter.getPageScale() != null) {
+        if(jasperExporter.getPageScale() != null)
+        {
             reportExportConfiguration.setPageScale(jasperExporter.getPageScale());
         }
-        if (jasperExporter.getSheetDirection() != null) {
+        if(jasperExporter.getSheetDirection() != null)
+        {
             reportExportConfiguration.setSheetDirection(ConstantTransform.runDirection(jasperExporter.getSheetDirection()));
         }
-        if (jasperExporter.getColumnWidthRatio() != null) {
+        if(jasperExporter.getColumnWidthRatio() != null)
+        {
             reportExportConfiguration.setColumnWidthRatio(jasperExporter.getColumnWidthRatio());
         }
-        if (jasperExporter.getUseTimeZone() != null) {
+        if(jasperExporter.getUseTimeZone() != null)
+        {
             reportExportConfiguration.setUseTimeZone(jasperExporter.getUseTimeZone());
         }
-        if (jasperExporter.getFirstPageNumber() != null) {
+        if(jasperExporter.getFirstPageNumber() != null)
+        {
             reportExportConfiguration.setFirstPageNumber(jasperExporter.getFirstPageNumber());
         }
-        if (jasperExporter.getShowGridLines() != null) {
+        if(jasperExporter.getShowGridLines() != null)
+        {
             reportExportConfiguration.setShowGridLines(jasperExporter.getShowGridLines());
         }
-        if (jasperExporter.getImageAnchorType() != null) {
+        if(jasperExporter.getImageAnchorType() != null)
+        {
             reportExportConfiguration.setImageAnchorType(ConstantTransform.imageAnchorType(jasperExporter.getImageAnchorType()));
         }
     }
-
-    private void reportExcelExporterConfiguration(AbstractXlsExporterConfiguration exporterConfiguration, JasperIExcelExporter jasperExporter) {
-        if (jasperExporter.getCreateCustomPalette() != null) {
+    
+    private void reportExcelExporterConfiguration(
+        final AbstractXlsExporterConfiguration exporterConfiguration,
+        final JasperIExcelExporter jasperExporter)
+    {
+        if(jasperExporter.getCreateCustomPalette() != null)
+        {
             exporterConfiguration.setCreateCustomPalette(jasperExporter.getCreateCustomPalette());
         }
-        if (jasperExporter.getWorkbookTemplate() != null) {
+        if(jasperExporter.getWorkbookTemplate() != null)
+        {
             exporterConfiguration.setWorkbookTemplate(jasperExporter.getWorkbookTemplate());
         }
-        if (jasperExporter.getKeepWorkbookTemplateSheets() != null) {
+        if(jasperExporter.getKeepWorkbookTemplateSheets() != null)
+        {
             exporterConfiguration.setKeepWorkbookTemplateSheets(jasperExporter.getKeepWorkbookTemplateSheets());
         }
     }
-
-    private JRXlsxExporter xlsx(JasperIXlsxExporter jasperExporter) {
-        SimpleOutputStreamExporterOutput exporterOutput = simpleOutputStreamExporterOutput(jasperExporter);
-        SimpleXlsxReportConfiguration reportExportConfiguration = new SimpleXlsxReportConfiguration();
-        reportExcelExportConfiguration(reportExportConfiguration, jasperExporter);
-        SimpleXlsxExporterConfiguration exporterConfiguration = new SimpleXlsxExporterConfiguration();
-        reportExcelExporterConfiguration(exporterConfiguration, jasperExporter);
-        if (jasperExporter.getMacroTemplate() != null) {
+    
+    private JRXlsxExporter xlsx(final JasperIXlsxExporter jasperExporter)
+    {
+        final SimpleOutputStreamExporterOutput exporterOutput = this.simpleOutputStreamExporterOutput(jasperExporter);
+        final SimpleXlsxReportConfiguration reportExportConfiguration = new SimpleXlsxReportConfiguration();
+        this.reportExcelExportConfiguration(reportExportConfiguration, jasperExporter);
+        final SimpleXlsxExporterConfiguration exporterConfiguration = new SimpleXlsxExporterConfiguration();
+        this.reportExcelExporterConfiguration(exporterConfiguration, jasperExporter);
+        if(jasperExporter.getMacroTemplate() != null)
+        {
             exporterConfiguration.setMacroTemplate(jasperExporter.getMacroTemplate());
         }
-
-        JRXlsxExporter jrExporter = new JRXlsxExporter();
+        
+        final JRXlsxExporter jrExporter = new JRXlsxExporter();
         jrExporter.setExporterOutput(exporterOutput);
         jrExporter.setConfiguration(reportExportConfiguration);
         jrExporter.setConfiguration(exporterConfiguration);
         return jrExporter;
     }
-
-    private JRXlsExporter xls(JasperIXlsExporter jasperExporter) {
-        SimpleOutputStreamExporterOutput exporterOutput = simpleOutputStreamExporterOutput(jasperExporter);
-        SimpleXlsReportConfiguration reportExportConfiguration = new SimpleXlsReportConfiguration();
-        reportExcelExportConfiguration(reportExportConfiguration, jasperExporter);
-        SimpleXlsExporterConfiguration exporterConfiguration = new SimpleXlsExporterConfiguration();
-        reportExcelExporterConfiguration(exporterConfiguration, jasperExporter);
-
-        JRXlsExporter jrExporter = new JRXlsExporter();
-        jrExporter.setExporterOutput(exporterOutput);
-        jrExporter.setConfiguration(reportExportConfiguration);
-        jrExporter.setConfiguration(exporterConfiguration);
-        return jrExporter;
-    }
-
-    private JRDocxExporter docx(JasperIDocxExporter jasperExporter) {
-        SimpleOutputStreamExporterOutput exporterOutput = simpleOutputStreamExporterOutput(jasperExporter);
-        SimpleDocxReportConfiguration reportExportConfiguration = new SimpleDocxReportConfiguration();
-        reportExportConfiguration(reportExportConfiguration, jasperExporter);
-        if (jasperExporter.getFramesAsNestedTables() != null) {
+    
+    private JRDocxExporter docx(final JasperIDocxExporter jasperExporter)
+    {
+        final SimpleOutputStreamExporterOutput exporterOutput = this.simpleOutputStreamExporterOutput(jasperExporter);
+        final SimpleDocxReportConfiguration reportExportConfiguration = new SimpleDocxReportConfiguration();
+        this.reportExportConfiguration(reportExportConfiguration, jasperExporter);
+        if(jasperExporter.getFramesAsNestedTables() != null)
+        {
             reportExportConfiguration.setFramesAsNestedTables(jasperExporter.getFramesAsNestedTables());
         }
-        if (jasperExporter.getFlexibleRowHeight() != null) {
+        if(jasperExporter.getFlexibleRowHeight() != null)
+        {
             reportExportConfiguration.setFlexibleRowHeight(jasperExporter.getFlexibleRowHeight());
         }
-        if (jasperExporter.getIgnoreHyperLink() != null) {
+        if(jasperExporter.getIgnoreHyperLink() != null)
+        {
             reportExportConfiguration.setIgnoreHyperlink(jasperExporter.getIgnoreHyperLink());
         }
-        SimpleDocxExporterConfiguration exporterConfiguration = new SimpleDocxExporterConfiguration();
-
-        JRDocxExporter jrExporter = new JRDocxExporter();
+        final SimpleDocxExporterConfiguration exporterConfiguration = new SimpleDocxExporterConfiguration();
+        
+        final JRDocxExporter jrExporter = new JRDocxExporter();
         jrExporter.setExporterOutput(exporterOutput);
         jrExporter.setConfiguration(reportExportConfiguration);
         jrExporter.setConfiguration(exporterConfiguration);
         return jrExporter;
     }
-
-    private JRCsvExporter csv(JasperICsvExporter jasperExporter) {
-        SimpleWriterExporterOutput exporterOutput = simpleWriterExporterOutput(jasperExporter);
-        SimpleCsvReportConfiguration reportExportConfiguration = new SimpleCsvReportConfiguration();
-        reportExportConfiguration(reportExportConfiguration, jasperExporter);
-        SimpleCsvExporterConfiguration exporterConfiguration = new SimpleCsvExporterConfiguration();
-        if (jasperExporter.getFieldDelimiter() != null) {
+    
+    private JRCsvExporter csv(final JasperICsvExporter jasperExporter)
+    {
+        final SimpleWriterExporterOutput exporterOutput = this.simpleWriterExporterOutput(jasperExporter);
+        final SimpleCsvReportConfiguration reportExportConfiguration = new SimpleCsvReportConfiguration();
+        this.reportExportConfiguration(reportExportConfiguration, jasperExporter);
+        final SimpleCsvExporterConfiguration exporterConfiguration = new SimpleCsvExporterConfiguration();
+        if(jasperExporter.getFieldDelimiter() != null)
+        {
             exporterConfiguration.setFieldDelimiter(jasperExporter.getFieldDelimiter());
         }
-        if (jasperExporter.getRecordDelimiter() != null) {
+        if(jasperExporter.getRecordDelimiter() != null)
+        {
             exporterConfiguration.setRecordDelimiter(jasperExporter.getRecordDelimiter());
         }
-
-        JRCsvExporter jrExporter = new JRCsvExporter();
+        
+        final JRCsvExporter jrExporter = new JRCsvExporter();
         jrExporter.setExporterOutput(exporterOutput);
         jrExporter.setConfiguration(reportExportConfiguration);
         jrExporter.setConfiguration(exporterConfiguration);

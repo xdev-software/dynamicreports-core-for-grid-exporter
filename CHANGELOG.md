@@ -12,6 +12,10 @@ Initial release of the fork
     * ``net.sf.barcode4j:barcode4j``
     * ``com.google.zxing:core``
   * Removed charts subsystem
+  * Removed boolean to image subsystem
+    * ``org.apache.xmlgraphics:batik-bridge``
+  * Dropped support for ``XLS`` as the required dependency was never shipped
+    * ``XLSX`` still works as expected
   * Removed ``org.apache.commons:commons-text`` as it was only used on a single unused line of code
 * Update dependencies to lastest versions
 * Fixed compile errors

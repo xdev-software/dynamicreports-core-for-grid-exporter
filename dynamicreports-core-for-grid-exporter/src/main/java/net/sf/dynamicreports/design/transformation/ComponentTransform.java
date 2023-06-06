@@ -47,7 +47,6 @@ import net.sf.dynamicreports.design.definition.expression.DRIDesignJasperExpress
 import net.sf.dynamicreports.design.definition.expression.DRIDesignSimpleExpression;
 import net.sf.dynamicreports.design.definition.expression.DRIDesignSystemExpression;
 import net.sf.dynamicreports.design.exception.DRDesignReportException;
-import net.sf.dynamicreports.design.transformation.expressions.BooleanImageExpression;
 import net.sf.dynamicreports.design.transformation.expressions.BooleanTextValueFormatter;
 import net.sf.dynamicreports.design.transformation.expressions.CurrentDateExpression;
 import net.sf.dynamicreports.design.transformation.expressions.MultiPageListDataSourceExpression;
@@ -58,7 +57,6 @@ import net.sf.dynamicreports.jasper.builder.JasperReportBuilder;
 import net.sf.dynamicreports.report.base.DRGroup;
 import net.sf.dynamicreports.report.base.DRHyperLink;
 import net.sf.dynamicreports.report.base.component.DRHyperLinkComponent;
-import net.sf.dynamicreports.report.base.component.DRImage;
 import net.sf.dynamicreports.report.base.component.DRList;
 import net.sf.dynamicreports.report.base.component.DRTextField;
 import net.sf.dynamicreports.report.base.style.DRPen;
@@ -75,7 +73,6 @@ import net.sf.dynamicreports.report.constant.ComponentDimensionType;
 import net.sf.dynamicreports.report.constant.Evaluation;
 import net.sf.dynamicreports.report.constant.HorizontalCellComponentAlignment;
 import net.sf.dynamicreports.report.constant.HorizontalTextAlignment;
-import net.sf.dynamicreports.report.constant.ImageScale;
 import net.sf.dynamicreports.report.constant.VerticalCellComponentAlignment;
 import net.sf.dynamicreports.report.definition.DRIGroup;
 import net.sf.dynamicreports.report.definition.DRIHyperLink;
@@ -698,20 +695,6 @@ public class ComponentTransform {
                 textField.setHorizontalTextAlignment(booleanField.getHorizontalTextAlignment());
                 textField.setValueFormatter(new BooleanTextValueFormatter(keyTrue, keyFalse, emptyWhenNullValue));
                 component = textField;
-                break;
-            case IMAGE_STYLE_1:
-            case IMAGE_STYLE_2:
-            case IMAGE_STYLE_3:
-            case IMAGE_STYLE_4:
-            case IMAGE_CHECKBOX_1:
-            case IMAGE_CHECKBOX_2:
-            case IMAGE_BALL:
-                final DRImage image = new DRImage();
-                image.setImageScale(ImageScale.CLIP);
-                final int width = this.accessor.getTemplateTransform().getBooleanImageWidth(booleanField);
-                final int height = this.accessor.getTemplateTransform().getBooleanImageHeight(booleanField);
-                image.setImageExpression(new BooleanImageExpression(booleanField, emptyWhenNullValue, width, height));
-                component = image;
                 break;
             default:
                 throw new DRDesignReportException("Boolean component type " + componentType.name() + " not supported");

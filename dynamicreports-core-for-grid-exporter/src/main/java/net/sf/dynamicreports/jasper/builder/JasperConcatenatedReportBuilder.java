@@ -17,6 +17,20 @@
  */
 package net.sf.dynamicreports.jasper.builder;
 
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.geom.Rectangle2D;
+import java.awt.image.BufferedImage;
+import java.awt.image.RenderedImage;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.Serializable;
+
+import javax.imageio.ImageIO;
+
+import org.apache.commons.lang3.Validate;
+
 import net.sf.dynamicreports.jasper.base.export.AbstractJasperExporter;
 import net.sf.dynamicreports.jasper.base.reporthandler.JasperReportBuilderHandler;
 import net.sf.dynamicreports.jasper.builder.export.AbstractJasperExporterBuilder;
@@ -30,7 +44,6 @@ import net.sf.dynamicreports.jasper.builder.export.JasperPdfExporterBuilder;
 import net.sf.dynamicreports.jasper.builder.export.JasperPptxExporterBuilder;
 import net.sf.dynamicreports.jasper.builder.export.JasperRtfExporterBuilder;
 import net.sf.dynamicreports.jasper.builder.export.JasperTextExporterBuilder;
-import net.sf.dynamicreports.jasper.builder.export.JasperXlsExporterBuilder;
 import net.sf.dynamicreports.jasper.builder.export.JasperXlsxExporterBuilder;
 import net.sf.dynamicreports.jasper.builder.export.JasperXmlExporterBuilder;
 import net.sf.dynamicreports.jasper.definition.JasperReportHandler;
@@ -46,18 +59,6 @@ import net.sf.jasperreports.export.SimpleExporterInput;
 import net.sf.jasperreports.export.SimpleGraphics2DExporterConfiguration;
 import net.sf.jasperreports.export.SimpleGraphics2DExporterOutput;
 import net.sf.jasperreports.export.SimpleGraphics2DReportConfiguration;
-import org.apache.commons.lang3.Validate;
-
-import javax.imageio.ImageIO;
-import java.awt.Color;
-import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.geom.Rectangle2D;
-import java.awt.image.BufferedImage;
-import java.awt.image.RenderedImage;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.Serializable;
 
 /**
  * This report builder allows concatenating several separated reports into one single document. Each report starts on a new page with its own page dimension.
@@ -68,7 +69,7 @@ import java.io.Serializable;
 public class JasperConcatenatedReportBuilder implements Serializable {
     private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    private JasperReportHandler jasperReportHandler;
+    private final JasperReportHandler jasperReportHandler;
 
     /**
      * <p>Constructor for JasperConcatenatedReportBuilder.</p>
@@ -82,7 +83,7 @@ public class JasperConcatenatedReportBuilder implements Serializable {
      *
      * @param jasperReportHandler a {@link net.sf.dynamicreports.jasper.definition.JasperReportHandler} object.
      */
-    public JasperConcatenatedReportBuilder(JasperReportHandler jasperReportHandler) {
+    public JasperConcatenatedReportBuilder(final JasperReportHandler jasperReportHandler) {
         this.jasperReportHandler = jasperReportHandler;
     }
 
@@ -92,10 +93,10 @@ public class JasperConcatenatedReportBuilder implements Serializable {
      * @param jasperReportBuilders a {@link net.sf.dynamicreports.jasper.builder.JasperReportBuilder} object.
      * @return a {@link net.sf.dynamicreports.jasper.builder.JasperConcatenatedReportBuilder} object.
      */
-    public JasperConcatenatedReportBuilder concatenate(JasperReportBuilder... jasperReportBuilders) {
+    public JasperConcatenatedReportBuilder concatenate(final JasperReportBuilder... jasperReportBuilders) {
         Validate.notNull(jasperReportBuilders, "jasperReportBuilders must not be null");
         Validate.noNullElements(jasperReportBuilders, "jasperReportBuilders must not contains null jasperReportBuilder");
-        jasperReportHandler.concatenate(jasperReportBuilders);
+        this.jasperReportHandler.concatenate(jasperReportBuilders);
         return this;
     }
 
@@ -106,8 +107,8 @@ public class JasperConcatenatedReportBuilder implements Serializable {
      * @return a {@link net.sf.dynamicreports.jasper.builder.JasperConcatenatedReportBuilder} object.
      * @throws net.sf.dynamicreports.report.exception.DRException if any.
      */
-    public JasperConcatenatedReportBuilder toPng(OutputStream outputStream) throws DRException {
-        return toPng(outputStream, 1);
+    public JasperConcatenatedReportBuilder toPng(final OutputStream outputStream) throws DRException {
+        return this.toPng(outputStream, 1);
     }
 
     /**
@@ -118,45 +119,45 @@ public class JasperConcatenatedReportBuilder implements Serializable {
      * @return a {@link net.sf.dynamicreports.jasper.builder.JasperConcatenatedReportBuilder} object.
      * @throws net.sf.dynamicreports.report.exception.DRException if any.
      */
-    public JasperConcatenatedReportBuilder toPng(OutputStream outputStream, float zoom) throws DRException {
+    public JasperConcatenatedReportBuilder toPng(final OutputStream outputStream, final float zoom) throws DRException {
         Validate.notNull(outputStream, "outputStream must not be null");
         Validate.isTrue(zoom > 0, "zoom must be > 0");
 
         int maxWidth = 0;
         int maxHeight = 0;
 
-        for (JasperPrint jasperPrint : jasperReportHandler.getPrintList()) {
-            int pages = jasperPrint.getPages().size();
-            int pageWidth = (int) (jasperPrint.getPageWidth() * zoom);
+        for (final JasperPrint jasperPrint : this.jasperReportHandler.getPrintList()) {
+            final int pages = jasperPrint.getPages().size();
+            final int pageWidth = (int) (jasperPrint.getPageWidth() * zoom);
             maxWidth += pageWidth * pages + pages - 1 + 2;
-            int height = (int) (jasperPrint.getPageHeight() * zoom) + 2;
+            final int height = (int) (jasperPrint.getPageHeight() * zoom) + 2;
             if (height > maxHeight) {
                 maxHeight = height;
             }
         }
 
-        Image image = new BufferedImage(maxWidth, maxHeight, BufferedImage.TYPE_INT_RGB);
-        Graphics2D g2d = (Graphics2D) image.getGraphics();
+        final Image image = new BufferedImage(maxWidth, maxHeight, BufferedImage.TYPE_INT_RGB);
+        final Graphics2D g2d = (Graphics2D) image.getGraphics();
         g2d.setColor(Color.LIGHT_GRAY);
         g2d.fill(new Rectangle2D.Float(1, 1, maxWidth - 1, maxHeight - 1));
 
         int offset = 1;
-        for (JasperPrint jasperPrint : jasperReportHandler.getPrintList()) {
-            int pageWidth = (int) (jasperPrint.getPageWidth() * zoom);
-            int pageHeight = (int) (jasperPrint.getPageHeight() * zoom);
+        for (final JasperPrint jasperPrint : this.jasperReportHandler.getPrintList()) {
+            final int pageWidth = (int) (jasperPrint.getPageWidth() * zoom);
+            final int pageHeight = (int) (jasperPrint.getPageHeight() * zoom);
             for (
                 int i = 0; i < jasperPrint.getPages().size(); i++) {
                 try {
-                    SimpleExporterInput exporterInput = new SimpleExporterInput(jasperPrint);
-                    SimpleGraphics2DExporterOutput exporterOutput = new SimpleGraphics2DExporterOutput();
-                    Image pageImage = new BufferedImage(pageWidth, pageHeight, BufferedImage.TYPE_INT_RGB);
+                    final SimpleExporterInput exporterInput = new SimpleExporterInput(jasperPrint);
+                    final SimpleGraphics2DExporterOutput exporterOutput = new SimpleGraphics2DExporterOutput();
+                    final Image pageImage = new BufferedImage(pageWidth, pageHeight, BufferedImage.TYPE_INT_RGB);
                     exporterOutput.setGraphics2D((Graphics2D) pageImage.getGraphics());
-                    SimpleGraphics2DReportConfiguration reportExportConfiguration = new SimpleGraphics2DReportConfiguration();
+                    final SimpleGraphics2DReportConfiguration reportExportConfiguration = new SimpleGraphics2DReportConfiguration();
                     reportExportConfiguration.setPageIndex(i);
                     reportExportConfiguration.setZoomRatio(zoom);
-                    SimpleGraphics2DExporterConfiguration exporterConfiguration = new SimpleGraphics2DExporterConfiguration();
+                    final SimpleGraphics2DExporterConfiguration exporterConfiguration = new SimpleGraphics2DExporterConfiguration();
 
-                    JRGraphics2DExporter jrExporter = new JRGraphics2DExporter();
+                    final JRGraphics2DExporter jrExporter = new JRGraphics2DExporter();
                     jrExporter.setExporterInput(exporterInput);
                     jrExporter.setExporterOutput(exporterOutput);
                     jrExporter.setConfiguration(reportExportConfiguration);
@@ -165,14 +166,14 @@ public class JasperConcatenatedReportBuilder implements Serializable {
                     jrExporter.exportReport();
                     ((Graphics2D) image.getGraphics()).drawImage(pageImage, offset, 1, null);
                     offset += pageWidth + 1;
-                } catch (JRException e) {
+                } catch (final JRException e) {
                     throw new DRException(e);
                 }
             }
         }
         try {
             ImageIO.write((RenderedImage) image, "png", outputStream);
-        } catch (IOException e) {
+        } catch (final IOException e) {
             throw new DRException(e);
         }
         return this;
@@ -184,7 +185,7 @@ public class JasperConcatenatedReportBuilder implements Serializable {
      * @return a {@link net.sf.dynamicreports.jasper.builder.JasperConcatenatedReportBuilder} object.
      */
     public JasperConcatenatedReportBuilder continuousPageNumbering() {
-        return setContinuousPageNumbering(true);
+        return this.setContinuousPageNumbering(true);
     }
 
     /**
@@ -193,8 +194,8 @@ public class JasperConcatenatedReportBuilder implements Serializable {
      * @param continuousPageNumbering a boolean.
      * @return a {@link net.sf.dynamicreports.jasper.builder.JasperConcatenatedReportBuilder} object.
      */
-    public JasperConcatenatedReportBuilder setContinuousPageNumbering(boolean continuousPageNumbering) {
-        jasperReportHandler.setContinuousPageNumbering(continuousPageNumbering);
+    public JasperConcatenatedReportBuilder setContinuousPageNumbering(final boolean continuousPageNumbering) {
+        this.jasperReportHandler.setContinuousPageNumbering(continuousPageNumbering);
         return this;
     }
 
@@ -207,8 +208,8 @@ public class JasperConcatenatedReportBuilder implements Serializable {
      * @return a {@link net.sf.dynamicreports.jasper.builder.JasperConcatenatedReportBuilder} object.
      * @throws net.sf.dynamicreports.report.exception.DRException if any.
      */
-    public JasperConcatenatedReportBuilder toCsv(OutputStream outputStream) throws DRException {
-        return toCsv(Exporters.csvExporter(outputStream));
+    public JasperConcatenatedReportBuilder toCsv(final OutputStream outputStream) throws DRException {
+        return this.toCsv(Exporters.csvExporter(outputStream));
     }
 
     /**
@@ -218,8 +219,8 @@ public class JasperConcatenatedReportBuilder implements Serializable {
      * @return a {@link net.sf.dynamicreports.jasper.builder.JasperConcatenatedReportBuilder} object.
      * @throws net.sf.dynamicreports.report.exception.DRException if any.
      */
-    public JasperConcatenatedReportBuilder toCsv(JasperCsvExporterBuilder csvExporterBuilder) throws DRException {
-        return export(csvExporterBuilder);
+    public JasperConcatenatedReportBuilder toCsv(final JasperCsvExporterBuilder csvExporterBuilder) throws DRException {
+        return this.export(csvExporterBuilder);
     }
 
     // docx
@@ -231,8 +232,8 @@ public class JasperConcatenatedReportBuilder implements Serializable {
      * @return a {@link net.sf.dynamicreports.jasper.builder.JasperConcatenatedReportBuilder} object.
      * @throws net.sf.dynamicreports.report.exception.DRException if any.
      */
-    public JasperConcatenatedReportBuilder toDocx(OutputStream outputStream) throws DRException {
-        return toDocx(Exporters.docxExporter(outputStream));
+    public JasperConcatenatedReportBuilder toDocx(final OutputStream outputStream) throws DRException {
+        return this.toDocx(Exporters.docxExporter(outputStream));
     }
 
     /**
@@ -242,8 +243,8 @@ public class JasperConcatenatedReportBuilder implements Serializable {
      * @return a {@link net.sf.dynamicreports.jasper.builder.JasperConcatenatedReportBuilder} object.
      * @throws net.sf.dynamicreports.report.exception.DRException if any.
      */
-    public JasperConcatenatedReportBuilder toDocx(JasperDocxExporterBuilder docxExporterBuilder) throws DRException {
-        return export(docxExporterBuilder);
+    public JasperConcatenatedReportBuilder toDocx(final JasperDocxExporterBuilder docxExporterBuilder) throws DRException {
+        return this.export(docxExporterBuilder);
     }
 
     // html
@@ -255,8 +256,8 @@ public class JasperConcatenatedReportBuilder implements Serializable {
      * @return a {@link net.sf.dynamicreports.jasper.builder.JasperConcatenatedReportBuilder} object.
      * @throws net.sf.dynamicreports.report.exception.DRException if any.
      */
-    public JasperConcatenatedReportBuilder toHtml(OutputStream outputStream) throws DRException {
-        return toHtml(Exporters.htmlExporter(outputStream));
+    public JasperConcatenatedReportBuilder toHtml(final OutputStream outputStream) throws DRException {
+        return this.toHtml(Exporters.htmlExporter(outputStream));
     }
 
     /**
@@ -266,8 +267,8 @@ public class JasperConcatenatedReportBuilder implements Serializable {
      * @return a {@link net.sf.dynamicreports.jasper.builder.JasperConcatenatedReportBuilder} object.
      * @throws net.sf.dynamicreports.report.exception.DRException if any.
      */
-    public JasperConcatenatedReportBuilder toHtml(JasperHtmlExporterBuilder htmlExporterBuilder) throws DRException {
-        return export(htmlExporterBuilder);
+    public JasperConcatenatedReportBuilder toHtml(final JasperHtmlExporterBuilder htmlExporterBuilder) throws DRException {
+        return this.export(htmlExporterBuilder);
     }
 
     // ods
@@ -279,8 +280,8 @@ public class JasperConcatenatedReportBuilder implements Serializable {
      * @return a {@link net.sf.dynamicreports.jasper.builder.JasperConcatenatedReportBuilder} object.
      * @throws net.sf.dynamicreports.report.exception.DRException if any.
      */
-    public JasperConcatenatedReportBuilder toOds(OutputStream outputStream) throws DRException {
-        return toOds(Exporters.odsExporter(outputStream));
+    public JasperConcatenatedReportBuilder toOds(final OutputStream outputStream) throws DRException {
+        return this.toOds(Exporters.odsExporter(outputStream));
     }
 
     /**
@@ -290,8 +291,8 @@ public class JasperConcatenatedReportBuilder implements Serializable {
      * @return a {@link net.sf.dynamicreports.jasper.builder.JasperConcatenatedReportBuilder} object.
      * @throws net.sf.dynamicreports.report.exception.DRException if any.
      */
-    public JasperConcatenatedReportBuilder toOds(JasperOdsExporterBuilder odsExporterBuilder) throws DRException {
-        return export(odsExporterBuilder);
+    public JasperConcatenatedReportBuilder toOds(final JasperOdsExporterBuilder odsExporterBuilder) throws DRException {
+        return this.export(odsExporterBuilder);
     }
 
     // odt
@@ -303,8 +304,8 @@ public class JasperConcatenatedReportBuilder implements Serializable {
      * @return a {@link net.sf.dynamicreports.jasper.builder.JasperConcatenatedReportBuilder} object.
      * @throws net.sf.dynamicreports.report.exception.DRException if any.
      */
-    public JasperConcatenatedReportBuilder toOdt(OutputStream outputStream) throws DRException {
-        return toOdt(Exporters.odtExporter(outputStream));
+    public JasperConcatenatedReportBuilder toOdt(final OutputStream outputStream) throws DRException {
+        return this.toOdt(Exporters.odtExporter(outputStream));
     }
 
     /**
@@ -314,8 +315,8 @@ public class JasperConcatenatedReportBuilder implements Serializable {
      * @return a {@link net.sf.dynamicreports.jasper.builder.JasperConcatenatedReportBuilder} object.
      * @throws net.sf.dynamicreports.report.exception.DRException if any.
      */
-    public JasperConcatenatedReportBuilder toOdt(JasperOdtExporterBuilder odtExporterBuilder) throws DRException {
-        return export(odtExporterBuilder);
+    public JasperConcatenatedReportBuilder toOdt(final JasperOdtExporterBuilder odtExporterBuilder) throws DRException {
+        return this.export(odtExporterBuilder);
     }
 
     // pdf
@@ -327,8 +328,8 @@ public class JasperConcatenatedReportBuilder implements Serializable {
      * @return a {@link net.sf.dynamicreports.jasper.builder.JasperConcatenatedReportBuilder} object.
      * @throws net.sf.dynamicreports.report.exception.DRException if any.
      */
-    public JasperConcatenatedReportBuilder toPdf(OutputStream outputStream) throws DRException {
-        return toPdf(Exporters.pdfExporter(outputStream));
+    public JasperConcatenatedReportBuilder toPdf(final OutputStream outputStream) throws DRException {
+        return this.toPdf(Exporters.pdfExporter(outputStream));
     }
 
     /**
@@ -338,8 +339,8 @@ public class JasperConcatenatedReportBuilder implements Serializable {
      * @return a {@link net.sf.dynamicreports.jasper.builder.JasperConcatenatedReportBuilder} object.
      * @throws net.sf.dynamicreports.report.exception.DRException if any.
      */
-    public JasperConcatenatedReportBuilder toPdf(JasperPdfExporterBuilder pdfExporterBuilder) throws DRException {
-        return export(pdfExporterBuilder);
+    public JasperConcatenatedReportBuilder toPdf(final JasperPdfExporterBuilder pdfExporterBuilder) throws DRException {
+        return this.export(pdfExporterBuilder);
     }
 
     // rtf
@@ -351,8 +352,8 @@ public class JasperConcatenatedReportBuilder implements Serializable {
      * @return a {@link net.sf.dynamicreports.jasper.builder.JasperConcatenatedReportBuilder} object.
      * @throws net.sf.dynamicreports.report.exception.DRException if any.
      */
-    public JasperConcatenatedReportBuilder toRtf(OutputStream outputStream) throws DRException {
-        return toRtf(Exporters.rtfExporter(outputStream));
+    public JasperConcatenatedReportBuilder toRtf(final OutputStream outputStream) throws DRException {
+        return this.toRtf(Exporters.rtfExporter(outputStream));
     }
 
     /**
@@ -362,8 +363,8 @@ public class JasperConcatenatedReportBuilder implements Serializable {
      * @return a {@link net.sf.dynamicreports.jasper.builder.JasperConcatenatedReportBuilder} object.
      * @throws net.sf.dynamicreports.report.exception.DRException if any.
      */
-    public JasperConcatenatedReportBuilder toRtf(JasperRtfExporterBuilder rtfExporterBuilder) throws DRException {
-        return export(rtfExporterBuilder);
+    public JasperConcatenatedReportBuilder toRtf(final JasperRtfExporterBuilder rtfExporterBuilder) throws DRException {
+        return this.export(rtfExporterBuilder);
     }
 
     // text
@@ -375,8 +376,8 @@ public class JasperConcatenatedReportBuilder implements Serializable {
      * @return a {@link net.sf.dynamicreports.jasper.builder.JasperConcatenatedReportBuilder} object.
      * @throws net.sf.dynamicreports.report.exception.DRException if any.
      */
-    public JasperConcatenatedReportBuilder toText(OutputStream outputStream) throws DRException {
-        return toText(Exporters.textExporter(outputStream));
+    public JasperConcatenatedReportBuilder toText(final OutputStream outputStream) throws DRException {
+        return this.toText(Exporters.textExporter(outputStream));
     }
 
     /**
@@ -386,32 +387,8 @@ public class JasperConcatenatedReportBuilder implements Serializable {
      * @return a {@link net.sf.dynamicreports.jasper.builder.JasperConcatenatedReportBuilder} object.
      * @throws net.sf.dynamicreports.report.exception.DRException if any.
      */
-    public JasperConcatenatedReportBuilder toText(JasperTextExporterBuilder textExporterBuilder) throws DRException {
-        return export(textExporterBuilder);
-    }
-
-    // xls
-
-    /**
-     * <p>toXls.</p>
-     *
-     * @param outputStream a {@link java.io.OutputStream} object.
-     * @return a {@link net.sf.dynamicreports.jasper.builder.JasperConcatenatedReportBuilder} object.
-     * @throws net.sf.dynamicreports.report.exception.DRException if any.
-     */
-    public JasperConcatenatedReportBuilder toXls(OutputStream outputStream) throws DRException {
-        return toXls(Exporters.xlsExporter(outputStream));
-    }
-
-    /**
-     * <p>toXls.</p>
-     *
-     * @param xlsExporterBuilder a {@link net.sf.dynamicreports.jasper.builder.export.JasperXlsExporterBuilder} object.
-     * @return a {@link net.sf.dynamicreports.jasper.builder.JasperConcatenatedReportBuilder} object.
-     * @throws net.sf.dynamicreports.report.exception.DRException if any.
-     */
-    public JasperConcatenatedReportBuilder toXls(JasperXlsExporterBuilder xlsExporterBuilder) throws DRException {
-        return export(xlsExporterBuilder);
+    public JasperConcatenatedReportBuilder toText(final JasperTextExporterBuilder textExporterBuilder) throws DRException {
+        return this.export(textExporterBuilder);
     }
 
     // xlsx
@@ -423,8 +400,8 @@ public class JasperConcatenatedReportBuilder implements Serializable {
      * @return a {@link net.sf.dynamicreports.jasper.builder.JasperConcatenatedReportBuilder} object.
      * @throws net.sf.dynamicreports.report.exception.DRException if any.
      */
-    public JasperConcatenatedReportBuilder toXlsx(OutputStream outputStream) throws DRException {
-        return toXlsx(Exporters.xlsxExporter(outputStream));
+    public JasperConcatenatedReportBuilder toXlsx(final OutputStream outputStream) throws DRException {
+        return this.toXlsx(Exporters.xlsxExporter(outputStream));
     }
 
     /**
@@ -434,8 +411,8 @@ public class JasperConcatenatedReportBuilder implements Serializable {
      * @return a {@link net.sf.dynamicreports.jasper.builder.JasperConcatenatedReportBuilder} object.
      * @throws net.sf.dynamicreports.report.exception.DRException if any.
      */
-    public JasperConcatenatedReportBuilder toXlsx(JasperXlsxExporterBuilder xlsxExporterBuilder) throws DRException {
-        return export(xlsxExporterBuilder);
+    public JasperConcatenatedReportBuilder toXlsx(final JasperXlsxExporterBuilder xlsxExporterBuilder) throws DRException {
+        return this.export(xlsxExporterBuilder);
     }
 
     // xml
@@ -447,8 +424,8 @@ public class JasperConcatenatedReportBuilder implements Serializable {
      * @return a {@link net.sf.dynamicreports.jasper.builder.JasperConcatenatedReportBuilder} object.
      * @throws net.sf.dynamicreports.report.exception.DRException if any.
      */
-    public JasperConcatenatedReportBuilder toXml(OutputStream outputStream) throws DRException {
-        return toXml(Exporters.xmlExporter(outputStream));
+    public JasperConcatenatedReportBuilder toXml(final OutputStream outputStream) throws DRException {
+        return this.toXml(Exporters.xmlExporter(outputStream));
     }
 
     /**
@@ -458,8 +435,8 @@ public class JasperConcatenatedReportBuilder implements Serializable {
      * @return a {@link net.sf.dynamicreports.jasper.builder.JasperConcatenatedReportBuilder} object.
      * @throws net.sf.dynamicreports.report.exception.DRException if any.
      */
-    public JasperConcatenatedReportBuilder toXml(JasperXmlExporterBuilder xmlExporterBuilder) throws DRException {
-        return export(xmlExporterBuilder);
+    public JasperConcatenatedReportBuilder toXml(final JasperXmlExporterBuilder xmlExporterBuilder) throws DRException {
+        return this.export(xmlExporterBuilder);
     }
 
     // pptx
@@ -471,8 +448,8 @@ public class JasperConcatenatedReportBuilder implements Serializable {
      * @return a {@link net.sf.dynamicreports.jasper.builder.JasperConcatenatedReportBuilder} object.
      * @throws net.sf.dynamicreports.report.exception.DRException if any.
      */
-    public JasperConcatenatedReportBuilder toPptx(OutputStream outputStream) throws DRException {
-        return toPptx(Exporters.pptxExporter(outputStream));
+    public JasperConcatenatedReportBuilder toPptx(final OutputStream outputStream) throws DRException {
+        return this.toPptx(Exporters.pptxExporter(outputStream));
     }
 
     /**
@@ -482,8 +459,8 @@ public class JasperConcatenatedReportBuilder implements Serializable {
      * @return a {@link net.sf.dynamicreports.jasper.builder.JasperConcatenatedReportBuilder} object.
      * @throws net.sf.dynamicreports.report.exception.DRException if any.
      */
-    public JasperConcatenatedReportBuilder toPptx(JasperPptxExporterBuilder pptxExporterBuilder) throws DRException {
-        return export(pptxExporterBuilder);
+    public JasperConcatenatedReportBuilder toPptx(final JasperPptxExporterBuilder pptxExporterBuilder) throws DRException {
+        return this.export(pptxExporterBuilder);
     }
 
     /**
@@ -493,14 +470,15 @@ public class JasperConcatenatedReportBuilder implements Serializable {
      * @return a {@link net.sf.dynamicreports.jasper.builder.JasperConcatenatedReportBuilder} object.
      * @throws net.sf.dynamicreports.report.exception.DRException if any.
      */
-    public JasperConcatenatedReportBuilder export(AbstractJasperExporterBuilder<?, ? extends AbstractJasperExporter> exporterBuilder) throws DRException {
+    public JasperConcatenatedReportBuilder export(final AbstractJasperExporterBuilder<?, ? extends AbstractJasperExporter> exporterBuilder) throws DRException {
         Validate.notNull(exporterBuilder, "exporterBuilder must not be null");
         try {
-            ExporterTransform exporterTransform = new ExporterTransform(exporterBuilder.build());
-            @SuppressWarnings("unchecked") Exporter<ExporterInput, ?, ?, ?> exporter = (Exporter<ExporterInput, ?, ?, ?>) exporterTransform.transform();
-            exporter.setExporterInput(SimpleExporterInput.getInstance(jasperReportHandler.getPrintList()));
+            final ExporterTransform exporterTransform = new ExporterTransform(exporterBuilder.build());
+            @SuppressWarnings("unchecked")
+            final Exporter<ExporterInput, ?, ?, ?> exporter = (Exporter<ExporterInput, ?, ?, ?>) exporterTransform.transform();
+            exporter.setExporterInput(SimpleExporterInput.getInstance(this.jasperReportHandler.getPrintList()));
             exporter.exportReport();
-        } catch (JRException e) {
+        } catch (final JRException e) {
             throw new DRException(e);
         }
         return this;
