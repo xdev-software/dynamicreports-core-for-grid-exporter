@@ -17,13 +17,13 @@
  */
 package software.xdev.dynamicreports.report.builder.datatype;
 
+import java.util.Locale;
+
 import software.xdev.dynamicreports.report.base.datatype.AbstractDataType;
 import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.constant.HorizontalTextAlignment;
 import software.xdev.dynamicreports.report.defaults.Defaults;
 import software.xdev.dynamicreports.report.exception.DRException;
-
-import java.util.Locale;
 
 /**
  * <p>BooleanType class.</p>
@@ -48,7 +48,7 @@ public class BooleanType extends AbstractDataType<Boolean, Boolean> {
 
     /** {@inheritDoc} */
     @Override
-    public Boolean stringToValue(String value, Locale locale) throws DRException {
-        return new Boolean(value);
+    public Boolean stringToValue(final String value, final Locale locale) throws DRException {
+        return Boolean.parseBoolean(value);
     }
 }

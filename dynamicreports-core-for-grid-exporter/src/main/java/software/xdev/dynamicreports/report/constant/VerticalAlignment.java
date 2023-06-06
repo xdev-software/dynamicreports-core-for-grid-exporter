@@ -24,6 +24,7 @@ package software.xdev.dynamicreports.report.constant;
  * 
  * @deprecated use VerticalTextAligment for texts or VerticalImageAligment for images instead
  */
+@Deprecated
 public enum VerticalAlignment {
     TOP, MIDDLE, BOTTOM, JUSTIFIED
 }

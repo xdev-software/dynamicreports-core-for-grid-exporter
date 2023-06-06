@@ -21,14 +21,18 @@ package software.xdev.dynamicreports.report.constant;
  * <p>StretchType class.</p>
  *
  * @author Ricardo Mariaca
- * 
  */
-public enum StretchType {
-    NO_STRETCH, /**
+public enum StretchType
+{
+    NO_STRETCH,
+    /**
      * @deprecated use ELEMENT_GROUP_HEIGHT instead
      */
-    RELATIVE_TO_TALLEST_OBJECT, /**
+    @Deprecated
+    RELATIVE_TO_TALLEST_OBJECT,
+    /**
      * @deprecated use CONTAINER_HEIGHT instead
      */
-    RELATIVE_TO_BAND_HEIGHT, ELEMENT_GROUP_HEIGHT, ELEMENT_GROUP_BOTTOM, CONTAINER_HEIGHT, CONTAINER_BOTTOM;
+    @Deprecated
+    RELATIVE_TO_BAND_HEIGHT, ELEMENT_GROUP_HEIGHT, ELEMENT_GROUP_BOTTOM, CONTAINER_HEIGHT, CONTAINER_BOTTOM
 }

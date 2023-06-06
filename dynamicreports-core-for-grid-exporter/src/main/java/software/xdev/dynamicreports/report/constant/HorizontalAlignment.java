@@ -24,6 +24,7 @@ package software.xdev.dynamicreports.report.constant;
  * 
  * @deprecated use HorizontalTextAligment for texts or HorizontalImageAligment for images instead
  */
+@Deprecated
 public enum HorizontalAlignment {
     LEFT, CENTER, RIGHT, JUSTIFIED
 }

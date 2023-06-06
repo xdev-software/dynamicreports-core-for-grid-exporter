@@ -202,6 +202,15 @@
 				<artifactId>jaxb40-maven-plugin</artifactId>
 				<version>0.16.1</version>
 				<configuration>
+					<!-- We have no m2e or Eclipse IDE so ignore the warnings -->
+					<!-- Alternative is to use the maven clean plugin inside that directory -->
+					<forceRegenerate>true</forceRegenerate>
+					<!-- We want reproducible files! -->
+					<noFileHeader>true</noFileHeader>
+					<!-- Episode file contains current timestamps and localized messages so disable it -->
+					<episode>false</episode>
+					<!-- Generate into a persistent directory so that changes are noticeable -->
+					<generateDirectory>src/gen/jaxb</generateDirectory>
 					<schemaIncludes>
 						<schemaInclude>**/dynamicreports.xsd</schemaInclude>
 					</schemaIncludes>
@@ -234,7 +243,7 @@
 						</goals>
 						<configuration>
 							<sources>
-								<source>${basedir}/target/generated-sources/xjc</source>
+								<source>${basedir}/src/gen/jaxb</source>
 							</sources>
 						</configuration>
 					</execution>
