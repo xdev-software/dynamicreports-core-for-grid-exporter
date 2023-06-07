@@ -20,57 +20,9 @@ package software.xdev.dynamicreports.jasper.transformation;
 import java.util.List;
 
 import org.apache.commons.lang3.EnumUtils;
-import org.jfree.data.time.Day;
-import org.jfree.data.time.Hour;
-import org.jfree.data.time.Millisecond;
-import org.jfree.data.time.Minute;
-import org.jfree.data.time.Month;
-import org.jfree.data.time.Quarter;
-import org.jfree.data.time.Second;
-import org.jfree.data.time.Week;
-import org.jfree.data.time.Year;
 
 import com.lowagie.text.pdf.PdfWriter;
 
-import software.xdev.dynamicreports.design.constant.EvaluationTime;
-import software.xdev.dynamicreports.design.constant.ResetType;
-import software.xdev.dynamicreports.jasper.constant.PdfPermission;
-import software.xdev.dynamicreports.jasper.constant.PdfVersion;
-import software.xdev.dynamicreports.jasper.constant.SizeUnit;
-import software.xdev.dynamicreports.jasper.exception.JasperDesignException;
-import software.xdev.dynamicreports.report.constant.BreakType;
-import software.xdev.dynamicreports.report.constant.Calculation;
-import software.xdev.dynamicreports.report.constant.ComponentPositionType;
-import software.xdev.dynamicreports.report.constant.CrosstabPercentageType;
-import software.xdev.dynamicreports.report.constant.CrosstabTotalPosition;
-import software.xdev.dynamicreports.report.constant.GroupFooterPosition;
-import software.xdev.dynamicreports.report.constant.HorizontalImageAlignment;
-import software.xdev.dynamicreports.report.constant.HorizontalTextAlignment;
-import software.xdev.dynamicreports.report.constant.HyperLinkTarget;
-import software.xdev.dynamicreports.report.constant.HyperLinkType;
-import software.xdev.dynamicreports.report.constant.ImageAnchorType;
-import software.xdev.dynamicreports.report.constant.ImageScale;
-import software.xdev.dynamicreports.report.constant.LineDirection;
-import software.xdev.dynamicreports.report.constant.LineSpacing;
-import software.xdev.dynamicreports.report.constant.LineStyle;
-import software.xdev.dynamicreports.report.constant.Markup;
-import software.xdev.dynamicreports.report.constant.OrderType;
-import software.xdev.dynamicreports.report.constant.Orientation;
-import software.xdev.dynamicreports.report.constant.PageOrientation;
-import software.xdev.dynamicreports.report.constant.PdfPrintScaling;
-import software.xdev.dynamicreports.report.constant.PdfaConformance;
-import software.xdev.dynamicreports.report.constant.RectangleAnchor;
-import software.xdev.dynamicreports.report.constant.Rotation;
-import software.xdev.dynamicreports.report.constant.RunDirection;
-import software.xdev.dynamicreports.report.constant.SplitType;
-import software.xdev.dynamicreports.report.constant.StretchType;
-import software.xdev.dynamicreports.report.constant.TabStopAlignment;
-import software.xdev.dynamicreports.report.constant.TextAdjust;
-import software.xdev.dynamicreports.report.constant.TimePeriod;
-import software.xdev.dynamicreports.report.constant.VerticalImageAlignment;
-import software.xdev.dynamicreports.report.constant.VerticalTextAlignment;
-import software.xdev.dynamicreports.report.constant.WhenNoDataType;
-import software.xdev.dynamicreports.report.constant.WhenResourceMissingType;
 import net.sf.jasperreports.crosstabs.type.CrosstabPercentageEnum;
 import net.sf.jasperreports.crosstabs.type.CrosstabTotalPositionEnum;
 import net.sf.jasperreports.engine.analytics.dataset.BucketOrder;
@@ -107,6 +59,43 @@ import net.sf.jasperreports.export.type.HtmlSizeUnitEnum;
 import net.sf.jasperreports.export.type.PdfPrintScalingEnum;
 import net.sf.jasperreports.export.type.PdfVersionEnum;
 import net.sf.jasperreports.export.type.PdfaConformanceEnum;
+import software.xdev.dynamicreports.design.constant.EvaluationTime;
+import software.xdev.dynamicreports.design.constant.ResetType;
+import software.xdev.dynamicreports.jasper.constant.PdfPermission;
+import software.xdev.dynamicreports.jasper.constant.PdfVersion;
+import software.xdev.dynamicreports.jasper.constant.SizeUnit;
+import software.xdev.dynamicreports.jasper.exception.JasperDesignException;
+import software.xdev.dynamicreports.report.constant.BreakType;
+import software.xdev.dynamicreports.report.constant.Calculation;
+import software.xdev.dynamicreports.report.constant.ComponentPositionType;
+import software.xdev.dynamicreports.report.constant.CrosstabPercentageType;
+import software.xdev.dynamicreports.report.constant.CrosstabTotalPosition;
+import software.xdev.dynamicreports.report.constant.GroupFooterPosition;
+import software.xdev.dynamicreports.report.constant.HorizontalImageAlignment;
+import software.xdev.dynamicreports.report.constant.HorizontalTextAlignment;
+import software.xdev.dynamicreports.report.constant.HyperLinkTarget;
+import software.xdev.dynamicreports.report.constant.HyperLinkType;
+import software.xdev.dynamicreports.report.constant.ImageAnchorType;
+import software.xdev.dynamicreports.report.constant.ImageScale;
+import software.xdev.dynamicreports.report.constant.LineDirection;
+import software.xdev.dynamicreports.report.constant.LineSpacing;
+import software.xdev.dynamicreports.report.constant.LineStyle;
+import software.xdev.dynamicreports.report.constant.Markup;
+import software.xdev.dynamicreports.report.constant.OrderType;
+import software.xdev.dynamicreports.report.constant.Orientation;
+import software.xdev.dynamicreports.report.constant.PageOrientation;
+import software.xdev.dynamicreports.report.constant.PdfPrintScaling;
+import software.xdev.dynamicreports.report.constant.PdfaConformance;
+import software.xdev.dynamicreports.report.constant.Rotation;
+import software.xdev.dynamicreports.report.constant.RunDirection;
+import software.xdev.dynamicreports.report.constant.SplitType;
+import software.xdev.dynamicreports.report.constant.StretchType;
+import software.xdev.dynamicreports.report.constant.TabStopAlignment;
+import software.xdev.dynamicreports.report.constant.TextAdjust;
+import software.xdev.dynamicreports.report.constant.VerticalImageAlignment;
+import software.xdev.dynamicreports.report.constant.VerticalTextAlignment;
+import software.xdev.dynamicreports.report.constant.WhenNoDataType;
+import software.xdev.dynamicreports.report.constant.WhenResourceMissingType;
 
 
 /**
@@ -580,39 +569,6 @@ public class ConstantTransform
 				return SplitTypeEnum.STRETCH;
 			default:
 				throw new JasperDesignException("Split type " + splitType.name() + " not supported");
-		}
-	}
-	
-	/**
-	 * <p>timePeriodType.</p>
-	 *
-	 * @param timePeriodType a {@link software.xdev.dynamicreports.report.constant.TimePeriod} object.
-	 * @return a {@link java.lang.Class} object.
-	 */
-	protected static Class<?> timePeriodType(final TimePeriod timePeriodType)
-	{
-		switch(timePeriodType)
-		{
-			case YEAR:
-				return Year.class;
-			case QUARTER:
-				return Quarter.class;
-			case MONTH:
-				return Month.class;
-			case WEEK:
-				return Week.class;
-			case DAY:
-				return Day.class;
-			case HOUR:
-				return Hour.class;
-			case MINUTE:
-				return Minute.class;
-			case SECOND:
-				return Second.class;
-			case MILLISECOND:
-				return Millisecond.class;
-			default:
-				throw new JasperDesignException("Time period type " + timePeriodType.name() + " not supported");
 		}
 	}
 	
@@ -1182,39 +1138,6 @@ public class ConstantTransform
 				return PrintOrderEnum.VERTICAL;
 			default:
 				throw new JasperDesignException("PrintOrder " + printOrder.name() + " not supported");
-		}
-	}
-	
-	/**
-	 * <p>rectangleAnchor.</p>
-	 *
-	 * @param rectangleAnchor a {@link software.xdev.dynamicreports.report.constant.RectangleAnchor} object.
-	 * @return a {@link org.jfree.ui.RectangleAnchor} object.
-	 */
-	public static org.jfree.ui.RectangleAnchor rectangleAnchor(final RectangleAnchor rectangleAnchor)
-	{
-		switch(rectangleAnchor)
-		{
-			case CENTER:
-				return org.jfree.ui.RectangleAnchor.CENTER;
-			case TOP:
-				return org.jfree.ui.RectangleAnchor.TOP;
-			case TOP_LEFT:
-				return org.jfree.ui.RectangleAnchor.TOP_LEFT;
-			case TOP_RIGHT:
-				return org.jfree.ui.RectangleAnchor.TOP_RIGHT;
-			case BOTTOM:
-				return org.jfree.ui.RectangleAnchor.BOTTOM;
-			case BOTTOM_LEFT:
-				return org.jfree.ui.RectangleAnchor.BOTTOM_LEFT;
-			case BOTTOM_RIGHT:
-				return org.jfree.ui.RectangleAnchor.BOTTOM_RIGHT;
-			case LEFT:
-				return org.jfree.ui.RectangleAnchor.LEFT;
-			case RIGHT:
-				return org.jfree.ui.RectangleAnchor.RIGHT;
-			default:
-				throw new JasperDesignException("RectangleAnchor " + rectangleAnchor.name() + " not supported");
 		}
 	}
 	
