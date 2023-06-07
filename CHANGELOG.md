@@ -1,3 +1,6 @@
+# 1.0.2
+* Removed unused Jasperreports dependencies
+
 # 1.0.1
 * Removed unused resources
 

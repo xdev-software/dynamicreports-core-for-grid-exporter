@@ -90,6 +90,18 @@
 			<groupId>net.sf.jasperreports</groupId>
 			<artifactId>jasperreports</artifactId>
 			<version>6.20.5</version>
+			<exclusions>
+				<!-- Compiler is not needed -->
+				<exclusion>
+					<groupId>org.eclipse.jdt</groupId>
+					<artifactId>ecj</artifactId>
+				</exclusion>
+				<!-- Charts are not needed -->
+				<exclusion>
+					<groupId>org.jfree</groupId>
+					<artifactId>*</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<!-- Use for validation and minor shorthand methods -->
 		<dependency>
@@ -101,7 +113,7 @@
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter</artifactId>
-			<version>5.9.2</version>
+			<version>5.9.3</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
@@ -183,7 +195,7 @@
 
 			<plugin>
 				<artifactId>maven-surefire-plugin</artifactId>
-				<version>3.0.0-M9</version>
+				<version>3.1.2</version>
 			</plugin>
 		</plugins>
 	</build>
