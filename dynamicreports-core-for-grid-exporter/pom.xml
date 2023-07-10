@@ -91,16 +91,12 @@
 			<artifactId>jasperreports</artifactId>
 			<version>6.20.5</version>
 			<exclusions>
-				<!-- Compiler is not needed -->
-				<exclusion>
-					<groupId>org.eclipse.jdt</groupId>
-					<artifactId>ecj</artifactId>
-				</exclusion>
 				<!-- Charts are not needed -->
 				<exclusion>
 					<groupId>org.jfree</groupId>
 					<artifactId>*</artifactId>
 				</exclusion>
+				<!-- Do not exclude ECJ, because it's required indirectly #12 -->
 			</exclusions>
 		</dependency>
 		<!-- Use for validation and minor shorthand methods -->
