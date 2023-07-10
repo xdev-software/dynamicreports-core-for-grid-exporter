@@ -1,3 +1,6 @@
+# 1.0.3
+* Re-Added ``ecj`` dependency #12
+
 # 1.0.2
 * Removed unused Jasperreports dependencies
 
