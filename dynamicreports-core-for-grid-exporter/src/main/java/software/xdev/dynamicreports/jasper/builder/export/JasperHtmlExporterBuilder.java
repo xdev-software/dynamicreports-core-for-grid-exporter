@@ -17,6 +17,7 @@
  */
 package software.xdev.dynamicreports.jasper.builder.export;
 
+import net.sf.jasperreports.export.type.HtmlBorderCollapseEnum;
 import software.xdev.dynamicreports.jasper.base.export.JasperHtmlExporter;
 import software.xdev.dynamicreports.jasper.constant.SizeUnit;
 import software.xdev.dynamicreports.report.constant.Constants;
@@ -43,7 +44,7 @@ public class JasperHtmlExporterBuilder extends AbstractJasperExporterBuilder<Jas
      * @param outputImagesToDir a {@link java.lang.Boolean} object.
      * @return a {@link software.xdev.dynamicreports.jasper.builder.export.JasperHtmlExporterBuilder} object.
      */
-    public JasperHtmlExporterBuilder setOutputImagesToDir(Boolean outputImagesToDir) {
+    public JasperHtmlExporterBuilder setOutputImagesToDir(final Boolean outputImagesToDir) {
         this.getObject().setOutputImagesToDir(outputImagesToDir);
         return this;
     }
@@ -54,7 +55,7 @@ public class JasperHtmlExporterBuilder extends AbstractJasperExporterBuilder<Jas
      * @param imagesDirName a {@link java.lang.String} object.
      * @return a {@link software.xdev.dynamicreports.jasper.builder.export.JasperHtmlExporterBuilder} object.
      */
-    public JasperHtmlExporterBuilder setImagesDirName(String imagesDirName) {
+    public JasperHtmlExporterBuilder setImagesDirName(final String imagesDirName) {
         this.getObject().setImagesDirName(imagesDirName);
         return this;
     }
@@ -65,7 +66,7 @@ public class JasperHtmlExporterBuilder extends AbstractJasperExporterBuilder<Jas
      * @param imagesURI a {@link java.lang.String} object.
      * @return a {@link software.xdev.dynamicreports.jasper.builder.export.JasperHtmlExporterBuilder} object.
      */
-    public JasperHtmlExporterBuilder setImagesURI(String imagesURI) {
+    public JasperHtmlExporterBuilder setImagesURI(final String imagesURI) {
         this.getObject().setImagesURI(imagesURI);
         return this;
     }
@@ -76,7 +77,7 @@ public class JasperHtmlExporterBuilder extends AbstractJasperExporterBuilder<Jas
      * @param htmlHeader a {@link java.lang.String} object.
      * @return a {@link software.xdev.dynamicreports.jasper.builder.export.JasperHtmlExporterBuilder} object.
      */
-    public JasperHtmlExporterBuilder setHtmlHeader(String htmlHeader) {
+    public JasperHtmlExporterBuilder setHtmlHeader(final String htmlHeader) {
         this.getObject().setHtmlHeader(htmlHeader);
         return this;
     }
@@ -87,7 +88,7 @@ public class JasperHtmlExporterBuilder extends AbstractJasperExporterBuilder<Jas
      * @param betweenPagesHtml a {@link java.lang.String} object.
      * @return a {@link software.xdev.dynamicreports.jasper.builder.export.JasperHtmlExporterBuilder} object.
      */
-    public JasperHtmlExporterBuilder setBetweenPagesHtml(String betweenPagesHtml) {
+    public JasperHtmlExporterBuilder setBetweenPagesHtml(final String betweenPagesHtml) {
         this.getObject().setBetweenPagesHtml(betweenPagesHtml);
         return this;
     }
@@ -98,7 +99,7 @@ public class JasperHtmlExporterBuilder extends AbstractJasperExporterBuilder<Jas
      * @param htmlFooter a {@link java.lang.String} object.
      * @return a {@link software.xdev.dynamicreports.jasper.builder.export.JasperHtmlExporterBuilder} object.
      */
-    public JasperHtmlExporterBuilder setHtmlFooter(String htmlFooter) {
+    public JasperHtmlExporterBuilder setHtmlFooter(final String htmlFooter) {
         this.getObject().setHtmlFooter(htmlFooter);
         return this;
     }
@@ -109,7 +110,7 @@ public class JasperHtmlExporterBuilder extends AbstractJasperExporterBuilder<Jas
      * @param removeEmptySpaceBetweenRows a {@link java.lang.Boolean} object.
      * @return a {@link software.xdev.dynamicreports.jasper.builder.export.JasperHtmlExporterBuilder} object.
      */
-    public JasperHtmlExporterBuilder setRemoveEmptySpaceBetweenRows(Boolean removeEmptySpaceBetweenRows) {
+    public JasperHtmlExporterBuilder setRemoveEmptySpaceBetweenRows(final Boolean removeEmptySpaceBetweenRows) {
         this.getObject().setRemoveEmptySpaceBetweenRows(removeEmptySpaceBetweenRows);
         return this;
     }
@@ -120,7 +121,7 @@ public class JasperHtmlExporterBuilder extends AbstractJasperExporterBuilder<Jas
      * @param whitePageBackground a {@link java.lang.Boolean} object.
      * @return a {@link software.xdev.dynamicreports.jasper.builder.export.JasperHtmlExporterBuilder} object.
      */
-    public JasperHtmlExporterBuilder setWhitePageBackground(Boolean whitePageBackground) {
+    public JasperHtmlExporterBuilder setWhitePageBackground(final Boolean whitePageBackground) {
         this.getObject().setWhitePageBackground(whitePageBackground);
         return this;
     }
@@ -133,7 +134,7 @@ public class JasperHtmlExporterBuilder extends AbstractJasperExporterBuilder<Jas
      * @deprecated To be removed.
      */
     @Deprecated
-    public JasperHtmlExporterBuilder setUsingImagesToAlign(Boolean usingImagesToAlign) {
+    public JasperHtmlExporterBuilder setUsingImagesToAlign(final Boolean usingImagesToAlign) {
         this.getObject().setUsingImagesToAlign(usingImagesToAlign);
         return this;
     }
@@ -144,7 +145,7 @@ public class JasperHtmlExporterBuilder extends AbstractJasperExporterBuilder<Jas
      * @param wrapBreakWord a {@link java.lang.Boolean} object.
      * @return a {@link software.xdev.dynamicreports.jasper.builder.export.JasperHtmlExporterBuilder} object.
      */
-    public JasperHtmlExporterBuilder setWrapBreakWord(Boolean wrapBreakWord) {
+    public JasperHtmlExporterBuilder setWrapBreakWord(final Boolean wrapBreakWord) {
         this.getObject().setWrapBreakWord(wrapBreakWord);
         return this;
     }
@@ -155,7 +156,7 @@ public class JasperHtmlExporterBuilder extends AbstractJasperExporterBuilder<Jas
      * @param sizeUnit a {@link software.xdev.dynamicreports.jasper.constant.SizeUnit} object.
      * @return a {@link software.xdev.dynamicreports.jasper.builder.export.JasperHtmlExporterBuilder} object.
      */
-    public JasperHtmlExporterBuilder setSizeUnit(SizeUnit sizeUnit) {
+    public JasperHtmlExporterBuilder setSizeUnit(final SizeUnit sizeUnit) {
         this.getObject().setSizeUnit(sizeUnit);
         return this;
     }
@@ -168,7 +169,7 @@ public class JasperHtmlExporterBuilder extends AbstractJasperExporterBuilder<Jas
      * @deprecated To be removed.
      */
     @Deprecated
-    public JasperHtmlExporterBuilder setFramesAsNestedTables(Boolean framesAsNestedTables) {
+    public JasperHtmlExporterBuilder setFramesAsNestedTables(final Boolean framesAsNestedTables) {
         this.getObject().setFramesAsNestedTables(framesAsNestedTables);
         return this;
     }
@@ -179,7 +180,7 @@ public class JasperHtmlExporterBuilder extends AbstractJasperExporterBuilder<Jas
      * @param ignorePageMargins a {@link java.lang.Boolean} object.
      * @return a {@link software.xdev.dynamicreports.jasper.builder.export.JasperHtmlExporterBuilder} object.
      */
-    public JasperHtmlExporterBuilder setIgnorePageMargins(Boolean ignorePageMargins) {
+    public JasperHtmlExporterBuilder setIgnorePageMargins(final Boolean ignorePageMargins) {
         this.getObject().setIgnorePageMargins(ignorePageMargins);
         return this;
     }
@@ -190,7 +191,8 @@ public class JasperHtmlExporterBuilder extends AbstractJasperExporterBuilder<Jas
      * @param borderCollapse a {@link java.lang.String} object.
      * @return a {@link software.xdev.dynamicreports.jasper.builder.export.JasperHtmlExporterBuilder} object.
      */
-    public JasperHtmlExporterBuilder setBorderCollapse(String borderCollapse) {
+    public JasperHtmlExporterBuilder setBorderCollapse(final HtmlBorderCollapseEnum borderCollapse)
+    {
         this.getObject().setBorderCollapse(borderCollapse);
         return this;
     }
@@ -201,7 +203,7 @@ public class JasperHtmlExporterBuilder extends AbstractJasperExporterBuilder<Jas
      * @param accessibleHtml a {@link java.lang.Boolean} object.
      * @return a {@link software.xdev.dynamicreports.jasper.builder.export.JasperHtmlExporterBuilder} object.
      */
-    public JasperHtmlExporterBuilder setAccessibleHtml(Boolean accessibleHtml) {
+    public JasperHtmlExporterBuilder setAccessibleHtml(final Boolean accessibleHtml) {
         this.getObject().setAccessibleHtml(accessibleHtml);
         return this;
     }
@@ -212,7 +214,7 @@ public class JasperHtmlExporterBuilder extends AbstractJasperExporterBuilder<Jas
      * @param zoomRatio a {@link java.lang.Float} object.
      * @return a {@link software.xdev.dynamicreports.jasper.builder.export.JasperHtmlExporterBuilder} object.
      */
-    public JasperHtmlExporterBuilder setZoomRatio(Float zoomRatio) {
+    public JasperHtmlExporterBuilder setZoomRatio(final Float zoomRatio) {
         this.getObject().setZoomRatio(zoomRatio);
         return this;
     }
@@ -223,7 +225,7 @@ public class JasperHtmlExporterBuilder extends AbstractJasperExporterBuilder<Jas
      * @param ignoreHyperLink a {@link java.lang.Boolean} object.
      * @return a {@link software.xdev.dynamicreports.jasper.builder.export.JasperHtmlExporterBuilder} object.
      */
-    public JasperHtmlExporterBuilder setIgnoreHyperLink(Boolean ignoreHyperLink) {
+    public JasperHtmlExporterBuilder setIgnoreHyperLink(final Boolean ignoreHyperLink) {
         this.getObject().setIgnoreHyperLink(ignoreHyperLink);
         return this;
     }
@@ -234,7 +236,7 @@ public class JasperHtmlExporterBuilder extends AbstractJasperExporterBuilder<Jas
      * @param flushOutput a {@link java.lang.Boolean} object.
      * @return a {@link software.xdev.dynamicreports.jasper.builder.export.JasperHtmlExporterBuilder} object.
      */
-    public JasperHtmlExporterBuilder setFlushOutput(Boolean flushOutput) {
+    public JasperHtmlExporterBuilder setFlushOutput(final Boolean flushOutput) {
         this.getObject().setFlushOutput(flushOutput);
         return this;
     }

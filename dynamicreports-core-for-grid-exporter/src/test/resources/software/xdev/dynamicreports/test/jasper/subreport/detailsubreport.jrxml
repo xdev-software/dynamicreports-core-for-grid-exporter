@@ -8,7 +8,7 @@
     <parameter name="MASTER_REPORT_PARAMETERS" class="software.xdev.dynamicreports.report.definition.ReportParameters"/>
     <title>
         <band height="16">
-            <textField isStretchWithOverflow="true" isBlankWhenNull="true">
+            <textField textAdjust="StretchHeight" isBlankWhenNull="true">
                 <reportElement key="title.textField1" style="style_2_" positionType="Float" stretchType="RelativeToTallestObject" x="0" y="0" width="575" height="16"/>
                 <textElement/>
                 <textFieldExpression class="java.lang.String"><![CDATA["Subreport" + $P{MASTER_REPORT_PARAMETERS}.getReportRowNumber()]]></textFieldExpression>
@@ -17,7 +17,7 @@
     </title>
     <detail>
         <band height="16">
-            <textField isStretchWithOverflow="true" isBlankWhenNull="true">
+            <textField textAdjust="StretchHeight" isBlankWhenNull="true">
                 <reportElement key="detail.column_simpleExpression_0_1" style="style_2_" positionType="Float" stretchType="RelativeToTallestObject" x="0" y="0" width="575" height="16"/>
                 <textElement/>
                 <textFieldExpression class="java.lang.String"><![CDATA[$P{MASTER_REPORT_PARAMETERS}.getReportRowNumber() + "_" + $V{REPORT_COUNT}]]></textFieldExpression>

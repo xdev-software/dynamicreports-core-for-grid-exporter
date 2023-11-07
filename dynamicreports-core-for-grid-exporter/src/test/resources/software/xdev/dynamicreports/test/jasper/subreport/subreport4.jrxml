@@ -10,17 +10,17 @@
     <parameter name="parameter5" class="java.lang.String"/>
     <summary>
         <band height="48">
-            <textField isStretchWithOverflow="true" isBlankWhenNull="true">
+            <textField textAdjust="StretchHeight" isBlankWhenNull="true">
                 <reportElement key="summary.textField1" style="style_22_" positionType="Float" stretchType="RelativeToTallestObject" x="0" y="0" width="575" height="16"/>
                 <textElement/>
                 <textFieldExpression class="java.lang.String"><![CDATA[$P{parameter3}]]></textFieldExpression>
             </textField>
-            <textField isStretchWithOverflow="true" isBlankWhenNull="true">
+            <textField textAdjust="StretchHeight" isBlankWhenNull="true">
                 <reportElement key="summary.textField2" style="style_22_" positionType="Float" stretchType="RelativeToTallestObject" x="0" y="16" width="575" height="16"/>
                 <textElement/>
                 <textFieldExpression class="java.lang.String"><![CDATA[$P{MASTER_REPORT_PARAMETERS}.getValue("parameter4")]]></textFieldExpression>
             </textField>
-            <textField isStretchWithOverflow="true" isBlankWhenNull="true">
+            <textField textAdjust="StretchHeight" isBlankWhenNull="true">
                 <reportElement key="summary.textField3" style="style_22_" positionType="Float" stretchType="RelativeToTallestObject" x="0" y="32" width="575" height="16"/>
                 <textElement/>
                 <textFieldExpression class="java.lang.String"><![CDATA[$P{parameter5}]]></textFieldExpression>

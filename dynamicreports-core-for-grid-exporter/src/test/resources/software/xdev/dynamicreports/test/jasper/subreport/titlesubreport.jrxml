@@ -9,7 +9,7 @@
     <field name="field1" class="java.lang.String"/>
     <columnHeader>
         <band height="16">
-            <textField isStretchWithOverflow="true" isBlankWhenNull="true">
+            <textField textAdjust="StretchHeight" isBlankWhenNull="true">
                 <reportElement key="columnHeader.column_field1.title1" style="style_21_" positionType="Float" stretchType="RelativeToTallestObject" x="0" y="0" width="575" height="16"/>
                 <textElement/>
                 <textFieldExpression class="java.lang.String"><![CDATA["Column1"]]></textFieldExpression>
@@ -18,7 +18,7 @@
     </columnHeader>
     <detail>
         <band height="16">
-            <textField isStretchWithOverflow="true" isBlankWhenNull="true">
+            <textField textAdjust="StretchHeight" isBlankWhenNull="true">
                 <reportElement key="detail.column_field11" style="style_21_" positionType="Float" stretchType="RelativeToTallestObject" x="0" y="0" width="575" height="16"/>
                 <textElement textAlignment="Left"/>
                 <textFieldExpression class="java.lang.String"><![CDATA[$F{field1}]]></textFieldExpression>

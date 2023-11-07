@@ -10,7 +10,7 @@
     <field name="column2" class="java.lang.String"/>
     <title>
         <band height="16">
-            <textField isStretchWithOverflow="true" isBlankWhenNull="true">
+            <textField textAdjust="StretchHeight" isBlankWhenNull="true">
                 <reportElement key="title.textField1" style="style_27_" positionType="Float" stretchType="RelativeToTallestObject" x="0" y="0" width="575" height="16"/>
                 <textElement/>
                 <textFieldExpression class="java.lang.String"><![CDATA["Subreport" + $P{MASTER_REPORT_PARAMETERS}.getReportRowNumber()]]></textFieldExpression>
@@ -21,12 +21,12 @@
         <band height="16">
             <frame>
                 <reportElement key="columnHeader.list1" positionType="Float" x="0" y="0" width="575" height="16"/>
-                <textField isStretchWithOverflow="true" isBlankWhenNull="true">
+                <textField textAdjust="StretchHeight" isBlankWhenNull="true">
                     <reportElement key="columnHeader.column_column1.title1" style="style_27_" positionType="Float" stretchType="RelativeToTallestObject" x="0" y="0" width="287" height="16"/>
                     <textElement/>
                     <textFieldExpression class="java.lang.String"><![CDATA["Column1"]]></textFieldExpression>
                 </textField>
-                <textField isStretchWithOverflow="true" isBlankWhenNull="true">
+                <textField textAdjust="StretchHeight" isBlankWhenNull="true">
                     <reportElement key="columnHeader.column_column2.title1" style="style_27_" positionType="Float" stretchType="RelativeToTallestObject" x="287" y="0" width="288" height="16"/>
                     <textElement/>
                     <textFieldExpression class="java.lang.String"><![CDATA["Column2"]]></textFieldExpression>
@@ -38,12 +38,12 @@
         <band height="16">
             <frame>
                 <reportElement key="detail.list1" positionType="Float" x="0" y="0" width="575" height="16"/>
-                <textField isStretchWithOverflow="true" isBlankWhenNull="true">
+                <textField textAdjust="StretchHeight" isBlankWhenNull="true">
                     <reportElement key="detail.column_column11" style="style_27_" positionType="Float" stretchType="RelativeToTallestObject" x="0" y="0" width="287" height="16"/>
                     <textElement textAlignment="Left"/>
                     <textFieldExpression class="java.lang.String"><![CDATA[$F{column1}]]></textFieldExpression>
                 </textField>
-                <textField isStretchWithOverflow="true" isBlankWhenNull="true">
+                <textField textAdjust="StretchHeight" isBlankWhenNull="true">
                     <reportElement key="detail.column_column21" style="style_27_" positionType="Float" stretchType="RelativeToTallestObject" x="287" y="0" width="288" height="16"/>
                     <textElement textAlignment="Left"/>
                     <textFieldExpression class="java.lang.String"><![CDATA[$F{column2}]]></textFieldExpression>

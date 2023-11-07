@@ -11,7 +11,7 @@
     <field name="column3" class="java.lang.String"/>
     <title>
         <band height="16">
-            <textField isStretchWithOverflow="true" isBlankWhenNull="true">
+            <textField textAdjust="StretchHeight" isBlankWhenNull="true">
                 <reportElement key="title.textField1" style="style_33_" positionType="Float" stretchType="RelativeToTallestObject" x="0" y="0" width="575" height="16"/>
                 <textElement/>
                 <textFieldExpression class="java.lang.String"><![CDATA["Subreport" + $P{MASTER_REPORT_PARAMETERS}.getReportRowNumber()]]></textFieldExpression>
@@ -22,17 +22,17 @@
         <band height="16">
             <frame>
                 <reportElement key="columnHeader.list1" positionType="Float" x="0" y="0" width="575" height="16"/>
-                <textField isStretchWithOverflow="true" isBlankWhenNull="true">
+                <textField textAdjust="StretchHeight" isBlankWhenNull="true">
                     <reportElement key="columnHeader.column_column1.title1" style="style_33_" positionType="Float" stretchType="RelativeToTallestObject" x="0" y="0" width="191" height="16"/>
                     <textElement/>
                     <textFieldExpression class="java.lang.String"><![CDATA["Column1"]]></textFieldExpression>
                 </textField>
-                <textField isStretchWithOverflow="true" isBlankWhenNull="true">
+                <textField textAdjust="StretchHeight" isBlankWhenNull="true">
                     <reportElement key="columnHeader.column_column2.title1" style="style_33_" positionType="Float" stretchType="RelativeToTallestObject" x="191" y="0" width="192" height="16"/>
                     <textElement/>
                     <textFieldExpression class="java.lang.String"><![CDATA["Column2"]]></textFieldExpression>
                 </textField>
-                <textField isStretchWithOverflow="true" isBlankWhenNull="true">
+                <textField textAdjust="StretchHeight" isBlankWhenNull="true">
                     <reportElement key="columnHeader.column_column3.title1" style="style_33_" positionType="Float" stretchType="RelativeToTallestObject" x="383" y="0" width="192" height="16"/>
                     <textElement/>
                     <textFieldExpression class="java.lang.String"><![CDATA["Column3"]]></textFieldExpression>
@@ -44,17 +44,17 @@
         <band height="16">
             <frame>
                 <reportElement key="detail.list1" positionType="Float" x="0" y="0" width="575" height="16"/>
-                <textField isStretchWithOverflow="true" isBlankWhenNull="true">
+                <textField textAdjust="StretchHeight" isBlankWhenNull="true">
                     <reportElement key="detail.column_column11" style="style_33_" positionType="Float" stretchType="RelativeToTallestObject" x="0" y="0" width="191" height="16"/>
                     <textElement textAlignment="Left"/>
                     <textFieldExpression class="java.lang.String"><![CDATA[$F{column1}]]></textFieldExpression>
                 </textField>
-                <textField isStretchWithOverflow="true" isBlankWhenNull="true">
+                <textField textAdjust="StretchHeight" isBlankWhenNull="true">
                     <reportElement key="detail.column_column21" style="style_33_" positionType="Float" stretchType="RelativeToTallestObject" x="191" y="0" width="192" height="16"/>
                     <textElement textAlignment="Left"/>
                     <textFieldExpression class="java.lang.String"><![CDATA[$F{column2}]]></textFieldExpression>
                 </textField>
-                <textField isStretchWithOverflow="true" isBlankWhenNull="true">
+                <textField textAdjust="StretchHeight" isBlankWhenNull="true">
                     <reportElement key="detail.column_column31" style="style_33_" positionType="Float" stretchType="RelativeToTallestObject" x="383" y="0" width="192" height="16"/>
                     <textElement textAlignment="Left"/>
                     <textFieldExpression class="java.lang.String"><![CDATA[$F{column3}]]></textFieldExpression>
