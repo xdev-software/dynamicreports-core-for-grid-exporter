@@ -17,6 +17,7 @@
  */
 package software.xdev.dynamicreports.jasper.definition.export;
 
+import net.sf.jasperreports.export.type.HtmlBorderCollapseEnum;
 import software.xdev.dynamicreports.jasper.constant.SizeUnit;
 
 /**
@@ -123,7 +124,7 @@ public interface JasperIHtmlExporter extends JasperIExporter {
      *
      * @return a {@link java.lang.String} object.
      */
-    public String getBorderCollapse();
+    public HtmlBorderCollapseEnum getBorderCollapse();
 
     /**
      * <p>getAccessibleHtml.</p>
