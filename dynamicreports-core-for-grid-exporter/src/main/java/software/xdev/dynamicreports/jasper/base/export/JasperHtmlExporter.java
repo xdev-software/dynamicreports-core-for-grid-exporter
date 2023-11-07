@@ -17,6 +17,7 @@
  */
 package software.xdev.dynamicreports.jasper.base.export;
 
+import net.sf.jasperreports.export.type.HtmlBorderCollapseEnum;
 import software.xdev.dynamicreports.jasper.constant.SizeUnit;
 import software.xdev.dynamicreports.jasper.definition.export.JasperIHtmlExporter;
 import software.xdev.dynamicreports.report.constant.Constants;
@@ -43,7 +44,7 @@ public class JasperHtmlExporter extends AbstractJasperExporter implements Jasper
     private SizeUnit sizeUnit;
     private Boolean framesAsNestedTables;
     private Boolean ignorePageMargins;
-    private String borderCollapse;
+    private HtmlBorderCollapseEnum borderCollapse;
     private Boolean accessibleHtml;
     private Float zoomRatio;
     private Boolean ignoreHyperLink;
@@ -52,7 +53,7 @@ public class JasperHtmlExporter extends AbstractJasperExporter implements Jasper
     /** {@inheritDoc} */
     @Override
     public Boolean getOutputImagesToDir() {
-        return outputImagesToDir;
+        return this.outputImagesToDir;
     }
 
     /**
@@ -60,14 +61,14 @@ public class JasperHtmlExporter extends AbstractJasperExporter implements Jasper
      *
      * @param outputImagesToDir a {@link java.lang.Boolean} object.
      */
-    public void setOutputImagesToDir(Boolean outputImagesToDir) {
+    public void setOutputImagesToDir(final Boolean outputImagesToDir) {
         this.outputImagesToDir = outputImagesToDir;
     }
 
     /** {@inheritDoc} */
     @Override
     public String getImagesDirName() {
-        return imagesDirName;
+        return this.imagesDirName;
     }
 
     /**
@@ -75,14 +76,14 @@ public class JasperHtmlExporter extends AbstractJasperExporter implements Jasper
      *
      * @param imagesDirName a {@link java.lang.String} object.
      */
-    public void setImagesDirName(String imagesDirName) {
+    public void setImagesDirName(final String imagesDirName) {
         this.imagesDirName = imagesDirName;
     }
 
     /** {@inheritDoc} */
     @Override
     public String getImagesURI() {
-        return imagesURI;
+        return this.imagesURI;
     }
 
     /**
@@ -90,14 +91,14 @@ public class JasperHtmlExporter extends AbstractJasperExporter implements Jasper
      *
      * @param imagesURI a {@link java.lang.String} object.
      */
-    public void setImagesURI(String imagesURI) {
+    public void setImagesURI(final String imagesURI) {
         this.imagesURI = imagesURI;
     }
 
     /** {@inheritDoc} */
     @Override
     public String getHtmlHeader() {
-        return htmlHeader;
+        return this.htmlHeader;
     }
 
     /**
@@ -105,14 +106,14 @@ public class JasperHtmlExporter extends AbstractJasperExporter implements Jasper
      *
      * @param htmlHeader a {@link java.lang.String} object.
      */
-    public void setHtmlHeader(String htmlHeader) {
+    public void setHtmlHeader(final String htmlHeader) {
         this.htmlHeader = htmlHeader;
     }
 
     /** {@inheritDoc} */
     @Override
     public String getBetweenPagesHtml() {
-        return betweenPagesHtml;
+        return this.betweenPagesHtml;
     }
 
     /**
@@ -120,14 +121,14 @@ public class JasperHtmlExporter extends AbstractJasperExporter implements Jasper
      *
      * @param betweenPagesHtml a {@link java.lang.String} object.
      */
-    public void setBetweenPagesHtml(String betweenPagesHtml) {
+    public void setBetweenPagesHtml(final String betweenPagesHtml) {
         this.betweenPagesHtml = betweenPagesHtml;
     }
 
     /** {@inheritDoc} */
     @Override
     public String getHtmlFooter() {
-        return htmlFooter;
+        return this.htmlFooter;
     }
 
     /**
@@ -135,14 +136,14 @@ public class JasperHtmlExporter extends AbstractJasperExporter implements Jasper
      *
      * @param htmlFooter a {@link java.lang.String} object.
      */
-    public void setHtmlFooter(String htmlFooter) {
+    public void setHtmlFooter(final String htmlFooter) {
         this.htmlFooter = htmlFooter;
     }
 
     /** {@inheritDoc} */
     @Override
     public Boolean getRemoveEmptySpaceBetweenRows() {
-        return removeEmptySpaceBetweenRows;
+        return this.removeEmptySpaceBetweenRows;
     }
 
     /**
@@ -150,14 +151,14 @@ public class JasperHtmlExporter extends AbstractJasperExporter implements Jasper
      *
      * @param removeEmptySpaceBetweenRows a {@link java.lang.Boolean} object.
      */
-    public void setRemoveEmptySpaceBetweenRows(Boolean removeEmptySpaceBetweenRows) {
+    public void setRemoveEmptySpaceBetweenRows(final Boolean removeEmptySpaceBetweenRows) {
         this.removeEmptySpaceBetweenRows = removeEmptySpaceBetweenRows;
     }
 
     /** {@inheritDoc} */
     @Override
     public Boolean getWhitePageBackground() {
-        return whitePageBackground;
+        return this.whitePageBackground;
     }
 
     /**
@@ -165,14 +166,14 @@ public class JasperHtmlExporter extends AbstractJasperExporter implements Jasper
      *
      * @param whitePageBackground a {@link java.lang.Boolean} object.
      */
-    public void setWhitePageBackground(Boolean whitePageBackground) {
+    public void setWhitePageBackground(final Boolean whitePageBackground) {
         this.whitePageBackground = whitePageBackground;
     }
 
     /** {@inheritDoc} */
     @Override
     public Boolean getUsingImagesToAlign() {
-        return usingImagesToAlign;
+        return this.usingImagesToAlign;
     }
 
     /**
@@ -180,14 +181,14 @@ public class JasperHtmlExporter extends AbstractJasperExporter implements Jasper
      *
      * @param usingImagesToAlign a {@link java.lang.Boolean} object.
      */
-    public void setUsingImagesToAlign(Boolean usingImagesToAlign) {
+    public void setUsingImagesToAlign(final Boolean usingImagesToAlign) {
         this.usingImagesToAlign = usingImagesToAlign;
     }
 
     /** {@inheritDoc} */
     @Override
     public Boolean getWrapBreakWord() {
-        return wrapBreakWord;
+        return this.wrapBreakWord;
     }
 
     /**
@@ -195,14 +196,14 @@ public class JasperHtmlExporter extends AbstractJasperExporter implements Jasper
      *
      * @param wrapBreakWord a {@link java.lang.Boolean} object.
      */
-    public void setWrapBreakWord(Boolean wrapBreakWord) {
+    public void setWrapBreakWord(final Boolean wrapBreakWord) {
         this.wrapBreakWord = wrapBreakWord;
     }
 
     /** {@inheritDoc} */
     @Override
     public SizeUnit getSizeUnit() {
-        return sizeUnit;
+        return this.sizeUnit;
     }
 
     /**
@@ -210,14 +211,14 @@ public class JasperHtmlExporter extends AbstractJasperExporter implements Jasper
      *
      * @param sizeUnit a {@link software.xdev.dynamicreports.jasper.constant.SizeUnit} object.
      */
-    public void setSizeUnit(SizeUnit sizeUnit) {
+    public void setSizeUnit(final SizeUnit sizeUnit) {
         this.sizeUnit = sizeUnit;
     }
 
     /** {@inheritDoc} */
     @Override
     public Boolean getFramesAsNestedTables() {
-        return framesAsNestedTables;
+        return this.framesAsNestedTables;
     }
 
     /**
@@ -225,14 +226,14 @@ public class JasperHtmlExporter extends AbstractJasperExporter implements Jasper
      *
      * @param framesAsNestedTables a {@link java.lang.Boolean} object.
      */
-    public void setFramesAsNestedTables(Boolean framesAsNestedTables) {
+    public void setFramesAsNestedTables(final Boolean framesAsNestedTables) {
         this.framesAsNestedTables = framesAsNestedTables;
     }
 
     /** {@inheritDoc} */
     @Override
     public Boolean getIgnorePageMargins() {
-        return ignorePageMargins;
+        return this.ignorePageMargins;
     }
 
     /**
@@ -240,14 +241,15 @@ public class JasperHtmlExporter extends AbstractJasperExporter implements Jasper
      *
      * @param ignorePageMargins a {@link java.lang.Boolean} object.
      */
-    public void setIgnorePageMargins(Boolean ignorePageMargins) {
+    public void setIgnorePageMargins(final Boolean ignorePageMargins) {
         this.ignorePageMargins = ignorePageMargins;
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getBorderCollapse() {
-        return borderCollapse;
+    public HtmlBorderCollapseEnum getBorderCollapse()
+    {
+        return this.borderCollapse;
     }
 
     /**
@@ -255,14 +257,15 @@ public class JasperHtmlExporter extends AbstractJasperExporter implements Jasper
      *
      * @param borderCollapse a {@link java.lang.String} object.
      */
-    public void setBorderCollapse(String borderCollapse) {
+    public void setBorderCollapse(final HtmlBorderCollapseEnum borderCollapse)
+    {
         this.borderCollapse = borderCollapse;
     }
 
     /** {@inheritDoc} */
     @Override
     public Boolean getAccessibleHtml() {
-        return accessibleHtml;
+        return this.accessibleHtml;
     }
 
     /**
@@ -270,14 +273,14 @@ public class JasperHtmlExporter extends AbstractJasperExporter implements Jasper
      *
      * @param accessibleHtml a {@link java.lang.Boolean} object.
      */
-    public void setAccessibleHtml(Boolean accessibleHtml) {
+    public void setAccessibleHtml(final Boolean accessibleHtml) {
         this.accessibleHtml = accessibleHtml;
     }
 
     /** {@inheritDoc} */
     @Override
     public Float getZoomRatio() {
-        return zoomRatio;
+        return this.zoomRatio;
     }
 
     /**
@@ -285,14 +288,14 @@ public class JasperHtmlExporter extends AbstractJasperExporter implements Jasper
      *
      * @param zoomRatio a {@link java.lang.Float} object.
      */
-    public void setZoomRatio(Float zoomRatio) {
+    public void setZoomRatio(final Float zoomRatio) {
         this.zoomRatio = zoomRatio;
     }
 
     /** {@inheritDoc} */
     @Override
     public Boolean getIgnoreHyperLink() {
-        return ignoreHyperLink;
+        return this.ignoreHyperLink;
     }
 
     /**
@@ -300,14 +303,14 @@ public class JasperHtmlExporter extends AbstractJasperExporter implements Jasper
      *
      * @param ignoreHyperLink a {@link java.lang.Boolean} object.
      */
-    public void setIgnoreHyperLink(Boolean ignoreHyperLink) {
+    public void setIgnoreHyperLink(final Boolean ignoreHyperLink) {
         this.ignoreHyperLink = ignoreHyperLink;
     }
 
     /** {@inheritDoc} */
     @Override
     public Boolean getFlushOutput() {
-        return flushOutput;
+        return this.flushOutput;
     }
 
     /**
@@ -315,7 +318,7 @@ public class JasperHtmlExporter extends AbstractJasperExporter implements Jasper
      *
      * @param flushOutput a {@link java.lang.Boolean} object.
      */
-    public void setFlushOutput(Boolean flushOutput) {
+    public void setFlushOutput(final Boolean flushOutput) {
         this.flushOutput = flushOutput;
     }
 

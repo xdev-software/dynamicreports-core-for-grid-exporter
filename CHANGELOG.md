@@ -1,3 +1,7 @@
+# 1.1.0
+* Updated to Jasperreports ``6.20.6``
+  * API changes: Html - ``borderCollapse`` is now an enum
+
 # 1.0.3
 * Re-Added ``ecj`` dependency #12
 
