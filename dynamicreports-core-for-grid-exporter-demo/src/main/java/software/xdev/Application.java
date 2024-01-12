@@ -8,8 +8,12 @@ import software.xdev.dynamicreports.report.builder.column.ColumnBuilders;
 import software.xdev.dynamicreports.report.exception.DRException;
 
 
-public class Application
+public final class Application
 {
+	private Application()
+	{
+	}
+	
 	@SuppressWarnings("java:S106") // Just a simple demo
 	public static void main(final String[] args) throws DRException
 	{
