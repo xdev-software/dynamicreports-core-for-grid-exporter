@@ -1,3 +1,7 @@
+# 1.1.1
+* ⚠️ GroupId changed from ``com.xdev-software`` to ``software.xdev``
+* Updated dependencies
+
 # 1.1.0
 * Updated to Jasperreports ``6.20.6``
   * API changes: Html - ``borderCollapse`` is now an enum
