@@ -1,3 +1,7 @@
+# 1.1.2
+* Updated dependencies
+  * Now using ``jasperreports`` 6.21+
+
 # 1.1.1
 * ⚠️ GroupId changed from ``com.xdev-software`` to ``software.xdev``
 * Updated dependencies
