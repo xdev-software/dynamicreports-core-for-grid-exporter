@@ -5,5 +5,5 @@
 <suppressions>
 	<!-- Upstream code format is catastrophic -->
 	<!-- To fix it complete project must be rewritten which is too time-consuming -->
-	<suppress checks=".*" files="[\\/]src[\\/]main[\\/]java[\\/]software[\\/]xdev[\\/]dynamicreports[\\/]"/>
+	<suppress checks=".*" files="software[\\/]xdev[\\/]dynamicreports[\\/]"/>
 </suppressions>
