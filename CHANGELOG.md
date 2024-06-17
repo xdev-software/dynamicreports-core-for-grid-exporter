@@ -26,7 +26,7 @@ Initial release of the fork
 ## Differences to [dynamicreports/dynamicreports-core](https://github.com/dynamicreports/dynamicreports/tree/f7d73961462f3f13cbc27c91df90d4cc3ccc669e/dynamicreports-core)
 * Renamed ``net.sf.dynamicreports`` to ``software.xdev.dynamicreports`` to prevent conflicts with existing installations
 * Dependency shedding
-  * Removed [``Defaults``](./src/main/java/software/xdev/dynamicreports/report/defaults/Defaults.java)-XML subsystem; can be supplied manually to the builder or using [Java Service Loading](https://docs.oracle.com/javase/8/docs/api/java/util/ServiceLoader.html)
+  * Removed [``Defaults``](./dynamicreports-core-for-grid-exporter/src/main/java/software/xdev/dynamicreports/report/defaults/Defaults.java)-XML subsystem; can be supplied manually to the builder or using [Java Service Loading](https://docs.oracle.com/javase/8/docs/api/java/util/ServiceLoader.html)
     * ``jakarta.xml.bind:jakarta.xml.bind-api``
     * ``org.glassfish.jaxb:jaxb-runtime``
   * Removed barcode subsystem
