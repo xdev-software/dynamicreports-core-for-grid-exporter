@@ -20,8 +20,8 @@ package software.xdev.dynamicreports.report.constant;
 public enum StretchType
 {
 	NO_STRETCH,
-	ELEMENT_GROUP_HEIGHT, 
-	ELEMENT_GROUP_BOTTOM, 
-	CONTAINER_HEIGHT, 
+	ELEMENT_GROUP_HEIGHT,
+	ELEMENT_GROUP_BOTTOM,
+	CONTAINER_HEIGHT,
 	CONTAINER_BOTTOM
 }
