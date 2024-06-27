@@ -22,70 +22,50 @@ import java.util.List;
 
 import org.apache.commons.lang3.Validate;
 
-import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.definition.ReportParameters;
 import software.xdev.dynamicreports.report.definition.expression.DRIExpression;
 
 
-/**
- * @author Ricardo Mariaca
- */
 abstract class CalculationExpression extends AbstractComplexExpression<BigDecimal>
 {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
-    
-    /**
-     * <p>Constructor for CalculationExpression.</p>
-     *
-     * @param expressions a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     */
-    @SafeVarargs
-    protected CalculationExpression(final DRIExpression<? extends Number>... expressions)
-    {
-        Validate.notNull(expressions, "expressions must not be null");
-        Validate.noNullElements(expressions, "expressions must not contains null expression");
-        for(final DRIExpression<? extends Number> expression : expressions)
-        {
-            this.addExpression(expression);
-        }
-    }
-    
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public BigDecimal evaluate(final List<?> values, final ReportParameters reportParameters)
-    {
-        BigDecimal result = null;
-        for(final Object value : values)
-        {
-            final BigDecimal bigDecimalValue;
-            if(value instanceof final BigDecimal bd)
-            {
-                bigDecimalValue = bd;
-            }
-            else
-            {
-                bigDecimalValue = BigDecimal.valueOf(((Number)value).doubleValue());
-            }
-            if(result == null)
-            {
-                result = bigDecimalValue;
-            }
-            else
-            {
-                result = this.calculate(result, bigDecimalValue);
-            }
-        }
-        return result;
-    }
-    
-    /**
-     * <p>calculate.</p>
-     *
-     * @param value1 a {@link java.math.BigDecimal} object.
-     * @param value2 a {@link java.math.BigDecimal} object.
-     * @return a {@link java.math.BigDecimal} object.
-     */
-    protected abstract BigDecimal calculate(BigDecimal value1, BigDecimal value2);
+
+	@SafeVarargs
+	protected CalculationExpression(final DRIExpression<? extends Number>... expressions)
+	{
+		Validate.notNull(expressions, "expressions must not be null");
+		Validate.noNullElements(expressions, "expressions must not contains null expression");
+		for(final DRIExpression<? extends Number> expression : expressions)
+		{
+			this.addExpression(expression);
+		}
+	}
+	
+	@Override
+	public BigDecimal evaluate(final List<?> values, final ReportParameters reportParameters)
+	{
+		BigDecimal result = null;
+		for(final Object value : values)
+		{
+			final BigDecimal bigDecimalValue;
+			if(value instanceof final BigDecimal bd)
+			{
+				bigDecimalValue = bd;
+			}
+			else
+			{
+				bigDecimalValue = BigDecimal.valueOf(((Number)value).doubleValue());
+			}
+			if(result == null)
+			{
+				result = bigDecimalValue;
+			}
+			else
+			{
+				result = this.calculate(result, bigDecimalValue);
+			}
+		}
+		return result;
+	}
+	
+	protected abstract BigDecimal calculate(BigDecimal value1, BigDecimal value2);
 }

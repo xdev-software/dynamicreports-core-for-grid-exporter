@@ -17,76 +17,56 @@
  */
 package software.xdev.dynamicreports.design.base.expression;
 
-import software.xdev.dynamicreports.design.definition.expression.DRIDesignComplexExpression;
-import software.xdev.dynamicreports.design.definition.expression.DRIDesignExpression;
-import software.xdev.dynamicreports.report.ReportUtils;
-import software.xdev.dynamicreports.report.constant.Constants;
-
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * <p>Abstract AbstractDesignComplexExpression class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public abstract class AbstractDesignComplexExpression implements DRIDesignComplexExpression {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
+import software.xdev.dynamicreports.design.definition.expression.DRIDesignComplexExpression;
+import software.xdev.dynamicreports.design.definition.expression.DRIDesignExpression;
+import software.xdev.dynamicreports.report.ReportUtils;
 
-    private String name;
-    private List<DRIDesignExpression> expressions;
 
-    /**
-     * <p>Constructor for AbstractDesignComplexExpression.</p>
-     */
-    protected AbstractDesignComplexExpression() {
-        this(ReportUtils.generateUniqueName("complexExpression"));
-    }
+public abstract class AbstractDesignComplexExpression implements DRIDesignComplexExpression
+{
 
-    /**
-     * <p>Constructor for AbstractDesignComplexExpression.</p>
-     *
-     * @param name a {@link java.lang.String} object.
-     */
-    protected AbstractDesignComplexExpression(String name) {
-        this.name = name;
-        this.expressions = new ArrayList<DRIDesignExpression>();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * <p>addExpression.</p>
-     *
-     * @param expression a {@link software.xdev.dynamicreports.design.definition.expression.DRIDesignExpression} object.
-     */
-    public void addExpression(DRIDesignExpression expression) {
-        this.expressions.add(expression);
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public List<DRIDesignExpression> getExpressions() {
-        return expressions;
-    }
-
-    /**
-     * <p>Setter for the field <code>expressions</code>.</p>
-     *
-     * @param expressions a {@link java.util.List} object.
-     */
-    public void setExpressions(List<DRIDesignExpression> expressions) {
-        this.expressions = expressions;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public String getParameterName() {
-        return null;
-    }
+	private final String name;
+	private List<DRIDesignExpression> expressions;
+	
+	protected AbstractDesignComplexExpression()
+	{
+		this(ReportUtils.generateUniqueName("complexExpression"));
+	}
+	
+	protected AbstractDesignComplexExpression(final String name)
+	{
+		this.name = name;
+		this.expressions = new ArrayList<>();
+	}
+	
+	@Override
+	public String getName()
+	{
+		return this.name;
+	}
+	
+	public void addExpression(final DRIDesignExpression expression)
+	{
+		this.expressions.add(expression);
+	}
+	
+	@Override
+	public List<DRIDesignExpression> getExpressions()
+	{
+		return this.expressions;
+	}
+	
+	public void setExpressions(final List<DRIDesignExpression> expressions)
+	{
+		this.expressions = expressions;
+	}
+	
+	@Override
+	public String getParameterName()
+	{
+		return null;
+	}
 }

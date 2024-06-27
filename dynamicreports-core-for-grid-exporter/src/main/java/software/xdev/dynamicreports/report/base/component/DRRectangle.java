@@ -18,48 +18,34 @@
 package software.xdev.dynamicreports.report.base.component;
 
 import software.xdev.dynamicreports.report.base.style.DRPen;
-import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.definition.component.DRIRectangle;
 
-/**
- * <p>DRRectangle class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class DRRectangle extends DRDimensionComponent implements DRIRectangle {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    private Integer radius;
-    private DRPen pen;
+public class DRRectangle extends DRDimensionComponent implements DRIRectangle
+{
 
-    /** {@inheritDoc} */
-    @Override
-    public Integer getRadius() {
-        return radius;
-    }
-
-    /**
-     * <p>Setter for the field <code>radius</code>.</p>
-     *
-     * @param radius a {@link java.lang.Integer} object.
-     */
-    public void setRadius(Integer radius) {
-        this.radius = radius;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRPen getPen() {
-        return pen;
-    }
-
-    /**
-     * <p>Setter for the field <code>pen</code>.</p>
-     *
-     * @param pen a {@link software.xdev.dynamicreports.report.base.style.DRPen} object.
-     */
-    public void setPen(DRPen pen) {
-        this.pen = pen;
-    }
+	private Integer radius;
+	private DRPen pen;
+	
+	@Override
+	public Integer getRadius()
+	{
+		return this.radius;
+	}
+	
+	public void setRadius(final Integer radius)
+	{
+		this.radius = radius;
+	}
+	
+	@Override
+	public DRPen getPen()
+	{
+		return this.pen;
+	}
+	
+	public void setPen(final DRPen pen)
+	{
+		this.pen = pen;
+	}
 }

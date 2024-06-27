@@ -18,42 +18,31 @@
 package software.xdev.dynamicreports.jasper.transformation.expression;
 
 import software.xdev.dynamicreports.design.base.expression.AbstractDesignSimpleExpression;
-import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.definition.DRICustomValues;
 import software.xdev.dynamicreports.report.definition.ReportParameters;
 
-/**
- * <p>SubreportWidthExpression class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class SubreportWidthExpression extends AbstractDesignSimpleExpression {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    private Integer pageWidth;
+public class SubreportWidthExpression extends AbstractDesignSimpleExpression
+{
 
-    /**
-     * <p>Constructor for SubreportWidthExpression.</p>
-     *
-     * @param pageWidth a {@link java.lang.Integer} object.
-     */
-    public SubreportWidthExpression(Integer pageWidth) {
-        this.pageWidth = pageWidth;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Object evaluate(ReportParameters reportParameters) {
-        DRICustomValues customValues = (DRICustomValues) reportParameters.getParameterValue(DRICustomValues.NAME);
-        customValues.setSubreportWidth(pageWidth);
-        return pageWidth;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Class<?> getValueClass() {
-        return Integer.class;
-    }
-
+	private final Integer pageWidth;
+	
+	public SubreportWidthExpression(final Integer pageWidth)
+	{
+		this.pageWidth = pageWidth;
+	}
+	
+	@Override
+	public Object evaluate(final ReportParameters reportParameters)
+	{
+		final DRICustomValues customValues = (DRICustomValues)reportParameters.getParameterValue(DRICustomValues.NAME);
+		customValues.setSubreportWidth(this.pageWidth);
+		return this.pageWidth;
+	}
+	
+	@Override
+	public Class<?> getValueClass()
+	{
+		return Integer.class;
+	}
 }

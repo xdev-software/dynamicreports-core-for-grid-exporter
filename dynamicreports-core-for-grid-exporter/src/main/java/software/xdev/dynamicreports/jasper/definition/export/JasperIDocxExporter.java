@@ -17,32 +17,12 @@
  */
 package software.xdev.dynamicreports.jasper.definition.export;
 
-/**
- * <p>JasperIDocxExporter interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface JasperIDocxExporter extends JasperIExporter {
-
-    /**
-     * <p>getFramesAsNestedTables.</p>
-     *
-     * @return a {@link java.lang.Boolean} object.
-     */
-    public Boolean getFramesAsNestedTables();
-
-    /**
-     * <p>getFlexibleRowHeight.</p>
-     *
-     * @return a {@link java.lang.Boolean} object.
-     */
-    public Boolean getFlexibleRowHeight();
-
-    /**
-     * <p>getIgnoreHyperLink.</p>
-     *
-     * @return a {@link java.lang.Boolean} object.
-     */
-    public Boolean getIgnoreHyperLink();
+public interface JasperIDocxExporter extends JasperIExporter
+{
+	
+	public Boolean getFramesAsNestedTables();
+	
+	public Boolean getFlexibleRowHeight();
+	
+	public Boolean getIgnoreHyperLink();
 }

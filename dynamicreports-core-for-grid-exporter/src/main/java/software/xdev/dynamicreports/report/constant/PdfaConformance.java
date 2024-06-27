@@ -17,12 +17,7 @@
  */
 package software.xdev.dynamicreports.report.constant;
 
-/**
- * <p>PdfaConformance class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public enum PdfaConformance {
-    NONE, PDFA_1A, PDFA_1B
+public enum PdfaConformance
+{
+	NONE, PDFA_1A, PDFA_1B
 }

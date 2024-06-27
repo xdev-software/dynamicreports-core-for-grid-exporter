@@ -17,148 +17,90 @@
  */
 package software.xdev.dynamicreports.report.builder.component;
 
-import software.xdev.dynamicreports.report.base.component.DRSubreport;
-import software.xdev.dynamicreports.report.builder.ReportBuilder;
-import software.xdev.dynamicreports.report.builder.expression.Expressions;
-import software.xdev.dynamicreports.report.constant.Constants;
-import software.xdev.dynamicreports.report.definition.expression.DRIExpression;
-import net.sf.jasperreports.engine.JRDataSource;
-import net.sf.jasperreports.engine.JasperReport;
-
 import java.sql.Connection;
 import java.util.Map;
 
-/**
- * <p>SubreportBuilder class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class SubreportBuilder extends DimensionComponentBuilder<SubreportBuilder, DRSubreport> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
+import net.sf.jasperreports.engine.JRDataSource;
+import net.sf.jasperreports.engine.JasperReport;
+import software.xdev.dynamicreports.report.base.component.DRSubreport;
+import software.xdev.dynamicreports.report.builder.ReportBuilder;
+import software.xdev.dynamicreports.report.builder.expression.Expressions;
+import software.xdev.dynamicreports.report.definition.expression.DRIExpression;
 
-    /**
-     * <p>Constructor for SubreportBuilder.</p>
-     */
-    protected SubreportBuilder() {
-        super(new DRSubreport());
-    }
 
-    // report
+public class SubreportBuilder extends DimensionComponentBuilder<SubreportBuilder, DRSubreport>
+{
 
-    /**
-     * <p>setReport.</p>
-     *
-     * @param reportBuilder a {@link software.xdev.dynamicreports.report.builder.ReportBuilder} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.SubreportBuilder} object.
-     */
-    public SubreportBuilder setReport(ReportBuilder<?> reportBuilder) {
-        getObject().setReportExpression(Expressions.value(reportBuilder));
-        return this;
-    }
-
-    /**
-     * <p>setReport.</p>
-     *
-     * @param jasperReport a {@link net.sf.jasperreports.engine.JasperReport} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.SubreportBuilder} object.
-     */
-    public SubreportBuilder setReport(JasperReport jasperReport) {
-        getObject().setReportExpression(Expressions.value(jasperReport));
-        return this;
-    }
-
-    /**
-     * <p>setReport.</p>
-     *
-     * @param reportExpression a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.SubreportBuilder} object.
-     */
-    public SubreportBuilder setReport(DRIExpression<?> reportExpression) {
-        getObject().setReportExpression(reportExpression);
-        return this;
-    }
-
-    // parameters
-
-    /**
-     * <p>setParameters.</p>
-     *
-     * @param parameters a {@link java.util.Map} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.SubreportBuilder} object.
-     */
-    public SubreportBuilder setParameters(Map<String, Object> parameters) {
-        getObject().setParametersExpression(Expressions.value(parameters));
-        return this;
-    }
-
-    /**
-     * <p>setParameters.</p>
-     *
-     * @param parametersExpression a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.SubreportBuilder} object.
-     */
-    public SubreportBuilder setParameters(DRIExpression<Map<String, Object>> parametersExpression) {
-        getObject().setParametersExpression(parametersExpression);
-        return this;
-    }
-
-    // connection
-
-    /**
-     * <p>setConnection.</p>
-     *
-     * @param connection a {@link java.sql.Connection} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.SubreportBuilder} object.
-     */
-    public SubreportBuilder setConnection(Connection connection) {
-        getObject().setConnectionExpression(Expressions.value(connection));
-        return this;
-    }
-
-    /**
-     * <p>setConnection.</p>
-     *
-     * @param connectionExpression a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.SubreportBuilder} object.
-     */
-    public SubreportBuilder setConnection(DRIExpression<Connection> connectionExpression) {
-        getObject().setConnectionExpression(connectionExpression);
-        return this;
-    }
-
-    // datasource
-
-    /**
-     * <p>setDataSource.</p>
-     *
-     * @param dataSource a {@link net.sf.jasperreports.engine.JRDataSource} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.SubreportBuilder} object.
-     */
-    public SubreportBuilder setDataSource(JRDataSource dataSource) {
-        getObject().setDataSourceExpression(Expressions.dataSource(dataSource));
-        return this;
-    }
-
-    /**
-     * <p>setDataSource.</p>
-     *
-     * @param dataSourceExpression a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.SubreportBuilder} object.
-     */
-    public SubreportBuilder setDataSource(DRIExpression<JRDataSource> dataSourceExpression) {
-        getObject().setDataSourceExpression(dataSourceExpression);
-        return this;
-    }
-
-    /**
-     * <p>setRunToBottom.</p>
-     *
-     * @param runToBottom a {@link java.lang.Boolean} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.SubreportBuilder} object.
-     */
-    public SubreportBuilder setRunToBottom(Boolean runToBottom) {
-        getObject().setRunToBottom(runToBottom);
-        return this;
-    }
+	protected SubreportBuilder()
+	{
+		super(new DRSubreport());
+	}
+	
+	// report
+	
+	public SubreportBuilder setReport(final ReportBuilder<?> reportBuilder)
+	{
+		this.getObject().setReportExpression(Expressions.value(reportBuilder));
+		return this;
+	}
+	
+	public SubreportBuilder setReport(final JasperReport jasperReport)
+	{
+		this.getObject().setReportExpression(Expressions.value(jasperReport));
+		return this;
+	}
+	
+	public SubreportBuilder setReport(final DRIExpression<?> reportExpression)
+	{
+		this.getObject().setReportExpression(reportExpression);
+		return this;
+	}
+	
+	// parameters
+	
+	public SubreportBuilder setParameters(final Map<String, Object> parameters)
+	{
+		this.getObject().setParametersExpression(Expressions.value(parameters));
+		return this;
+	}
+	
+	public SubreportBuilder setParameters(final DRIExpression<Map<String, Object>> parametersExpression)
+	{
+		this.getObject().setParametersExpression(parametersExpression);
+		return this;
+	}
+	
+	// connection
+	
+	public SubreportBuilder setConnection(final Connection connection)
+	{
+		this.getObject().setConnectionExpression(Expressions.value(connection));
+		return this;
+	}
+	
+	public SubreportBuilder setConnection(final DRIExpression<Connection> connectionExpression)
+	{
+		this.getObject().setConnectionExpression(connectionExpression);
+		return this;
+	}
+	
+	// datasource
+	
+	public SubreportBuilder setDataSource(final JRDataSource dataSource)
+	{
+		this.getObject().setDataSourceExpression(Expressions.dataSource(dataSource));
+		return this;
+	}
+	
+	public SubreportBuilder setDataSource(final DRIExpression<JRDataSource> dataSourceExpression)
+	{
+		this.getObject().setDataSourceExpression(dataSourceExpression);
+		return this;
+	}
+	
+	public SubreportBuilder setRunToBottom(final Boolean runToBottom)
+	{
+		this.getObject().setRunToBottom(runToBottom);
+		return this;
+	}
 }

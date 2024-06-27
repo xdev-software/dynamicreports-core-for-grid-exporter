@@ -17,85 +17,93 @@
  */
 package software.xdev.dynamicreports.test.jasper.column;
 
+import static software.xdev.dynamicreports.report.builder.DynamicReports.col;
+
+import java.io.Serializable;
+
+import net.sf.jasperreports.engine.JRDataSource;
 import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
 import software.xdev.dynamicreports.report.builder.column.TextColumnBuilder;
 import software.xdev.dynamicreports.report.datasource.DRDataSource;
 import software.xdev.dynamicreports.test.jasper.AbstractJasperValueTest;
-import net.sf.jasperreports.engine.JRDataSource;
 
-import java.io.Serializable;
 
-import static software.xdev.dynamicreports.report.builder.DynamicReports.col;
+public class EmptyColumnTest extends AbstractJasperValueTest implements Serializable
+{
 
-/**
- * @author Ricardo Mariaca
- */
-public class EmptyColumnTest extends AbstractJasperValueTest implements Serializable {
-    private static final long serialVersionUID = 1L;
-
-    private TextColumnBuilder<String> column1;
-    private TextColumnBuilder<String> column2;
-    private TextColumnBuilder<String> column3;
-    private TextColumnBuilder<String> column4;
-    private TextColumnBuilder<String> column5;
-    private TextColumnBuilder<String> column6;
-    private TextColumnBuilder<String> column7;
-
-    @Override
-    protected void configureReport(JasperReportBuilder rb) {
-        rb.columns(column1 = col.column("Column1", "field1", String.class), column2 = col.emptyColumn(), column3 = col.column("Column3", "field3", String.class),
-                   column4 = col.emptyColumn(false, true), column5 = col.emptyColumn(true, false), column6 = col.emptyColumn(true, true), column7 = col.column("Column7", "field7", String.class));
-    }
-
-    @Override
-    public void test() {
-        super.test();
-
-        numberOfPagesTest(1);
-
-        // column1
-        columnDetailCountTest(column1, 1);
-        columnDetailValueTest(column1, "test1");
-        columnTitleCountTest(column1, 1);
-        columnTitleValueTest(column1, "Column1");
-
-        // column2
-        columnDetailCountTest(column2, 0);
-        columnTitleCountTest(column2, 0);
-
-        // column3
-        columnDetailCountTest(column3, 1);
-        columnDetailValueTest(column3, "test3");
-        columnTitleCountTest(column3, 1);
-        columnTitleValueTest(column3, "Column3");
-
-        // column4
-        columnDetailCountTest(column4, 1);
-        columnDetailValueTest(column4, "");
-        columnTitleCountTest(column4, 0);
-
-        // column5
-        columnDetailCountTest(column5, 0);
-        columnTitleCountTest(column5, 1);
-        columnTitleValueTest(column5, "");
-
-        // column6
-        columnDetailCountTest(column6, 1);
-        columnDetailValueTest(column6, "");
-        columnTitleCountTest(column6, 1);
-        columnTitleValueTest(column6, "");
-
-        // column7
-        columnDetailCountTest(column7, 1);
-        columnDetailValueTest(column7, "test7");
-        columnTitleCountTest(column7, 1);
-        columnTitleValueTest(column7, "Column7");
-    }
-
-    @Override
-    protected JRDataSource createDataSource() {
-        DRDataSource dataSource = new DRDataSource("field1", "field2", "field3", "field4", "field5", "field6", "field7");
-        dataSource.add("test1", "test2", "test3", "test4", "test5", "test6", "test7");
-        return dataSource;
-    }
+	private TextColumnBuilder<String> column1;
+	private TextColumnBuilder<String> column2;
+	private TextColumnBuilder<String> column3;
+	private TextColumnBuilder<String> column4;
+	private TextColumnBuilder<String> column5;
+	private TextColumnBuilder<String> column6;
+	private TextColumnBuilder<String> column7;
+	
+	@Override
+	protected void configureReport(final JasperReportBuilder rb)
+	{
+		rb.columns(
+			this.column1 = col.column("Column1", "field1", String.class),
+			this.column2 = col.emptyColumn(),
+			this.column3 = col.column("Column3", "field3", String.class),
+			this.column4 = col.emptyColumn(false, true),
+			this.column5 = col.emptyColumn(true, false),
+			this.column6 = col.emptyColumn(true, true),
+			this.column7 = col.column("Column7", "field7", String.class));
+	}
+	
+	@Override
+	public void test()
+	{
+		super.test();
+		
+		this.numberOfPagesTest(1);
+		
+		// column1
+		this.columnDetailCountTest(this.column1, 1);
+		this.columnDetailValueTest(this.column1, "test1");
+		this.columnTitleCountTest(this.column1, 1);
+		this.columnTitleValueTest(this.column1, "Column1");
+		
+		// column2
+		this.columnDetailCountTest(this.column2, 0);
+		this.columnTitleCountTest(this.column2, 0);
+		
+		// column3
+		this.columnDetailCountTest(this.column3, 1);
+		this.columnDetailValueTest(this.column3, "test3");
+		this.columnTitleCountTest(this.column3, 1);
+		this.columnTitleValueTest(this.column3, "Column3");
+		
+		// column4
+		this.columnDetailCountTest(this.column4, 1);
+		this.columnDetailValueTest(this.column4, "");
+		this.columnTitleCountTest(this.column4, 0);
+		
+		// column5
+		this.columnDetailCountTest(this.column5, 0);
+		this.columnTitleCountTest(this.column5, 1);
+		this.columnTitleValueTest(this.column5, "");
+		
+		// column6
+		this.columnDetailCountTest(this.column6, 1);
+		this.columnDetailValueTest(this.column6, "");
+		this.columnTitleCountTest(this.column6, 1);
+		this.columnTitleValueTest(this.column6, "");
+		
+		// column7
+		this.columnDetailCountTest(this.column7, 1);
+		this.columnDetailValueTest(this.column7, "test7");
+		this.columnTitleCountTest(this.column7, 1);
+		this.columnTitleValueTest(this.column7, "Column7");
+	}
+	
+	@Override
+	protected JRDataSource createDataSource()
+	{
+		final DRDataSource dataSource =
+			new DRDataSource("field1", "field2", "field3", "field4", "field5", "field6", "field7");
+		dataSource.add("test1", "test2", "test3", "test4", "test5", "test6", "test7");
+		return dataSource;
+	}
 }

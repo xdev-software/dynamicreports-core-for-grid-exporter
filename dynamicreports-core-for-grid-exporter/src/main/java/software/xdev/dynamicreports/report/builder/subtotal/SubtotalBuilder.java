@@ -18,23 +18,13 @@
 package software.xdev.dynamicreports.report.builder.subtotal;
 
 import software.xdev.dynamicreports.report.builder.column.ColumnBuilder;
-import software.xdev.dynamicreports.report.constant.Constants;
 
-/**
- * <p>Abstract SubtotalBuilder class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public abstract class SubtotalBuilder<T extends SubtotalBuilder<T, U>, U> extends BaseSubtotalBuilder<T, U> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    /**
-     * <p>Constructor for SubtotalBuilder.</p>
-     *
-     * @param showInColumn a {@link software.xdev.dynamicreports.report.builder.column.ColumnBuilder} object.
-     */
-    protected SubtotalBuilder(ColumnBuilder<?, ?> showInColumn) {
-        super(showInColumn);
-    }
+public abstract class SubtotalBuilder<T extends SubtotalBuilder<T, U>, U> extends BaseSubtotalBuilder<T, U>
+{
+
+	protected SubtotalBuilder(final ColumnBuilder<?, ?> showInColumn)
+	{
+		super(showInColumn);
+	}
 }

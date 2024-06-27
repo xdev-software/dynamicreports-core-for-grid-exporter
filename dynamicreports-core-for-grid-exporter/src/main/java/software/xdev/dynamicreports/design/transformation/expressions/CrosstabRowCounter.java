@@ -18,45 +18,33 @@
 package software.xdev.dynamicreports.design.transformation.expressions;
 
 import software.xdev.dynamicreports.report.base.expression.AbstractSimpleExpression;
-import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.definition.ReportParameters;
 
-/**
- * <p>CrosstabRowCounter class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class CrosstabRowCounter extends AbstractSimpleExpression<CrosstabRowCounter> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    private int rowNumber = 1;
+public class CrosstabRowCounter extends AbstractSimpleExpression<CrosstabRowCounter>
+{
 
-    /** {@inheritDoc} */
-    @Override
-    public CrosstabRowCounter evaluate(ReportParameters reportParameters) {
-        return this;
-    }
-
-    /**
-     * <p>increment.</p>
-     */
-    public void increment() {
-        rowNumber++;
-    }
-
-    /**
-     * <p>Getter for the field <code>rowNumber</code>.</p>
-     *
-     * @return a int.
-     */
-    public int getRowNumber() {
-        return rowNumber;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public String getName() {
-        return ReportParameters.CROSSTAB_ROW_COUNTER;
-    }
+	private int rowNumber = 1;
+	
+	@Override
+	public CrosstabRowCounter evaluate(final ReportParameters reportParameters)
+	{
+		return this;
+	}
+	
+	public void increment()
+	{
+		this.rowNumber++;
+	}
+	
+	public int getRowNumber()
+	{
+		return this.rowNumber;
+	}
+	
+	@Override
+	public String getName()
+	{
+		return ReportParameters.CROSSTAB_ROW_COUNTER;
+	}
 }

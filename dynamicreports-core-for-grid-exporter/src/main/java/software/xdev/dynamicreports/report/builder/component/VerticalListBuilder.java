@@ -17,117 +17,78 @@
  */
 package software.xdev.dynamicreports.report.builder.component;
 
-import software.xdev.dynamicreports.report.base.component.DRList;
-import software.xdev.dynamicreports.report.constant.Constants;
-import software.xdev.dynamicreports.report.constant.ListType;
 import org.apache.commons.lang3.Validate;
 
-/**
- * <p>VerticalListBuilder class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class VerticalListBuilder extends DimensionComponentBuilder<VerticalListBuilder, DRList> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
+import software.xdev.dynamicreports.report.base.component.DRList;
+import software.xdev.dynamicreports.report.constant.ListType;
 
-    /**
-     * <p>Constructor for VerticalListBuilder.</p>
-     */
-    protected VerticalListBuilder() {
-        super(new DRList(ListType.VERTICAL));
-    }
 
-    /**
-     * <p>add.</p>
-     *
-     * @param components a {@link software.xdev.dynamicreports.report.builder.component.ComponentBuilder} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.VerticalListBuilder} object.
-     */
-    public VerticalListBuilder add(ComponentBuilder<?, ?>... components) {
-        Validate.notNull(components, "components must not be null");
-        Validate.noNullElements(components, "components must not contains null component");
-        for (ComponentBuilder<?, ?> component : components) {
-            getObject().addComponent(component.getComponent());
-        }
-        return this;
-    }
+public class VerticalListBuilder extends DimensionComponentBuilder<VerticalListBuilder, DRList>
+{
 
-    /**
-     * <p>add.</p>
-     *
-     * @param gap        a {@link java.lang.Integer} object.
-     * @param components a {@link software.xdev.dynamicreports.report.builder.component.ComponentBuilder} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.VerticalListBuilder} object.
-     */
-    public VerticalListBuilder add(Integer gap, ComponentBuilder<?, ?>... components) {
-        Validate.notNull(components, "components must not be null");
-        for (ComponentBuilder<?, ?> component : components) {
-            add(Components.vListCell(Components.filler().setHeight(gap)).heightFixed());
-            add(component);
-        }
-        return this;
-    }
-
-    /**
-     * <p>add.</p>
-     *
-     * @param cells a {@link software.xdev.dynamicreports.report.builder.component.VerticalListCellBuilder} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.VerticalListBuilder} object.
-     */
-    public VerticalListBuilder add(VerticalListCellBuilder... cells) {
-        Validate.notNull(cells, "cells must not be null");
-        Validate.noNullElements(cells, "cells must not contains null cell");
-        for (VerticalListCellBuilder cell : cells) {
-            getObject().addCell(cell.build());
-        }
-        return this;
-    }
-
-    /**
-     * <p>add.</p>
-     *
-     * @param gap   a {@link java.lang.Integer} object.
-     * @param cells a {@link software.xdev.dynamicreports.report.builder.component.VerticalListCellBuilder} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.VerticalListBuilder} object.
-     */
-    public VerticalListBuilder add(Integer gap, VerticalListCellBuilder... cells) {
-        Validate.notNull(cells, "cells must not be null");
-        for (VerticalListCellBuilder cell : cells) {
-            add(Components.vListCell(Components.filler().setHeight(gap)).heightFixed(), cell);
-        }
-        return this;
-    }
-
-    /**
-     * <p>setGap.</p>
-     *
-     * @param gap a {@link java.lang.Integer} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.VerticalListBuilder} object.
-     */
-    public VerticalListBuilder setGap(Integer gap) {
-        getObject().setGap(gap);
-        return this;
-    }
-
-    /**
-     * <p>setBackgroundComponent.</p>
-     *
-     * @param backgroundComponent a {@link software.xdev.dynamicreports.report.builder.component.ComponentBuilder} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.VerticalListBuilder} object.
-     */
-    public VerticalListBuilder setBackgroundComponent(ComponentBuilder<?, ?> backgroundComponent) {
-        Validate.notNull(backgroundComponent, "backgroundComponent must not be null");
-        getObject().setBackgroundComponent(backgroundComponent.build());
-        return this;
-    }
-
-    /**
-     * <p>getList.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.base.component.DRList} object.
-     */
-    public DRList getList() {
-        return build();
-    }
+	protected VerticalListBuilder()
+	{
+		super(new DRList(ListType.VERTICAL));
+	}
+	
+	public VerticalListBuilder add(final ComponentBuilder<?, ?>... components)
+	{
+		Validate.notNull(components, "components must not be null");
+		Validate.noNullElements(components, "components must not contains null component");
+		for(final ComponentBuilder<?, ?> component : components)
+		{
+			this.getObject().addComponent(component.getComponent());
+		}
+		return this;
+	}
+	
+	public VerticalListBuilder add(final Integer gap, final ComponentBuilder<?, ?>... components)
+	{
+		Validate.notNull(components, "components must not be null");
+		for(final ComponentBuilder<?, ?> component : components)
+		{
+			this.add(Components.vListCell(Components.filler().setHeight(gap)).heightFixed());
+			this.add(component);
+		}
+		return this;
+	}
+	
+	public VerticalListBuilder add(final VerticalListCellBuilder... cells)
+	{
+		Validate.notNull(cells, "cells must not be null");
+		Validate.noNullElements(cells, "cells must not contains null cell");
+		for(final VerticalListCellBuilder cell : cells)
+		{
+			this.getObject().addCell(cell.build());
+		}
+		return this;
+	}
+	
+	public VerticalListBuilder add(final Integer gap, final VerticalListCellBuilder... cells)
+	{
+		Validate.notNull(cells, "cells must not be null");
+		for(final VerticalListCellBuilder cell : cells)
+		{
+			this.add(Components.vListCell(Components.filler().setHeight(gap)).heightFixed(), cell);
+		}
+		return this;
+	}
+	
+	public VerticalListBuilder setGap(final Integer gap)
+	{
+		this.getObject().setGap(gap);
+		return this;
+	}
+	
+	public VerticalListBuilder setBackgroundComponent(final ComponentBuilder<?, ?> backgroundComponent)
+	{
+		Validate.notNull(backgroundComponent, "backgroundComponent must not be null");
+		this.getObject().setBackgroundComponent(backgroundComponent.build());
+		return this;
+	}
+	
+	public DRList getList()
+	{
+		return this.build();
+	}
 }

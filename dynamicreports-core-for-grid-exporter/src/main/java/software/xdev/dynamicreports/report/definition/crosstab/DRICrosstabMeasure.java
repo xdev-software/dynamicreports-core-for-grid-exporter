@@ -29,103 +29,31 @@ import software.xdev.dynamicreports.report.definition.expression.DRIPropertyExpr
 import software.xdev.dynamicreports.report.definition.expression.DRIValueFormatter;
 import software.xdev.dynamicreports.report.definition.style.DRIReportStyle;
 
-/**
- * <p>DRICrosstabMeasure interface.</p>
- *
- * @author Ricardo Mariaca, Jan Moxter
- * 
- */
-public interface DRICrosstabMeasure<T> extends Serializable {
 
-    /**
-     * <p>getName.</p>
-     *
-     * @return a {@link java.lang.String} object.
-     */
-    String getName();
-
-    /**
-     * <p>getDataType.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.definition.datatype.DRIDataType} object.
-     */
-    DRIDataType<? super T, T> getDataType();
-
-    /**
-     * <p>getExpression.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     */
-    DRIExpression<?> getExpression();
-
-    /**
-     * <p>getPattern.</p>
-     *
-     * @return a {@link java.lang.String} object.
-     */
-    String getPattern();
-
-    /**
-     * <p>getHorizontalTextAlignment.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.constant.HorizontalTextAlignment} object.
-     */
-    HorizontalTextAlignment getHorizontalTextAlignment();
-
-    /**
-     * <p>getValueFormatter.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.definition.expression.DRIValueFormatter} object.
-     */
-    DRIValueFormatter<?, ? super T> getValueFormatter();
-
-    /**
-     * <p>getStretchWithOverflow.</p>
-     *
-     * @return a {@link java.lang.Boolean} object.
-     * @deprecated replaced by {@link #getTextAdjust()}
-     */
-    @Deprecated Boolean getStretchWithOverflow();
-
-    /**
-     * <p>getTextAdjust.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.constant.TextAdjust} object.
-     */
-    TextAdjust getTextAdjust();
-
-    /**
-     * <p>getHyperLink.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.definition.DRIHyperLink} object.
-     */
-    DRIHyperLink getHyperLink();
-
-    /**
-     * <p>getPropertyExpressions.</p>
-     *
-     * @return a {@link java.util.List} object.
-     */
-    List<DRIPropertyExpression> getPropertyExpressions();
-
-    /**
-     * <p>getStyles.</p>
-     *
-     * @return a {@link java.util.List} object.
-     */
-    List<DRICrosstabCellStyle> getStyles();
-
-    /**
-     * <p>getTitleExpression.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     */
-    DRIExpression<?> getTitleExpression();
-
-    /**
-     * <p>getTitleStyle.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.definition.style.DRIReportStyle} object.
-     */
-    DRIReportStyle getTitleStyle();
+public interface DRICrosstabMeasure<T> extends Serializable
+{
+	
+	String getName();
+	
+	DRIDataType<? super T, T> getDataType();
+	
+	DRIExpression<?> getExpression();
+	
+	String getPattern();
+	
+	HorizontalTextAlignment getHorizontalTextAlignment();
+	
+	DRIValueFormatter<?, ? super T> getValueFormatter();
+	
+	TextAdjust getTextAdjust();
+	
+	DRIHyperLink getHyperLink();
+	
+	List<DRIPropertyExpression> getPropertyExpressions();
+	
+	List<DRICrosstabCellStyle> getStyles();
+	
+	DRIExpression<?> getTitleExpression();
+	
+	DRIReportStyle getTitleStyle();
 }

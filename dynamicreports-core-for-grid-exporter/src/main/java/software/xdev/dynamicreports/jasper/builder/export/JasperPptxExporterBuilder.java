@@ -18,32 +18,20 @@
 package software.xdev.dynamicreports.jasper.builder.export;
 
 import software.xdev.dynamicreports.jasper.base.export.JasperPptxExporter;
-import software.xdev.dynamicreports.report.constant.Constants;
 
-/**
- * <p>JasperPptxExporterBuilder class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class JasperPptxExporterBuilder extends AbstractJasperExporterBuilder<JasperPptxExporterBuilder, JasperPptxExporter> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    /**
-     * <p>Constructor for JasperPptxExporterBuilder.</p>
-     */
-    protected JasperPptxExporterBuilder() {
-        super(new JasperPptxExporter());
-    }
+public class JasperPptxExporterBuilder
+	extends AbstractJasperExporterBuilder<JasperPptxExporterBuilder, JasperPptxExporter>
+{
 
-    /**
-     * <p>setIgnoreHyperLink.</p>
-     *
-     * @param ignoreHyperLink a {@link java.lang.Boolean} object.
-     * @return a {@link software.xdev.dynamicreports.jasper.builder.export.JasperPptxExporterBuilder} object.
-     */
-    public JasperPptxExporterBuilder setIgnoreHyperLink(Boolean ignoreHyperLink) {
-        this.getObject().setIgnoreHyperLink(ignoreHyperLink);
-        return this;
-    }
+	protected JasperPptxExporterBuilder()
+	{
+		super(new JasperPptxExporter());
+	}
+	
+	public JasperPptxExporterBuilder setIgnoreHyperLink(final Boolean ignoreHyperLink)
+	{
+		this.getObject().setIgnoreHyperLink(ignoreHyperLink);
+		return this;
+	}
 }

@@ -17,12 +17,7 @@
  */
 package software.xdev.dynamicreports.report.definition.style;
 
-/**
- * <p>DRISimpleStyle interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface DRISimpleStyle extends DRIBaseStyle {
+public interface DRISimpleStyle extends DRIBaseStyle
+{
 
 }

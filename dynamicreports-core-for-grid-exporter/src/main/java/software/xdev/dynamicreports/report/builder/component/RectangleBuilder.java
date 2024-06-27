@@ -19,47 +19,32 @@ package software.xdev.dynamicreports.report.builder.component;
 
 import software.xdev.dynamicreports.report.base.component.DRRectangle;
 import software.xdev.dynamicreports.report.builder.style.PenBuilder;
-import software.xdev.dynamicreports.report.constant.Constants;
 
-/**
- * <p>RectangleBuilder class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class RectangleBuilder extends DimensionComponentBuilder<RectangleBuilder, DRRectangle> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    /**
-     * <p>Constructor for RectangleBuilder.</p>
-     */
-    protected RectangleBuilder() {
-        super(new DRRectangle());
-    }
+public class RectangleBuilder extends DimensionComponentBuilder<RectangleBuilder, DRRectangle>
+{
 
-    /**
-     * <p>setRadius.</p>
-     *
-     * @param radius a {@link java.lang.Integer} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.RectangleBuilder} object.
-     */
-    public RectangleBuilder setRadius(Integer radius) {
-        getObject().setRadius(radius);
-        return this;
-    }
-
-    /**
-     * <p>setPen.</p>
-     *
-     * @param pen a {@link software.xdev.dynamicreports.report.builder.style.PenBuilder} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.RectangleBuilder} object.
-     */
-    public RectangleBuilder setPen(PenBuilder pen) {
-        if (pen != null) {
-            getObject().setPen(pen.build());
-        } else {
-            getObject().setPen(null);
-        }
-        return this;
-    }
+	protected RectangleBuilder()
+	{
+		super(new DRRectangle());
+	}
+	
+	public RectangleBuilder setRadius(final Integer radius)
+	{
+		this.getObject().setRadius(radius);
+		return this;
+	}
+	
+	public RectangleBuilder setPen(final PenBuilder pen)
+	{
+		if(pen != null)
+		{
+			this.getObject().setPen(pen.build());
+		}
+		else
+		{
+			this.getObject().setPen(null);
+		}
+		return this;
+	}
 }

@@ -17,12 +17,7 @@
  */
 package software.xdev.dynamicreports.report.constant;
 
-/**
- * <p>LineSpacing class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public enum LineSpacing {
-    SINGLE, ONE_AND_HALF, DOUBLE, AT_LEAST, FIXED, PROPORTIONAL
+public enum LineSpacing
+{
+	SINGLE, ONE_AND_HALF, DOUBLE, AT_LEAST, FIXED, PROPORTIONAL
 }

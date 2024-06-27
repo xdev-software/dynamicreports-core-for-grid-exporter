@@ -17,101 +17,37 @@
  */
 package software.xdev.dynamicreports.design.definition;
 
-import software.xdev.dynamicreports.design.definition.expression.DRIDesignExpression;
-import software.xdev.dynamicreports.report.constant.GroupFooterPosition;
-
 import java.io.Serializable;
 import java.util.List;
 
-/**
- * <p>DRIDesignGroup interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface DRIDesignGroup extends Serializable {
+import software.xdev.dynamicreports.design.definition.expression.DRIDesignExpression;
+import software.xdev.dynamicreports.report.constant.GroupFooterPosition;
 
-    /**
-     * <p>getName.</p>
-     *
-     * @return a {@link java.lang.String} object.
-     */
-    public String getName();
 
-    /**
-     * <p>getGroupExpression.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.design.definition.expression.DRIDesignExpression} object.
-     */
-    public DRIDesignExpression getGroupExpression();
-
-    /**
-     * <p>getHeaderBands.</p>
-     *
-     * @return a {@link java.util.List} object.
-     */
-    public List<? extends DRIDesignBand> getHeaderBands();
-
-    /**
-     * <p>getFooterBands.</p>
-     *
-     * @return a {@link java.util.List} object.
-     */
-    public List<? extends DRIDesignBand> getFooterBands();
-
-    /**
-     * <p>isStartInNewPage.</p>
-     *
-     * @return a boolean.
-     */
-    public boolean isStartInNewPage();
-
-    /**
-     * <p>isStartInNewColumn.</p>
-     *
-     * @return a boolean.
-     */
-    public boolean isStartInNewColumn();
-
-    /**
-     * <p>isReprintHeaderOnEachPage.</p>
-     *
-     * @return a boolean.
-     */
-    public boolean isReprintHeaderOnEachPage();
-
-    /**
-     * <p>isResetPageNumber.</p>
-     *
-     * @return a boolean.
-     */
-    public boolean isResetPageNumber();
-
-    /**
-     * <p>getMinHeightToStartNewPage.</p>
-     *
-     * @return a {@link java.lang.Integer} object.
-     */
-    public Integer getMinHeightToStartNewPage();
-
-    /**
-     * <p>getFooterPosition.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.constant.GroupFooterPosition} object.
-     */
-    public GroupFooterPosition getFooterPosition();
-
-    /**
-     * <p>isKeepTogether.</p>
-     *
-     * @return a boolean.
-     */
-    public boolean isKeepTogether();
-
-    /**
-     * <p>isHeaderWithSubtotal.</p>
-     *
-     * @return a boolean.
-     */
-    public boolean isHeaderWithSubtotal();
+public interface DRIDesignGroup extends Serializable
+{
+	
+	public String getName();
+	
+	public DRIDesignExpression getGroupExpression();
+	
+	public List<? extends DRIDesignBand> getHeaderBands();
+	
+	public List<? extends DRIDesignBand> getFooterBands();
+	
+	public boolean isStartInNewPage();
+	
+	public boolean isStartInNewColumn();
+	
+	public boolean isReprintHeaderOnEachPage();
+	
+	public boolean isResetPageNumber();
+	
+	public Integer getMinHeightToStartNewPage();
+	
+	public GroupFooterPosition getFooterPosition();
+	
+	public boolean isKeepTogether();
+	
+	public boolean isHeaderWithSubtotal();
 }

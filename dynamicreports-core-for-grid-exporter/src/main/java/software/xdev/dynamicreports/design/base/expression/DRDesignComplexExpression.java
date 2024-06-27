@@ -17,56 +17,45 @@
  */
 package software.xdev.dynamicreports.design.base.expression;
 
-import software.xdev.dynamicreports.report.constant.Constants;
+import java.util.List;
+
 import software.xdev.dynamicreports.report.definition.ReportParameters;
 import software.xdev.dynamicreports.report.definition.expression.DRIComplexExpression;
 
-import java.util.List;
 
-/**
- * <p>DRDesignComplexExpression class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class DRDesignComplexExpression extends AbstractDesignComplexExpression {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
+public class DRDesignComplexExpression extends AbstractDesignComplexExpression
+{
 
-    private DRIComplexExpression<?> complexExpression;
-    private String parameterName;
-
-    /**
-     * <p>Constructor for DRDesignComplexExpression.</p>
-     *
-     * @param complexExpression a {@link software.xdev.dynamicreports.report.definition.expression.DRIComplexExpression} object.
-     * @param parameterName     a {@link java.lang.String} object.
-     */
-    public DRDesignComplexExpression(DRIComplexExpression<?> complexExpression, String parameterName) {
-        this.complexExpression = complexExpression;
-        this.parameterName = parameterName;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Object evaluate(List<?> values, ReportParameters reportParameters) {
-        return complexExpression.evaluate(values, reportParameters);
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Class<?> getValueClass() {
-        return complexExpression.getValueClass();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public String getName() {
-        return complexExpression.getName();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public String getParameterName() {
-        return parameterName;
-    }
+	private final DRIComplexExpression<?> complexExpression;
+	private final String parameterName;
+	
+	public DRDesignComplexExpression(final DRIComplexExpression<?> complexExpression, final String parameterName)
+	{
+		this.complexExpression = complexExpression;
+		this.parameterName = parameterName;
+	}
+	
+	@Override
+	public Object evaluate(final List<?> values, final ReportParameters reportParameters)
+	{
+		return this.complexExpression.evaluate(values, reportParameters);
+	}
+	
+	@Override
+	public Class<?> getValueClass()
+	{
+		return this.complexExpression.getValueClass();
+	}
+	
+	@Override
+	public String getName()
+	{
+		return this.complexExpression.getName();
+	}
+	
+	@Override
+	public String getParameterName()
+	{
+		return this.parameterName;
+	}
 }

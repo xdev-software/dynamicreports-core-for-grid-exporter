@@ -17,6 +17,9 @@
  */
 package software.xdev.dynamicreports.design.base.component;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import software.xdev.dynamicreports.design.base.DRDesignTableOfContentsHeading;
 import software.xdev.dynamicreports.design.base.style.DRDesignStyle;
 import software.xdev.dynamicreports.design.definition.DRIDesignGroup;
@@ -24,285 +27,209 @@ import software.xdev.dynamicreports.design.definition.component.DRIDesignCompone
 import software.xdev.dynamicreports.design.definition.expression.DRIDesignExpression;
 import software.xdev.dynamicreports.design.definition.expression.DRIDesignPropertyExpression;
 import software.xdev.dynamicreports.report.constant.ComponentPositionType;
-import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.constant.StretchType;
 
-import java.util.ArrayList;
-import java.util.List;
 
-/**
- * <p>Abstract DRDesignComponent class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public abstract class DRDesignComponent implements DRIDesignComponent {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
+public abstract class DRDesignComponent implements DRIDesignComponent
+{
 
-    private String name;
-    private String uniqueName;
-    private DRDesignStyle style;
-    private Integer x;
-    private Integer y;
-    private Integer width;
-    private Integer height;
-    private DRIDesignExpression printWhenExpression;
-    private boolean isRemoveLineWhenBlank;
-    private List<DRIDesignPropertyExpression> propertyExpressions;
-    private ComponentPositionType positionType;
-    private StretchType stretchType;
-    private boolean printInFirstWholeBand;
-    private boolean printWhenDetailOverflows;
-    private DRIDesignGroup printWhenGroupChanges;
-    private DRDesignTableOfContentsHeading tableOfContentsHeading;
-
-    /**
-     * <p>Constructor for DRDesignComponent.</p>
-     *
-     * @param name a {@link java.lang.String} object.
-     */
-    protected DRDesignComponent(String name) {
-        this.name = name;
-        this.uniqueName = name;
-        init();
-    }
-
-    /**
-     * <p>init.</p>
-     */
-    protected void init() {
-        propertyExpressions = new ArrayList<DRIDesignPropertyExpression>();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public String getName() {
-        return name;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public String getUniqueName() {
-        return uniqueName;
-    }
-
-    /**
-     * <p>Setter for the field <code>uniqueName</code>.</p>
-     *
-     * @param uniqueName a {@link java.lang.String} object.
-     */
-    public void setUniqueName(String uniqueName) {
-        this.uniqueName = uniqueName;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRDesignStyle getStyle() {
-        return style;
-    }
-
-    /**
-     * <p>Setter for the field <code>style</code>.</p>
-     *
-     * @param style a {@link software.xdev.dynamicreports.design.base.style.DRDesignStyle} object.
-     */
-    public void setStyle(DRDesignStyle style) {
-        this.style = style;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Integer getX() {
-        return x;
-    }
-
-    /**
-     * <p>Setter for the field <code>x</code>.</p>
-     *
-     * @param x a {@link java.lang.Integer} object.
-     */
-    public void setX(Integer x) {
-        this.x = x;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Integer getY() {
-        return y;
-    }
-
-    /**
-     * <p>Setter for the field <code>y</code>.</p>
-     *
-     * @param y a {@link java.lang.Integer} object.
-     */
-    public void setY(Integer y) {
-        this.y = y;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Integer getWidth() {
-        return width;
-    }
-
-    /**
-     * <p>Setter for the field <code>width</code>.</p>
-     *
-     * @param width a {@link java.lang.Integer} object.
-     */
-    public void setWidth(Integer width) {
-        this.width = width;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Integer getHeight() {
-        return height;
-    }
-
-    /**
-     * <p>Setter for the field <code>height</code>.</p>
-     *
-     * @param height a {@link java.lang.Integer} object.
-     */
-    public void setHeight(Integer height) {
-        this.height = height;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRIDesignExpression getPrintWhenExpression() {
-        return printWhenExpression;
-    }
-
-    /**
-     * <p>Setter for the field <code>printWhenExpression</code>.</p>
-     *
-     * @param printWhenExpression a {@link software.xdev.dynamicreports.design.definition.expression.DRIDesignExpression} object.
-     */
-    public void setPrintWhenExpression(DRIDesignExpression printWhenExpression) {
-        this.printWhenExpression = printWhenExpression;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public boolean isRemoveLineWhenBlank() {
-        return isRemoveLineWhenBlank;
-    }
-
-    /**
-     * <p>setRemoveLineWhenBlank.</p>
-     *
-     * @param isRemoveLineWhenBlank a boolean.
-     */
-    public void setRemoveLineWhenBlank(boolean isRemoveLineWhenBlank) {
-        this.isRemoveLineWhenBlank = isRemoveLineWhenBlank;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public List<DRIDesignPropertyExpression> getPropertyExpressions() {
-        return propertyExpressions;
-    }
-
-    /**
-     * <p>Setter for the field <code>propertyExpressions</code>.</p>
-     *
-     * @param propertyExpressions a {@link java.util.List} object.
-     */
-    public void setPropertyExpressions(List<DRIDesignPropertyExpression> propertyExpressions) {
-        this.propertyExpressions = propertyExpressions;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public ComponentPositionType getPositionType() {
-        return positionType;
-    }
-
-    /**
-     * <p>Setter for the field <code>positionType</code>.</p>
-     *
-     * @param positionType a {@link software.xdev.dynamicreports.report.constant.ComponentPositionType} object.
-     */
-    public void setPositionType(ComponentPositionType positionType) {
-        this.positionType = positionType;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public StretchType getStretchType() {
-        return stretchType;
-    }
-
-    /**
-     * <p>Setter for the field <code>stretchType</code>.</p>
-     *
-     * @param stretchType a {@link software.xdev.dynamicreports.report.constant.StretchType} object.
-     */
-    public void setStretchType(StretchType stretchType) {
-        this.stretchType = stretchType;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public boolean isPrintInFirstWholeBand() {
-        return printInFirstWholeBand;
-    }
-
-    /**
-     * <p>Setter for the field <code>printInFirstWholeBand</code>.</p>
-     *
-     * @param printInFirstWholeBand a boolean.
-     */
-    public void setPrintInFirstWholeBand(boolean printInFirstWholeBand) {
-        this.printInFirstWholeBand = printInFirstWholeBand;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public boolean isPrintWhenDetailOverflows() {
-        return printWhenDetailOverflows;
-    }
-
-    /**
-     * <p>Setter for the field <code>printWhenDetailOverflows</code>.</p>
-     *
-     * @param printWhenDetailOverflows a boolean.
-     */
-    public void setPrintWhenDetailOverflows(boolean printWhenDetailOverflows) {
-        this.printWhenDetailOverflows = printWhenDetailOverflows;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRIDesignGroup getPrintWhenGroupChanges() {
-        return printWhenGroupChanges;
-    }
-
-    /**
-     * <p>Setter for the field <code>printWhenGroupChanges</code>.</p>
-     *
-     * @param printWhenGroupChanges a {@link software.xdev.dynamicreports.design.definition.DRIDesignGroup} object.
-     */
-    public void setPrintWhenGroupChanges(DRIDesignGroup printWhenGroupChanges) {
-        this.printWhenGroupChanges = printWhenGroupChanges;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRDesignTableOfContentsHeading getTableOfContentsHeading() {
-        return tableOfContentsHeading;
-    }
-
-    /**
-     * <p>Setter for the field <code>tableOfContentsHeading</code>.</p>
-     *
-     * @param tableOfContentsHeading a {@link software.xdev.dynamicreports.design.base.DRDesignTableOfContentsHeading} object.
-     */
-    public void setTableOfContentsHeading(DRDesignTableOfContentsHeading tableOfContentsHeading) {
-        this.tableOfContentsHeading = tableOfContentsHeading;
-    }
-
+	private final String name;
+	private String uniqueName;
+	private DRDesignStyle style;
+	private Integer x;
+	private Integer y;
+	private Integer width;
+	private Integer height;
+	private DRIDesignExpression printWhenExpression;
+	private boolean isRemoveLineWhenBlank;
+	private List<DRIDesignPropertyExpression> propertyExpressions;
+	private ComponentPositionType positionType;
+	private StretchType stretchType;
+	private boolean printInFirstWholeBand;
+	private boolean printWhenDetailOverflows;
+	private DRIDesignGroup printWhenGroupChanges;
+	private DRDesignTableOfContentsHeading tableOfContentsHeading;
+	
+	protected DRDesignComponent(final String name)
+	{
+		this.name = name;
+		this.uniqueName = name;
+		this.init();
+	}
+	
+	protected void init()
+	{
+		this.propertyExpressions = new ArrayList<>();
+	}
+	
+	@Override
+	public String getName()
+	{
+		return this.name;
+	}
+	
+	@Override
+	public String getUniqueName()
+	{
+		return this.uniqueName;
+	}
+	
+	public void setUniqueName(final String uniqueName)
+	{
+		this.uniqueName = uniqueName;
+	}
+	
+	@Override
+	public DRDesignStyle getStyle()
+	{
+		return this.style;
+	}
+	
+	public void setStyle(final DRDesignStyle style)
+	{
+		this.style = style;
+	}
+	
+	@Override
+	public Integer getX()
+	{
+		return this.x;
+	}
+	
+	public void setX(final Integer x)
+	{
+		this.x = x;
+	}
+	
+	@Override
+	public Integer getY()
+	{
+		return this.y;
+	}
+	
+	public void setY(final Integer y)
+	{
+		this.y = y;
+	}
+	
+	@Override
+	public Integer getWidth()
+	{
+		return this.width;
+	}
+	
+	public void setWidth(final Integer width)
+	{
+		this.width = width;
+	}
+	
+	@Override
+	public Integer getHeight()
+	{
+		return this.height;
+	}
+	
+	public void setHeight(final Integer height)
+	{
+		this.height = height;
+	}
+	
+	@Override
+	public DRIDesignExpression getPrintWhenExpression()
+	{
+		return this.printWhenExpression;
+	}
+	
+	public void setPrintWhenExpression(final DRIDesignExpression printWhenExpression)
+	{
+		this.printWhenExpression = printWhenExpression;
+	}
+	
+	@Override
+	public boolean isRemoveLineWhenBlank()
+	{
+		return this.isRemoveLineWhenBlank;
+	}
+	
+	public void setRemoveLineWhenBlank(final boolean isRemoveLineWhenBlank)
+	{
+		this.isRemoveLineWhenBlank = isRemoveLineWhenBlank;
+	}
+	
+	@Override
+	public List<DRIDesignPropertyExpression> getPropertyExpressions()
+	{
+		return this.propertyExpressions;
+	}
+	
+	public void setPropertyExpressions(final List<DRIDesignPropertyExpression> propertyExpressions)
+	{
+		this.propertyExpressions = propertyExpressions;
+	}
+	
+	@Override
+	public ComponentPositionType getPositionType()
+	{
+		return this.positionType;
+	}
+	
+	public void setPositionType(final ComponentPositionType positionType)
+	{
+		this.positionType = positionType;
+	}
+	
+	@Override
+	public StretchType getStretchType()
+	{
+		return this.stretchType;
+	}
+	
+	public void setStretchType(final StretchType stretchType)
+	{
+		this.stretchType = stretchType;
+	}
+	
+	@Override
+	public boolean isPrintInFirstWholeBand()
+	{
+		return this.printInFirstWholeBand;
+	}
+	
+	public void setPrintInFirstWholeBand(final boolean printInFirstWholeBand)
+	{
+		this.printInFirstWholeBand = printInFirstWholeBand;
+	}
+	
+	@Override
+	public boolean isPrintWhenDetailOverflows()
+	{
+		return this.printWhenDetailOverflows;
+	}
+	
+	public void setPrintWhenDetailOverflows(final boolean printWhenDetailOverflows)
+	{
+		this.printWhenDetailOverflows = printWhenDetailOverflows;
+	}
+	
+	@Override
+	public DRIDesignGroup getPrintWhenGroupChanges()
+	{
+		return this.printWhenGroupChanges;
+	}
+	
+	public void setPrintWhenGroupChanges(final DRIDesignGroup printWhenGroupChanges)
+	{
+		this.printWhenGroupChanges = printWhenGroupChanges;
+	}
+	
+	@Override
+	public DRDesignTableOfContentsHeading getTableOfContentsHeading()
+	{
+		return this.tableOfContentsHeading;
+	}
+	
+	public void setTableOfContentsHeading(final DRDesignTableOfContentsHeading tableOfContentsHeading)
+	{
+		this.tableOfContentsHeading = tableOfContentsHeading;
+	}
 }

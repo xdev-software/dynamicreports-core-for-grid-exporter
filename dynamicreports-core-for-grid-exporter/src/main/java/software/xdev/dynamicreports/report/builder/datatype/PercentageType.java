@@ -17,28 +17,22 @@
  */
 package software.xdev.dynamicreports.report.builder.datatype;
 
-import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.constant.HorizontalTextAlignment;
 import software.xdev.dynamicreports.report.defaults.Defaults;
 
-/**
- * <p>PercentageType class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class PercentageType extends DoubleType {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    /** {@inheritDoc} */
-    @Override
-    public String getPattern() {
-        return Defaults.getDefaults().getPercentageType().getPattern();
-    }
+public class PercentageType extends DoubleType
+{
 
-    /** {@inheritDoc} */
-    @Override
-    public HorizontalTextAlignment getHorizontalTextAlignment() {
-        return Defaults.getDefaults().getPercentageType().getHorizontalTextAlignment();
-    }
+	@Override
+	public String getPattern()
+	{
+		return Defaults.getDefaults().getPercentageType().getPattern();
+	}
+	
+	@Override
+	public HorizontalTextAlignment getHorizontalTextAlignment()
+	{
+		return Defaults.getDefaults().getPercentageType().getHorizontalTextAlignment();
+	}
 }

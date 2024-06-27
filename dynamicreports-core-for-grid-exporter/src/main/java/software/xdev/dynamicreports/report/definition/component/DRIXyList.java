@@ -19,19 +19,9 @@ package software.xdev.dynamicreports.report.definition.component;
 
 import java.util.List;
 
-/**
- * <p>DRIXyList interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface DRIXyList extends DRIDimensionComponent {
 
-    /**
-     * <p>getXyListCells.</p>
-     *
-     * @return a {@link java.util.List} object.
-     */
-    public List<? extends DRIXyListCell> getXyListCells();
-
+public interface DRIXyList extends DRIDimensionComponent
+{
+	
+	public List<? extends DRIXyListCell> getXyListCells();
 }

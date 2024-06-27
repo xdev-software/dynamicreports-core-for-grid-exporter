@@ -17,12 +17,7 @@
  */
 package software.xdev.dynamicreports.report.constant;
 
-/**
- * <p>TableOrder class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public enum TableOrder {
-    BY_ROW, BY_COLUMN;
+public enum TableOrder
+{
+	BY_ROW, BY_COLUMN
 }

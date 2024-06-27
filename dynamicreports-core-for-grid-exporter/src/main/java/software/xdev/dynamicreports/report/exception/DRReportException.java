@@ -17,42 +17,21 @@
  */
 package software.xdev.dynamicreports.report.exception;
 
-import software.xdev.dynamicreports.report.constant.Constants;
+public class DRReportException extends RuntimeException
+{
 
-/**
- * <p>DRReportException class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class DRReportException extends RuntimeException {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
-
-    /**
-     * <p>Constructor for DRReportException.</p>
-     *
-     * @param message a {@link java.lang.String} object.
-     */
-    public DRReportException(String message) {
-        super(message);
-    }
-
-    /**
-     * <p>Constructor for DRReportException.</p>
-     *
-     * @param cause a {@link java.lang.Throwable} object.
-     */
-    public DRReportException(Throwable cause) {
-        super(cause);
-    }
-
-    /**
-     * <p>Constructor for DRReportException.</p>
-     *
-     * @param message a {@link java.lang.String} object.
-     * @param cause   a {@link java.lang.Throwable} object.
-     */
-    public DRReportException(String message, Throwable cause) {
-        super(message, cause);
-    }
+	public DRReportException(final String message)
+	{
+		super(message);
+	}
+	
+	public DRReportException(final Throwable cause)
+	{
+		super(cause);
+	}
+	
+	public DRReportException(final String message, final Throwable cause)
+	{
+		super(message, cause);
+	}
 }

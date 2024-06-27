@@ -22,21 +22,18 @@ import static software.xdev.dynamicreports.report.builder.DynamicReports.ctab;
 
 import org.junit.jupiter.api.Assertions;
 
+import net.sf.jasperreports.crosstabs.base.JRBaseCrosstab;
+import net.sf.jasperreports.crosstabs.type.CrosstabColumnPositionEnum;
+import net.sf.jasperreports.crosstabs.type.CrosstabRowPositionEnum;
+import net.sf.jasperreports.engine.type.RunDirectionEnum;
 import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
 import software.xdev.dynamicreports.report.builder.column.TextColumnBuilder;
 import software.xdev.dynamicreports.report.builder.crosstab.CrosstabBuilder;
 import software.xdev.dynamicreports.report.constant.Calculation;
 import software.xdev.dynamicreports.report.constant.RunDirection;
 import software.xdev.dynamicreports.test.jasper.AbstractJasperTest;
-import net.sf.jasperreports.crosstabs.base.JRBaseCrosstab;
-import net.sf.jasperreports.crosstabs.type.CrosstabColumnPositionEnum;
-import net.sf.jasperreports.crosstabs.type.CrosstabRowPositionEnum;
-import net.sf.jasperreports.engine.type.RunDirectionEnum;
 
 
-/**
- * @author Ricardo Mariaca
- */
 class CrosstabTest extends AbstractJasperTest
 {
 	
@@ -65,7 +62,8 @@ class CrosstabTest extends AbstractJasperTest
 	{
 		super.test();
 		
-		final JRBaseCrosstab crosstab = (JRBaseCrosstab)this.getJasperReport().getSummary().getElementByKey("summary.crosstab1");
+		final JRBaseCrosstab crosstab =
+			(JRBaseCrosstab)this.getJasperReport().getSummary().getElementByKey("summary.crosstab1");
 		Assertions.assertFalse(crosstab.isRepeatColumnHeaders());
 		Assertions.assertFalse(crosstab.isRepeatRowHeaders());
 		Assertions.assertEquals(100, crosstab.getColumnBreakOffset());

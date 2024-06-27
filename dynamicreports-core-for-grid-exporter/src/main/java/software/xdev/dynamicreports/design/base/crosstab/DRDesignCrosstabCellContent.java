@@ -21,98 +21,68 @@ import software.xdev.dynamicreports.design.base.component.DRDesignComponent;
 import software.xdev.dynamicreports.design.base.component.DRDesignList;
 import software.xdev.dynamicreports.design.definition.crosstab.DRIDesignCrosstabCellContent;
 import software.xdev.dynamicreports.design.definition.style.DRIDesignStyle;
-import software.xdev.dynamicreports.report.constant.Constants;
 
-/**
- * <p>DRDesignCrosstabCellContent class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class DRDesignCrosstabCellContent implements DRIDesignCrosstabCellContent {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    private int width;
-    private int height;
-    private DRDesignList list;
-    private DRDesignComponent component;
-    private DRIDesignStyle style;
+public class DRDesignCrosstabCellContent implements DRIDesignCrosstabCellContent
+{
 
-    /** {@inheritDoc} */
-    @Override
-    public int getWidth() {
-        return width;
-    }
-
-    /**
-     * <p>Setter for the field <code>width</code>.</p>
-     *
-     * @param width a int.
-     */
-    public void setWidth(int width) {
-        this.width = width;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public int getHeight() {
-        return height;
-    }
-
-    /**
-     * <p>Setter for the field <code>height</code>.</p>
-     *
-     * @param height a int.
-     */
-    public void setHeight(int height) {
-        this.height = height;
-    }
-
-    /**
-     * <p>Getter for the field <code>list</code>.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.design.base.component.DRDesignList} object.
-     */
-    public DRDesignList getList() {
-        return list;
-    }
-
-    /**
-     * <p>Setter for the field <code>list</code>.</p>
-     *
-     * @param list a {@link software.xdev.dynamicreports.design.base.component.DRDesignList} object.
-     */
-    public void setList(DRDesignList list) {
-        this.list = list;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRDesignComponent getComponent() {
-        return component;
-    }
-
-    /**
-     * <p>Setter for the field <code>component</code>.</p>
-     *
-     * @param component a {@link software.xdev.dynamicreports.design.base.component.DRDesignComponent} object.
-     */
-    public void setComponent(DRDesignComponent component) {
-        this.component = component;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRIDesignStyle getStyle() {
-        return style;
-    }
-
-    /**
-     * <p>Setter for the field <code>style</code>.</p>
-     *
-     * @param style a {@link software.xdev.dynamicreports.design.definition.style.DRIDesignStyle} object.
-     */
-    public void setStyle(DRIDesignStyle style) {
-        this.style = style;
-    }
+	private int width;
+	private int height;
+	private DRDesignList list;
+	private DRDesignComponent component;
+	private DRIDesignStyle style;
+	
+	@Override
+	public int getWidth()
+	{
+		return this.width;
+	}
+	
+	public void setWidth(final int width)
+	{
+		this.width = width;
+	}
+	
+	@Override
+	public int getHeight()
+	{
+		return this.height;
+	}
+	
+	public void setHeight(final int height)
+	{
+		this.height = height;
+	}
+	
+	public DRDesignList getList()
+	{
+		return this.list;
+	}
+	
+	public void setList(final DRDesignList list)
+	{
+		this.list = list;
+	}
+	
+	@Override
+	public DRDesignComponent getComponent()
+	{
+		return this.component;
+	}
+	
+	public void setComponent(final DRDesignComponent component)
+	{
+		this.component = component;
+	}
+	
+	@Override
+	public DRIDesignStyle getStyle()
+	{
+		return this.style;
+	}
+	
+	public void setStyle(final DRIDesignStyle style)
+	{
+		this.style = style;
+	}
 }

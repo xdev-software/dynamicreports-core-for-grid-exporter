@@ -17,42 +17,33 @@
  */
 package software.xdev.dynamicreports.report.base.expression;
 
-import software.xdev.dynamicreports.report.ReportUtils;
-import software.xdev.dynamicreports.report.constant.Constants;
-import software.xdev.dynamicreports.report.definition.expression.DRISystemExpression;
 import org.apache.commons.lang3.Validate;
 
-/**
- * <p>Abstract AbstractSystemExpression class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public abstract class AbstractSystemExpression<T> implements DRISystemExpression<T> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
+import software.xdev.dynamicreports.report.ReportUtils;
+import software.xdev.dynamicreports.report.definition.expression.DRISystemExpression;
 
-    private String name;
 
-    /**
-     * <p>Constructor for AbstractSystemExpression.</p>
-     *
-     * @param name a {@link java.lang.String} object.
-     */
-    protected AbstractSystemExpression(String name) {
-        Validate.notEmpty(name, "name must not be empty");
-        this.name = name;
-    }
+public abstract class AbstractSystemExpression<T> implements DRISystemExpression<T>
+{
 
-    /** {@inheritDoc} */
-    @Override
-    public String getName() {
-        return name;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    @SuppressWarnings("unchecked")
-    public Class<? super T> getValueClass() {
-        return (Class<T>) ReportUtils.getGenericClass(this, 0);
-    }
+	private final String name;
+	
+	protected AbstractSystemExpression(final String name)
+	{
+		Validate.notEmpty(name, "name must not be empty");
+		this.name = name;
+	}
+	
+	@Override
+	public String getName()
+	{
+		return this.name;
+	}
+	
+	@Override
+	@SuppressWarnings("unchecked")
+	public Class<? super T> getValueClass()
+	{
+		return (Class<T>)ReportUtils.getGenericClass(this, 0);
+	}
 }

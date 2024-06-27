@@ -17,6 +17,12 @@
  */
 package software.xdev.dynamicreports.test.jasper.crosstab;
 
+import static software.xdev.dynamicreports.report.builder.DynamicReports.ctab;
+
+import java.io.Serializable;
+import java.util.Locale;
+
+import net.sf.jasperreports.engine.JRDataSource;
 import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
 import software.xdev.dynamicreports.report.builder.crosstab.CrosstabBuilder;
 import software.xdev.dynamicreports.report.builder.crosstab.CrosstabColumnGroupBuilder;
@@ -26,72 +32,72 @@ import software.xdev.dynamicreports.report.constant.Calculation;
 import software.xdev.dynamicreports.report.constant.OrderType;
 import software.xdev.dynamicreports.report.datasource.DRDataSource;
 import software.xdev.dynamicreports.test.jasper.AbstractJasperCrosstabValueTest;
-import net.sf.jasperreports.engine.JRDataSource;
 
-import java.io.Serializable;
-import java.util.Locale;
 
-import static software.xdev.dynamicreports.report.builder.DynamicReports.ctab;
+public class OrderCrosstabTest extends AbstractJasperCrosstabValueTest implements Serializable
+{
 
-/**
- * @author Ricardo Mariaca
- */
-public class OrderCrosstabTest extends AbstractJasperCrosstabValueTest implements Serializable {
-    private static final long serialVersionUID = 1L;
-
-    private CrosstabRowGroupBuilder<String> rowGroup;
-    private CrosstabColumnGroupBuilder<String> columnGroup;
-    private CrosstabMeasureBuilder<Integer> measure1;
-
-    @Override
-    protected void configureReport(JasperReportBuilder rb) {
-        measure1 = ctab.measure("field3", Integer.class, Calculation.SUM);
-
-        CrosstabBuilder crosstab = ctab.crosstab()
-                                       .rowGroups(rowGroup = ctab.rowGroup("field1", String.class).setOrderType(OrderType.DESCENDING).setShowTotal(false))
-                                       .columnGroups(columnGroup = ctab.columnGroup("field2", String.class).setShowTotal(false).orderBy(measure1).setOrderType(OrderType.DESCENDING))
-                                       .measures(measure1);
-
-        rb.setLocale(Locale.ENGLISH).summary(crosstab);
-    }
-
-    @Override
-    public void test() {
-        super.test();
-
-        numberOfPagesTest(1);
-
-        setCrosstabBand("summary");
-
-        // column group
-        crosstabGroupHeaderCountTest(columnGroup, 2);
-        crosstabGroupHeaderValueTest(columnGroup, "c", "d");
-        crosstabGroupTotalHeaderCountTest(columnGroup, 0);
-
-        // row group
-        crosstabGroupHeaderCountTest(rowGroup, 2);
-        crosstabGroupHeaderValueTest(rowGroup, "b", "a");
-        crosstabGroupTotalHeaderCountTest(rowGroup, 0);
-
-        // measure1
-        crosstabCellCountTest(measure1, null, null, 4);
-        crosstabCellValueTest(measure1, null, null, "7", "3", "15", "11");
-        crosstabCellCountTest(measure1, null, columnGroup, 0);
-        crosstabCellCountTest(measure1, rowGroup, null, 0);
-        crosstabCellCountTest(measure1, rowGroup, columnGroup, 0);
-    }
-
-    @Override
-    protected JRDataSource createDataSource() {
-        DRDataSource dataSource = new DRDataSource("field1", "field2", "field3");
-        dataSource.add("a", "c", 8);
-        dataSource.add("a", "c", 7);
-        dataSource.add("a", "d", 6);
-        dataSource.add("a", "d", 5);
-        dataSource.add("b", "c", 4);
-        dataSource.add("b", "c", 3);
-        dataSource.add("b", "d", 2);
-        dataSource.add("b", "d", 1);
-        return dataSource;
-    }
+	private CrosstabRowGroupBuilder<String> rowGroup;
+	private CrosstabColumnGroupBuilder<String> columnGroup;
+	private CrosstabMeasureBuilder<Integer> measure1;
+	
+	@Override
+	protected void configureReport(final JasperReportBuilder rb)
+	{
+		this.measure1 = ctab.measure("field3", Integer.class, Calculation.SUM);
+		
+		final CrosstabBuilder crosstab = ctab.crosstab()
+			.rowGroups(
+				this.rowGroup =
+					ctab.rowGroup("field1", String.class).setOrderType(OrderType.DESCENDING).setShowTotal(false))
+			.columnGroups(this.columnGroup = ctab.columnGroup("field2", String.class)
+				.setShowTotal(false)
+				.orderBy(this.measure1)
+				.setOrderType(OrderType.DESCENDING))
+			.measures(this.measure1);
+		
+		rb.setLocale(Locale.ENGLISH).summary(crosstab);
+	}
+	
+	@Override
+	public void test()
+	{
+		super.test();
+		
+		this.numberOfPagesTest(1);
+		
+		this.setCrosstabBand("summary");
+		
+		// column group
+		this.crosstabGroupHeaderCountTest(this.columnGroup, 2);
+		this.crosstabGroupHeaderValueTest(this.columnGroup, "c", "d");
+		this.crosstabGroupTotalHeaderCountTest(this.columnGroup, 0);
+		
+		// row group
+		this.crosstabGroupHeaderCountTest(this.rowGroup, 2);
+		this.crosstabGroupHeaderValueTest(this.rowGroup, "b", "a");
+		this.crosstabGroupTotalHeaderCountTest(this.rowGroup, 0);
+		
+		// measure1
+		this.crosstabCellCountTest(this.measure1, null, null, 4);
+		this.crosstabCellValueTest(this.measure1, null, null, "7", "3", "15", "11");
+		this.crosstabCellCountTest(this.measure1, null, this.columnGroup, 0);
+		this.crosstabCellCountTest(this.measure1, this.rowGroup, null, 0);
+		this.crosstabCellCountTest(this.measure1, this.rowGroup, this.columnGroup, 0);
+	}
+	
+	@Override
+	protected JRDataSource createDataSource()
+	{
+		final DRDataSource dataSource = new DRDataSource("field1", "field2", "field3");
+		dataSource.add("a", "c", 8);
+		dataSource.add("a", "c", 7);
+		dataSource.add("a", "d", 6);
+		dataSource.add("a", "d", 5);
+		dataSource.add("b", "c", 4);
+		dataSource.add("b", "c", 3);
+		dataSource.add("b", "d", 2);
+		dataSource.add("b", "d", 1);
+		return dataSource;
+	}
 }

@@ -93,11 +93,6 @@ import software.xdev.dynamicreports.report.definition.style.DRIStyle;
 import software.xdev.dynamicreports.report.exception.DRException;
 
 
-/**
- * <p>TemplateTransform class.</p>
- *
- * @author Ricardo Mariaca, Jan Moxter
- */
 public class TemplateTransform
 {
 	private final DRIReport report;
@@ -105,11 +100,6 @@ public class TemplateTransform
 	private final DRIReportTemplate template;
 	private final DRITemplateDesign<?> templateDesign;
 	
-	/**
-	 * <p>Constructor for TemplateTransform.</p>
-	 *
-	 * @param accessor a {@link software.xdev.dynamicreports.design.transformation.DesignTransformAccessor} object.
-	 */
 	public TemplateTransform(final DesignTransformAccessor accessor)
 	{
 		this.accessor = accessor;
@@ -118,11 +108,6 @@ public class TemplateTransform
 		this.templateDesign = this.report.getTemplateDesign();
 	}
 	
-	/**
-	 * <p>getReportName.</p>
-	 *
-	 * @return a {@link java.lang.String} object.
-	 */
 	public String getReportName()
 	{
 		if(this.report.getReportName() != null)
@@ -136,11 +121,6 @@ public class TemplateTransform
 		return Defaults.getDefaults().getReportName();
 	}
 	
-	/**
-	 * <p>getLocale.</p>
-	 *
-	 * @return a {@link java.util.Locale} object.
-	 */
 	public Locale getLocale()
 	{
 		if(this.report.getLocale() != null)
@@ -154,11 +134,6 @@ public class TemplateTransform
 		return Defaults.getDefaults().getLocale();
 	}
 	
-	/**
-	 * <p>isShowColumnTitle.</p>
-	 *
-	 * @return a boolean.
-	 */
 	protected boolean isShowColumnTitle()
 	{
 		if(this.report.getShowColumnTitle() != null)
@@ -172,11 +147,6 @@ public class TemplateTransform
 		return Defaults.getDefaults().isShowColumnTitle();
 	}
 	
-	/**
-	 * <p>isShowColumnValues.</p>
-	 *
-	 * @return a boolean.
-	 */
 	protected boolean isShowColumnValues()
 	{
 		if(this.report.getShowColumnValues() != null)
@@ -190,11 +160,6 @@ public class TemplateTransform
 		return Defaults.getDefaults().isShowColumnValues();
 	}
 	
-	/**
-	 * <p>getResourceBundleName.</p>
-	 *
-	 * @return a {@link java.lang.String} object.
-	 */
 	public String getResourceBundleName()
 	{
 		if(this.report.getResourceBundleName() != null)
@@ -208,11 +173,6 @@ public class TemplateTransform
 		return null;
 	}
 	
-	/**
-	 * <p>isIgnorePagination.</p>
-	 *
-	 * @return a boolean.
-	 */
 	public boolean isIgnorePagination()
 	{
 		if(this.report.getIgnorePagination() != null)
@@ -230,13 +190,6 @@ public class TemplateTransform
 		return Defaults.getDefaults().isIgnorePagination();
 	}
 	
-	/**
-	 * <p>getWhenNoDataType.</p>
-	 *
-	 * @param emptyDetail a boolean.
-	 * @param noDataBand  a {@link software.xdev.dynamicreports.design.definition.DRIDesignBand} object.
-	 * @return a {@link software.xdev.dynamicreports.report.constant.WhenNoDataType} object.
-	 */
 	public WhenNoDataType getWhenNoDataType(final boolean emptyDetail, final DRIDesignBand noDataBand)
 	{
 		if(this.report.getWhenNoDataType() != null)
@@ -262,11 +215,6 @@ public class TemplateTransform
 		return Defaults.getDefaults().getWhenNoDataType();
 	}
 	
-	/**
-	 * <p>getWhenResourceMissingType.</p>
-	 *
-	 * @return a {@link software.xdev.dynamicreports.report.constant.WhenResourceMissingType} object.
-	 */
 	public WhenResourceMissingType getWhenResourceMissingType()
 	{
 		if(this.report.getWhenResourceMissingType() != null)
@@ -284,11 +232,6 @@ public class TemplateTransform
 		return Defaults.getDefaults().getWhenResourceMissingType();
 	}
 	
-	/**
-	 * <p>isTitleOnANewPage.</p>
-	 *
-	 * @return a boolean.
-	 */
 	public boolean isTitleOnANewPage()
 	{
 		if(this.report.getTitleOnANewPage() != null)
@@ -306,11 +249,6 @@ public class TemplateTransform
 		return Defaults.getDefaults().isTitleOnANewPage();
 	}
 	
-	/**
-	 * <p>isSummaryOnANewPage.</p>
-	 *
-	 * @return a boolean.
-	 */
 	public boolean isSummaryOnANewPage()
 	{
 		if(this.report.getSummaryOnANewPage() != null)
@@ -328,11 +266,6 @@ public class TemplateTransform
 		return Defaults.getDefaults().isSummaryOnANewPage();
 	}
 	
-	/**
-	 * <p>isSummaryWithPageHeaderAndFooter.</p>
-	 *
-	 * @return a boolean.
-	 */
 	public boolean isSummaryWithPageHeaderAndFooter()
 	{
 		if(this.report.getSummaryWithPageHeaderAndFooter() != null)
@@ -350,11 +283,6 @@ public class TemplateTransform
 		return Defaults.getDefaults().isSummaryWithPageHeaderAndFooter();
 	}
 	
-	/**
-	 * <p>isFloatColumnFooter.</p>
-	 *
-	 * @return a boolean.
-	 */
 	public boolean isFloatColumnFooter()
 	{
 		if(this.report.getFloatColumnFooter() != null)
@@ -372,11 +300,6 @@ public class TemplateTransform
 		return Defaults.getDefaults().isFloatColumnFooter();
 	}
 	
-	/**
-	 * <p>getPrintOrder.</p>
-	 *
-	 * @return a {@link software.xdev.dynamicreports.report.constant.Orientation} object.
-	 */
 	public Orientation getPrintOrder()
 	{
 		if(this.report.getPrintOrder() != null)
@@ -390,11 +313,6 @@ public class TemplateTransform
 		return Defaults.getDefaults().getPrintOrder();
 	}
 	
-	/**
-	 * <p>getColumnDirection.</p>
-	 *
-	 * @return a {@link software.xdev.dynamicreports.report.constant.RunDirection} object.
-	 */
 	public RunDirection getColumnDirection()
 	{
 		if(this.report.getColumnDirection() != null)
@@ -408,11 +326,6 @@ public class TemplateTransform
 		return Defaults.getDefaults().getColumnDirection();
 	}
 	
-	/**
-	 * <p>getLanguage.</p>
-	 *
-	 * @return a {@link java.lang.String} object.
-	 */
 	public String getLanguage()
 	{
 		if(this.report.getLanguage() != null)
@@ -426,12 +339,6 @@ public class TemplateTransform
 		return Defaults.getDefaults().getLanguage();
 	}
 	
-	/**
-	 * <p>getFieldDescription.</p>
-	 *
-	 * @param field a {@link software.xdev.dynamicreports.report.definition.DRIField} object.
-	 * @return a {@link java.lang.String} object.
-	 */
 	public String getFieldDescription(final DRIField<?> field)
 	{
 		if(field.getDescription() != null)
@@ -460,12 +367,6 @@ public class TemplateTransform
 	
 	// table of contents
 	
-	/**
-	 * <p>isTableOfContents.</p>
-	 *
-	 * @param tocHeadings a {@link java.util.Map} object.
-	 * @return a boolean.
-	 */
 	public boolean isTableOfContents(final Map<String, JasperTocHeading> tocHeadings)
 	{
 		if(tocHeadings != null)
@@ -483,11 +384,6 @@ public class TemplateTransform
 		return Defaults.getDefaults().isTableOfContents();
 	}
 	
-	/**
-	 * <p>getTableOfContentsCustomizer.</p>
-	 *
-	 * @return a {@link software.xdev.dynamicreports.report.definition.DRITableOfContentsCustomizer} object.
-	 */
 	public DRITableOfContentsCustomizer getTableOfContentsCustomizer()
 	{
 		if(this.report.getTableOfContentsCustomizer() != null)
@@ -501,12 +397,6 @@ public class TemplateTransform
 		return Defaults.getDefaults().getTableOfContentsCustomizer();
 	}
 	
-	/**
-	 * <p>isAddGroupToTableOfContents.</p>
-	 *
-	 * @param group a {@link software.xdev.dynamicreports.report.definition.DRIGroup} object.
-	 * @return a boolean.
-	 */
 	public boolean isAddGroupToTableOfContents(final DRIGroup group)
 	{
 		if(group.getAddToTableOfContents() != null)
@@ -518,11 +408,6 @@ public class TemplateTransform
 	
 	// style
 	
-	/**
-	 * <p>getDetailOddRowStyle.</p>
-	 *
-	 * @return a {@link software.xdev.dynamicreports.report.definition.style.DRISimpleStyle} object.
-	 */
 	protected DRISimpleStyle getDetailOddRowStyle()
 	{
 		if(this.isHighlightDetailOddRows())
@@ -540,11 +425,6 @@ public class TemplateTransform
 		return null;
 	}
 	
-	/**
-	 * <p>getDetailEvenRowStyle.</p>
-	 *
-	 * @return a {@link software.xdev.dynamicreports.report.definition.style.DRISimpleStyle} object.
-	 */
 	protected DRISimpleStyle getDetailEvenRowStyle()
 	{
 		if(this.isHighlightDetailEvenRows())
@@ -588,11 +468,6 @@ public class TemplateTransform
 		return Defaults.getDefaults().isHighlightDetailEvenRows();
 	}
 	
-	/**
-	 * <p>getDefaultFontName.</p>
-	 *
-	 * @return a {@link java.lang.String} object.
-	 */
 	protected String getDefaultFontName()
 	{
 		if(this.report.getDefaultFont() != null && this.report.getDefaultFont().getFontName() != null)
@@ -606,11 +481,6 @@ public class TemplateTransform
 		return Defaults.getDefaults().getFont().getFontName();
 	}
 	
-	/**
-	 * <p>getDefaultFontSize.</p>
-	 *
-	 * @return a {@link java.lang.Integer} object.
-	 */
 	protected Integer getDefaultFontSize()
 	{
 		if(this.report.getDefaultFont() != null && this.report.getDefaultFont().getFontSize() != null)
@@ -624,11 +494,6 @@ public class TemplateTransform
 		return Defaults.getDefaults().getFont().getFontSize();
 	}
 	
-	/**
-	 * <p>getDefaultFontBold.</p>
-	 *
-	 * @return a {@link java.lang.Boolean} object.
-	 */
 	protected Boolean getDefaultFontBold()
 	{
 		if(this.report.getDefaultFont() != null && this.report.getDefaultFont().getBold() != null)
@@ -642,11 +507,6 @@ public class TemplateTransform
 		return Defaults.getDefaults().getFont().getBold();
 	}
 	
-	/**
-	 * <p>getDefaultFontItalic.</p>
-	 *
-	 * @return a {@link java.lang.Boolean} object.
-	 */
 	protected Boolean getDefaultFontItalic()
 	{
 		if(this.report.getDefaultFont() != null && this.report.getDefaultFont().getItalic() != null)
@@ -660,11 +520,6 @@ public class TemplateTransform
 		return Defaults.getDefaults().getFont().getItalic();
 	}
 	
-	/**
-	 * <p>getDefaultFontUnderline.</p>
-	 *
-	 * @return a {@link java.lang.Boolean} object.
-	 */
 	protected Boolean getDefaultFontUnderline()
 	{
 		if(this.report.getDefaultFont() != null && this.report.getDefaultFont().getUnderline() != null)
@@ -678,11 +533,6 @@ public class TemplateTransform
 		return Defaults.getDefaults().getFont().getUnderline();
 	}
 	
-	/**
-	 * <p>getDefaultFontStrikeThrough.</p>
-	 *
-	 * @return a {@link java.lang.Boolean} object.
-	 */
 	protected Boolean getDefaultFontStrikeThrough()
 	{
 		if(this.report.getDefaultFont() != null && this.report.getDefaultFont().getStrikeThrough() != null)
@@ -696,11 +546,6 @@ public class TemplateTransform
 		return Defaults.getDefaults().getFont().getStrikeThrough();
 	}
 	
-	/**
-	 * <p>getDefaultFontPdfFontName.</p>
-	 *
-	 * @return a {@link java.lang.String} object.
-	 */
 	protected String getDefaultFontPdfFontName()
 	{
 		if(this.report.getDefaultFont() != null && this.report.getDefaultFont().getPdfFontName() != null)
@@ -714,11 +559,6 @@ public class TemplateTransform
 		return Defaults.getDefaults().getFont().getPdfFontName();
 	}
 	
-	/**
-	 * <p>getDefaultFontPdfEncoding.</p>
-	 *
-	 * @return a {@link java.lang.String} object.
-	 */
 	protected String getDefaultFontPdfEncoding()
 	{
 		if(this.report.getDefaultFont() != null && this.report.getDefaultFont().getPdfEncoding() != null)
@@ -732,11 +572,6 @@ public class TemplateTransform
 		return Defaults.getDefaults().getFont().getPdfEncoding();
 	}
 	
-	/**
-	 * <p>getDefaultFontPdfEmbedded.</p>
-	 *
-	 * @return a {@link java.lang.Boolean} object.
-	 */
 	protected Boolean getDefaultFontPdfEmbedded()
 	{
 		if(this.report.getDefaultFont() != null && this.report.getDefaultFont().getPdfEmbedded() != null)
@@ -750,11 +585,6 @@ public class TemplateTransform
 		return Defaults.getDefaults().getFont().getPdfEmbedded();
 	}
 	
-	/**
-	 * <p>getTextStyle.</p>
-	 *
-	 * @return a {@link software.xdev.dynamicreports.report.definition.style.DRIReportStyle} object.
-	 */
 	protected DRIReportStyle getTextStyle()
 	{
 		if(this.report.getTextStyle() != null)
@@ -768,11 +598,6 @@ public class TemplateTransform
 		return Defaults.getDefaults().getTextStyle();
 	}
 	
-	/**
-	 * <p>getColumnTitleStyle.</p>
-	 *
-	 * @return a {@link software.xdev.dynamicreports.report.definition.style.DRIReportStyle} object.
-	 */
 	protected DRIReportStyle getColumnTitleStyle()
 	{
 		if(this.report.getColumnTitleStyle() != null)
@@ -790,12 +615,6 @@ public class TemplateTransform
 		return this.getTextStyle();
 	}
 	
-	/**
-	 * <p>getColumnStyle.</p>
-	 *
-	 * @param textStyle a boolean.
-	 * @return a {@link software.xdev.dynamicreports.report.definition.style.DRIReportStyle} object.
-	 */
 	protected DRIReportStyle getColumnStyle(final boolean textStyle)
 	{
 		if(this.report.getColumnStyle() != null)
@@ -817,11 +636,6 @@ public class TemplateTransform
 		return null;
 	}
 	
-	/**
-	 * <p>getGroupTitleStyle.</p>
-	 *
-	 * @return a {@link software.xdev.dynamicreports.report.definition.style.DRIReportStyle} object.
-	 */
 	protected DRIReportStyle getGroupTitleStyle()
 	{
 		if(this.report.getGroupTitleStyle() != null)
@@ -839,11 +653,6 @@ public class TemplateTransform
 		return this.getTextStyle();
 	}
 	
-	/**
-	 * <p>getGroupStyle.</p>
-	 *
-	 * @return a {@link software.xdev.dynamicreports.report.definition.style.DRIReportStyle} object.
-	 */
 	protected DRIReportStyle getGroupStyle()
 	{
 		if(this.report.getGroupStyle() != null)
@@ -861,11 +670,6 @@ public class TemplateTransform
 		return this.getTextStyle();
 	}
 	
-	/**
-	 * <p>getSubtotalStyle.</p>
-	 *
-	 * @return a {@link software.xdev.dynamicreports.report.definition.style.DRIReportStyle} object.
-	 */
 	protected DRIReportStyle getSubtotalStyle()
 	{
 		if(this.report.getSubtotalStyle() != null)
@@ -883,11 +687,6 @@ public class TemplateTransform
 		return this.getTextStyle();
 	}
 	
-	/**
-	 * <p>getImageStyle.</p>
-	 *
-	 * @return a {@link software.xdev.dynamicreports.report.definition.style.DRIReportStyle} object.
-	 */
 	protected DRIReportStyle getImageStyle()
 	{
 		if(this.report.getImageStyle() != null)
@@ -903,13 +702,7 @@ public class TemplateTransform
 	
 	// page
 	
-	/**
-	 * <p>getPageWidth.</p>
-	 *
-	 * @return a int.
-	 * @throws software.xdev.dynamicreports.report.exception.DRException if any.
-	 */
-	protected int getPageWidth() throws DRException
+	protected int getPageWidth()
 	{
 		if(this.isIgnorePageWidth())
 		{
@@ -934,7 +727,7 @@ public class TemplateTransform
 		return Defaults.getDefaults().isIgnorePageWidth();
 	}
 	
-	private int getDynamicPageWidth() throws DRException
+	private int getDynamicPageWidth()
 	{
 		int maxPageWidth = 0;
 		maxPageWidth = this.getMaxBandWidth(this.accessor.getBandTransform().getTitleBand(), maxPageWidth);
@@ -949,7 +742,7 @@ public class TemplateTransform
 		return maxPageWidth + this.getPageMargin().getLeft() + this.getPageMargin().getRight();
 	}
 	
-	private int getMaxBandWidth(final DRIDesignBand band, final int maxWidth) throws DRException
+	private int getMaxBandWidth(final DRIDesignBand band, final int maxWidth)
 	{
 		if(band == null || band.getList() == null)
 		{
@@ -964,7 +757,7 @@ public class TemplateTransform
 		return maxWidth;
 	}
 	
-	private int getStaticPageWidth() throws DRException
+	private int getStaticPageWidth()
 	{
 		if(this.accessor.getPageWidth() != null)
 		{
@@ -985,13 +778,7 @@ public class TemplateTransform
 		return Defaults.getDefaults().getPageWidth();
 	}
 	
-	/**
-	 * <p>getPageHeight.</p>
-	 *
-	 * @return a int.
-	 * @throws software.xdev.dynamicreports.report.exception.DRException if any.
-	 */
-	protected int getPageHeight() throws DRException
+	protected int getPageHeight()
 	{
 		if(this.report.getPage().getHeight() != null)
 		{
@@ -1008,13 +795,7 @@ public class TemplateTransform
 		return Defaults.getDefaults().getPageHeight();
 	}
 	
-	/**
-	 * <p>getPageOrientation.</p>
-	 *
-	 * @return a {@link software.xdev.dynamicreports.report.constant.PageOrientation} object.
-	 * @throws software.xdev.dynamicreports.report.exception.DRException if any.
-	 */
-	protected PageOrientation getPageOrientation() throws DRException
+	protected PageOrientation getPageOrientation()
 	{
 		if(this.report.getPage().getOrientation() != null)
 		{
@@ -1031,13 +812,7 @@ public class TemplateTransform
 		return Defaults.getDefaults().getPageOrientation();
 	}
 	
-	/**
-	 * <p>getPageMargin.</p>
-	 *
-	 * @return a {@link software.xdev.dynamicreports.report.definition.DRIMargin} object.
-	 * @throws software.xdev.dynamicreports.report.exception.DRException if any.
-	 */
-	protected DRIMargin getPageMargin() throws DRException
+	protected DRIMargin getPageMargin()
 	{
 		if(this.report.getPage().getMargin() != null)
 		{
@@ -1058,13 +833,7 @@ public class TemplateTransform
 		return Defaults.getDefaults().getPageMargin();
 	}
 	
-	/**
-	 * <p>getPageColumnsPerPage.</p>
-	 *
-	 * @return a int.
-	 * @throws software.xdev.dynamicreports.report.exception.DRException if any.
-	 */
-	protected int getPageColumnsPerPage() throws DRException
+	protected int getPageColumnsPerPage()
 	{
 		if(this.report.getPage().getColumnsPerPage() != null)
 		{
@@ -1081,13 +850,7 @@ public class TemplateTransform
 		return Defaults.getDefaults().getPageColumnsPerPage();
 	}
 	
-	/**
-	 * <p>getPageColumnSpace.</p>
-	 *
-	 * @return a int.
-	 * @throws software.xdev.dynamicreports.report.exception.DRException if any.
-	 */
-	protected int getPageColumnSpace() throws DRException
+	protected int getPageColumnSpace()
 	{
 		if(this.report.getPage().getColumnSpace() != null)
 		{
@@ -1104,12 +867,6 @@ public class TemplateTransform
 		return Defaults.getDefaults().getPageColumnSpace();
 	}
 	
-	/**
-	 * <p>getPageColumnWidth.</p>
-	 *
-	 * @param page a {@link software.xdev.dynamicreports.design.definition.DRIDesignPage} object.
-	 * @return a int.
-	 */
 	protected int getPageColumnWidth(final DRIDesignPage page)
 	{
 		int columnWidth = page.getWidth() - page.getMargin().getLeft() - page.getMargin().getRight();
@@ -1125,12 +882,6 @@ public class TemplateTransform
 	
 	// column
 	
-	/**
-	 * <p>isColumnPrintRepeatedDetailValues.</p>
-	 *
-	 * @param column a {@link software.xdev.dynamicreports.report.definition.column.DRIValueColumn} object.
-	 * @return a boolean.
-	 */
 	protected boolean isColumnPrintRepeatedDetailValues(final DRIValueColumn<?> column)
 	{
 		if(column.getPrintRepeatedDetailValues() != null)
@@ -1144,14 +895,6 @@ public class TemplateTransform
 		return Defaults.getDefaults().isColumnPrintRepeatedDetailValues();
 	}
 	
-	/**
-	 * <p>getColumnWidth.</p>
-	 *
-	 * @param column a {@link software.xdev.dynamicreports.report.definition.column.DRIColumn} object.
-	 * @param style  a {@link software.xdev.dynamicreports.design.base.style.DRDesignStyle} object.
-	 * @return a int.
-	 * @throws software.xdev.dynamicreports.report.exception.DRException if any.
-	 */
 	protected int getColumnWidth(final DRIColumn<?> column, final DRDesignStyle style) throws DRException
 	{
 		final DRIComponent component = this.accessor.getColumnTransform().getColumnComponent(column);
@@ -1160,7 +903,8 @@ public class TemplateTransform
 			if(component instanceof DRIList)
 			{
 				final DRDesignList list =
-					this.accessor.getComponentTransform().list((DRIList)component, DefaultStyleType.COLUMN, null, null);
+					this.accessor.getComponentTransform().list((DRIList)component, DefaultStyleType.COLUMN, null,
+						null);
 				return this.detectWidth(list);
 			}
 			else if(component instanceof DRIDimensionComponent)
@@ -1185,11 +929,6 @@ public class TemplateTransform
 		return this.getColumnWidth();
 	}
 	
-	/**
-	 * <p>getColumnWidth.</p>
-	 *
-	 * @return a int.
-	 */
 	protected int getColumnWidth()
 	{
 		if(this.template.getColumnWidth() != null)
@@ -1201,12 +940,6 @@ public class TemplateTransform
 	
 	// component
 	
-	/**
-	 * <p>getRemoveLineWhenBlank.</p>
-	 *
-	 * @param component a {@link software.xdev.dynamicreports.report.definition.component.DRIComponent} object.
-	 * @return a boolean.
-	 */
 	protected boolean getRemoveLineWhenBlank(final DRIComponent component)
 	{
 		if(component.getRemoveLineWhenBlank() != null)
@@ -1216,12 +949,6 @@ public class TemplateTransform
 		return Defaults.getDefaults().isRemoveLineWhenBlank();
 	}
 	
-	/**
-	 * <p>getPositionType.</p>
-	 *
-	 * @param component a {@link software.xdev.dynamicreports.report.definition.component.DRIComponent} object.
-	 * @return a {@link software.xdev.dynamicreports.report.constant.ComponentPositionType} object.
-	 */
 	protected ComponentPositionType getPositionType(final DRIComponent component)
 	{
 		if(component instanceof DRIDimensionComponent && ((DRIDimensionComponent)component).getPositionType() != null)
@@ -1231,12 +958,6 @@ public class TemplateTransform
 		return null;
 	}
 	
-	/**
-	 * <p>getStretchType.</p>
-	 *
-	 * @param component a {@link software.xdev.dynamicreports.report.definition.component.DRIComponent} object.
-	 * @return a {@link software.xdev.dynamicreports.report.constant.StretchType} object.
-	 */
 	protected StretchType getStretchType(final DRIComponent component)
 	{
 		if(component instanceof DRIDimensionComponent && ((DRIDimensionComponent)component).getStretchType() != null)
@@ -1246,12 +967,6 @@ public class TemplateTransform
 		return null;
 	}
 	
-	/**
-	 * <p>getPrintInFirstWholeBand.</p>
-	 *
-	 * @param component a {@link software.xdev.dynamicreports.report.definition.component.DRIComponent} object.
-	 * @return a boolean.
-	 */
 	protected boolean getPrintInFirstWholeBand(final DRIComponent component)
 	{
 		if(component instanceof DRIDimensionComponent
@@ -1262,12 +977,6 @@ public class TemplateTransform
 		return Defaults.getDefaults().isPrintInFirstWholeBand();
 	}
 	
-	/**
-	 * <p>getPrintWhenDetailOverflows.</p>
-	 *
-	 * @param component a {@link software.xdev.dynamicreports.report.definition.component.DRIComponent} object.
-	 * @return a boolean.
-	 */
 	protected boolean getPrintWhenDetailOverflows(final DRIComponent component)
 	{
 		if(component instanceof DRIDimensionComponent
@@ -1278,30 +987,19 @@ public class TemplateTransform
 		return Defaults.getDefaults().isPrintWhenDetailOverflows();
 	}
 	
-	/**
-	 * <p>getPrintWhenGroupChanges.</p>
-	 *
-	 * @param component a {@link software.xdev.dynamicreports.report.definition.component.DRIComponent} object.
-	 * @return a {@link software.xdev.dynamicreports.design.definition.DRIDesignGroup} object.
-	 */
 	protected DRIDesignGroup getPrintWhenGroupChanges(final DRIComponent component)
 	{
 		if(component instanceof DRIDimensionComponent
 			&& ((DRIDimensionComponent)component).getPrintWhenGroupChanges() != null)
 		{
-			return this.accessor.getGroupTransform().getGroup(((DRIDimensionComponent)component).getPrintWhenGroupChanges());
+			return this.accessor.getGroupTransform()
+				.getGroup(((DRIDimensionComponent)component).getPrintWhenGroupChanges());
 		}
 		return null;
 	}
 	
 	// group
 	
-	/**
-	 * <p>getGroupHeaderLayout.</p>
-	 *
-	 * @param group a {@link software.xdev.dynamicreports.report.definition.DRIGroup} object.
-	 * @return a {@link software.xdev.dynamicreports.report.constant.GroupHeaderLayout} object.
-	 */
 	protected GroupHeaderLayout getGroupHeaderLayout(final DRIGroup group)
 	{
 		if(group.getHeaderLayout() != null)
@@ -1315,12 +1013,6 @@ public class TemplateTransform
 		return Defaults.getDefaults().getGroupHeaderLayout();
 	}
 	
-	/**
-	 * <p>isGroupHideColumn.</p>
-	 *
-	 * @param group a {@link software.xdev.dynamicreports.report.definition.DRIGroup} object.
-	 * @return a boolean.
-	 */
 	protected boolean isGroupHideColumn(final DRIGroup group)
 	{
 		if(group.getHideColumn() != null)
@@ -1334,12 +1026,6 @@ public class TemplateTransform
 		return Defaults.getDefaults().isGroupHideColumn();
 	}
 	
-	/**
-	 * <p>isGroupShowColumnHeaderAndFooter.</p>
-	 *
-	 * @param group a {@link software.xdev.dynamicreports.report.definition.DRIGroup} object.
-	 * @return a boolean.
-	 */
 	protected boolean isGroupShowColumnHeaderAndFooter(final DRIGroup group)
 	{
 		if(group.getShowColumnHeaderAndFooter() != null)
@@ -1353,12 +1039,6 @@ public class TemplateTransform
 		return Defaults.getDefaults().isGroupShowColumnHeaderAndFooter();
 	}
 	
-	/**
-	 * <p>getGroupPadding.</p>
-	 *
-	 * @param group a {@link software.xdev.dynamicreports.report.definition.DRIGroup} object.
-	 * @return a int.
-	 */
 	protected int getGroupPadding(final DRIGroup group)
 	{
 		if(group.getPadding() != null)
@@ -1372,12 +1052,6 @@ public class TemplateTransform
 		return Defaults.getDefaults().getGroupPadding();
 	}
 	
-	/**
-	 * <p>isGroupStartInNewPage.</p>
-	 *
-	 * @param group a {@link software.xdev.dynamicreports.report.definition.DRIGroup} object.
-	 * @return a boolean.
-	 */
 	protected boolean isGroupStartInNewPage(final DRIGroup group)
 	{
 		if(group.getStartInNewPage() != null)
@@ -1391,12 +1065,6 @@ public class TemplateTransform
 		return Defaults.getDefaults().isGroupStartInNewPage();
 	}
 	
-	/**
-	 * <p>isGroupStartInNewColumn.</p>
-	 *
-	 * @param group a {@link software.xdev.dynamicreports.report.definition.DRIGroup} object.
-	 * @return a boolean.
-	 */
 	protected boolean isGroupStartInNewColumn(final DRIGroup group)
 	{
 		if(group.getStartInNewColumn() != null)
@@ -1410,12 +1078,6 @@ public class TemplateTransform
 		return Defaults.getDefaults().isGroupStartInNewColumn();
 	}
 	
-	/**
-	 * <p>isGroupReprintHeaderOnEachPage.</p>
-	 *
-	 * @param group a {@link software.xdev.dynamicreports.report.definition.DRIGroup} object.
-	 * @return a boolean.
-	 */
 	protected boolean isGroupReprintHeaderOnEachPage(final DRIGroup group)
 	{
 		if(group.getReprintHeaderOnEachPage() != null)
@@ -1429,12 +1091,6 @@ public class TemplateTransform
 		return Defaults.getDefaults().isGroupReprintHeaderOnEachPage();
 	}
 	
-	/**
-	 * <p>isGroupResetPageNumber.</p>
-	 *
-	 * @param group a {@link software.xdev.dynamicreports.report.definition.DRIGroup} object.
-	 * @return a boolean.
-	 */
 	protected boolean isGroupResetPageNumber(final DRIGroup group)
 	{
 		if(group.getResetPageNumber() != null)
@@ -1448,12 +1104,6 @@ public class TemplateTransform
 		return Defaults.getDefaults().isGroupResetPageNumber();
 	}
 	
-	/**
-	 * <p>getGroupMinHeightToStartNewPage.</p>
-	 *
-	 * @param group a {@link software.xdev.dynamicreports.report.definition.DRIGroup} object.
-	 * @return a {@link java.lang.Integer} object.
-	 */
 	protected Integer getGroupMinHeightToStartNewPage(final DRIGroup group)
 	{
 		if(group.getMinHeightToStartNewPage() != null)
@@ -1463,12 +1113,6 @@ public class TemplateTransform
 		return Defaults.getDefaults().getGroupMinHeightToStartNewPage();
 	}
 	
-	/**
-	 * <p>getGroupFooterPosition.</p>
-	 *
-	 * @param group a {@link software.xdev.dynamicreports.report.definition.DRIGroup} object.
-	 * @return a {@link software.xdev.dynamicreports.report.constant.GroupFooterPosition} object.
-	 */
 	protected GroupFooterPosition getGroupFooterPosition(final DRIGroup group)
 	{
 		if(group.getFooterPosition() != null)
@@ -1482,12 +1126,6 @@ public class TemplateTransform
 		return Defaults.getDefaults().getGroupFooterPosition();
 	}
 	
-	/**
-	 * <p>isGroupKeepTogether.</p>
-	 *
-	 * @param group a {@link software.xdev.dynamicreports.report.definition.DRIGroup} object.
-	 * @return a boolean.
-	 */
 	protected boolean isGroupKeepTogether(final DRIGroup group)
 	{
 		if(group.getKeepTogether() != null)
@@ -1501,12 +1139,6 @@ public class TemplateTransform
 		return Defaults.getDefaults().isGroupKeepTogether();
 	}
 	
-	/**
-	 * <p>isGroupHeaderWithSubtotal.</p>
-	 *
-	 * @param group a {@link software.xdev.dynamicreports.report.definition.DRIGroup} object.
-	 * @return a boolean.
-	 */
 	protected boolean isGroupHeaderWithSubtotal(final DRIGroup group)
 	{
 		if(group.getHeaderWithSubtotal() != null)
@@ -1520,12 +1152,6 @@ public class TemplateTransform
 		return Defaults.getDefaults().isGroupHeaderWithSubtotal();
 	}
 	
-	/**
-	 * <p>isGroupByDataType.</p>
-	 *
-	 * @param group a {@link software.xdev.dynamicreports.report.definition.DRIGroup} object.
-	 * @return a boolean.
-	 */
 	protected boolean isGroupByDataType(final DRIGroup group)
 	{
 		if(group.getGroupByDataType() != null)
@@ -1537,12 +1163,6 @@ public class TemplateTransform
 	
 	// subtotal
 	
-	/**
-	 * <p>getSubtotalLabelPosition.</p>
-	 *
-	 * @param subtotal a {@link software.xdev.dynamicreports.report.definition.DRISubtotal} object.
-	 * @return a {@link software.xdev.dynamicreports.report.constant.Position} object.
-	 */
 	public Position getSubtotalLabelPosition(final DRISubtotal<?> subtotal)
 	{
 		if(subtotal.getLabelPosition() != null)
@@ -1558,13 +1178,6 @@ public class TemplateTransform
 	
 	// text field
 	
-	/**
-	 * <p>getTextFieldWidth.</p>
-	 *
-	 * @param textField a {@link software.xdev.dynamicreports.report.definition.component.DRITextField} object.
-	 * @param style     a {@link software.xdev.dynamicreports.design.base.style.DRDesignStyle} object.
-	 * @return a int.
-	 */
 	protected int getTextFieldWidth(final DRITextField<?> textField, final DRDesignStyle style)
 	{
 		if(textField.getWidth() != null)
@@ -1582,13 +1195,6 @@ public class TemplateTransform
 		return Defaults.getDefaults().getTextFieldWidth();
 	}
 	
-	/**
-	 * <p>getTextFieldHeight.</p>
-	 *
-	 * @param textField a {@link software.xdev.dynamicreports.report.definition.component.DRITextField} object.
-	 * @param style     a {@link software.xdev.dynamicreports.design.base.style.DRDesignStyle} object.
-	 * @return a int.
-	 */
 	protected int getTextFieldHeight(final DRITextField<?> textField, final DRDesignStyle style)
 	{
 		if(textField.getHeight() != null)
@@ -1602,13 +1208,6 @@ public class TemplateTransform
 		return StyleResolver.getFontHeight(style, 1);
 	}
 	
-	/**
-	 * <p>getTextFieldPattern.</p>
-	 *
-	 * @param textField a {@link software.xdev.dynamicreports.report.definition.component.DRITextField} object.
-	 * @param style     a {@link software.xdev.dynamicreports.design.base.style.DRDesignStyle} object.
-	 * @return a {@link java.lang.String} object.
-	 */
 	protected String getTextFieldPattern(final DRITextField<?> textField, final DRDesignStyle style)
 	{
 		if(textField.getPattern() != null)
@@ -1617,7 +1216,7 @@ public class TemplateTransform
 		}
 		if(StyleResolver.getPattern(style) != null)
 		{
-			return null;// StyleResolver.getPattern(style);
+			return null; // StyleResolver.getPattern(style);
 		}
 		if(textField.getDataType() != null)
 		{
@@ -1626,13 +1225,6 @@ public class TemplateTransform
 		return null;
 	}
 	
-	/**
-	 * <p>getTextFieldHorizontalTextAlignment.</p>
-	 *
-	 * @param textField a {@link software.xdev.dynamicreports.report.definition.component.DRITextField} object.
-	 * @param style     a {@link software.xdev.dynamicreports.design.base.style.DRDesignStyle} object.
-	 * @return a {@link software.xdev.dynamicreports.report.constant.HorizontalTextAlignment} object.
-	 */
 	protected HorizontalTextAlignment getTextFieldHorizontalTextAlignment(
 		final DRITextField<?> textField,
 		final DRDesignStyle style)
@@ -1643,7 +1235,7 @@ public class TemplateTransform
 		}
 		if(StyleResolver.getHorizontalTextAlignment(style) != null)
 		{
-			return null;// StyleResolver.getHorizontalTextAlignment(style);
+			return null; // StyleResolver.getHorizontalTextAlignment(style);
 		}
 		if(textField.getDataType() != null)
 		{
@@ -1652,12 +1244,6 @@ public class TemplateTransform
 		return null;
 	}
 	
-	/**
-	 * <p>getTextFieldValueFormatter.</p>
-	 *
-	 * @param textField a {@link software.xdev.dynamicreports.report.definition.component.DRITextField} object.
-	 * @return a {@link software.xdev.dynamicreports.report.definition.expression.DRIValueFormatter} object.
-	 */
 	protected DRIValueFormatter<?, ?> getTextFieldValueFormatter(final DRITextField<?> textField)
 	{
 		if(textField.getValueFormatter() != null)
@@ -1671,29 +1257,6 @@ public class TemplateTransform
 		return null;
 	}
 	
-	/**
-	 * <p>getTextFieldStretchWithOverflow.</p>
-	 *
-	 * @param textField a {@link software.xdev.dynamicreports.report.definition.component.DRITextField} object.
-	 * @return a boolean.
-	 * @deprecated replaced by {@link #getTextFieldTextAdjust(DRITextField)}
-	 */
-	@Deprecated
-	protected boolean getTextFieldStretchWithOverflow(final DRITextField<?> textField)
-	{
-		if(textField.getStretchWithOverflow() != null)
-		{
-			return textField.getStretchWithOverflow();
-		}
-		return Defaults.getDefaults().isTextFieldStretchWithOverflow();
-	}
-	
-	/**
-	 * <p>getTextFieldTextAdjust.</p>
-	 *
-	 * @param textField a {@link software.xdev.dynamicreports.report.definition.component.DRITextField} object.
-	 * @return a {@link software.xdev.dynamicreports.report.constant.TextAdjust} object.
-	 */
 	protected TextAdjust getTextFieldTextAdjust(final DRITextField<?> textField)
 	{
 		if(textField.getTextAdjust() != null)
@@ -1703,12 +1266,6 @@ public class TemplateTransform
 		return Defaults.getDefaults().getTextFieldTextAdjust();
 	}
 	
-	/**
-	 * <p>isTextFieldPrintRepeatedValues.</p>
-	 *
-	 * @param textField a {@link software.xdev.dynamicreports.report.definition.component.DRITextField} object.
-	 * @return a boolean.
-	 */
 	protected boolean isTextFieldPrintRepeatedValues(final DRITextField<?> textField)
 	{
 		if(textField.getPrintRepeatedValues() != null)
@@ -1720,13 +1277,6 @@ public class TemplateTransform
 	
 	// text field
 	
-	/**
-	 * <p>getBooleanFieldWidth.</p>
-	 *
-	 * @param booleanField a {@link software.xdev.dynamicreports.report.definition.component.DRIBooleanField} object.
-	 * @param style        a {@link software.xdev.dynamicreports.design.base.style.DRDesignStyle} object.
-	 * @return a int.
-	 */
 	protected int getBooleanFieldWidth(final DRIBooleanField booleanField, final DRDesignStyle style)
 	{
 		if(booleanField.getWidth() != null)
@@ -1740,13 +1290,6 @@ public class TemplateTransform
 		return Defaults.getDefaults().getTextFieldWidth();
 	}
 	
-	/**
-	 * <p>getBooleanFieldHeight.</p>
-	 *
-	 * @param booleanField a {@link software.xdev.dynamicreports.report.definition.component.DRIBooleanField} object.
-	 * @param style        a {@link software.xdev.dynamicreports.design.base.style.DRDesignStyle} object.
-	 * @return a int.
-	 */
 	protected int getBooleanFieldHeight(final DRIBooleanField booleanField, final DRDesignStyle style)
 	{
 		if(booleanField.getHeight() != null)
@@ -1758,12 +1301,6 @@ public class TemplateTransform
 	
 	// page x of y
 	
-	/**
-	 * <p>getPageXofYWidth.</p>
-	 *
-	 * @param pageXofY a {@link software.xdev.dynamicreports.report.definition.component.DRIPageXofY} object.
-	 * @return a int.
-	 */
 	protected int getPageXofYWidth(final DRIPageXofY pageXofY)
 	{
 		if(pageXofY.getWidth() != null)
@@ -1777,13 +1314,6 @@ public class TemplateTransform
 		return Defaults.getDefaults().getTextFieldWidth();
 	}
 	
-	/**
-	 * <p>getPageXofYHeight.</p>
-	 *
-	 * @param pageXofY a {@link software.xdev.dynamicreports.report.definition.component.DRIPageXofY} object.
-	 * @param style    a {@link software.xdev.dynamicreports.design.base.style.DRDesignStyle} object.
-	 * @return a int.
-	 */
 	protected int getPageXofYHeight(final DRIPageXofY pageXofY, final DRDesignStyle style)
 	{
 		if(pageXofY.getHeight() != null)
@@ -1793,13 +1323,6 @@ public class TemplateTransform
 		return StyleResolver.getFontHeight(style, 1);
 	}
 	
-	/**
-	 * <p>getPageXofYHorizontalTextAlignment.</p>
-	 *
-	 * @param pageXofY a {@link software.xdev.dynamicreports.report.definition.component.DRIPageXofY} object.
-	 * @param style    a {@link software.xdev.dynamicreports.design.base.style.DRDesignStyle} object.
-	 * @return a {@link software.xdev.dynamicreports.report.constant.HorizontalTextAlignment} object.
-	 */
 	protected HorizontalTextAlignment getPageXofYHorizontalTextAlignment(
 		final DRIPageXofY pageXofY,
 		final DRDesignStyle style)
@@ -1817,12 +1340,6 @@ public class TemplateTransform
 	
 	// image
 	
-	/**
-	 * <p>getImageWidth.</p>
-	 *
-	 * @param image a {@link software.xdev.dynamicreports.report.definition.component.DRIImage} object.
-	 * @return a int.
-	 */
 	protected int getImageWidth(final DRIImage image)
 	{
 		if(image.getWidth() != null)
@@ -1836,15 +1353,6 @@ public class TemplateTransform
 		return Defaults.getDefaults().getImageWidth();
 	}
 	
-	/**
-	 * <p>getImageHeight.</p>
-	 *
-	 * @param image       a {@link software.xdev.dynamicreports.report.definition.component.DRIImage} object.
-	 * @param imageHeight a {@link java.lang.Integer} object.
-	 * @param imageHeight a {@link java.lang.Integer} object.
-	 * @param style       a {@link software.xdev.dynamicreports.design.base.style.DRDesignStyle} object.
-	 * @return a int.
-	 */
 	protected int getImageHeight(final DRIImage image, final Integer imageHeight, final DRDesignStyle style)
 	{
 		if(image.getHeight() != null)
@@ -1864,12 +1372,6 @@ public class TemplateTransform
 	
 	// filler
 	
-	/**
-	 * <p>getFillerWidth.</p>
-	 *
-	 * @param filler a {@link software.xdev.dynamicreports.report.definition.component.DRIFiller} object.
-	 * @return a int.
-	 */
 	protected int getFillerWidth(final DRIFiller filler)
 	{
 		if(filler.getWidth() != null)
@@ -1879,12 +1381,6 @@ public class TemplateTransform
 		return Defaults.getDefaults().getFillerWidth();
 	}
 	
-	/**
-	 * <p>getFillerHeight.</p>
-	 *
-	 * @param filler a {@link software.xdev.dynamicreports.report.definition.component.DRIFiller} object.
-	 * @return a int.
-	 */
 	protected int getFillerHeight(final DRIFiller filler)
 	{
 		if(filler.getHeight() != null)
@@ -1896,12 +1392,6 @@ public class TemplateTransform
 	
 	// line
 	
-	/**
-	 * <p>getLineWidth.</p>
-	 *
-	 * @param line a {@link software.xdev.dynamicreports.report.definition.component.DRILine} object.
-	 * @return a int.
-	 */
 	protected int getLineWidth(final DRILine line)
 	{
 		if(line.getWidth() != null)
@@ -1911,12 +1401,6 @@ public class TemplateTransform
 		return Defaults.getDefaults().getLineWidth();
 	}
 	
-	/**
-	 * <p>getLineHeight.</p>
-	 *
-	 * @param line a {@link software.xdev.dynamicreports.report.definition.component.DRILine} object.
-	 * @return a int.
-	 */
 	protected int getLineHeight(final DRILine line)
 	{
 		if(line.getHeight() != null)
@@ -1928,12 +1412,6 @@ public class TemplateTransform
 	
 	// ellipse
 	
-	/**
-	 * <p>getEllipseWidth.</p>
-	 *
-	 * @param ellipse a {@link software.xdev.dynamicreports.report.definition.component.DRIEllipse} object.
-	 * @return a int.
-	 */
 	protected int getEllipseWidth(final DRIEllipse ellipse)
 	{
 		if(ellipse.getWidth() != null)
@@ -1943,12 +1421,6 @@ public class TemplateTransform
 		return Defaults.getDefaults().getEllipseWidth();
 	}
 	
-	/**
-	 * <p>getEllipseHeight.</p>
-	 *
-	 * @param ellipse a {@link software.xdev.dynamicreports.report.definition.component.DRIEllipse} object.
-	 * @return a int.
-	 */
 	protected int getEllipseHeight(final DRIEllipse ellipse)
 	{
 		if(ellipse.getHeight() != null)
@@ -1960,12 +1432,6 @@ public class TemplateTransform
 	
 	// rectangle
 	
-	/**
-	 * <p>getRectangleRadius.</p>
-	 *
-	 * @param rectangle a {@link software.xdev.dynamicreports.report.definition.component.DRIRectangle} object.
-	 * @return a {@link java.lang.Integer} object.
-	 */
 	protected Integer getRectangleRadius(final DRIRectangle rectangle)
 	{
 		if(rectangle.getRadius() != null)
@@ -1975,12 +1441,6 @@ public class TemplateTransform
 		return Defaults.getDefaults().getRectangleRadius();
 	}
 	
-	/**
-	 * <p>getRectangleWidth.</p>
-	 *
-	 * @param rectangle a {@link software.xdev.dynamicreports.report.definition.component.DRIRectangle} object.
-	 * @return a int.
-	 */
 	protected int getRectangleWidth(final DRIRectangle rectangle)
 	{
 		if(rectangle.getWidth() != null)
@@ -1990,12 +1450,6 @@ public class TemplateTransform
 		return Defaults.getDefaults().getRectangleWidth();
 	}
 	
-	/**
-	 * <p>getRectangleHeight.</p>
-	 *
-	 * @param rectangle a {@link software.xdev.dynamicreports.report.definition.component.DRIRectangle} object.
-	 * @return a int.
-	 */
 	protected int getRectangleHeight(final DRIRectangle rectangle)
 	{
 		if(rectangle.getHeight() != null)
@@ -2007,12 +1461,6 @@ public class TemplateTransform
 	
 	// map
 	
-	/**
-	 * <p>getMapWidth.</p>
-	 *
-	 * @param map a {@link software.xdev.dynamicreports.report.definition.component.DRIMap} object.
-	 * @return a int.
-	 */
 	protected int getMapWidth(final DRIMap map)
 	{
 		if(map.getWidth() != null)
@@ -2022,12 +1470,6 @@ public class TemplateTransform
 		return Defaults.getDefaults().getMapWidth();
 	}
 	
-	/**
-	 * <p>getMapHeight.</p>
-	 *
-	 * @param map a {@link software.xdev.dynamicreports.report.definition.component.DRIMap} object.
-	 * @return a int.
-	 */
 	protected int getMapHeight(final DRIMap map)
 	{
 		if(map.getHeight() != null)
@@ -2039,12 +1481,6 @@ public class TemplateTransform
 	
 	// custom component
 	
-	/**
-	 * <p>getCustomComponentWidth.</p>
-	 *
-	 * @param component a {@link software.xdev.dynamicreports.report.definition.component.DRIDimensionComponent} object.
-	 * @return a int.
-	 */
 	protected int getCustomComponentWidth(final DRIDimensionComponent component)
 	{
 		if(component.getWidth() != null)
@@ -2054,12 +1490,6 @@ public class TemplateTransform
 		return Defaults.getDefaults().getCustomComponentWidth();
 	}
 	
-	/**
-	 * <p>getCustomComponentHeight.</p>
-	 *
-	 * @param component a {@link software.xdev.dynamicreports.report.definition.component.DRIDimensionComponent} object.
-	 * @return a int.
-	 */
 	protected int getCustomComponentHeight(final DRIDimensionComponent component)
 	{
 		if(component.getHeight() != null)
@@ -2071,23 +1501,11 @@ public class TemplateTransform
 	
 	// break
 	
-	/**
-	 * <p>getBreakWidth.</p>
-	 *
-	 * @param breakComponent a {@link software.xdev.dynamicreports.report.definition.component.DRIBreak} object.
-	 * @return a int.
-	 */
 	protected int getBreakWidth(final DRIBreak breakComponent)
 	{
 		return Defaults.getDefaults().getBreakWidth();
 	}
 	
-	/**
-	 * <p>getBreakHeight.</p>
-	 *
-	 * @param breakComponent a {@link software.xdev.dynamicreports.report.definition.component.DRIBreak} object.
-	 * @return a int.
-	 */
 	protected int getBreakHeight(final DRIBreak breakComponent)
 	{
 		return Defaults.getDefaults().getBreakHeight();
@@ -2095,12 +1513,6 @@ public class TemplateTransform
 	
 	// generic element
 	
-	/**
-	 * <p>getGenericElementWidth.</p>
-	 *
-	 * @param genericElement a {@link software.xdev.dynamicreports.report.definition.component.DRIGenericElement} object.
-	 * @return a {@link java.lang.Integer} object.
-	 */
 	protected Integer getGenericElementWidth(final DRIGenericElement genericElement)
 	{
 		if(genericElement.getWidth() != null)
@@ -2110,12 +1522,6 @@ public class TemplateTransform
 		return Defaults.getDefaults().getGenericElementWidth();
 	}
 	
-	/**
-	 * <p>getGenericElementHeight.</p>
-	 *
-	 * @param genericElement a {@link software.xdev.dynamicreports.report.definition.component.DRIGenericElement} object.
-	 * @return a {@link java.lang.Integer} object.
-	 */
 	protected Integer getGenericElementHeight(final DRIGenericElement genericElement)
 	{
 		if(genericElement.getHeight() != null)
@@ -2127,12 +1533,6 @@ public class TemplateTransform
 	
 	// list
 	
-	/**
-	 * <p>getListWidth.</p>
-	 *
-	 * @param list a {@link software.xdev.dynamicreports.report.definition.component.DRIList} object.
-	 * @return a {@link java.lang.Integer} object.
-	 */
 	protected Integer getListWidth(final DRIList list)
 	{
 		if(list.getWidth() != null)
@@ -2142,12 +1542,6 @@ public class TemplateTransform
 		return Defaults.getDefaults().getListWidth();
 	}
 	
-	/**
-	 * <p>getListHeight.</p>
-	 *
-	 * @param list a {@link software.xdev.dynamicreports.report.definition.component.DRIList} object.
-	 * @return a {@link java.lang.Integer} object.
-	 */
 	protected Integer getListHeight(final DRIList list)
 	{
 		if(list.getHeight() != null)
@@ -2157,12 +1551,6 @@ public class TemplateTransform
 		return Defaults.getDefaults().getListHeight();
 	}
 	
-	/**
-	 * <p>getListGap.</p>
-	 *
-	 * @param list a {@link software.xdev.dynamicreports.report.definition.component.DRIList} object.
-	 * @return a int.
-	 */
 	protected int getListGap(final DRIList list)
 	{
 		if(list.getGap() != null)
@@ -2178,12 +1566,6 @@ public class TemplateTransform
 	
 	// xy list
 	
-	/**
-	 * <p>getXyListWidth.</p>
-	 *
-	 * @param xyList a {@link software.xdev.dynamicreports.report.definition.component.DRIXyList} object.
-	 * @return a {@link java.lang.Integer} object.
-	 */
 	protected Integer getXyListWidth(final DRIXyList xyList)
 	{
 		if(xyList.getWidth() != null)
@@ -2193,12 +1575,6 @@ public class TemplateTransform
 		return Defaults.getDefaults().getListWidth();
 	}
 	
-	/**
-	 * <p>getXyListHeight.</p>
-	 *
-	 * @param xyList a {@link software.xdev.dynamicreports.report.definition.component.DRIXyList} object.
-	 * @return a {@link java.lang.Integer} object.
-	 */
 	protected Integer getXyListHeight(final DRIXyList xyList)
 	{
 		if(xyList.getHeight() != null)
@@ -2210,12 +1586,6 @@ public class TemplateTransform
 	
 	// multi page list
 	
-	/**
-	 * <p>getMultiPageListWidth.</p>
-	 *
-	 * @param multiPageList a {@link software.xdev.dynamicreports.report.definition.component.DRIMultiPageList} object.
-	 * @return a int.
-	 */
 	protected int getMultiPageListWidth(final DRIMultiPageList multiPageList)
 	{
 		if(multiPageList.getWidth() != null)
@@ -2229,12 +1599,6 @@ public class TemplateTransform
 		return Defaults.getDefaults().getMultiPageListWidth();
 	}
 	
-	/**
-	 * <p>getMultiPageListHeight.</p>
-	 *
-	 * @param multiPageList a {@link software.xdev.dynamicreports.report.definition.component.DRIMultiPageList} object.
-	 * @return a int.
-	 */
 	protected int getMultiPageListHeight(final DRIMultiPageList multiPageList)
 	{
 		if(multiPageList.getHeight() != null)
@@ -2250,12 +1614,6 @@ public class TemplateTransform
 	
 	// subreport
 	
-	/**
-	 * <p>getSubreportWidth.</p>
-	 *
-	 * @param subreport a {@link software.xdev.dynamicreports.report.definition.component.DRISubreport} object.
-	 * @return a int.
-	 */
 	protected int getSubreportWidth(final DRISubreport subreport)
 	{
 		if(subreport.getWidth() != null)
@@ -2269,12 +1627,6 @@ public class TemplateTransform
 		return Defaults.getDefaults().getSubreportWidth();
 	}
 	
-	/**
-	 * <p>getSubreportHeight.</p>
-	 *
-	 * @param subreport a {@link software.xdev.dynamicreports.report.definition.component.DRISubreport} object.
-	 * @return a int.
-	 */
 	protected int getSubreportHeight(final DRISubreport subreport)
 	{
 		if(subreport.getHeight() != null)
@@ -2290,12 +1642,6 @@ public class TemplateTransform
 	
 	// crosstab
 	
-	/**
-	 * <p>getCrosstabWidth.</p>
-	 *
-	 * @param crosstab a {@link software.xdev.dynamicreports.report.definition.crosstab.DRICrosstab} object.
-	 * @return a int.
-	 */
 	protected int getCrosstabWidth(final DRICrosstab crosstab)
 	{
 		if(crosstab.getWidth() != null)
@@ -2309,13 +1655,6 @@ public class TemplateTransform
 		return Defaults.getDefaults().getCrosstabWidth();
 	}
 	
-	/**
-	 * <p>getCrosstabHeight.</p>
-	 *
-	 * @param crosstab       a {@link software.xdev.dynamicreports.report.definition.crosstab.DRICrosstab} object.
-	 * @param whenNoDataCell a {@link software.xdev.dynamicreports.design.base.crosstab.DRDesignCrosstabCellContent} object.
-	 * @return a int.
-	 */
 	protected int getCrosstabHeight(final DRICrosstab crosstab, final DRDesignCrosstabCellContent whenNoDataCell)
 	{
 		final int height;
@@ -2339,12 +1678,6 @@ public class TemplateTransform
 		return height;
 	}
 	
-	/**
-	 * <p>getCrosstabColumnGroupTotalPosition.</p>
-	 *
-	 * @param columnGroup a {@link software.xdev.dynamicreports.report.definition.crosstab.DRICrosstabColumnGroup} object.
-	 * @return a {@link software.xdev.dynamicreports.report.constant.CrosstabTotalPosition} object.
-	 */
 	public CrosstabTotalPosition getCrosstabColumnGroupTotalPosition(final DRICrosstabColumnGroup<?> columnGroup)
 	{
 		if(!this.isCrosstabColumnGroupShowTotal(columnGroup))
@@ -2358,12 +1691,6 @@ public class TemplateTransform
 		return Defaults.getDefaults().getCrosstabColumnGroupTotalPosition();
 	}
 	
-	/**
-	 * <p>getCrosstabRowGroupTotalPosition.</p>
-	 *
-	 * @param rowGroup a {@link software.xdev.dynamicreports.report.definition.crosstab.DRICrosstabRowGroup} object.
-	 * @return a {@link software.xdev.dynamicreports.report.constant.CrosstabTotalPosition} object.
-	 */
 	public CrosstabTotalPosition getCrosstabRowGroupTotalPosition(final DRICrosstabRowGroup<?> rowGroup)
 	{
 		if(!this.isCrosstabRowGroupShowTotal(rowGroup))
@@ -2377,12 +1704,6 @@ public class TemplateTransform
 		return Defaults.getDefaults().getCrosstabRowGroupTotalPosition();
 	}
 	
-	/**
-	 * <p>isCrosstabColumnGroupShowTotal.</p>
-	 *
-	 * @param columnGroup a {@link software.xdev.dynamicreports.report.definition.crosstab.DRICrosstabColumnGroup} object.
-	 * @return a boolean.
-	 */
 	public boolean isCrosstabColumnGroupShowTotal(final DRICrosstabColumnGroup<?> columnGroup)
 	{
 		if(columnGroup.getShowTotal() != null)
@@ -2392,12 +1713,6 @@ public class TemplateTransform
 		return Defaults.getDefaults().isCrosstabColumnGroupShowTotal();
 	}
 	
-	/**
-	 * <p>isCrosstabRowGroupShowTotal.</p>
-	 *
-	 * @param rowGroup a {@link software.xdev.dynamicreports.report.definition.crosstab.DRICrosstabRowGroup} object.
-	 * @return a boolean.
-	 */
 	public boolean isCrosstabRowGroupShowTotal(final DRICrosstabRowGroup<?> rowGroup)
 	{
 		if(rowGroup.getShowTotal() != null)
@@ -2407,14 +1722,6 @@ public class TemplateTransform
 		return Defaults.getDefaults().isCrosstabRowGroupShowTotal();
 	}
 	
-	/**
-	 * <p>getCrosstabColumnGroupHeaderHeight.</p>
-	 *
-	 * @param columnGroup     a {@link software.xdev.dynamicreports.report.definition.crosstab.DRICrosstabColumnGroup} object.
-	 * @param designCrosstab  a {@link software.xdev.dynamicreports.design.base.crosstab.DRDesignCrosstab} object.
-	 * @param availableHeight a int.
-	 * @return a int.
-	 */
 	public int getCrosstabColumnGroupHeaderHeight(
 		final DRICrosstabColumnGroup<?> columnGroup,
 		final DRDesignCrosstab designCrosstab,
@@ -2448,14 +1755,6 @@ public class TemplateTransform
 		return maxHeight;
 	}
 	
-	/**
-	 * <p>getCrosstabColumnGroupTotalHeaderWidth.</p>
-	 *
-	 * @param columnGroup    a {@link software.xdev.dynamicreports.report.definition.crosstab.DRICrosstabColumnGroup} object.
-	 * @param cellWidth      a {@link java.lang.Integer} object.
-	 * @param designCrosstab a {@link software.xdev.dynamicreports.design.base.crosstab.DRDesignCrosstab} object.
-	 * @return a int.
-	 */
 	public int getCrosstabColumnGroupTotalHeaderWidth(
 		final DRICrosstabColumnGroup<?> columnGroup,
 		final Integer cellWidth,
@@ -2503,13 +1802,6 @@ public class TemplateTransform
 		return maxWidth;
 	}
 	
-	/**
-	 * <p>getCrosstabRowGroupHeaderWidth.</p>
-	 *
-	 * @param rowGroup       a {@link software.xdev.dynamicreports.report.definition.crosstab.DRICrosstabRowGroup} object.
-	 * @param designCrosstab a {@link software.xdev.dynamicreports.design.base.crosstab.DRDesignCrosstab} object.
-	 * @return a int.
-	 */
 	public int getCrosstabRowGroupHeaderWidth(
 		final DRICrosstabRowGroup<?> rowGroup,
 		final DRDesignCrosstab designCrosstab)
@@ -2546,14 +1838,6 @@ public class TemplateTransform
 		return maxWidth;
 	}
 	
-	/**
-	 * <p>getCrosstabRowGroupTotalHeaderHeight.</p>
-	 *
-	 * @param rowGroup       a {@link software.xdev.dynamicreports.report.definition.crosstab.DRICrosstabRowGroup} object.
-	 * @param cellHeight     a {@link java.lang.Integer} object.
-	 * @param designCrosstab a {@link software.xdev.dynamicreports.design.base.crosstab.DRDesignCrosstab} object.
-	 * @return a int.
-	 */
 	public int getCrosstabRowGroupTotalHeaderHeight(
 		final DRICrosstabRowGroup<?> rowGroup,
 		final Integer cellHeight,
@@ -2597,13 +1881,6 @@ public class TemplateTransform
 		return maxHeight;
 	}
 	
-	/**
-	 * <p>getCrosstabCellWidth.</p>
-	 *
-	 * @param crosstab       a {@link software.xdev.dynamicreports.report.definition.crosstab.DRICrosstab} object.
-	 * @param designCrosstab a {@link software.xdev.dynamicreports.design.base.crosstab.DRDesignCrosstab} object.
-	 * @return a int.
-	 */
 	public int getCrosstabCellWidth(final DRICrosstab crosstab, final DRDesignCrosstab designCrosstab)
 	{
 		if(crosstab.getCellWidth() != null)
@@ -2637,13 +1914,6 @@ public class TemplateTransform
 		return maxWidth;
 	}
 	
-	/**
-	 * <p>getCrosstabCellHeight.</p>
-	 *
-	 * @param crosstab       a {@link software.xdev.dynamicreports.report.definition.crosstab.DRICrosstab} object.
-	 * @param designCrosstab a {@link software.xdev.dynamicreports.design.base.crosstab.DRDesignCrosstab} object.
-	 * @return a int.
-	 */
 	public int getCrosstabCellHeight(final DRICrosstab crosstab, final DRDesignCrosstab designCrosstab)
 	{
 		if(crosstab.getCellHeight() != null)
@@ -2673,23 +1943,11 @@ public class TemplateTransform
 		return maxHeight;
 	}
 	
-	/**
-	 * <p>getCrosstabWhenNoDataCellHeight.</p>
-	 *
-	 * @param whenNoDataCell a {@link software.xdev.dynamicreports.design.base.crosstab.DRDesignCrosstabCellContent} object.
-	 * @return a int.
-	 */
 	public int getCrosstabWhenNoDataCellHeight(final DRDesignCrosstabCellContent whenNoDataCell)
 	{
 		return this.detectHeight(whenNoDataCell.getList());
 	}
 	
-	/**
-	 * <p>getCrosstabOddRowStyle.</p>
-	 *
-	 * @param crosstab a {@link software.xdev.dynamicreports.report.definition.crosstab.DRICrosstab} object.
-	 * @return a {@link software.xdev.dynamicreports.report.definition.style.DRISimpleStyle} object.
-	 */
 	protected DRISimpleStyle getCrosstabOddRowStyle(final DRICrosstab crosstab)
 	{
 		if(this.isCrosstabHighlightOddRows(crosstab))
@@ -2707,12 +1965,6 @@ public class TemplateTransform
 		return null;
 	}
 	
-	/**
-	 * <p>getCrosstabEvenRowStyle.</p>
-	 *
-	 * @param crosstab a {@link software.xdev.dynamicreports.report.definition.crosstab.DRICrosstab} object.
-	 * @return a {@link software.xdev.dynamicreports.report.definition.style.DRISimpleStyle} object.
-	 */
 	protected DRISimpleStyle getCrosstabEvenRowStyle(final DRICrosstab crosstab)
 	{
 		if(this.isCrosstabHighlightEvenRows(crosstab))
@@ -2756,12 +2008,6 @@ public class TemplateTransform
 		return Defaults.getDefaults().isCrosstabHighlightEvenRows();
 	}
 	
-	/**
-	 * <p>getCrosstabGroupStyle.</p>
-	 *
-	 * @param crosstab a {@link software.xdev.dynamicreports.report.definition.crosstab.DRICrosstab} object.
-	 * @return a {@link software.xdev.dynamicreports.report.definition.style.DRIReportStyle} object.
-	 */
 	protected DRIReportStyle getCrosstabGroupStyle(final DRICrosstab crosstab)
 	{
 		if(crosstab.getGroupStyle() != null)
@@ -2779,12 +2025,6 @@ public class TemplateTransform
 		return this.getTextStyle();
 	}
 	
-	/**
-	 * <p>getCrosstabGroupTotalStyle.</p>
-	 *
-	 * @param crosstab a {@link software.xdev.dynamicreports.report.definition.crosstab.DRICrosstab} object.
-	 * @return a {@link software.xdev.dynamicreports.report.definition.style.DRIReportStyle} object.
-	 */
 	protected DRIReportStyle getCrosstabGroupTotalStyle(final DRICrosstab crosstab)
 	{
 		if(crosstab.getGroupTotalStyle() != null)
@@ -2802,12 +2042,6 @@ public class TemplateTransform
 		return this.getTextStyle();
 	}
 	
-	/**
-	 * <p>getCrosstabGrandTotalStyle.</p>
-	 *
-	 * @param crosstab a {@link software.xdev.dynamicreports.report.definition.crosstab.DRICrosstab} object.
-	 * @return a {@link software.xdev.dynamicreports.report.definition.style.DRIReportStyle} object.
-	 */
 	protected DRIReportStyle getCrosstabGrandTotalStyle(final DRICrosstab crosstab)
 	{
 		if(crosstab.getGrandTotalStyle() != null)
@@ -2825,12 +2059,6 @@ public class TemplateTransform
 		return this.getTextStyle();
 	}
 	
-	/**
-	 * <p>getCrosstabCellStyle.</p>
-	 *
-	 * @param crosstab a {@link software.xdev.dynamicreports.report.definition.crosstab.DRICrosstab} object.
-	 * @return a {@link software.xdev.dynamicreports.report.definition.style.DRIReportStyle} object.
-	 */
 	protected DRIReportStyle getCrosstabCellStyle(final DRICrosstab crosstab)
 	{
 		if(crosstab.getCellStyle() != null)
@@ -2848,13 +2076,6 @@ public class TemplateTransform
 		return this.getTextStyle();
 	}
 	
-	/**
-	 * <p>getCrosstabMeasureTitleStyle.</p>
-	 *
-	 * @param crosstab a {@link software.xdev.dynamicreports.report.definition.crosstab.DRICrosstab} object.
-	 * @param measure  a {@link software.xdev.dynamicreports.report.definition.crosstab.DRICrosstabMeasure} object.
-	 * @return a {@link software.xdev.dynamicreports.report.definition.style.DRIReportStyle} object.
-	 */
 	public DRIReportStyle getCrosstabMeasureTitleStyle(final DRICrosstab crosstab, final DRICrosstabMeasure<?> measure)
 	{
 		if(measure.getTitleStyle() != null)
@@ -2872,12 +2093,6 @@ public class TemplateTransform
 		return Defaults.getDefaults().getCrosstabMeasureTitleStyle();
 	}
 	
-	/**
-	 * <p>getCrosstabPercentageType.</p>
-	 *
-	 * @param variable a {@link software.xdev.dynamicreports.report.definition.crosstab.DRICrosstabVariable} object.
-	 * @return a {@link software.xdev.dynamicreports.report.constant.CrosstabPercentageType} object.
-	 */
 	protected CrosstabPercentageType getCrosstabPercentageType(final DRICrosstabVariable<?> variable)
 	{
 		if(variable.getPercentageType() != null)
@@ -2887,12 +2102,6 @@ public class TemplateTransform
 		return Defaults.getDefaults().getCrosstabPercentageType();
 	}
 	
-	/**
-	 * <p>getBooleanComponentType.</p>
-	 *
-	 * @param booleanField a {@link software.xdev.dynamicreports.report.definition.component.DRIBooleanField} object.
-	 * @return a {@link software.xdev.dynamicreports.report.constant.BooleanComponentType} object.
-	 */
 	public BooleanComponentType getBooleanComponentType(final DRIBooleanField booleanField)
 	{
 		if(booleanField.getComponentType() != null)
@@ -2906,12 +2115,6 @@ public class TemplateTransform
 		return Defaults.getDefaults().getBooleanComponentType();
 	}
 	
-	/**
-	 * <p>getBooleanEmptyWhenNullValue.</p>
-	 *
-	 * @param booleanField a {@link software.xdev.dynamicreports.report.definition.component.DRIBooleanField} object.
-	 * @return a boolean.
-	 */
 	public boolean getBooleanEmptyWhenNullValue(final DRIBooleanField booleanField)
 	{
 		if(booleanField.getEmptyWhenNullValue() != null)
@@ -2925,12 +2128,6 @@ public class TemplateTransform
 		return Defaults.getDefaults().isBooleanEmptyWhenNullValue();
 	}
 	
-	/**
-	 * <p>getBooleanImageWidth.</p>
-	 *
-	 * @param booleanField a {@link software.xdev.dynamicreports.report.definition.component.DRIBooleanField} object.
-	 * @return a int.
-	 */
 	public int getBooleanImageWidth(final DRIBooleanField booleanField)
 	{
 		if(booleanField.getImageWidth() != null)
@@ -2944,12 +2141,6 @@ public class TemplateTransform
 		return Defaults.getDefaults().getBooleanImageWidth();
 	}
 	
-	/**
-	 * <p>getBooleanImageHeight.</p>
-	 *
-	 * @param booleanField a {@link software.xdev.dynamicreports.report.definition.component.DRIBooleanField} object.
-	 * @return a int.
-	 */
 	public int getBooleanImageHeight(final DRIBooleanField booleanField)
 	{
 		if(booleanField.getImageHeight() != null)
@@ -2963,13 +2154,6 @@ public class TemplateTransform
 		return Defaults.getDefaults().getBooleanImageHeight();
 	}
 	
-	/**
-	 * <p>getBooleanHorizontalImageAlignment.</p>
-	 *
-	 * @param booleanField a {@link software.xdev.dynamicreports.report.definition.component.DRIBooleanField} object.
-	 * @param style        a {@link software.xdev.dynamicreports.design.base.style.DRDesignStyle} object.
-	 * @return a {@link software.xdev.dynamicreports.report.constant.HorizontalImageAlignment} object.
-	 */
 	protected HorizontalImageAlignment getBooleanHorizontalImageAlignment(
 		final DRIBooleanField booleanField,
 		final DRDesignStyle style)
@@ -2980,17 +2164,11 @@ public class TemplateTransform
 		}
 		if(StyleResolver.getHorizontalImageAlignment(style) != null)
 		{
-			return null;// StyleResolver.getHorizontalAlignment(style);
+			return null; // StyleResolver.getHorizontalAlignment(style);
 		}
 		return Defaults.getDefaults().getBooleanHorizontalImageAlignment();
 	}
 	
-	/**
-	 * <p>getBooleanColumnStyle.</p>
-	 *
-	 * @param column a {@link software.xdev.dynamicreports.report.definition.column.DRIBooleanColumn} object.
-	 * @return a {@link software.xdev.dynamicreports.report.definition.style.DRIReportStyle} object.
-	 */
 	public DRIReportStyle getBooleanColumnStyle(final DRIBooleanColumn column)
 	{
 		if(column.getComponent().getStyle() != null)
@@ -3004,11 +2182,6 @@ public class TemplateTransform
 		return Defaults.getDefaults().getBooleanColumnStyle();
 	}
 	
-	/**
-	 * <p>getTemplateStyles.</p>
-	 *
-	 * @return a {@link java.util.Map} object.
-	 */
 	public Map<String, DRIStyle> getTemplateStyles()
 	{
 		final Map<String, DRIStyle> templateStyles = new HashMap<>();
@@ -3025,47 +2198,23 @@ public class TemplateTransform
 	
 	// split
 	
-	/**
-	 * <p>getTitleSplitType.</p>
-	 *
-	 * @param band a {@link software.xdev.dynamicreports.report.definition.DRIBand} object.
-	 * @return a {@link software.xdev.dynamicreports.report.constant.SplitType} object.
-	 */
 	protected SplitType getTitleSplitType(final DRIBand band)
 	{
 		return this.getSplitType(band, this.template.getTitleSplitType(), Defaults.getDefaults().getTitleSplitType());
 	}
 	
-	/**
-	 * <p>getPageHeaderSplitType.</p>
-	 *
-	 * @param band a {@link software.xdev.dynamicreports.report.definition.DRIBand} object.
-	 * @return a {@link software.xdev.dynamicreports.report.constant.SplitType} object.
-	 */
 	protected SplitType getPageHeaderSplitType(final DRIBand band)
 	{
 		return this.getSplitType(band,
 			this.template.getPageHeaderSplitType(), Defaults.getDefaults().getPageHeaderSplitType());
 	}
 	
-	/**
-	 * <p>getPageFooterSplitType.</p>
-	 *
-	 * @param band a {@link software.xdev.dynamicreports.report.definition.DRIBand} object.
-	 * @return a {@link software.xdev.dynamicreports.report.constant.SplitType} object.
-	 */
 	protected SplitType getPageFooterSplitType(final DRIBand band)
 	{
 		return this.getSplitType(band,
 			this.template.getPageFooterSplitType(), Defaults.getDefaults().getPageFooterSplitType());
 	}
 	
-	/**
-	 * <p>getColumnHeaderSplitType.</p>
-	 *
-	 * @param band a {@link software.xdev.dynamicreports.report.definition.DRIBand} object.
-	 * @return a {@link software.xdev.dynamicreports.report.constant.SplitType} object.
-	 */
 	protected SplitType getColumnHeaderSplitType(final DRIBand band)
 	{
 		return this.getSplitType(
@@ -3074,12 +2223,6 @@ public class TemplateTransform
 			Defaults.getDefaults().getColumnHeaderSplitType());
 	}
 	
-	/**
-	 * <p>getColumnFooterSplitType.</p>
-	 *
-	 * @param band a {@link software.xdev.dynamicreports.report.definition.DRIBand} object.
-	 * @return a {@link software.xdev.dynamicreports.report.constant.SplitType} object.
-	 */
 	protected SplitType getColumnFooterSplitType(final DRIBand band)
 	{
 		return this.getSplitType(
@@ -3088,36 +2231,18 @@ public class TemplateTransform
 			Defaults.getDefaults().getColumnFooterSplitType());
 	}
 	
-	/**
-	 * <p>getGroupHeaderSplitType.</p>
-	 *
-	 * @param band a {@link software.xdev.dynamicreports.report.definition.DRIBand} object.
-	 * @return a {@link software.xdev.dynamicreports.report.constant.SplitType} object.
-	 */
 	protected SplitType getGroupHeaderSplitType(final DRIBand band)
 	{
 		return this.getSplitType(band, this.template.getGroupHeaderSplitType(),
-            Defaults.getDefaults().getGroupHeaderSplitType());
+			Defaults.getDefaults().getGroupHeaderSplitType());
 	}
 	
-	/**
-	 * <p>getGroupFooterSplitType.</p>
-	 *
-	 * @param band a {@link software.xdev.dynamicreports.report.definition.DRIBand} object.
-	 * @return a {@link software.xdev.dynamicreports.report.constant.SplitType} object.
-	 */
 	protected SplitType getGroupFooterSplitType(final DRIBand band)
 	{
 		return this.getSplitType(band, this.template.getGroupFooterSplitType(),
-		 Defaults.getDefaults().getGroupFooterSplitType());
+			Defaults.getDefaults().getGroupFooterSplitType());
 	}
 	
-	/**
-	 * <p>getDetailHeaderSplitType.</p>
-	 *
-	 * @param band a {@link software.xdev.dynamicreports.report.definition.DRIBand} object.
-	 * @return a {@link software.xdev.dynamicreports.report.constant.SplitType} object.
-	 */
 	protected SplitType getDetailHeaderSplitType(final DRIBand band)
 	{
 		return this.getSplitType(
@@ -3126,23 +2251,12 @@ public class TemplateTransform
 			Defaults.getDefaults().getDetailHeaderSplitType());
 	}
 	
-	/**
-	 * <p>getDetailSplitType.</p>
-	 *
-	 * @param band a {@link software.xdev.dynamicreports.report.definition.DRIBand} object.
-	 * @return a {@link software.xdev.dynamicreports.report.constant.SplitType} object.
-	 */
 	protected SplitType getDetailSplitType(final DRIBand band)
 	{
-		return this.getSplitType(band, this.template.getDetailSplitType(), Defaults.getDefaults().getDetailSplitType());
+		return this.getSplitType(band, this.template.getDetailSplitType(),
+			Defaults.getDefaults().getDetailSplitType());
 	}
 	
-	/**
-	 * <p>getDetailFooterSplitType.</p>
-	 *
-	 * @param band a {@link software.xdev.dynamicreports.report.definition.DRIBand} object.
-	 * @return a {@link software.xdev.dynamicreports.report.constant.SplitType} object.
-	 */
 	protected SplitType getDetailFooterSplitType(final DRIBand band)
 	{
 		return this.getSplitType(
@@ -3151,12 +2265,6 @@ public class TemplateTransform
 			Defaults.getDefaults().getDetailFooterSplitType());
 	}
 	
-	/**
-	 * <p>getLastPageFooterSplitType.</p>
-	 *
-	 * @param band a {@link software.xdev.dynamicreports.report.definition.DRIBand} object.
-	 * @return a {@link software.xdev.dynamicreports.report.constant.SplitType} object.
-	 */
 	protected SplitType getLastPageFooterSplitType(final DRIBand band)
 	{
 		return this.getSplitType(
@@ -3165,34 +2273,20 @@ public class TemplateTransform
 			Defaults.getDefaults().getLastPageFooterSplitType());
 	}
 	
-	/**
-	 * <p>getSummarySplitType.</p>
-	 *
-	 * @param band a {@link software.xdev.dynamicreports.report.definition.DRIBand} object.
-	 * @return a {@link software.xdev.dynamicreports.report.constant.SplitType} object.
-	 */
 	protected SplitType getSummarySplitType(final DRIBand band)
 	{
-		return this.getSplitType(band, this.template.getSummarySplitType(), Defaults.getDefaults().getSummarySplitType());
+		return this.getSplitType(
+			band,
+			this.template.getSummarySplitType(),
+			Defaults.getDefaults().getSummarySplitType());
 	}
 	
-	/**
-	 * <p>getNoDataSplitType.</p>
-	 *
-	 * @param band a {@link software.xdev.dynamicreports.report.definition.DRIBand} object.
-	 * @return a {@link software.xdev.dynamicreports.report.constant.SplitType} object.
-	 */
 	protected SplitType getNoDataSplitType(final DRIBand band)
 	{
-		return this.getSplitType(band, this.template.getNoDataSplitType(), Defaults.getDefaults().getNoDataSplitType());
+		return this.getSplitType(band, this.template.getNoDataSplitType(),
+			Defaults.getDefaults().getNoDataSplitType());
 	}
 	
-	/**
-	 * <p>getBackgroundSplitType.</p>
-	 *
-	 * @param band a {@link software.xdev.dynamicreports.report.definition.DRIBand} object.
-	 * @return a {@link software.xdev.dynamicreports.report.constant.SplitType} object.
-	 */
 	protected SplitType getBackgroundSplitType(final DRIBand band)
 	{
 		return this.getSplitType(band,
@@ -3222,155 +2316,71 @@ public class TemplateTransform
 	
 	// band style
 	
-	/**
-	 * <p>getTitleStyle.</p>
-	 *
-	 * @param band a {@link software.xdev.dynamicreports.report.definition.DRIBand} object.
-	 * @return a {@link software.xdev.dynamicreports.report.definition.style.DRIReportStyle} object.
-	 */
 	protected DRIReportStyle getTitleStyle(final DRIBand band)
 	{
 		return this.getBandStyle(band, this.template.getTitleStyle());
 	}
 	
-	/**
-	 * <p>getPageHeaderStyle.</p>
-	 *
-	 * @param band a {@link software.xdev.dynamicreports.report.definition.DRIBand} object.
-	 * @return a {@link software.xdev.dynamicreports.report.definition.style.DRIReportStyle} object.
-	 */
 	protected DRIReportStyle getPageHeaderStyle(final DRIBand band)
 	{
 		return this.getBandStyle(band, this.template.getPageHeaderStyle());
 	}
 	
-	/**
-	 * <p>getPageFooterStyle.</p>
-	 *
-	 * @param band a {@link software.xdev.dynamicreports.report.definition.DRIBand} object.
-	 * @return a {@link software.xdev.dynamicreports.report.definition.style.DRIReportStyle} object.
-	 */
 	protected DRIReportStyle getPageFooterStyle(final DRIBand band)
 	{
 		return this.getBandStyle(band, this.template.getPageFooterStyle());
 	}
 	
-	/**
-	 * <p>getColumnHeaderStyle.</p>
-	 *
-	 * @param band a {@link software.xdev.dynamicreports.report.definition.DRIBand} object.
-	 * @return a {@link software.xdev.dynamicreports.report.definition.style.DRIReportStyle} object.
-	 */
 	protected DRIReportStyle getColumnHeaderStyle(final DRIBand band)
 	{
 		return this.getBandStyle(band, this.template.getColumnHeaderStyle());
 	}
 	
-	/**
-	 * <p>getColumnFooterStyle.</p>
-	 *
-	 * @param band a {@link software.xdev.dynamicreports.report.definition.DRIBand} object.
-	 * @return a {@link software.xdev.dynamicreports.report.definition.style.DRIReportStyle} object.
-	 */
 	protected DRIReportStyle getColumnFooterStyle(final DRIBand band)
 	{
 		return this.getBandStyle(band, this.template.getColumnFooterStyle());
 	}
 	
-	/**
-	 * <p>getGroupHeaderStyle.</p>
-	 *
-	 * @param band a {@link software.xdev.dynamicreports.report.definition.DRIBand} object.
-	 * @return a {@link software.xdev.dynamicreports.report.definition.style.DRIReportStyle} object.
-	 */
 	protected DRIReportStyle getGroupHeaderStyle(final DRIBand band)
 	{
 		return this.getBandStyle(band, this.template.getGroupHeaderStyle());
 	}
 	
-	/**
-	 * <p>getGroupFooterStyle.</p>
-	 *
-	 * @param band a {@link software.xdev.dynamicreports.report.definition.DRIBand} object.
-	 * @return a {@link software.xdev.dynamicreports.report.definition.style.DRIReportStyle} object.
-	 */
 	protected DRIReportStyle getGroupFooterStyle(final DRIBand band)
 	{
 		return this.getBandStyle(band, this.template.getGroupFooterStyle());
 	}
 	
-	/**
-	 * <p>getDetailHeaderStyle.</p>
-	 *
-	 * @param band a {@link software.xdev.dynamicreports.report.definition.DRIBand} object.
-	 * @return a {@link software.xdev.dynamicreports.report.definition.style.DRIReportStyle} object.
-	 */
 	protected DRIReportStyle getDetailHeaderStyle(final DRIBand band)
 	{
 		return this.getBandStyle(band, this.template.getDetailHeaderStyle());
 	}
 	
-	/**
-	 * <p>getDetailStyle.</p>
-	 *
-	 * @param band a {@link software.xdev.dynamicreports.report.definition.DRIBand} object.
-	 * @return a {@link software.xdev.dynamicreports.report.definition.style.DRIReportStyle} object.
-	 */
 	protected DRIReportStyle getDetailStyle(final DRIBand band)
 	{
 		return this.getBandStyle(band, this.template.getDetailStyle());
 	}
 	
-	/**
-	 * <p>getDetailFooterStyle.</p>
-	 *
-	 * @param band a {@link software.xdev.dynamicreports.report.definition.DRIBand} object.
-	 * @return a {@link software.xdev.dynamicreports.report.definition.style.DRIReportStyle} object.
-	 */
 	protected DRIReportStyle getDetailFooterStyle(final DRIBand band)
 	{
 		return this.getBandStyle(band, this.template.getDetailFooterStyle());
 	}
 	
-	/**
-	 * <p>getLastPageFooterStyle.</p>
-	 *
-	 * @param band a {@link software.xdev.dynamicreports.report.definition.DRIBand} object.
-	 * @return a {@link software.xdev.dynamicreports.report.definition.style.DRIReportStyle} object.
-	 */
 	protected DRIReportStyle getLastPageFooterStyle(final DRIBand band)
 	{
 		return this.getBandStyle(band, this.template.getLastPageFooterStyle());
 	}
 	
-	/**
-	 * <p>getSummaryStyle.</p>
-	 *
-	 * @param band a {@link software.xdev.dynamicreports.report.definition.DRIBand} object.
-	 * @return a {@link software.xdev.dynamicreports.report.definition.style.DRIReportStyle} object.
-	 */
 	protected DRIReportStyle getSummaryStyle(final DRIBand band)
 	{
 		return this.getBandStyle(band, this.template.getSummaryStyle());
 	}
 	
-	/**
-	 * <p>getNoDataStyle.</p>
-	 *
-	 * @param band a {@link software.xdev.dynamicreports.report.definition.DRIBand} object.
-	 * @return a {@link software.xdev.dynamicreports.report.definition.style.DRIReportStyle} object.
-	 */
 	protected DRIReportStyle getNoDataStyle(final DRIBand band)
 	{
 		return this.getBandStyle(band, this.template.getNoDataStyle());
 	}
 	
-	/**
-	 * <p>getBackgroundStyle.</p>
-	 *
-	 * @param band a {@link software.xdev.dynamicreports.report.definition.DRIBand} object.
-	 * @return a {@link software.xdev.dynamicreports.report.definition.style.DRIReportStyle} object.
-	 */
 	protected DRIReportStyle getBackgroundStyle(final DRIBand band)
 	{
 		return this.getBandStyle(band, this.template.getBackgroundStyle());
@@ -3391,155 +2401,71 @@ public class TemplateTransform
 	
 	// band background component
 	
-	/**
-	 * <p>getTitleBackgroundComponent.</p>
-	 *
-	 * @param band a {@link software.xdev.dynamicreports.report.definition.DRIBand} object.
-	 * @return a {@link software.xdev.dynamicreports.report.definition.component.DRIComponent} object.
-	 */
 	protected DRIComponent getTitleBackgroundComponent(final DRIBand band)
 	{
 		return this.getBandBackgroundComponent(band, this.template.getTitleBackgroundComponent());
 	}
 	
-	/**
-	 * <p>getPageHeaderBackgroundComponent.</p>
-	 *
-	 * @param band a {@link software.xdev.dynamicreports.report.definition.DRIBand} object.
-	 * @return a {@link software.xdev.dynamicreports.report.definition.component.DRIComponent} object.
-	 */
 	protected DRIComponent getPageHeaderBackgroundComponent(final DRIBand band)
 	{
 		return this.getBandBackgroundComponent(band, this.template.getPageHeaderBackgroundComponent());
 	}
 	
-	/**
-	 * <p>getPageFooterBackgroundComponent.</p>
-	 *
-	 * @param band a {@link software.xdev.dynamicreports.report.definition.DRIBand} object.
-	 * @return a {@link software.xdev.dynamicreports.report.definition.component.DRIComponent} object.
-	 */
 	protected DRIComponent getPageFooterBackgroundComponent(final DRIBand band)
 	{
 		return this.getBandBackgroundComponent(band, this.template.getPageFooterBackgroundComponent());
 	}
 	
-	/**
-	 * <p>getColumnHeaderBackgroundComponent.</p>
-	 *
-	 * @param band a {@link software.xdev.dynamicreports.report.definition.DRIBand} object.
-	 * @return a {@link software.xdev.dynamicreports.report.definition.component.DRIComponent} object.
-	 */
 	protected DRIComponent getColumnHeaderBackgroundComponent(final DRIBand band)
 	{
 		return this.getBandBackgroundComponent(band, this.template.getColumnHeaderBackgroundComponent());
 	}
 	
-	/**
-	 * <p>getColumnFooterBackgroundComponent.</p>
-	 *
-	 * @param band a {@link software.xdev.dynamicreports.report.definition.DRIBand} object.
-	 * @return a {@link software.xdev.dynamicreports.report.definition.component.DRIComponent} object.
-	 */
 	protected DRIComponent getColumnFooterBackgroundComponent(final DRIBand band)
 	{
 		return this.getBandBackgroundComponent(band, this.template.getColumnFooterBackgroundComponent());
 	}
 	
-	/**
-	 * <p>getGroupHeaderBackgroundComponent.</p>
-	 *
-	 * @param band a {@link software.xdev.dynamicreports.report.definition.DRIBand} object.
-	 * @return a {@link software.xdev.dynamicreports.report.definition.component.DRIComponent} object.
-	 */
 	protected DRIComponent getGroupHeaderBackgroundComponent(final DRIBand band)
 	{
 		return this.getBandBackgroundComponent(band, this.template.getGroupHeaderBackgroundComponent());
 	}
 	
-	/**
-	 * <p>getGroupFooterBackgroundComponent.</p>
-	 *
-	 * @param band a {@link software.xdev.dynamicreports.report.definition.DRIBand} object.
-	 * @return a {@link software.xdev.dynamicreports.report.definition.component.DRIComponent} object.
-	 */
 	protected DRIComponent getGroupFooterBackgroundComponent(final DRIBand band)
 	{
 		return this.getBandBackgroundComponent(band, this.template.getGroupFooterBackgroundComponent());
 	}
 	
-	/**
-	 * <p>getDetailHeaderBackgroundComponent.</p>
-	 *
-	 * @param band a {@link software.xdev.dynamicreports.report.definition.DRIBand} object.
-	 * @return a {@link software.xdev.dynamicreports.report.definition.component.DRIComponent} object.
-	 */
 	protected DRIComponent getDetailHeaderBackgroundComponent(final DRIBand band)
 	{
 		return this.getBandBackgroundComponent(band, this.template.getDetailHeaderBackgroundComponent());
 	}
 	
-	/**
-	 * <p>getDetailBackgroundComponent.</p>
-	 *
-	 * @param band a {@link software.xdev.dynamicreports.report.definition.DRIBand} object.
-	 * @return a {@link software.xdev.dynamicreports.report.definition.component.DRIComponent} object.
-	 */
 	protected DRIComponent getDetailBackgroundComponent(final DRIBand band)
 	{
 		return this.getBandBackgroundComponent(band, this.template.getDetailBackgroundComponent());
 	}
 	
-	/**
-	 * <p>getDetailFooterBackgroundComponent.</p>
-	 *
-	 * @param band a {@link software.xdev.dynamicreports.report.definition.DRIBand} object.
-	 * @return a {@link software.xdev.dynamicreports.report.definition.component.DRIComponent} object.
-	 */
 	protected DRIComponent getDetailFooterBackgroundComponent(final DRIBand band)
 	{
 		return this.getBandBackgroundComponent(band, this.template.getDetailFooterBackgroundComponent());
 	}
 	
-	/**
-	 * <p>getLastPageFooterBackgroundComponent.</p>
-	 *
-	 * @param band a {@link software.xdev.dynamicreports.report.definition.DRIBand} object.
-	 * @return a {@link software.xdev.dynamicreports.report.definition.component.DRIComponent} object.
-	 */
 	protected DRIComponent getLastPageFooterBackgroundComponent(final DRIBand band)
 	{
 		return this.getBandBackgroundComponent(band, this.template.getLastPageFooterBackgroundComponent());
 	}
 	
-	/**
-	 * <p>getSummaryBackgroundComponent.</p>
-	 *
-	 * @param band a {@link software.xdev.dynamicreports.report.definition.DRIBand} object.
-	 * @return a {@link software.xdev.dynamicreports.report.definition.component.DRIComponent} object.
-	 */
 	protected DRIComponent getSummaryBackgroundComponent(final DRIBand band)
 	{
 		return this.getBandBackgroundComponent(band, this.template.getSummaryBackgroundComponent());
 	}
 	
-	/**
-	 * <p>getNoDataBackgroundComponent.</p>
-	 *
-	 * @param band a {@link software.xdev.dynamicreports.report.definition.DRIBand} object.
-	 * @return a {@link software.xdev.dynamicreports.report.definition.component.DRIComponent} object.
-	 */
 	protected DRIComponent getNoDataBackgroundComponent(final DRIBand band)
 	{
 		return this.getBandBackgroundComponent(band, this.template.getNoDataBackgroundComponent());
 	}
 	
-	/**
-	 * <p>getBackgroundBackgroundComponent.</p>
-	 *
-	 * @param band a {@link software.xdev.dynamicreports.report.definition.DRIBand} object.
-	 * @return a {@link software.xdev.dynamicreports.report.definition.component.DRIComponent} object.
-	 */
 	protected DRIComponent getBackgroundBackgroundComponent(final DRIBand band)
 	{
 		return this.getBandBackgroundComponent(band, this.template.getBackgroundBackgroundComponent());

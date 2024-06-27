@@ -19,46 +19,17 @@ package software.xdev.dynamicreports.design.definition.component;
 
 import software.xdev.dynamicreports.design.definition.expression.DRIDesignExpression;
 
-/**
- * <p>DRIDesignSubreport interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface DRIDesignSubreport extends DRIDesignComponent {
 
-    /**
-     * <p>getReportExpression.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.design.definition.expression.DRIDesignExpression} object.
-     */
-    public DRIDesignExpression getReportExpression();
-
-    /**
-     * <p>getParametersExpression.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.design.definition.expression.DRIDesignExpression} object.
-     */
-    public DRIDesignExpression getParametersExpression();
-
-    /**
-     * <p>getConnectionExpression.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.design.definition.expression.DRIDesignExpression} object.
-     */
-    public DRIDesignExpression getConnectionExpression();
-
-    /**
-     * <p>getDataSourceExpression.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.design.definition.expression.DRIDesignExpression} object.
-     */
-    public DRIDesignExpression getDataSourceExpression();
-
-    /**
-     * <p>getRunToBottom.</p>
-     *
-     * @return a {@link java.lang.Boolean} object.
-     */
-    public Boolean getRunToBottom();
+public interface DRIDesignSubreport extends DRIDesignComponent
+{
+	
+	public DRIDesignExpression getReportExpression();
+	
+	public DRIDesignExpression getParametersExpression();
+	
+	public DRIDesignExpression getConnectionExpression();
+	
+	public DRIDesignExpression getDataSourceExpression();
+	
+	public Boolean getRunToBottom();
 }

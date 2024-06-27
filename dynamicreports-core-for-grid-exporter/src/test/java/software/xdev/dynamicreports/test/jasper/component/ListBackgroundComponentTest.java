@@ -26,19 +26,16 @@ import java.util.List;
 
 import org.junit.jupiter.api.Assertions;
 
+import net.sf.jasperreports.engine.JRDataSource;
+import net.sf.jasperreports.engine.JRPrintElement;
 import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
 import software.xdev.dynamicreports.report.builder.ReportTemplateBuilder;
 import software.xdev.dynamicreports.report.builder.column.TextColumnBuilder;
 import software.xdev.dynamicreports.report.builder.component.RectangleBuilder;
 import software.xdev.dynamicreports.report.datasource.DRDataSource;
 import software.xdev.dynamicreports.test.jasper.AbstractJasperPositionTest;
-import net.sf.jasperreports.engine.JRDataSource;
-import net.sf.jasperreports.engine.JRPrintElement;
 
 
-/**
- * @author Ricardo Mariaca
- */
 class ListBackgroundComponentTest extends AbstractJasperPositionTest
 {
 	private TextColumnBuilder<String> column;
@@ -54,8 +51,10 @@ class ListBackgroundComponentTest extends AbstractJasperPositionTest
 			.setSummaryBackgroundComponent(background)
 			.title(cmp.text("title").setFixedHeight(300))
 			.columns(this.column = col.column("field1", String.class))
-			.summary(cmp.text("text\ntext"),
-				cmp.horizontalList(cmp.text("text"),
+			.summary(
+				cmp.text("text\ntext"),
+				cmp.horizontalList(
+					cmp.text("text"),
 					cmp.horizontalList(cmp.text("text"), cmp.text("text")).setBackgroundComponent(background),
 					cmp.text("text")),
 				cmp.verticalList(cmp.text("text"), cmp.text("text"))
@@ -67,28 +66,28 @@ class ListBackgroundComponentTest extends AbstractJasperPositionTest
 	public void test()
 	{
 		super.test();
-        
-        this.numberOfPagesTest(1);
-        
-        this.elementPositionTest("title.list1", 0, 10, 10, 575, 300);
-        this.elementPositionTest("title.list1.background", 0, 0, 0, 575, 300);
-        
-        this.columnDetailPositionTest(this.column, 0, 0, 0, 575, 16);
-        this.elementPositionTest("detail.list1", 0, 10, 310, 575, 16);
-        this.elementPositionTest("detail.list1.background", 0, 0, 0, 575, 16);
-        this.columnDetailPositionTest(this.column, 1, 0, 0, 575, 16);
-        this.elementPositionTest("detail.list1", 1, 10, 326, 575, 16);
-        this.elementPositionTest("detail.list1.background", 1, 0, 0, 575, 16);
-        
-        this.elementPositionTest("summary.list1", 0, 10, 342, 575, 84);
-        this.elementPositionTest("summary.list1.background", 0, 0, 0, 575, 84);
-        this.elementPositionTest("summary.list2", 0, 0, 26, 575, 16);
+		
+		this.numberOfPagesTest(1);
+		
+		this.elementPositionTest("title.list1", 0, 10, 10, 575, 300);
+		this.elementPositionTest("title.list1.background", 0, 0, 0, 575, 300);
+		
+		this.columnDetailPositionTest(this.column, 0, 0, 0, 575, 16);
+		this.elementPositionTest("detail.list1", 0, 10, 310, 575, 16);
+		this.elementPositionTest("detail.list1.background", 0, 0, 0, 575, 16);
+		this.columnDetailPositionTest(this.column, 1, 0, 0, 575, 16);
+		this.elementPositionTest("detail.list1", 1, 10, 326, 575, 16);
+		this.elementPositionTest("detail.list1.background", 1, 0, 0, 575, 16);
+		
+		this.elementPositionTest("summary.list1", 0, 10, 342, 575, 84);
+		this.elementPositionTest("summary.list1.background", 0, 0, 0, 575, 84);
+		this.elementPositionTest("summary.list2", 0, 0, 26, 575, 16);
 		final List<JRPrintElement> elements = this.findElement("summary.list2.background");
 		Assertions.assertTrue(elements.isEmpty());
-        this.elementPositionTest("summary.list3", 0, 143, 0, 288, 16);
-        this.elementPositionTest("summary.list3.background", 0, 0, 0, 288, 16);
-        this.elementPositionTest("summary.list4", 0, 0, 42, 575, 42);
-        this.elementPositionTest("summary.list4.background", 0, 0, 0, 565, 32);
+		this.elementPositionTest("summary.list3", 0, 143, 0, 288, 16);
+		this.elementPositionTest("summary.list3.background", 0, 0, 0, 288, 16);
+		this.elementPositionTest("summary.list4", 0, 0, 42, 575, 42);
+		this.elementPositionTest("summary.list4.background", 0, 0, 0, 565, 32);
 	}
 	
 	@Override

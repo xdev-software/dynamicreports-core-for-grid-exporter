@@ -17,12 +17,7 @@
  */
 package software.xdev.dynamicreports.report.constant;
 
-/**
- * <p>PercentageTotalType class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public enum PercentageTotalType {
-    REPORT, GROUP, FIRST_GROUP, LAST_GROUP
+public enum PercentageTotalType
+{
+	REPORT, GROUP, FIRST_GROUP, LAST_GROUP
 }

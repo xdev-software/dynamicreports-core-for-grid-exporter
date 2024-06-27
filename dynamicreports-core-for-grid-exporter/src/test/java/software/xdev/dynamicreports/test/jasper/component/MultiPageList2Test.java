@@ -17,62 +17,70 @@
  */
 package software.xdev.dynamicreports.test.jasper.component;
 
+import static software.xdev.dynamicreports.report.builder.DynamicReports.cmp;
+import static software.xdev.dynamicreports.report.builder.DynamicReports.col;
+
+import net.sf.jasperreports.engine.JRDataSource;
 import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
 import software.xdev.dynamicreports.report.builder.column.TextColumnBuilder;
 import software.xdev.dynamicreports.report.builder.component.MultiPageListBuilder;
 import software.xdev.dynamicreports.report.datasource.DRDataSource;
 import software.xdev.dynamicreports.test.jasper.AbstractJasperPositionTest;
-import net.sf.jasperreports.engine.JRDataSource;
 
-import static software.xdev.dynamicreports.report.builder.DynamicReports.cmp;
-import static software.xdev.dynamicreports.report.builder.DynamicReports.col;
 
-/**
- * @author Ricardo Mariaca
- */
-public class MultiPageList2Test extends AbstractJasperPositionTest {
-    private TextColumnBuilder<Integer> column1;
-
-    @Override
-    protected void configureReport(JasperReportBuilder rb) {
-        MultiPageListBuilder multiPageList1 = cmp.multiPageList();
-        for (int i = 0; i < 3; i++) {
-            MultiPageListBuilder multiPageList2 = cmp.multiPageList();
-            multiPageList1.add(multiPageList2);
-            for (int j = 0; j < 50; j++) {
-                multiPageList2.add(cmp.text("text"));
-            }
-        }
-        rb.title(multiPageList1).columns(column1 = col.column("Column1", "field1", Integer.class));
-    }
-
-    @Override
-    public void test() {
-        super.test();
-
-        numberOfPagesTest(3);
-
-        for (int i = 0; i < 51; i++) {
-            elementPositionTest("title.textField1", i, 10, 10 + i * 16, 575, 16);
-        }
-        for (int i = 0; i < 51; i++) {
-            elementPositionTest("title.textField1", 51 + i, 10, 10 + i * 16, 575, 16);
-        }
-        for (int i = 0; i < 48; i++) {
-            elementPositionTest("title.textField1", 102 + i, 10, 10 + i * 16, 575, 16);
-        }
-
-        columnTitlePositionTest(column1, 0, 10, 778, 575, 16);
-        columnDetailPositionTest(column1, 0, 10, 794, 575, 16);
-        columnDetailPositionTest(column1, 1, 10, 810, 575, 16);
-    }
-
-    @Override
-    protected JRDataSource createDataSource() {
-        DRDataSource dataSource = new DRDataSource("field1");
-        for (int i = 0; i < 2; i++) {
-            dataSource.add(i);
-        }
-        return dataSource;
-    }
+public class MultiPageList2Test extends AbstractJasperPositionTest
+{
+	private TextColumnBuilder<Integer> column1;
+	
+	@Override
+	protected void configureReport(final JasperReportBuilder rb)
+	{
+		final MultiPageListBuilder multiPageList1 = cmp.multiPageList();
+		for(int i = 0; i < 3; i++)
+		{
+			final MultiPageListBuilder multiPageList2 = cmp.multiPageList();
+			multiPageList1.add(multiPageList2);
+			for(int j = 0; j < 50; j++)
+			{
+				multiPageList2.add(cmp.text("text"));
+			}
+		}
+		rb.title(multiPageList1).columns(this.column1 = col.column("Column1", "field1", Integer.class));
+	}
+	
+	@Override
+	public void test()
+	{
+		super.test();
+		
+		this.numberOfPagesTest(3);
+		
+		for(int i = 0; i < 51; i++)
+		{
+			this.elementPositionTest("title.textField1", i, 10, 10 + i * 16, 575, 16);
+		}
+		for(int i = 0; i < 51; i++)
+		{
+			this.elementPositionTest("title.textField1", 51 + i, 10, 10 + i * 16, 575, 16);
+		}
+		for(int i = 0; i < 48; i++)
+		{
+			this.elementPositionTest("title.textField1", 102 + i, 10, 10 + i * 16, 575, 16);
+		}
+		
+		this.columnTitlePositionTest(this.column1, 0, 10, 778, 575, 16);
+		this.columnDetailPositionTest(this.column1, 0, 10, 794, 575, 16);
+		this.columnDetailPositionTest(this.column1, 1, 10, 810, 575, 16);
+	}
+	
+	@Override
+	protected JRDataSource createDataSource()
+	{
+		final DRDataSource dataSource = new DRDataSource("field1");
+		for(int i = 0; i < 2; i++)
+		{
+			dataSource.add(i);
+		}
+		return dataSource;
+	}
 }

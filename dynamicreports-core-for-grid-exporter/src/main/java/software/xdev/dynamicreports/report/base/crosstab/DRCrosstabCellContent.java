@@ -19,57 +19,41 @@ package software.xdev.dynamicreports.report.base.crosstab;
 
 import software.xdev.dynamicreports.report.base.component.DRComponent;
 import software.xdev.dynamicreports.report.base.component.DRList;
-import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.constant.ListType;
 import software.xdev.dynamicreports.report.definition.crosstab.DRICrosstabCellContent;
 import software.xdev.dynamicreports.report.definition.style.DRIReportStyle;
 
-/**
- * <p>DRCrosstabCellContent class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class DRCrosstabCellContent implements DRICrosstabCellContent {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    private DRList list;
-    private DRIReportStyle style;
+public class DRCrosstabCellContent implements DRICrosstabCellContent
+{
 
-    /**
-     * <p>Constructor for DRCrosstabCellContent.</p>
-     */
-    public DRCrosstabCellContent() {
-        this.list = new DRList(ListType.VERTICAL);
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRList getList() {
-        return list;
-    }
-
-    /**
-     * <p>addComponent.</p>
-     *
-     * @param component a {@link software.xdev.dynamicreports.report.base.component.DRComponent} object.
-     */
-    public void addComponent(DRComponent component) {
-        list.addComponent(component);
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRIReportStyle getStyle() {
-        return style;
-    }
-
-    /**
-     * <p>Setter for the field <code>style</code>.</p>
-     *
-     * @param style a {@link software.xdev.dynamicreports.report.definition.style.DRIReportStyle} object.
-     */
-    public void setStyle(DRIReportStyle style) {
-        this.style = style;
-    }
+	private final DRList list;
+	private DRIReportStyle style;
+	
+	public DRCrosstabCellContent()
+	{
+		this.list = new DRList(ListType.VERTICAL);
+	}
+	
+	@Override
+	public DRList getList()
+	{
+		return this.list;
+	}
+	
+	public void addComponent(final DRComponent component)
+	{
+		this.list.addComponent(component);
+	}
+	
+	@Override
+	public DRIReportStyle getStyle()
+	{
+		return this.style;
+	}
+	
+	public void setStyle(final DRIReportStyle style)
+	{
+		this.style = style;
+	}
 }

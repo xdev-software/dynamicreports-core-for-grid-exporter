@@ -21,12 +21,8 @@ import software.xdev.dynamicreports.report.definition.DRIValue;
 import software.xdev.dynamicreports.report.definition.component.DRIBooleanField;
 import software.xdev.dynamicreports.report.definition.expression.DRIExpression;
 
-/**
- * <p>DRIBooleanColumn interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface DRIBooleanColumn extends DRIExpression<Boolean>, DRIColumn<DRIBooleanField>, DRIValue<Boolean> {
+
+public interface DRIBooleanColumn extends DRIExpression<Boolean>, DRIColumn<DRIBooleanField>, DRIValue<Boolean>
+{
 
 }

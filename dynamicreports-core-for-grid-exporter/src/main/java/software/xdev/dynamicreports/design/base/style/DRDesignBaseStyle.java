@@ -17,8 +17,10 @@
  */
 package software.xdev.dynamicreports.design.base.style;
 
+import java.awt.Color;
+import java.util.Objects;
+
 import software.xdev.dynamicreports.design.definition.style.DRIDesignBaseStyle;
-import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.constant.HorizontalImageAlignment;
 import software.xdev.dynamicreports.report.constant.HorizontalTextAlignment;
 import software.xdev.dynamicreports.report.constant.ImageScale;
@@ -26,307 +28,253 @@ import software.xdev.dynamicreports.report.constant.Markup;
 import software.xdev.dynamicreports.report.constant.Rotation;
 import software.xdev.dynamicreports.report.constant.VerticalImageAlignment;
 import software.xdev.dynamicreports.report.constant.VerticalTextAlignment;
-import org.apache.commons.lang3.builder.EqualsBuilder;
 
-import java.awt.Color;
 
-/**
- * <p>Abstract DRDesignBaseStyle class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public abstract class DRDesignBaseStyle implements DRIDesignBaseStyle {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
+public abstract class DRDesignBaseStyle implements DRIDesignBaseStyle
+{
 
-    private Color foregroundColor;
-    private Color backgroundColor;
-    private Integer radius;
-    private ImageScale imageScale;
-    private HorizontalTextAlignment horizontalTextAlignment;
-    private VerticalTextAlignment verticalTextAlignment;
-    private HorizontalImageAlignment horizontalImageAlignment;
-    private VerticalImageAlignment verticalImageAlignment;
-    private DRDesignBorder border;
-    private DRDesignPadding padding;
-    private DRDesignFont font;
-    private Rotation rotation;
-    private String pattern;
-    private Markup markup;
-    private DRDesignParagraph paragraph;
-    private DRDesignPen linePen;
-
-    /** {@inheritDoc} */
-    @Override
-    public Color getForegroundColor() {
-        return foregroundColor;
-    }
-
-    /**
-     * <p>Setter for the field <code>foregroundColor</code>.</p>
-     *
-     * @param foregroundColor a {@link java.awt.Color} object.
-     */
-    public void setForegroundColor(Color foregroundColor) {
-        this.foregroundColor = foregroundColor;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Color getBackgroundColor() {
-        return backgroundColor;
-    }
-
-    /**
-     * <p>Setter for the field <code>backgroundColor</code>.</p>
-     *
-     * @param backgroundColor a {@link java.awt.Color} object.
-     */
-    public void setBackgroundColor(Color backgroundColor) {
-        this.backgroundColor = backgroundColor;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Integer getRadius() {
-        return radius;
-    }
-
-    /**
-     * <p>Setter for the field <code>radius</code>.</p>
-     *
-     * @param radius a {@link java.lang.Integer} object.
-     */
-    public void setRadius(Integer radius) {
-        this.radius = radius;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public ImageScale getImageScale() {
-        return imageScale;
-    }
-
-    /**
-     * <p>Setter for the field <code>imageScale</code>.</p>
-     *
-     * @param imageScale a {@link software.xdev.dynamicreports.report.constant.ImageScale} object.
-     */
-    public void setImageScale(ImageScale imageScale) {
-        this.imageScale = imageScale;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public HorizontalTextAlignment getHorizontalTextAlignment() {
-        return horizontalTextAlignment;
-    }
-
-    /**
-     * <p>Setter for the field <code>horizontalTextAlignment</code>.</p>
-     *
-     * @param horizontalTextAlignment a {@link software.xdev.dynamicreports.report.constant.HorizontalTextAlignment} object.
-     */
-    public void setHorizontalTextAlignment(HorizontalTextAlignment horizontalTextAlignment) {
-        this.horizontalTextAlignment = horizontalTextAlignment;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public VerticalTextAlignment getVerticalTextAlignment() {
-        return verticalTextAlignment;
-    }
-
-    /**
-     * <p>Setter for the field <code>verticalTextAlignment</code>.</p>
-     *
-     * @param verticalTextAlignment a {@link software.xdev.dynamicreports.report.constant.VerticalTextAlignment} object.
-     */
-    public void setVerticalTextAlignment(VerticalTextAlignment verticalTextAlignment) {
-        this.verticalTextAlignment = verticalTextAlignment;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public HorizontalImageAlignment getHorizontalImageAlignment() {
-        return horizontalImageAlignment;
-    }
-
-    /**
-     * <p>Setter for the field <code>horizontalImageAlignment</code>.</p>
-     *
-     * @param horizontalImageAlignment a {@link software.xdev.dynamicreports.report.constant.HorizontalImageAlignment} object.
-     */
-    public void setHorizontalImageAlignment(HorizontalImageAlignment horizontalImageAlignment) {
-        this.horizontalImageAlignment = horizontalImageAlignment;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public VerticalImageAlignment getVerticalImageAlignment() {
-        return verticalImageAlignment;
-    }
-
-    /**
-     * <p>Setter for the field <code>verticalImageAlignment</code>.</p>
-     *
-     * @param verticalImageAlignment a {@link software.xdev.dynamicreports.report.constant.VerticalImageAlignment} object.
-     */
-    public void setVerticalImageAlignment(VerticalImageAlignment verticalImageAlignment) {
-        this.verticalImageAlignment = verticalImageAlignment;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRDesignBorder getBorder() {
-        return border;
-    }
-
-    /**
-     * <p>Setter for the field <code>border</code>.</p>
-     *
-     * @param border a {@link software.xdev.dynamicreports.design.base.style.DRDesignBorder} object.
-     */
-    public void setBorder(DRDesignBorder border) {
-        this.border = border;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRDesignPadding getPadding() {
-        return padding;
-    }
-
-    /**
-     * <p>Setter for the field <code>padding</code>.</p>
-     *
-     * @param padding a {@link software.xdev.dynamicreports.design.base.style.DRDesignPadding} object.
-     */
-    public void setPadding(DRDesignPadding padding) {
-        this.padding = padding;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRDesignFont getFont() {
-        return font;
-    }
-
-    /**
-     * <p>Setter for the field <code>font</code>.</p>
-     *
-     * @param font a {@link software.xdev.dynamicreports.design.base.style.DRDesignFont} object.
-     */
-    public void setFont(DRDesignFont font) {
-        this.font = font;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Rotation getRotation() {
-        return rotation;
-    }
-
-    /**
-     * <p>Setter for the field <code>rotation</code>.</p>
-     *
-     * @param rotation a {@link software.xdev.dynamicreports.report.constant.Rotation} object.
-     */
-    public void setRotation(Rotation rotation) {
-        this.rotation = rotation;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public String getPattern() {
-        return pattern;
-    }
-
-    /**
-     * <p>Setter for the field <code>pattern</code>.</p>
-     *
-     * @param pattern a {@link java.lang.String} object.
-     */
-    public void setPattern(String pattern) {
-        this.pattern = pattern;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Markup getMarkup() {
-        return markup;
-    }
-
-    /**
-     * <p>Setter for the field <code>markup</code>.</p>
-     *
-     * @param markup a {@link software.xdev.dynamicreports.report.constant.Markup} object.
-     */
-    public void setMarkup(Markup markup) {
-        this.markup = markup;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRDesignParagraph getParagraph() {
-        return paragraph;
-    }
-
-    /**
-     * <p>Setter for the field <code>paragraph</code>.</p>
-     *
-     * @param paragraph a {@link software.xdev.dynamicreports.design.base.style.DRDesignParagraph} object.
-     */
-    public void setParagraph(DRDesignParagraph paragraph) {
-        this.paragraph = paragraph;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRDesignPen getLinePen() {
-        return linePen;
-    }
-
-    /**
-     * <p>Setter for the field <code>linePen</code>.</p>
-     *
-     * @param linePen a {@link software.xdev.dynamicreports.design.base.style.DRDesignPen} object.
-     */
-    public void setLinePen(DRDesignPen linePen) {
-        this.linePen = linePen;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (obj == this) {
-            return true;
-        }
-        if (obj.getClass() != getClass()) {
-            return false;
-        }
-
-        DRDesignBaseStyle o = (DRDesignBaseStyle) obj;
-        EqualsBuilder equalsBuilder = new EqualsBuilder().append(foregroundColor, o.foregroundColor)
-                                                         .append(backgroundColor, o.backgroundColor)
-                                                         .append(radius, o.radius)
-                                                         .append(imageScale, o.imageScale)
-                                                         .append(horizontalTextAlignment, o.horizontalTextAlignment)
-                                                         .append(verticalTextAlignment, o.verticalTextAlignment)
-                                                         .append(horizontalImageAlignment, o.horizontalImageAlignment)
-                                                         .append(verticalImageAlignment, o.verticalImageAlignment)
-                                                         .append(border, o.border)
-                                                         .append(padding, o.padding)
-                                                         .append(font, o.font)
-                                                         .append(rotation, o.rotation)
-                                                         .append(pattern, o.pattern)
-                                                         .append(markup, o.markup)
-                                                         .append(paragraph, o.paragraph)
-                                                         .append(linePen, o.linePen);
-        return equalsBuilder.isEquals();
-    }
-
+	private Color foregroundColor;
+	private Color backgroundColor;
+	private Integer radius;
+	private ImageScale imageScale;
+	private HorizontalTextAlignment horizontalTextAlignment;
+	private VerticalTextAlignment verticalTextAlignment;
+	private HorizontalImageAlignment horizontalImageAlignment;
+	private VerticalImageAlignment verticalImageAlignment;
+	private DRDesignBorder border;
+	private DRDesignPadding padding;
+	private DRDesignFont font;
+	private Rotation rotation;
+	private String pattern;
+	private Markup markup;
+	private DRDesignParagraph paragraph;
+	private DRDesignPen linePen;
+	
+	@Override
+	public Color getForegroundColor()
+	{
+		return this.foregroundColor;
+	}
+	
+	public void setForegroundColor(final Color foregroundColor)
+	{
+		this.foregroundColor = foregroundColor;
+	}
+	
+	@Override
+	public Color getBackgroundColor()
+	{
+		return this.backgroundColor;
+	}
+	
+	public void setBackgroundColor(final Color backgroundColor)
+	{
+		this.backgroundColor = backgroundColor;
+	}
+	
+	@Override
+	public Integer getRadius()
+	{
+		return this.radius;
+	}
+	
+	public void setRadius(final Integer radius)
+	{
+		this.radius = radius;
+	}
+	
+	@Override
+	public ImageScale getImageScale()
+	{
+		return this.imageScale;
+	}
+	
+	public void setImageScale(final ImageScale imageScale)
+	{
+		this.imageScale = imageScale;
+	}
+	
+	@Override
+	public HorizontalTextAlignment getHorizontalTextAlignment()
+	{
+		return this.horizontalTextAlignment;
+	}
+	
+	public void setHorizontalTextAlignment(final HorizontalTextAlignment horizontalTextAlignment)
+	{
+		this.horizontalTextAlignment = horizontalTextAlignment;
+	}
+	
+	@Override
+	public VerticalTextAlignment getVerticalTextAlignment()
+	{
+		return this.verticalTextAlignment;
+	}
+	
+	public void setVerticalTextAlignment(final VerticalTextAlignment verticalTextAlignment)
+	{
+		this.verticalTextAlignment = verticalTextAlignment;
+	}
+	
+	@Override
+	public HorizontalImageAlignment getHorizontalImageAlignment()
+	{
+		return this.horizontalImageAlignment;
+	}
+	
+	public void setHorizontalImageAlignment(final HorizontalImageAlignment horizontalImageAlignment)
+	{
+		this.horizontalImageAlignment = horizontalImageAlignment;
+	}
+	
+	@Override
+	public VerticalImageAlignment getVerticalImageAlignment()
+	{
+		return this.verticalImageAlignment;
+	}
+	
+	public void setVerticalImageAlignment(final VerticalImageAlignment verticalImageAlignment)
+	{
+		this.verticalImageAlignment = verticalImageAlignment;
+	}
+	
+	@Override
+	public DRDesignBorder getBorder()
+	{
+		return this.border;
+	}
+	
+	public void setBorder(final DRDesignBorder border)
+	{
+		this.border = border;
+	}
+	
+	@Override
+	public DRDesignPadding getPadding()
+	{
+		return this.padding;
+	}
+	
+	public void setPadding(final DRDesignPadding padding)
+	{
+		this.padding = padding;
+	}
+	
+	@Override
+	public DRDesignFont getFont()
+	{
+		return this.font;
+	}
+	
+	public void setFont(final DRDesignFont font)
+	{
+		this.font = font;
+	}
+	
+	@Override
+	public Rotation getRotation()
+	{
+		return this.rotation;
+	}
+	
+	public void setRotation(final Rotation rotation)
+	{
+		this.rotation = rotation;
+	}
+	
+	@Override
+	public String getPattern()
+	{
+		return this.pattern;
+	}
+	
+	public void setPattern(final String pattern)
+	{
+		this.pattern = pattern;
+	}
+	
+	@Override
+	public Markup getMarkup()
+	{
+		return this.markup;
+	}
+	
+	public void setMarkup(final Markup markup)
+	{
+		this.markup = markup;
+	}
+	
+	@Override
+	public DRDesignParagraph getParagraph()
+	{
+		return this.paragraph;
+	}
+	
+	public void setParagraph(final DRDesignParagraph paragraph)
+	{
+		this.paragraph = paragraph;
+	}
+	
+	@Override
+	public DRDesignPen getLinePen()
+	{
+		return this.linePen;
+	}
+	
+	public void setLinePen(final DRDesignPen linePen)
+	{
+		this.linePen = linePen;
+	}
+	
+	@Override
+	public boolean equals(final Object o)
+	{
+		if(this == o)
+		{
+			return true;
+		}
+		if(o == null || this.getClass() != o.getClass())
+		{
+			return false;
+		}
+		final DRDesignBaseStyle that = (DRDesignBaseStyle)o;
+		return Objects.equals(this.getForegroundColor(), that.getForegroundColor())
+			&& Objects.equals(this.getBackgroundColor(), that.getBackgroundColor())
+			&& Objects.equals(this.getRadius(), that.getRadius())
+			&& this.getImageScale() == that.getImageScale()
+			&& this.getHorizontalTextAlignment() == that.getHorizontalTextAlignment()
+			&& this.getVerticalTextAlignment() == that.getVerticalTextAlignment()
+			&& this.getHorizontalImageAlignment() == that.getHorizontalImageAlignment()
+			&& this.getVerticalImageAlignment() == that.getVerticalImageAlignment()
+			&& Objects.equals(this.getBorder(), that.getBorder())
+			&& Objects.equals(this.getPadding(), that.getPadding())
+			&& Objects.equals(this.getFont(), that.getFont())
+			&& this.getRotation() == that.getRotation()
+			&& Objects.equals(this.getPattern(), that.getPattern())
+			&& this.getMarkup() == that.getMarkup()
+			&& Objects.equals(this.getParagraph(), that.getParagraph())
+			&& Objects.equals(this.getLinePen(), that.getLinePen());
+	}
+	
+	@Override
+	public int hashCode()
+	{
+		return Objects.hash(
+			this.getForegroundColor(),
+			this.getBackgroundColor(),
+			this.getRadius(),
+			this.getImageScale(),
+			this.getHorizontalTextAlignment(),
+			this.getVerticalTextAlignment(),
+			this.getHorizontalImageAlignment(),
+			this.getVerticalImageAlignment(),
+			this.getBorder(),
+			this.getPadding(),
+			this.getFont(),
+			this.getRotation(),
+			this.getPattern(),
+			this.getMarkup(),
+			this.getParagraph(),
+			this.getLinePen());
+	}
 }

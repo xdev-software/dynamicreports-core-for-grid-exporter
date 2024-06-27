@@ -17,45 +17,21 @@
  */
 package software.xdev.dynamicreports.design.definition.crosstab;
 
+import java.io.Serializable;
+
 import software.xdev.dynamicreports.design.constant.ResetType;
 import software.xdev.dynamicreports.design.definition.DRIDesignDataset;
 import software.xdev.dynamicreports.design.definition.DRIDesignGroup;
 
-import java.io.Serializable;
 
-/**
- * <p>DRIDesignCrosstabDataset interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface DRIDesignCrosstabDataset extends Serializable {
-
-    /**
-     * <p>getSubDataset.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.design.definition.DRIDesignDataset} object.
-     */
-    public DRIDesignDataset getSubDataset();
-
-    /**
-     * <p>getDataPreSorted.</p>
-     *
-     * @return a {@link java.lang.Boolean} object.
-     */
-    public Boolean getDataPreSorted();
-
-    /**
-     * <p>getResetType.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.design.constant.ResetType} object.
-     */
-    public ResetType getResetType();
-
-    /**
-     * <p>getResetGroup.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.design.definition.DRIDesignGroup} object.
-     */
-    public DRIDesignGroup getResetGroup();
+public interface DRIDesignCrosstabDataset extends Serializable
+{
+	
+	public DRIDesignDataset getSubDataset();
+	
+	public Boolean getDataPreSorted();
+	
+	public ResetType getResetType();
+	
+	public DRIDesignGroup getResetGroup();
 }

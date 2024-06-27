@@ -98,20 +98,12 @@ import software.xdev.dynamicreports.report.constant.WhenNoDataType;
 import software.xdev.dynamicreports.report.constant.WhenResourceMissingType;
 
 
-/**
- * <p>ConstantTransform class.</p>
- *
- * @author Ricardo Mariaca
- */
-public class ConstantTransform
+public final class ConstantTransform
 {
+	private ConstantTransform()
+	{
+	}
 	
-	/**
-	 * <p>lineStyle.</p>
-	 *
-	 * @param lineStyle a {@link software.xdev.dynamicreports.report.constant.LineStyle} object.
-	 * @return a {@link net.sf.jasperreports.engine.type.LineStyleEnum} object.
-	 */
 	protected static LineStyleEnum lineStyle(final LineStyle lineStyle)
 	{
 		if(lineStyle == null)
@@ -134,12 +126,6 @@ public class ConstantTransform
 		}
 	}
 	
-	/**
-	 * <p>imageScale.</p>
-	 *
-	 * @param imageScale a {@link software.xdev.dynamicreports.report.constant.ImageScale} object.
-	 * @return a {@link net.sf.jasperreports.engine.type.ScaleImageEnum} object.
-	 */
 	@SuppressWarnings("deprecation")
 	protected static ScaleImageEnum imageScale(final ImageScale imageScale)
 	{
@@ -151,13 +137,10 @@ public class ConstantTransform
 		switch(imageScale)
 		{
 			case CLIP:
-			case NO_RESIZE:
 				return ScaleImageEnum.CLIP;
 			case FILL_FRAME:
-			case FILL:
 				return ScaleImageEnum.FILL_FRAME;
 			case RETAIN_SHAPE:
-			case FILL_PROPORTIONALLY:
 				return ScaleImageEnum.RETAIN_SHAPE;
 			case REAL_HEIGHT:
 				return ScaleImageEnum.REAL_HEIGHT;
@@ -168,12 +151,6 @@ public class ConstantTransform
 		}
 	}
 	
-	/**
-	 * <p>imageAnchorType.</p>
-	 *
-	 * @param imageAnchorType a {@link software.xdev.dynamicreports.report.constant.ImageAnchorType} object.
-	 * @return a {@link net.sf.jasperreports.engine.export.type.ImageAnchorTypeEnum} object.
-	 */
 	protected static ImageAnchorTypeEnum imageAnchorType(final ImageAnchorType imageAnchorType)
 	{
 		if(imageAnchorType == null)
@@ -194,13 +171,8 @@ public class ConstantTransform
 		}
 	}
 	
-	/**
-	 * <p>horizontalTextAlignment.</p>
-	 *
-	 * @param horizontalTextAlignment a {@link software.xdev.dynamicreports.report.constant.HorizontalTextAlignment} object.
-	 * @return a {@link net.sf.jasperreports.engine.type.HorizontalTextAlignEnum} object.
-	 */
-	protected static HorizontalTextAlignEnum horizontalTextAlignment(final HorizontalTextAlignment horizontalTextAlignment)
+	protected static HorizontalTextAlignEnum horizontalTextAlignment(
+		final HorizontalTextAlignment horizontalTextAlignment)
 	{
 		if(horizontalTextAlignment == null)
 		{
@@ -223,12 +195,6 @@ public class ConstantTransform
 		}
 	}
 	
-	/**
-	 * <p>verticalTextAlignment.</p>
-	 *
-	 * @param verticalTextAlignment a {@link software.xdev.dynamicreports.report.constant.VerticalTextAlignment} object.
-	 * @return a {@link net.sf.jasperreports.engine.type.VerticalTextAlignEnum} object.
-	 */
 	protected static VerticalTextAlignEnum verticalTextAlignment(final VerticalTextAlignment verticalTextAlignment)
 	{
 		if(verticalTextAlignment == null)
@@ -252,13 +218,8 @@ public class ConstantTransform
 		}
 	}
 	
-	/**
-	 * <p>horizontalImageAlignment.</p>
-	 *
-	 * @param horizontalImageAlignment a {@link software.xdev.dynamicreports.report.constant.HorizontalImageAlignment} object.
-	 * @return a {@link net.sf.jasperreports.engine.type.HorizontalImageAlignEnum} object.
-	 */
-	protected static HorizontalImageAlignEnum horizontalImageAlignment(final HorizontalImageAlignment horizontalImageAlignment)
+	protected static HorizontalImageAlignEnum horizontalImageAlignment(
+		final HorizontalImageAlignment horizontalImageAlignment)
 	{
 		if(horizontalImageAlignment == null)
 		{
@@ -279,12 +240,6 @@ public class ConstantTransform
 		}
 	}
 	
-	/**
-	 * <p>verticalImageAlignment.</p>
-	 *
-	 * @param verticalImageAlignment a {@link software.xdev.dynamicreports.report.constant.VerticalImageAlignment} object.
-	 * @return a {@link net.sf.jasperreports.engine.type.VerticalImageAlignEnum} object.
-	 */
 	protected static VerticalImageAlignEnum verticalImageAlignment(final VerticalImageAlignment verticalImageAlignment)
 	{
 		if(verticalImageAlignment == null)
@@ -306,12 +261,6 @@ public class ConstantTransform
 		}
 	}
 	
-	/**
-	 * <p>rotation.</p>
-	 *
-	 * @param rotation a {@link software.xdev.dynamicreports.report.constant.Rotation} object.
-	 * @return a {@link net.sf.jasperreports.engine.type.RotationEnum} object.
-	 */
 	protected static RotationEnum rotation(final Rotation rotation)
 	{
 		if(rotation == null)
@@ -334,12 +283,6 @@ public class ConstantTransform
 		}
 	}
 	
-	/**
-	 * <p>whenNoDataType.</p>
-	 *
-	 * @param whenNoDataType a {@link software.xdev.dynamicreports.report.constant.WhenNoDataType} object.
-	 * @return a {@link net.sf.jasperreports.engine.type.WhenNoDataTypeEnum} object.
-	 */
 	protected static WhenNoDataTypeEnum whenNoDataType(final WhenNoDataType whenNoDataType)
 	{
 		switch(whenNoDataType)
@@ -357,12 +300,6 @@ public class ConstantTransform
 		}
 	}
 	
-	/**
-	 * <p>whenNoDataType.</p>
-	 *
-	 * @param whenNoDataType a {@link net.sf.jasperreports.engine.type.WhenNoDataTypeEnum} object.
-	 * @return a {@link software.xdev.dynamicreports.report.constant.WhenNoDataType} object.
-	 */
 	public static WhenNoDataType whenNoDataType(final WhenNoDataTypeEnum whenNoDataType)
 	{
 		if(whenNoDataType == null)
@@ -384,13 +321,8 @@ public class ConstantTransform
 		}
 	}
 	
-	/**
-	 * <p>whenResourceMissingType.</p>
-	 *
-	 * @param whenResourceMissingType a {@link software.xdev.dynamicreports.report.constant.WhenResourceMissingType} object.
-	 * @return a {@link net.sf.jasperreports.engine.type.WhenResourceMissingTypeEnum} object.
-	 */
-	protected static WhenResourceMissingTypeEnum whenResourceMissingType(final WhenResourceMissingType whenResourceMissingType)
+	protected static WhenResourceMissingTypeEnum whenResourceMissingType(
+		final WhenResourceMissingType whenResourceMissingType)
 	{
 		switch(whenResourceMissingType)
 		{
@@ -408,13 +340,8 @@ public class ConstantTransform
 		}
 	}
 	
-	/**
-	 * <p>whenResourceMissingType.</p>
-	 *
-	 * @param whenResourceMissingType a {@link net.sf.jasperreports.engine.type.WhenResourceMissingTypeEnum} object.
-	 * @return a {@link software.xdev.dynamicreports.report.constant.WhenResourceMissingType} object.
-	 */
-	public static WhenResourceMissingType whenResourceMissingType(final WhenResourceMissingTypeEnum whenResourceMissingType)
+	public static WhenResourceMissingType whenResourceMissingType(
+		final WhenResourceMissingTypeEnum whenResourceMissingType)
 	{
 		switch(whenResourceMissingType)
 		{
@@ -432,12 +359,6 @@ public class ConstantTransform
 		}
 	}
 	
-	/**
-	 * <p>pageOrientation.</p>
-	 *
-	 * @param orientation a {@link software.xdev.dynamicreports.report.constant.PageOrientation} object.
-	 * @return a {@link net.sf.jasperreports.engine.type.OrientationEnum} object.
-	 */
 	protected static OrientationEnum pageOrientation(final PageOrientation orientation)
 	{
 		switch(orientation)
@@ -451,12 +372,6 @@ public class ConstantTransform
 		}
 	}
 	
-	/**
-	 * <p>pageOrientation.</p>
-	 *
-	 * @param orientation a {@link net.sf.jasperreports.engine.type.OrientationEnum} object.
-	 * @return a {@link software.xdev.dynamicreports.report.constant.PageOrientation} object.
-	 */
 	public static PageOrientation pageOrientation(final OrientationEnum orientation)
 	{
 		switch(orientation)
@@ -470,12 +385,6 @@ public class ConstantTransform
 		}
 	}
 	
-	/**
-	 * <p>variableResetType.</p>
-	 *
-	 * @param resetType a {@link software.xdev.dynamicreports.design.constant.ResetType} object.
-	 * @return a {@link net.sf.jasperreports.engine.type.ResetTypeEnum} object.
-	 */
 	public static ResetTypeEnum variableResetType(final ResetType resetType)
 	{
 		if(resetType == null)
@@ -513,12 +422,6 @@ public class ConstantTransform
 		};
 	}
 	
-	/**
-	 * <p>evaluationTime.</p>
-	 *
-	 * @param evaluationTime a {@link software.xdev.dynamicreports.design.constant.EvaluationTime} object.
-	 * @return a {@link net.sf.jasperreports.engine.type.EvaluationTimeEnum} object.
-	 */
 	public static EvaluationTimeEnum evaluationTime(final EvaluationTime evaluationTime)
 	{
 		if(evaluationTime == null)
@@ -547,12 +450,6 @@ public class ConstantTransform
 		}
 	}
 	
-	/**
-	 * <p>splitType.</p>
-	 *
-	 * @param splitType a {@link software.xdev.dynamicreports.report.constant.SplitType} object.
-	 * @return a {@link net.sf.jasperreports.engine.type.SplitTypeEnum} object.
-	 */
 	protected static SplitTypeEnum splitType(final SplitType splitType)
 	{
 		if(splitType == null)
@@ -572,12 +469,6 @@ public class ConstantTransform
 		}
 	}
 	
-	/**
-	 * <p>calculation.</p>
-	 *
-	 * @param calculation a {@link software.xdev.dynamicreports.report.constant.Calculation} object.
-	 * @return a {@link net.sf.jasperreports.engine.type.CalculationEnum} object.
-	 */
 	protected static CalculationEnum calculation(final Calculation calculation)
 	{
 		switch(calculation)
@@ -607,12 +498,6 @@ public class ConstantTransform
 		}
 	}
 	
-	/**
-	 * <p>sizeUnit.</p>
-	 *
-	 * @param sizeUnit a {@link software.xdev.dynamicreports.jasper.constant.SizeUnit} object.
-	 * @return a {@link net.sf.jasperreports.export.type.HtmlSizeUnitEnum} object.
-	 */
 	protected static HtmlSizeUnitEnum sizeUnit(final SizeUnit sizeUnit)
 	{
 		switch(sizeUnit)
@@ -626,12 +511,6 @@ public class ConstantTransform
 		}
 	}
 	
-	/**
-	 * <p>pdfVersion.</p>
-	 *
-	 * @param pdfVersion a {@link software.xdev.dynamicreports.jasper.constant.PdfVersion} object.
-	 * @return a {@link net.sf.jasperreports.export.type.PdfVersionEnum} object.
-	 */
 	protected static PdfVersionEnum pdfVersion(final PdfVersion pdfVersion)
 	{
 		switch(pdfVersion)
@@ -653,12 +532,6 @@ public class ConstantTransform
 		}
 	}
 	
-	/**
-	 * <p>pdfPermission.</p>
-	 *
-	 * @param permissions a {@link java.util.List} object.
-	 * @return a {@link java.lang.Integer} object.
-	 */
 	protected static Integer pdfPermission(final List<PdfPermission> permissions)
 	{
 		final int permission = 0;
@@ -689,12 +562,6 @@ public class ConstantTransform
 		return permission;
 	}
 	
-	/**
-	 * <p>pdfPrintScaling.</p>
-	 *
-	 * @param pdfPrintScaling a {@link software.xdev.dynamicreports.report.constant.PdfPrintScaling} object.
-	 * @return a {@link net.sf.jasperreports.export.type.PdfPrintScalingEnum} object.
-	 */
 	protected static PdfPrintScalingEnum pdfPrintScaling(final PdfPrintScaling pdfPrintScaling)
 	{
 		switch(pdfPrintScaling)
@@ -708,12 +575,6 @@ public class ConstantTransform
 		}
 	}
 	
-	/**
-	 * <p>pdfaConformance.</p>
-	 *
-	 * @param pdfaConformance a {@link software.xdev.dynamicreports.report.constant.PdfaConformance} object.
-	 * @return a {@link net.sf.jasperreports.export.type.PdfaConformanceEnum} object.
-	 */
 	protected static PdfaConformanceEnum pdfaConformance(final PdfaConformance pdfaConformance)
 	{
 		switch(pdfaConformance)
@@ -729,12 +590,6 @@ public class ConstantTransform
 		}
 	}
 	
-	/**
-	 * <p>lineDirection.</p>
-	 *
-	 * @param lineDirection a {@link software.xdev.dynamicreports.report.constant.LineDirection} object.
-	 * @return a {@link net.sf.jasperreports.engine.type.LineDirectionEnum} object.
-	 */
 	public static LineDirectionEnum lineDirection(final LineDirection lineDirection)
 	{
 		if(lineDirection == null)
@@ -753,12 +608,6 @@ public class ConstantTransform
 		}
 	}
 	
-	/**
-	 * <p>markup.</p>
-	 *
-	 * @param markup a {@link software.xdev.dynamicreports.report.constant.Markup} object.
-	 * @return a {@link java.lang.String} object.
-	 */
 	public static String markup(final Markup markup)
 	{
 		if(markup == null)
@@ -781,12 +630,6 @@ public class ConstantTransform
 		}
 	}
 	
-	/**
-	 * <p>lineSpacing.</p>
-	 *
-	 * @param lineSpacing a {@link software.xdev.dynamicreports.report.constant.LineSpacing} object.
-	 * @return a {@link net.sf.jasperreports.engine.type.LineSpacingEnum} object.
-	 */
 	public static LineSpacingEnum lineSpacing(final LineSpacing lineSpacing)
 	{
 		if(lineSpacing == null)
@@ -813,12 +656,6 @@ public class ConstantTransform
 		}
 	}
 	
-	/**
-	 * <p>breakType.</p>
-	 *
-	 * @param breakType a {@link software.xdev.dynamicreports.report.constant.BreakType} object.
-	 * @return a {@link net.sf.jasperreports.engine.type.BreakTypeEnum} object.
-	 */
 	public static BreakTypeEnum breakType(final BreakType breakType)
 	{
 		if(breakType == null)
@@ -837,12 +674,6 @@ public class ConstantTransform
 		}
 	}
 	
-	/**
-	 * <p>runDirection.</p>
-	 *
-	 * @param runDirection a {@link software.xdev.dynamicreports.report.constant.RunDirection} object.
-	 * @return a {@link net.sf.jasperreports.engine.type.RunDirectionEnum} object.
-	 */
 	public static RunDirectionEnum runDirection(final RunDirection runDirection)
 	{
 		if(runDirection == null)
@@ -861,12 +692,6 @@ public class ConstantTransform
 		}
 	}
 	
-	/**
-	 * <p>crosstabTotalPosition.</p>
-	 *
-	 * @param totalPosition a {@link software.xdev.dynamicreports.report.constant.CrosstabTotalPosition} object.
-	 * @return a {@link net.sf.jasperreports.crosstabs.type.CrosstabTotalPositionEnum} object.
-	 */
 	public static CrosstabTotalPositionEnum crosstabTotalPosition(final CrosstabTotalPosition totalPosition)
 	{
 		if(totalPosition == null)
@@ -885,12 +710,6 @@ public class ConstantTransform
 		}
 	}
 	
-	/**
-	 * <p>crosstabPercentageType.</p>
-	 *
-	 * @param percentageType a {@link software.xdev.dynamicreports.report.constant.CrosstabPercentageType} object.
-	 * @return a {@link net.sf.jasperreports.crosstabs.type.CrosstabPercentageEnum} object.
-	 */
 	public static CrosstabPercentageEnum crosstabPercentageType(final CrosstabPercentageType percentageType)
 	{
 		if(percentageType == null)
@@ -909,12 +728,6 @@ public class ConstantTransform
 		}
 	}
 	
-	/**
-	 * <p>orderType.</p>
-	 *
-	 * @param orderType a {@link software.xdev.dynamicreports.report.constant.OrderType} object.
-	 * @return a {@link net.sf.jasperreports.engine.type.SortOrderEnum} object.
-	 */
 	public static SortOrderEnum orderType(final OrderType orderType)
 	{
 		if(orderType == null)
@@ -933,12 +746,6 @@ public class ConstantTransform
 		}
 	}
 	
-	/**
-	 * <p>bucketOrderType.</p>
-	 *
-	 * @param orderType a {@link software.xdev.dynamicreports.report.constant.OrderType} object.
-	 * @return a {@link net.sf.jasperreports.engine.analytics.dataset.BucketOrder} object.
-	 */
 	public static BucketOrder bucketOrderType(final OrderType orderType)
 	{
 		if(orderType == null)
@@ -957,12 +764,6 @@ public class ConstantTransform
 		}
 	}
 	
-	/**
-	 * <p>componentPositionType.</p>
-	 *
-	 * @param componentPositionType a {@link software.xdev.dynamicreports.report.constant.ComponentPositionType} object.
-	 * @return a {@link net.sf.jasperreports.engine.type.PositionTypeEnum} object.
-	 */
 	public static PositionTypeEnum componentPositionType(final ComponentPositionType componentPositionType)
 	{
 		switch(componentPositionType)
@@ -979,12 +780,6 @@ public class ConstantTransform
 		}
 	}
 	
-	/**
-	 * <p>stretchType.</p>
-	 *
-	 * @param stretchType a {@link software.xdev.dynamicreports.report.constant.StretchType} object.
-	 * @return a {@link net.sf.jasperreports.engine.type.StretchTypeEnum} object.
-	 */
 	@SuppressWarnings("deprecation")
 	public static StretchTypeEnum stretchType(final StretchType stretchType)
 	{
@@ -997,10 +792,6 @@ public class ConstantTransform
 		{
 			case NO_STRETCH:
 				return StretchTypeEnum.NO_STRETCH;
-			case RELATIVE_TO_BAND_HEIGHT:
-				return StretchTypeEnum.CONTAINER_HEIGHT;
-			case RELATIVE_TO_TALLEST_OBJECT:
-				return StretchTypeEnum.ELEMENT_GROUP_HEIGHT;
 			case ELEMENT_GROUP_HEIGHT:
 				return StretchTypeEnum.ELEMENT_GROUP_HEIGHT;
 			case ELEMENT_GROUP_BOTTOM:
@@ -1014,12 +805,6 @@ public class ConstantTransform
 		}
 	}
 	
-	/**
-	 * <p>hyperLinkType.</p>
-	 *
-	 * @param hyperLinkType a {@link java.lang.String} object.
-	 * @return a {@link net.sf.jasperreports.engine.type.HyperlinkTypeEnum} object.
-	 */
 	public static HyperlinkTypeEnum hyperLinkType(final String hyperLinkType)
 	{
 		if(hyperLinkType == null || !EnumUtils.isValidEnum(HyperLinkType.class, hyperLinkType))
@@ -1047,12 +832,6 @@ public class ConstantTransform
 		}
 	}
 	
-	/**
-	 * <p>hyperLinkTarget.</p>
-	 *
-	 * @param hyperLinkTarget a {@link java.lang.String} object.
-	 * @return a {@link net.sf.jasperreports.engine.type.HyperlinkTargetEnum} object.
-	 */
 	public static HyperlinkTargetEnum hyperLinkTarget(final String hyperLinkTarget)
 	{
 		if(hyperLinkTarget == null || !EnumUtils.isValidEnum(HyperLinkTarget.class, hyperLinkTarget))
@@ -1078,12 +857,6 @@ public class ConstantTransform
 		}
 	}
 	
-	/**
-	 * <p>groupFooterPosition.</p>
-	 *
-	 * @param footerPosition a {@link software.xdev.dynamicreports.report.constant.GroupFooterPosition} object.
-	 * @return a {@link net.sf.jasperreports.engine.type.FooterPositionEnum} object.
-	 */
 	public static FooterPositionEnum groupFooterPosition(final GroupFooterPosition footerPosition)
 	{
 		switch(footerPosition)
@@ -1101,12 +874,6 @@ public class ConstantTransform
 		}
 	}
 	
-	/**
-	 * <p>tabStopAlignment.</p>
-	 *
-	 * @param alignment a {@link software.xdev.dynamicreports.report.constant.TabStopAlignment} object.
-	 * @return a {@link net.sf.jasperreports.engine.type.TabStopAlignEnum} object.
-	 */
 	public static TabStopAlignEnum tabStopAlignment(final TabStopAlignment alignment)
 	{
 		switch(alignment)
@@ -1122,12 +889,6 @@ public class ConstantTransform
 		}
 	}
 	
-	/**
-	 * <p>printOrder.</p>
-	 *
-	 * @param printOrder a {@link software.xdev.dynamicreports.report.constant.Orientation} object.
-	 * @return a {@link net.sf.jasperreports.engine.type.PrintOrderEnum} object.
-	 */
 	protected static PrintOrderEnum printOrder(final Orientation printOrder)
 	{
 		switch(printOrder)
@@ -1141,12 +902,6 @@ public class ConstantTransform
 		}
 	}
 	
-	/**
-	 * <p>textAdjust.</p>
-	 *
-	 * @param textAdjust a {@link software.xdev.dynamicreports.report.constant.TextAdjust} object.
-	 * @return a {@link net.sf.jasperreports.engine.type.TextAdjustEnum} object.
-	 */
 	public static TextAdjustEnum textAdjust(final TextAdjust textAdjust)
 	{
 		switch(textAdjust)

@@ -17,12 +17,7 @@
  */
 package software.xdev.dynamicreports.report.constant;
 
-/**
- * <p>ListType class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public enum ListType {
-    HORIZONTAL, HORIZONTAL_FLOW, VERTICAL
+public enum ListType
+{
+	HORIZONTAL, HORIZONTAL_FLOW, VERTICAL
 }

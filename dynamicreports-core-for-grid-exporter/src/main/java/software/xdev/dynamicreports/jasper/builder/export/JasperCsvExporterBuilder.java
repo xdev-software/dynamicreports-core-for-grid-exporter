@@ -18,43 +18,25 @@
 package software.xdev.dynamicreports.jasper.builder.export;
 
 import software.xdev.dynamicreports.jasper.base.export.JasperCsvExporter;
-import software.xdev.dynamicreports.report.constant.Constants;
 
-/**
- * <p>JasperCsvExporterBuilder class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class JasperCsvExporterBuilder extends AbstractJasperExporterBuilder<JasperCsvExporterBuilder, JasperCsvExporter> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    /**
-     * <p>Constructor for JasperCsvExporterBuilder.</p>
-     */
-    protected JasperCsvExporterBuilder() {
-        super(new JasperCsvExporter());
-    }
+public class JasperCsvExporterBuilder extends AbstractJasperExporterBuilder<JasperCsvExporterBuilder, JasperCsvExporter>
+{
 
-    /**
-     * <p>setFieldDelimiter.</p>
-     *
-     * @param fieldDelimiter a {@link java.lang.String} object.
-     * @return a {@link software.xdev.dynamicreports.jasper.builder.export.JasperCsvExporterBuilder} object.
-     */
-    public JasperCsvExporterBuilder setFieldDelimiter(String fieldDelimiter) {
-        this.getObject().setFieldDelimiter(fieldDelimiter);
-        return this;
-    }
-
-    /**
-     * <p>setRecordDelimiter.</p>
-     *
-     * @param recordDelimiter a {@link java.lang.String} object.
-     * @return a {@link software.xdev.dynamicreports.jasper.builder.export.JasperCsvExporterBuilder} object.
-     */
-    public JasperCsvExporterBuilder setRecordDelimiter(String recordDelimiter) {
-        this.getObject().setRecordDelimiter(recordDelimiter);
-        return this;
-    }
+	protected JasperCsvExporterBuilder()
+	{
+		super(new JasperCsvExporter());
+	}
+	
+	public JasperCsvExporterBuilder setFieldDelimiter(final String fieldDelimiter)
+	{
+		this.getObject().setFieldDelimiter(fieldDelimiter);
+		return this;
+	}
+	
+	public JasperCsvExporterBuilder setRecordDelimiter(final String recordDelimiter)
+	{
+		this.getObject().setRecordDelimiter(recordDelimiter);
+		return this;
+	}
 }

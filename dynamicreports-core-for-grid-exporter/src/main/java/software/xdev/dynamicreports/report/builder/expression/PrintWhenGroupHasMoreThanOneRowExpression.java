@@ -18,32 +18,22 @@
 package software.xdev.dynamicreports.report.builder.expression;
 
 import software.xdev.dynamicreports.report.base.expression.AbstractSimpleExpression;
-import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.definition.ReportParameters;
 
-/**
- * <p>PrintWhenGroupHasMoreThanOneRowExpression class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class PrintWhenGroupHasMoreThanOneRowExpression extends AbstractSimpleExpression<Boolean> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    private String groupName;
+public class PrintWhenGroupHasMoreThanOneRowExpression extends AbstractSimpleExpression<Boolean>
+{
 
-    /**
-     * <p>Constructor for PrintWhenGroupHasMoreThanOneRowExpression.</p>
-     *
-     * @param groupName a {@link java.lang.String} object.
-     */
-    public PrintWhenGroupHasMoreThanOneRowExpression(String groupName) {
-        this.groupName = groupName;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Boolean evaluate(ReportParameters reportParameters) {
-        return reportParameters.getGroupCount(groupName) > 1;
-    }
+	private final String groupName;
+	
+	public PrintWhenGroupHasMoreThanOneRowExpression(final String groupName)
+	{
+		this.groupName = groupName;
+	}
+	
+	@Override
+	public Boolean evaluate(final ReportParameters reportParameters)
+	{
+		return reportParameters.getGroupCount(this.groupName) > 1;
+	}
 }

@@ -17,161 +17,85 @@
  */
 package software.xdev.dynamicreports.report.builder.component;
 
+import org.apache.commons.lang3.Validate;
+
 import software.xdev.dynamicreports.report.base.component.DRBooleanField;
 import software.xdev.dynamicreports.report.builder.FieldBuilder;
 import software.xdev.dynamicreports.report.builder.expression.Expressions;
 import software.xdev.dynamicreports.report.constant.BooleanComponentType;
-import software.xdev.dynamicreports.report.constant.Constants;
-import software.xdev.dynamicreports.report.constant.HorizontalAlignment;
 import software.xdev.dynamicreports.report.constant.HorizontalImageAlignment;
 import software.xdev.dynamicreports.report.constant.HorizontalTextAlignment;
 import software.xdev.dynamicreports.report.definition.expression.DRIExpression;
-import org.apache.commons.lang3.Validate;
 
-/**
- * <p>BooleanFieldBuilder class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
+
 @SuppressWarnings("deprecation")
-public class BooleanFieldBuilder extends HyperLinkComponentBuilder<BooleanFieldBuilder, DRBooleanField> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
+public class BooleanFieldBuilder extends HyperLinkComponentBuilder<BooleanFieldBuilder, DRBooleanField>
+{
 
-    /**
-     * <p>Constructor for BooleanFieldBuilder.</p>
-     */
-    protected BooleanFieldBuilder() {
-        super(new DRBooleanField());
-    }
-
-    /**
-     * <p>setValue.</p>
-     *
-     * @param field a {@link software.xdev.dynamicreports.report.builder.FieldBuilder} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.BooleanFieldBuilder} object.
-     */
-    public BooleanFieldBuilder setValue(FieldBuilder<Boolean> field) {
-        Validate.notNull(field, "field must not be null");
-        getObject().setValueExpression(field.getField());
-        return this;
-    }
-
-    /**
-     * <p>setValue.</p>
-     *
-     * @param valueExpression a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.BooleanFieldBuilder} object.
-     */
-    public BooleanFieldBuilder setValue(DRIExpression<Boolean> valueExpression) {
-        getObject().setValueExpression(valueExpression);
-        return this;
-    }
-
-    /**
-     * <p>setValue.</p>
-     *
-     * @param value a {@link java.lang.Boolean} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.BooleanFieldBuilder} object.
-     */
-    public BooleanFieldBuilder setValue(Boolean value) {
-        getObject().setValueExpression(Expressions.value(value));
-        return this;
-    }
-
-    /**
-     * <p>setComponentType.</p>
-     *
-     * @param booleanComponentType a {@link software.xdev.dynamicreports.report.constant.BooleanComponentType} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.BooleanFieldBuilder} object.
-     */
-    public BooleanFieldBuilder setComponentType(BooleanComponentType booleanComponentType) {
-        getObject().setComponentType(booleanComponentType);
-        return this;
-    }
-
-    /**
-     * <p>setEmptyWhenNullValue.</p>
-     *
-     * @param emptyWhenNullValue a {@link java.lang.Boolean} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.BooleanFieldBuilder} object.
-     */
-    public BooleanFieldBuilder setEmptyWhenNullValue(Boolean emptyWhenNullValue) {
-        getObject().setEmptyWhenNullValue(emptyWhenNullValue);
-        return this;
-    }
-
-    /**
-     * Sets the boolean image dimension. Has effect only when the boolean value is presented as an image.
-     *
-     * @param width  the image width
-     * @param height the image height
-     * @return a column builder
-     */
-    public BooleanFieldBuilder setImageDimension(Integer width, Integer height) {
-        getObject().setImageWidth(width);
-        getObject().setImageHeight(height);
-        return this;
-    }
-
-    /**
-     * Sets the boolean image width. Has effect only when the boolean value is presented as an image.
-     *
-     * @param width the image width
-     * @return a column builder
-     */
-    public BooleanFieldBuilder setImageWidth(Integer width) {
-        getObject().setImageWidth(width);
-        return this;
-    }
-
-    /**
-     * Sets the boolean image height. Has effect only when the boolean value is presented as an image.
-     *
-     * @param height the image height
-     * @return a column builder
-     */
-    public BooleanFieldBuilder setImageHeight(Integer height) {
-        getObject().setImageHeight(height);
-        return this;
-    }
-
-    /**
-     * <p>setHorizontalImageAlignment.</p>
-     *
-     * @param horizontalImageAlignment a {@link software.xdev.dynamicreports.report.constant.HorizontalImageAlignment} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.BooleanFieldBuilder} object.
-     */
-    public BooleanFieldBuilder setHorizontalImageAlignment(HorizontalImageAlignment horizontalImageAlignment) {
-        getObject().setHorizontalImageAlignment(horizontalImageAlignment);
-        return this;
-    }
-
-    /**
-     * <p>setHorizontalAlignment.</p>
-     *
-     * @param horizontalAlignment a {@link software.xdev.dynamicreports.report.constant.HorizontalAlignment} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.BooleanFieldBuilder} object.
-     * @deprecated use setHorizontalImageAlignment instead
-     */
-    @Deprecated
-    public BooleanFieldBuilder setHorizontalAlignment(HorizontalAlignment horizontalAlignment) {
-        if (horizontalAlignment != null) {
-            getObject().setHorizontalImageAlignment(HorizontalImageAlignment.valueOf(horizontalAlignment.name()));
-        } else {
-            getObject().setHorizontalImageAlignment(null);
-        }
-        return this;
-    }
-
-    /**
-     * <p>setHorizontalTextAlignment.</p>
-     *
-     * @param horizontalTextAlignment a {@link software.xdev.dynamicreports.report.constant.HorizontalTextAlignment} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.BooleanFieldBuilder} object.
-     */
-    public BooleanFieldBuilder setHorizontalTextAlignment(HorizontalTextAlignment horizontalTextAlignment) {
-        getObject().setHorizontalTextAlignment(horizontalTextAlignment);
-        return this;
-    }
+	protected BooleanFieldBuilder()
+	{
+		super(new DRBooleanField());
+	}
+	
+	public BooleanFieldBuilder setValue(final FieldBuilder<Boolean> field)
+	{
+		Validate.notNull(field, "field must not be null");
+		this.getObject().setValueExpression(field.getField());
+		return this;
+	}
+	
+	public BooleanFieldBuilder setValue(final DRIExpression<Boolean> valueExpression)
+	{
+		this.getObject().setValueExpression(valueExpression);
+		return this;
+	}
+	
+	public BooleanFieldBuilder setValue(final Boolean value)
+	{
+		this.getObject().setValueExpression(Expressions.value(value));
+		return this;
+	}
+	
+	public BooleanFieldBuilder setComponentType(final BooleanComponentType booleanComponentType)
+	{
+		this.getObject().setComponentType(booleanComponentType);
+		return this;
+	}
+	
+	public BooleanFieldBuilder setEmptyWhenNullValue(final Boolean emptyWhenNullValue)
+	{
+		this.getObject().setEmptyWhenNullValue(emptyWhenNullValue);
+		return this;
+	}
+	
+	public BooleanFieldBuilder setImageDimension(final Integer width, final Integer height)
+	{
+		this.getObject().setImageWidth(width);
+		this.getObject().setImageHeight(height);
+		return this;
+	}
+	
+	public BooleanFieldBuilder setImageWidth(final Integer width)
+	{
+		this.getObject().setImageWidth(width);
+		return this;
+	}
+	
+	public BooleanFieldBuilder setImageHeight(final Integer height)
+	{
+		this.getObject().setImageHeight(height);
+		return this;
+	}
+	
+	public BooleanFieldBuilder setHorizontalImageAlignment(final HorizontalImageAlignment horizontalImageAlignment)
+	{
+		this.getObject().setHorizontalImageAlignment(horizontalImageAlignment);
+		return this;
+	}
+	
+	public BooleanFieldBuilder setHorizontalTextAlignment(final HorizontalTextAlignment horizontalTextAlignment)
+	{
+		this.getObject().setHorizontalTextAlignment(horizontalTextAlignment);
+		return this;
+	}
 }

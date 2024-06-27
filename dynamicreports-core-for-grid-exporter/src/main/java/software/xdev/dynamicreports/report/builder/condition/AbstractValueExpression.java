@@ -17,59 +17,43 @@
  */
 package software.xdev.dynamicreports.report.builder.condition;
 
-import software.xdev.dynamicreports.report.base.expression.AbstractSimpleExpression;
-import software.xdev.dynamicreports.report.constant.Constants;
-import software.xdev.dynamicreports.report.definition.DRIValue;
-import software.xdev.dynamicreports.report.definition.ReportParameters;
 import org.apache.commons.lang3.Validate;
 
-/**
- * <p>Abstract AbstractValueExpression class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public abstract class AbstractValueExpression<T extends Number> extends AbstractSimpleExpression<Boolean> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
+import software.xdev.dynamicreports.report.base.expression.AbstractSimpleExpression;
+import software.xdev.dynamicreports.report.definition.DRIValue;
+import software.xdev.dynamicreports.report.definition.ReportParameters;
 
-    private DRIValue<T> value;
-    private Number number;
 
-    /**
-     * <p>Constructor for AbstractValueExpression.</p>
-     *
-     * @param value  a {@link software.xdev.dynamicreports.report.definition.DRIValue} object.
-     * @param number a {@link java.lang.Number} object.
-     */
-    public AbstractValueExpression(DRIValue<T> value, Number number) {
-        Validate.notNull(value, "value must not be null");
-        Validate.notNull(number, "number must not be null");
-        this.value = value;
-        this.number = number;
-    }
+public abstract class AbstractValueExpression<T extends Number> extends AbstractSimpleExpression<Boolean>
+{
 
-    /** {@inheritDoc} */
-    @Override
-    public Boolean evaluate(ReportParameters reportParameters) {
-        Number actualValue = reportParameters.getValue(value);
-        if (actualValue != null) {
-            return compare(actualValue, number);
-        }
-        return false;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Class<Boolean> getValueClass() {
-        return Boolean.class;
-    }
-
-    /**
-     * <p>compare.</p>
-     *
-     * @param actualValue a {@link java.lang.Number} object.
-     * @param number      a {@link java.lang.Number} object.
-     * @return a {@link java.lang.Boolean} object.
-     */
-    protected abstract Boolean compare(Number actualValue, Number number);
+	private final DRIValue<T> value;
+	private final Number number;
+	
+	public AbstractValueExpression(final DRIValue<T> value, final Number number)
+	{
+		Validate.notNull(value, "value must not be null");
+		Validate.notNull(number, "number must not be null");
+		this.value = value;
+		this.number = number;
+	}
+	
+	@Override
+	public Boolean evaluate(final ReportParameters reportParameters)
+	{
+		final Number actualValue = reportParameters.getValue(this.value);
+		if(actualValue != null)
+		{
+			return this.compare(actualValue, this.number);
+		}
+		return false;
+	}
+	
+	@Override
+	public Class<Boolean> getValueClass()
+	{
+		return Boolean.class;
+	}
+	
+	protected abstract Boolean compare(Number actualValue, Number number);
 }

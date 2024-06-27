@@ -17,34 +17,28 @@
  */
 package software.xdev.dynamicreports.report.builder.datatype;
 
-import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.constant.HorizontalTextAlignment;
 import software.xdev.dynamicreports.report.defaults.Defaults;
 
-/**
- * <p>IntegerType class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class IntegerType extends NumberType<Integer> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    /** {@inheritDoc} */
-    @Override
-    public String getPattern() {
-        return Defaults.getDefaults().getIntegerType().getPattern();
-    }
+public class IntegerType extends NumberType<Integer>
+{
 
-    /** {@inheritDoc} */
-    @Override
-    public HorizontalTextAlignment getHorizontalTextAlignment() {
-        return Defaults.getDefaults().getIntegerType().getHorizontalTextAlignment();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    protected Integer numberToValue(Number number) {
-        return number.intValue();
-    }
+	@Override
+	public String getPattern()
+	{
+		return Defaults.getDefaults().getIntegerType().getPattern();
+	}
+	
+	@Override
+	public HorizontalTextAlignment getHorizontalTextAlignment()
+	{
+		return Defaults.getDefaults().getIntegerType().getHorizontalTextAlignment();
+	}
+	
+	@Override
+	protected Integer numberToValue(final Number number)
+	{
+		return number.intValue();
+	}
 }

@@ -20,163 +20,46 @@ package software.xdev.dynamicreports.report.definition;
 import java.sql.Connection;
 import java.util.Locale;
 
-/**
- * <p>ReportParameters interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface ReportParameters {
-    /**
-     * Constant <code>CROSSTAB_ROW_COUNTER="CROSSTAB_ROW_NUMBER"</code>
-     */
-    public static final String CROSSTAB_ROW_COUNTER = "CROSSTAB_ROW_NUMBER";
 
-    /**
-     * <p>getValue.</p>
-     *
-     * @param name a {@link java.lang.String} object.
-     * @param <T>  a T object.
-     * @return a T object.
-     */
-    public <T> T getValue(String name);
-
-    /**
-     * <p>getValue.</p>
-     *
-     * @param value a {@link software.xdev.dynamicreports.report.definition.DRIValue} object.
-     * @param <T>   a T object.
-     * @return a T object.
-     */
-    public <T> T getValue(DRIValue<T> value);
-
-    /**
-     * <p>getFieldValue.</p>
-     *
-     * @param name a {@link java.lang.String} object.
-     * @param <T>  a T object.
-     * @return a T object.
-     */
-    public <T> T getFieldValue(String name);
-
-    /**
-     * <p>getVariableValue.</p>
-     *
-     * @param name a {@link java.lang.String} object.
-     * @param <T>  a T object.
-     * @return a T object.
-     */
-    public <T> T getVariableValue(String name);
-
-    /**
-     * <p>getParameterValue.</p>
-     *
-     * @param name a {@link java.lang.String} object.
-     * @param <T>  a T object.
-     * @return a T object.
-     */
-    public <T> T getParameterValue(String name);
-
-    /**
-     * <p>getPageNumber.</p>
-     *
-     * @return a {@link java.lang.Integer} object.
-     */
-    public Integer getPageNumber();
-
-    /**
-     * <p>getColumnNumber.</p>
-     *
-     * @return a {@link java.lang.Integer} object.
-     */
-    public Integer getColumnNumber();
-
-    /**
-     * <p>getReportRowNumber.</p>
-     *
-     * @return a {@link java.lang.Integer} object.
-     */
-    public Integer getReportRowNumber();
-
-    /**
-     * <p>getPageRowNumber.</p>
-     *
-     * @return a {@link java.lang.Integer} object.
-     */
-    public Integer getPageRowNumber();
-
-    /**
-     * <p>getColumnRowNumber.</p>
-     *
-     * @return a {@link java.lang.Integer} object.
-     */
-    public Integer getColumnRowNumber();
-
-    /**
-     * <p>getCrosstabRowNumber.</p>
-     *
-     * @return a {@link java.lang.Integer} object.
-     */
-    public Integer getCrosstabRowNumber();
-
-    /**
-     * <p>getGroupCount.</p>
-     *
-     * @param groupName a {@link java.lang.String} object.
-     * @return a {@link java.lang.Integer} object.
-     */
-    public Integer getGroupCount(String groupName);
-
-    /**
-     * <p>getConnection.</p>
-     *
-     * @return a {@link java.sql.Connection} object.
-     */
-    public Connection getConnection();
-
-    /**
-     * <p>getLocale.</p>
-     *
-     * @return a {@link java.util.Locale} object.
-     */
-    public Locale getLocale();
-
-    /**
-     * <p>getScriptlet.</p>
-     *
-     * @param name a {@link java.lang.String} object.
-     * @return a {@link software.xdev.dynamicreports.report.definition.DRIScriptlet} object.
-     */
-    public DRIScriptlet getScriptlet(String name);
-
-    /**
-     * <p>getMessage.</p>
-     *
-     * @param key a {@link java.lang.String} object.
-     * @return a {@link java.lang.String} object.
-     */
-    public String getMessage(String key);
-
-    /**
-     * <p>getMessage.</p>
-     *
-     * @param key       a {@link java.lang.String} object.
-     * @param arguments an array of {@link java.lang.Object} objects.
-     * @return a {@link java.lang.String} object.
-     */
-    public String getMessage(String key, Object[] arguments);
-
-    /**
-     * <p>getMasterParameters.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.definition.ReportParameters} object.
-     */
-    public ReportParameters getMasterParameters();
-
-    /**
-     * <p>getSubreportWidth.</p>
-     *
-     * @return a {@link java.lang.Integer} object.
-     */
-    public Integer getSubreportWidth();
+public interface ReportParameters
+{
+	public static final String CROSSTAB_ROW_COUNTER = "CROSSTAB_ROW_NUMBER";
+	
+	public <T> T getValue(String name);
+	
+	public <T> T getValue(DRIValue<T> value);
+	
+	public <T> T getFieldValue(String name);
+	
+	public <T> T getVariableValue(String name);
+	
+	public <T> T getParameterValue(String name);
+	
+	public Integer getPageNumber();
+	
+	public Integer getColumnNumber();
+	
+	public Integer getReportRowNumber();
+	
+	public Integer getPageRowNumber();
+	
+	public Integer getColumnRowNumber();
+	
+	public Integer getCrosstabRowNumber();
+	
+	public Integer getGroupCount(String groupName);
+	
+	public Connection getConnection();
+	
+	public Locale getLocale();
+	
+	public DRIScriptlet getScriptlet(String name);
+	
+	public String getMessage(String key);
+	
+	public String getMessage(String key, Object[] arguments);
+	
+	public ReportParameters getMasterParameters();
+	
+	public Integer getSubreportWidth();
 }

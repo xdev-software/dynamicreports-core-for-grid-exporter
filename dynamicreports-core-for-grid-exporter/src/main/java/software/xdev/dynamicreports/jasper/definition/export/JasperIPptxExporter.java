@@ -17,19 +17,8 @@
  */
 package software.xdev.dynamicreports.jasper.definition.export;
 
-/**
- * <p>JasperIPptxExporter interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface JasperIPptxExporter extends JasperIExporter {
-
-    /**
-     * <p>getIgnoreHyperLink.</p>
-     *
-     * @return a {@link java.lang.Boolean} object.
-     */
-    public Boolean getIgnoreHyperLink();
-
+public interface JasperIPptxExporter extends JasperIExporter
+{
+	
+	public Boolean getIgnoreHyperLink();
 }

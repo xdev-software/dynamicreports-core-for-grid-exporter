@@ -24,19 +24,16 @@ import static software.xdev.dynamicreports.report.builder.DynamicReports.tableOf
 import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.Assertions;
 
-import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
-import software.xdev.dynamicreports.report.builder.component.TextFieldBuilder;
-import software.xdev.dynamicreports.report.definition.expression.DRIExpression;
-import software.xdev.dynamicreports.test.jasper.AbstractJasperValueTest;
 import net.sf.jasperreports.engine.DefaultJasperReportsContext;
 import net.sf.jasperreports.engine.JREmptyDataSource;
 import net.sf.jasperreports.engine.JRPrintText;
 import net.sf.jasperreports.engine.util.JRStyledTextUtil;
+import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
+import software.xdev.dynamicreports.report.builder.component.TextFieldBuilder;
+import software.xdev.dynamicreports.report.definition.expression.DRIExpression;
+import software.xdev.dynamicreports.test.jasper.AbstractJasperValueTest;
 
 
-/**
- * @author Ricardo Mariaca
- */
 class TableOfContents3Test extends AbstractJasperValueTest
 {
 	private DRIExpression<String> labelExpression1;

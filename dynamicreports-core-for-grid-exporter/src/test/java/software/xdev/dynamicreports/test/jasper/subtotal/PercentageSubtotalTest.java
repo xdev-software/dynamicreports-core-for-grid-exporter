@@ -17,57 +17,63 @@
  */
 package software.xdev.dynamicreports.test.jasper.subtotal;
 
+import static software.xdev.dynamicreports.report.builder.DynamicReports.col;
+import static software.xdev.dynamicreports.report.builder.DynamicReports.grp;
+import static software.xdev.dynamicreports.report.builder.DynamicReports.sbt;
+
+import java.util.Locale;
+
+import net.sf.jasperreports.engine.JRDataSource;
 import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
 import software.xdev.dynamicreports.report.builder.column.TextColumnBuilder;
 import software.xdev.dynamicreports.report.builder.group.ColumnGroupBuilder;
 import software.xdev.dynamicreports.report.builder.subtotal.PercentageSubtotalBuilder;
 import software.xdev.dynamicreports.report.datasource.DRDataSource;
 import software.xdev.dynamicreports.test.jasper.AbstractJasperValueTest;
-import net.sf.jasperreports.engine.JRDataSource;
 
-import java.util.Locale;
 
-import static software.xdev.dynamicreports.report.builder.DynamicReports.col;
-import static software.xdev.dynamicreports.report.builder.DynamicReports.grp;
-import static software.xdev.dynamicreports.report.builder.DynamicReports.sbt;
-
-/**
- * @author Ricardo Mariaca
- */
-public class PercentageSubtotalTest extends AbstractJasperValueTest {
-    private PercentageSubtotalBuilder subtotal1;
-
-    @Override
-    protected void configureReport(JasperReportBuilder rb) {
-        TextColumnBuilder<String> column1;
-        TextColumnBuilder<Integer> column2;
-        ColumnGroupBuilder group1;
-
-        rb.setLocale(Locale.ENGLISH)
-          .columns(column1 = col.column("Column1", "field1", String.class), column2 = col.column("Column2", "field2", Integer.class))
-          .groupBy(group1 = grp.group(column1))
-          .subtotalsOfPercentageAtGroupFooter(group1, subtotal1 = sbt.percentage(column2));
-    }
-
-    @Override
-    public void test() {
-        super.test();
-
-        numberOfPagesTest(1);
-        // groupFooter
-        subtotalCountTest(subtotal1, 2);
-        subtotalValueTest(subtotal1, "28.57%", "71.43%");
-    }
-
-    @Override
-    protected JRDataSource createDataSource() {
-        DRDataSource dataSource = new DRDataSource("field1", "field2");
-        for (int i = 1; i <= 3; i++) {
-            dataSource.add("group1", i);
-        }
-        for (int i = 4; i <= 6; i++) {
-            dataSource.add("group2", i);
-        }
-        return dataSource;
-    }
+public class PercentageSubtotalTest extends AbstractJasperValueTest
+{
+	private PercentageSubtotalBuilder subtotal1;
+	
+	@Override
+	protected void configureReport(final JasperReportBuilder rb)
+	{
+		final TextColumnBuilder<String> column1;
+		final TextColumnBuilder<Integer> column2;
+		final ColumnGroupBuilder group1;
+		
+		rb.setLocale(Locale.ENGLISH)
+			.columns(
+				column1 = col.column("Column1", "field1", String.class),
+				column2 = col.column("Column2", "field2", Integer.class))
+			.groupBy(group1 = grp.group(column1))
+			.subtotalsOfPercentageAtGroupFooter(group1, this.subtotal1 = sbt.percentage(column2));
+	}
+	
+	@Override
+	public void test()
+	{
+		super.test();
+		
+		this.numberOfPagesTest(1);
+		// groupFooter
+		this.subtotalCountTest(this.subtotal1, 2);
+		this.subtotalValueTest(this.subtotal1, "28.57%", "71.43%");
+	}
+	
+	@Override
+	protected JRDataSource createDataSource()
+	{
+		final DRDataSource dataSource = new DRDataSource("field1", "field2");
+		for(int i = 1; i <= 3; i++)
+		{
+			dataSource.add("group1", i);
+		}
+		for(int i = 4; i <= 6; i++)
+		{
+			dataSource.add("group2", i);
+		}
+		return dataSource;
+	}
 }

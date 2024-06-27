@@ -18,33 +18,18 @@
 package software.xdev.dynamicreports.report.builder;
 
 import software.xdev.dynamicreports.report.base.DRQuery;
-import software.xdev.dynamicreports.report.constant.Constants;
 
-/**
- * <p>QueryBuilder class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class QueryBuilder extends AbstractBuilder<QueryBuilder, DRQuery> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    /**
-     * <p>Constructor for QueryBuilder.</p>
-     *
-     * @param text     a {@link java.lang.String} object.
-     * @param language a {@link java.lang.String} object.
-     */
-    protected QueryBuilder(String text, String language) {
-        super(new DRQuery(text, language));
-    }
+public class QueryBuilder extends AbstractBuilder<QueryBuilder, DRQuery>
+{
 
-    /**
-     * <p>getQuery.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.base.DRQuery} object.
-     */
-    public DRQuery getQuery() {
-        return build();
-    }
+	protected QueryBuilder(final String text, final String language)
+	{
+		super(new DRQuery(text, language));
+	}
+	
+	public DRQuery getQuery()
+	{
+		return this.build();
+	}
 }

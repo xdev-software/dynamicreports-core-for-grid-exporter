@@ -17,82 +17,73 @@
  */
 package software.xdev.dynamicreports.report.base.crosstab;
 
+import org.apache.commons.lang3.Validate;
+
 import software.xdev.dynamicreports.report.ReportUtils;
 import software.xdev.dynamicreports.report.constant.Calculation;
-import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.constant.CrosstabPercentageType;
 import software.xdev.dynamicreports.report.definition.crosstab.DRICrosstabVariable;
 import software.xdev.dynamicreports.report.definition.expression.DRIExpression;
-import org.apache.commons.lang3.Validate;
 
-/**
- * <p>DRCrosstabVariable class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class DRCrosstabVariable<T> implements DRICrosstabVariable<T> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    private String name;
-    private DRIExpression<?> valueExpression;
-    private Calculation calculation;
-    private CrosstabPercentageType percentageType;
+public class DRCrosstabVariable<T> implements DRICrosstabVariable<T>
+{
 
-    /**
-     * <p>Constructor for DRCrosstabVariable.</p>
-     *
-     * @param valueExpression a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     * @param calculation     a {@link software.xdev.dynamicreports.report.constant.Calculation} object.
-     */
-    public DRCrosstabVariable(DRIExpression<?> valueExpression, Calculation calculation) {
-        Validate.notNull(valueExpression, "valueExpression must not be null");
-        Validate.notNull(calculation, "calculation must not be null");
-        this.valueExpression = valueExpression;
-        this.calculation = calculation;
-        this.name = ReportUtils.generateUniqueName("crosstabMeasure");
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public String getName() {
-        return name;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRIExpression<?> getValueExpression() {
-        return valueExpression;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Calculation getCalculation() {
-        return calculation;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public CrosstabPercentageType getPercentageType() {
-        return percentageType;
-    }
-
-    /**
-     * <p>Setter for the field <code>percentageType</code>.</p>
-     *
-     * @param percentageType a {@link software.xdev.dynamicreports.report.constant.CrosstabPercentageType} object.
-     */
-    public void setPercentageType(CrosstabPercentageType percentageType) {
-        this.percentageType = percentageType;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    @SuppressWarnings("unchecked")
-    public Class<? super T> getValueClass() {
-        if (percentageType != null && percentageType.equals(CrosstabPercentageType.GRAND_TOTAL) && !calculation.equals(Calculation.COUNT) && !calculation.equals(Calculation.DISTINCT_COUNT)) {
-            return (Class<? super T>) Double.class;
-        }
-        return (Class<? super T>) ReportUtils.getVariableValueClass(getCalculation(), valueExpression.getValueClass());
-    }
+	private final String name;
+	private final DRIExpression<?> valueExpression;
+	private final Calculation calculation;
+	private CrosstabPercentageType percentageType;
+	
+	public DRCrosstabVariable(final DRIExpression<?> valueExpression, final Calculation calculation)
+	{
+		Validate.notNull(valueExpression, "valueExpression must not be null");
+		Validate.notNull(calculation, "calculation must not be null");
+		this.valueExpression = valueExpression;
+		this.calculation = calculation;
+		this.name = ReportUtils.generateUniqueName("crosstabMeasure");
+	}
+	
+	@Override
+	public String getName()
+	{
+		return this.name;
+	}
+	
+	@Override
+	public DRIExpression<?> getValueExpression()
+	{
+		return this.valueExpression;
+	}
+	
+	@Override
+	public Calculation getCalculation()
+	{
+		return this.calculation;
+	}
+	
+	@Override
+	public CrosstabPercentageType getPercentageType()
+	{
+		return this.percentageType;
+	}
+	
+	public void setPercentageType(final CrosstabPercentageType percentageType)
+	{
+		this.percentageType = percentageType;
+	}
+	
+	@Override
+	@SuppressWarnings("unchecked")
+	public Class<? super T> getValueClass()
+	{
+		if(this.percentageType != null && this.percentageType.equals(CrosstabPercentageType.GRAND_TOTAL)
+			&& !this.calculation.equals(
+			Calculation.COUNT) && !this.calculation.equals(Calculation.DISTINCT_COUNT))
+		{
+			return (Class<? super T>)Double.class;
+		}
+		return (Class<? super T>)ReportUtils.getVariableValueClass(
+			this.getCalculation(),
+			this.valueExpression.getValueClass());
+	}
 }

@@ -27,9 +27,6 @@ import software.xdev.dynamicreports.report.builder.ReportBuilder;
 import software.xdev.dynamicreports.report.exception.DRException;
 
 
-/**
- * @author Ricardo Mariaca
- */
 public abstract class AbstractBandTest
 {
 	
@@ -37,23 +34,23 @@ public abstract class AbstractBandTest
 	public void test()
 	{
 		final ReportBuilder<?> rb = new DesignReportBuilder();
-        this.configureReport(rb);
+		this.configureReport(rb);
 		try
 		{
 			final DRDesignReport report = new DRDesignReport(rb.getReport());
-            this.titleBandTest(report.getTitleBand());
-            this.pageHeaderBandTest(report.getPageHeaderBand());
-            this.pageFooterBandTest(report.getPageFooterBand());
-            this.columnHeaderBandTest(report.getColumnHeaderBand());
-            this.columnFooterBandTest(report.getColumnFooterBand());
+			this.titleBandTest(report.getTitleBand());
+			this.pageHeaderBandTest(report.getPageHeaderBand());
+			this.pageFooterBandTest(report.getPageFooterBand());
+			this.columnHeaderBandTest(report.getColumnHeaderBand());
+			this.columnFooterBandTest(report.getColumnFooterBand());
 			for(final DRDesignBand designBand : report.getDetailBands())
 			{
-                this.detailBandTest(designBand);
+				this.detailBandTest(designBand);
 			}
-            this.lastPageFooterBandTest(report.getLastPageFooterBand());
-            this.summaryBandTest(report.getSummaryBand());
-            this.noDataBandTest(report.getNoDataBand());
-            this.backgroundBandTest(report.getBackgroundBand());
+			this.lastPageFooterBandTest(report.getLastPageFooterBand());
+			this.summaryBandTest(report.getSummaryBand());
+			this.noDataBandTest(report.getNoDataBand());
+			this.backgroundBandTest(report.getBackgroundBand());
 		}
 		catch(final DRException e)
 		{
@@ -112,7 +109,12 @@ public abstract class AbstractBandTest
 		Assertions.assertNull(band);
 	}
 	
-	protected void componentPositionTest(final DRDesignComponent component, final int x, final int y, final int width, final int height)
+	protected void componentPositionTest(
+		final DRDesignComponent component,
+		final int x,
+		final int y,
+		final int width,
+		final int height)
 	{
 		Assertions.assertNotNull(component.getWidth());
 		Assertions.assertEquals(Integer.valueOf(width), component.getWidth());

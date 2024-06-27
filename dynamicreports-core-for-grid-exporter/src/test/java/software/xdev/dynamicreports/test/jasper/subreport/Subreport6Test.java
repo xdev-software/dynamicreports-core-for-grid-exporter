@@ -17,71 +17,78 @@
  */
 package software.xdev.dynamicreports.test.jasper.subreport;
 
+import static software.xdev.dynamicreports.report.builder.DynamicReports.cmp;
+import static software.xdev.dynamicreports.report.builder.DynamicReports.report;
+
+import java.io.Serializable;
+
+import net.sf.jasperreports.engine.JRDataSource;
+import net.sf.jasperreports.engine.JREmptyDataSource;
 import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
 import software.xdev.dynamicreports.report.base.expression.AbstractSimpleExpression;
 import software.xdev.dynamicreports.report.builder.component.Components;
 import software.xdev.dynamicreports.report.builder.component.SubreportBuilder;
 import software.xdev.dynamicreports.report.definition.ReportParameters;
 import software.xdev.dynamicreports.test.jasper.AbstractJasperValueTest;
-import net.sf.jasperreports.engine.JRDataSource;
-import net.sf.jasperreports.engine.JREmptyDataSource;
 
-import java.io.Serializable;
 
-import static software.xdev.dynamicreports.report.builder.DynamicReports.cmp;
-import static software.xdev.dynamicreports.report.builder.DynamicReports.report;
+public class Subreport6Test extends AbstractJasperValueTest implements Serializable
+{
 
-/**
- * @author Ricardo Mariaca
- */
-public class Subreport6Test extends AbstractJasperValueTest implements Serializable {
-    private static final long serialVersionUID = 1L;
+	@Override
+	protected void configureReport(final JasperReportBuilder rb)
+	{
+		final SubreportBuilder subreport = Components.subreport(new Subreport1Expression());
+		
+		rb.detail(subreport);
+	}
+	
+	@Override
+	public void test()
+	{
+		super.test();
+		
+		this.numberOfPagesTest(1);
+		
+		this.elementCountTest("title.textField1", 10);
+		this.elementValueTest("title.textField1", "575", "565", "575", "555", "575", "545", "575", "535", "575",
+			"525");
+	}
+	
+	@Override
+	protected JRDataSource createDataSource()
+	{
+		return new JREmptyDataSource(5);
+	}
+	
+	static class Subreport1Expression extends AbstractSimpleExpression<JasperReportBuilder>
+	{
 
-    @Override
-    protected void configureReport(JasperReportBuilder rb) {
-        SubreportBuilder subreport = Components.subreport(new Subreport1Expression());
+		@Override
+		public JasperReportBuilder evaluate(final ReportParameters reportParameters)
+		{
+			final SubreportBuilder subreport = Components.subreport(new Subreport2Expression());
+			
+			final JasperReportBuilder report = report();
+			report.title(
+				cmp.text(reportParameters.getSubreportWidth()),
+				cmp.horizontalList(cmp.horizontalGap(10 * reportParameters.getReportRowNumber()), subreport));
+			
+			return report;
+		}
+	}
+	
+	
+	static class Subreport2Expression extends AbstractSimpleExpression<JasperReportBuilder>
+	{
 
-        rb.detail(subreport);
-    }
-
-    @Override
-    public void test() {
-        super.test();
-
-        numberOfPagesTest(1);
-
-        elementCountTest("title.textField1", 10);
-        elementValueTest("title.textField1", "575", "565", "575", "555", "575", "545", "575", "535", "575", "525");
-    }
-
-    @Override
-    protected JRDataSource createDataSource() {
-        return new JREmptyDataSource(5);
-    }
-
-    private class Subreport1Expression extends AbstractSimpleExpression<JasperReportBuilder> {
-        private static final long serialVersionUID = 1L;
-
-        @Override
-        public JasperReportBuilder evaluate(ReportParameters reportParameters) {
-            SubreportBuilder subreport = Components.subreport(new Subreport2Expression());
-
-            JasperReportBuilder report = report();
-            report.title(cmp.text(reportParameters.getSubreportWidth()), cmp.horizontalList(cmp.horizontalGap(10 * reportParameters.getReportRowNumber()), subreport));
-
-            return report;
-        }
-    }
-
-    private class Subreport2Expression extends AbstractSimpleExpression<JasperReportBuilder> {
-        private static final long serialVersionUID = 1L;
-
-        @Override
-        public JasperReportBuilder evaluate(ReportParameters reportParameters) {
-            JasperReportBuilder report = report();
-            report.title(cmp.text(reportParameters.getSubreportWidth()));
-
-            return report;
-        }
-    }
+		@Override
+		public JasperReportBuilder evaluate(final ReportParameters reportParameters)
+		{
+			final JasperReportBuilder report = report();
+			report.title(cmp.text(reportParameters.getSubreportWidth()));
+			
+			return report;
+		}
+	}
 }

@@ -17,45 +17,36 @@
  */
 package software.xdev.dynamicreports.design.base.expression;
 
+import java.util.List;
+
 import software.xdev.dynamicreports.design.definition.expression.DRIDesignExpression;
-import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.definition.ReportParameters;
 import software.xdev.dynamicreports.report.definition.expression.DRIValueFormatter;
 
-import java.util.List;
 
-/**
- * <p>DRDesignValueFormatter class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class DRDesignValueFormatter extends AbstractDesignComplexExpression {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
+public class DRDesignValueFormatter extends AbstractDesignComplexExpression
+{
 
-    private DRIValueFormatter<?, Object> valueFormatter;
-
-    @SuppressWarnings("unchecked")
-    /**
-     * Constructor for DRDesignValueFormatter.
-     *
-     * @param valueFormatter a {@link software.xdev.dynamicreports.report.definition.expression.DRIValueFormatter} object.
-     * @param valueExpression a {@link software.xdev.dynamicreports.design.definition.expression.DRIDesignExpression} object.
-     */
-    public DRDesignValueFormatter(DRIValueFormatter<?, ?> valueFormatter, DRIDesignExpression valueExpression) {
-        this.valueFormatter = (DRIValueFormatter<?, Object>) valueFormatter;
-        addExpression(valueExpression);
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Object evaluate(List<?> values, ReportParameters reportParameters) {
-        return valueFormatter.format(values.get(0), reportParameters);
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Class<?> getValueClass() {
-        return valueFormatter.getValueClass();
-    }
+	private final DRIValueFormatter<?, Object> valueFormatter;
+	
+	@SuppressWarnings("unchecked")
+	public DRDesignValueFormatter(
+		final DRIValueFormatter<?, ?> valueFormatter,
+		final DRIDesignExpression valueExpression)
+	{
+		this.valueFormatter = (DRIValueFormatter<?, Object>)valueFormatter;
+		this.addExpression(valueExpression);
+	}
+	
+	@Override
+	public Object evaluate(final List<?> values, final ReportParameters reportParameters)
+	{
+		return this.valueFormatter.format(values.get(0), reportParameters);
+	}
+	
+	@Override
+	public Class<?> getValueClass()
+	{
+		return this.valueFormatter.getValueClass();
+	}
 }

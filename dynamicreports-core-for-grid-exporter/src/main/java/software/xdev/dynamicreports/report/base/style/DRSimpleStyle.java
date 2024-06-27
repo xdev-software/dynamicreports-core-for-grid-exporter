@@ -17,16 +17,10 @@
  */
 package software.xdev.dynamicreports.report.base.style;
 
-import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.definition.style.DRISimpleStyle;
 
-/**
- * <p>DRSimpleStyle class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class DRSimpleStyle extends DRBaseStyle implements DRISimpleStyle {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
+public class DRSimpleStyle extends DRBaseStyle implements DRISimpleStyle
+{
 }
+

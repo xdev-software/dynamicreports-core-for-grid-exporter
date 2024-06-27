@@ -18,47 +18,33 @@
 package software.xdev.dynamicreports.jasper.base.export;
 
 import software.xdev.dynamicreports.jasper.definition.export.JasperIOdtExporter;
-import software.xdev.dynamicreports.report.constant.Constants;
 
-/**
- * <p>JasperOdtExporter class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class JasperOdtExporter extends AbstractJasperExporter implements JasperIOdtExporter {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    private Boolean flexibleRowHeight;
-    private Boolean ignoreHyperLink;
+public class JasperOdtExporter extends AbstractJasperExporter implements JasperIOdtExporter
+{
 
-    /** {@inheritDoc} */
-    @Override
-    public Boolean getFlexibleRowHeight() {
-        return flexibleRowHeight;
-    }
-
-    /**
-     * <p>Setter for the field <code>flexibleRowHeight</code>.</p>
-     *
-     * @param flexibleRowHeight a {@link java.lang.Boolean} object.
-     */
-    public void setFlexibleRowHeight(Boolean flexibleRowHeight) {
-        this.flexibleRowHeight = flexibleRowHeight;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Boolean getIgnoreHyperLink() {
-        return ignoreHyperLink;
-    }
-
-    /**
-     * <p>Setter for the field <code>ignoreHyperLink</code>.</p>
-     *
-     * @param ignoreHyperLink a {@link java.lang.Boolean} object.
-     */
-    public void setIgnoreHyperLink(Boolean ignoreHyperLink) {
-        this.ignoreHyperLink = ignoreHyperLink;
-    }
+	private Boolean flexibleRowHeight;
+	private Boolean ignoreHyperLink;
+	
+	@Override
+	public Boolean getFlexibleRowHeight()
+	{
+		return this.flexibleRowHeight;
+	}
+	
+	public void setFlexibleRowHeight(final Boolean flexibleRowHeight)
+	{
+		this.flexibleRowHeight = flexibleRowHeight;
+	}
+	
+	@Override
+	public Boolean getIgnoreHyperLink()
+	{
+		return this.ignoreHyperLink;
+	}
+	
+	public void setIgnoreHyperLink(final Boolean ignoreHyperLink)
+	{
+		this.ignoreHyperLink = ignoreHyperLink;
+	}
 }

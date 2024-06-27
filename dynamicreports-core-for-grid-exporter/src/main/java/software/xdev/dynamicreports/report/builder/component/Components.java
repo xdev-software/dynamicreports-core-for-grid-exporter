@@ -17,652 +17,373 @@
  */
 package software.xdev.dynamicreports.report.builder.component;
 
+import java.awt.Image;
+import java.io.InputStream;
+import java.net.URL;
+import java.util.Date;
+
+import org.apache.commons.lang3.Validate;
+
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.renderers.Renderable;
 import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
 import software.xdev.dynamicreports.report.builder.FieldBuilder;
 import software.xdev.dynamicreports.report.builder.VariableBuilder;
 import software.xdev.dynamicreports.report.builder.expression.Expressions;
 import software.xdev.dynamicreports.report.constant.BreakType;
 import software.xdev.dynamicreports.report.definition.expression.DRIExpression;
-import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.renderers.Renderable;
-import org.apache.commons.lang3.Validate;
 
-import java.awt.Image;
-import java.io.InputStream;
-import java.net.URL;
-import java.util.Date;
 
-/**
- * A set of methods of creating components
- *
- * @author Ricardo Mariaca
- * 
- */
-public class Components {
-
-    // horizontal list
-
-    /**
-     * <p>horizontalList.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.HorizontalListBuilder} object.
-     */
-    public static HorizontalListBuilder horizontalList() {
-        return new HorizontalListBuilder();
-    }
-
-    /**
-     * <p>horizontalList.</p>
-     *
-     * @param components a {@link software.xdev.dynamicreports.report.builder.component.ComponentBuilder} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.HorizontalListBuilder} object.
-     */
-    public static HorizontalListBuilder horizontalList(ComponentBuilder<?, ?>... components) {
-        return new HorizontalListBuilder().add(components);
-    }
-
-    /**
-     * <p>horizontalList.</p>
-     *
-     * @param cells a {@link software.xdev.dynamicreports.report.builder.component.HorizontalListCellBuilder} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.HorizontalListBuilder} object.
-     */
-    public static HorizontalListBuilder horizontalList(HorizontalListCellBuilder... cells) {
-        return new HorizontalListBuilder().add(cells);
-    }
-
-    /**
-     * <p>hListCell.</p>
-     *
-     * @param component a {@link software.xdev.dynamicreports.report.builder.component.ComponentBuilder} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.HorizontalListCellBuilder} object.
-     */
-    public static HorizontalListCellBuilder hListCell(ComponentBuilder<?, ?> component) {
-        Validate.notNull(component, "component must not be null");
-        return new HorizontalListCellBuilder(component);
-    }
-
-    // horizontal flow list
-
-    /**
-     * <p>horizontalFlowList.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.HorizontalListBuilder} object.
-     */
-    public static HorizontalListBuilder horizontalFlowList() {
-        return new HorizontalFlowListBuilder();
-    }
-
-    /**
-     * <p>horizontalFlowList.</p>
-     *
-     * @param components a {@link software.xdev.dynamicreports.report.builder.component.ComponentBuilder} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.HorizontalListBuilder} object.
-     */
-    public static HorizontalListBuilder horizontalFlowList(ComponentBuilder<?, ?>... components) {
-        return new HorizontalFlowListBuilder().add(components);
-    }
-
-    /**
-     * <p>horizontalFlowList.</p>
-     *
-     * @param cells a {@link software.xdev.dynamicreports.report.builder.component.HorizontalListCellBuilder} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.HorizontalListBuilder} object.
-     */
-    public static HorizontalListBuilder horizontalFlowList(HorizontalListCellBuilder... cells) {
-        return new HorizontalFlowListBuilder().add(cells);
-    }
-
-    // vertical list
-
-    /**
-     * <p>verticalList.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.VerticalListBuilder} object.
-     */
-    public static VerticalListBuilder verticalList() {
-        return new VerticalListBuilder();
-    }
-
-    /**
-     * <p>verticalList.</p>
-     *
-     * @param components a {@link software.xdev.dynamicreports.report.builder.component.ComponentBuilder} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.VerticalListBuilder} object.
-     */
-    public static VerticalListBuilder verticalList(ComponentBuilder<?, ?>... components) {
-        return new VerticalListBuilder().add(components);
-    }
-
-    /**
-     * <p>verticalList.</p>
-     *
-     * @param cells a {@link software.xdev.dynamicreports.report.builder.component.VerticalListCellBuilder} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.VerticalListBuilder} object.
-     */
-    public static VerticalListBuilder verticalList(VerticalListCellBuilder... cells) {
-        return new VerticalListBuilder().add(cells);
-    }
-
-    /**
-     * <p>vListCell.</p>
-     *
-     * @param component a {@link software.xdev.dynamicreports.report.builder.component.ComponentBuilder} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.VerticalListCellBuilder} object.
-     */
-    public static VerticalListCellBuilder vListCell(ComponentBuilder<?, ?> component) {
-        Validate.notNull(component, "component must not be null");
-        return new VerticalListCellBuilder(component);
-    }
-
-    // xy list
-
-    /**
-     * <p>xyList.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.XyListBuilder} object.
-     */
-    public static XyListBuilder xyList() {
-        return new XyListBuilder();
-    }
-
-    /**
-     * <p>xyList.</p>
-     *
-     * @param cells a {@link software.xdev.dynamicreports.report.builder.component.XyListCellBuilder} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.XyListBuilder} object.
-     */
-    public static XyListBuilder xyList(XyListCellBuilder... cells) {
-        return new XyListBuilder().add(cells);
-    }
-
-    /**
-     * <p>xyListCell.</p>
-     *
-     * @param x         a {@link java.lang.Integer} object.
-     * @param y         a {@link java.lang.Integer} object.
-     * @param component a {@link software.xdev.dynamicreports.report.builder.component.ComponentBuilder} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.XyListCellBuilder} object.
-     */
-    public static XyListCellBuilder xyListCell(Integer x, Integer y, ComponentBuilder<?, ?> component) {
-        Validate.notNull(component, "component must not be null");
-        return new XyListCellBuilder(x, y, component);
-    }
-
-    /**
-     * <p>xyListCell.</p>
-     *
-     * @param x         a {@link java.lang.Integer} object.
-     * @param y         a {@link java.lang.Integer} object.
-     * @param width     a {@link java.lang.Integer} object.
-     * @param height    a {@link java.lang.Integer} object.
-     * @param component a {@link software.xdev.dynamicreports.report.builder.component.ComponentBuilder} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.XyListCellBuilder} object.
-     */
-    public static XyListCellBuilder xyListCell(Integer x, Integer y, Integer width, Integer height, ComponentBuilder<?, ?> component) {
-        Validate.notNull(component, "component must not be null");
-        return new XyListCellBuilder(x, y, width, height, component);
-    }
-
-    // multi page list
-
-    /**
-     * <p>multiPageList.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.MultiPageListBuilder} object.
-     */
-    public static MultiPageListBuilder multiPageList() {
-        return new MultiPageListBuilder();
-    }
-
-    /**
-     * <p>multiPageList.</p>
-     *
-     * @param components a {@link software.xdev.dynamicreports.report.builder.component.ComponentBuilder} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.MultiPageListBuilder} object.
-     */
-    public static MultiPageListBuilder multiPageList(ComponentBuilder<?, ?>... components) {
-        return new MultiPageListBuilder().add(components);
-    }
-
-    /**
-     * <p>currentDate.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.CurrentDateBuilder} object.
-     */
-    public static CurrentDateBuilder currentDate() {
-        return new CurrentDateBuilder();
-    }
-
-    /**
-     * <p>pageNumber.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.PageNumberBuilder} object.
-     */
-    public static PageNumberBuilder pageNumber() {
-        return new PageNumberBuilder();
-    }
-
-    /**
-     * <p>pageXofY.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.PageXofYBuilder} object.
-     */
-    public static PageXofYBuilder pageXofY() {
-        return new PageXofYBuilder();
-    }
-
-    /**
-     * <p>pageXslashY.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.PageXslashYBuilder} object.
-     */
-    public static PageXslashYBuilder pageXslashY() {
-        return new PageXslashYBuilder();
-    }
-
-    /**
-     * <p>totalPages.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.TotalPagesBuilder} object.
-     */
-    public static TotalPagesBuilder totalPages() {
-        return new TotalPagesBuilder();
-    }
-
-    // text
-
-    /**
-     * <p>text.</p>
-     *
-     * @param text a {@link java.lang.String} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.TextFieldBuilder} object.
-     */
-    public static TextFieldBuilder<String> text(String text) {
-        return new TextFieldBuilder<String>().setText(text);
-    }
-
-    /**
-     * <p>text.</p>
-     *
-     * @param date a {@link java.util.Date} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.TextFieldBuilder} object.
-     */
-    public static TextFieldBuilder<Date> text(Date date) {
-        return new TextFieldBuilder<Date>().setText(date);
-    }
-
-    /**
-     * <p>text.</p>
-     *
-     * @param number a T object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.TextFieldBuilder} object.
-     */
-    public static <T extends Number> TextFieldBuilder<T> text(T number) {
-        return new TextFieldBuilder<T>().setText(number);
-    }
-
-    /**
-     * <p>text.</p>
-     *
-     * @param field a {@link software.xdev.dynamicreports.report.builder.FieldBuilder} object.
-     * @param <T>   a T object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.TextFieldBuilder} object.
-     */
-    public static <T> TextFieldBuilder<T> text(FieldBuilder<T> field) {
-        return new TextFieldBuilder<T>().setText(field);
-    }
-
-    /**
-     * <p>text.</p>
-     *
-     * @param variable a {@link software.xdev.dynamicreports.report.builder.VariableBuilder} object.
-     * @param <T>      a T object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.TextFieldBuilder} object.
-     */
-    public static <T> TextFieldBuilder<T> text(VariableBuilder<T> variable) {
-        return new TextFieldBuilder<T>().setText(variable);
-    }
-
-    /**
-     * <p>text.</p>
-     *
-     * @param textExpression a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     * @param <T>            a T object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.TextFieldBuilder} object.
-     */
-    public static <T> TextFieldBuilder<T> text(DRIExpression<T> textExpression) {
-        return new TextFieldBuilder<T>().setText(textExpression);
-    }
-
-    // filler
-
-    /**
-     * <p>filler.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.FillerBuilder} object.
-     */
-    public static FillerBuilder filler() {
-        return new FillerBuilder();
-    }
-
-    /**
-     * <p>horizontalGap.</p>
-     *
-     * @param width a int.
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.FillerBuilder} object.
-     */
-    public static FillerBuilder horizontalGap(int width) {
-        return new FillerBuilder().setFixedWidth(width);
-    }
-
-    /**
-     * <p>verticalGap.</p>
-     *
-     * @param height a int.
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.FillerBuilder} object.
-     */
-    public static FillerBuilder verticalGap(int height) {
-        return new FillerBuilder().setFixedHeight(height);
-    }
-
-    /**
-     * <p>gap.</p>
-     *
-     * @param width  a int.
-     * @param height a int.
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.FillerBuilder} object.
-     */
-    public static FillerBuilder gap(int width, int height) {
-        return new FillerBuilder().setFixedDimension(width, height);
-    }
-
-    // image
-
-    /**
-     * <p>image.</p>
-     *
-     * @param imageExpression a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.ImageBuilder} object.
-     */
-    public static ImageBuilder image(DRIExpression<?> imageExpression) {
-        return new ImageBuilder().setImage(imageExpression);
-    }
-
-    /**
-     * <p>image.</p>
-     *
-     * @param imagePath a {@link java.lang.String} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.ImageBuilder} object.
-     */
-    public static ImageBuilder image(String imagePath) {
-        return new ImageBuilder().setImage(imagePath);
-    }
-
-    /**
-     * <p>image.</p>
-     *
-     * @param image a {@link java.awt.Image} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.ImageBuilder} object.
-     */
-    public static ImageBuilder image(Image image) {
-        return new ImageBuilder().setImage(image);
-    }
-
-    /**
-     * <p>image.</p>
-     *
-     * @param imageInputStream a {@link java.io.InputStream} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.ImageBuilder} object.
-     */
-    public static ImageBuilder image(InputStream imageInputStream) {
-        return new ImageBuilder().setImage(imageInputStream);
-    }
-
-    /**
-     * <p>image.</p>
-     *
-     * @param imageUrl a {@link java.net.URL} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.ImageBuilder} object.
-     */
-    public static ImageBuilder image(URL imageUrl) {
-        return new ImageBuilder().setImage(imageUrl);
-    }
-
-    /**
-     * <p>image.</p>
-     *
-     * @param image a {@link net.sf.jasperreports.renderers.Renderable} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.ImageBuilder} object.
-     */
-    public static ImageBuilder image(Renderable image) {
-        return new ImageBuilder().setImage(Expressions.value(image, Renderable.class));
-    }
-
-    /**
-     * <p>image.</p>
-     *
-     * @param image a {@link net.sf.jasperreports.engine.Renderable} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.ImageBuilder} object.
-     * @deprecated use image(net.sf.jasperreports.renderers.Renderable image) instead
-     */
-    @Deprecated
-    public static ImageBuilder image(net.sf.jasperreports.engine.Renderable image) {
-        return new ImageBuilder().setImage(Expressions.value(image, net.sf.jasperreports.engine.Renderable.class));
-    }
-
-    // subreport
-
-    /**
-     * <p>subreport.</p>
-     *
-     * @param reportBuilder a {@link software.xdev.dynamicreports.jasper.builder.JasperReportBuilder} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.SubreportBuilder} object.
-     */
-    public static SubreportBuilder subreport(JasperReportBuilder reportBuilder) {
-        SubreportBuilder subreport = new SubreportBuilder();
-        subreport.setReport(reportBuilder);
-        if (reportBuilder.getConnection() != null) {
-            subreport.setConnection(reportBuilder.getConnection());
-        }
-        if (reportBuilder.getDataSource() != null) {
-            subreport.setDataSource(reportBuilder.getDataSource());
-        }
-        return subreport;
-    }
-
-    /**
-     * <p>subreport.</p>
-     *
-     * @param jasperReport a {@link net.sf.jasperreports.engine.JasperReport} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.SubreportBuilder} object.
-     */
-    public static SubreportBuilder subreport(JasperReport jasperReport) {
-        return new SubreportBuilder().setReport(jasperReport);
-    }
-
-    /**
-     * <p>subreport.</p>
-     *
-     * @param reportExpression a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.SubreportBuilder} object.
-     */
-    public static SubreportBuilder subreport(DRIExpression<?> reportExpression) {
-        return new SubreportBuilder().setReport(reportExpression);
-    }
-
-    // line
-
-    /**
-     * <p>line.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.LineBuilder} object.
-     */
-    public static LineBuilder line() {
-        return new LineBuilder();
-    }
-
-    // break
-
-    /**
-     * <p>pageBreak.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.BreakBuilder} object.
-     */
-    public static BreakBuilder pageBreak() {
-        return new BreakBuilder().setType(BreakType.PAGE);
-    }
-
-    /**
-     * <p>columnBreak.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.BreakBuilder} object.
-     */
-    public static BreakBuilder columnBreak() {
-        return new BreakBuilder().setType(BreakType.COLUMN);
-    }
-
-    // generic element
-
-    /**
-     * <p>genericElement.</p>
-     *
-     * @param namespace a {@link java.lang.String} object.
-     * @param namespace a {@link java.lang.String} object.
-     * @param name      a {@link java.lang.String} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.GenericElementBuilder} object.
-     */
-    public static GenericElementBuilder genericElement(String namespace, String name) {
-        return new GenericElementBuilder(namespace, name);
-    }
-
-    // boolean
-
-    /**
-     * <p>booleanField.</p>
-     *
-     * @param value a {@link java.lang.Boolean} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.BooleanFieldBuilder} object.
-     */
-    public static BooleanFieldBuilder booleanField(Boolean value) {
-        return new BooleanFieldBuilder().setValue(value);
-    }
-
-    /**
-     * <p>booleanField.</p>
-     *
-     * @param field a {@link software.xdev.dynamicreports.report.builder.FieldBuilder} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.BooleanFieldBuilder} object.
-     */
-    public static BooleanFieldBuilder booleanField(FieldBuilder<Boolean> field) {
-        return new BooleanFieldBuilder().setValue(field);
-    }
-
-    /**
-     * <p>booleanField.</p>
-     *
-     * @param valueExpression a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.BooleanFieldBuilder} object.
-     */
-    public static BooleanFieldBuilder booleanField(DRIExpression<Boolean> valueExpression) {
-        return new BooleanFieldBuilder().setValue(valueExpression);
-    }
-
-    // ellipse
-
-    /**
-     * <p>ellipse.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.EllipseBuilder} object.
-     */
-    public static EllipseBuilder ellipse() {
-        return new EllipseBuilder();
-    }
-
-    // rectangle
-
-    /**
-     * <p>rectangle.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.RectangleBuilder} object.
-     */
-    public static RectangleBuilder rectangle() {
-        return new RectangleBuilder();
-    }
-
-    /**
-     * <p>roundRectangle.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.RectangleBuilder} object.
-     */
-    public static RectangleBuilder roundRectangle() {
-        return new RectangleBuilder().setRadius(10);
-    }
-
-    /**
-     * <p>roundRectangle.</p>
-     *
-     * @param radius a int.
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.RectangleBuilder} object.
-     */
-    public static RectangleBuilder roundRectangle(int radius) {
-        return new RectangleBuilder().setRadius(radius);
-    }
-
-    // map
-
-    /**
-     * <p>map.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.MapBuilder} object.
-     */
-    public static MapBuilder map() {
-        return new MapBuilder();
-    }
-
-    /**
-     * <p>map.</p>
-     *
-     * @param latitude  a {@link java.lang.Float} object.
-     * @param longitude a {@link java.lang.Float} object.
-     * @param zoom      a {@link java.lang.Integer} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.MapBuilder} object.
-     */
-    public static MapBuilder map(Float latitude, Float longitude, Integer zoom) {
-        MapBuilder mapBuilder = new MapBuilder();
-        mapBuilder.setLatitude(latitude);
-        mapBuilder.setLongitude(longitude);
-        mapBuilder.setZoom(zoom);
-        return mapBuilder;
-    }
-
-    // alignment
-
-    /**
-     * <p>centerHorizontal.</p>
-     *
-     * @param component a {@link software.xdev.dynamicreports.report.builder.component.ComponentBuilder} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.HorizontalListBuilder} object.
-     */
-    public static HorizontalListBuilder centerHorizontal(ComponentBuilder<?, ?> component) {
-        HorizontalListBuilder list = horizontalList();
-        list.add(filler().setWidth(1));
-        list.add(component);
-        list.add(filler().setWidth(1));
-        return list;
-    }
-
-    /**
-     * <p>centerVertical.</p>
-     *
-     * @param component a {@link software.xdev.dynamicreports.report.builder.component.ComponentBuilder} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.VerticalListBuilder} object.
-     */
-    public static VerticalListBuilder centerVertical(ComponentBuilder<?, ?> component) {
-        VerticalListBuilder list = verticalList();
-        list.add(filler().setHeight(1));
-        list.add(component);
-        list.add(filler().setHeight(1));
-        return list;
-    }
+public final class Components
+{
+	private Components()
+	{
+	}
+	
+	// horizontal list
+	
+	public static HorizontalListBuilder horizontalList()
+	{
+		return new HorizontalListBuilder();
+	}
+	
+	public static HorizontalListBuilder horizontalList(final ComponentBuilder<?, ?>... components)
+	{
+		return new HorizontalListBuilder().add(components);
+	}
+	
+	public static HorizontalListBuilder horizontalList(final HorizontalListCellBuilder... cells)
+	{
+		return new HorizontalListBuilder().add(cells);
+	}
+	
+	public static HorizontalListCellBuilder hListCell(final ComponentBuilder<?, ?> component)
+	{
+		Validate.notNull(component, "component must not be null");
+		return new HorizontalListCellBuilder(component);
+	}
+	
+	// horizontal flow list
+	
+	public static HorizontalListBuilder horizontalFlowList()
+	{
+		return new HorizontalFlowListBuilder();
+	}
+	
+	public static HorizontalListBuilder horizontalFlowList(final ComponentBuilder<?, ?>... components)
+	{
+		return new HorizontalFlowListBuilder().add(components);
+	}
+	
+	public static HorizontalListBuilder horizontalFlowList(final HorizontalListCellBuilder... cells)
+	{
+		return new HorizontalFlowListBuilder().add(cells);
+	}
+	
+	// vertical list
+	
+	public static VerticalListBuilder verticalList()
+	{
+		return new VerticalListBuilder();
+	}
+	
+	public static VerticalListBuilder verticalList(final ComponentBuilder<?, ?>... components)
+	{
+		return new VerticalListBuilder().add(components);
+	}
+	
+	public static VerticalListBuilder verticalList(final VerticalListCellBuilder... cells)
+	{
+		return new VerticalListBuilder().add(cells);
+	}
+	
+	public static VerticalListCellBuilder vListCell(final ComponentBuilder<?, ?> component)
+	{
+		Validate.notNull(component, "component must not be null");
+		return new VerticalListCellBuilder(component);
+	}
+	
+	// xy list
+	
+	public static XyListBuilder xyList()
+	{
+		return new XyListBuilder();
+	}
+	
+	public static XyListBuilder xyList(final XyListCellBuilder... cells)
+	{
+		return new XyListBuilder().add(cells);
+	}
+	
+	public static XyListCellBuilder xyListCell(
+		final Integer x, final Integer y,
+		final ComponentBuilder<?, ?> component)
+	{
+		Validate.notNull(component, "component must not be null");
+		return new XyListCellBuilder(x, y, component);
+	}
+	
+	public static XyListCellBuilder xyListCell(
+		final Integer x,
+		final Integer y,
+		final Integer width,
+		final Integer height,
+		final ComponentBuilder<?, ?> component)
+	{
+		Validate.notNull(component, "component must not be null");
+		return new XyListCellBuilder(x, y, width, height, component);
+	}
+	
+	// multi page list
+	
+	public static MultiPageListBuilder multiPageList()
+	{
+		return new MultiPageListBuilder();
+	}
+	
+	public static MultiPageListBuilder multiPageList(final ComponentBuilder<?, ?>... components)
+	{
+		return new MultiPageListBuilder().add(components);
+	}
+	
+	public static CurrentDateBuilder currentDate()
+	{
+		return new CurrentDateBuilder();
+	}
+	
+	public static PageNumberBuilder pageNumber()
+	{
+		return new PageNumberBuilder();
+	}
+	
+	public static PageXofYBuilder pageXofY()
+	{
+		return new PageXofYBuilder();
+	}
+	
+	public static PageXslashYBuilder pageXslashY()
+	{
+		return new PageXslashYBuilder();
+	}
+	
+	public static TotalPagesBuilder totalPages()
+	{
+		return new TotalPagesBuilder();
+	}
+	
+	// text
+	
+	public static TextFieldBuilder<String> text(final String text)
+	{
+		return new TextFieldBuilder<String>().setText(text);
+	}
+	
+	public static TextFieldBuilder<Date> text(final Date date)
+	{
+		return new TextFieldBuilder<Date>().setText(date);
+	}
+	
+	public static <T extends Number> TextFieldBuilder<T> text(final T number)
+	{
+		return new TextFieldBuilder<T>().setText(number);
+	}
+	
+	public static <T> TextFieldBuilder<T> text(final FieldBuilder<T> field)
+	{
+		return new TextFieldBuilder<T>().setText(field);
+	}
+	
+	public static <T> TextFieldBuilder<T> text(final VariableBuilder<T> variable)
+	{
+		return new TextFieldBuilder<T>().setText(variable);
+	}
+	
+	public static <T> TextFieldBuilder<T> text(final DRIExpression<T> textExpression)
+	{
+		return new TextFieldBuilder<T>().setText(textExpression);
+	}
+	
+	// filler
+	
+	public static FillerBuilder filler()
+	{
+		return new FillerBuilder();
+	}
+	
+	public static FillerBuilder horizontalGap(final int width)
+	{
+		return new FillerBuilder().setFixedWidth(width);
+	}
+	
+	public static FillerBuilder verticalGap(final int height)
+	{
+		return new FillerBuilder().setFixedHeight(height);
+	}
+	
+	public static FillerBuilder gap(final int width, final int height)
+	{
+		return new FillerBuilder().setFixedDimension(width, height);
+	}
+	
+	// image
+	
+	public static ImageBuilder image(final DRIExpression<?> imageExpression)
+	{
+		return new ImageBuilder().setImage(imageExpression);
+	}
+	
+	public static ImageBuilder image(final String imagePath)
+	{
+		return new ImageBuilder().setImage(imagePath);
+	}
+	
+	public static ImageBuilder image(final Image image)
+	{
+		return new ImageBuilder().setImage(image);
+	}
+	
+	public static ImageBuilder image(final InputStream imageInputStream)
+	{
+		return new ImageBuilder().setImage(imageInputStream);
+	}
+	
+	public static ImageBuilder image(final URL imageUrl)
+	{
+		return new ImageBuilder().setImage(imageUrl);
+	}
+	
+	public static ImageBuilder image(final Renderable image)
+	{
+		return new ImageBuilder().setImage(Expressions.value(image, Renderable.class));
+	}
+	
+	// subreport
+	
+	public static SubreportBuilder subreport(final JasperReportBuilder reportBuilder)
+	{
+		final SubreportBuilder subreport = new SubreportBuilder();
+		subreport.setReport(reportBuilder);
+		if(reportBuilder.getConnection() != null)
+		{
+			subreport.setConnection(reportBuilder.getConnection());
+		}
+		if(reportBuilder.getDataSource() != null)
+		{
+			subreport.setDataSource(reportBuilder.getDataSource());
+		}
+		return subreport;
+	}
+	
+	public static SubreportBuilder subreport(final JasperReport jasperReport)
+	{
+		return new SubreportBuilder().setReport(jasperReport);
+	}
+	
+	public static SubreportBuilder subreport(final DRIExpression<?> reportExpression)
+	{
+		return new SubreportBuilder().setReport(reportExpression);
+	}
+	
+	// line
+	
+	public static LineBuilder line()
+	{
+		return new LineBuilder();
+	}
+	
+	// break
+	
+	public static BreakBuilder pageBreak()
+	{
+		return new BreakBuilder().setType(BreakType.PAGE);
+	}
+	
+	public static BreakBuilder columnBreak()
+	{
+		return new BreakBuilder().setType(BreakType.COLUMN);
+	}
+	
+	// generic element
+	
+	public static GenericElementBuilder genericElement(final String namespace, final String name)
+	{
+		return new GenericElementBuilder(namespace, name);
+	}
+	
+	// boolean
+	
+	public static BooleanFieldBuilder booleanField(final Boolean value)
+	{
+		return new BooleanFieldBuilder().setValue(value);
+	}
+	
+	public static BooleanFieldBuilder booleanField(final FieldBuilder<Boolean> field)
+	{
+		return new BooleanFieldBuilder().setValue(field);
+	}
+	
+	public static BooleanFieldBuilder booleanField(final DRIExpression<Boolean> valueExpression)
+	{
+		return new BooleanFieldBuilder().setValue(valueExpression);
+	}
+	
+	// ellipse
+	
+	public static EllipseBuilder ellipse()
+	{
+		return new EllipseBuilder();
+	}
+	
+	// rectangle
+	
+	public static RectangleBuilder rectangle()
+	{
+		return new RectangleBuilder();
+	}
+	
+	public static RectangleBuilder roundRectangle()
+	{
+		return new RectangleBuilder().setRadius(10);
+	}
+	
+	public static RectangleBuilder roundRectangle(final int radius)
+	{
+		return new RectangleBuilder().setRadius(radius);
+	}
+	
+	// map
+	
+	public static MapBuilder map()
+	{
+		return new MapBuilder();
+	}
+	
+	public static MapBuilder map(final Float latitude, final Float longitude, final Integer zoom)
+	{
+		final MapBuilder mapBuilder = new MapBuilder();
+		mapBuilder.setLatitude(latitude);
+		mapBuilder.setLongitude(longitude);
+		mapBuilder.setZoom(zoom);
+		return mapBuilder;
+	}
+	
+	// alignment
+	
+	public static HorizontalListBuilder centerHorizontal(final ComponentBuilder<?, ?> component)
+	{
+		final HorizontalListBuilder list = horizontalList();
+		list.add(filler().setWidth(1));
+		list.add(component);
+		list.add(filler().setWidth(1));
+		return list;
+	}
+	
+	public static VerticalListBuilder centerVertical(final ComponentBuilder<?, ?> component)
+	{
+		final VerticalListBuilder list = verticalList();
+		list.add(filler().setHeight(1));
+		list.add(component);
+		list.add(filler().setHeight(1));
+		return list;
+	}
 }

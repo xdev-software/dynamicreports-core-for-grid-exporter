@@ -20,25 +20,11 @@ package software.xdev.dynamicreports.report.definition.component;
 import software.xdev.dynamicreports.report.constant.HorizontalTextAlignment;
 import software.xdev.dynamicreports.report.definition.expression.DRIExpression;
 
-/**
- * <p>DRIFormatField interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface DRIFormatField extends DRIHyperLinkComponent {
 
-    /**
-     * <p>getFormatExpression.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     */
-    public DRIExpression<String> getFormatExpression();
-
-    /**
-     * <p>getHorizontalTextAlignment.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.constant.HorizontalTextAlignment} object.
-     */
-    public HorizontalTextAlignment getHorizontalTextAlignment();
+public interface DRIFormatField extends DRIHyperLinkComponent
+{
+	
+	public DRIExpression<String> getFormatExpression();
+	
+	public HorizontalTextAlignment getHorizontalTextAlignment();
 }

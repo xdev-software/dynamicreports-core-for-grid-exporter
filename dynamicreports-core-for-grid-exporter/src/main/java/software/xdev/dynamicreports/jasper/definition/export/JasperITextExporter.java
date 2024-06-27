@@ -17,60 +17,20 @@
  */
 package software.xdev.dynamicreports.jasper.definition.export;
 
-/**
- * <p>JasperITextExporter interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface JasperITextExporter extends JasperIExporter {
-
-    /**
-     * <p>getCharacterWidth.</p>
-     *
-     * @return a {@link java.lang.Float} object.
-     */
-    public Float getCharacterWidth();
-
-    /**
-     * <p>getCharacterHeight.</p>
-     *
-     * @return a {@link java.lang.Float} object.
-     */
-    public Float getCharacterHeight();
-
-    /**
-     * <p>getPageWidthInChars.</p>
-     *
-     * @return a {@link java.lang.Integer} object.
-     */
-    public Integer getPageWidthInChars();
-
-    /**
-     * <p>getPageHeightInChars.</p>
-     *
-     * @return a {@link java.lang.Integer} object.
-     */
-    public Integer getPageHeightInChars();
-
-    /**
-     * <p>getPageSeparator.</p>
-     *
-     * @return a {@link java.lang.String} object.
-     */
-    public String getPageSeparator();
-
-    /**
-     * <p>getLineSeparator.</p>
-     *
-     * @return a {@link java.lang.String} object.
-     */
-    public String getLineSeparator();
-
-    /**
-     * <p>getTrimLineRight.</p>
-     *
-     * @return a {@link java.lang.Boolean} object.
-     */
-    public Boolean getTrimLineRight();
+public interface JasperITextExporter extends JasperIExporter
+{
+	
+	public Float getCharacterWidth();
+	
+	public Float getCharacterHeight();
+	
+	public Integer getPageWidthInChars();
+	
+	public Integer getPageHeightInChars();
+	
+	public String getPageSeparator();
+	
+	public String getLineSeparator();
+	
+	public Boolean getTrimLineRight();
 }

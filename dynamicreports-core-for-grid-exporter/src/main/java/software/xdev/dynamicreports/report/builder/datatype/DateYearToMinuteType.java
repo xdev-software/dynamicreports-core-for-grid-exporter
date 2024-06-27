@@ -17,28 +17,22 @@
  */
 package software.xdev.dynamicreports.report.builder.datatype;
 
-import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.constant.HorizontalTextAlignment;
 import software.xdev.dynamicreports.report.defaults.Defaults;
 
-/**
- * <p>DateYearToMinuteType class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class DateYearToMinuteType extends DateType {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    /** {@inheritDoc} */
-    @Override
-    public String getPattern() {
-        return Defaults.getDefaults().getDateYearToMinuteType().getPattern();
-    }
+public class DateYearToMinuteType extends DateType
+{
 
-    /** {@inheritDoc} */
-    @Override
-    public HorizontalTextAlignment getHorizontalTextAlignment() {
-        return Defaults.getDefaults().getDateYearToMinuteType().getHorizontalTextAlignment();
-    }
+	@Override
+	public String getPattern()
+	{
+		return Defaults.getDefaults().getDateYearToMinuteType().getPattern();
+	}
+	
+	@Override
+	public HorizontalTextAlignment getHorizontalTextAlignment()
+	{
+		return Defaults.getDefaults().getDateYearToMinuteType().getHorizontalTextAlignment();
+	}
 }

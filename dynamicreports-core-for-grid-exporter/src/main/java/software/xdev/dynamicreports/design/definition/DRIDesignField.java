@@ -19,25 +19,11 @@ package software.xdev.dynamicreports.design.definition;
 
 import software.xdev.dynamicreports.design.definition.expression.DRIDesignExpression;
 
-/**
- * <p>DRIDesignField interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface DRIDesignField extends DRIDesignExpression {
 
-    /**
-     * <p>isExternal.</p>
-     *
-     * @return a boolean.
-     */
-    public boolean isExternal();
-
-    /**
-     * <p>getDescription.</p>
-     *
-     * @return a {@link java.lang.String} object.
-     */
-    public String getDescription();
+public interface DRIDesignField extends DRIDesignExpression
+{
+	
+	public boolean isExternal();
+	
+	public String getDescription();
 }

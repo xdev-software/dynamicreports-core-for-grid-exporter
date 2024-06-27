@@ -18,32 +18,22 @@
 package software.xdev.dynamicreports.report.builder.expression;
 
 import software.xdev.dynamicreports.report.base.expression.AbstractSimpleExpression;
-import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.definition.ReportParameters;
 
-/**
- * <p>GroupRowNumberExpression class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class GroupRowNumberExpression extends AbstractSimpleExpression<Integer> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    private String groupName;
+public class GroupRowNumberExpression extends AbstractSimpleExpression<Integer>
+{
 
-    /**
-     * <p>Constructor for GroupRowNumberExpression.</p>
-     *
-     * @param groupName a {@link java.lang.String} object.
-     */
-    public GroupRowNumberExpression(String groupName) {
-        this.groupName = groupName;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Integer evaluate(ReportParameters reportParameters) {
-        return reportParameters.getGroupCount(groupName);
-    }
+	private final String groupName;
+	
+	public GroupRowNumberExpression(final String groupName)
+	{
+		this.groupName = groupName;
+	}
+	
+	@Override
+	public Integer evaluate(final ReportParameters reportParameters)
+	{
+		return reportParameters.getGroupCount(this.groupName);
+	}
 }

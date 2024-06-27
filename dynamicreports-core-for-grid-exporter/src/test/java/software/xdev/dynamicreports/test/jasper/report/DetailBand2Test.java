@@ -17,47 +17,50 @@
  */
 package software.xdev.dynamicreports.test.jasper.report;
 
+import static software.xdev.dynamicreports.report.builder.DynamicReports.cmp;
+import static software.xdev.dynamicreports.report.builder.DynamicReports.col;
+
+import java.io.Serializable;
+
+import net.sf.jasperreports.engine.JRDataSource;
 import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
 import software.xdev.dynamicreports.report.builder.column.TextColumnBuilder;
 import software.xdev.dynamicreports.report.datasource.DRDataSource;
 import software.xdev.dynamicreports.test.jasper.AbstractJasperPositionTest;
-import net.sf.jasperreports.engine.JRDataSource;
 
-import java.io.Serializable;
 
-import static software.xdev.dynamicreports.report.builder.DynamicReports.cmp;
-import static software.xdev.dynamicreports.report.builder.DynamicReports.col;
+public class DetailBand2Test extends AbstractJasperPositionTest implements Serializable
+{
 
-/**
- * @author Ricardo Mariaca
- */
-public class DetailBand2Test extends AbstractJasperPositionTest implements Serializable {
-    private static final long serialVersionUID = 1L;
-
-    private TextColumnBuilder<String> column1;
-
-    @Override
-    protected void configureReport(JasperReportBuilder rb) {
-        rb.columns(column1 = col.column("Column1", "field1", String.class)).detailHeader(cmp.filler().setFixedHeight(10)).detailFooter(cmp.filler().setFixedHeight(15));
-
-    }
-
-    @Override
-    public void test() {
-        super.test();
-
-        numberOfPagesTest(1);
-
-        columnDetailPositionTest(column1, 0, 10, 36, 575, 16);
-        columnDetailPositionTest(column1, 1, 10, 77, 575, 16);
-    }
-
-    @Override
-    protected JRDataSource createDataSource() {
-        DRDataSource dataSource = new DRDataSource("field1");
-        for (int i = 0; i < 2; i++) {
-            dataSource.add("detail");
-        }
-        return dataSource;
-    }
+	private TextColumnBuilder<String> column1;
+	
+	@Override
+	protected void configureReport(final JasperReportBuilder rb)
+	{
+		rb.columns(this.column1 = col.column("Column1", "field1", String.class))
+			.detailHeader(cmp.filler().setFixedHeight(10))
+			.detailFooter(cmp.filler().setFixedHeight(15));
+	}
+	
+	@Override
+	public void test()
+	{
+		super.test();
+		
+		this.numberOfPagesTest(1);
+		
+		this.columnDetailPositionTest(this.column1, 0, 10, 36, 575, 16);
+		this.columnDetailPositionTest(this.column1, 1, 10, 77, 575, 16);
+	}
+	
+	@Override
+	protected JRDataSource createDataSource()
+	{
+		final DRDataSource dataSource = new DRDataSource("field1");
+		for(int i = 0; i < 2; i++)
+		{
+			dataSource.add("detail");
+		}
+		return dataSource;
+	}
 }

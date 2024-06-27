@@ -18,47 +18,33 @@
 package software.xdev.dynamicreports.design.base;
 
 import software.xdev.dynamicreports.design.definition.DRIDesignQuery;
-import software.xdev.dynamicreports.report.constant.Constants;
 
-/**
- * <p>DRDesignQuery class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class DRDesignQuery implements DRIDesignQuery {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    private String text;
-    private String language;
+public class DRDesignQuery implements DRIDesignQuery
+{
 
-    /** {@inheritDoc} */
-    @Override
-    public String getText() {
-        return text;
-    }
-
-    /**
-     * <p>Setter for the field <code>text</code>.</p>
-     *
-     * @param text a {@link java.lang.String} object.
-     */
-    public void setText(String text) {
-        this.text = text;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public String getLanguage() {
-        return language;
-    }
-
-    /**
-     * <p>Setter for the field <code>language</code>.</p>
-     *
-     * @param language a {@link java.lang.String} object.
-     */
-    public void setLanguage(String language) {
-        this.language = language;
-    }
+	private String text;
+	private String language;
+	
+	@Override
+	public String getText()
+	{
+		return this.text;
+	}
+	
+	public void setText(final String text)
+	{
+		this.text = text;
+	}
+	
+	@Override
+	public String getLanguage()
+	{
+		return this.language;
+	}
+	
+	public void setLanguage(final String language)
+	{
+		this.language = language;
+	}
 }

@@ -17,12 +17,7 @@
  */
 package software.xdev.dynamicreports.report.definition.component;
 
-/**
- * <p>DRITotalPages interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface DRITotalPages extends DRIFormatField {
+public interface DRITotalPages extends DRIFormatField
+{
 
 }

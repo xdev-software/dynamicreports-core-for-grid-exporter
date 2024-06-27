@@ -22,43 +22,41 @@ import static software.xdev.dynamicreports.report.builder.DynamicReports.stl;
 
 import java.io.Serializable;
 
+import net.sf.jasperreports.engine.type.HorizontalTextAlignEnum;
+import net.sf.jasperreports.engine.type.LineStyleEnum;
 import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
 import software.xdev.dynamicreports.report.constant.WhenNoDataType;
 import software.xdev.dynamicreports.test.jasper.AbstractJasperStyleTest;
-import net.sf.jasperreports.engine.type.HorizontalTextAlignEnum;
-import net.sf.jasperreports.engine.type.LineStyleEnum;
 
-/**
- * Style tests.
- * 
- * @author Ricardo Mariaca
- */
-public class Style5Test extends AbstractJasperStyleTest implements Serializable {
-  private static final long serialVersionUID = 1L;
 
-  @Override
-  protected void configureReport(JasperReportBuilder rb) {
-    rb.setWhenNoDataType(WhenNoDataType.ALL_SECTIONS_NO_DETAIL)
-        .setTextStyle(stl.style(stl.pen1Point()).setPadding(2)).pageFooter(cmp.pageXofY());
-  }
+public class Style5Test extends AbstractJasperStyleTest implements Serializable
+{
 
-  @Override
-  public void test() {
-    super.test();
-
-    numberOfPagesTest(1);
-
-    // column1
-    styleTest("pageFooter.textField1", 0, null, null, TEST_FONT_NAME, 10f, null, null);
-    horizontalAlignmentTest("pageFooter.textField1", 0, HorizontalTextAlignEnum.RIGHT);
-    paddingTest("pageFooter.textField1", 0, 2, 2, 2, 0);
-    borderTest("pageFooter.textField1", 0, null, LineStyleEnum.SOLID, 1, null, LineStyleEnum.SOLID,
-        1, null, LineStyleEnum.SOLID, 1, null, LineStyleEnum.SOLID, 0);
-
-    styleTest("pageFooter.textField2", 0, null, null, TEST_FONT_NAME, 10f, null, null);
-    horizontalAlignmentTest("pageFooter.textField2", 0, HorizontalTextAlignEnum.LEFT);
-    paddingTest("pageFooter.textField2", 0, 2, 2, 0, 2);
-    borderTest("pageFooter.textField2", 0, null, LineStyleEnum.SOLID, 1, null, LineStyleEnum.SOLID,
-        1, null, LineStyleEnum.SOLID, 0, null, LineStyleEnum.SOLID, 1);
-  }
+	@Override
+	protected void configureReport(final JasperReportBuilder rb)
+	{
+		rb.setWhenNoDataType(WhenNoDataType.ALL_SECTIONS_NO_DETAIL)
+			.setTextStyle(stl.style(stl.pen1Point()).setPadding(2)).pageFooter(cmp.pageXofY());
+	}
+	
+	@Override
+	public void test()
+	{
+		super.test();
+		
+		this.numberOfPagesTest(1);
+		
+		// column1
+		this.styleTest("pageFooter.textField1", 0, null, null, TEST_FONT_NAME, 10f, null, null);
+		this.horizontalAlignmentTest("pageFooter.textField1", 0, HorizontalTextAlignEnum.RIGHT);
+		this.paddingTest("pageFooter.textField1", 0, 2, 2, 2, 0);
+		this.borderTest("pageFooter.textField1", 0, null, LineStyleEnum.SOLID, 1, null, LineStyleEnum.SOLID,
+			1, null, LineStyleEnum.SOLID, 1, null, LineStyleEnum.SOLID, 0);
+		
+		this.styleTest("pageFooter.textField2", 0, null, null, TEST_FONT_NAME, 10f, null, null);
+		this.horizontalAlignmentTest("pageFooter.textField2", 0, HorizontalTextAlignEnum.LEFT);
+		this.paddingTest("pageFooter.textField2", 0, 2, 2, 0, 2);
+		this.borderTest("pageFooter.textField2", 0, null, LineStyleEnum.SOLID, 1, null, LineStyleEnum.SOLID,
+			1, null, LineStyleEnum.SOLID, 0, null, LineStyleEnum.SOLID, 1);
+	}
 }

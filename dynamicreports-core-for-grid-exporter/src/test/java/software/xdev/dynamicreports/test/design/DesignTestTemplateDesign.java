@@ -19,10 +19,8 @@ package software.xdev.dynamicreports.test.design;
 
 import software.xdev.dynamicreports.report.base.AbstractTemplateDesign;
 
-/**
- * @author Ricardo Mariaca
- */
-public class DesignTestTemplateDesign extends AbstractTemplateDesign<Object> {
-    private static final long serialVersionUID = 1L;
 
+public class DesignTestTemplateDesign extends AbstractTemplateDesign<Object>
+{
 }
+

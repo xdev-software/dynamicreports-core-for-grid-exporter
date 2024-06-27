@@ -24,17 +24,12 @@ import java.awt.Color;
 
 import org.junit.jupiter.api.Assertions;
 
+import net.sf.jasperreports.engine.JRStyle;
 import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
 import software.xdev.dynamicreports.report.builder.style.StyleBuilder;
 import software.xdev.dynamicreports.test.jasper.AbstractJasperStyleTest;
-import net.sf.jasperreports.engine.JRStyle;
 
 
-/**
- * Style tests.
- *
- * @author Ricardo Mariaca
- */
 public class Style9Test extends AbstractJasperStyleTest
 {
 	
@@ -50,11 +45,11 @@ public class Style9Test extends AbstractJasperStyleTest
 	public void test()
 	{
 		super.test();
-      
-      this.numberOfPagesTest(1);
+		
+		this.numberOfPagesTest(1);
 		
 		final JRStyle style = this.getElementAt("title.rectangle1", 0).getStyle();
 		Assertions.assertEquals(Color.BLUE, style.getForecolor());
-      this.styleTest("title.textField1", 0, Color.BLUE, null, TEST_FONT_NAME, 10f, true, null);
+		this.styleTest("title.textField1", 0, Color.BLUE, null, TEST_FONT_NAME, 10f, true, null);
 	}
 }

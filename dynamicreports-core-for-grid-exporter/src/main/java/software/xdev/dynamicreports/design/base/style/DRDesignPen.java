@@ -17,86 +17,73 @@
  */
 package software.xdev.dynamicreports.design.base.style;
 
-import software.xdev.dynamicreports.design.definition.style.DRIDesignPen;
-import software.xdev.dynamicreports.report.constant.Constants;
-import software.xdev.dynamicreports.report.constant.LineStyle;
-import org.apache.commons.lang3.builder.EqualsBuilder;
-
 import java.awt.Color;
+import java.util.Objects;
 
-/**
- * <p>DRDesignPen class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class DRDesignPen implements DRIDesignPen {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
+import software.xdev.dynamicreports.design.definition.style.DRIDesignPen;
+import software.xdev.dynamicreports.report.constant.LineStyle;
 
-    private Float lineWidth;
-    private LineStyle lineStyle;
-    private Color lineColor;
 
-    /** {@inheritDoc} */
-    @Override
-    public Float getLineWidth() {
-        return lineWidth;
-    }
+public class DRDesignPen implements DRIDesignPen
+{
 
-    /**
-     * <p>Setter for the field <code>lineWidth</code>.</p>
-     *
-     * @param lineWidth a {@link java.lang.Float} object.
-     */
-    public void setLineWidth(Float lineWidth) {
-        this.lineWidth = lineWidth;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public LineStyle getLineStyle() {
-        return lineStyle;
-    }
-
-    /**
-     * <p>Setter for the field <code>lineStyle</code>.</p>
-     *
-     * @param lineStyle a {@link software.xdev.dynamicreports.report.constant.LineStyle} object.
-     */
-    public void setLineStyle(LineStyle lineStyle) {
-        this.lineStyle = lineStyle;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Color getLineColor() {
-        return lineColor;
-    }
-
-    /**
-     * <p>Setter for the field <code>lineColor</code>.</p>
-     *
-     * @param lineColor a {@link java.awt.Color} object.
-     */
-    public void setLineColor(Color lineColor) {
-        this.lineColor = lineColor;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (obj == this) {
-            return true;
-        }
-        if (obj.getClass() != getClass()) {
-            return false;
-        }
-
-        DRDesignPen o = (DRDesignPen) obj;
-        EqualsBuilder equalsBuilder = new EqualsBuilder().append(lineWidth, o.lineWidth).append(lineStyle, o.lineStyle).append(lineColor, o.lineColor);
-        return equalsBuilder.isEquals();
-    }
+	private Float lineWidth;
+	private LineStyle lineStyle;
+	private Color lineColor;
+	
+	@Override
+	public Float getLineWidth()
+	{
+		return this.lineWidth;
+	}
+	
+	public void setLineWidth(final Float lineWidth)
+	{
+		this.lineWidth = lineWidth;
+	}
+	
+	@Override
+	public LineStyle getLineStyle()
+	{
+		return this.lineStyle;
+	}
+	
+	public void setLineStyle(final LineStyle lineStyle)
+	{
+		this.lineStyle = lineStyle;
+	}
+	
+	@Override
+	public Color getLineColor()
+	{
+		return this.lineColor;
+	}
+	
+	public void setLineColor(final Color lineColor)
+	{
+		this.lineColor = lineColor;
+	}
+	
+	@Override
+	public boolean equals(final Object o)
+	{
+		if(this == o)
+		{
+			return true;
+		}
+		if(o == null || getClass() != o.getClass())
+		{
+			return false;
+		}
+		final DRDesignPen that = (DRDesignPen)o;
+		return Objects.equals(getLineWidth(), that.getLineWidth())
+			&& getLineStyle() == that.getLineStyle()
+			&& Objects.equals(getLineColor(), that.getLineColor());
+	}
+	
+	@Override
+	public int hashCode()
+	{
+		return Objects.hash(getLineWidth(), getLineStyle(), getLineColor());
+	}
 }

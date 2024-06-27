@@ -19,19 +19,9 @@ package software.xdev.dynamicreports.design.definition.component;
 
 import software.xdev.dynamicreports.design.definition.style.DRIDesignPen;
 
-/**
- * <p>DRIDesignEllipse interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface DRIDesignEllipse extends DRIDesignComponent {
 
-    /**
-     * <p>getPen.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.design.definition.style.DRIDesignPen} object.
-     */
-    public DRIDesignPen getPen();
-
+public interface DRIDesignEllipse extends DRIDesignComponent
+{
+	
+	public DRIDesignPen getPen();
 }

@@ -17,140 +17,109 @@
  */
 package software.xdev.dynamicreports.report.base.component;
 
+import org.apache.commons.lang3.Validate;
+
 import software.xdev.dynamicreports.report.constant.BooleanComponentType;
-import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.constant.HorizontalImageAlignment;
 import software.xdev.dynamicreports.report.constant.HorizontalTextAlignment;
 import software.xdev.dynamicreports.report.definition.component.DRIBooleanField;
 import software.xdev.dynamicreports.report.definition.expression.DRIExpression;
-import org.apache.commons.lang3.Validate;
 
-/**
- * <p>DRBooleanField class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class DRBooleanField extends DRHyperLinkComponent implements DRIBooleanField {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    private DRIExpression<Boolean> valueExpression;
-    private BooleanComponentType componentType;
-    private Boolean emptyWhenNullValue;
-    private Integer imageWidth;
-    private Integer imageHeight;
-    private HorizontalImageAlignment horizontalImageAlignment;
-    private HorizontalTextAlignment horizontalTextAlignment;
+public class DRBooleanField extends DRHyperLinkComponent implements DRIBooleanField
+{
 
-    /** {@inheritDoc} */
-    @Override
-    public DRIExpression<Boolean> getValueExpression() {
-        return valueExpression;
-    }
-
-    /**
-     * <p>Setter for the field <code>valueExpression</code>.</p>
-     *
-     * @param valueExpression a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     */
-    public void setValueExpression(DRIExpression<Boolean> valueExpression) {
-        Validate.notNull(valueExpression, "valueExpression must not be null");
-        this.valueExpression = valueExpression;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public BooleanComponentType getComponentType() {
-        return componentType;
-    }
-
-    /**
-     * <p>Setter for the field <code>componentType</code>.</p>
-     *
-     * @param componentType a {@link software.xdev.dynamicreports.report.constant.BooleanComponentType} object.
-     */
-    public void setComponentType(BooleanComponentType componentType) {
-        this.componentType = componentType;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Boolean getEmptyWhenNullValue() {
-        return emptyWhenNullValue;
-    }
-
-    /**
-     * <p>Setter for the field <code>emptyWhenNullValue</code>.</p>
-     *
-     * @param emptyWhenNullValue a {@link java.lang.Boolean} object.
-     */
-    public void setEmptyWhenNullValue(Boolean emptyWhenNullValue) {
-        this.emptyWhenNullValue = emptyWhenNullValue;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Integer getImageWidth() {
-        return imageWidth;
-    }
-
-    /**
-     * <p>Setter for the field <code>imageWidth</code>.</p>
-     *
-     * @param imageWidth a {@link java.lang.Integer} object.
-     */
-    public void setImageWidth(Integer imageWidth) {
-        if (imageWidth != null) {
-            Validate.isTrue(imageWidth >= 0, "imageWidth must be >= 0");
-        }
-        this.imageWidth = imageWidth;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Integer getImageHeight() {
-        return imageHeight;
-    }
-
-    /**
-     * <p>Setter for the field <code>imageHeight</code>.</p>
-     *
-     * @param imageHeight a {@link java.lang.Integer} object.
-     */
-    public void setImageHeight(Integer imageHeight) {
-        if (imageHeight != null) {
-            Validate.isTrue(imageHeight >= 0, "imageHeight must be >= 0");
-        }
-        this.imageHeight = imageHeight;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public HorizontalImageAlignment getHorizontalImageAlignment() {
-        return horizontalImageAlignment;
-    }
-
-    /**
-     * <p>Setter for the field <code>horizontalImageAlignment</code>.</p>
-     *
-     * @param horizontalImageAlignment a {@link software.xdev.dynamicreports.report.constant.HorizontalImageAlignment} object.
-     */
-    public void setHorizontalImageAlignment(HorizontalImageAlignment horizontalImageAlignment) {
-        this.horizontalImageAlignment = horizontalImageAlignment;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public HorizontalTextAlignment getHorizontalTextAlignment() {
-        return horizontalTextAlignment;
-    }
-
-    /**
-     * <p>Setter for the field <code>horizontalTextAlignment</code>.</p>
-     *
-     * @param horizontalTextAlignment a {@link software.xdev.dynamicreports.report.constant.HorizontalTextAlignment} object.
-     */
-    public void setHorizontalTextAlignment(HorizontalTextAlignment horizontalTextAlignment) {
-        this.horizontalTextAlignment = horizontalTextAlignment;
-    }
+	private DRIExpression<Boolean> valueExpression;
+	private BooleanComponentType componentType;
+	private Boolean emptyWhenNullValue;
+	private Integer imageWidth;
+	private Integer imageHeight;
+	private HorizontalImageAlignment horizontalImageAlignment;
+	private HorizontalTextAlignment horizontalTextAlignment;
+	
+	@Override
+	public DRIExpression<Boolean> getValueExpression()
+	{
+		return this.valueExpression;
+	}
+	
+	public void setValueExpression(final DRIExpression<Boolean> valueExpression)
+	{
+		Validate.notNull(valueExpression, "valueExpression must not be null");
+		this.valueExpression = valueExpression;
+	}
+	
+	@Override
+	public BooleanComponentType getComponentType()
+	{
+		return this.componentType;
+	}
+	
+	public void setComponentType(final BooleanComponentType componentType)
+	{
+		this.componentType = componentType;
+	}
+	
+	@Override
+	public Boolean getEmptyWhenNullValue()
+	{
+		return this.emptyWhenNullValue;
+	}
+	
+	public void setEmptyWhenNullValue(final Boolean emptyWhenNullValue)
+	{
+		this.emptyWhenNullValue = emptyWhenNullValue;
+	}
+	
+	@Override
+	public Integer getImageWidth()
+	{
+		return this.imageWidth;
+	}
+	
+	public void setImageWidth(final Integer imageWidth)
+	{
+		if(imageWidth != null)
+		{
+			Validate.isTrue(imageWidth >= 0, "imageWidth must be >= 0");
+		}
+		this.imageWidth = imageWidth;
+	}
+	
+	@Override
+	public Integer getImageHeight()
+	{
+		return this.imageHeight;
+	}
+	
+	public void setImageHeight(final Integer imageHeight)
+	{
+		if(imageHeight != null)
+		{
+			Validate.isTrue(imageHeight >= 0, "imageHeight must be >= 0");
+		}
+		this.imageHeight = imageHeight;
+	}
+	
+	@Override
+	public HorizontalImageAlignment getHorizontalImageAlignment()
+	{
+		return this.horizontalImageAlignment;
+	}
+	
+	public void setHorizontalImageAlignment(final HorizontalImageAlignment horizontalImageAlignment)
+	{
+		this.horizontalImageAlignment = horizontalImageAlignment;
+	}
+	
+	@Override
+	public HorizontalTextAlignment getHorizontalTextAlignment()
+	{
+		return this.horizontalTextAlignment;
+	}
+	
+	public void setHorizontalTextAlignment(final HorizontalTextAlignment horizontalTextAlignment)
+	{
+		this.horizontalTextAlignment = horizontalTextAlignment;
+	}
 }

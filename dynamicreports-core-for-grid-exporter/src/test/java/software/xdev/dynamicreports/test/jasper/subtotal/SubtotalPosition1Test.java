@@ -17,45 +17,49 @@
  */
 package software.xdev.dynamicreports.test.jasper.subtotal;
 
+import static software.xdev.dynamicreports.report.builder.DynamicReports.col;
+import static software.xdev.dynamicreports.report.builder.DynamicReports.sbt;
+
+import net.sf.jasperreports.engine.JRDataSource;
 import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
 import software.xdev.dynamicreports.report.builder.column.TextColumnBuilder;
 import software.xdev.dynamicreports.report.builder.subtotal.AggregationSubtotalBuilder;
 import software.xdev.dynamicreports.report.constant.Calculation;
 import software.xdev.dynamicreports.report.datasource.DRDataSource;
 import software.xdev.dynamicreports.test.jasper.AbstractJasperPositionTest;
-import net.sf.jasperreports.engine.JRDataSource;
 
-import static software.xdev.dynamicreports.report.builder.DynamicReports.col;
-import static software.xdev.dynamicreports.report.builder.DynamicReports.sbt;
 
-/**
- * @author Ricardo Mariaca
- */
-public class SubtotalPosition1Test extends AbstractJasperPositionTest {
-    private AggregationSubtotalBuilder<Integer> subtotal1;
-    private AggregationSubtotalBuilder<Double> subtotal2;
-
-    @Override
-    protected void configureReport(JasperReportBuilder rb) {
-        TextColumnBuilder<Integer> column1;
-
-        rb.columns(column1 = col.column("Column1", "field1", Integer.class).setWidth(600)).subtotalsAtSummary(subtotal1 = sbt.sum(column1), subtotal2 = sbt.aggregate(column1, Calculation.AVERAGE));
-    }
-
-    @Override
-    public void test() {
-        super.test();
-
-        numberOfPagesTest(1);
-        // summary
-        subtotalPositionTest(subtotal1, 0, 10, 42, 575, 16);
-        subtotalIndexPositionTest(subtotal2, 2, 0, 10, 58, 575, 16);
-    }
-
-    @Override
-    protected JRDataSource createDataSource() {
-        DRDataSource dataSource = new DRDataSource("field1");
-        dataSource.add(1);
-        return dataSource;
-    }
+public class SubtotalPosition1Test extends AbstractJasperPositionTest
+{
+	private AggregationSubtotalBuilder<Integer> subtotal1;
+	private AggregationSubtotalBuilder<Double> subtotal2;
+	
+	@Override
+	protected void configureReport(final JasperReportBuilder rb)
+	{
+		final TextColumnBuilder<Integer> column1;
+		
+		rb.columns(column1 = col.column("Column1", "field1", Integer.class).setWidth(600))
+			.subtotalsAtSummary(this.subtotal1 = sbt.sum(column1),
+				this.subtotal2 = sbt.aggregate(column1, Calculation.AVERAGE));
+	}
+	
+	@Override
+	public void test()
+	{
+		super.test();
+		
+		this.numberOfPagesTest(1);
+		// summary
+		this.subtotalPositionTest(this.subtotal1, 0, 10, 42, 575, 16);
+		this.subtotalIndexPositionTest(this.subtotal2, 2, 0, 10, 58, 575, 16);
+	}
+	
+	@Override
+	protected JRDataSource createDataSource()
+	{
+		final DRDataSource dataSource = new DRDataSource("field1");
+		dataSource.add(1);
+		return dataSource;
+	}
 }

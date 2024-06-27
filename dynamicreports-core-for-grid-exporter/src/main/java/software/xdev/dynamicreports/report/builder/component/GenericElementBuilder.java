@@ -19,62 +19,33 @@ package software.xdev.dynamicreports.report.builder.component;
 
 import software.xdev.dynamicreports.report.base.component.DRGenericElement;
 import software.xdev.dynamicreports.report.builder.expression.Expressions;
-import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.definition.expression.DRIExpression;
 import software.xdev.dynamicreports.report.definition.expression.DRIParameterExpression;
 
-/**
- * <p>GenericElementBuilder class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class GenericElementBuilder extends DimensionComponentBuilder<GenericElementBuilder, DRGenericElement> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    /**
-     * <p>Constructor for GenericElementBuilder.</p>
-     *
-     * @param namespace a {@link java.lang.String} object.
-     * @param namespace a {@link java.lang.String} object.
-     * @param name      a {@link java.lang.String} object.
-     */
-    protected GenericElementBuilder(String namespace, String name) {
-        super(new DRGenericElement(namespace, name));
-    }
+public class GenericElementBuilder extends DimensionComponentBuilder<GenericElementBuilder, DRGenericElement>
+{
 
-    /**
-     * <p>addParameter.</p>
-     *
-     * @param parameterExpression a {@link software.xdev.dynamicreports.report.definition.expression.DRIParameterExpression} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.GenericElementBuilder} object.
-     */
-    public GenericElementBuilder addParameter(DRIParameterExpression parameterExpression) {
-        getComponent().addParameterExpression(parameterExpression);
-        return this;
-    }
-
-    /**
-     * <p>addParameter.</p>
-     *
-     * @param name            a {@link java.lang.String} object.
-     * @param valueExpression a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.GenericElementBuilder} object.
-     */
-    public GenericElementBuilder addParameter(String name, DRIExpression<?> valueExpression) {
-        getComponent().addParameterExpression(Expressions.parameter(name, valueExpression));
-        return this;
-    }
-
-    /**
-     * <p>addParameter.</p>
-     *
-     * @param name  a {@link java.lang.String} object.
-     * @param value a {@link java.lang.Object} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.GenericElementBuilder} object.
-     */
-    public GenericElementBuilder addParameter(String name, Object value) {
-        getComponent().addParameterExpression(Expressions.parameter(name, value));
-        return this;
-    }
+	protected GenericElementBuilder(final String namespace, final String name)
+	{
+		super(new DRGenericElement(namespace, name));
+	}
+	
+	public GenericElementBuilder addParameter(final DRIParameterExpression parameterExpression)
+	{
+		this.getComponent().addParameterExpression(parameterExpression);
+		return this;
+	}
+	
+	public GenericElementBuilder addParameter(final String name, final DRIExpression<?> valueExpression)
+	{
+		this.getComponent().addParameterExpression(Expressions.parameter(name, valueExpression));
+		return this;
+	}
+	
+	public GenericElementBuilder addParameter(final String name, final Object value)
+	{
+		this.getComponent().addParameterExpression(Expressions.parameter(name, value));
+		return this;
+	}
 }

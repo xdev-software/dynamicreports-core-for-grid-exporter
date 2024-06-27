@@ -18,54 +18,40 @@
 package software.xdev.dynamicreports.report.base.column;
 
 import software.xdev.dynamicreports.report.base.component.DRTextField;
-import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.definition.column.DRIValueColumn;
 import software.xdev.dynamicreports.report.definition.component.DRITextField;
 
-/**
- * <p>DRValueColumn class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class DRValueColumn<T> extends DRColumn<DRITextField<T>> implements DRIValueColumn<T> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    private Boolean printRepeatedDetailValues;
+public class DRValueColumn<T> extends DRColumn<DRITextField<T>> implements DRIValueColumn<T>
+{
 
-    /**
-     * <p>Constructor for DRValueColumn.</p>
-     *
-     * @param valueField a {@link software.xdev.dynamicreports.report.base.component.DRTextField} object.
-     */
-    public DRValueColumn(DRTextField<T> valueField) {
-        super(valueField);
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Boolean getPrintRepeatedDetailValues() {
-        return printRepeatedDetailValues;
-    }
-
-    /**
-     * <p>Setter for the field <code>printRepeatedDetailValues</code>.</p>
-     *
-     * @param printRepeatedDetailValues a {@link java.lang.Boolean} object.
-     */
-    public void setPrintRepeatedDetailValues(Boolean printRepeatedDetailValues) {
-        this.printRepeatedDetailValues = printRepeatedDetailValues;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public String getName() {
-        return getComponent().getValueExpression().getName();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Class<? super T> getValueClass() {
-        return getComponent().getValueExpression().getValueClass();
-    }
+	private Boolean printRepeatedDetailValues;
+	
+	public DRValueColumn(final DRTextField<T> valueField)
+	{
+		super(valueField);
+	}
+	
+	@Override
+	public Boolean getPrintRepeatedDetailValues()
+	{
+		return this.printRepeatedDetailValues;
+	}
+	
+	public void setPrintRepeatedDetailValues(final Boolean printRepeatedDetailValues)
+	{
+		this.printRepeatedDetailValues = printRepeatedDetailValues;
+	}
+	
+	@Override
+	public String getName()
+	{
+		return this.getComponent().getValueExpression().getName();
+	}
+	
+	@Override
+	public Class<? super T> getValueClass()
+	{
+		return this.getComponent().getValueExpression().getValueClass();
+	}
 }

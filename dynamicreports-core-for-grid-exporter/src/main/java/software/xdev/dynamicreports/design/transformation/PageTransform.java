@@ -22,76 +22,53 @@ import software.xdev.dynamicreports.design.base.DRDesignPage;
 import software.xdev.dynamicreports.report.definition.DRIMargin;
 import software.xdev.dynamicreports.report.exception.DRException;
 
-/**
- * <p>PageTransform class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class PageTransform {
-    private TemplateTransform templateTransform;
-    private DRDesignPage page;
-    private int maxBandWidth;
 
-    /**
-     * <p>Constructor for PageTransform.</p>
-     *
-     * @param accessor a {@link software.xdev.dynamicreports.design.transformation.DesignTransformAccessor} object.
-     */
-    public PageTransform(DesignTransformAccessor accessor) {
-        this.templateTransform = accessor.getTemplateTransform();
-        this.page = new DRDesignPage();
-    }
-
-    /**
-     * <p>transform.</p>
-     *
-     * @throws software.xdev.dynamicreports.report.exception.DRException if any.
-     */
-    public void transform() throws DRException {
-        this.page.setHeight(templateTransform.getPageHeight());
-        this.page.setOrientation(templateTransform.getPageOrientation());
-        this.page.setMargin(margin(templateTransform.getPageMargin()));
-        this.page.setColumnsPerPage(templateTransform.getPageColumnsPerPage());
-        this.page.setColumnSpace(templateTransform.getPageColumnSpace());
-    }
-
-    private DRDesignMargin margin(DRIMargin margin) {
-        DRDesignMargin designMargin = new DRDesignMargin();
-        designMargin.setTop(margin.getTop());
-        designMargin.setLeft(margin.getLeft());
-        designMargin.setBottom(margin.getBottom());
-        designMargin.setRight(margin.getRight());
-        return designMargin;
-    }
-
-    /**
-     * <p>Getter for the field <code>page</code>.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.design.base.DRDesignPage} object.
-     */
-    public DRDesignPage getPage() {
-        return page;
-    }
-
-    /**
-     * <p>transformPageWidth.</p>
-     *
-     * @throws software.xdev.dynamicreports.report.exception.DRException if any.
-     */
-    public void transformPageWidth() throws DRException {
-        int pageWidth = templateTransform.getPageWidth();
-        maxBandWidth = pageWidth - getPage().getMargin().getLeft() - getPage().getMargin().getRight();
-        this.page.setWidth(pageWidth);
-        this.page.setColumnWidth(templateTransform.getPageColumnWidth(this.page));
-    }
-
-    /**
-     * <p>Getter for the field <code>maxBandWidth</code>.</p>
-     *
-     * @return a int.
-     */
-    public int getMaxBandWidth() {
-        return maxBandWidth;
-    }
+public class PageTransform
+{
+	private final TemplateTransform templateTransform;
+	private final DRDesignPage page;
+	private int maxBandWidth;
+	
+	public PageTransform(final DesignTransformAccessor accessor)
+	{
+		this.templateTransform = accessor.getTemplateTransform();
+		this.page = new DRDesignPage();
+	}
+	
+	public void transform() throws DRException
+	{
+		this.page.setHeight(this.templateTransform.getPageHeight());
+		this.page.setOrientation(this.templateTransform.getPageOrientation());
+		this.page.setMargin(this.margin(this.templateTransform.getPageMargin()));
+		this.page.setColumnsPerPage(this.templateTransform.getPageColumnsPerPage());
+		this.page.setColumnSpace(this.templateTransform.getPageColumnSpace());
+	}
+	
+	private DRDesignMargin margin(final DRIMargin margin)
+	{
+		final DRDesignMargin designMargin = new DRDesignMargin();
+		designMargin.setTop(margin.getTop());
+		designMargin.setLeft(margin.getLeft());
+		designMargin.setBottom(margin.getBottom());
+		designMargin.setRight(margin.getRight());
+		return designMargin;
+	}
+	
+	public DRDesignPage getPage()
+	{
+		return this.page;
+	}
+	
+	public void transformPageWidth() throws DRException
+	{
+		final int pageWidth = this.templateTransform.getPageWidth();
+		this.maxBandWidth = pageWidth - this.getPage().getMargin().getLeft() - this.getPage().getMargin().getRight();
+		this.page.setWidth(pageWidth);
+		this.page.setColumnWidth(this.templateTransform.getPageColumnWidth(this.page));
+	}
+	
+	public int getMaxBandWidth()
+	{
+		return this.maxBandWidth;
+	}
 }

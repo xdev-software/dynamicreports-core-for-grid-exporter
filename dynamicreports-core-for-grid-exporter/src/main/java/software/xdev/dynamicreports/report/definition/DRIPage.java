@@ -17,64 +17,25 @@
  */
 package software.xdev.dynamicreports.report.definition;
 
-import software.xdev.dynamicreports.report.constant.PageOrientation;
-
 import java.io.Serializable;
 
-/**
- * <p>DRIPage interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface DRIPage extends Serializable {
+import software.xdev.dynamicreports.report.constant.PageOrientation;
 
-    /**
-     * <p>getWidth.</p>
-     *
-     * @return a {@link java.lang.Integer} object.
-     */
-    public Integer getWidth();
 
-    /**
-     * <p>getHeight.</p>
-     *
-     * @return a {@link java.lang.Integer} object.
-     */
-    public Integer getHeight();
-
-    /**
-     * <p>getOrientation.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.constant.PageOrientation} object.
-     */
-    public PageOrientation getOrientation();
-
-    /**
-     * <p>getMargin.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.definition.DRIMargin} object.
-     */
-    public DRIMargin getMargin();
-
-    /**
-     * <p>getColumnsPerPage.</p>
-     *
-     * @return a {@link java.lang.Integer} object.
-     */
-    public Integer getColumnsPerPage();
-
-    /**
-     * <p>getColumnSpace.</p>
-     *
-     * @return a {@link java.lang.Integer} object.
-     */
-    public Integer getColumnSpace();
-
-    /**
-     * <p>getIgnorePageWidth.</p>
-     *
-     * @return a {@link java.lang.Boolean} object.
-     */
-    public Boolean getIgnorePageWidth();
+public interface DRIPage extends Serializable
+{
+	
+	public Integer getWidth();
+	
+	public Integer getHeight();
+	
+	public PageOrientation getOrientation();
+	
+	public DRIMargin getMargin();
+	
+	public Integer getColumnsPerPage();
+	
+	public Integer getColumnSpace();
+	
+	public Boolean getIgnorePageWidth();
 }

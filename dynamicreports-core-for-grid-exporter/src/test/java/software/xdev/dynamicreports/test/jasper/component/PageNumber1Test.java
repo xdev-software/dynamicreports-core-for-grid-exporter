@@ -17,43 +17,45 @@
  */
 package software.xdev.dynamicreports.test.jasper.component;
 
+import static software.xdev.dynamicreports.report.builder.DynamicReports.cmp;
+
 import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
 import software.xdev.dynamicreports.report.constant.WhenNoDataType;
 import software.xdev.dynamicreports.test.jasper.AbstractJasperValueTest;
 
-import static software.xdev.dynamicreports.report.builder.DynamicReports.cmp;
 
-/**
- * @author Ricardo Mariaca
- */
-public class PageNumber1Test extends AbstractJasperValueTest {
-
-    @Override
-    protected void configureReport(JasperReportBuilder rb) {
-        rb.setWhenNoDataType(WhenNoDataType.ALL_SECTIONS_NO_DETAIL).pageFooter(cmp.pageNumber(), cmp.totalPages(), cmp.pageXslashY(), cmp.pageXofY());
-    }
-
-    @Override
-    public void test() {
-        super.test();
-
-        numberOfPagesTest(1);
-        elementCountTest("pageFooter.textField1", 1);
-        elementValueTest("pageFooter.textField1", "1");
-
-        elementCountTest("pageFooter.textField2", 1);
-        elementValueTest("pageFooter.textField2", "1");
-
-        elementCountTest("pageFooter.textField3", 1);
-        elementValueTest("pageFooter.textField3", "1");
-
-        elementCountTest("pageFooter.textField4", 1);
-        elementValueTest("pageFooter.textField4", "/1");
-
-        elementCountTest("pageFooter.textField5", 1);
-        elementValueTest("pageFooter.textField5", "1");
-
-        elementCountTest("pageFooter.textField6", 1);
-        elementValueTest("pageFooter.textField6", " of 1");
-    }
+public class PageNumber1Test extends AbstractJasperValueTest
+{
+	
+	@Override
+	protected void configureReport(final JasperReportBuilder rb)
+	{
+		rb.setWhenNoDataType(WhenNoDataType.ALL_SECTIONS_NO_DETAIL)
+			.pageFooter(cmp.pageNumber(), cmp.totalPages(), cmp.pageXslashY(), cmp.pageXofY());
+	}
+	
+	@Override
+	public void test()
+	{
+		super.test();
+		
+		this.numberOfPagesTest(1);
+		this.elementCountTest("pageFooter.textField1", 1);
+		this.elementValueTest("pageFooter.textField1", "1");
+		
+		this.elementCountTest("pageFooter.textField2", 1);
+		this.elementValueTest("pageFooter.textField2", "1");
+		
+		this.elementCountTest("pageFooter.textField3", 1);
+		this.elementValueTest("pageFooter.textField3", "1");
+		
+		this.elementCountTest("pageFooter.textField4", 1);
+		this.elementValueTest("pageFooter.textField4", "/1");
+		
+		this.elementCountTest("pageFooter.textField5", 1);
+		this.elementValueTest("pageFooter.textField5", "1");
+		
+		this.elementCountTest("pageFooter.textField6", 1);
+		this.elementValueTest("pageFooter.textField6", " of 1");
+	}
 }

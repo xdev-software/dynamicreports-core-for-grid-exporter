@@ -17,58 +17,64 @@
  */
 package software.xdev.dynamicreports.test.jasper.column;
 
+import static software.xdev.dynamicreports.report.builder.DynamicReports.col;
+import static software.xdev.dynamicreports.report.builder.DynamicReports.type;
+
+import java.io.Serializable;
+
+import net.sf.jasperreports.engine.JRDataSource;
 import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
 import software.xdev.dynamicreports.report.builder.column.TextColumnBuilder;
 import software.xdev.dynamicreports.report.datasource.DRDataSource;
 import software.xdev.dynamicreports.test.jasper.AbstractJasperValueTest;
-import net.sf.jasperreports.engine.JRDataSource;
 
-import java.io.Serializable;
 
-import static software.xdev.dynamicreports.report.builder.DynamicReports.col;
-import static software.xdev.dynamicreports.report.builder.DynamicReports.type;
+public class Column4Test extends AbstractJasperValueTest implements Serializable
+{
 
-/**
- * @author Ricardo Mariaca
- */
-public class Column4Test extends AbstractJasperValueTest implements Serializable {
-    private static final long serialVersionUID = 1L;
-
-    private TextColumnBuilder<String> column1;
-    private TextColumnBuilder<Integer> column2;
-
-    @Override
-    protected void configureReport(JasperReportBuilder rb) {
-        rb.columns(column1 = col.column("Column1", "field1", type.stringType()).setPrintRepeatedDetailValues(false).setPrintInFirstWholeBand(true),
-                   column2 = col.column("Column2", "field2", type.integerType()));
-    }
-
-    @Override
-    public void test() {
-        super.test();
-
-        numberOfPagesTest(2);
-        // column1
-        columnDetailCountTest(column1, 3);
-        columnDetailValueTest(column1, "test1", "test2", "test2");
-        columnTitleCountTest(column1, 2);
-        columnTitleValueTest(column1, "Column1", "Column1");
-        // column2
-        columnDetailCountTest(column2, 60);
-        columnDetailValueTest(column2, 0, "0");
-        columnTitleCountTest(column2, 2);
-        columnTitleValueTest(column2, "Column2", "Column2");
-    }
-
-    @Override
-    protected JRDataSource createDataSource() {
-        DRDataSource dataSource = new DRDataSource("field1", "field2");
-        for (int i = 0; i < 30; i++) {
-            dataSource.add("test1", i);
-        }
-        for (int i = 0; i < 30; i++) {
-            dataSource.add("test2", i);
-        }
-        return dataSource;
-    }
+	private TextColumnBuilder<String> column1;
+	private TextColumnBuilder<Integer> column2;
+	
+	@Override
+	protected void configureReport(final JasperReportBuilder rb)
+	{
+		rb.columns(
+			this.column1 = col.column("Column1", "field1", type.stringType())
+				.setPrintRepeatedDetailValues(false)
+				.setPrintInFirstWholeBand(true),
+			this.column2 = col.column("Column2", "field2", type.integerType()));
+	}
+	
+	@Override
+	public void test()
+	{
+		super.test();
+		
+		this.numberOfPagesTest(2);
+		// column1
+		this.columnDetailCountTest(this.column1, 3);
+		this.columnDetailValueTest(this.column1, "test1", "test2", "test2");
+		this.columnTitleCountTest(this.column1, 2);
+		this.columnTitleValueTest(this.column1, "Column1", "Column1");
+		// column2
+		this.columnDetailCountTest(this.column2, 60);
+		this.columnDetailValueTest(this.column2, 0, "0");
+		this.columnTitleCountTest(this.column2, 2);
+		this.columnTitleValueTest(this.column2, "Column2", "Column2");
+	}
+	
+	@Override
+	protected JRDataSource createDataSource()
+	{
+		final DRDataSource dataSource = new DRDataSource("field1", "field2");
+		for(int i = 0; i < 30; i++)
+		{
+			dataSource.add("test1", i);
+		}
+		for(int i = 0; i < 30; i++)
+		{
+			dataSource.add("test2", i);
+		}
+		return dataSource;
+	}
 }

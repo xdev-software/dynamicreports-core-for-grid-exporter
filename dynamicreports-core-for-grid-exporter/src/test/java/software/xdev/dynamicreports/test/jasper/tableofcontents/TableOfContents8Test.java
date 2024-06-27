@@ -17,57 +17,63 @@
  */
 package software.xdev.dynamicreports.test.jasper.tableofcontents;
 
+import static software.xdev.dynamicreports.report.builder.DynamicReports.cmp;
+import static software.xdev.dynamicreports.report.builder.DynamicReports.col;
+import static software.xdev.dynamicreports.report.builder.DynamicReports.type;
+
+import java.io.Serializable;
+
+import net.sf.jasperreports.engine.JRDataSource;
 import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
 import software.xdev.dynamicreports.report.base.expression.AbstractSimpleExpression;
 import software.xdev.dynamicreports.report.datasource.DRDataSource;
 import software.xdev.dynamicreports.report.definition.ReportParameters;
 import software.xdev.dynamicreports.test.jasper.AbstractJasperValueTest;
-import net.sf.jasperreports.engine.JRDataSource;
 
-import java.io.Serializable;
 
-import static software.xdev.dynamicreports.report.builder.DynamicReports.cmp;
-import static software.xdev.dynamicreports.report.builder.DynamicReports.col;
-import static software.xdev.dynamicreports.report.builder.DynamicReports.type;
+public class TableOfContents8Test extends AbstractJasperValueTest implements Serializable
+{
 
-/**
- * @author Ricardo Mariaca
- */
-public class TableOfContents8Test extends AbstractJasperValueTest implements Serializable {
-    private static final long serialVersionUID = 1L;
+	@Override
+	protected void configureReport(final JasperReportBuilder rb)
+	{
+		rb.tableOfContents()
+			.columns(col.column("Column1", "field1", type.stringType()))
+			.detail(cmp.text("detail")
+				.setTableOfContentsHeading("detailToc")
+				.removeLineWhenBlank()
+				.setPrintWhenExpression(new PrintWhenExpression()));
+	}
+	
+	@Override
+	public void test()
+	{
+		super.test();
+		
+		this.numberOfPagesTest(2);
+		
+		this.elementCountTest("detail.textField1", 2);
+		this.elementValueTest("detail.textField1", "detailToc", "detail");
+	}
+	
+	@Override
+	protected JRDataSource createDataSource()
+	{
+		final DRDataSource dataSource = new DRDataSource("field1");
+		for(int i = 0; i < 5; i++)
+		{
+			dataSource.add("text");
+		}
+		return dataSource;
+	}
+	
+	static class PrintWhenExpression extends AbstractSimpleExpression<Boolean>
+	{
 
-    @Override
-    protected void configureReport(JasperReportBuilder rb) {
-        rb.tableOfContents()
-          .columns(col.column("Column1", "field1", type.stringType()))
-          .detail(cmp.text("detail").setTableOfContentsHeading("detailToc").removeLineWhenBlank().setPrintWhenExpression(new PrintWhenExpression()));
-    }
-
-    @Override
-    public void test() {
-        super.test();
-
-        numberOfPagesTest(2);
-
-        elementCountTest("detail.textField1", 2);
-        elementValueTest("detail.textField1", "detailToc", "detail");
-    }
-
-    @Override
-    protected JRDataSource createDataSource() {
-        DRDataSource dataSource = new DRDataSource("field1");
-        for (int i = 0; i < 5; i++) {
-            dataSource.add("text");
-        }
-        return dataSource;
-    }
-
-    private class PrintWhenExpression extends AbstractSimpleExpression<Boolean> {
-        private static final long serialVersionUID = 1L;
-
-        @Override
-        public Boolean evaluate(ReportParameters reportParameters) {
-            return reportParameters.getReportRowNumber() == 1;
-        }
-    }
+		@Override
+		public Boolean evaluate(final ReportParameters reportParameters)
+		{
+			return reportParameters.getReportRowNumber() == 1;
+		}
+	}
 }

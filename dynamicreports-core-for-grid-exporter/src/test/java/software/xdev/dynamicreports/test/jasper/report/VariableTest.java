@@ -17,42 +17,42 @@
  */
 package software.xdev.dynamicreports.test.jasper.report;
 
+import static software.xdev.dynamicreports.report.builder.DynamicReports.cmp;
+import static software.xdev.dynamicreports.report.builder.DynamicReports.exp;
+import static software.xdev.dynamicreports.report.builder.DynamicReports.variable;
+
+import java.io.Serializable;
+
 import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
 import software.xdev.dynamicreports.report.builder.VariableBuilder;
 import software.xdev.dynamicreports.report.constant.Calculation;
 import software.xdev.dynamicreports.test.jasper.AbstractJasperValueTest;
 
-import java.io.Serializable;
 
-import static software.xdev.dynamicreports.report.builder.DynamicReports.cmp;
-import static software.xdev.dynamicreports.report.builder.DynamicReports.exp;
-import static software.xdev.dynamicreports.report.builder.DynamicReports.variable;
+public class VariableTest extends AbstractJasperValueTest implements Serializable
+{
 
-/**
- * @author Ricardo Mariaca
- */
-public class VariableTest extends AbstractJasperValueTest implements Serializable {
-    private static final long serialVersionUID = 1L;
-
-    @Override
-    protected void configureReport(JasperReportBuilder rb) {
-        VariableBuilder<Integer> variable1 = variable("field1", Integer.class, Calculation.SUM);
-        VariableBuilder<Integer> variable2 = variable(exp.number(5), Calculation.SUM);
-        variable2.setInitialValueExpression(exp.jasperSyntax("new Integer(10)"));
-
-        rb.summary(cmp.text(variable1), cmp.text(variable2));
-    }
-
-    @Override
-    public void test() {
-        super.test();
-
-        numberOfPagesTest(1);
-
-        // summary
-        elementCountTest("summary.textField1", 1);
-        elementValueTest("summary.textField1", "");
-        elementCountTest("summary.textField2", 1);
-        elementValueTest("summary.textField2", "10");
-    }
+	@Override
+	protected void configureReport(final JasperReportBuilder rb)
+	{
+		final VariableBuilder<Integer> variable1 = variable("field1", Integer.class, Calculation.SUM);
+		final VariableBuilder<Integer> variable2 = variable(exp.number(5), Calculation.SUM);
+		variable2.setInitialValueExpression(exp.jasperSyntax("new Integer(10)"));
+		
+		rb.summary(cmp.text(variable1), cmp.text(variable2));
+	}
+	
+	@Override
+	public void test()
+	{
+		super.test();
+		
+		this.numberOfPagesTest(1);
+		
+		// summary
+		this.elementCountTest("summary.textField1", 1);
+		this.elementValueTest("summary.textField1", "");
+		this.elementCountTest("summary.textField2", 1);
+		this.elementValueTest("summary.textField2", "10");
+	}
 }

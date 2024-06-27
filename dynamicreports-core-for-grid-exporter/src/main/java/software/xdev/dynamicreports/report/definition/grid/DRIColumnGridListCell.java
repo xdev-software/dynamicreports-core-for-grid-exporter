@@ -17,37 +17,18 @@
  */
 package software.xdev.dynamicreports.report.definition.grid;
 
+import java.io.Serializable;
+
 import software.xdev.dynamicreports.report.constant.HorizontalCellComponentAlignment;
 import software.xdev.dynamicreports.report.constant.VerticalCellComponentAlignment;
 
-import java.io.Serializable;
 
-/**
- * <p>DRIColumnGridListCell interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface DRIColumnGridListCell extends Serializable {
-
-    /**
-     * <p>getHorizontalAlignment.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.constant.HorizontalCellComponentAlignment} object.
-     */
-    public HorizontalCellComponentAlignment getHorizontalAlignment();
-
-    /**
-     * <p>getVerticalAlignment.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.constant.VerticalCellComponentAlignment} object.
-     */
-    public VerticalCellComponentAlignment getVerticalAlignment();
-
-    /**
-     * <p>getComponent.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.definition.grid.DRIColumnGridComponent} object.
-     */
-    public DRIColumnGridComponent getComponent();
+public interface DRIColumnGridListCell extends Serializable
+{
+	
+	public HorizontalCellComponentAlignment getHorizontalAlignment();
+	
+	public VerticalCellComponentAlignment getVerticalAlignment();
+	
+	public DRIColumnGridComponent getComponent();
 }

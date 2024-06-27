@@ -17,28 +17,22 @@
  */
 package software.xdev.dynamicreports.report.builder.datatype;
 
-import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.constant.HorizontalTextAlignment;
 import software.xdev.dynamicreports.report.defaults.Defaults;
 
-/**
- * <p>TimeHourToSecondType class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class TimeHourToSecondType extends DateType {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    /** {@inheritDoc} */
-    @Override
-    public String getPattern() {
-        return Defaults.getDefaults().getTimeHourToSecondType().getPattern();
-    }
+public class TimeHourToSecondType extends DateType
+{
 
-    /** {@inheritDoc} */
-    @Override
-    public HorizontalTextAlignment getHorizontalTextAlignment() {
-        return Defaults.getDefaults().getTimeHourToSecondType().getHorizontalTextAlignment();
-    }
+	@Override
+	public String getPattern()
+	{
+		return Defaults.getDefaults().getTimeHourToSecondType().getPattern();
+	}
+	
+	@Override
+	public HorizontalTextAlignment getHorizontalTextAlignment()
+	{
+		return Defaults.getDefaults().getTimeHourToSecondType().getHorizontalTextAlignment();
+	}
 }

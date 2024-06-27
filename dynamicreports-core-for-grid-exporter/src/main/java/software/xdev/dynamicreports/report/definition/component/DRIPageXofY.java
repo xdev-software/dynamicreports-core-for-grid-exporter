@@ -19,40 +19,15 @@ package software.xdev.dynamicreports.report.definition.component;
 
 import software.xdev.dynamicreports.report.constant.ComponentDimensionType;
 
-/**
- * <p>DRIPageXofY interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface DRIPageXofY extends DRIFormatField {
 
-    /**
-     * <p>getPageXWidth.</p>
-     *
-     * @return a {@link java.lang.Integer} object.
-     */
-    public Integer getPageXWidth();
-
-    /**
-     * <p>getPageXWidthType.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.constant.ComponentDimensionType} object.
-     */
-    public ComponentDimensionType getPageXWidthType();
-
-    /**
-     * <p>getPageYWidth.</p>
-     *
-     * @return a {@link java.lang.Integer} object.
-     */
-    public Integer getPageYWidth();
-
-    /**
-     * <p>getPageYWidthType.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.constant.ComponentDimensionType} object.
-     */
-    public ComponentDimensionType getPageYWidthType();
-
+public interface DRIPageXofY extends DRIFormatField
+{
+	
+	public Integer getPageXWidth();
+	
+	public ComponentDimensionType getPageXWidthType();
+	
+	public Integer getPageYWidth();
+	
+	public ComponentDimensionType getPageYWidthType();
 }

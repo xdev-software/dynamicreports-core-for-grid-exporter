@@ -17,11 +17,6 @@
  */
 package software.xdev.dynamicreports.report.definition.component;
 
-/**
- * <p>DRIFiller interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface DRIFiller extends DRIDimensionComponent {
+public interface DRIFiller extends DRIDimensionComponent
+{
 }

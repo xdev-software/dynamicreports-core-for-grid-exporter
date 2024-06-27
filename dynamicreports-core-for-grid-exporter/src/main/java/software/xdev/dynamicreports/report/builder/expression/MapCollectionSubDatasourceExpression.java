@@ -17,44 +17,30 @@
  */
 package software.xdev.dynamicreports.report.builder.expression;
 
-import software.xdev.dynamicreports.report.constant.Constants;
-import software.xdev.dynamicreports.report.definition.expression.DRIExpression;
-import net.sf.jasperreports.engine.JRDataSource;
-import net.sf.jasperreports.engine.data.JRMapCollectionDataSource;
-
 import java.util.Collection;
 import java.util.Map;
 
-/**
- * <p>MapCollectionSubDatasourceExpression class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class MapCollectionSubDatasourceExpression extends AbstractSubDatasourceExpression<Collection<Map<String, ?>>> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
+import net.sf.jasperreports.engine.JRDataSource;
+import net.sf.jasperreports.engine.data.JRMapCollectionDataSource;
+import software.xdev.dynamicreports.report.definition.expression.DRIExpression;
 
-    /**
-     * <p>Constructor for MapCollectionSubDatasourceExpression.</p>
-     *
-     * @param fieldName a {@link java.lang.String} object.
-     */
-    public MapCollectionSubDatasourceExpression(String fieldName) {
-        super(fieldName);
-    }
 
-    /**
-     * <p>Constructor for MapCollectionSubDatasourceExpression.</p>
-     *
-     * @param expression a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     */
-    public MapCollectionSubDatasourceExpression(DRIExpression<? extends Collection<Map<String, ?>>> expression) {
-        super(expression);
-    }
+public class MapCollectionSubDatasourceExpression extends AbstractSubDatasourceExpression<Collection<Map<String, ?>>>
+{
 
-    /** {@inheritDoc} */
-    @Override
-    protected JRDataSource createSubDatasource(Collection<Map<String, ?>> data) {
-        return new JRMapCollectionDataSource(data);
-    }
+	public MapCollectionSubDatasourceExpression(final String fieldName)
+	{
+		super(fieldName);
+	}
+	
+	public MapCollectionSubDatasourceExpression(final DRIExpression<? extends Collection<Map<String, ?>>> expression)
+	{
+		super(expression);
+	}
+	
+	@Override
+	protected JRDataSource createSubDatasource(final Collection<Map<String, ?>> data)
+	{
+		return new JRMapCollectionDataSource(data);
+	}
 }

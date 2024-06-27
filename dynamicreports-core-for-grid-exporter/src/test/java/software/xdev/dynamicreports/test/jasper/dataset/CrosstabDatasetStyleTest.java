@@ -26,6 +26,9 @@ import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 
+import org.junit.jupiter.api.Assertions;
+
+import net.sf.jasperreports.engine.JRDataSource;
 import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
 import software.xdev.dynamicreports.report.base.expression.AbstractSimpleExpression;
 import software.xdev.dynamicreports.report.builder.FieldBuilder;
@@ -38,109 +41,113 @@ import software.xdev.dynamicreports.report.constant.Calculation;
 import software.xdev.dynamicreports.report.datasource.DRDataSource;
 import software.xdev.dynamicreports.report.definition.ReportParameters;
 import software.xdev.dynamicreports.test.jasper.AbstractJasperCrosstabStyleTest;
-import net.sf.jasperreports.engine.JRDataSource;
 
-import org.junit.jupiter.api.Assertions;
 
-/**
- * Crosstab dataset style tests.
- * 
- * @author Ricardo Mariaca
- */
 public class CrosstabDatasetStyleTest extends AbstractJasperCrosstabStyleTest
-    implements Serializable {
-  private static final long serialVersionUID = 1L;
-
-  private CrosstabRowGroupBuilder<String> rowGroup;
-  private CrosstabColumnGroupBuilder<String> columnGroup;
-  private CrosstabMeasureBuilder<Integer> measure1;
-
-  @Override
-  protected void configureReport(JasperReportBuilder rb) {
-    FieldBuilder<String> field1 = field("field1", String.class);
-    FieldBuilder<String> field2 = field("field2", String.class);
-
-    final StyleBuilder cellStyle =
-        stl.style().conditionalStyles(stl.conditionalStyle(new ConditionExpression(10, 15, 14, 36))
-            .setBackgroundColor(Color.ORANGE));
-
-    rowGroup = ctab.rowGroup(field1);
-    columnGroup = ctab.columnGroup(field2);
-
-    measure1 = ctab.measure("field3", Integer.class, Calculation.SUM);
-    measure1.setStyle(cellStyle);
-
-    CrosstabBuilder crosstab = ctab.crosstab().setDataSource(createCrosstabDataSource())
-        .highlightEvenRows().rowGroups(rowGroup).columnGroups(columnGroup).measures(measure1);
-
-    rb.addParameter("parameter", "parameter_value").title(crosstab);
-  }
-
-  @Override
-  public void test() {
-    super.test();
-
-    numberOfPagesTest(1);
-
-    setCrosstabBand("title");
-
-    Color color = new Color(240, 240, 240);
-
-    crosstabCellStyleTest(measure1, null, null, 0, null, null, TEST_FONT_NAME, 10f, null, null);
-    crosstabCellStyleTest(measure1, null, null, 1, null, null, TEST_FONT_NAME, 10f, null, null);
-    crosstabCellStyleTest(measure1, null, null, 2, null, color, TEST_FONT_NAME, 10f, null, null);
-    crosstabCellStyleTest(measure1, null, null, 3, null, Color.ORANGE, TEST_FONT_NAME, 10f, null,
-        null);
-
-    crosstabCellStyleTest(measure1, rowGroup, null, 0, null, Color.ORANGE, TEST_FONT_NAME, 10f,
-        null, null);
-    crosstabCellStyleTest(measure1, rowGroup, null, 1, null, null, TEST_FONT_NAME, 10f, null, null);
-
-    crosstabCellStyleTest(measure1, null, columnGroup, 0, null, Color.ORANGE, TEST_FONT_NAME, 10f,
-        null, null);
-    crosstabCellStyleTest(measure1, null, columnGroup, 1, null, color, TEST_FONT_NAME, 10f, null,
-        null);
-
-    crosstabCellStyleTest(measure1, rowGroup, columnGroup, 0, null, Color.ORANGE, TEST_FONT_NAME,
-        10f, null, null);
-
-  }
-
-  private JRDataSource createCrosstabDataSource() {
-    DRDataSource dataSource = new DRDataSource("field1", "field2", "field3");
-    dataSource.add("a", "c", 1);
-    dataSource.add("a", "c", 2);
-    dataSource.add("a", "d", 3);
-    dataSource.add("a", "d", 4);
-    dataSource.add("b", "c", 5);
-    dataSource.add("b", "c", 6);
-    dataSource.add("b", "d", 7);
-    dataSource.add("b", "d", 8);
-    return dataSource;
-  }
-
-  private class ConditionExpression extends AbstractSimpleExpression<Boolean> {
-    private static final long serialVersionUID = 1L;
-
-    private List<Integer> values;
-
-    private ConditionExpression(Integer... values) {
-      this.values = Arrays.asList(values);
-    }
-
-    @Override
-    public Boolean evaluate(ReportParameters reportParameters) {
-      Assertions.assertNotNull(reportParameters.getMasterParameters());
-      try {
-        reportParameters.getValue("parameter");
-        Assertions.fail("parameter is not null");
-      } catch (Exception e) {
-        // required
-      }
-      Assertions.assertEquals("parameter_value",
-          reportParameters.getMasterParameters().getValue("parameter"));
-      Integer value = reportParameters.getValue(measure1);
-      return values.contains(value);
-    }
-  }
+	implements Serializable
+{
+	private CrosstabRowGroupBuilder<String> rowGroup;
+	private CrosstabColumnGroupBuilder<String> columnGroup;
+	private CrosstabMeasureBuilder<Integer> measure1;
+	
+	@Override
+	protected void configureReport(final JasperReportBuilder rb)
+	{
+		final FieldBuilder<String> field1 = field("field1", String.class);
+		final FieldBuilder<String> field2 = field("field2", String.class);
+		
+		final StyleBuilder cellStyle =
+			stl.style().conditionalStyles(stl.conditionalStyle(new ConditionExpression(10, 15, 14, 36))
+				.setBackgroundColor(Color.ORANGE));
+		
+		this.rowGroup = ctab.rowGroup(field1);
+		this.columnGroup = ctab.columnGroup(field2);
+		
+		this.measure1 = ctab.measure("field3", Integer.class, Calculation.SUM);
+		this.measure1.setStyle(cellStyle);
+		
+		final CrosstabBuilder crosstab = ctab.crosstab().setDataSource(this.createCrosstabDataSource())
+			.highlightEvenRows().rowGroups(this.rowGroup).columnGroups(this.columnGroup).measures(this.measure1);
+		
+		rb.addParameter("parameter", "parameter_value").title(crosstab);
+	}
+	
+	@Override
+	public void test()
+	{
+		super.test();
+		
+		this.numberOfPagesTest(1);
+		
+		this.setCrosstabBand("title");
+		
+		final Color color = new Color(240, 240, 240);
+		
+		this.crosstabCellStyleTest(this.measure1, null, null, 0, null, null, TEST_FONT_NAME, 10f, null, null);
+		this.crosstabCellStyleTest(this.measure1, null, null, 1, null, null, TEST_FONT_NAME, 10f, null, null);
+		this.crosstabCellStyleTest(this.measure1, null, null, 2, null, color, TEST_FONT_NAME, 10f, null, null);
+		this.crosstabCellStyleTest(
+			this.measure1, null, null, 3, null, Color.ORANGE, TEST_FONT_NAME, 10f, null,
+			null);
+		
+		this.crosstabCellStyleTest(
+			this.measure1, this.rowGroup, null, 0, null, Color.ORANGE, TEST_FONT_NAME, 10f,
+			null, null);
+		this.crosstabCellStyleTest(this.measure1, this.rowGroup, null, 1, null, null, TEST_FONT_NAME, 10f, null, null);
+		
+		this.crosstabCellStyleTest(
+			this.measure1, null, this.columnGroup, 0, null, Color.ORANGE, TEST_FONT_NAME, 10f,
+			null, null);
+		this.crosstabCellStyleTest(
+			this.measure1, null, this.columnGroup, 1, null, color, TEST_FONT_NAME, 10f, null,
+			null);
+		
+		this.crosstabCellStyleTest(
+			this.measure1, this.rowGroup, this.columnGroup, 0, null, Color.ORANGE, TEST_FONT_NAME,
+			10f, null, null);
+	}
+	
+	private JRDataSource createCrosstabDataSource()
+	{
+		final DRDataSource dataSource = new DRDataSource("field1", "field2", "field3");
+		dataSource.add("a", "c", 1);
+		dataSource.add("a", "c", 2);
+		dataSource.add("a", "d", 3);
+		dataSource.add("a", "d", 4);
+		dataSource.add("b", "c", 5);
+		dataSource.add("b", "c", 6);
+		dataSource.add("b", "d", 7);
+		dataSource.add("b", "d", 8);
+		return dataSource;
+	}
+	
+	class ConditionExpression extends AbstractSimpleExpression<Boolean>
+	{
+		private final List<Integer> values;
+		
+		ConditionExpression(final Integer... values)
+		{
+			this.values = Arrays.asList(values);
+		}
+		
+		@Override
+		public Boolean evaluate(final ReportParameters reportParameters)
+		{
+			Assertions.assertNotNull(reportParameters.getMasterParameters());
+			try
+			{
+				reportParameters.getValue("parameter");
+				Assertions.fail("parameter is not null");
+			}
+			catch(final Exception e)
+			{
+				// required
+			}
+			Assertions.assertEquals(
+				"parameter_value",
+				reportParameters.getMasterParameters().getValue("parameter"));
+			final Integer value = reportParameters.getValue(CrosstabDatasetStyleTest.this.measure1);
+			return this.values.contains(value);
+		}
+	}
 }

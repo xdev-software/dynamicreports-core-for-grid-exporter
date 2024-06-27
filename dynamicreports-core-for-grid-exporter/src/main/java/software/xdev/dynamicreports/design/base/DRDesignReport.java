@@ -54,7 +54,6 @@ import software.xdev.dynamicreports.design.transformation.SubtotalTransform;
 import software.xdev.dynamicreports.design.transformation.TableOfContentsTransform;
 import software.xdev.dynamicreports.design.transformation.TemplateTransform;
 import software.xdev.dynamicreports.jasper.base.tableofcontents.JasperTocHeading;
-import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.constant.Orientation;
 import software.xdev.dynamicreports.report.constant.RunDirection;
 import software.xdev.dynamicreports.report.constant.WhenNoDataType;
@@ -65,466 +64,457 @@ import software.xdev.dynamicreports.report.definition.DRIScriptlet;
 import software.xdev.dynamicreports.report.definition.DRITableOfContentsCustomizer;
 import software.xdev.dynamicreports.report.exception.DRException;
 
-/**
- * <p>DRDesignReport class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class DRDesignReport implements DesignTransformAccessor, DRIDesignReport {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    private final DRIReport report;
-    private final Integer pageWidth;
-    private final Map<String, JasperTocHeading> tocHeadings;
-    private ReportTransform reportTransform;
-    private TemplateTransform templateTransform;
-    private PageTransform pageTransform;
-    private MainDatasetExpressionTransform mainDatasetExpressionTransform;
-    private BandTransform bandTransform;
-    private ComponentTransform componentTransform;
-    private GroupTransform groupTransform;
-    private ColumnGridTransform columnGridTransform;
-    private ColumnTransform columnTransform;
-    private SubtotalTransform subtotalTransform;
-    private StyleTransform styleTransform;
-    private CrosstabTransform crosstabTransform;
-    private DatasetTransform datasetTransform;
-    private TableOfContentsTransform tableOfContentsTransform;
-    private AbstractExpressionTransform expressionTransform;
-
-    /**
-     * <p>Constructor for DRDesignReport.</p>
-     *
-     * @param report a {@link software.xdev.dynamicreports.report.definition.DRIReport} object.
-     * @throws software.xdev.dynamicreports.report.exception.DRException if any.
-     */
-    public DRDesignReport(final DRIReport report) throws DRException {
-        this(report, null, null);
-    }
-
-    /**
-     * <p>Constructor for DRDesignReport.</p>
-     *
-     * @param report      a {@link software.xdev.dynamicreports.report.definition.DRIReport} object.
-     * @param pageWidth   a {@link java.lang.Integer} object.
-     * @param tocHeadings a {@link java.util.Map} object.
-     * @throws software.xdev.dynamicreports.report.exception.DRException if any.
-     */
-    public DRDesignReport(final DRIReport report, final Integer pageWidth, final Map<String, JasperTocHeading> tocHeadings) throws DRException {
-        this.report = report;
-        this.pageWidth = pageWidth;
-        this.tocHeadings = tocHeadings;
-        this.init();
-        this.transform();
-    }
-
-    private void init() {
-        this.reportTransform = new ReportTransform(this);
-        this.templateTransform = new TemplateTransform(this);
-        this.pageTransform = new PageTransform(this);
-        this.mainDatasetExpressionTransform = new MainDatasetExpressionTransform(this);
-        this.groupTransform = new GroupTransform(this);
-        this.bandTransform = new BandTransform(this);
-        this.componentTransform = new ComponentTransform(this);
-        this.columnGridTransform = new ColumnGridTransform(this);
-        this.columnTransform = new ColumnTransform(this);
-        this.subtotalTransform = new SubtotalTransform(this);
-        this.styleTransform = new StyleTransform(this);
-        this.crosstabTransform = new CrosstabTransform(this);
-        this.datasetTransform = new DatasetTransform(this);
-        this.tableOfContentsTransform = new TableOfContentsTransform(this);
-        this.transformToMainDataset();
-    }
-
-    private void transform() throws DRException {
-        this.reportTransform.transform();
-        this.pageTransform.transform();
-        this.groupTransform.transform();
-        this.mainDatasetExpressionTransform.transform();
-        this.bandTransform.transform();
-        this.columnGridTransform.transform();
-        this.columnTransform.transform();
-        this.groupTransform.transformHeaderAndFooter();
-        this.pageTransform.transformPageWidth();
-        this.subtotalTransform.transform();
-        this.bandTransform.prepareBands();
-        this.styleTransform.transformTemplateStyles();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRIReport getReport() {
-        return this.report;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Integer getPageWidth() {
-        return this.pageWidth;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public ReportTransform getReportTransform() {
-        return this.reportTransform;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public TemplateTransform getTemplateTransform() {
-        return this.templateTransform;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public PageTransform getPageTransform() {
-        return this.pageTransform;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void transformToMainDataset() {
-        this.transformToDataset(null);
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void transformToDataset(final DRIDataset dataset) {
-        if (dataset != null) {
-            this.expressionTransform = this.datasetTransform.getDatasetExpressionTransform(dataset);
-        } else {
-            this.expressionTransform = this.mainDatasetExpressionTransform;
-        }
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public AbstractExpressionTransform getExpressionTransform() {
-        return this.expressionTransform;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public BandTransform getBandTransform() {
-        return this.bandTransform;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public ComponentTransform getComponentTransform() {
-        return this.componentTransform;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public GroupTransform getGroupTransform() {
-        return this.groupTransform;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public ColumnTransform getColumnTransform() {
-        return this.columnTransform;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public ColumnGridTransform getColumnGridTransform() {
-        return this.columnGridTransform;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public StyleTransform getStyleTransform() {
-        return this.styleTransform;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public CrosstabTransform getCrosstabTransform() {
-        return this.crosstabTransform;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DatasetTransform getDatasetTransform() {
-        return this.datasetTransform;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public TableOfContentsTransform getTableOfContentsTransform() {
-        return this.tableOfContentsTransform;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRIDesignTemplateDesign getTemplateDesign() {
-        return this.reportTransform.getTemplateDesign();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public String getReportName() {
-        return this.templateTransform.getReportName();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Locale getLocale() {
-        return this.templateTransform.getLocale();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public ResourceBundle getResourceBundle() {
-        return this.report.getResourceBundle();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public String getResourceBundleName() {
-        return this.templateTransform.getResourceBundleName();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public boolean isIgnorePagination() {
-        return this.templateTransform.isIgnorePagination();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Properties getProperties() {
-        return this.report.getProperties();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRDesignQuery getQuery() {
-        return this.reportTransform.getQuery();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRDesignPage getPage() {
-        return this.pageTransform.getPage();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public WhenNoDataType getWhenNoDataType() {
-        return this.templateTransform.getWhenNoDataType(this.getDetailBands().isEmpty(), this.getNoDataBand());
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public WhenResourceMissingType getWhenResourceMissingType() {
-        return this.templateTransform.getWhenResourceMissingType();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public boolean isTitleOnANewPage() {
-        return this.templateTransform.isTitleOnANewPage();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public boolean isSummaryOnANewPage() {
-        return this.templateTransform.isSummaryOnANewPage();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public boolean isSummaryWithPageHeaderAndFooter() {
-        return this.templateTransform.isSummaryWithPageHeaderAndFooter();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public boolean isFloatColumnFooter() {
-        return this.templateTransform.isFloatColumnFooter();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Orientation getPrintOrder() {
-        return this.templateTransform.getPrintOrder();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public RunDirection getColumnDirection() {
-        return this.templateTransform.getColumnDirection();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public String getLanguage() {
-        return this.templateTransform.getLanguage();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public boolean isTableOfContents() {
-        return this.templateTransform.isTableOfContents(this.tocHeadings);
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Map<String, JasperTocHeading> getTableOfContentsHeadings() {
-        return this.tocHeadings;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRITableOfContentsCustomizer getTableOfContentsCustomizer() {
-        return this.templateTransform.getTableOfContentsCustomizer();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRIDesignExpression getFilterExpression() {
-        return this.reportTransform.getFilterExpression();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Collection<DRIDesignParameter> getParameters() {
-        return this.reportTransform.getParameters();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Map<String, Object> getParameterValues() {
-        return this.report.getParameterValues();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Collection<DRIScriptlet> getScriptlets() {
-        return this.report.getScriptlets();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Collection<DRIDesignField> getFields() {
-        return this.mainDatasetExpressionTransform.getFields();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Collection<DRIDesignSystemExpression> getSystemExpressions() {
-        return this.mainDatasetExpressionTransform.getSystemExpressions();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Collection<DRIDesignJasperExpression> getJasperExpressions() {
-        return this.mainDatasetExpressionTransform.getJasperExpressions();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Collection<DRIDesignSimpleExpression> getSimpleExpressions() {
-        return this.mainDatasetExpressionTransform.getSimpleExpressions();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Collection<DRIDesignStyle> getStyles() {
-        return this.styleTransform.getStyles();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Collection<DRDesignGroup> getGroups() {
-        return this.groupTransform.getGroups();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Collection<DRIDesignVariable> getVariables() {
-        return this.mainDatasetExpressionTransform.getVariables();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Collection<DRIDesignComplexExpression> getComplexExpressions() {
-        return this.mainDatasetExpressionTransform.getComplexExpressions();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Collection<DRIDesignSort> getSorts() {
-        return this.mainDatasetExpressionTransform.getSorts();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Collection<DRIDesignDataset> getDatasets() {
-        return this.datasetTransform.getDatasets();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRDesignBand getTitleBand() {
-        return this.bandTransform.getTitleBand();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRDesignBand getPageHeaderBand() {
-        return this.bandTransform.getPageHeaderBand();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRDesignBand getPageFooterBand() {
-        return this.bandTransform.getPageFooterBand();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRDesignBand getColumnHeaderBand() {
-        return this.bandTransform.getColumnHeaderBand();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRDesignBand getColumnFooterBand() {
-        return this.bandTransform.getColumnFooterBand();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public List<DRDesignBand> getDetailBands() {
-        return this.bandTransform.getDetailBands();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRDesignBand getLastPageFooterBand() {
-        return this.bandTransform.getLastPageFooterBand();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRDesignBand getSummaryBand() {
-        return this.bandTransform.getSummaryBand();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRDesignBand getNoDataBand() {
-        return this.bandTransform.getNoDataBand();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRDesignBand getBackgroundBand() {
-        return this.bandTransform.getBackgroundBand();
-    }
+public class DRDesignReport implements DesignTransformAccessor, DRIDesignReport
+{
+
+	private final DRIReport report;
+	private final Integer pageWidth;
+	private final Map<String, JasperTocHeading> tocHeadings;
+	private ReportTransform reportTransform;
+	private TemplateTransform templateTransform;
+	private PageTransform pageTransform;
+	private MainDatasetExpressionTransform mainDatasetExpressionTransform;
+	private BandTransform bandTransform;
+	private ComponentTransform componentTransform;
+	private GroupTransform groupTransform;
+	private ColumnGridTransform columnGridTransform;
+	private ColumnTransform columnTransform;
+	private SubtotalTransform subtotalTransform;
+	private StyleTransform styleTransform;
+	private CrosstabTransform crosstabTransform;
+	private DatasetTransform datasetTransform;
+	private TableOfContentsTransform tableOfContentsTransform;
+	private AbstractExpressionTransform expressionTransform;
+	
+	public DRDesignReport(final DRIReport report) throws DRException
+	{
+		this(report, null, null);
+	}
+	
+	public DRDesignReport(
+		final DRIReport report,
+		final Integer pageWidth,
+		final Map<String, JasperTocHeading> tocHeadings) throws DRException
+	{
+		this.report = report;
+		this.pageWidth = pageWidth;
+		this.tocHeadings = tocHeadings;
+		this.init();
+		this.transform();
+	}
+	
+	private void init()
+	{
+		this.reportTransform = new ReportTransform(this);
+		this.templateTransform = new TemplateTransform(this);
+		this.pageTransform = new PageTransform(this);
+		this.mainDatasetExpressionTransform = new MainDatasetExpressionTransform(this);
+		this.groupTransform = new GroupTransform(this);
+		this.bandTransform = new BandTransform(this);
+		this.componentTransform = new ComponentTransform(this);
+		this.columnGridTransform = new ColumnGridTransform(this);
+		this.columnTransform = new ColumnTransform(this);
+		this.subtotalTransform = new SubtotalTransform(this);
+		this.styleTransform = new StyleTransform(this);
+		this.crosstabTransform = new CrosstabTransform(this);
+		this.datasetTransform = new DatasetTransform(this);
+		this.tableOfContentsTransform = new TableOfContentsTransform(this);
+		this.transformToMainDataset();
+	}
+	
+	private void transform() throws DRException
+	{
+		this.reportTransform.transform();
+		this.pageTransform.transform();
+		this.groupTransform.transform();
+		this.mainDatasetExpressionTransform.transform();
+		this.bandTransform.transform();
+		this.columnGridTransform.transform();
+		this.columnTransform.transform();
+		this.groupTransform.transformHeaderAndFooter();
+		this.pageTransform.transformPageWidth();
+		this.subtotalTransform.transform();
+		this.bandTransform.prepareBands();
+		this.styleTransform.transformTemplateStyles();
+	}
+	
+	@Override
+	public DRIReport getReport()
+	{
+		return this.report;
+	}
+	
+	@Override
+	public Integer getPageWidth()
+	{
+		return this.pageWidth;
+	}
+	
+	@Override
+	public ReportTransform getReportTransform()
+	{
+		return this.reportTransform;
+	}
+	
+	@Override
+	public TemplateTransform getTemplateTransform()
+	{
+		return this.templateTransform;
+	}
+	
+	@Override
+	public PageTransform getPageTransform()
+	{
+		return this.pageTransform;
+	}
+	
+	@Override
+	public void transformToMainDataset()
+	{
+		this.transformToDataset(null);
+	}
+	
+	@Override
+	public void transformToDataset(final DRIDataset dataset)
+	{
+		if(dataset != null)
+		{
+			this.expressionTransform = this.datasetTransform.getDatasetExpressionTransform(dataset);
+		}
+		else
+		{
+			this.expressionTransform = this.mainDatasetExpressionTransform;
+		}
+	}
+	
+	@Override
+	public AbstractExpressionTransform getExpressionTransform()
+	{
+		return this.expressionTransform;
+	}
+	
+	@Override
+	public BandTransform getBandTransform()
+	{
+		return this.bandTransform;
+	}
+	
+	@Override
+	public ComponentTransform getComponentTransform()
+	{
+		return this.componentTransform;
+	}
+	
+	@Override
+	public GroupTransform getGroupTransform()
+	{
+		return this.groupTransform;
+	}
+	
+	@Override
+	public ColumnTransform getColumnTransform()
+	{
+		return this.columnTransform;
+	}
+	
+	@Override
+	public ColumnGridTransform getColumnGridTransform()
+	{
+		return this.columnGridTransform;
+	}
+	
+	@Override
+	public StyleTransform getStyleTransform()
+	{
+		return this.styleTransform;
+	}
+	
+	@Override
+	public CrosstabTransform getCrosstabTransform()
+	{
+		return this.crosstabTransform;
+	}
+	
+	@Override
+	public DatasetTransform getDatasetTransform()
+	{
+		return this.datasetTransform;
+	}
+	
+	@Override
+	public TableOfContentsTransform getTableOfContentsTransform()
+	{
+		return this.tableOfContentsTransform;
+	}
+	
+	@Override
+	public DRIDesignTemplateDesign getTemplateDesign()
+	{
+		return this.reportTransform.getTemplateDesign();
+	}
+	
+	@Override
+	public String getReportName()
+	{
+		return this.templateTransform.getReportName();
+	}
+	
+	@Override
+	public Locale getLocale()
+	{
+		return this.templateTransform.getLocale();
+	}
+	
+	@Override
+	public ResourceBundle getResourceBundle()
+	{
+		return this.report.getResourceBundle();
+	}
+	
+	@Override
+	public String getResourceBundleName()
+	{
+		return this.templateTransform.getResourceBundleName();
+	}
+	
+	@Override
+	public boolean isIgnorePagination()
+	{
+		return this.templateTransform.isIgnorePagination();
+	}
+	
+	@Override
+	public Properties getProperties()
+	{
+		return this.report.getProperties();
+	}
+	
+	@Override
+	public DRDesignQuery getQuery()
+	{
+		return this.reportTransform.getQuery();
+	}
+	
+	@Override
+	public DRDesignPage getPage()
+	{
+		return this.pageTransform.getPage();
+	}
+	
+	@Override
+	public WhenNoDataType getWhenNoDataType()
+	{
+		return this.templateTransform.getWhenNoDataType(this.getDetailBands().isEmpty(), this.getNoDataBand());
+	}
+	
+	@Override
+	public WhenResourceMissingType getWhenResourceMissingType()
+	{
+		return this.templateTransform.getWhenResourceMissingType();
+	}
+	
+	@Override
+	public boolean isTitleOnANewPage()
+	{
+		return this.templateTransform.isTitleOnANewPage();
+	}
+	
+	@Override
+	public boolean isSummaryOnANewPage()
+	{
+		return this.templateTransform.isSummaryOnANewPage();
+	}
+	
+	@Override
+	public boolean isSummaryWithPageHeaderAndFooter()
+	{
+		return this.templateTransform.isSummaryWithPageHeaderAndFooter();
+	}
+	
+	@Override
+	public boolean isFloatColumnFooter()
+	{
+		return this.templateTransform.isFloatColumnFooter();
+	}
+	
+	@Override
+	public Orientation getPrintOrder()
+	{
+		return this.templateTransform.getPrintOrder();
+	}
+	
+	@Override
+	public RunDirection getColumnDirection()
+	{
+		return this.templateTransform.getColumnDirection();
+	}
+	
+	@Override
+	public String getLanguage()
+	{
+		return this.templateTransform.getLanguage();
+	}
+	
+	@Override
+	public boolean isTableOfContents()
+	{
+		return this.templateTransform.isTableOfContents(this.tocHeadings);
+	}
+	
+	@Override
+	public Map<String, JasperTocHeading> getTableOfContentsHeadings()
+	{
+		return this.tocHeadings;
+	}
+	
+	@Override
+	public DRITableOfContentsCustomizer getTableOfContentsCustomizer()
+	{
+		return this.templateTransform.getTableOfContentsCustomizer();
+	}
+	
+	@Override
+	public DRIDesignExpression getFilterExpression()
+	{
+		return this.reportTransform.getFilterExpression();
+	}
+	
+	@Override
+	public Collection<DRIDesignParameter> getParameters()
+	{
+		return this.reportTransform.getParameters();
+	}
+	
+	@Override
+	public Map<String, Object> getParameterValues()
+	{
+		return this.report.getParameterValues();
+	}
+	
+	@Override
+	public Collection<DRIScriptlet> getScriptlets()
+	{
+		return this.report.getScriptlets();
+	}
+	
+	@Override
+	public Collection<DRIDesignField> getFields()
+	{
+		return this.mainDatasetExpressionTransform.getFields();
+	}
+	
+	@Override
+	public Collection<DRIDesignSystemExpression> getSystemExpressions()
+	{
+		return this.mainDatasetExpressionTransform.getSystemExpressions();
+	}
+	
+	@Override
+	public Collection<DRIDesignJasperExpression> getJasperExpressions()
+	{
+		return this.mainDatasetExpressionTransform.getJasperExpressions();
+	}
+	
+	@Override
+	public Collection<DRIDesignSimpleExpression> getSimpleExpressions()
+	{
+		return this.mainDatasetExpressionTransform.getSimpleExpressions();
+	}
+	
+	@Override
+	public Collection<DRIDesignStyle> getStyles()
+	{
+		return this.styleTransform.getStyles();
+	}
+	
+	@Override
+	public Collection<DRDesignGroup> getGroups()
+	{
+		return this.groupTransform.getGroups();
+	}
+	
+	@Override
+	public Collection<DRIDesignVariable> getVariables()
+	{
+		return this.mainDatasetExpressionTransform.getVariables();
+	}
+	
+	@Override
+	public Collection<DRIDesignComplexExpression> getComplexExpressions()
+	{
+		return this.mainDatasetExpressionTransform.getComplexExpressions();
+	}
+	
+	@Override
+	public Collection<DRIDesignSort> getSorts()
+	{
+		return this.mainDatasetExpressionTransform.getSorts();
+	}
+	
+	@Override
+	public Collection<DRIDesignDataset> getDatasets()
+	{
+		return this.datasetTransform.getDatasets();
+	}
+	
+	@Override
+	public DRDesignBand getTitleBand()
+	{
+		return this.bandTransform.getTitleBand();
+	}
+	
+	@Override
+	public DRDesignBand getPageHeaderBand()
+	{
+		return this.bandTransform.getPageHeaderBand();
+	}
+	
+	@Override
+	public DRDesignBand getPageFooterBand()
+	{
+		return this.bandTransform.getPageFooterBand();
+	}
+	
+	@Override
+	public DRDesignBand getColumnHeaderBand()
+	{
+		return this.bandTransform.getColumnHeaderBand();
+	}
+	
+	@Override
+	public DRDesignBand getColumnFooterBand()
+	{
+		return this.bandTransform.getColumnFooterBand();
+	}
+	
+	@Override
+	public List<DRDesignBand> getDetailBands()
+	{
+		return this.bandTransform.getDetailBands();
+	}
+	
+	@Override
+	public DRDesignBand getLastPageFooterBand()
+	{
+		return this.bandTransform.getLastPageFooterBand();
+	}
+	
+	@Override
+	public DRDesignBand getSummaryBand()
+	{
+		return this.bandTransform.getSummaryBand();
+	}
+	
+	@Override
+	public DRDesignBand getNoDataBand()
+	{
+		return this.bandTransform.getNoDataBand();
+	}
+	
+	@Override
+	public DRDesignBand getBackgroundBand()
+	{
+		return this.bandTransform.getBackgroundBand();
+	}
 }

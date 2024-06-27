@@ -17,28 +17,22 @@
  */
 package software.xdev.dynamicreports.report.builder.datatype;
 
-import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.constant.HorizontalTextAlignment;
 import software.xdev.dynamicreports.report.defaults.Defaults;
 
-/**
- * <p>DateYearType class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class DateYearType extends DateType {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    /** {@inheritDoc} */
-    @Override
-    public String getPattern() {
-        return Defaults.getDefaults().getDateYearType().getPattern();
-    }
+public class DateYearType extends DateType
+{
 
-    /** {@inheritDoc} */
-    @Override
-    public HorizontalTextAlignment getHorizontalTextAlignment() {
-        return Defaults.getDefaults().getDateYearType().getHorizontalTextAlignment();
-    }
+	@Override
+	public String getPattern()
+	{
+		return Defaults.getDefaults().getDateYearType().getPattern();
+	}
+	
+	@Override
+	public HorizontalTextAlignment getHorizontalTextAlignment()
+	{
+		return Defaults.getDefaults().getDateYearType().getHorizontalTextAlignment();
+	}
 }

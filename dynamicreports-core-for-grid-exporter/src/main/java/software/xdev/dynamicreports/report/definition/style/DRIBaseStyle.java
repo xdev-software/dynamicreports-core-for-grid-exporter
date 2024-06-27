@@ -17,6 +17,9 @@
  */
 package software.xdev.dynamicreports.report.definition.style;
 
+import java.awt.Color;
+import java.io.Serializable;
+
 import software.xdev.dynamicreports.report.constant.HorizontalImageAlignment;
 import software.xdev.dynamicreports.report.constant.HorizontalTextAlignment;
 import software.xdev.dynamicreports.report.constant.ImageScale;
@@ -25,127 +28,39 @@ import software.xdev.dynamicreports.report.constant.Rotation;
 import software.xdev.dynamicreports.report.constant.VerticalImageAlignment;
 import software.xdev.dynamicreports.report.constant.VerticalTextAlignment;
 
-import java.awt.Color;
-import java.io.Serializable;
 
-/**
- * <p>DRIBaseStyle interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface DRIBaseStyle extends Serializable {
-
-    /**
-     * <p>getForegroundColor.</p>
-     *
-     * @return a {@link java.awt.Color} object.
-     */
-    public Color getForegroundColor();
-
-    /**
-     * <p>getBackgroundColor.</p>
-     *
-     * @return a {@link java.awt.Color} object.
-     */
-    public Color getBackgroundColor();
-
-    /**
-     * <p>getRadius.</p>
-     *
-     * @return a {@link java.lang.Integer} object.
-     */
-    public Integer getRadius();
-
-    /**
-     * <p>getImageScale.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.constant.ImageScale} object.
-     */
-    public ImageScale getImageScale();
-
-    /**
-     * <p>getHorizontalImageAlignment.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.constant.HorizontalImageAlignment} object.
-     */
-    public HorizontalImageAlignment getHorizontalImageAlignment();
-
-    /**
-     * <p>getVerticalImageAlignment.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.constant.VerticalImageAlignment} object.
-     */
-    public VerticalImageAlignment getVerticalImageAlignment();
-
-    /**
-     * <p>getHorizontalTextAlignment.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.constant.HorizontalTextAlignment} object.
-     */
-    public HorizontalTextAlignment getHorizontalTextAlignment();
-
-    /**
-     * <p>getVerticalTextAlignment.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.constant.VerticalTextAlignment} object.
-     */
-    public VerticalTextAlignment getVerticalTextAlignment();
-
-    /**
-     * <p>getBorder.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.definition.style.DRIBorder} object.
-     */
-    public DRIBorder getBorder();
-
-    /**
-     * <p>getPadding.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.definition.style.DRIPadding} object.
-     */
-    public DRIPadding getPadding();
-
-    /**
-     * <p>getFont.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.definition.style.DRIFont} object.
-     */
-    public DRIFont getFont();
-
-    /**
-     * <p>getRotation.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.constant.Rotation} object.
-     */
-    public Rotation getRotation();
-
-    /**
-     * <p>getPattern.</p>
-     *
-     * @return a {@link java.lang.String} object.
-     */
-    public String getPattern();
-
-    /**
-     * <p>getMarkup.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.constant.Markup} object.
-     */
-    public Markup getMarkup();
-
-    /**
-     * <p>getParagraph.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.definition.style.DRIParagraph} object.
-     */
-    public DRIParagraph getParagraph();
-
-    /**
-     * <p>getLinePen.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.definition.style.DRIPen} object.
-     */
-    public DRIPen getLinePen();
-
+public interface DRIBaseStyle extends Serializable
+{
+	
+	public Color getForegroundColor();
+	
+	public Color getBackgroundColor();
+	
+	public Integer getRadius();
+	
+	public ImageScale getImageScale();
+	
+	public HorizontalImageAlignment getHorizontalImageAlignment();
+	
+	public VerticalImageAlignment getVerticalImageAlignment();
+	
+	public HorizontalTextAlignment getHorizontalTextAlignment();
+	
+	public VerticalTextAlignment getVerticalTextAlignment();
+	
+	public DRIBorder getBorder();
+	
+	public DRIPadding getPadding();
+	
+	public DRIFont getFont();
+	
+	public Rotation getRotation();
+	
+	public String getPattern();
+	
+	public Markup getMarkup();
+	
+	public DRIParagraph getParagraph();
+	
+	public DRIPen getLinePen();
 }

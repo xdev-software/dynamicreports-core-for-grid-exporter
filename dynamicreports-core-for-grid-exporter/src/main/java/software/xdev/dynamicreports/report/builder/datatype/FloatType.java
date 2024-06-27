@@ -17,34 +17,28 @@
  */
 package software.xdev.dynamicreports.report.builder.datatype;
 
-import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.constant.HorizontalTextAlignment;
 import software.xdev.dynamicreports.report.defaults.Defaults;
 
-/**
- * <p>FloatType class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class FloatType extends NumberType<Float> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    /** {@inheritDoc} */
-    @Override
-    public String getPattern() {
-        return Defaults.getDefaults().getFloatType().getPattern();
-    }
+public class FloatType extends NumberType<Float>
+{
 
-    /** {@inheritDoc} */
-    @Override
-    public HorizontalTextAlignment getHorizontalTextAlignment() {
-        return Defaults.getDefaults().getFloatType().getHorizontalTextAlignment();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    protected Float numberToValue(Number number) {
-        return number.floatValue();
-    }
+	@Override
+	public String getPattern()
+	{
+		return Defaults.getDefaults().getFloatType().getPattern();
+	}
+	
+	@Override
+	public HorizontalTextAlignment getHorizontalTextAlignment()
+	{
+		return Defaults.getDefaults().getFloatType().getHorizontalTextAlignment();
+	}
+	
+	@Override
+	protected Float numberToValue(final Number number)
+	{
+		return number.floatValue();
+	}
 }

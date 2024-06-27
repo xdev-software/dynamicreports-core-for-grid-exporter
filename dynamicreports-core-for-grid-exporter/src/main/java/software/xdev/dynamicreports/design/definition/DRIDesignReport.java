@@ -17,6 +17,14 @@
  */
 package software.xdev.dynamicreports.design.definition;
 
+import java.io.Serializable;
+import java.util.Collection;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Properties;
+import java.util.ResourceBundle;
+
 import software.xdev.dynamicreports.design.definition.expression.DRIDesignComplexExpression;
 import software.xdev.dynamicreports.design.definition.expression.DRIDesignExpression;
 import software.xdev.dynamicreports.design.definition.expression.DRIDesignJasperExpression;
@@ -31,334 +39,97 @@ import software.xdev.dynamicreports.report.constant.WhenResourceMissingType;
 import software.xdev.dynamicreports.report.definition.DRIScriptlet;
 import software.xdev.dynamicreports.report.definition.DRITableOfContentsCustomizer;
 
-import java.io.Serializable;
-import java.util.Collection;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Properties;
-import java.util.ResourceBundle;
 
-/**
- * <p>DRIDesignReport interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface DRIDesignReport extends Serializable {
-
-    /**
-     * <p>getTemplateDesign.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.design.definition.DRIDesignTemplateDesign} object.
-     */
-    public DRIDesignTemplateDesign getTemplateDesign();
-
-    /**
-     * <p>getReportName.</p>
-     *
-     * @return a {@link java.lang.String} object.
-     */
-    public String getReportName();
-
-    /**
-     * <p>getLocale.</p>
-     *
-     * @return a {@link java.util.Locale} object.
-     */
-    public Locale getLocale();
-
-    /**
-     * <p>getResourceBundle.</p>
-     *
-     * @return a {@link java.util.ResourceBundle} object.
-     */
-    public ResourceBundle getResourceBundle();
-
-    /**
-     * <p>getResourceBundleName.</p>
-     *
-     * @return a {@link java.lang.String} object.
-     */
-    public String getResourceBundleName();
-
-    /**
-     * <p>isIgnorePagination.</p>
-     *
-     * @return a boolean.
-     */
-    public boolean isIgnorePagination();
-
-    /**
-     * <p>getProperties.</p>
-     *
-     * @return a {@link java.util.Properties} object.
-     */
-    public Properties getProperties();
-
-    /**
-     * <p>getQuery.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.design.definition.DRIDesignQuery} object.
-     */
-    public DRIDesignQuery getQuery();
-
-    /**
-     * <p>getPage.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.design.definition.DRIDesignPage} object.
-     */
-    public DRIDesignPage getPage();
-
-    /**
-     * <p>getWhenNoDataType.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.constant.WhenNoDataType} object.
-     */
-    public WhenNoDataType getWhenNoDataType();
-
-    /**
-     * <p>getWhenResourceMissingType.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.constant.WhenResourceMissingType} object.
-     */
-    public WhenResourceMissingType getWhenResourceMissingType();
-
-    /**
-     * <p>isTitleOnANewPage.</p>
-     *
-     * @return a boolean.
-     */
-    public boolean isTitleOnANewPage();
-
-    /**
-     * <p>isSummaryOnANewPage.</p>
-     *
-     * @return a boolean.
-     */
-    public boolean isSummaryOnANewPage();
-
-    /**
-     * <p>isSummaryWithPageHeaderAndFooter.</p>
-     *
-     * @return a boolean.
-     */
-    public boolean isSummaryWithPageHeaderAndFooter();
-
-    /**
-     * <p>isFloatColumnFooter.</p>
-     *
-     * @return a boolean.
-     */
-    public boolean isFloatColumnFooter();
-
-    /**
-     * <p>getPrintOrder.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.constant.Orientation} object.
-     */
-    public Orientation getPrintOrder();
-
-    /**
-     * <p>getColumnDirection.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.constant.RunDirection} object.
-     */
-    public RunDirection getColumnDirection();
-
-    /**
-     * <p>getLanguage.</p>
-     *
-     * @return a {@link java.lang.String} object.
-     */
-    public String getLanguage();
-
-    /**
-     * <p>isTableOfContents.</p>
-     *
-     * @return a boolean.
-     */
-    public boolean isTableOfContents();
-
-    /**
-     * <p>getTableOfContentsHeadings.</p>
-     *
-     * @return a {@link java.util.Map} object.
-     */
-    public Map<String, JasperTocHeading> getTableOfContentsHeadings();
-
-    /**
-     * <p>getTableOfContentsCustomizer.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.definition.DRITableOfContentsCustomizer} object.
-     */
-    public DRITableOfContentsCustomizer getTableOfContentsCustomizer();
-
-    /**
-     * <p>getFilterExpression.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.design.definition.expression.DRIDesignExpression} object.
-     */
-    public DRIDesignExpression getFilterExpression();
-
-    /**
-     * <p>getParameters.</p>
-     *
-     * @return a {@link java.util.Collection} object.
-     */
-    public Collection<DRIDesignParameter> getParameters();
-
-    /**
-     * <p>getParameterValues.</p>
-     *
-     * @return a {@link java.util.Map} object.
-     */
-    public Map<String, Object> getParameterValues();
-
-    /**
-     * <p>getScriptlets.</p>
-     *
-     * @return a {@link java.util.Collection} object.
-     */
-    public Collection<DRIScriptlet> getScriptlets();
-
-    /**
-     * <p>getFields.</p>
-     *
-     * @return a {@link java.util.Collection} object.
-     */
-    public Collection<DRIDesignField> getFields();
-
-    /**
-     * <p>getSystemExpressions.</p>
-     *
-     * @return a {@link java.util.Collection} object.
-     */
-    public Collection<DRIDesignSystemExpression> getSystemExpressions();
-
-    /**
-     * <p>getJasperExpressions.</p>
-     *
-     * @return a {@link java.util.Collection} object.
-     */
-    public Collection<DRIDesignJasperExpression> getJasperExpressions();
-
-    /**
-     * <p>getSimpleExpressions.</p>
-     *
-     * @return a {@link java.util.Collection} object.
-     */
-    public Collection<DRIDesignSimpleExpression> getSimpleExpressions();
-
-    /**
-     * <p>getStyles.</p>
-     *
-     * @return a {@link java.util.Collection} object.
-     */
-    public Collection<DRIDesignStyle> getStyles();
-
-    /**
-     * <p>getGroups.</p>
-     *
-     * @return a {@link java.util.Collection} object.
-     */
-    public Collection<? extends DRIDesignGroup> getGroups();
-
-    /**
-     * <p>getVariables.</p>
-     *
-     * @return a {@link java.util.Collection} object.
-     */
-    public Collection<DRIDesignVariable> getVariables();
-
-    /**
-     * <p>getComplexExpressions.</p>
-     *
-     * @return a {@link java.util.Collection} object.
-     */
-    public Collection<DRIDesignComplexExpression> getComplexExpressions();
-
-    /**
-     * <p>getSorts.</p>
-     *
-     * @return a {@link java.util.Collection} object.
-     */
-    public Collection<DRIDesignSort> getSorts();
-
-    /**
-     * <p>getDatasets.</p>
-     *
-     * @return a {@link java.util.Collection} object.
-     */
-    public Collection<DRIDesignDataset> getDatasets();
-
-    /**
-     * <p>getTitleBand.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.design.definition.DRIDesignBand} object.
-     */
-    public DRIDesignBand getTitleBand();
-
-    /**
-     * <p>getPageHeaderBand.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.design.definition.DRIDesignBand} object.
-     */
-    public DRIDesignBand getPageHeaderBand();
-
-    /**
-     * <p>getPageFooterBand.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.design.definition.DRIDesignBand} object.
-     */
-    public DRIDesignBand getPageFooterBand();
-
-    /**
-     * <p>getColumnHeaderBand.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.design.definition.DRIDesignBand} object.
-     */
-    public DRIDesignBand getColumnHeaderBand();
-
-    /**
-     * <p>getColumnFooterBand.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.design.definition.DRIDesignBand} object.
-     */
-    public DRIDesignBand getColumnFooterBand();
-
-    /**
-     * <p>getDetailBands.</p>
-     *
-     * @return a {@link java.util.List} object.
-     */
-    public List<? extends DRIDesignBand> getDetailBands();
-
-    /**
-     * <p>getLastPageFooterBand.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.design.definition.DRIDesignBand} object.
-     */
-    public DRIDesignBand getLastPageFooterBand();
-
-    /**
-     * <p>getSummaryBand.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.design.definition.DRIDesignBand} object.
-     */
-    public DRIDesignBand getSummaryBand();
-
-    /**
-     * <p>getNoDataBand.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.design.definition.DRIDesignBand} object.
-     */
-    public DRIDesignBand getNoDataBand();
-
-    /**
-     * <p>getBackgroundBand.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.design.definition.DRIDesignBand} object.
-     */
-    public DRIDesignBand getBackgroundBand();
+public interface DRIDesignReport extends Serializable
+{
+	
+	public DRIDesignTemplateDesign getTemplateDesign();
+	
+	public String getReportName();
+	
+	public Locale getLocale();
+	
+	public ResourceBundle getResourceBundle();
+	
+	public String getResourceBundleName();
+	
+	public boolean isIgnorePagination();
+	
+	public Properties getProperties();
+	
+	public DRIDesignQuery getQuery();
+	
+	public DRIDesignPage getPage();
+	
+	public WhenNoDataType getWhenNoDataType();
+	
+	public WhenResourceMissingType getWhenResourceMissingType();
+	
+	public boolean isTitleOnANewPage();
+	
+	public boolean isSummaryOnANewPage();
+	
+	public boolean isSummaryWithPageHeaderAndFooter();
+	
+	public boolean isFloatColumnFooter();
+	
+	public Orientation getPrintOrder();
+	
+	public RunDirection getColumnDirection();
+	
+	public String getLanguage();
+	
+	public boolean isTableOfContents();
+	
+	public Map<String, JasperTocHeading> getTableOfContentsHeadings();
+	
+	public DRITableOfContentsCustomizer getTableOfContentsCustomizer();
+	
+	public DRIDesignExpression getFilterExpression();
+	
+	public Collection<DRIDesignParameter> getParameters();
+	
+	public Map<String, Object> getParameterValues();
+	
+	public Collection<DRIScriptlet> getScriptlets();
+	
+	public Collection<DRIDesignField> getFields();
+	
+	public Collection<DRIDesignSystemExpression> getSystemExpressions();
+	
+	public Collection<DRIDesignJasperExpression> getJasperExpressions();
+	
+	public Collection<DRIDesignSimpleExpression> getSimpleExpressions();
+	
+	public Collection<DRIDesignStyle> getStyles();
+	
+	public Collection<? extends DRIDesignGroup> getGroups();
+	
+	public Collection<DRIDesignVariable> getVariables();
+	
+	public Collection<DRIDesignComplexExpression> getComplexExpressions();
+	
+	public Collection<DRIDesignSort> getSorts();
+	
+	public Collection<DRIDesignDataset> getDatasets();
+	
+	public DRIDesignBand getTitleBand();
+	
+	public DRIDesignBand getPageHeaderBand();
+	
+	public DRIDesignBand getPageFooterBand();
+	
+	public DRIDesignBand getColumnHeaderBand();
+	
+	public DRIDesignBand getColumnFooterBand();
+	
+	public List<? extends DRIDesignBand> getDetailBands();
+	
+	public DRIDesignBand getLastPageFooterBand();
+	
+	public DRIDesignBand getSummaryBand();
+	
+	public DRIDesignBand getNoDataBand();
+	
+	public DRIDesignBand getBackgroundBand();
 }

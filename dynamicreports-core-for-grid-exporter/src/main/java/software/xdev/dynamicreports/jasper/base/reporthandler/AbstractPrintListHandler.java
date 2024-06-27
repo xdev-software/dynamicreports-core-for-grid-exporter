@@ -17,58 +17,54 @@
  */
 package software.xdev.dynamicreports.jasper.base.reporthandler;
 
+import net.sf.jasperreports.engine.JasperPrint;
 import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
 import software.xdev.dynamicreports.jasper.definition.JasperReportHandler;
-import net.sf.jasperreports.engine.JasperPrint;
 
-/**
- * <p>Abstract AbstractPrintListHandler class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public abstract class AbstractPrintListHandler implements JasperReportHandler {
-    private boolean continuousPageNumbering;
-    private int pageNumber;
 
-    /**
-     * <p>Constructor for AbstractPrintListHandler.</p>
-     */
-    public AbstractPrintListHandler() {
-        continuousPageNumbering = false;
-        pageNumber = 1;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void concatenate(JasperReportBuilder... jasperReportBuilders) {
-        for (JasperReportBuilder jasperReportBuilder : jasperReportBuilders) {
-            try {
-                if (continuousPageNumbering) {
-                    jasperReportBuilder.setStartPageNumber(pageNumber);
-                } else {
-                    jasperReportBuilder.setStartPageNumber(null);
-                }
-                JasperPrint jasperPrint = jasperReportBuilder.toJasperPrint();
-                add(jasperPrint);
-                pageNumber += jasperPrint.getPages().size();
-                jasperReportBuilder.rebuild();
-            } catch (Exception e) {
-            }
-        }
-    }
-
-    /**
-     * <p>add.</p>
-     *
-     * @param jasperPrint a {@link net.sf.jasperreports.engine.JasperPrint} object.
-     */
-    protected abstract void add(JasperPrint jasperPrint);
-
-    /** {@inheritDoc} */
-    @Override
-    public void setContinuousPageNumbering(boolean continuousPageNumbering) {
-        this.continuousPageNumbering = continuousPageNumbering;
-    }
-
+public abstract class AbstractPrintListHandler implements JasperReportHandler
+{
+	private boolean continuousPageNumbering;
+	private int pageNumber;
+	
+	public AbstractPrintListHandler()
+	{
+		this.continuousPageNumbering = false;
+		this.pageNumber = 1;
+	}
+	
+	@Override
+	public void concatenate(final JasperReportBuilder... jasperReportBuilders)
+	{
+		for(final JasperReportBuilder jasperReportBuilder : jasperReportBuilders)
+		{
+			try
+			{
+				if(this.continuousPageNumbering)
+				{
+					jasperReportBuilder.setStartPageNumber(this.pageNumber);
+				}
+				else
+				{
+					jasperReportBuilder.setStartPageNumber(null);
+				}
+				final JasperPrint jasperPrint = jasperReportBuilder.toJasperPrint();
+				this.add(jasperPrint);
+				this.pageNumber += jasperPrint.getPages().size();
+				jasperReportBuilder.rebuild();
+			}
+			catch(final Exception e)
+			{
+				// Undocumented upstream
+			}
+		}
+	}
+	
+	protected abstract void add(JasperPrint jasperPrint);
+	
+	@Override
+	public void setContinuousPageNumbering(final boolean continuousPageNumbering)
+	{
+		this.continuousPageNumbering = continuousPageNumbering;
+	}
 }

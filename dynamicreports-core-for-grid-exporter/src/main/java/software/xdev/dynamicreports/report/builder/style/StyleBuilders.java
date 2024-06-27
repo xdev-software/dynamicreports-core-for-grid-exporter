@@ -17,345 +17,190 @@
  */
 package software.xdev.dynamicreports.report.builder.style;
 
-import software.xdev.dynamicreports.report.constant.LineStyle;
-import software.xdev.dynamicreports.report.definition.expression.DRIExpression;
-import software.xdev.dynamicreports.report.exception.DRException;
-
 import java.io.File;
 import java.io.InputStream;
 import java.net.URL;
 
-/**
- * A set of methods of creating and customizing styles
- *
- * @author Ricardo Mariaca
- * 
- */
-public class StyleBuilders {
+import software.xdev.dynamicreports.report.constant.LineStyle;
+import software.xdev.dynamicreports.report.definition.expression.DRIExpression;
+import software.xdev.dynamicreports.report.exception.DRException;
 
-    // font
 
-    /**
-     * <p>font.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.builder.style.FontBuilder} object.
-     */
-    public FontBuilder font() {
-        return Styles.font();
-    }
-
-    /**
-     * <p>font.</p>
-     *
-     * @param fontName a {@link java.lang.String} object.
-     * @param bold     a boolean.
-     * @param italic   a boolean.
-     * @param fontSize a int.
-     * @return a {@link software.xdev.dynamicreports.report.builder.style.FontBuilder} object.
-     */
-    public FontBuilder font(String fontName, boolean bold, boolean italic, int fontSize) {
-        return Styles.font(fontName, bold, italic, fontSize);
-    }
-
-    /**
-     * <p>fontArial.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.builder.style.FontBuilder} object.
-     */
-    public FontBuilder fontArial() {
-        return Styles.fontArial();
-    }
-
-    /**
-     * <p>fontArialBold.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.builder.style.FontBuilder} object.
-     */
-    public FontBuilder fontArialBold() {
-        return Styles.fontArialBold();
-    }
-
-    /**
-     * <p>fontTimesNewRoman.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.builder.style.FontBuilder} object.
-     */
-    public FontBuilder fontTimesNewRoman() {
-        return Styles.fontTimesNewRoman();
-    }
-
-    /**
-     * <p>fontTimesNewRomanBold.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.builder.style.FontBuilder} object.
-     */
-    public FontBuilder fontTimesNewRomanBold() {
-        return Styles.fontTimesNewRomanBold();
-    }
-
-    /**
-     * <p>fontCourierNew.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.builder.style.FontBuilder} object.
-     */
-    public FontBuilder fontCourierNew() {
-        return Styles.fontCourierNew();
-    }
-
-    /**
-     * <p>fontCourierNewBold.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.builder.style.FontBuilder} object.
-     */
-    public FontBuilder fontCourierNewBold() {
-        return Styles.fontCourierNewBold();
-    }
-
-    // pen
-
-    /**
-     * <p>pen.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.builder.style.PenBuilder} object.
-     */
-    public PenBuilder pen() {
-        return Styles.pen();
-    }
-
-    /**
-     * <p>pen.</p>
-     *
-     * @param lineWidth a {@link java.lang.Float} object.
-     * @param lineStyle a {@link software.xdev.dynamicreports.report.constant.LineStyle} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.style.PenBuilder} object.
-     */
-    public PenBuilder pen(Float lineWidth, LineStyle lineStyle) {
-        return Styles.pen(lineWidth, lineStyle);
-    }
-
-    /**
-     * <p>penThin.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.builder.style.PenBuilder} object.
-     */
-    public PenBuilder penThin() {
-        return Styles.penThin();
-    }
-
-    /**
-     * <p>pen1Point.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.builder.style.PenBuilder} object.
-     */
-    public PenBuilder pen1Point() {
-        return Styles.pen1Point();
-    }
-
-    /**
-     * <p>pen2Point.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.builder.style.PenBuilder} object.
-     */
-    public PenBuilder pen2Point() {
-        return Styles.pen2Point();
-    }
-
-    /**
-     * <p>penDotted.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.builder.style.PenBuilder} object.
-     */
-    public PenBuilder penDotted() {
-        return Styles.penDotted();
-    }
-
-    /**
-     * <p>penDashed.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.builder.style.PenBuilder} object.
-     */
-    public PenBuilder penDashed() {
-        return Styles.penDashed();
-    }
-
-    /**
-     * <p>penDouble.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.builder.style.PenBuilder} object.
-     */
-    public PenBuilder penDouble() {
-        return Styles.penDouble();
-    }
-
-    // border
-
-    /**
-     * <p>border.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.builder.style.BorderBuilder} object.
-     */
-    public BorderBuilder border() {
-        return Styles.border();
-    }
-
-    /**
-     * <p>border.</p>
-     *
-     * @param pen a {@link software.xdev.dynamicreports.report.builder.style.PenBuilder} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.style.BorderBuilder} object.
-     */
-    public BorderBuilder border(PenBuilder pen) {
-        return Styles.border(pen);
-    }
-
-    // padding
-
-    /**
-     * <p>padding.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.builder.style.PaddingBuilder} object.
-     */
-    public PaddingBuilder padding() {
-        return Styles.padding();
-    }
-
-    /**
-     * <p>padding.</p>
-     *
-     * @param padding a int.
-     * @return a {@link software.xdev.dynamicreports.report.builder.style.PaddingBuilder} object.
-     */
-    public PaddingBuilder padding(int padding) {
-        return Styles.padding(padding);
-    }
-
-    // style
-
-    /**
-     * <p>style.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.builder.style.StyleBuilder} object.
-     */
-    public StyleBuilder style() {
-        return Styles.style();
-    }
-
-    /**
-     * <p>style.</p>
-     *
-     * @param parentStyle a {@link software.xdev.dynamicreports.report.builder.style.ReportStyleBuilder} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.style.StyleBuilder} object.
-     */
-    public StyleBuilder style(ReportStyleBuilder parentStyle) {
-        return Styles.style(parentStyle);
-    }
-
-    /**
-     * <p>style.</p>
-     *
-     * @param font a {@link software.xdev.dynamicreports.report.builder.style.FontBuilder} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.style.StyleBuilder} object.
-     */
-    public StyleBuilder style(FontBuilder font) {
-        return Styles.style(font);
-    }
-
-    /**
-     * <p>style.</p>
-     *
-     * @param borderPen a {@link software.xdev.dynamicreports.report.builder.style.PenBuilder} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.style.StyleBuilder} object.
-     */
-    public StyleBuilder style(PenBuilder borderPen) {
-        return Styles.style(borderPen);
-    }
-
-    /**
-     * <p>style.</p>
-     *
-     * @param padding a {@link java.lang.Integer} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.style.StyleBuilder} object.
-     */
-    public StyleBuilder style(Integer padding) {
-        return Styles.style(padding);
-    }
-
-    /**
-     * <p>simpleStyle.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.builder.style.SimpleStyleBuilder} object.
-     */
-    public SimpleStyleBuilder simpleStyle() {
-        return Styles.simpleStyle();
-    }
-
-    /**
-     * <p>templateStyle.</p>
-     *
-     * @param name a {@link java.lang.String} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.style.TemplateStyleBuilder} object.
-     */
-    public TemplateStyleBuilder templateStyle(String name) {
-        return Styles.templateStyle(name);
-    }
-
-    /**
-     * <p>conditionalStyle.</p>
-     *
-     * @param conditionExpression a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.style.ConditionalStyleBuilder} object.
-     */
-    public ConditionalStyleBuilder conditionalStyle(DRIExpression<Boolean> conditionExpression) {
-        return Styles.conditionalStyle(conditionExpression);
-    }
-
-    /**
-     * <p>templateStyles.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.builder.style.TemplateStylesBuilder} object.
-     */
-    public TemplateStylesBuilder templateStyles() {
-        return Styles.templateStyles();
-    }
-
-    /**
-     * <p>loadStyles.</p>
-     *
-     * @param inputStream a {@link java.io.InputStream} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.style.TemplateStylesBuilder} object.
-     */
-    public TemplateStylesBuilder loadStyles(InputStream inputStream) {
-        return Styles.loadStyles(inputStream);
-    }
-
-    /**
-     * <p>loadStyles.</p>
-     *
-     * @param file a {@link java.io.File} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.style.TemplateStylesBuilder} object.
-     */
-    public TemplateStylesBuilder loadStyles(File file) {
-        return Styles.loadStyles(file);
-    }
-
-    /**
-     * <p>loadStyles.</p>
-     *
-     * @param fileName a {@link java.lang.String} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.style.TemplateStylesBuilder} object.
-     * @throws software.xdev.dynamicreports.report.exception.DRException if any.
-     */
-    public TemplateStylesBuilder loadStyles(String fileName) throws DRException {
-        return Styles.loadStyles(fileName);
-    }
-
-    /**
-     * <p>loadStyles.</p>
-     *
-     * @param url a {@link java.net.URL} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.style.TemplateStylesBuilder} object.
-     */
-    public TemplateStylesBuilder loadStyles(URL url) {
-        return Styles.loadStyles(url);
-    }
+public class StyleBuilders
+{
+	
+	// font
+	
+	public FontBuilder font()
+	{
+		return Styles.font();
+	}
+	
+	public FontBuilder font(final String fontName, final boolean bold, final boolean italic, final int fontSize)
+	{
+		return Styles.font(fontName, bold, italic, fontSize);
+	}
+	
+	public FontBuilder fontArial()
+	{
+		return Styles.fontArial();
+	}
+	
+	public FontBuilder fontArialBold()
+	{
+		return Styles.fontArialBold();
+	}
+	
+	public FontBuilder fontTimesNewRoman()
+	{
+		return Styles.fontTimesNewRoman();
+	}
+	
+	public FontBuilder fontTimesNewRomanBold()
+	{
+		return Styles.fontTimesNewRomanBold();
+	}
+	
+	public FontBuilder fontCourierNew()
+	{
+		return Styles.fontCourierNew();
+	}
+	
+	public FontBuilder fontCourierNewBold()
+	{
+		return Styles.fontCourierNewBold();
+	}
+	
+	// pen
+	
+	public PenBuilder pen()
+	{
+		return Styles.pen();
+	}
+	
+	public PenBuilder pen(final Float lineWidth, final LineStyle lineStyle)
+	{
+		return Styles.pen(lineWidth, lineStyle);
+	}
+	
+	public PenBuilder penThin()
+	{
+		return Styles.penThin();
+	}
+	
+	public PenBuilder pen1Point()
+	{
+		return Styles.pen1Point();
+	}
+	
+	public PenBuilder pen2Point()
+	{
+		return Styles.pen2Point();
+	}
+	
+	public PenBuilder penDotted()
+	{
+		return Styles.penDotted();
+	}
+	
+	public PenBuilder penDashed()
+	{
+		return Styles.penDashed();
+	}
+	
+	public PenBuilder penDouble()
+	{
+		return Styles.penDouble();
+	}
+	
+	// border
+	
+	public BorderBuilder border()
+	{
+		return Styles.border();
+	}
+	
+	public BorderBuilder border(final PenBuilder pen)
+	{
+		return Styles.border(pen);
+	}
+	
+	// padding
+	
+	public PaddingBuilder padding()
+	{
+		return Styles.padding();
+	}
+	
+	public PaddingBuilder padding(final int padding)
+	{
+		return Styles.padding(padding);
+	}
+	
+	// style
+	
+	public StyleBuilder style()
+	{
+		return Styles.style();
+	}
+	
+	public StyleBuilder style(final ReportStyleBuilder parentStyle)
+	{
+		return Styles.style(parentStyle);
+	}
+	
+	public StyleBuilder style(final FontBuilder font)
+	{
+		return Styles.style(font);
+	}
+	
+	public StyleBuilder style(final PenBuilder borderPen)
+	{
+		return Styles.style(borderPen);
+	}
+	
+	public StyleBuilder style(final Integer padding)
+	{
+		return Styles.style(padding);
+	}
+	
+	public SimpleStyleBuilder simpleStyle()
+	{
+		return Styles.simpleStyle();
+	}
+	
+	public TemplateStyleBuilder templateStyle(final String name)
+	{
+		return Styles.templateStyle(name);
+	}
+	
+	public ConditionalStyleBuilder conditionalStyle(final DRIExpression<Boolean> conditionExpression)
+	{
+		return Styles.conditionalStyle(conditionExpression);
+	}
+	
+	public TemplateStylesBuilder templateStyles()
+	{
+		return Styles.templateStyles();
+	}
+	
+	public TemplateStylesBuilder loadStyles(final InputStream inputStream)
+	{
+		return Styles.loadStyles(inputStream);
+	}
+	
+	public TemplateStylesBuilder loadStyles(final File file)
+	{
+		return Styles.loadStyles(file);
+	}
+	
+	public TemplateStylesBuilder loadStyles(final String fileName) throws DRException
+	{
+		return Styles.loadStyles(fileName);
+	}
+	
+	public TemplateStylesBuilder loadStyles(final URL url)
+	{
+		return Styles.loadStyles(url);
+	}
 }

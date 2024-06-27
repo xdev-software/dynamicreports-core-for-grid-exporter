@@ -17,38 +17,19 @@
  */
 package software.xdev.dynamicreports.report.definition;
 
+import java.io.Serializable;
+
 import software.xdev.dynamicreports.report.constant.SplitType;
 import software.xdev.dynamicreports.report.definition.component.DRIList;
 import software.xdev.dynamicreports.report.definition.expression.DRIExpression;
 
-import java.io.Serializable;
 
-/**
- * <p>DRIBand interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface DRIBand extends Serializable {
-
-    /**
-     * <p>getSplitType.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.constant.SplitType} object.
-     */
-    public SplitType getSplitType();
-
-    /**
-     * <p>getList.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.definition.component.DRIList} object.
-     */
-    public DRIList getList();
-
-    /**
-     * <p>getPrintWhenExpression.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     */
-    public DRIExpression<Boolean> getPrintWhenExpression();
+public interface DRIBand extends Serializable
+{
+	
+	public SplitType getSplitType();
+	
+	public DRIList getList();
+	
+	public DRIExpression<Boolean> getPrintWhenExpression();
 }

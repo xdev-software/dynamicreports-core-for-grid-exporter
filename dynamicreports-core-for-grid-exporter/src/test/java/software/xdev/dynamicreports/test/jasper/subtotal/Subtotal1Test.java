@@ -25,6 +25,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Locale;
 
+import net.sf.jasperreports.engine.JRDataSource;
 import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
 import software.xdev.dynamicreports.report.base.expression.AbstractSimpleExpression;
 import software.xdev.dynamicreports.report.base.expression.AbstractValueFormatter;
@@ -34,16 +35,11 @@ import software.xdev.dynamicreports.report.constant.Calculation;
 import software.xdev.dynamicreports.report.datasource.DRDataSource;
 import software.xdev.dynamicreports.report.definition.ReportParameters;
 import software.xdev.dynamicreports.test.jasper.AbstractJasperValueTest;
-import net.sf.jasperreports.engine.JRDataSource;
 
 
-/**
- * @author Ricardo Mariaca
- */
 public class Subtotal1Test extends AbstractJasperValueTest implements Serializable
 {
-	private static final long serialVersionUID = 1L;
-	
+
 	private AggregationSubtotalBuilder<BigDecimal> subtotal1;
 	private AggregationSubtotalBuilder<BigDecimal> subtotal2;
 	private AggregationSubtotalBuilder<BigDecimal> subtotal3;
@@ -75,76 +71,76 @@ public class Subtotal1Test extends AbstractJasperValueTest implements Serializab
 			.subtotalsAtColumnFooter(this.subtotal5 = sbt.sum(column1).setLabel("column footer sum"))
 			.subtotalsAtLastPageFooter(this.subtotal6 = sbt.sum(column1).setLabel("last page footer sum"))
 			.subtotalsAtSummary(
-                this.subtotal7 = sbt.sum(column1).setLabel("summary sum"),
+				this.subtotal7 = sbt.sum(column1).setLabel("summary sum"),
 				(this.subtotal8 = sbt.aggregate(column1, Calculation.LOWEST)).setLabel("summary lowest"),
-                this.subtotal9 = sbt.sum(new ColumnCalculationExpression(), column2)
+				this.subtotal9 = sbt.sum(new ColumnCalculationExpression(), column2)
 					.setLabel("summary sum")
 					.setValueFormatter(new ColumnValueFormatter2()),
-                this.subtotal10 = sbt.aggregate(column1, Calculation.COUNT),
-                this.subtotal11 = sbt.aggregate(column2, Calculation.COUNT),
-                this.subtotal12 = sbt.text("total", column1));
+				this.subtotal10 = sbt.aggregate(column1, Calculation.COUNT),
+				this.subtotal11 = sbt.aggregate(column2, Calculation.COUNT),
+				this.subtotal12 = sbt.text("total", column1));
 	}
 	
 	@Override
 	public void test()
 	{
 		super.test();
-        
-        this.numberOfPagesTest(2);
+		
+		this.numberOfPagesTest(2);
 		// title
-        this.subtotalLabelCountTest(this.subtotal1, 1);
-        this.subtotalLabelValueTest(this.subtotal1, "title sum");
-        this.subtotalCountTest(this.subtotal1, 1);
-        this.subtotalValueTest(this.subtotal1, "101.00");
+		this.subtotalLabelCountTest(this.subtotal1, 1);
+		this.subtotalLabelValueTest(this.subtotal1, "title sum");
+		this.subtotalCountTest(this.subtotal1, 1);
+		this.subtotalValueTest(this.subtotal1, "101.00");
 		// pageHeader
-        this.subtotalLabelCountTest(this.subtotal2, 2);
-        this.subtotalLabelValueTest(this.subtotal2, "page header sum", "page header sum");
-        this.subtotalCountTest(this.subtotal2, 2);
-        this.subtotalValueTest(this.subtotal2, "80.80", "20.20");
+		this.subtotalLabelCountTest(this.subtotal2, 2);
+		this.subtotalLabelValueTest(this.subtotal2, "page header sum", "page header sum");
+		this.subtotalCountTest(this.subtotal2, 2);
+		this.subtotalValueTest(this.subtotal2, "80.80", "20.20");
 		// pageFooter
-        this.subtotalLabelCountTest(this.subtotal3, 1);
-        this.subtotalLabelValueTest(this.subtotal3, "page footer sum");
-        this.subtotalCountTest(this.subtotal3, 1);
-        this.subtotalValueTest(this.subtotal3, "80.80");
+		this.subtotalLabelCountTest(this.subtotal3, 1);
+		this.subtotalLabelValueTest(this.subtotal3, "page footer sum");
+		this.subtotalCountTest(this.subtotal3, 1);
+		this.subtotalValueTest(this.subtotal3, "80.80");
 		// columnHeader
-        this.subtotalLabelCountTest(this.subtotal4, 3);
-        this.subtotalLabelValueTest(this.subtotal4, "column header sum", "column header sum", "column header sum");
-        this.subtotalCountTest(this.subtotal4, 3);
-        this.subtotalValueTest(this.subtotal4, "40.40", "40.40", "20.20");
+		this.subtotalLabelCountTest(this.subtotal4, 3);
+		this.subtotalLabelValueTest(this.subtotal4, "column header sum", "column header sum", "column header sum");
+		this.subtotalCountTest(this.subtotal4, 3);
+		this.subtotalValueTest(this.subtotal4, "40.40", "40.40", "20.20");
 		// columnFooter
-        this.subtotalLabelCountTest(this.subtotal5, 3);
-        this.subtotalLabelValueTest(this.subtotal5, "column footer sum", "column footer sum", "column footer sum");
-        this.subtotalCountTest(this.subtotal5, 3);
-        this.subtotalValueTest(this.subtotal5, "40.40", "40.40", "20.20");
+		this.subtotalLabelCountTest(this.subtotal5, 3);
+		this.subtotalLabelValueTest(this.subtotal5, "column footer sum", "column footer sum", "column footer sum");
+		this.subtotalCountTest(this.subtotal5, 3);
+		this.subtotalValueTest(this.subtotal5, "40.40", "40.40", "20.20");
 		// lastPageFooter
-        this.subtotalLabelCountTest(this.subtotal6, 1);
-        this.subtotalLabelValueTest(this.subtotal6, "last page footer sum");
-        this.subtotalCountTest(this.subtotal6, 1);
-        this.subtotalValueTest(this.subtotal6, "101.00");
+		this.subtotalLabelCountTest(this.subtotal6, 1);
+		this.subtotalLabelValueTest(this.subtotal6, "last page footer sum");
+		this.subtotalCountTest(this.subtotal6, 1);
+		this.subtotalValueTest(this.subtotal6, "101.00");
 		// summary
-        this.subtotalLabelCountTest(this.subtotal7, 1);
-        this.subtotalLabelValueTest(this.subtotal7, "summary sum");
-        this.subtotalCountTest(this.subtotal7, 1);
-        this.subtotalValueTest(this.subtotal7, "101.00");
-        
-        this.subtotalLabelIndexCountTest(this.subtotal8, 2, 1);
-        this.subtotalLabelIndexValueTest(this.subtotal8, 2, "summary lowest");
-        this.subtotalIndexCountTest(this.subtotal8, 2, 1);
-        this.subtotalIndexValueTest(this.subtotal8, 2, "1.01");
-        
-        this.subtotalIndexCountTest(this.subtotal10, 3, 1);
-        this.subtotalIndexValueTest(this.subtotal10, 3, "100");
-        
-        this.subtotalLabelCountTest(this.subtotal9, 1);
-        this.subtotalLabelValueTest(this.subtotal9, "summary sum");
-        this.subtotalCountTest(this.subtotal9, 1);
-        this.subtotalValueTest(this.subtotal9, "value = 200");
-        
-        this.subtotalIndexCountTest(this.subtotal11, 2, 1);
-        this.subtotalIndexValueTest(this.subtotal11, 2, "100");
-        
-        this.subtotalIndexCountTest(this.subtotal12, 4, 1);
-        this.subtotalIndexValueTest(this.subtotal12, 4, "total");
+		this.subtotalLabelCountTest(this.subtotal7, 1);
+		this.subtotalLabelValueTest(this.subtotal7, "summary sum");
+		this.subtotalCountTest(this.subtotal7, 1);
+		this.subtotalValueTest(this.subtotal7, "101.00");
+		
+		this.subtotalLabelIndexCountTest(this.subtotal8, 2, 1);
+		this.subtotalLabelIndexValueTest(this.subtotal8, 2, "summary lowest");
+		this.subtotalIndexCountTest(this.subtotal8, 2, 1);
+		this.subtotalIndexValueTest(this.subtotal8, 2, "1.01");
+		
+		this.subtotalIndexCountTest(this.subtotal10, 3, 1);
+		this.subtotalIndexValueTest(this.subtotal10, 3, "100");
+		
+		this.subtotalLabelCountTest(this.subtotal9, 1);
+		this.subtotalLabelValueTest(this.subtotal9, "summary sum");
+		this.subtotalCountTest(this.subtotal9, 1);
+		this.subtotalValueTest(this.subtotal9, "value = 200");
+		
+		this.subtotalIndexCountTest(this.subtotal11, 2, 1);
+		this.subtotalIndexValueTest(this.subtotal11, 2, "100");
+		
+		this.subtotalIndexCountTest(this.subtotal12, 4, 1);
+		this.subtotalIndexValueTest(this.subtotal12, 4, "total");
 	}
 	
 	@Override
@@ -158,10 +154,9 @@ public class Subtotal1Test extends AbstractJasperValueTest implements Serializab
 		return dataSource;
 	}
 	
-	private class ColumnValueFormatter extends AbstractValueFormatter<String, String>
+	static class ColumnValueFormatter extends AbstractValueFormatter<String, String>
 	{
-		private static final long serialVersionUID = 1L;
-		
+
 		@Override
 		public String format(final String value, final ReportParameters reportParameters)
 		{
@@ -170,10 +165,9 @@ public class Subtotal1Test extends AbstractJasperValueTest implements Serializab
 	}
 	
 	
-	private class ColumnValueFormatter2 extends AbstractValueFormatter<String, Integer>
+	static class ColumnValueFormatter2 extends AbstractValueFormatter<String, Integer>
 	{
-		private static final long serialVersionUID = 1L;
-		
+
 		@Override
 		public String format(final Integer value, final ReportParameters reportParameters)
 		{
@@ -182,10 +176,9 @@ public class Subtotal1Test extends AbstractJasperValueTest implements Serializab
 	}
 	
 	
-	private class ColumnCalculationExpression extends AbstractSimpleExpression<Integer>
+	static class ColumnCalculationExpression extends AbstractSimpleExpression<Integer>
 	{
-		private static final long serialVersionUID = 1L;
-		
+
 		@Override
 		public Integer evaluate(final ReportParameters reportParameters)
 		{

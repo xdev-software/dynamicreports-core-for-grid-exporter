@@ -17,187 +17,141 @@
  */
 package software.xdev.dynamicreports.jasper.base.export;
 
-import software.xdev.dynamicreports.jasper.definition.export.JasperIExporter;
-import software.xdev.dynamicreports.report.constant.Constants;
-import org.apache.commons.lang3.Validate;
-
 import java.io.File;
 import java.io.OutputStream;
 import java.io.Writer;
 
-/**
- * <p>Abstract AbstractJasperExporter class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public abstract class AbstractJasperExporter implements JasperIExporter {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
+import org.apache.commons.lang3.Validate;
 
-    private Writer outputWriter;
-    private OutputStream outputStream;
-    private File outputFile;
-    private String outputFileName;
+import software.xdev.dynamicreports.jasper.definition.export.JasperIExporter;
 
-    private Integer pageIndex;
-    private Integer startPageIndex;
-    private Integer endPageIndex;
-    private String characterEncoding;
-    private Integer offsetX;
-    private Integer offsetY;
 
-    /** {@inheritDoc} */
-    @Override
-    public Writer getOutputWriter() {
-        return outputWriter;
-    }
+public abstract class AbstractJasperExporter implements JasperIExporter
+{
 
-    /**
-     * <p>Setter for the field <code>outputWriter</code>.</p>
-     *
-     * @param outputWriter a {@link java.io.Writer} object.
-     */
-    public void setOutputWriter(Writer outputWriter) {
-        Validate.notNull(outputWriter, "outputWriter must not be null");
-        this.outputWriter = outputWriter;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public OutputStream getOutputStream() {
-        return outputStream;
-    }
-
-    /**
-     * <p>Setter for the field <code>outputStream</code>.</p>
-     *
-     * @param outputStream a {@link java.io.OutputStream} object.
-     */
-    public void setOutputStream(OutputStream outputStream) {
-        Validate.notNull(outputStream, "outputStream must not be null");
-        this.outputStream = outputStream;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public File getOutputFile() {
-        return outputFile;
-    }
-
-    /**
-     * <p>Setter for the field <code>outputFile</code>.</p>
-     *
-     * @param outputFile a {@link java.io.File} object.
-     */
-    public void setOutputFile(File outputFile) {
-        Validate.notNull(outputFile, "outputFile must not be null");
-        this.outputFile = outputFile;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public String getOutputFileName() {
-        return outputFileName;
-    }
-
-    /**
-     * <p>Setter for the field <code>outputFileName</code>.</p>
-     *
-     * @param outputFileName a {@link java.lang.String} object.
-     */
-    public void setOutputFileName(String outputFileName) {
-        Validate.notNull(outputFileName, "outputFileName must not be null");
-        this.outputFileName = outputFileName;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Integer getPageIndex() {
-        return pageIndex;
-    }
-
-    /**
-     * <p>Setter for the field <code>pageIndex</code>.</p>
-     *
-     * @param pageIndex a {@link java.lang.Integer} object.
-     */
-    public void setPageIndex(Integer pageIndex) {
-        this.pageIndex = pageIndex;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Integer getStartPageIndex() {
-        return startPageIndex;
-    }
-
-    /**
-     * <p>Setter for the field <code>startPageIndex</code>.</p>
-     *
-     * @param startPageIndex a {@link java.lang.Integer} object.
-     */
-    public void setStartPageIndex(Integer startPageIndex) {
-        this.startPageIndex = startPageIndex;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Integer getEndPageIndex() {
-        return endPageIndex;
-    }
-
-    /**
-     * <p>Setter for the field <code>endPageIndex</code>.</p>
-     *
-     * @param endPageIndex a {@link java.lang.Integer} object.
-     */
-    public void setEndPageIndex(Integer endPageIndex) {
-        this.endPageIndex = endPageIndex;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public String getCharacterEncoding() {
-        return characterEncoding;
-    }
-
-    /**
-     * <p>Setter for the field <code>characterEncoding</code>.</p>
-     *
-     * @param characterEncoding a {@link java.lang.String} object.
-     */
-    public void setCharacterEncoding(String characterEncoding) {
-        this.characterEncoding = characterEncoding;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Integer getOffsetX() {
-        return offsetX;
-    }
-
-    /**
-     * <p>Setter for the field <code>offsetX</code>.</p>
-     *
-     * @param offsetX a {@link java.lang.Integer} object.
-     */
-    public void setOffsetX(Integer offsetX) {
-        this.offsetX = offsetX;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Integer getOffsetY() {
-        return offsetY;
-    }
-
-    /**
-     * <p>Setter for the field <code>offsetY</code>.</p>
-     *
-     * @param offsetY a {@link java.lang.Integer} object.
-     */
-    public void setOffsetY(Integer offsetY) {
-        this.offsetY = offsetY;
-    }
-
+	private Writer outputWriter;
+	private OutputStream outputStream;
+	private File outputFile;
+	private String outputFileName;
+	
+	private Integer pageIndex;
+	private Integer startPageIndex;
+	private Integer endPageIndex;
+	private String characterEncoding;
+	private Integer offsetX;
+	private Integer offsetY;
+	
+	@Override
+	public Writer getOutputWriter()
+	{
+		return this.outputWriter;
+	}
+	
+	public void setOutputWriter(final Writer outputWriter)
+	{
+		Validate.notNull(outputWriter, "outputWriter must not be null");
+		this.outputWriter = outputWriter;
+	}
+	
+	@Override
+	public OutputStream getOutputStream()
+	{
+		return this.outputStream;
+	}
+	
+	public void setOutputStream(final OutputStream outputStream)
+	{
+		Validate.notNull(outputStream, "outputStream must not be null");
+		this.outputStream = outputStream;
+	}
+	
+	@Override
+	public File getOutputFile()
+	{
+		return this.outputFile;
+	}
+	
+	public void setOutputFile(final File outputFile)
+	{
+		Validate.notNull(outputFile, "outputFile must not be null");
+		this.outputFile = outputFile;
+	}
+	
+	@Override
+	public String getOutputFileName()
+	{
+		return this.outputFileName;
+	}
+	
+	public void setOutputFileName(final String outputFileName)
+	{
+		Validate.notNull(outputFileName, "outputFileName must not be null");
+		this.outputFileName = outputFileName;
+	}
+	
+	@Override
+	public Integer getPageIndex()
+	{
+		return this.pageIndex;
+	}
+	
+	public void setPageIndex(final Integer pageIndex)
+	{
+		this.pageIndex = pageIndex;
+	}
+	
+	@Override
+	public Integer getStartPageIndex()
+	{
+		return this.startPageIndex;
+	}
+	
+	public void setStartPageIndex(final Integer startPageIndex)
+	{
+		this.startPageIndex = startPageIndex;
+	}
+	
+	@Override
+	public Integer getEndPageIndex()
+	{
+		return this.endPageIndex;
+	}
+	
+	public void setEndPageIndex(final Integer endPageIndex)
+	{
+		this.endPageIndex = endPageIndex;
+	}
+	
+	@Override
+	public String getCharacterEncoding()
+	{
+		return this.characterEncoding;
+	}
+	
+	public void setCharacterEncoding(final String characterEncoding)
+	{
+		this.characterEncoding = characterEncoding;
+	}
+	
+	@Override
+	public Integer getOffsetX()
+	{
+		return this.offsetX;
+	}
+	
+	public void setOffsetX(final Integer offsetX)
+	{
+		this.offsetX = offsetX;
+	}
+	
+	@Override
+	public Integer getOffsetY()
+	{
+		return this.offsetY;
+	}
+	
+	public void setOffsetY(final Integer offsetY)
+	{
+		this.offsetY = offsetY;
+	}
 }

@@ -17,12 +17,7 @@
  */
 package software.xdev.dynamicreports.report.constant;
 
-/**
- * <p>LineDirection class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public enum LineDirection {
-    TOP_DOWN, BOTTOM_UP
+public enum LineDirection
+{
+	TOP_DOWN, BOTTOM_UP
 }

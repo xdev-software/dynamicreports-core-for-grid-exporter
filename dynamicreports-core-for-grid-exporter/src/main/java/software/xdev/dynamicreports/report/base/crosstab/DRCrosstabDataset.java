@@ -18,48 +18,34 @@
 package software.xdev.dynamicreports.report.base.crosstab;
 
 import software.xdev.dynamicreports.report.base.DRDataset;
-import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.definition.crosstab.DRICrosstabDataset;
 
-/**
- * <p>DRCrosstabDataset class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class DRCrosstabDataset implements DRICrosstabDataset {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    private DRDataset subDataset;
-    private Boolean dataPreSorted;
+public class DRCrosstabDataset implements DRICrosstabDataset
+{
 
-    /** {@inheritDoc} */
-    @Override
-    public DRDataset getSubDataset() {
-        return subDataset;
-    }
-
-    /**
-     * <p>Setter for the field <code>subDataset</code>.</p>
-     *
-     * @param subDataset a {@link software.xdev.dynamicreports.report.base.DRDataset} object.
-     */
-    public void setSubDataset(DRDataset subDataset) {
-        this.subDataset = subDataset;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Boolean getDataPreSorted() {
-        return dataPreSorted;
-    }
-
-    /**
-     * <p>Setter for the field <code>dataPreSorted</code>.</p>
-     *
-     * @param dataPreSorted a {@link java.lang.Boolean} object.
-     */
-    public void setDataPreSorted(Boolean dataPreSorted) {
-        this.dataPreSorted = dataPreSorted;
-    }
+	private DRDataset subDataset;
+	private Boolean dataPreSorted;
+	
+	@Override
+	public DRDataset getSubDataset()
+	{
+		return this.subDataset;
+	}
+	
+	public void setSubDataset(final DRDataset subDataset)
+	{
+		this.subDataset = subDataset;
+	}
+	
+	@Override
+	public Boolean getDataPreSorted()
+	{
+		return this.dataPreSorted;
+	}
+	
+	public void setDataPreSorted(final Boolean dataPreSorted)
+	{
+		this.dataPreSorted = dataPreSorted;
+	}
 }

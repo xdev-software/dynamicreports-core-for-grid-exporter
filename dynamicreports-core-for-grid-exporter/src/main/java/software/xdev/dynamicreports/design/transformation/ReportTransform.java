@@ -17,6 +17,9 @@
  */
 package software.xdev.dynamicreports.design.transformation;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import software.xdev.dynamicreports.design.base.DRDesignHyperLink;
 import software.xdev.dynamicreports.design.base.DRDesignParameter;
 import software.xdev.dynamicreports.design.base.DRDesignQuery;
@@ -31,127 +34,96 @@ import software.xdev.dynamicreports.report.definition.DRIQuery;
 import software.xdev.dynamicreports.report.definition.DRIReport;
 import software.xdev.dynamicreports.report.exception.DRException;
 
-import java.util.ArrayList;
-import java.util.List;
 
-/**
- * <p>ReportTransform class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class ReportTransform {
-    private DesignTransformAccessor accessor;
-    private DRIDesignTemplateDesign templateDesign;
-    private DRDesignQuery query;
-    private List<DRIDesignParameter> parameters;
-    private DRIDesignExpression filterExpression;
-
-    /**
-     * <p>Constructor for ReportTransform.</p>
-     *
-     * @param accessor a {@link software.xdev.dynamicreports.design.transformation.DesignTransformAccessor} object.
-     */
-    public ReportTransform(DesignTransformAccessor accessor) {
-        this.accessor = accessor;
-        parameters = new ArrayList<DRIDesignParameter>();
-    }
-
-    /**
-     * <p>transform.</p>
-     *
-     * @throws software.xdev.dynamicreports.report.exception.DRException if any.
-     */
-    public void transform() throws DRException {
-        DRIReport report = accessor.getReport();
-        templateDesign = new DRDesignTemplateDesign(report.getTemplateDesign());
-        if (report.getQuery() != null) {
-            query = query(report.getQuery());
-        }
-        for (DRIParameter<?> parameter : report.getParameters()) {
-            parameters.add(parameter(parameter));
-        }
-        filterExpression = accessor.getExpressionTransform().transformExpression(report.getFilterExpression(), JasperScriptlet.SCRIPTLET_NAME);
-    }
-
-    /**
-     * <p>query.</p>
-     *
-     * @param query a {@link software.xdev.dynamicreports.report.definition.DRIQuery} object.
-     * @return a {@link software.xdev.dynamicreports.design.base.DRDesignQuery} object.
-     */
-    protected DRDesignQuery query(DRIQuery query) {
-        DRDesignQuery designQuery = new DRDesignQuery();
-        designQuery.setText(query.getText());
-        designQuery.setLanguage(query.getLanguage());
-        return designQuery;
-    }
-
-    private DRDesignParameter parameter(DRIParameter<?> parameter) {
-        DRDesignParameter designParameter = new DRDesignParameter();
-        designParameter.setName(parameter.getName());
-        designParameter.setValueClass(parameter.getValueClass());
-        designParameter.setValue(parameter.getValue());
-        designParameter.setExternal(accessor.getReport().getTemplateDesign().isDefinedParameter(parameter.getName()));
-        return designParameter;
-    }
-
-    /**
-     * <p>hyperlink.</p>
-     *
-     * @param hyperLink a {@link software.xdev.dynamicreports.report.definition.DRIHyperLink} object.
-     * @return a {@link software.xdev.dynamicreports.design.base.DRDesignHyperLink} object.
-     * @throws software.xdev.dynamicreports.report.exception.DRException if any.
-     */
-    public DRDesignHyperLink hyperlink(DRIHyperLink hyperLink) throws DRException {
-        if (hyperLink == null) {
-            return null;
-        }
-
-        DRDesignHyperLink designHyperLink = new DRDesignHyperLink();
-        designHyperLink.setAnchorExpression(accessor.getExpressionTransform().transformExpression(hyperLink.getAnchorExpression()));
-        designHyperLink.setPageExpression(accessor.getExpressionTransform().transformExpression(hyperLink.getPageExpression()));
-        designHyperLink.setReferenceExpression(accessor.getExpressionTransform().transformExpression(hyperLink.getReferenceExpression()));
-        designHyperLink.setTooltipExpression(accessor.getExpressionTransform().transformExpression(hyperLink.getTooltipExpression()));
-        designHyperLink.setType(hyperLink.getType());
-        designHyperLink.setTarget(hyperLink.getTarget());
-
-        return designHyperLink;
-    }
-
-    /**
-     * <p>Getter for the field <code>templateDesign</code>.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.design.definition.DRIDesignTemplateDesign} object.
-     */
-    public DRIDesignTemplateDesign getTemplateDesign() {
-        return templateDesign;
-    }
-
-    /**
-     * <p>Getter for the field <code>query</code>.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.design.base.DRDesignQuery} object.
-     */
-    public DRDesignQuery getQuery() {
-        return query;
-    }
-
-    /**
-     * <p>Getter for the field <code>parameters</code>.</p>
-     *
-     * @return a {@link java.util.List} object.
-     */
-    public List<DRIDesignParameter> getParameters() {
-        return parameters;
-    }
-
-    /**
-     * <p>Getter for the field <code>filterExpression</code>.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.design.definition.expression.DRIDesignExpression} object.
-     */
-    public DRIDesignExpression getFilterExpression() {
-        return filterExpression;
-    }
+public class ReportTransform
+{
+	private final DesignTransformAccessor accessor;
+	private DRIDesignTemplateDesign templateDesign;
+	private DRDesignQuery query;
+	private final List<DRIDesignParameter> parameters;
+	private DRIDesignExpression filterExpression;
+	
+	public ReportTransform(final DesignTransformAccessor accessor)
+	{
+		this.accessor = accessor;
+		this.parameters = new ArrayList<>();
+	}
+	
+	public void transform() throws DRException
+	{
+		final DRIReport report = this.accessor.getReport();
+		this.templateDesign = new DRDesignTemplateDesign(report.getTemplateDesign());
+		if(report.getQuery() != null)
+		{
+			this.query = this.query(report.getQuery());
+		}
+		for(final DRIParameter<?> parameter : report.getParameters())
+		{
+			this.parameters.add(this.parameter(parameter));
+		}
+		this.filterExpression = this.accessor.getExpressionTransform()
+			.transformExpression(report.getFilterExpression(), JasperScriptlet.SCRIPTLET_NAME);
+	}
+	
+	protected DRDesignQuery query(final DRIQuery query)
+	{
+		final DRDesignQuery designQuery = new DRDesignQuery();
+		designQuery.setText(query.getText());
+		designQuery.setLanguage(query.getLanguage());
+		return designQuery;
+	}
+	
+	private DRDesignParameter parameter(final DRIParameter<?> parameter)
+	{
+		final DRDesignParameter designParameter = new DRDesignParameter();
+		designParameter.setName(parameter.getName());
+		designParameter.setValueClass(parameter.getValueClass());
+		designParameter.setValue(parameter.getValue());
+		designParameter.setExternal(this.accessor.getReport()
+			.getTemplateDesign()
+			.isDefinedParameter(parameter.getName()));
+		return designParameter;
+	}
+	
+	public DRDesignHyperLink hyperlink(final DRIHyperLink hyperLink) throws DRException
+	{
+		if(hyperLink == null)
+		{
+			return null;
+		}
+		
+		final DRDesignHyperLink designHyperLink = new DRDesignHyperLink();
+		designHyperLink.setAnchorExpression(this.accessor.getExpressionTransform()
+			.transformExpression(hyperLink.getAnchorExpression()));
+		designHyperLink.setPageExpression(this.accessor.getExpressionTransform()
+			.transformExpression(hyperLink.getPageExpression()));
+		designHyperLink.setReferenceExpression(this.accessor.getExpressionTransform()
+			.transformExpression(hyperLink.getReferenceExpression()));
+		designHyperLink.setTooltipExpression(this.accessor.getExpressionTransform()
+			.transformExpression(hyperLink.getTooltipExpression()));
+		designHyperLink.setType(hyperLink.getType());
+		designHyperLink.setTarget(hyperLink.getTarget());
+		
+		return designHyperLink;
+	}
+	
+	public DRIDesignTemplateDesign getTemplateDesign()
+	{
+		return this.templateDesign;
+	}
+	
+	public DRDesignQuery getQuery()
+	{
+		return this.query;
+	}
+	
+	public List<DRIDesignParameter> getParameters()
+	{
+		return this.parameters;
+	}
+	
+	public DRIDesignExpression getFilterExpression()
+	{
+		return this.filterExpression;
+	}
 }

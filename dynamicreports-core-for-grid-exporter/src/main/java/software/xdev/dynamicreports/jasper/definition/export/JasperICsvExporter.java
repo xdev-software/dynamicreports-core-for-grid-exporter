@@ -17,25 +17,10 @@
  */
 package software.xdev.dynamicreports.jasper.definition.export;
 
-/**
- * <p>JasperICsvExporter interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface JasperICsvExporter extends JasperIExporter {
-
-    /**
-     * <p>getFieldDelimiter.</p>
-     *
-     * @return a {@link java.lang.String} object.
-     */
-    public String getFieldDelimiter();
-
-    /**
-     * <p>getRecordDelimiter.</p>
-     *
-     * @return a {@link java.lang.String} object.
-     */
-    public String getRecordDelimiter();
+public interface JasperICsvExporter extends JasperIExporter
+{
+	
+	public String getFieldDelimiter();
+	
+	public String getRecordDelimiter();
 }

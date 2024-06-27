@@ -17,62 +17,60 @@
  */
 package software.xdev.dynamicreports.jasper.base.reporthandler;
 
-import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
-import software.xdev.dynamicreports.jasper.definition.JasperReportHandler;
-import software.xdev.dynamicreports.report.exception.DRException;
-import net.sf.jasperreports.engine.JasperPrint;
-
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * <p>JasperReportBuilderHandler class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class JasperReportBuilderHandler implements JasperReportHandler {
-    private List<JasperReportBuilder> jasperReportBuilders;
-    private boolean continuousPageNumbering;
+import net.sf.jasperreports.engine.JasperPrint;
+import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
+import software.xdev.dynamicreports.jasper.definition.JasperReportHandler;
+import software.xdev.dynamicreports.report.exception.DRException;
 
-    /**
-     * <p>Constructor for JasperReportBuilderHandler.</p>
-     */
-    public JasperReportBuilderHandler() {
-        jasperReportBuilders = new ArrayList<JasperReportBuilder>();
-        continuousPageNumbering = false;
-    }
 
-    /** {@inheritDoc} */
-    @Override
-    public void concatenate(JasperReportBuilder... jasperReportBuilders) {
-        for (JasperReportBuilder jasperReportBuilder : jasperReportBuilders) {
-            this.jasperReportBuilders.add(jasperReportBuilder);
-        }
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void setContinuousPageNumbering(boolean continuousPageNumbering) {
-        this.continuousPageNumbering = continuousPageNumbering;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public List<JasperPrint> getPrintList() throws DRException {
-        List<JasperPrint> printList = new ArrayList<JasperPrint>();
-        int pageNumber = 1;
-        for (JasperReportBuilder jasperReportBuilder : jasperReportBuilders) {
-            if (continuousPageNumbering) {
-                jasperReportBuilder.setStartPageNumber(pageNumber);
-            } else {
-                jasperReportBuilder.setStartPageNumber(null);
-            }
-            JasperPrint jasperPrint = jasperReportBuilder.toJasperPrint();
-            printList.add(jasperPrint);
-            pageNumber += jasperPrint.getPages().size();
-        }
-        return printList;
-    }
-
+public class JasperReportBuilderHandler implements JasperReportHandler
+{
+	private final List<JasperReportBuilder> jasperReportBuilders;
+	private boolean continuousPageNumbering;
+	
+	public JasperReportBuilderHandler()
+	{
+		this.jasperReportBuilders = new ArrayList<>();
+		this.continuousPageNumbering = false;
+	}
+	
+	@Override
+	public void concatenate(final JasperReportBuilder... jasperReportBuilders)
+	{
+		for(final JasperReportBuilder jasperReportBuilder : jasperReportBuilders)
+		{
+			this.jasperReportBuilders.add(jasperReportBuilder);
+		}
+	}
+	
+	@Override
+	public void setContinuousPageNumbering(final boolean continuousPageNumbering)
+	{
+		this.continuousPageNumbering = continuousPageNumbering;
+	}
+	
+	@Override
+	public List<JasperPrint> getPrintList() throws DRException
+	{
+		final List<JasperPrint> printList = new ArrayList<>();
+		int pageNumber = 1;
+		for(final JasperReportBuilder jasperReportBuilder : this.jasperReportBuilders)
+		{
+			if(this.continuousPageNumbering)
+			{
+				jasperReportBuilder.setStartPageNumber(pageNumber);
+			}
+			else
+			{
+				jasperReportBuilder.setStartPageNumber(null);
+			}
+			final JasperPrint jasperPrint = jasperReportBuilder.toJasperPrint();
+			printList.add(jasperPrint);
+			pageNumber += jasperPrint.getPages().size();
+		}
+		return printList;
+	}
 }

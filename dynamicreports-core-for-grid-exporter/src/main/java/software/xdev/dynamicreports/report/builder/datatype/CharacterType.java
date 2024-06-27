@@ -17,42 +17,38 @@
  */
 package software.xdev.dynamicreports.report.builder.datatype;
 
+import java.util.Locale;
+
+import org.apache.commons.lang3.StringUtils;
+
 import software.xdev.dynamicreports.report.base.datatype.AbstractDataType;
-import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.constant.HorizontalTextAlignment;
 import software.xdev.dynamicreports.report.defaults.Defaults;
 import software.xdev.dynamicreports.report.exception.DRException;
-import org.apache.commons.lang3.StringUtils;
 
-import java.util.Locale;
 
-/**
- * <p>CharacterType class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class CharacterType extends AbstractDataType<Character, Character> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
+public class CharacterType extends AbstractDataType<Character, Character>
+{
 
-    /** {@inheritDoc} */
-    @Override
-    public String getPattern() {
-        return Defaults.getDefaults().getCharacterType().getPattern();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public HorizontalTextAlignment getHorizontalTextAlignment() {
-        return Defaults.getDefaults().getCharacterType().getHorizontalTextAlignment();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Character stringToValue(String value, Locale locale) throws DRException {
-        if (StringUtils.isNotEmpty(value)) {
-            return value.charAt(0);
-        }
-        return null;
-    }
+	@Override
+	public String getPattern()
+	{
+		return Defaults.getDefaults().getCharacterType().getPattern();
+	}
+	
+	@Override
+	public HorizontalTextAlignment getHorizontalTextAlignment()
+	{
+		return Defaults.getDefaults().getCharacterType().getHorizontalTextAlignment();
+	}
+	
+	@Override
+	public Character stringToValue(final String value, final Locale locale) throws DRException
+	{
+		if(StringUtils.isNotEmpty(value))
+		{
+			return value.charAt(0);
+		}
+		return null;
+	}
 }

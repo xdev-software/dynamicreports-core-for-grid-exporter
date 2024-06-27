@@ -24,17 +24,14 @@ import static software.xdev.dynamicreports.report.builder.DynamicReports.hyperLi
 
 import org.junit.jupiter.api.Assertions;
 
-import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
-import software.xdev.dynamicreports.report.datasource.DRDataSource;
-import software.xdev.dynamicreports.test.jasper.AbstractJasperValueTest;
 import net.sf.jasperreports.engine.JRDataSource;
 import net.sf.jasperreports.engine.JRPrintText;
 import net.sf.jasperreports.engine.type.HyperlinkTypeEnum;
+import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
+import software.xdev.dynamicreports.report.datasource.DRDataSource;
+import software.xdev.dynamicreports.test.jasper.AbstractJasperValueTest;
 
 
-/**
- * @author Ricardo Mariaca
- */
 class TitleTest extends AbstractJasperValueTest
 {
 	
@@ -43,7 +40,8 @@ class TitleTest extends AbstractJasperValueTest
 	{
 		rb.setResourceBundle("software.xdev.dynamicreports.test.jasper.report.test")
 			.columns(col.column("Column1", "field1", Integer.class))
-			.title(cmp.text("title 1").setHyperLink(hyperLink("link").setTooltip("tooltip")),
+			.title(
+				cmp.text("title 1").setHyperLink(hyperLink("link").setTooltip("tooltip")),
 				cmp.text("title 2"),
 				cmp.text("title 3"),
 				cmp.text(exp.message("title")),
@@ -54,24 +52,24 @@ class TitleTest extends AbstractJasperValueTest
 	public void test()
 	{
 		super.test();
-        
-        this.numberOfPagesTest(2);
-        this.elementCountTest("title.textField1", 2);
-        this.elementValueTest("title.textField1", "title 1", "test title");
+		
+		this.numberOfPagesTest(2);
+		this.elementCountTest("title.textField1", 2);
+		this.elementValueTest("title.textField1", "title 1", "test title");
 		
 		final JRPrintText textField = (JRPrintText)this.getElementAt("title.textField1", 0);
 		Assertions.assertEquals("link", textField.getHyperlinkReference());
 		Assertions.assertEquals("tooltip", textField.getHyperlinkTooltip());
 		Assertions.assertEquals(HyperlinkTypeEnum.REFERENCE, textField.getHyperlinkTypeValue());
-        
-        this.elementCountTest("title.textField2", 1);
-        this.elementValueTest("title.textField2", "title 2");
-        
-        this.elementCountTest("title.textField3", 1);
-        this.elementValueTest("title.textField3", "title 3");
-        
-        this.elementCountTest("title.textField4", 1);
-        this.elementValueTest("title.textField4", "test title");
+		
+		this.elementCountTest("title.textField2", 1);
+		this.elementValueTest("title.textField2", "title 2");
+		
+		this.elementCountTest("title.textField3", 1);
+		this.elementValueTest("title.textField3", "title 3");
+		
+		this.elementCountTest("title.textField4", 1);
+		this.elementValueTest("title.textField4", "test title");
 	}
 	
 	@Override

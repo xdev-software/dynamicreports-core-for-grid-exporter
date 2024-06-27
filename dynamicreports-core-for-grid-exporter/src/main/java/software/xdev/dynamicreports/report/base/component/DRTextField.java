@@ -20,7 +20,6 @@ package software.xdev.dynamicreports.report.base.component;
 import org.apache.commons.lang3.Validate;
 
 import software.xdev.dynamicreports.report.base.DRGroup;
-import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.constant.Evaluation;
 import software.xdev.dynamicreports.report.constant.HorizontalTextAlignment;
 import software.xdev.dynamicreports.report.constant.Markup;
@@ -30,256 +29,173 @@ import software.xdev.dynamicreports.report.definition.datatype.DRIDataType;
 import software.xdev.dynamicreports.report.definition.expression.DRIExpression;
 import software.xdev.dynamicreports.report.definition.expression.DRIValueFormatter;
 
-/**
- * <p>DRTextField class.</p>
- *
- * @author Ricardo Mariaca, Jan Moxter
- * 
- */
-public class DRTextField<T> extends DRHyperLinkComponent implements DRITextField<T> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    private DRIExpression<T> valueExpression;
-    private String pattern;
-    private DRIExpression<String> patternExpression;
-    private HorizontalTextAlignment horizontalTextAlignment;
-    private DRIValueFormatter<?, ? super T> valueFormatter;
-    private DRIDataType<? super T, T> dataType;
-    private Integer columns;
-    private Integer rows;
-    private Evaluation evaluationTime;
-    private DRGroup evaluationGroup;
-    private Markup markup;
-    private Boolean stretchWithOverflow;
-    private Boolean printRepeatedValues;
-    private TextAdjust textAdjust;
+public class DRTextField<T> extends DRHyperLinkComponent implements DRITextField<T>
+{
 
-    /** {@inheritDoc} */
-    @Override
-    public DRIExpression<T> getValueExpression() {
-        return valueExpression;
-    }
-
-    /**
-     * <p>Setter for the field <code>valueExpression</code>.</p>
-     *
-     * @param valueExpression a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     */
-    public void setValueExpression(final DRIExpression<T> valueExpression) {
-        Validate.notNull(valueExpression, "valueExpression must not be null");
-        this.valueExpression = valueExpression;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public String getPattern() {
-        return pattern;
-    }
-
-    /**
-     * <p>Setter for the field <code>pattern</code>.</p>
-     *
-     * @param pattern a {@link java.lang.String} object.
-     */
-    public void setPattern(final String pattern) {
-        this.pattern = pattern;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRIExpression<String> getPatternExpression() {
-        return patternExpression;
-    }
-
-    /**
-     * <p>Setter for the field <code>patternExpression</code>.</p>
-     *
-     * @param patternExpression a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     */
-    public void setPatternExpression(final DRIExpression<String> patternExpression) {
-        this.patternExpression = patternExpression;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public HorizontalTextAlignment getHorizontalTextAlignment() {
-        return horizontalTextAlignment;
-    }
-
-    /**
-     * <p>Setter for the field <code>horizontalTextAlignment</code>.</p>
-     *
-     * @param horizontalTextAlignment a {@link software.xdev.dynamicreports.report.constant.HorizontalTextAlignment} object.
-     */
-    public void setHorizontalTextAlignment(final HorizontalTextAlignment horizontalTextAlignment) {
-        this.horizontalTextAlignment = horizontalTextAlignment;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRIValueFormatter<?, ? super T> getValueFormatter() {
-        return valueFormatter;
-    }
-
-    /**
-     * <p>Setter for the field <code>valueFormatter</code>.</p>
-     *
-     * @param valueFormatter a {@link software.xdev.dynamicreports.report.definition.expression.DRIValueFormatter} object.
-     */
-    public void setValueFormatter(final DRIValueFormatter<?, ? super T> valueFormatter) {
-        this.valueFormatter = valueFormatter;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRIDataType<? super T, T> getDataType() {
-        return dataType;
-    }
-
-    /**
-     * <p>Setter for the field <code>dataType</code>.</p>
-     *
-     * @param dataType a {@link software.xdev.dynamicreports.report.definition.datatype.DRIDataType} object.
-     */
-    public void setDataType(final DRIDataType<? super T, T> dataType) {
-        this.dataType = dataType;
-    }
-
-    /**
-     * {@inheritDoc}
-     * <p>
-     * Returns the number of columns.
-     */
-    @Override
-    public Integer getColumns() {
-        return columns;
-    }
-
-    /**
-     * This method is used to define the width of a column. The width is set to the <code>columns</code> multiplied by width of the character <em>m</em> for the font used
-     *
-     * @param columns the number of columns >= 0
-     * @throws java.lang.IllegalArgumentException if <code>columns</code> is < 0
-     */
-    public void setColumns(final Integer columns) {
-        if (columns != null) {
-            Validate.isTrue(columns >= 0, "columns must be >= 0");
-        }
-        this.columns = columns;
-    }
-
-    /**
-     * {@inheritDoc}
-     * <p>
-     * Returns the number of rows.
-     */
-    @Override
-    public Integer getRows() {
-        return rows;
-    }
-
-    /**
-     * This method is used to define the height of a column. The height is set to the <code>rows</code> multiplied by height of the font
-     *
-     * @param rows the number of rows >= 0
-     * @throws java.lang.IllegalArgumentException if <code>rows</code> is < 0
-     */
-    public void setRows(final Integer rows) {
-        if (rows != null) {
-            Validate.isTrue(rows >= 0, "rows must be >= 0");
-        }
-        this.rows = rows;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Evaluation getEvaluationTime() {
-        return evaluationTime;
-    }
-
-    /**
-     * <p>Setter for the field <code>evaluationTime</code>.</p>
-     *
-     * @param evaluationTime a {@link software.xdev.dynamicreports.report.constant.Evaluation} object.
-     */
-    public void setEvaluationTime(final Evaluation evaluationTime) {
-        this.evaluationTime = evaluationTime;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRGroup getEvaluationGroup() {
-        return evaluationGroup;
-    }
-
-    /**
-     * <p>Setter for the field <code>evaluationGroup</code>.</p>
-     *
-     * @param evaluationGroup a {@link software.xdev.dynamicreports.report.base.DRGroup} object.
-     */
-    public void setEvaluationGroup(final DRGroup evaluationGroup) {
-        this.evaluationGroup = evaluationGroup;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Markup getMarkup() {
-        return markup;
-    }
-
-    /**
-     * <p>Setter for the field <code>markup</code>.</p>
-     *
-     * @param markup a {@link software.xdev.dynamicreports.report.constant.Markup} object.
-     */
-    public void setMarkup(final Markup markup) {
-        this.markup = markup;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Boolean getStretchWithOverflow() {
-        return stretchWithOverflow;
-    }
-
-    /**
-     * <p>Setter for the field <code>stretchWithOverflow</code>.</p>
-     *
-     * @param stretchWithOverflow a {@link java.lang.Boolean} object.
-     * @deprecated replaced {@link #setTextAdjust(TextAdjust)}
-     */
-    @Deprecated
-    public void setStretchWithOverflow(final Boolean stretchWithOverflow) {
-        this.stretchWithOverflow = stretchWithOverflow;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Boolean getPrintRepeatedValues() {
-        return printRepeatedValues;
-    }
-
-    /**
-     * <p>Setter for the field <code>printRepeatedValues</code>.</p>
-     *
-     * @param printRepeatedValues a {@link java.lang.Boolean} object.
-     */
-    public void setPrintRepeatedValues(final Boolean printRepeatedValues) {
-        this.printRepeatedValues = printRepeatedValues;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public TextAdjust getTextAdjust() {
-        return this.textAdjust;
-    }
-
-    /**
-     * <p>Setter for the field <code>textAdjust</code>.</p>
-     *
-     * @param setTextAdjust a {@link software.xdev.dynamicreports.report.constant.TextAdjust} object.
-     */
-    public void setTextAdjust(final TextAdjust textAdjust) {
-        this.textAdjust = textAdjust;
-    }
+	private DRIExpression<T> valueExpression;
+	private String pattern;
+	private DRIExpression<String> patternExpression;
+	private HorizontalTextAlignment horizontalTextAlignment;
+	private DRIValueFormatter<?, ? super T> valueFormatter;
+	private DRIDataType<? super T, T> dataType;
+	private Integer columns;
+	private Integer rows;
+	private Evaluation evaluationTime;
+	private DRGroup evaluationGroup;
+	private Markup markup;
+	private Boolean printRepeatedValues;
+	private TextAdjust textAdjust;
+	
+	@Override
+	public DRIExpression<T> getValueExpression()
+	{
+		return this.valueExpression;
+	}
+	
+	public void setValueExpression(final DRIExpression<T> valueExpression)
+	{
+		Validate.notNull(valueExpression, "valueExpression must not be null");
+		this.valueExpression = valueExpression;
+	}
+	
+	@Override
+	public String getPattern()
+	{
+		return this.pattern;
+	}
+	
+	public void setPattern(final String pattern)
+	{
+		this.pattern = pattern;
+	}
+	
+	@Override
+	public DRIExpression<String> getPatternExpression()
+	{
+		return this.patternExpression;
+	}
+	
+	public void setPatternExpression(final DRIExpression<String> patternExpression)
+	{
+		this.patternExpression = patternExpression;
+	}
+	
+	@Override
+	public HorizontalTextAlignment getHorizontalTextAlignment()
+	{
+		return this.horizontalTextAlignment;
+	}
+	
+	public void setHorizontalTextAlignment(final HorizontalTextAlignment horizontalTextAlignment)
+	{
+		this.horizontalTextAlignment = horizontalTextAlignment;
+	}
+	
+	@Override
+	public DRIValueFormatter<?, ? super T> getValueFormatter()
+	{
+		return this.valueFormatter;
+	}
+	
+	public void setValueFormatter(final DRIValueFormatter<?, ? super T> valueFormatter)
+	{
+		this.valueFormatter = valueFormatter;
+	}
+	
+	@Override
+	public DRIDataType<? super T, T> getDataType()
+	{
+		return this.dataType;
+	}
+	
+	public void setDataType(final DRIDataType<? super T, T> dataType)
+	{
+		this.dataType = dataType;
+	}
+	
+	@Override
+	public Integer getColumns()
+	{
+		return this.columns;
+	}
+	
+	public void setColumns(final Integer columns)
+	{
+		if(columns != null)
+		{
+			Validate.isTrue(columns >= 0, "columns must be >= 0");
+		}
+		this.columns = columns;
+	}
+	
+	@Override
+	public Integer getRows()
+	{
+		return this.rows;
+	}
+	
+	public void setRows(final Integer rows)
+	{
+		if(rows != null)
+		{
+			Validate.isTrue(rows >= 0, "rows must be >= 0");
+		}
+		this.rows = rows;
+	}
+	
+	@Override
+	public Evaluation getEvaluationTime()
+	{
+		return this.evaluationTime;
+	}
+	
+	public void setEvaluationTime(final Evaluation evaluationTime)
+	{
+		this.evaluationTime = evaluationTime;
+	}
+	
+	@Override
+	public DRGroup getEvaluationGroup()
+	{
+		return this.evaluationGroup;
+	}
+	
+	public void setEvaluationGroup(final DRGroup evaluationGroup)
+	{
+		this.evaluationGroup = evaluationGroup;
+	}
+	
+	@Override
+	public Markup getMarkup()
+	{
+		return this.markup;
+	}
+	
+	public void setMarkup(final Markup markup)
+	{
+		this.markup = markup;
+	}
+	
+	@Override
+	public Boolean getPrintRepeatedValues()
+	{
+		return this.printRepeatedValues;
+	}
+	
+	public void setPrintRepeatedValues(final Boolean printRepeatedValues)
+	{
+		this.printRepeatedValues = printRepeatedValues;
+	}
+	
+	@Override
+	public TextAdjust getTextAdjust()
+	{
+		return this.textAdjust;
+	}
+	
+	public void setTextAdjust(final TextAdjust textAdjust)
+	{
+		this.textAdjust = textAdjust;
+	}
 }

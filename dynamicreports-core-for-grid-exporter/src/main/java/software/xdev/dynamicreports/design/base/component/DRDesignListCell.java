@@ -17,165 +17,100 @@
  */
 package software.xdev.dynamicreports.design.base.component;
 
-import software.xdev.dynamicreports.report.constant.Constants;
+import java.io.Serializable;
+
 import software.xdev.dynamicreports.report.constant.HorizontalCellComponentAlignment;
 import software.xdev.dynamicreports.report.constant.VerticalCellComponentAlignment;
 
-import java.io.Serializable;
 
-/**
- * <p>DRDesignListCell class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class DRDesignListCell implements Serializable {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
+public class DRDesignListCell implements Serializable
+{
 
-    private HorizontalCellComponentAlignment horizontalAlignment;
-    private VerticalCellComponentAlignment verticalAlignment;
-    private DRDesignComponent component;
-    private Integer x;
-    private Integer y;
-    private Integer width;
-    private Integer height;
-
-    /**
-     * <p>Constructor for DRDesignListCell.</p>
-     *
-     * @param component a {@link software.xdev.dynamicreports.design.base.component.DRDesignComponent} object.
-     */
-    protected DRDesignListCell(DRDesignComponent component) {
-        this(null, null, component);
-    }
-
-    /**
-     * <p>Constructor for DRDesignListCell.</p>
-     *
-     * @param horizontalAlignment a {@link software.xdev.dynamicreports.report.constant.HorizontalCellComponentAlignment} object.
-     * @param verticalAlignment   a {@link software.xdev.dynamicreports.report.constant.VerticalCellComponentAlignment} object.
-     * @param component           a {@link software.xdev.dynamicreports.design.base.component.DRDesignComponent} object.
-     */
-    protected DRDesignListCell(HorizontalCellComponentAlignment horizontalAlignment, VerticalCellComponentAlignment verticalAlignment, DRDesignComponent component) {
-        this.horizontalAlignment = horizontalAlignment;
-        this.verticalAlignment = verticalAlignment;
-        this.component = component;
-    }
-
-    /**
-     * <p>Getter for the field <code>horizontalAlignment</code>.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.constant.HorizontalCellComponentAlignment} object.
-     */
-    public HorizontalCellComponentAlignment getHorizontalAlignment() {
-        return horizontalAlignment;
-    }
-
-    /**
-     * <p>Setter for the field <code>horizontalAlignment</code>.</p>
-     *
-     * @param horizontalAlignment a {@link software.xdev.dynamicreports.report.constant.HorizontalCellComponentAlignment} object.
-     */
-    public void setHorizontalAlignment(HorizontalCellComponentAlignment horizontalAlignment) {
-        this.horizontalAlignment = horizontalAlignment;
-    }
-
-    /**
-     * <p>Getter for the field <code>verticalAlignment</code>.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.constant.VerticalCellComponentAlignment} object.
-     */
-    public VerticalCellComponentAlignment getVerticalAlignment() {
-        return verticalAlignment;
-    }
-
-    /**
-     * <p>Setter for the field <code>verticalAlignment</code>.</p>
-     *
-     * @param verticalAlignment a {@link software.xdev.dynamicreports.report.constant.VerticalCellComponentAlignment} object.
-     */
-    public void setVerticalAlignment(VerticalCellComponentAlignment verticalAlignment) {
-        this.verticalAlignment = verticalAlignment;
-    }
-
-    /**
-     * <p>Getter for the field <code>component</code>.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.design.base.component.DRDesignComponent} object.
-     */
-    public DRDesignComponent getComponent() {
-        return component;
-    }
-
-    /**
-     * <p>Getter for the field <code>x</code>.</p>
-     *
-     * @return a {@link java.lang.Integer} object.
-     */
-    public Integer getX() {
-        return x;
-    }
-
-    /**
-     * <p>Setter for the field <code>x</code>.</p>
-     *
-     * @param x a {@link java.lang.Integer} object.
-     */
-    public void setX(Integer x) {
-        this.x = x;
-    }
-
-    /**
-     * <p>Getter for the field <code>y</code>.</p>
-     *
-     * @return a {@link java.lang.Integer} object.
-     */
-    public Integer getY() {
-        return y;
-    }
-
-    /**
-     * <p>Setter for the field <code>y</code>.</p>
-     *
-     * @param y a {@link java.lang.Integer} object.
-     */
-    public void setY(Integer y) {
-        this.y = y;
-    }
-
-    /**
-     * <p>Getter for the field <code>width</code>.</p>
-     *
-     * @return a {@link java.lang.Integer} object.
-     */
-    public Integer getWidth() {
-        return width;
-    }
-
-    /**
-     * <p>Setter for the field <code>width</code>.</p>
-     *
-     * @param width a {@link java.lang.Integer} object.
-     */
-    public void setWidth(Integer width) {
-        this.width = width;
-    }
-
-    /**
-     * <p>Getter for the field <code>height</code>.</p>
-     *
-     * @return a {@link java.lang.Integer} object.
-     */
-    public Integer getHeight() {
-        return height;
-    }
-
-    /**
-     * <p>Setter for the field <code>height</code>.</p>
-     *
-     * @param height a {@link java.lang.Integer} object.
-     */
-    public void setHeight(Integer height) {
-        this.height = height;
-    }
+	private HorizontalCellComponentAlignment horizontalAlignment;
+	private VerticalCellComponentAlignment verticalAlignment;
+	private final DRDesignComponent component;
+	private Integer x;
+	private Integer y;
+	private Integer width;
+	private Integer height;
+	
+	protected DRDesignListCell(final DRDesignComponent component)
+	{
+		this(null, null, component);
+	}
+	
+	protected DRDesignListCell(
+		final HorizontalCellComponentAlignment horizontalAlignment,
+		final VerticalCellComponentAlignment verticalAlignment,
+		final DRDesignComponent component)
+	{
+		this.horizontalAlignment = horizontalAlignment;
+		this.verticalAlignment = verticalAlignment;
+		this.component = component;
+	}
+	
+	public HorizontalCellComponentAlignment getHorizontalAlignment()
+	{
+		return this.horizontalAlignment;
+	}
+	
+	public void setHorizontalAlignment(final HorizontalCellComponentAlignment horizontalAlignment)
+	{
+		this.horizontalAlignment = horizontalAlignment;
+	}
+	
+	public VerticalCellComponentAlignment getVerticalAlignment()
+	{
+		return this.verticalAlignment;
+	}
+	
+	public void setVerticalAlignment(final VerticalCellComponentAlignment verticalAlignment)
+	{
+		this.verticalAlignment = verticalAlignment;
+	}
+	
+	public DRDesignComponent getComponent()
+	{
+		return this.component;
+	}
+	
+	public Integer getX()
+	{
+		return this.x;
+	}
+	
+	public void setX(final Integer x)
+	{
+		this.x = x;
+	}
+	
+	public Integer getY()
+	{
+		return this.y;
+	}
+	
+	public void setY(final Integer y)
+	{
+		this.y = y;
+	}
+	
+	public Integer getWidth()
+	{
+		return this.width;
+	}
+	
+	public void setWidth(final Integer width)
+	{
+		this.width = width;
+	}
+	
+	public Integer getHeight()
+	{
+		return this.height;
+	}
+	
+	public void setHeight(final Integer height)
+	{
+		this.height = height;
+	}
 }

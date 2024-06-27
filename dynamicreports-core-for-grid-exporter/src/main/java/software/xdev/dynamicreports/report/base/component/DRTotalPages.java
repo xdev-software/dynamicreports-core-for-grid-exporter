@@ -17,16 +17,10 @@
  */
 package software.xdev.dynamicreports.report.base.component;
 
-import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.definition.component.DRITotalPages;
 
-/**
- * <p>DRTotalPages class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class DRTotalPages extends DRFormatField implements DRITotalPages {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
+public class DRTotalPages extends DRFormatField implements DRITotalPages
+{
 }
+

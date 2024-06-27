@@ -17,6 +17,9 @@
  */
 package software.xdev.dynamicreports.design.definition.component;
 
+import java.io.Serializable;
+import java.util.List;
+
 import software.xdev.dynamicreports.design.definition.DRIDesignGroup;
 import software.xdev.dynamicreports.design.definition.DRIDesignTableOfContentsHeading;
 import software.xdev.dynamicreports.design.definition.expression.DRIDesignExpression;
@@ -25,125 +28,38 @@ import software.xdev.dynamicreports.design.definition.style.DRIDesignStyle;
 import software.xdev.dynamicreports.report.constant.ComponentPositionType;
 import software.xdev.dynamicreports.report.constant.StretchType;
 
-import java.io.Serializable;
-import java.util.List;
 
-/**
- * <p>DRIDesignComponent interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface DRIDesignComponent extends Serializable {
-    /**
-     * <p>getName.</p>
-     *
-     * @return a {@link java.lang.String} object.
-     */
-    public String getName();
-
-    /**
-     * <p>getUniqueName.</p>
-     *
-     * @return a {@link java.lang.String} object.
-     */
-    public String getUniqueName();
-
-    /**
-     * <p>getStyle.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.design.definition.style.DRIDesignStyle} object.
-     */
-    public DRIDesignStyle getStyle();
-
-    /**
-     * <p>getX.</p>
-     *
-     * @return a {@link java.lang.Integer} object.
-     */
-    public Integer getX();
-
-    /**
-     * <p>getY.</p>
-     *
-     * @return a {@link java.lang.Integer} object.
-     */
-    public Integer getY();
-
-    /**
-     * <p>getWidth.</p>
-     *
-     * @return a {@link java.lang.Integer} object.
-     */
-    public Integer getWidth();
-
-    /**
-     * <p>getHeight.</p>
-     *
-     * @return a {@link java.lang.Integer} object.
-     */
-    public Integer getHeight();
-
-    /**
-     * <p>getPrintWhenExpression.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.design.definition.expression.DRIDesignExpression} object.
-     */
-    public DRIDesignExpression getPrintWhenExpression();
-
-    /**
-     * <p>isRemoveLineWhenBlank.</p>
-     *
-     * @return a boolean.
-     */
-    public boolean isRemoveLineWhenBlank();
-
-    /**
-     * <p>getPropertyExpressions.</p>
-     *
-     * @return a {@link java.util.List} object.
-     */
-    public List<DRIDesignPropertyExpression> getPropertyExpressions();
-
-    /**
-     * <p>getPositionType.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.constant.ComponentPositionType} object.
-     */
-    public ComponentPositionType getPositionType();
-
-    /**
-     * <p>getStretchType.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.constant.StretchType} object.
-     */
-    public StretchType getStretchType();
-
-    /**
-     * <p>isPrintInFirstWholeBand.</p>
-     *
-     * @return a boolean.
-     */
-    public boolean isPrintInFirstWholeBand();
-
-    /**
-     * <p>isPrintWhenDetailOverflows.</p>
-     *
-     * @return a boolean.
-     */
-    public boolean isPrintWhenDetailOverflows();
-
-    /**
-     * <p>getPrintWhenGroupChanges.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.design.definition.DRIDesignGroup} object.
-     */
-    public DRIDesignGroup getPrintWhenGroupChanges();
-
-    /**
-     * <p>getTableOfContentsHeading.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.design.definition.DRIDesignTableOfContentsHeading} object.
-     */
-    public DRIDesignTableOfContentsHeading getTableOfContentsHeading();
+public interface DRIDesignComponent extends Serializable
+{
+	public String getName();
+	
+	public String getUniqueName();
+	
+	public DRIDesignStyle getStyle();
+	
+	public Integer getX();
+	
+	public Integer getY();
+	
+	public Integer getWidth();
+	
+	public Integer getHeight();
+	
+	public DRIDesignExpression getPrintWhenExpression();
+	
+	public boolean isRemoveLineWhenBlank();
+	
+	public List<DRIDesignPropertyExpression> getPropertyExpressions();
+	
+	public ComponentPositionType getPositionType();
+	
+	public StretchType getStretchType();
+	
+	public boolean isPrintInFirstWholeBand();
+	
+	public boolean isPrintWhenDetailOverflows();
+	
+	public DRIDesignGroup getPrintWhenGroupChanges();
+	
+	public DRIDesignTableOfContentsHeading getTableOfContentsHeading();
 }

@@ -17,54 +17,45 @@
  */
 package software.xdev.dynamicreports.report.builder.condition;
 
-import software.xdev.dynamicreports.report.base.expression.AbstractSimpleExpression;
-import software.xdev.dynamicreports.report.constant.Constants;
-import software.xdev.dynamicreports.report.definition.DRIValue;
-import software.xdev.dynamicreports.report.definition.ReportParameters;
 import org.apache.commons.lang3.Validate;
 
-/**
- * <p>EqualExpression class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class EqualExpression extends AbstractSimpleExpression<Boolean> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
+import software.xdev.dynamicreports.report.base.expression.AbstractSimpleExpression;
+import software.xdev.dynamicreports.report.definition.DRIValue;
+import software.xdev.dynamicreports.report.definition.ReportParameters;
 
-    private DRIValue<?> value;
-    private Object[] values;
 
-    @SafeVarargs
-    /**
-     * Constructor for EqualExpression.
-     *
-     * @param value a {@link software.xdev.dynamicreports.report.definition.DRIValue} object.
-     * @param values a T object.
-     * @param <T> a T object.
-     */
-    public <T> EqualExpression(DRIValue<T> value, T... values) {
-        Validate.notNull(value, "value must not be null");
-        Validate.noNullElements(values, "values must not contains null value");
-        this.value = value;
-        this.values = values;
-    }
+public class EqualExpression extends AbstractSimpleExpression<Boolean>
+{
 
-    /** {@inheritDoc} */
-    @Override
-    public Boolean evaluate(ReportParameters reportParameters) {
-        Object actualValue = reportParameters.getValue(value);
-        for (Object value : values) {
-            if (value.equals(actualValue)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Class<Boolean> getValueClass() {
-        return Boolean.class;
-    }
+	private final DRIValue<?> value;
+	private final Object[] values;
+	
+	@SafeVarargs
+	public <T> EqualExpression(final DRIValue<T> value, final T... values)
+	{
+		Validate.notNull(value, "value must not be null");
+		Validate.noNullElements(values, "values must not contains null value");
+		this.value = value;
+		this.values = values;
+	}
+	
+	@Override
+	public Boolean evaluate(final ReportParameters reportParameters)
+	{
+		final Object actualValue = reportParameters.getValue(this.value);
+		for(final Object value : this.values)
+		{
+			if(value.equals(actualValue))
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	@Override
+	public Class<Boolean> getValueClass()
+	{
+		return Boolean.class;
+	}
 }

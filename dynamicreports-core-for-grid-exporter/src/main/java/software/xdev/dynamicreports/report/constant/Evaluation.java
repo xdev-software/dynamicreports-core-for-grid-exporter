@@ -17,38 +17,21 @@
  */
 package software.xdev.dynamicreports.report.constant;
 
-/**
- * <p>Evaluation class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public enum Evaluation {
-    NONE,
-
-    /**
-     * A constant specifying that an expression should be evaluated at the end of the filling process.
-     */
-    REPORT,
-
-    /**
-     * A constant specifying that an expression should be evaluated after each page is filled.
-     */
-    PAGE,
-
-    /**
-     * A constant specifying that an expression should be evaluated after each column is filled.
-     */
-    COLUMN,
-
-    /**
-     * A constant specifying that an expression should be evaluated after each group break.
-     */
-    GROUP,
-
-    FIRST_GROUP,
-
-    BEFORE_GROUP,
-
-    LAST_GROUP
+public enum Evaluation
+{
+	NONE,
+	
+	REPORT,
+	
+	PAGE,
+	
+	COLUMN,
+	
+	GROUP,
+	
+	FIRST_GROUP,
+	
+	BEFORE_GROUP,
+	
+	LAST_GROUP
 }

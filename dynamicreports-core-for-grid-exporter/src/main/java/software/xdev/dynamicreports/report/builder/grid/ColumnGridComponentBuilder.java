@@ -19,18 +19,9 @@ package software.xdev.dynamicreports.report.builder.grid;
 
 import software.xdev.dynamicreports.report.definition.grid.DRIColumnGridComponent;
 
-/**
- * <p>ColumnGridComponentBuilder interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface ColumnGridComponentBuilder {
 
-    /**
-     * <p>build.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.definition.grid.DRIColumnGridComponent} object.
-     */
-    public DRIColumnGridComponent build();
+public interface ColumnGridComponentBuilder
+{
+	
+	public DRIColumnGridComponent build();
 }

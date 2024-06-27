@@ -19,26 +19,11 @@ package software.xdev.dynamicreports.report.definition.expression;
 
 import java.io.Serializable;
 
-/**
- * Expressions are used to define various calculations, conditions, text field content, specific report groups, etc. Every expression can access the declared report fields, variables and other
- * expressions and get their values to calculate the expression value.
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface DRIExpression<T> extends Serializable {
 
-    /**
-     * <p>getName.</p>
-     *
-     * @return a {@link java.lang.String} object.
-     */
-    public String getName();
-
-    /**
-     * <p>getValueClass.</p>
-     *
-     * @return a {@link java.lang.Class} object.
-     */
-    public Class<? super T> getValueClass();
+public interface DRIExpression<T> extends Serializable
+{
+	
+	public String getName();
+	
+	public Class<? super T> getValueClass();
 }

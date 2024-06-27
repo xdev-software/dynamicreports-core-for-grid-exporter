@@ -17,56 +17,40 @@
  */
 package software.xdev.dynamicreports.report.base.component;
 
-import software.xdev.dynamicreports.report.constant.Constants;
-import software.xdev.dynamicreports.report.definition.component.DRIXyList;
-import org.apache.commons.lang3.Validate;
-
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * <p>DRXyList class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class DRXyList extends DRDimensionComponent implements DRIXyList {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
+import org.apache.commons.lang3.Validate;
 
-    private List<DRXyListCell> xyListCells;
+import software.xdev.dynamicreports.report.definition.component.DRIXyList;
 
-    /** {@inheritDoc} */
-    @Override
-    protected void init() {
-        super.init();
-        this.xyListCells = new ArrayList<DRXyListCell>();
-    }
 
-    /** {@inheritDoc} */
-    @Override
-    public List<DRXyListCell> getXyListCells() {
-        return xyListCells;
-    }
+public class DRXyList extends DRDimensionComponent implements DRIXyList
+{
 
-    /**
-     * <p>addCell.</p>
-     *
-     * @param cell a {@link software.xdev.dynamicreports.report.base.component.DRXyListCell} object.
-     */
-    public void addCell(DRXyListCell cell) {
-        Validate.notNull(cell, "cell must not be null");
-        xyListCells.add(cell);
-    }
-
-    /**
-     * <p>addComponent.</p>
-     *
-     * @param x         a {@link java.lang.Integer} object.
-     * @param y         a {@link java.lang.Integer} object.
-     * @param component a {@link software.xdev.dynamicreports.report.base.component.DRComponent} object.
-     */
-    public void addComponent(Integer x, Integer y, DRComponent component) {
-        xyListCells.add(new DRXyListCell(x, y, component));
-    }
-
+	private List<DRXyListCell> xyListCells;
+	
+	@Override
+	protected void init()
+	{
+		super.init();
+		this.xyListCells = new ArrayList<>();
+	}
+	
+	@Override
+	public List<DRXyListCell> getXyListCells()
+	{
+		return this.xyListCells;
+	}
+	
+	public void addCell(final DRXyListCell cell)
+	{
+		Validate.notNull(cell, "cell must not be null");
+		this.xyListCells.add(cell);
+	}
+	
+	public void addComponent(final Integer x, final Integer y, final DRComponent component)
+	{
+		this.xyListCells.add(new DRXyListCell(x, y, component));
+	}
 }

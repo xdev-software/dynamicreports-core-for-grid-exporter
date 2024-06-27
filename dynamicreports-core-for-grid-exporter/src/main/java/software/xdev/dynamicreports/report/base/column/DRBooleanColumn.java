@@ -18,37 +18,27 @@
 package software.xdev.dynamicreports.report.base.column;
 
 import software.xdev.dynamicreports.report.base.component.DRBooleanField;
-import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.definition.column.DRIBooleanColumn;
 import software.xdev.dynamicreports.report.definition.component.DRIBooleanField;
 
-/**
- * <p>DRBooleanColumn class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class DRBooleanColumn extends DRColumn<DRIBooleanField> implements DRIBooleanColumn {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    /**
-     * <p>Constructor for DRBooleanColumn.</p>
-     *
-     * @param booleanField a {@link software.xdev.dynamicreports.report.base.component.DRBooleanField} object.
-     */
-    public DRBooleanColumn(DRBooleanField booleanField) {
-        super(booleanField);
-    }
+public class DRBooleanColumn extends DRColumn<DRIBooleanField> implements DRIBooleanColumn
+{
 
-    /** {@inheritDoc} */
-    @Override
-    public String getName() {
-        return getComponent().getValueExpression().getName();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Class<Boolean> getValueClass() {
-        return Boolean.class;
-    }
+	public DRBooleanColumn(final DRBooleanField booleanField)
+	{
+		super(booleanField);
+	}
+	
+	@Override
+	public String getName()
+	{
+		return this.getComponent().getValueExpression().getName();
+	}
+	
+	@Override
+	public Class<Boolean> getValueClass()
+	{
+		return Boolean.class;
+	}
 }

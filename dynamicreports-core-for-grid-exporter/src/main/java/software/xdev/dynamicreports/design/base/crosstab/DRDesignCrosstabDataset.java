@@ -21,79 +21,57 @@ import software.xdev.dynamicreports.design.base.DRDesignDataset;
 import software.xdev.dynamicreports.design.base.DRDesignGroup;
 import software.xdev.dynamicreports.design.constant.ResetType;
 import software.xdev.dynamicreports.design.definition.crosstab.DRIDesignCrosstabDataset;
-import software.xdev.dynamicreports.report.constant.Constants;
 
-/**
- * <p>DRDesignCrosstabDataset class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class DRDesignCrosstabDataset implements DRIDesignCrosstabDataset {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    private DRDesignDataset subDataset;
-    private Boolean dataPreSorted;
-    private ResetType resetType;
-    private DRDesignGroup resetGroup;
+public class DRDesignCrosstabDataset implements DRIDesignCrosstabDataset
+{
 
-    /** {@inheritDoc} */
-    @Override
-    public DRDesignDataset getSubDataset() {
-        return subDataset;
-    }
-
-    /**
-     * <p>Setter for the field <code>subDataset</code>.</p>
-     *
-     * @param subDataset a {@link software.xdev.dynamicreports.design.base.DRDesignDataset} object.
-     */
-    public void setSubDataset(DRDesignDataset subDataset) {
-        this.subDataset = subDataset;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Boolean getDataPreSorted() {
-        return dataPreSorted;
-    }
-
-    /**
-     * <p>Setter for the field <code>dataPreSorted</code>.</p>
-     *
-     * @param dataPreSorted a {@link java.lang.Boolean} object.
-     */
-    public void setDataPreSorted(Boolean dataPreSorted) {
-        this.dataPreSorted = dataPreSorted;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public ResetType getResetType() {
-        return resetType;
-    }
-
-    /**
-     * <p>Setter for the field <code>resetType</code>.</p>
-     *
-     * @param resetType a {@link software.xdev.dynamicreports.design.constant.ResetType} object.
-     */
-    public void setResetType(ResetType resetType) {
-        this.resetType = resetType;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRDesignGroup getResetGroup() {
-        return resetGroup;
-    }
-
-    /**
-     * <p>Setter for the field <code>resetGroup</code>.</p>
-     *
-     * @param resetGroup a {@link software.xdev.dynamicreports.design.base.DRDesignGroup} object.
-     */
-    public void setResetGroup(DRDesignGroup resetGroup) {
-        this.resetGroup = resetGroup;
-    }
+	private DRDesignDataset subDataset;
+	private Boolean dataPreSorted;
+	private ResetType resetType;
+	private DRDesignGroup resetGroup;
+	
+	@Override
+	public DRDesignDataset getSubDataset()
+	{
+		return this.subDataset;
+	}
+	
+	public void setSubDataset(final DRDesignDataset subDataset)
+	{
+		this.subDataset = subDataset;
+	}
+	
+	@Override
+	public Boolean getDataPreSorted()
+	{
+		return this.dataPreSorted;
+	}
+	
+	public void setDataPreSorted(final Boolean dataPreSorted)
+	{
+		this.dataPreSorted = dataPreSorted;
+	}
+	
+	@Override
+	public ResetType getResetType()
+	{
+		return this.resetType;
+	}
+	
+	public void setResetType(final ResetType resetType)
+	{
+		this.resetType = resetType;
+	}
+	
+	@Override
+	public DRDesignGroup getResetGroup()
+	{
+		return this.resetGroup;
+	}
+	
+	public void setResetGroup(final DRDesignGroup resetGroup)
+	{
+		this.resetGroup = resetGroup;
+	}
 }

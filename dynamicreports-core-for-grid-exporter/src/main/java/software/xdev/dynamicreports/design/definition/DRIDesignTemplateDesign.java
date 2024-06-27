@@ -17,86 +17,31 @@
  */
 package software.xdev.dynamicreports.design.definition;
 
-import software.xdev.dynamicreports.report.exception.DRException;
-
 import java.io.Serializable;
 
-/**
- * <p>DRIDesignTemplateDesign interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface DRIDesignTemplateDesign extends Serializable {
+import software.xdev.dynamicreports.report.exception.DRException;
 
-    /**
-     * <p>getTitleComponentsCount.</p>
-     *
-     * @return a int.
-     */
-    public int getTitleComponentsCount();
 
-    /**
-     * <p>getPageHeaderComponentsCount.</p>
-     *
-     * @return a int.
-     */
-    public int getPageHeaderComponentsCount();
-
-    /**
-     * <p>getPageFooterComponentsCount.</p>
-     *
-     * @return a int.
-     */
-    public int getPageFooterComponentsCount();
-
-    /**
-     * <p>getColumnHeaderComponentsCount.</p>
-     *
-     * @return a int.
-     */
-    public int getColumnHeaderComponentsCount();
-
-    /**
-     * <p>getColumnFooterComponentsCount.</p>
-     *
-     * @return a int.
-     */
-    public int getColumnFooterComponentsCount();
-
-    /**
-     * <p>getLastPageFooterComponentsCount.</p>
-     *
-     * @return a int.
-     */
-    public int getLastPageFooterComponentsCount();
-
-    /**
-     * <p>getSummaryComponentsCount.</p>
-     *
-     * @return a int.
-     */
-    public int getSummaryComponentsCount();
-
-    /**
-     * <p>getNoDataComponentsCount.</p>
-     *
-     * @return a int.
-     */
-    public int getNoDataComponentsCount();
-
-    /**
-     * <p>getBackgroundComponentsCount.</p>
-     *
-     * @return a int.
-     */
-    public int getBackgroundComponentsCount();
-
-    /**
-     * <p>getDesign.</p>
-     *
-     * @return a {@link java.lang.Object} object.
-     * @throws software.xdev.dynamicreports.report.exception.DRException if any.
-     */
-    public Object getDesign() throws DRException;
+public interface DRIDesignTemplateDesign extends Serializable
+{
+	
+	public int getTitleComponentsCount();
+	
+	public int getPageHeaderComponentsCount();
+	
+	public int getPageFooterComponentsCount();
+	
+	public int getColumnHeaderComponentsCount();
+	
+	public int getColumnFooterComponentsCount();
+	
+	public int getLastPageFooterComponentsCount();
+	
+	public int getSummaryComponentsCount();
+	
+	public int getNoDataComponentsCount();
+	
+	public int getBackgroundComponentsCount();
+	
+	public Object getDesign() throws DRException;
 }

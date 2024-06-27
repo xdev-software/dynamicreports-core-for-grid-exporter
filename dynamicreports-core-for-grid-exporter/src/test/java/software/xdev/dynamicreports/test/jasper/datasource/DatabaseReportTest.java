@@ -17,10 +17,8 @@
  */
 package software.xdev.dynamicreports.test.jasper.datasource;
 
-import org.junit.jupiter.api.Assertions;
-import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
-import software.xdev.dynamicreports.report.builder.column.TextColumnBuilder;
-import software.xdev.dynamicreports.test.jasper.AbstractJasperValueTest;
+import static software.xdev.dynamicreports.report.builder.DynamicReports.col;
+import static software.xdev.dynamicreports.report.builder.DynamicReports.type;
 
 import java.math.BigDecimal;
 import java.sql.Connection;
@@ -29,70 +27,82 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Locale;
 
-import static software.xdev.dynamicreports.report.builder.DynamicReports.col;
-import static software.xdev.dynamicreports.report.builder.DynamicReports.type;
+import org.junit.jupiter.api.Assertions;
 
-/**
- * @author Ricardo Mariaca
- */
-public class DatabaseReportTest extends AbstractJasperValueTest {
-    private Connection connection;
-    private TextColumnBuilder<String> column1;
-    private TextColumnBuilder<Integer> column2;
-    private TextColumnBuilder<BigDecimal> column3;
+import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
+import software.xdev.dynamicreports.report.builder.column.TextColumnBuilder;
+import software.xdev.dynamicreports.test.jasper.AbstractJasperValueTest;
 
-    @Override
-    public void init() {
-        try {
-            Class.forName("org.hsqldb.jdbcDriver");
-            connection = DriverManager.getConnection("jdbc:hsqldb:mem:test");
-            createTable();
-        } catch (Exception e) {
-            e.printStackTrace();
-            Assertions.fail(e.getMessage());
-        }
-        super.init();
-    }
 
-    @Override
-    protected void configureReport(JasperReportBuilder rb) {
-        rb.setLocale(Locale.ENGLISH)
-          .columns(column1 = col.column("Column1", "field1", type.stringType()), column2 = col.column("Column2", "field2", type.integerType()),
-                   column3 = col.column("Column3", "field3", type.bigDecimalType()))
-          .setDataSource("SELECT * FROM test_table1", connection);
-    }
-
-    @Override
-    protected boolean serializableTest() {
-        return false;
-    }
-
-    @Override
-    public void test() {
-        super.test();
-
-        numberOfPagesTest(1);
-
-        // column1
-        columnTitleCountTest(column1, 1);
-        columnTitleValueTest(column1, "Column1");
-        columnDetailCountTest(column1, 1);
-        columnDetailValueTest(column1, 0, "text");
-        // column2
-        columnTitleCountTest(column2, 1);
-        columnTitleValueTest(column2, "Column2");
-        columnDetailCountTest(column2, 1);
-        columnDetailValueTest(column2, 0, "5");
-        // column3
-        columnTitleCountTest(column3, 1);
-        columnTitleValueTest(column3, "Column3");
-        columnDetailCountTest(column3, 1);
-        columnDetailValueTest(column3, 0, "100.00");
-    }
-
-    private void createTable() throws SQLException {
-        Statement st = connection.createStatement();
-        st.execute("CREATE TABLE test_table1 (field1 VARCHAR(50), field2 INTEGER, field3 DECIMAL)");
-        st.execute("INSERT INTO test_table1 VALUES ('text', 5, 100)");
-    }
+public class DatabaseReportTest extends AbstractJasperValueTest
+{
+	private Connection connection;
+	private TextColumnBuilder<String> column1;
+	private TextColumnBuilder<Integer> column2;
+	private TextColumnBuilder<BigDecimal> column3;
+	
+	@Override
+	public void init()
+	{
+		try
+		{
+			Class.forName("org.hsqldb.jdbcDriver");
+			this.connection = DriverManager.getConnection("jdbc:hsqldb:mem:test");
+			this.createTable();
+		}
+		catch(final Exception e)
+		{
+			e.printStackTrace();
+			Assertions.fail(e.getMessage());
+		}
+		super.init();
+	}
+	
+	@Override
+	protected void configureReport(final JasperReportBuilder rb)
+	{
+		rb.setLocale(Locale.ENGLISH)
+			.columns(
+				this.column1 = col.column("Column1", "field1", type.stringType()),
+				this.column2 = col.column("Column2", "field2", type.integerType()),
+				this.column3 = col.column("Column3", "field3", type.bigDecimalType()))
+			.setDataSource("SELECT * FROM test_table1", this.connection);
+	}
+	
+	@Override
+	protected boolean serializableTest()
+	{
+		return false;
+	}
+	
+	@Override
+	public void test()
+	{
+		super.test();
+		
+		this.numberOfPagesTest(1);
+		
+		// column1
+		this.columnTitleCountTest(this.column1, 1);
+		this.columnTitleValueTest(this.column1, "Column1");
+		this.columnDetailCountTest(this.column1, 1);
+		this.columnDetailValueTest(this.column1, 0, "text");
+		// column2
+		this.columnTitleCountTest(this.column2, 1);
+		this.columnTitleValueTest(this.column2, "Column2");
+		this.columnDetailCountTest(this.column2, 1);
+		this.columnDetailValueTest(this.column2, 0, "5");
+		// column3
+		this.columnTitleCountTest(this.column3, 1);
+		this.columnTitleValueTest(this.column3, "Column3");
+		this.columnDetailCountTest(this.column3, 1);
+		this.columnDetailValueTest(this.column3, 0, "100.00");
+	}
+	
+	private void createTable() throws SQLException
+	{
+		final Statement st = this.connection.createStatement();
+		st.execute("CREATE TABLE test_table1 (field1 VARCHAR(50), field2 INTEGER, field3 DECIMAL)");
+		st.execute("INSERT INTO test_table1 VALUES ('text', 5, 100)");
+	}
 }

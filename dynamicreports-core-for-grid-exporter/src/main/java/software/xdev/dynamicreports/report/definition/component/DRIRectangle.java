@@ -19,26 +19,11 @@ package software.xdev.dynamicreports.report.definition.component;
 
 import software.xdev.dynamicreports.report.definition.style.DRIPen;
 
-/**
- * <p>DRIRectangle interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface DRIRectangle extends DRIDimensionComponent {
 
-    /**
-     * <p>getRadius.</p>
-     *
-     * @return a {@link java.lang.Integer} object.
-     */
-    public Integer getRadius();
-
-    /**
-     * <p>getPen.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.definition.style.DRIPen} object.
-     */
-    public DRIPen getPen();
-
+public interface DRIRectangle extends DRIDimensionComponent
+{
+	
+	public Integer getRadius();
+	
+	public DRIPen getPen();
 }

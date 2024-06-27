@@ -17,6 +17,9 @@
  */
 package software.xdev.dynamicreports.test.jasper.report;
 
+import static software.xdev.dynamicreports.report.builder.DynamicReports.col;
+
+import net.sf.jasperreports.engine.JRDataSource;
 import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
 import software.xdev.dynamicreports.report.builder.column.TextColumnBuilder;
 import software.xdev.dynamicreports.report.constant.Language;
@@ -24,43 +27,43 @@ import software.xdev.dynamicreports.report.constant.Orientation;
 import software.xdev.dynamicreports.report.constant.RunDirection;
 import software.xdev.dynamicreports.report.datasource.DRDataSource;
 import software.xdev.dynamicreports.test.jasper.AbstractJasperPositionTest;
-import net.sf.jasperreports.engine.JRDataSource;
 
-import static software.xdev.dynamicreports.report.builder.DynamicReports.col;
 
-/**
- * @author Ricardo Mariaca
- */
-public class Report4Test extends AbstractJasperPositionTest {
-    private TextColumnBuilder<Integer> column1;
-
-    @Override
-    protected void configureReport(JasperReportBuilder rb) {
-        rb.setPageColumnsPerPage(2)
-          .setPrintOrder(Orientation.HORIZONTAL)
-          .setColumnDirection(RunDirection.RIGHT_TO_LEFT)
-          .setLanguage(Language.GROOVY)
-          .columns(column1 = col.column("Column1", "field1", Integer.class));
-    }
-
-    @Override
-    public void test() {
-        super.test();
-
-        numberOfPagesTest(1);
-
-        columnDetailPositionTest(column1, 0, 298, 26, 287, 16);
-        columnDetailPositionTest(column1, 1, 11, 26, 287, 16);
-        columnDetailPositionTest(column1, 2, 298, 42, 287, 16);
-        columnDetailPositionTest(column1, 3, 11, 42, 287, 16);
-    }
-
-    @Override
-    protected JRDataSource createDataSource() {
-        DRDataSource dataSource = new DRDataSource("field1");
-        for (int i = 0; i < 4; i++) {
-            dataSource.add(i);
-        }
-        return dataSource;
-    }
+public class Report4Test extends AbstractJasperPositionTest
+{
+	private TextColumnBuilder<Integer> column1;
+	
+	@Override
+	protected void configureReport(final JasperReportBuilder rb)
+	{
+		rb.setPageColumnsPerPage(2)
+			.setPrintOrder(Orientation.HORIZONTAL)
+			.setColumnDirection(RunDirection.RIGHT_TO_LEFT)
+			.setLanguage(Language.GROOVY)
+			.columns(this.column1 = col.column("Column1", "field1", Integer.class));
+	}
+	
+	@Override
+	public void test()
+	{
+		super.test();
+		
+		this.numberOfPagesTest(1);
+		
+		this.columnDetailPositionTest(this.column1, 0, 298, 26, 287, 16);
+		this.columnDetailPositionTest(this.column1, 1, 11, 26, 287, 16);
+		this.columnDetailPositionTest(this.column1, 2, 298, 42, 287, 16);
+		this.columnDetailPositionTest(this.column1, 3, 11, 42, 287, 16);
+	}
+	
+	@Override
+	protected JRDataSource createDataSource()
+	{
+		final DRDataSource dataSource = new DRDataSource("field1");
+		for(int i = 0; i < 4; i++)
+		{
+			dataSource.add(i);
+		}
+		return dataSource;
+	}
 }

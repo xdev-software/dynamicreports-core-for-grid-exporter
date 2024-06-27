@@ -17,48 +17,53 @@
  */
 package software.xdev.dynamicreports.test.jasper.group;
 
+import static software.xdev.dynamicreports.report.builder.DynamicReports.col;
+import static software.xdev.dynamicreports.report.builder.DynamicReports.grp;
+
+import net.sf.jasperreports.engine.JRDataSource;
 import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
 import software.xdev.dynamicreports.report.builder.column.TextColumnBuilder;
 import software.xdev.dynamicreports.report.datasource.DRDataSource;
 import software.xdev.dynamicreports.test.jasper.AbstractJasperValueTest;
-import net.sf.jasperreports.engine.JRDataSource;
 
-import static software.xdev.dynamicreports.report.builder.DynamicReports.col;
-import static software.xdev.dynamicreports.report.builder.DynamicReports.grp;
 
-/**
- * @author Ricardo Mariaca
- */
-public class Group3Test extends AbstractJasperValueTest {
-    private TextColumnBuilder<String> column1;
-    private TextColumnBuilder<String> column2;
-
-    @Override
-    protected void configureReport(JasperReportBuilder rb) {
-        rb.setShowColumnTitle(false)
-          .columns(column1 = col.column("Column1", "field1", String.class), column2 = col.column("Column2", "field2", String.class))
-          .groupBy(grp.group(column1).setShowColumnHeaderAndFooter(true));
-    }
-
-    @Override
-    public void test() {
-        super.test();
-
-        numberOfPagesTest(1);
-
-        columnTitleCountTest(column1, 0);
-        columnTitleCountTest(column2, 0);
-
-        elementCountTest("columnHeaderForGroup.column_field2.title1", 1);
-        elementValueTest("columnHeaderForGroup.column_field2.title1", "Column2");
-    }
-
-    @Override
-    protected JRDataSource createDataSource() {
-        DRDataSource dataSource = new DRDataSource("field1", "field2");
-        for (int i = 0; i < 1; i++) {
-            dataSource.add("1", "1");
-        }
-        return dataSource;
-    }
+public class Group3Test extends AbstractJasperValueTest
+{
+	private TextColumnBuilder<String> column1;
+	private TextColumnBuilder<String> column2;
+	
+	@Override
+	protected void configureReport(final JasperReportBuilder rb)
+	{
+		rb.setShowColumnTitle(false)
+			.columns(
+				this.column1 = col.column("Column1", "field1", String.class),
+				this.column2 = col.column("Column2", "field2", String.class))
+			.groupBy(grp.group(this.column1).setShowColumnHeaderAndFooter(true));
+	}
+	
+	@Override
+	public void test()
+	{
+		super.test();
+		
+		this.numberOfPagesTest(1);
+		
+		this.columnTitleCountTest(this.column1, 0);
+		this.columnTitleCountTest(this.column2, 0);
+		
+		this.elementCountTest("columnHeaderForGroup.column_field2.title1", 1);
+		this.elementValueTest("columnHeaderForGroup.column_field2.title1", "Column2");
+	}
+	
+	@Override
+	protected JRDataSource createDataSource()
+	{
+		final DRDataSource dataSource = new DRDataSource("field1", "field2");
+		for(int i = 0; i < 1; i++)
+		{
+			dataSource.add("1", "1");
+		}
+		return dataSource;
+	}
 }

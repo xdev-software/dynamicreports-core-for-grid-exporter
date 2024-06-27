@@ -17,38 +17,32 @@
  */
 package software.xdev.dynamicreports.report.builder.datatype;
 
+import java.util.Locale;
+
 import software.xdev.dynamicreports.report.base.datatype.AbstractDataType;
-import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.constant.HorizontalTextAlignment;
 import software.xdev.dynamicreports.report.defaults.Defaults;
 import software.xdev.dynamicreports.report.exception.DRException;
 
-import java.util.Locale;
 
-/**
- * <p>StringType class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class StringType extends AbstractDataType<String, String> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
+public class StringType extends AbstractDataType<String, String>
+{
 
-    /** {@inheritDoc} */
-    @Override
-    public String getPattern() {
-        return Defaults.getDefaults().getStringType().getPattern();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public HorizontalTextAlignment getHorizontalTextAlignment() {
-        return Defaults.getDefaults().getStringType().getHorizontalTextAlignment();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public String stringToValue(String value, Locale locale) throws DRException {
-        return value;
-    }
+	@Override
+	public String getPattern()
+	{
+		return Defaults.getDefaults().getStringType().getPattern();
+	}
+	
+	@Override
+	public HorizontalTextAlignment getHorizontalTextAlignment()
+	{
+		return Defaults.getDefaults().getStringType().getHorizontalTextAlignment();
+	}
+	
+	@Override
+	public String stringToValue(final String value, final Locale locale) throws DRException
+	{
+		return value;
+	}
 }

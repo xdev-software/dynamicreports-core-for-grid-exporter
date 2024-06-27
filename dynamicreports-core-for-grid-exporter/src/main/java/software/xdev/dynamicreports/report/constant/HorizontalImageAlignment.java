@@ -17,12 +17,7 @@
  */
 package software.xdev.dynamicreports.report.constant;
 
-/**
- * <p>HorizontalImageAlignment class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public enum HorizontalImageAlignment {
-    LEFT, CENTER, RIGHT
+public enum HorizontalImageAlignment
+{
+	LEFT, CENTER, RIGHT
 }

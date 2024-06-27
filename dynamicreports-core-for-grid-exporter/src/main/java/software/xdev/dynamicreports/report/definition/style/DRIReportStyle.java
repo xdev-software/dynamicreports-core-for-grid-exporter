@@ -19,12 +19,8 @@ package software.xdev.dynamicreports.report.definition.style;
 
 import java.io.Serializable;
 
-/**
- * <p>DRIReportStyle interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface DRIReportStyle extends Serializable {
+
+public interface DRIReportStyle extends Serializable
+{
 
 }

@@ -17,63 +17,65 @@
  */
 package software.xdev.dynamicreports.test.jasper.report;
 
+import static software.xdev.dynamicreports.report.builder.DynamicReports.cmp;
+import static software.xdev.dynamicreports.report.builder.DynamicReports.col;
+import static software.xdev.dynamicreports.report.builder.DynamicReports.sbt;
+
+import java.io.Serializable;
+
+import net.sf.jasperreports.engine.JRDataSource;
 import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
 import software.xdev.dynamicreports.report.builder.column.TextColumnBuilder;
 import software.xdev.dynamicreports.report.builder.subtotal.AggregationSubtotalBuilder;
 import software.xdev.dynamicreports.report.datasource.DRDataSource;
 import software.xdev.dynamicreports.test.jasper.AbstractJasperPositionTest;
-import net.sf.jasperreports.engine.JRDataSource;
 
-import java.io.Serializable;
 
-import static software.xdev.dynamicreports.report.builder.DynamicReports.cmp;
-import static software.xdev.dynamicreports.report.builder.DynamicReports.col;
-import static software.xdev.dynamicreports.report.builder.DynamicReports.sbt;
+public class Report2Test extends AbstractJasperPositionTest implements Serializable
+{
 
-/**
- * @author Ricardo Mariaca
- */
-public class Report2Test extends AbstractJasperPositionTest implements Serializable {
-    private static final long serialVersionUID = 1L;
-
-    private AggregationSubtotalBuilder<Integer> subtotal1;
-    private AggregationSubtotalBuilder<Integer> subtotal2;
-
-    @Override
-    protected void configureReport(JasperReportBuilder rb) {
-        TextColumnBuilder<Integer> column1;
-
-        rb.setTitleOnANewPage(true)
-          .setSummaryOnANewPage(true)
-          .setFloatColumnFooter(true)
-          .columns(column1 = col.column("Column1", "field1", Integer.class))
-          .subtotalsAtColumnFooter(subtotal1 = sbt.sum(column1))
-          .subtotalsAtSummary(subtotal2 = sbt.sum(column1))
-          .title(cmp.text("title"));
-    }
-
-    @Override
-    public void test() {
-        super.test();
-
-        numberOfPagesTest(3);
-
-        // title
-        elementPositionTest("title.textField1", 0, 10, 10, 575, 16);
-
-        // column footer
-        subtotalPositionTest(subtotal1, 0, 10, 186, 575, 16);
-
-        // summary
-        subtotalPositionTest(subtotal2, 0, 10, 10, 575, 16);
-    }
-
-    @Override
-    protected JRDataSource createDataSource() {
-        DRDataSource dataSource = new DRDataSource("field1");
-        for (int i = 0; i < 10; i++) {
-            dataSource.add(i);
-        }
-        return dataSource;
-    }
+	private AggregationSubtotalBuilder<Integer> subtotal1;
+	private AggregationSubtotalBuilder<Integer> subtotal2;
+	
+	@Override
+	protected void configureReport(final JasperReportBuilder rb)
+	{
+		final TextColumnBuilder<Integer> column1;
+		
+		rb.setTitleOnANewPage(true)
+			.setSummaryOnANewPage(true)
+			.setFloatColumnFooter(true)
+			.columns(column1 = col.column("Column1", "field1", Integer.class))
+			.subtotalsAtColumnFooter(this.subtotal1 = sbt.sum(column1))
+			.subtotalsAtSummary(this.subtotal2 = sbt.sum(column1))
+			.title(cmp.text("title"));
+	}
+	
+	@Override
+	public void test()
+	{
+		super.test();
+		
+		this.numberOfPagesTest(3);
+		
+		// title
+		this.elementPositionTest("title.textField1", 0, 10, 10, 575, 16);
+		
+		// column footer
+		this.subtotalPositionTest(this.subtotal1, 0, 10, 186, 575, 16);
+		
+		// summary
+		this.subtotalPositionTest(this.subtotal2, 0, 10, 10, 575, 16);
+	}
+	
+	@Override
+	protected JRDataSource createDataSource()
+	{
+		final DRDataSource dataSource = new DRDataSource("field1");
+		for(int i = 0; i < 10; i++)
+		{
+			dataSource.add(i);
+		}
+		return dataSource;
+	}
 }

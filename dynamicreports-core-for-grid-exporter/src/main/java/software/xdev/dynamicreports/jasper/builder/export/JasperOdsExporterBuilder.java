@@ -18,33 +18,19 @@
 package software.xdev.dynamicreports.jasper.builder.export;
 
 import software.xdev.dynamicreports.jasper.base.export.JasperOdsExporter;
-import software.xdev.dynamicreports.report.constant.Constants;
 
-/**
- * <p>JasperOdsExporterBuilder class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class JasperOdsExporterBuilder extends AbstractJasperExporterBuilder<JasperOdsExporterBuilder, JasperOdsExporter> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    /**
-     * <p>Constructor for JasperOdsExporterBuilder.</p>
-     */
-    protected JasperOdsExporterBuilder() {
-        super(new JasperOdsExporter());
-    }
+public class JasperOdsExporterBuilder extends AbstractJasperExporterBuilder<JasperOdsExporterBuilder, JasperOdsExporter>
+{
 
-    /**
-     * <p>setFlexibleRowHeight.</p>
-     *
-     * @param flexibleRowHeight a {@link java.lang.Boolean} object.
-     * @return a {@link software.xdev.dynamicreports.jasper.builder.export.JasperOdsExporterBuilder} object.
-     */
-    public JasperOdsExporterBuilder setFlexibleRowHeight(Boolean flexibleRowHeight) {
-        getObject().setFlexibleRowHeight(flexibleRowHeight);
-        return this;
-    }
-
+	protected JasperOdsExporterBuilder()
+	{
+		super(new JasperOdsExporter());
+	}
+	
+	public JasperOdsExporterBuilder setFlexibleRowHeight(final Boolean flexibleRowHeight)
+	{
+		this.getObject().setFlexibleRowHeight(flexibleRowHeight);
+		return this;
+	}
 }

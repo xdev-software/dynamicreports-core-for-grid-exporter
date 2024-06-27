@@ -17,44 +17,20 @@
  */
 package software.xdev.dynamicreports.design.definition.component;
 
+import java.util.List;
+
 import software.xdev.dynamicreports.design.constant.ComponentGroupType;
 import software.xdev.dynamicreports.report.constant.ListType;
 
-import java.util.List;
 
-/**
- * <p>DRIDesignList interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface DRIDesignList extends DRIDesignComponent {
-
-    /**
-     * <p>getComponents.</p>
-     *
-     * @return a {@link java.util.List} object.
-     */
-    public List<? extends DRIDesignComponent> getComponents();
-
-    /**
-     * <p>getType.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.constant.ListType} object.
-     */
-    public ListType getType();
-
-    /**
-     * <p>getComponentGroupType.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.design.constant.ComponentGroupType} object.
-     */
-    public ComponentGroupType getComponentGroupType();
-
-    /**
-     * <p>getBackgroundComponent.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.design.definition.component.DRIDesignComponent} object.
-     */
-    public DRIDesignComponent getBackgroundComponent();
+public interface DRIDesignList extends DRIDesignComponent
+{
+	
+	public List<? extends DRIDesignComponent> getComponents();
+	
+	public ListType getType();
+	
+	public ComponentGroupType getComponentGroupType();
+	
+	public DRIDesignComponent getBackgroundComponent();
 }

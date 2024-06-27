@@ -19,145 +19,107 @@ package software.xdev.dynamicreports.design.base.crosstab;
 
 import software.xdev.dynamicreports.design.definition.crosstab.DRIDesignCrosstabGroup;
 import software.xdev.dynamicreports.design.definition.expression.DRIDesignExpression;
-import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.constant.CrosstabTotalPosition;
 import software.xdev.dynamicreports.report.constant.OrderType;
 
-/**
- * <p>Abstract DRDesignCrosstabGroup class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public abstract class DRDesignCrosstabGroup implements DRIDesignCrosstabGroup {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    private String name;
-    private CrosstabTotalPosition totalPosition;
-    private OrderType orderType;
-    private DRIDesignExpression expression;
-    private DRIDesignExpression orderByExpression;
-    private DRIDesignExpression comparatorExpression;
-    private DRDesignCrosstabCellContent header;
-    private DRDesignCrosstabCellContent totalHeader;
+public abstract class DRDesignCrosstabGroup implements DRIDesignCrosstabGroup
+{
 
-    /** {@inheritDoc} */
-    @Override
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * <p>Setter for the field <code>name</code>.</p>
-     *
-     * @param name a {@link java.lang.String} object.
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public CrosstabTotalPosition getTotalPosition() {
-        return totalPosition;
-    }
-
-    /**
-     * <p>Setter for the field <code>totalPosition</code>.</p>
-     *
-     * @param totalPosition a {@link software.xdev.dynamicreports.report.constant.CrosstabTotalPosition} object.
-     */
-    public void setTotalPosition(CrosstabTotalPosition totalPosition) {
-        this.totalPosition = totalPosition;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public OrderType getOrderType() {
-        return orderType;
-    }
-
-    /**
-     * <p>Setter for the field <code>orderType</code>.</p>
-     *
-     * @param orderType a {@link software.xdev.dynamicreports.report.constant.OrderType} object.
-     */
-    public void setOrderType(OrderType orderType) {
-        this.orderType = orderType;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRIDesignExpression getExpression() {
-        return expression;
-    }
-
-    /**
-     * <p>Setter for the field <code>expression</code>.</p>
-     *
-     * @param expression a {@link software.xdev.dynamicreports.design.definition.expression.DRIDesignExpression} object.
-     */
-    public void setExpression(DRIDesignExpression expression) {
-        this.expression = expression;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRIDesignExpression getOrderByExpression() {
-        return orderByExpression;
-    }
-
-    /**
-     * <p>Setter for the field <code>orderByExpression</code>.</p>
-     *
-     * @param orderByExpression a {@link software.xdev.dynamicreports.design.definition.expression.DRIDesignExpression} object.
-     */
-    public void setOrderByExpression(DRIDesignExpression orderByExpression) {
-        this.orderByExpression = orderByExpression;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRIDesignExpression getComparatorExpression() {
-        return comparatorExpression;
-    }
-
-    /**
-     * <p>Setter for the field <code>comparatorExpression</code>.</p>
-     *
-     * @param comparatorExpression a {@link software.xdev.dynamicreports.design.definition.expression.DRIDesignExpression} object.
-     */
-    public void setComparatorExpression(DRIDesignExpression comparatorExpression) {
-        this.comparatorExpression = comparatorExpression;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRDesignCrosstabCellContent getHeader() {
-        return header;
-    }
-
-    /**
-     * <p>Setter for the field <code>header</code>.</p>
-     *
-     * @param header a {@link software.xdev.dynamicreports.design.base.crosstab.DRDesignCrosstabCellContent} object.
-     */
-    public void setHeader(DRDesignCrosstabCellContent header) {
-        this.header = header;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRDesignCrosstabCellContent getTotalHeader() {
-        return totalHeader;
-    }
-
-    /**
-     * <p>Setter for the field <code>totalHeader</code>.</p>
-     *
-     * @param totalHeader a {@link software.xdev.dynamicreports.design.base.crosstab.DRDesignCrosstabCellContent} object.
-     */
-    public void setTotalHeader(DRDesignCrosstabCellContent totalHeader) {
-        this.totalHeader = totalHeader;
-    }
+	private String name;
+	private CrosstabTotalPosition totalPosition;
+	private OrderType orderType;
+	private DRIDesignExpression expression;
+	private DRIDesignExpression orderByExpression;
+	private DRIDesignExpression comparatorExpression;
+	private DRDesignCrosstabCellContent header;
+	private DRDesignCrosstabCellContent totalHeader;
+	
+	@Override
+	public String getName()
+	{
+		return this.name;
+	}
+	
+	public void setName(final String name)
+	{
+		this.name = name;
+	}
+	
+	@Override
+	public CrosstabTotalPosition getTotalPosition()
+	{
+		return this.totalPosition;
+	}
+	
+	public void setTotalPosition(final CrosstabTotalPosition totalPosition)
+	{
+		this.totalPosition = totalPosition;
+	}
+	
+	@Override
+	public OrderType getOrderType()
+	{
+		return this.orderType;
+	}
+	
+	public void setOrderType(final OrderType orderType)
+	{
+		this.orderType = orderType;
+	}
+	
+	@Override
+	public DRIDesignExpression getExpression()
+	{
+		return this.expression;
+	}
+	
+	public void setExpression(final DRIDesignExpression expression)
+	{
+		this.expression = expression;
+	}
+	
+	@Override
+	public DRIDesignExpression getOrderByExpression()
+	{
+		return this.orderByExpression;
+	}
+	
+	public void setOrderByExpression(final DRIDesignExpression orderByExpression)
+	{
+		this.orderByExpression = orderByExpression;
+	}
+	
+	@Override
+	public DRIDesignExpression getComparatorExpression()
+	{
+		return this.comparatorExpression;
+	}
+	
+	public void setComparatorExpression(final DRIDesignExpression comparatorExpression)
+	{
+		this.comparatorExpression = comparatorExpression;
+	}
+	
+	@Override
+	public DRDesignCrosstabCellContent getHeader()
+	{
+		return this.header;
+	}
+	
+	public void setHeader(final DRDesignCrosstabCellContent header)
+	{
+		this.header = header;
+	}
+	
+	@Override
+	public DRDesignCrosstabCellContent getTotalHeader()
+	{
+		return this.totalHeader;
+	}
+	
+	public void setTotalHeader(final DRDesignCrosstabCellContent totalHeader)
+	{
+		this.totalHeader = totalHeader;
+	}
 }

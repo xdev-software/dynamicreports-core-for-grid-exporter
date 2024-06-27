@@ -17,25 +17,10 @@
  */
 package software.xdev.dynamicreports.report.definition.crosstab;
 
-/**
- * <p>DRICrosstabColumnGroup interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface DRICrosstabColumnGroup<T> extends DRICrosstabGroup<T> {
-
-    /**
-     * <p>getHeaderHeight.</p>
-     *
-     * @return a {@link java.lang.Integer} object.
-     */
-    public Integer getHeaderHeight();
-
-    /**
-     * <p>getTotalHeaderWidth.</p>
-     *
-     * @return a {@link java.lang.Integer} object.
-     */
-    public Integer getTotalHeaderWidth();
+public interface DRICrosstabColumnGroup<T> extends DRICrosstabGroup<T>
+{
+	
+	public Integer getHeaderHeight();
+	
+	public Integer getTotalHeaderWidth();
 }

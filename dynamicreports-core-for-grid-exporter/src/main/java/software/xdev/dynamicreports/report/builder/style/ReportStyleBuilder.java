@@ -17,29 +17,15 @@
  */
 package software.xdev.dynamicreports.report.builder.style;
 
-import software.xdev.dynamicreports.report.definition.style.DRIReportStyle;
-
 import java.io.Serializable;
 
-/**
- * <p>ReportStyleBuilder interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface ReportStyleBuilder extends Serializable {
+import software.xdev.dynamicreports.report.definition.style.DRIReportStyle;
 
-    /**
-     * <p>getStyle.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.definition.style.DRIReportStyle} object.
-     */
-    public DRIReportStyle getStyle();
 
-    /**
-     * <p>build.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.definition.style.DRIReportStyle} object.
-     */
-    public DRIReportStyle build();
+public interface ReportStyleBuilder extends Serializable
+{
+	
+	public DRIReportStyle getStyle();
+	
+	public DRIReportStyle build();
 }

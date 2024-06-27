@@ -17,83 +17,56 @@
  */
 package software.xdev.dynamicreports.report.builder.style;
 
-import software.xdev.dynamicreports.report.base.style.DRStyle;
-import software.xdev.dynamicreports.report.constant.Constants;
 import org.apache.commons.lang3.Validate;
 
-/**
- * <p>StyleBuilder class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class StyleBuilder extends BaseStyleBuilder<StyleBuilder, DRStyle> implements ReportStyleBuilder {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
+import software.xdev.dynamicreports.report.base.style.DRStyle;
 
-    /**
-     * <p>Constructor for StyleBuilder.</p>
-     */
-    protected StyleBuilder() {
-        this(new DRStyle());
-    }
 
-    /**
-     * <p>Constructor for StyleBuilder.</p>
-     *
-     * @param style a {@link software.xdev.dynamicreports.report.base.style.DRStyle} object.
-     */
-    protected StyleBuilder(DRStyle style) {
-        super(style);
-    }
+public class StyleBuilder extends BaseStyleBuilder<StyleBuilder, DRStyle> implements ReportStyleBuilder
+{
 
-    /**
-     * <p>conditionalStyles.</p>
-     *
-     * @param conditionalStyles a {@link software.xdev.dynamicreports.report.builder.style.ConditionalStyleBuilder} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.style.StyleBuilder} object.
-     */
-    public StyleBuilder conditionalStyles(ConditionalStyleBuilder... conditionalStyles) {
-        return addConditionalStyle(conditionalStyles);
-    }
-
-    /**
-     * <p>addConditionalStyle.</p>
-     *
-     * @param conditionalStyles a {@link software.xdev.dynamicreports.report.builder.style.ConditionalStyleBuilder} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.style.StyleBuilder} object.
-     */
-    public StyleBuilder addConditionalStyle(ConditionalStyleBuilder... conditionalStyles) {
-        Validate.notNull(conditionalStyles, "conditionalStyles must not be null");
-        Validate.noNullElements(conditionalStyles, "conditionalStyles must not contains null conditionalStyle");
-        for (ConditionalStyleBuilder conditionalStyle : conditionalStyles) {
-            getObject().addConditionalStyle(conditionalStyle.build());
-        }
-        return this;
-    }
-
-    /**
-     * <p>setName.</p>
-     *
-     * @param name a {@link java.lang.String} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.style.StyleBuilder} object.
-     */
-    public StyleBuilder setName(String name) {
-        getObject().setName(name);
-        return this;
-    }
-
-    /**
-     * <p>setParentStyle.</p>
-     *
-     * @param parentStyle a {@link software.xdev.dynamicreports.report.builder.style.ReportStyleBuilder} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.style.StyleBuilder} object.
-     */
-    public StyleBuilder setParentStyle(ReportStyleBuilder parentStyle) {
-        if (parentStyle != null) {
-            getObject().setParentStyle(parentStyle.build());
-        } else {
-            getObject().setParentStyle(null);
-        }
-        return this;
-    }
+	protected StyleBuilder()
+	{
+		this(new DRStyle());
+	}
+	
+	protected StyleBuilder(final DRStyle style)
+	{
+		super(style);
+	}
+	
+	public StyleBuilder conditionalStyles(final ConditionalStyleBuilder... conditionalStyles)
+	{
+		return this.addConditionalStyle(conditionalStyles);
+	}
+	
+	public StyleBuilder addConditionalStyle(final ConditionalStyleBuilder... conditionalStyles)
+	{
+		Validate.notNull(conditionalStyles, "conditionalStyles must not be null");
+		Validate.noNullElements(conditionalStyles, "conditionalStyles must not contains null conditionalStyle");
+		for(final ConditionalStyleBuilder conditionalStyle : conditionalStyles)
+		{
+			this.getObject().addConditionalStyle(conditionalStyle.build());
+		}
+		return this;
+	}
+	
+	public StyleBuilder setName(final String name)
+	{
+		this.getObject().setName(name);
+		return this;
+	}
+	
+	public StyleBuilder setParentStyle(final ReportStyleBuilder parentStyle)
+	{
+		if(parentStyle != null)
+		{
+			this.getObject().setParentStyle(parentStyle.build());
+		}
+		else
+		{
+			this.getObject().setParentStyle(null);
+		}
+		return this;
+	}
 }

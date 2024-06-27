@@ -17,6 +17,8 @@
  */
 package software.xdev.dynamicreports.design.transformation;
 
+import java.util.List;
+
 import software.xdev.dynamicreports.design.base.DRDesignField;
 import software.xdev.dynamicreports.design.base.DRDesignGroup;
 import software.xdev.dynamicreports.design.constant.ResetType;
@@ -27,72 +29,69 @@ import software.xdev.dynamicreports.report.definition.DRISort;
 import software.xdev.dynamicreports.report.definition.DRIVariable;
 import software.xdev.dynamicreports.report.exception.DRException;
 
-import java.util.List;
 
-/**
- * <p>MainDatasetExpressionTransform class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class MainDatasetExpressionTransform extends AbstractExpressionTransform {
-
-    /**
-     * <p>Constructor for MainDatasetExpressionTransform.</p>
-     *
-     * @param accessor a {@link software.xdev.dynamicreports.design.transformation.DesignTransformAccessor} object.
-     */
-    public MainDatasetExpressionTransform(DesignTransformAccessor accessor) {
-        super(accessor);
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void transform() throws DRException {
-        DRIReport report = accessor.getReport();
-        List<DRIField<?>> templateDesignFields = report.getTemplateDesign().getFields();
-        if (templateDesignFields != null) {
-            for (DRIField<?> field : templateDesignFields) {
-                DRDesignField designField = (DRDesignField) transformExpression(field);
-                designField.setExternal(true);
-            }
-        }
-        super.transform();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    protected ResetType getVariableResetType(DRIVariable<?> variable) {
-        return ConstantTransform.variableResetType(variable.getResetType(), variable.getResetGroup(), accessor);
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    protected DRDesignGroup getVariableResetGroup(DRIVariable<?> variable) throws DRException {
-        return accessor.getGroupTransform().getGroup(ConstantTransform.variableResetGroup(variable.getName(), variable.getResetType(), variable.getResetGroup(), accessor));
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    protected List<? extends DRIField<?>> transformFields() {
-        return accessor.getReport().getFields();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    protected List<? extends DRIVariable<?>> transformVariables() {
-        return accessor.getReport().getVariables();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    protected List<? extends DRISort> transformSorts() {
-        return accessor.getReport().getSorts();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    protected DRIDesignDataset getDataset() {
-        return null;
-    }
+public class MainDatasetExpressionTransform extends AbstractExpressionTransform
+{
+	
+	public MainDatasetExpressionTransform(final DesignTransformAccessor accessor)
+	{
+		super(accessor);
+	}
+	
+	@Override
+	public void transform() throws DRException
+	{
+		final DRIReport report = this.accessor.getReport();
+		final List<DRIField<?>> templateDesignFields = report.getTemplateDesign().getFields();
+		if(templateDesignFields != null)
+		{
+			for(final DRIField<?> field : templateDesignFields)
+			{
+				final DRDesignField designField = (DRDesignField)this.transformExpression(field);
+				designField.setExternal(true);
+			}
+		}
+		super.transform();
+	}
+	
+	@Override
+	protected ResetType getVariableResetType(final DRIVariable<?> variable)
+	{
+		return ConstantTransform.variableResetType(variable.getResetType(), variable.getResetGroup(), this.accessor);
+	}
+	
+	@Override
+	protected DRDesignGroup getVariableResetGroup(final DRIVariable<?> variable) throws DRException
+	{
+		return this.accessor.getGroupTransform()
+			.getGroup(ConstantTransform.variableResetGroup(
+				variable.getName(),
+				variable.getResetType(),
+				variable.getResetGroup(),
+				this.accessor));
+	}
+	
+	@Override
+	protected List<? extends DRIField<?>> transformFields()
+	{
+		return this.accessor.getReport().getFields();
+	}
+	
+	@Override
+	protected List<? extends DRIVariable<?>> transformVariables()
+	{
+		return this.accessor.getReport().getVariables();
+	}
+	
+	@Override
+	protected List<? extends DRISort> transformSorts()
+	{
+		return this.accessor.getReport().getSorts();
+	}
+	
+	@Override
+	protected DRIDesignDataset getDataset()
+	{
+		return null;
+	}
 }

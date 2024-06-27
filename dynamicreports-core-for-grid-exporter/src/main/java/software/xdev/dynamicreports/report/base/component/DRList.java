@@ -17,136 +17,102 @@
  */
 package software.xdev.dynamicreports.report.base.component;
 
-import software.xdev.dynamicreports.report.constant.Constants;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.commons.lang3.Validate;
+
 import software.xdev.dynamicreports.report.constant.HorizontalCellComponentAlignment;
 import software.xdev.dynamicreports.report.constant.ListType;
 import software.xdev.dynamicreports.report.constant.VerticalCellComponentAlignment;
 import software.xdev.dynamicreports.report.definition.component.DRIList;
-import org.apache.commons.lang3.Validate;
 
-import java.util.ArrayList;
-import java.util.List;
 
-/**
- * <p>DRList class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class DRList extends DRDimensionComponent implements DRIList {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
+public class DRList extends DRDimensionComponent implements DRIList
+{
 
-    private List<DRListCell> listCells;
-    private ListType type;
-    private Integer gap;
-    private DRComponent backgroundComponent;
-
-    /**
-     * <p>Constructor for DRList.</p>
-     */
-    public DRList() {
-        this(ListType.HORIZONTAL);
-    }
-
-    /**
-     * <p>Constructor for DRList.</p>
-     *
-     * @param type a {@link software.xdev.dynamicreports.report.constant.ListType} object.
-     */
-    public DRList(ListType type) {
-        setType(type);
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    protected void init() {
-        super.init();
-        this.listCells = new ArrayList<DRListCell>();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public List<DRListCell> getListCells() {
-        return listCells;
-    }
-
-    /**
-     * <p>addComponent.</p>
-     *
-     * @param component a {@link software.xdev.dynamicreports.report.base.component.DRComponent} object.
-     */
-    public void addComponent(DRComponent component) {
-        listCells.add(new DRListCell(component));
-    }
-
-    /**
-     * <p>addCell.</p>
-     *
-     * @param cell a {@link software.xdev.dynamicreports.report.base.component.DRListCell} object.
-     */
-    public void addCell(DRListCell cell) {
-        Validate.notNull(cell, "cell must not be null");
-        listCells.add(cell);
-    }
-
-    /**
-     * <p>addComponent.</p>
-     *
-     * @param horizontalAlignment a {@link software.xdev.dynamicreports.report.constant.HorizontalCellComponentAlignment} object.
-     * @param verticalAlignment   a {@link software.xdev.dynamicreports.report.constant.VerticalCellComponentAlignment} object.
-     * @param component           a {@link software.xdev.dynamicreports.report.base.component.DRComponent} object.
-     */
-    public void addComponent(HorizontalCellComponentAlignment horizontalAlignment, VerticalCellComponentAlignment verticalAlignment, DRComponent component) {
-        listCells.add(new DRListCell(horizontalAlignment, verticalAlignment, component));
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public ListType getType() {
-        return type;
-    }
-
-    /**
-     * <p>Setter for the field <code>type</code>.</p>
-     *
-     * @param type a {@link software.xdev.dynamicreports.report.constant.ListType} object.
-     */
-    public void setType(ListType type) {
-        Validate.notNull(type, "type must not be null");
-        this.type = type;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Integer getGap() {
-        return gap;
-    }
-
-    /**
-     * <p>Setter for the field <code>gap</code>.</p>
-     *
-     * @param gap a {@link java.lang.Integer} object.
-     */
-    public void setGap(Integer gap) {
-        if (gap != null) {
-            Validate.isTrue(gap >= 0, "gap must be >= 0");
-        }
-        this.gap = gap;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRComponent getBackgroundComponent() {
-        return backgroundComponent;
-    }
-
-    /**
-     * <p>Setter for the field <code>backgroundComponent</code>.</p>
-     *
-     * @param backgroundComponent a {@link software.xdev.dynamicreports.report.base.component.DRComponent} object.
-     */
-    public void setBackgroundComponent(DRComponent backgroundComponent) {
-        this.backgroundComponent = backgroundComponent;
-    }
-
+	private List<DRListCell> listCells;
+	private ListType type;
+	private Integer gap;
+	private DRComponent backgroundComponent;
+	
+	public DRList()
+	{
+		this(ListType.HORIZONTAL);
+	}
+	
+	public DRList(final ListType type)
+	{
+		this.setType(type);
+	}
+	
+	@Override
+	protected void init()
+	{
+		super.init();
+		this.listCells = new ArrayList<>();
+	}
+	
+	@Override
+	public List<DRListCell> getListCells()
+	{
+		return this.listCells;
+	}
+	
+	public void addComponent(final DRComponent component)
+	{
+		this.listCells.add(new DRListCell(component));
+	}
+	
+	public void addCell(final DRListCell cell)
+	{
+		Validate.notNull(cell, "cell must not be null");
+		this.listCells.add(cell);
+	}
+	
+	public void addComponent(
+		final HorizontalCellComponentAlignment horizontalAlignment,
+		final VerticalCellComponentAlignment verticalAlignment,
+		final DRComponent component)
+	{
+		this.listCells.add(new DRListCell(horizontalAlignment, verticalAlignment, component));
+	}
+	
+	@Override
+	public ListType getType()
+	{
+		return this.type;
+	}
+	
+	public void setType(final ListType type)
+	{
+		Validate.notNull(type, "type must not be null");
+		this.type = type;
+	}
+	
+	@Override
+	public Integer getGap()
+	{
+		return this.gap;
+	}
+	
+	public void setGap(final Integer gap)
+	{
+		if(gap != null)
+		{
+			Validate.isTrue(gap >= 0, "gap must be >= 0");
+		}
+		this.gap = gap;
+	}
+	
+	@Override
+	public DRComponent getBackgroundComponent()
+	{
+		return this.backgroundComponent;
+	}
+	
+	public void setBackgroundComponent(final DRComponent backgroundComponent)
+	{
+		this.backgroundComponent = backgroundComponent;
+	}
 }

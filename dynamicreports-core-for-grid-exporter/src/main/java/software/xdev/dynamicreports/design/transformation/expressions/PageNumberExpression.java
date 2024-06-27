@@ -17,38 +17,28 @@
  */
 package software.xdev.dynamicreports.design.transformation.expressions;
 
-import software.xdev.dynamicreports.report.builder.expression.AbstractComplexExpression;
-import software.xdev.dynamicreports.report.constant.Constants;
-import software.xdev.dynamicreports.report.definition.ReportParameters;
-import software.xdev.dynamicreports.report.definition.expression.DRIExpression;
-
 import java.text.MessageFormat;
 import java.util.List;
 
-/**
- * <p>PageNumberExpression class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class PageNumberExpression extends AbstractComplexExpression<String> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
+import software.xdev.dynamicreports.report.builder.expression.AbstractComplexExpression;
+import software.xdev.dynamicreports.report.definition.ReportParameters;
+import software.xdev.dynamicreports.report.definition.expression.DRIExpression;
 
-    /**
-     * <p>Constructor for PageNumberExpression.</p>
-     *
-     * @param pageNumberFormatExpression a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     */
-    public PageNumberExpression(DRIExpression<String> pageNumberFormatExpression) {
-        addExpression(pageNumberFormatExpression);
-    }
 
-    /** {@inheritDoc} */
-    @Override
-    public String evaluate(List<?> values, ReportParameters reportParameters) {
-        String pattern = (String) values.get(0);
-        MessageFormat format = new MessageFormat(pattern, reportParameters.getLocale());
-        String result = format.format(new Object[] {reportParameters.getPageNumber()});
-        return result;
-    }
+public class PageNumberExpression extends AbstractComplexExpression<String>
+{
+
+	public PageNumberExpression(final DRIExpression<String> pageNumberFormatExpression)
+	{
+		this.addExpression(pageNumberFormatExpression);
+	}
+	
+	@Override
+	public String evaluate(final List<?> values, final ReportParameters reportParameters)
+	{
+		final String pattern = (String)values.get(0);
+		final MessageFormat format = new MessageFormat(pattern, reportParameters.getLocale());
+		final String result = format.format(new Object[]{reportParameters.getPageNumber()});
+		return result;
+	}
 }

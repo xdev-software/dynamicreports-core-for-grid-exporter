@@ -18,31 +18,21 @@
 package software.xdev.dynamicreports.design.base.crosstab;
 
 import software.xdev.dynamicreports.design.definition.crosstab.DRIDesignCrosstabColumnGroup;
-import software.xdev.dynamicreports.report.constant.Constants;
 
-/**
- * <p>DRDesignCrosstabColumnGroup class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class DRDesignCrosstabColumnGroup extends DRDesignCrosstabGroup implements DRIDesignCrosstabColumnGroup {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    private int height;
+public class DRDesignCrosstabColumnGroup extends DRDesignCrosstabGroup implements DRIDesignCrosstabColumnGroup
+{
 
-    /** {@inheritDoc} */
-    @Override
-    public int getHeight() {
-        return height;
-    }
-
-    /**
-     * <p>Setter for the field <code>height</code>.</p>
-     *
-     * @param height a int.
-     */
-    public void setHeight(int height) {
-        this.height = height;
-    }
+	private int height;
+	
+	@Override
+	public int getHeight()
+	{
+		return this.height;
+	}
+	
+	public void setHeight(final int height)
+	{
+		this.height = height;
+	}
 }

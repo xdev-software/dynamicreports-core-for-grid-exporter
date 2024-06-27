@@ -17,75 +17,52 @@
  */
 package software.xdev.dynamicreports.report.builder.grid;
 
-import software.xdev.dynamicreports.report.base.grid.DRColumnGridList;
-import software.xdev.dynamicreports.report.builder.AbstractBuilder;
-import software.xdev.dynamicreports.report.constant.Constants;
-import software.xdev.dynamicreports.report.constant.ListType;
 import org.apache.commons.lang3.Validate;
 
-/**
- * <p>VerticalColumnGridListBuilder class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class VerticalColumnGridListBuilder extends AbstractBuilder<VerticalColumnGridListBuilder, DRColumnGridList> implements ColumnGridComponentBuilder {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
+import software.xdev.dynamicreports.report.base.grid.DRColumnGridList;
+import software.xdev.dynamicreports.report.builder.AbstractBuilder;
+import software.xdev.dynamicreports.report.constant.ListType;
 
-    /**
-     * <p>Constructor for VerticalColumnGridListBuilder.</p>
-     */
-    protected VerticalColumnGridListBuilder() {
-        super(new DRColumnGridList(ListType.VERTICAL));
-    }
 
-    /**
-     * <p>add.</p>
-     *
-     * @param components a {@link software.xdev.dynamicreports.report.builder.grid.ColumnGridComponentBuilder} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.grid.VerticalColumnGridListBuilder} object.
-     */
-    public VerticalColumnGridListBuilder add(ColumnGridComponentBuilder... components) {
-        Validate.notNull(components, "components must not be null");
-        Validate.noNullElements(components, "components must not contains null component");
-        for (ColumnGridComponentBuilder component : components) {
-            getObject().addComponent(component.build());
-        }
-        return this;
-    }
+public class VerticalColumnGridListBuilder extends AbstractBuilder<VerticalColumnGridListBuilder, DRColumnGridList>
+	implements ColumnGridComponentBuilder
+{
 
-    /**
-     * <p>add.</p>
-     *
-     * @param cells a {@link software.xdev.dynamicreports.report.builder.grid.VerticalColumnGridListCellBuilder} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.grid.VerticalColumnGridListBuilder} object.
-     */
-    public VerticalColumnGridListBuilder add(VerticalColumnGridListCellBuilder... cells) {
-        Validate.notNull(cells, "cells must not be null");
-        Validate.noNullElements(cells, "cells must not contains null cell");
-        for (VerticalColumnGridListCellBuilder cell : cells) {
-            getObject().addCell(cell.build());
-        }
-        return this;
-    }
-
-    /**
-     * <p>setGap.</p>
-     *
-     * @param gap a int.
-     * @return a {@link software.xdev.dynamicreports.report.builder.grid.VerticalColumnGridListBuilder} object.
-     */
-    public VerticalColumnGridListBuilder setGap(int gap) {
-        getObject().setGap(gap);
-        return this;
-    }
-
-    /**
-     * <p>getColumnGridList.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.base.grid.DRColumnGridList} object.
-     */
-    public DRColumnGridList getColumnGridList() {
-        return build();
-    }
+	protected VerticalColumnGridListBuilder()
+	{
+		super(new DRColumnGridList(ListType.VERTICAL));
+	}
+	
+	public VerticalColumnGridListBuilder add(final ColumnGridComponentBuilder... components)
+	{
+		Validate.notNull(components, "components must not be null");
+		Validate.noNullElements(components, "components must not contains null component");
+		for(final ColumnGridComponentBuilder component : components)
+		{
+			this.getObject().addComponent(component.build());
+		}
+		return this;
+	}
+	
+	public VerticalColumnGridListBuilder add(final VerticalColumnGridListCellBuilder... cells)
+	{
+		Validate.notNull(cells, "cells must not be null");
+		Validate.noNullElements(cells, "cells must not contains null cell");
+		for(final VerticalColumnGridListCellBuilder cell : cells)
+		{
+			this.getObject().addCell(cell.build());
+		}
+		return this;
+	}
+	
+	public VerticalColumnGridListBuilder setGap(final int gap)
+	{
+		this.getObject().setGap(gap);
+		return this;
+	}
+	
+	public DRColumnGridList getColumnGridList()
+	{
+		return this.build();
+	}
 }

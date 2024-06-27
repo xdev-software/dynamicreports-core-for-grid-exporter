@@ -17,47 +17,37 @@
  */
 package software.xdev.dynamicreports.jasper.transformation.expression;
 
-import software.xdev.dynamicreports.design.base.expression.AbstractDesignSimpleExpression;
-import software.xdev.dynamicreports.jasper.base.JasperReportParameters;
-import software.xdev.dynamicreports.report.ReportUtils;
-import software.xdev.dynamicreports.report.constant.Constants;
-import software.xdev.dynamicreports.report.definition.ReportParameters;
-
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * <p>CrosstabParametersExpression class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class CrosstabParametersExpression extends AbstractDesignSimpleExpression {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
+import software.xdev.dynamicreports.design.base.expression.AbstractDesignSimpleExpression;
+import software.xdev.dynamicreports.jasper.base.JasperReportParameters;
+import software.xdev.dynamicreports.report.ReportUtils;
+import software.xdev.dynamicreports.report.definition.ReportParameters;
 
-    private Map<String, Object> parameters;
 
-    /**
-     * <p>Constructor for CrosstabParametersExpression.</p>
-     *
-     * @param parameters a {@link java.util.Map} object.
-     */
-    public CrosstabParametersExpression(Map<String, Object> parameters) {
-        super(ReportUtils.generateUniqueName("crosstabParametersExpression"));
-        this.parameters = parameters;
-    }
+public class CrosstabParametersExpression extends AbstractDesignSimpleExpression
+{
 
-    /** {@inheritDoc} */
-    @Override
-    public Object evaluate(ReportParameters reportParameters) {
-        Map<String, Object> parameters = new HashMap<String, Object>(this.parameters);
-        parameters.put(JasperReportParameters.MASTER_REPORT_PARAMETERS, reportParameters);
-        return parameters;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Class<?> getValueClass() {
-        return Map.class;
-    }
+	private final Map<String, Object> parameters;
+	
+	public CrosstabParametersExpression(final Map<String, Object> parameters)
+	{
+		super(ReportUtils.generateUniqueName("crosstabParametersExpression"));
+		this.parameters = parameters;
+	}
+	
+	@Override
+	public Object evaluate(final ReportParameters reportParameters)
+	{
+		final Map<String, Object> parameters = new HashMap<>(this.parameters);
+		parameters.put(JasperReportParameters.MASTER_REPORT_PARAMETERS, reportParameters);
+		return parameters;
+	}
+	
+	@Override
+	public Class<?> getValueClass()
+	{
+		return Map.class;
+	}
 }

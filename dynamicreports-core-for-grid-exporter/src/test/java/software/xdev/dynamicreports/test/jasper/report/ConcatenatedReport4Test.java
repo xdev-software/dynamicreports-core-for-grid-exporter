@@ -33,9 +33,6 @@ import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
 import software.xdev.dynamicreports.report.exception.DRException;
 
 
-/**
- * @author Ricardo Mariaca
- */
 class ConcatenatedReport4Test
 {
 	JasperConcatenatedReportBuilder concatenatedReport;

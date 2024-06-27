@@ -18,49 +18,35 @@
 package software.xdev.dynamicreports.report.base.component;
 
 import software.xdev.dynamicreports.report.base.style.DRPen;
-import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.constant.LineDirection;
 import software.xdev.dynamicreports.report.definition.component.DRILine;
 
-/**
- * <p>DRLine class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class DRLine extends DRDimensionComponent implements DRILine {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    private LineDirection direction;
-    private DRPen pen;
+public class DRLine extends DRDimensionComponent implements DRILine
+{
 
-    /** {@inheritDoc} */
-    @Override
-    public LineDirection getDirection() {
-        return direction;
-    }
-
-    /**
-     * <p>Setter for the field <code>direction</code>.</p>
-     *
-     * @param direction a {@link software.xdev.dynamicreports.report.constant.LineDirection} object.
-     */
-    public void setDirection(LineDirection direction) {
-        this.direction = direction;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRPen getPen() {
-        return pen;
-    }
-
-    /**
-     * <p>Setter for the field <code>pen</code>.</p>
-     *
-     * @param pen a {@link software.xdev.dynamicreports.report.base.style.DRPen} object.
-     */
-    public void setPen(DRPen pen) {
-        this.pen = pen;
-    }
+	private LineDirection direction;
+	private DRPen pen;
+	
+	@Override
+	public LineDirection getDirection()
+	{
+		return this.direction;
+	}
+	
+	public void setDirection(final LineDirection direction)
+	{
+		this.direction = direction;
+	}
+	
+	@Override
+	public DRPen getPen()
+	{
+		return this.pen;
+	}
+	
+	public void setPen(final DRPen pen)
+	{
+		this.pen = pen;
+	}
 }

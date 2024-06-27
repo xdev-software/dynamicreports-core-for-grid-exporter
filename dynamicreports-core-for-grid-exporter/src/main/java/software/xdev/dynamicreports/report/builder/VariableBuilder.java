@@ -21,140 +21,85 @@ import software.xdev.dynamicreports.report.base.DRVariable;
 import software.xdev.dynamicreports.report.builder.column.ValueColumnBuilder;
 import software.xdev.dynamicreports.report.builder.group.GroupBuilder;
 import software.xdev.dynamicreports.report.constant.Calculation;
-import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.constant.Evaluation;
 import software.xdev.dynamicreports.report.definition.DRIValue;
 import software.xdev.dynamicreports.report.definition.expression.DRIExpression;
 import software.xdev.dynamicreports.report.definition.expression.DRIJasperExpression;
 
-/**
- * <p>VariableBuilder class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class VariableBuilder<T> extends AbstractBuilder<VariableBuilder<T>, DRVariable<T>> implements DRIValue<T> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    // column
+public class VariableBuilder<T> extends AbstractBuilder<VariableBuilder<T>, DRVariable<T>> implements DRIValue<T>
+{
 
-    /**
-     * <p>Constructor for VariableBuilder.</p>
-     *
-     * @param column      a {@link software.xdev.dynamicreports.report.builder.column.ValueColumnBuilder} object.
-     * @param calculation a {@link software.xdev.dynamicreports.report.constant.Calculation} object.
-     */
-    protected VariableBuilder(ValueColumnBuilder<?, ?> column, Calculation calculation) {
-        super(new DRVariable<T>(column.build(), calculation));
-    }
-
-    /**
-     * <p>Constructor for VariableBuilder.</p>
-     *
-     * @param name        a {@link java.lang.String} object.
-     * @param column      a {@link software.xdev.dynamicreports.report.builder.column.ValueColumnBuilder} object.
-     * @param calculation a {@link software.xdev.dynamicreports.report.constant.Calculation} object.
-     */
-    protected VariableBuilder(String name, ValueColumnBuilder<?, ?> column, Calculation calculation) {
-        super(new DRVariable<T>(name, column.build(), calculation));
-    }
-
-    // field
-
-    /**
-     * <p>Constructor for VariableBuilder.</p>
-     *
-     * @param field       a {@link software.xdev.dynamicreports.report.builder.FieldBuilder} object.
-     * @param calculation a {@link software.xdev.dynamicreports.report.constant.Calculation} object.
-     */
-    protected VariableBuilder(FieldBuilder<?> field, Calculation calculation) {
-        super(new DRVariable<T>(field.getField(), calculation));
-    }
-
-    /**
-     * <p>Constructor for VariableBuilder.</p>
-     *
-     * @param name        a {@link java.lang.String} object.
-     * @param field       a {@link software.xdev.dynamicreports.report.builder.FieldBuilder} object.
-     * @param calculation a {@link software.xdev.dynamicreports.report.constant.Calculation} object.
-     */
-    protected VariableBuilder(String name, FieldBuilder<?> field, Calculation calculation) {
-        super(new DRVariable<T>(name, field.getField(), calculation));
-    }
-
-    // simple expression
-
-    /**
-     * <p>Constructor for VariableBuilder.</p>
-     *
-     * @param expression  a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     * @param calculation a {@link software.xdev.dynamicreports.report.constant.Calculation} object.
-     */
-    protected VariableBuilder(DRIExpression<?> expression, Calculation calculation) {
-        super(new DRVariable<T>(expression, calculation));
-    }
-
-    /**
-     * <p>Constructor for VariableBuilder.</p>
-     *
-     * @param name        a {@link java.lang.String} object.
-     * @param expression  a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     * @param calculation a {@link software.xdev.dynamicreports.report.constant.Calculation} object.
-     */
-    protected VariableBuilder(String name, DRIExpression<?> expression, Calculation calculation) {
-        super(new DRVariable<T>(name, expression, calculation));
-    }
-
-    /**
-     * <p>setInitialValueExpression.</p>
-     *
-     * @param initialValueExpression a {@link software.xdev.dynamicreports.report.definition.expression.DRIJasperExpression} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.VariableBuilder} object.
-     */
-    public VariableBuilder<T> setInitialValueExpression(DRIJasperExpression<?> initialValueExpression) {
-        getObject().setInitialValueExpression(initialValueExpression);
-        return this;
-    }
-
-    /**
-     * <p>setResetType.</p>
-     *
-     * @param resetType a {@link software.xdev.dynamicreports.report.constant.Evaluation} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.VariableBuilder} object.
-     */
-    public VariableBuilder<T> setResetType(Evaluation resetType) {
-        getObject().setResetType(resetType);
-        return this;
-    }
-
-    /**
-     * <p>setResetGroup.</p>
-     *
-     * @param resetGroup a {@link software.xdev.dynamicreports.report.builder.group.GroupBuilder} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.VariableBuilder} object.
-     */
-    public VariableBuilder<T> setResetGroup(GroupBuilder<?> resetGroup) {
-        if (resetGroup != null) {
-            getObject().setResetGroup(resetGroup.getGroup());
-            setResetType(Evaluation.GROUP);
-        } else {
-            getObject().setResetGroup(null);
-        }
-        return this;
-    }
-
-    /**
-     * <p>getVariable.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.base.DRVariable} object.
-     */
-    public DRVariable<T> getVariable() {
-        return build();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public String getName() {
-        return getVariable().getName();
-    }
+	// column
+	
+	protected VariableBuilder(final ValueColumnBuilder<?, ?> column, final Calculation calculation)
+	{
+		super(new DRVariable<>(column.build(), calculation));
+	}
+	
+	protected VariableBuilder(final String name, final ValueColumnBuilder<?, ?> column, final Calculation calculation)
+	{
+		super(new DRVariable<>(name, column.build(), calculation));
+	}
+	
+	// field
+	
+	protected VariableBuilder(final FieldBuilder<?> field, final Calculation calculation)
+	{
+		super(new DRVariable<>(field.getField(), calculation));
+	}
+	
+	protected VariableBuilder(final String name, final FieldBuilder<?> field, final Calculation calculation)
+	{
+		super(new DRVariable<>(name, field.getField(), calculation));
+	}
+	
+	// simple expression
+	
+	protected VariableBuilder(final DRIExpression<?> expression, final Calculation calculation)
+	{
+		super(new DRVariable<>(expression, calculation));
+	}
+	
+	protected VariableBuilder(final String name, final DRIExpression<?> expression, final Calculation calculation)
+	{
+		super(new DRVariable<>(name, expression, calculation));
+	}
+	
+	public VariableBuilder<T> setInitialValueExpression(final DRIJasperExpression<?> initialValueExpression)
+	{
+		this.getObject().setInitialValueExpression(initialValueExpression);
+		return this;
+	}
+	
+	public VariableBuilder<T> setResetType(final Evaluation resetType)
+	{
+		this.getObject().setResetType(resetType);
+		return this;
+	}
+	
+	public VariableBuilder<T> setResetGroup(final GroupBuilder<?> resetGroup)
+	{
+		if(resetGroup != null)
+		{
+			this.getObject().setResetGroup(resetGroup.getGroup());
+			this.setResetType(Evaluation.GROUP);
+		}
+		else
+		{
+			this.getObject().setResetGroup(null);
+		}
+		return this;
+	}
+	
+	public DRVariable<T> getVariable()
+	{
+		return this.build();
+	}
+	
+	@Override
+	public String getName()
+	{
+		return this.getVariable().getName();
+	}
 }

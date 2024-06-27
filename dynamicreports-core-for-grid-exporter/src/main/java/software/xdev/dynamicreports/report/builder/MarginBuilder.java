@@ -18,83 +18,47 @@
 package software.xdev.dynamicreports.report.builder;
 
 import software.xdev.dynamicreports.report.base.DRMargin;
-import software.xdev.dynamicreports.report.constant.Constants;
 
-/**
- * <p>MarginBuilder class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class MarginBuilder extends AbstractBuilder<MarginBuilder, DRMargin> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    /**
-     * <p>Constructor for MarginBuilder.</p>
-     */
-    protected MarginBuilder() {
-        super(new DRMargin());
-    }
+public class MarginBuilder extends AbstractBuilder<MarginBuilder, DRMargin>
+{
 
-    /**
-     * <p>Constructor for MarginBuilder.</p>
-     *
-     * @param margin a int.
-     */
-    protected MarginBuilder(int margin) {
-        super(new DRMargin(margin));
-    }
-
-    /**
-     * <p>setTop.</p>
-     *
-     * @param top a int.
-     * @return a {@link software.xdev.dynamicreports.report.builder.MarginBuilder} object.
-     */
-    public MarginBuilder setTop(int top) {
-        getObject().setTop(top);
-        return this;
-    }
-
-    /**
-     * <p>setLeft.</p>
-     *
-     * @param left a int.
-     * @return a {@link software.xdev.dynamicreports.report.builder.MarginBuilder} object.
-     */
-    public MarginBuilder setLeft(int left) {
-        getObject().setLeft(left);
-        return this;
-    }
-
-    /**
-     * <p>setBottom.</p>
-     *
-     * @param bottom a int.
-     * @return a {@link software.xdev.dynamicreports.report.builder.MarginBuilder} object.
-     */
-    public MarginBuilder setBottom(int bottom) {
-        getObject().setBottom(bottom);
-        return this;
-    }
-
-    /**
-     * <p>setRight.</p>
-     *
-     * @param right a int.
-     * @return a {@link software.xdev.dynamicreports.report.builder.MarginBuilder} object.
-     */
-    public MarginBuilder setRight(int right) {
-        getObject().setRight(right);
-        return this;
-    }
-
-    /**
-     * <p>getMargin.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.base.DRMargin} object.
-     */
-    public DRMargin getMargin() {
-        return build();
-    }
+	protected MarginBuilder()
+	{
+		super(new DRMargin());
+	}
+	
+	protected MarginBuilder(final int margin)
+	{
+		super(new DRMargin(margin));
+	}
+	
+	public MarginBuilder setTop(final int top)
+	{
+		this.getObject().setTop(top);
+		return this;
+	}
+	
+	public MarginBuilder setLeft(final int left)
+	{
+		this.getObject().setLeft(left);
+		return this;
+	}
+	
+	public MarginBuilder setBottom(final int bottom)
+	{
+		this.getObject().setBottom(bottom);
+		return this;
+	}
+	
+	public MarginBuilder setRight(final int right)
+	{
+		this.getObject().setRight(right);
+		return this;
+	}
+	
+	public DRMargin getMargin()
+	{
+		return this.build();
+	}
 }

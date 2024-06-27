@@ -18,24 +18,14 @@
 package software.xdev.dynamicreports.report.builder.style;
 
 import software.xdev.dynamicreports.report.base.style.DRConditionalStyle;
-import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.definition.expression.DRIExpression;
 
-/**
- * <p>ConditionalStyleBuilder class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class ConditionalStyleBuilder extends BaseStyleBuilder<ConditionalStyleBuilder, DRConditionalStyle> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    /**
-     * <p>Constructor for ConditionalStyleBuilder.</p>
-     *
-     * @param conditionExpression a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     */
-    protected ConditionalStyleBuilder(DRIExpression<Boolean> conditionExpression) {
-        super(new DRConditionalStyle(conditionExpression));
-    }
+public class ConditionalStyleBuilder extends BaseStyleBuilder<ConditionalStyleBuilder, DRConditionalStyle>
+{
+
+	protected ConditionalStyleBuilder(final DRIExpression<Boolean> conditionExpression)
+	{
+		super(new DRConditionalStyle(conditionExpression));
+	}
 }

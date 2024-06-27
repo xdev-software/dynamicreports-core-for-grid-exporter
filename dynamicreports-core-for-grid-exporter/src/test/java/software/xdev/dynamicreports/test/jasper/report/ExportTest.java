@@ -34,9 +34,6 @@ import software.xdev.dynamicreports.report.datasource.DRDataSource;
 import software.xdev.dynamicreports.report.exception.DRException;
 
 
-/**
- * @author Ricardo Mariaca
- */
 class ExportTest
 {
 	JasperReportBuilder report;

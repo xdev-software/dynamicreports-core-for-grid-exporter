@@ -19,180 +19,175 @@ package software.xdev.dynamicreports.jasper.transformation;
 
 import java.util.Map;
 
+import net.sf.jasperreports.engine.design.JasperDesign;
 import software.xdev.dynamicreports.design.definition.DRIDesignDataset;
 import software.xdev.dynamicreports.design.definition.DRIDesignReport;
 import software.xdev.dynamicreports.jasper.base.JasperCustomValues;
 import software.xdev.dynamicreports.jasper.base.JasperReportDesign;
 import software.xdev.dynamicreports.report.definition.ReportParameters;
 import software.xdev.dynamicreports.report.exception.DRException;
-import net.sf.jasperreports.engine.design.JasperDesign;
 
-/**
- * <p>JasperTransform class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class JasperTransform implements JasperTransformAccessor {
-    private final DRIDesignReport report;
-    private final JasperReportDesign jasperReportDesign;
-    private ReportTransform reportTransform;
-    private MainDatasetExpressionTransform mainDatasetExpressionTransform;
-    private BandTransform bandTransform;
-    private ComponentTransform componentTransform;
-    private GroupTransform groupTransform;
-    private StyleTransform styleTransform;
-    private CrosstabTransform crosstabTransform;
-    private DatasetTransform datasetTransform;
-    private AbstractExpressionTransform expressionTransform;
 
-    /**
-     * <p>Constructor for JasperTransform.</p>
-     *
-     * @param report             a {@link software.xdev.dynamicreports.design.definition.DRIDesignReport} object.
-     * @param jasperReportDesign a {@link software.xdev.dynamicreports.jasper.base.JasperReportDesign} object.
-     * @throws software.xdev.dynamicreports.report.exception.DRException if any.
-     */
-    public JasperTransform(final DRIDesignReport report, final JasperReportDesign jasperReportDesign) throws DRException {
-        this.report = report;
-        this.jasperReportDesign = jasperReportDesign;
-        this.init();
-    }
-
-    private void init() throws DRException {
-        this.reportTransform = new ReportTransform(this);
-        this.mainDatasetExpressionTransform = new MainDatasetExpressionTransform(this);
-        this.groupTransform = new GroupTransform(this);
-        this.bandTransform = new BandTransform(this);
-        this.componentTransform = new ComponentTransform(this);
-        this.styleTransform = new StyleTransform(this);
-        this.crosstabTransform = new CrosstabTransform(this);
-        this.datasetTransform = new DatasetTransform(this);
-        this.transformToMainDataset();
-    }
-
-    /**
-     * <p>transform.</p>
-     */
-    public void transform() {
-        this.reportTransform.transform();
-        this.datasetTransform.transform();
-        this.groupTransform.transform();
-        this.mainDatasetExpressionTransform.transform();
-        this.reportTransform.transformExpressions();
-        this.groupTransform.transformExpressions();
-        this.styleTransform.transform();
-        this.bandTransform.transform();
-        this.reportTransform.addDependencies();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public ReportTransform getReportTransform() {
-        return this.reportTransform;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public CrosstabTransform getCrosstabTransform() {
-        return this.crosstabTransform;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public ComponentTransform getComponentTransform() {
-        return this.componentTransform;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void transformToMainDataset() {
-        this.transformToDataset(null);
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void transformToDataset(final DRIDesignDataset dataset) {
-        if (dataset != null) {
-            this.expressionTransform = this.datasetTransform.getDatasetExpressionTransform(dataset);
-        } else {
-            this.expressionTransform = this.mainDatasetExpressionTransform;
-        }
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public AbstractExpressionTransform getExpressionTransform() {
-        return this.expressionTransform;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public AbstractExpressionTransform getExpressionTransform(final DRIDesignDataset dataset) {
-        if (dataset == null) {
-            return this.mainDatasetExpressionTransform;
-        } else {
-            return this.getDatasetTransform().getDatasetExpressionTransform(dataset);
-        }
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public GroupTransform getGroupTransform() {
-        return this.groupTransform;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public StyleTransform getStyleTransform() {
-        return this.styleTransform;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DatasetTransform getDatasetTransform() {
-        return this.datasetTransform;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRIDesignReport getReport() {
-        return this.report;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public JasperCustomValues getCustomValues() {
-        return this.jasperReportDesign.getCustomValues();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public JasperDesign getDesign() {
-        return this.jasperReportDesign.getDesign();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Map<String, Object> getParameters() {
-        return this.jasperReportDesign.getParameters();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Map<String, Object> getParameterValues() {
-        return this.report.getParameterValues();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Integer getStartPageNumber() {
-        return this.jasperReportDesign.getStartPageNumber();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public ReportParameters getMasterReportParameters() {
-        return this.jasperReportDesign.getMasterReportParameters();
-    }
+public class JasperTransform implements JasperTransformAccessor
+{
+	private final DRIDesignReport report;
+	private final JasperReportDesign jasperReportDesign;
+	private ReportTransform reportTransform;
+	private MainDatasetExpressionTransform mainDatasetExpressionTransform;
+	private BandTransform bandTransform;
+	private ComponentTransform componentTransform;
+	private GroupTransform groupTransform;
+	private StyleTransform styleTransform;
+	private CrosstabTransform crosstabTransform;
+	private DatasetTransform datasetTransform;
+	private AbstractExpressionTransform expressionTransform;
+	
+	public JasperTransform(final DRIDesignReport report, final JasperReportDesign jasperReportDesign) throws DRException
+	{
+		this.report = report;
+		this.jasperReportDesign = jasperReportDesign;
+		this.init();
+	}
+	
+	private void init() throws DRException
+	{
+		this.reportTransform = new ReportTransform(this);
+		this.mainDatasetExpressionTransform = new MainDatasetExpressionTransform(this);
+		this.groupTransform = new GroupTransform(this);
+		this.bandTransform = new BandTransform(this);
+		this.componentTransform = new ComponentTransform(this);
+		this.styleTransform = new StyleTransform(this);
+		this.crosstabTransform = new CrosstabTransform(this);
+		this.datasetTransform = new DatasetTransform(this);
+		this.transformToMainDataset();
+	}
+	
+	public void transform()
+	{
+		this.reportTransform.transform();
+		this.datasetTransform.transform();
+		this.groupTransform.transform();
+		this.mainDatasetExpressionTransform.transform();
+		this.reportTransform.transformExpressions();
+		this.groupTransform.transformExpressions();
+		this.styleTransform.transform();
+		this.bandTransform.transform();
+		this.reportTransform.addDependencies();
+	}
+	
+	@Override
+	public ReportTransform getReportTransform()
+	{
+		return this.reportTransform;
+	}
+	
+	@Override
+	public CrosstabTransform getCrosstabTransform()
+	{
+		return this.crosstabTransform;
+	}
+	
+	@Override
+	public ComponentTransform getComponentTransform()
+	{
+		return this.componentTransform;
+	}
+	
+	@Override
+	public void transformToMainDataset()
+	{
+		this.transformToDataset(null);
+	}
+	
+	@Override
+	public void transformToDataset(final DRIDesignDataset dataset)
+	{
+		if(dataset != null)
+		{
+			this.expressionTransform = this.datasetTransform.getDatasetExpressionTransform(dataset);
+		}
+		else
+		{
+			this.expressionTransform = this.mainDatasetExpressionTransform;
+		}
+	}
+	
+	@Override
+	public AbstractExpressionTransform getExpressionTransform()
+	{
+		return this.expressionTransform;
+	}
+	
+	@Override
+	public AbstractExpressionTransform getExpressionTransform(final DRIDesignDataset dataset)
+	{
+		if(dataset == null)
+		{
+			return this.mainDatasetExpressionTransform;
+		}
+		else
+		{
+			return this.getDatasetTransform().getDatasetExpressionTransform(dataset);
+		}
+	}
+	
+	@Override
+	public GroupTransform getGroupTransform()
+	{
+		return this.groupTransform;
+	}
+	
+	@Override
+	public StyleTransform getStyleTransform()
+	{
+		return this.styleTransform;
+	}
+	
+	@Override
+	public DatasetTransform getDatasetTransform()
+	{
+		return this.datasetTransform;
+	}
+	
+	@Override
+	public DRIDesignReport getReport()
+	{
+		return this.report;
+	}
+	
+	@Override
+	public JasperCustomValues getCustomValues()
+	{
+		return this.jasperReportDesign.getCustomValues();
+	}
+	
+	@Override
+	public JasperDesign getDesign()
+	{
+		return this.jasperReportDesign.getDesign();
+	}
+	
+	@Override
+	public Map<String, Object> getParameters()
+	{
+		return this.jasperReportDesign.getParameters();
+	}
+	
+	@Override
+	public Map<String, Object> getParameterValues()
+	{
+		return this.report.getParameterValues();
+	}
+	
+	@Override
+	public Integer getStartPageNumber()
+	{
+		return this.jasperReportDesign.getStartPageNumber();
+	}
+	
+	@Override
+	public ReportParameters getMasterReportParameters()
+	{
+		return this.jasperReportDesign.getMasterReportParameters();
+	}
 }

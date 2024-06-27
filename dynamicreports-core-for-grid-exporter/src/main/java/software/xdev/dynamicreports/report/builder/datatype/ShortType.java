@@ -17,34 +17,28 @@
  */
 package software.xdev.dynamicreports.report.builder.datatype;
 
-import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.constant.HorizontalTextAlignment;
 import software.xdev.dynamicreports.report.defaults.Defaults;
 
-/**
- * <p>ShortType class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class ShortType extends NumberType<Short> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    /** {@inheritDoc} */
-    @Override
-    public String getPattern() {
-        return Defaults.getDefaults().getShortType().getPattern();
-    }
+public class ShortType extends NumberType<Short>
+{
 
-    /** {@inheritDoc} */
-    @Override
-    public HorizontalTextAlignment getHorizontalTextAlignment() {
-        return Defaults.getDefaults().getShortType().getHorizontalTextAlignment();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    protected Short numberToValue(Number number) {
-        return number.shortValue();
-    }
+	@Override
+	public String getPattern()
+	{
+		return Defaults.getDefaults().getShortType().getPattern();
+	}
+	
+	@Override
+	public HorizontalTextAlignment getHorizontalTextAlignment()
+	{
+		return Defaults.getDefaults().getShortType().getHorizontalTextAlignment();
+	}
+	
+	@Override
+	protected Short numberToValue(final Number number)
+	{
+		return number.shortValue();
+	}
 }

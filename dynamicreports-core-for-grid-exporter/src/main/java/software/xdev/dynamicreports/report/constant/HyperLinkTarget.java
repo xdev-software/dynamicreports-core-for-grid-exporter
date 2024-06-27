@@ -17,12 +17,7 @@
  */
 package software.xdev.dynamicreports.report.constant;
 
-/**
- * <p>HyperLinkTarget class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public enum HyperLinkTarget {
-    NONE, SELF, BLANK, PARENT, TOP
+public enum HyperLinkTarget
+{
+	NONE, SELF, BLANK, PARENT, TOP
 }

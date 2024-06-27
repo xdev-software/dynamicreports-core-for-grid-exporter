@@ -17,6 +17,13 @@
  */
 package software.xdev.dynamicreports.test.jasper.subtotal;
 
+import static software.xdev.dynamicreports.report.builder.DynamicReports.col;
+import static software.xdev.dynamicreports.report.builder.DynamicReports.grp;
+import static software.xdev.dynamicreports.report.builder.DynamicReports.sbt;
+
+import java.util.Locale;
+
+import net.sf.jasperreports.engine.JRDataSource;
 import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
 import software.xdev.dynamicreports.report.builder.column.TextColumnBuilder;
 import software.xdev.dynamicreports.report.builder.group.ColumnGroupBuilder;
@@ -24,62 +31,61 @@ import software.xdev.dynamicreports.report.builder.subtotal.AggregationSubtotalB
 import software.xdev.dynamicreports.report.constant.Calculation;
 import software.xdev.dynamicreports.report.datasource.DRDataSource;
 import software.xdev.dynamicreports.test.jasper.AbstractJasperValueTest;
-import net.sf.jasperreports.engine.JRDataSource;
 
-import java.util.Locale;
 
-import static software.xdev.dynamicreports.report.builder.DynamicReports.col;
-import static software.xdev.dynamicreports.report.builder.DynamicReports.grp;
-import static software.xdev.dynamicreports.report.builder.DynamicReports.sbt;
-
-/**
- * @author Ricardo Mariaca
- */
-public class GroupSubtotal2Test extends AbstractJasperValueTest {
-    private AggregationSubtotalBuilder<Double> subtotal1;
-    private AggregationSubtotalBuilder<Integer> subtotal2;
-    private AggregationSubtotalBuilder<Integer> subtotal3;
-
-    @Override
-    protected void configureReport(JasperReportBuilder rb) {
-        TextColumnBuilder<String> column1;
-        TextColumnBuilder<Integer> column2;
-        ColumnGroupBuilder group1;
-
-        rb.setLocale(Locale.ENGLISH)
-          .columns(column1 = col.column("Column1", "field1", String.class), column2 = col.column("Column2", "field2", Integer.class))
-          .groupBy(group1 = grp.group(column1).headerWithSubtotal())
-          .subtotalsAtFirstGroupHeader(subtotal1 = sbt.aggregate(column2, Calculation.AVERAGE))
-          .subtotalsAtGroupHeader(group1, subtotal2 = sbt.sum(column2))
-          .subtotalsAtSummary(subtotal3 = sbt.sum(column2));
-    }
-
-    @Override
-    public void test() {
-        super.test();
-
-        numberOfPagesTest(1);
-
-        // groupHeader
-        subtotalCountTest(subtotal1, 2);
-        subtotalValueTest(subtotal1, "2", "4.5");
-        subtotalIndexCountTest(subtotal2, 2, 2);
-        subtotalIndexValueTest(subtotal2, 2, "6", "9");
-
-        subtotalCountTest(subtotal3, 1);
-        subtotalValueTest(subtotal3, "15");
-    }
-
-    @Override
-    protected JRDataSource createDataSource() {
-        DRDataSource dataSource = new DRDataSource("field1", "field2");
-        int count = 1;
-        for (int i = 0; i < 3; i++) {
-            dataSource.add("group1", count++);
-        }
-        for (int i = 0; i < 2; i++) {
-            dataSource.add("group2", count++);
-        }
-        return dataSource;
-    }
+public class GroupSubtotal2Test extends AbstractJasperValueTest
+{
+	private AggregationSubtotalBuilder<Double> subtotal1;
+	private AggregationSubtotalBuilder<Integer> subtotal2;
+	private AggregationSubtotalBuilder<Integer> subtotal3;
+	
+	@Override
+	protected void configureReport(final JasperReportBuilder rb)
+	{
+		final TextColumnBuilder<String> column1;
+		final TextColumnBuilder<Integer> column2;
+		final ColumnGroupBuilder group1;
+		
+		rb.setLocale(Locale.ENGLISH)
+			.columns(
+				column1 = col.column("Column1", "field1", String.class),
+				column2 = col.column("Column2", "field2", Integer.class))
+			.groupBy(group1 = grp.group(column1).headerWithSubtotal())
+			.subtotalsAtFirstGroupHeader(this.subtotal1 = sbt.aggregate(column2, Calculation.AVERAGE))
+			.subtotalsAtGroupHeader(group1, this.subtotal2 = sbt.sum(column2))
+			.subtotalsAtSummary(this.subtotal3 = sbt.sum(column2));
+	}
+	
+	@Override
+	public void test()
+	{
+		super.test();
+		
+		this.numberOfPagesTest(1);
+		
+		// groupHeader
+		this.subtotalCountTest(this.subtotal1, 2);
+		this.subtotalValueTest(this.subtotal1, "2", "4.5");
+		this.subtotalIndexCountTest(this.subtotal2, 2, 2);
+		this.subtotalIndexValueTest(this.subtotal2, 2, "6", "9");
+		
+		this.subtotalCountTest(this.subtotal3, 1);
+		this.subtotalValueTest(this.subtotal3, "15");
+	}
+	
+	@Override
+	protected JRDataSource createDataSource()
+	{
+		final DRDataSource dataSource = new DRDataSource("field1", "field2");
+		int count = 1;
+		for(int i = 0; i < 3; i++)
+		{
+			dataSource.add("group1", count++);
+		}
+		for(int i = 0; i < 2; i++)
+		{
+			dataSource.add("group2", count++);
+		}
+		return dataSource;
+	}
 }

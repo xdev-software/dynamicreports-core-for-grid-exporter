@@ -17,35 +17,26 @@
  */
 package software.xdev.dynamicreports.report.base.style;
 
-import software.xdev.dynamicreports.report.constant.Constants;
-import software.xdev.dynamicreports.report.definition.expression.DRIExpression;
-import software.xdev.dynamicreports.report.definition.style.DRIConditionalStyle;
 import org.apache.commons.lang3.Validate;
 
-/**
- * <p>DRConditionalStyle class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class DRConditionalStyle extends DRBaseStyle implements DRIConditionalStyle {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
+import software.xdev.dynamicreports.report.definition.expression.DRIExpression;
+import software.xdev.dynamicreports.report.definition.style.DRIConditionalStyle;
 
-    private DRIExpression<Boolean> conditionExpression;
 
-    /**
-     * <p>Constructor for DRConditionalStyle.</p>
-     *
-     * @param conditionExpression a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     */
-    public DRConditionalStyle(DRIExpression<Boolean> conditionExpression) {
-        Validate.notNull(conditionExpression, "conditionExpression must not be null");
-        this.conditionExpression = conditionExpression;
-    }
+public class DRConditionalStyle extends DRBaseStyle implements DRIConditionalStyle
+{
 
-    /** {@inheritDoc} */
-    @Override
-    public DRIExpression<Boolean> getConditionExpression() {
-        return conditionExpression;
-    }
+	private final DRIExpression<Boolean> conditionExpression;
+	
+	public DRConditionalStyle(final DRIExpression<Boolean> conditionExpression)
+	{
+		Validate.notNull(conditionExpression, "conditionExpression must not be null");
+		this.conditionExpression = conditionExpression;
+	}
+	
+	@Override
+	public DRIExpression<Boolean> getConditionExpression()
+	{
+		return this.conditionExpression;
+	}
 }

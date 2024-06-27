@@ -19,129 +19,73 @@ package software.xdev.dynamicreports.report.builder.condition;
 
 import software.xdev.dynamicreports.report.definition.DRIValue;
 
-/**
- * A set of build in condition expressions
- *
- * @author Ricardo Mariaca
- * 
- */
-public class Conditions {
 
-    /**
-     * <p>equal.</p>
-     *
-     * @param value  a {@link software.xdev.dynamicreports.report.definition.DRIValue} object.
-     * @param values a T object.
-     * @param values a T object.
-     * @param <T>    a T object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.condition.EqualExpression} object.
-     */
-    @SafeVarargs
-    public static <T> EqualExpression equal(DRIValue<T> value, T... values) {
-        return new EqualExpression(value, values);
-    }
-
-    /**
-     * <p>equal.</p>
-     *
-     * @param value  a {@link software.xdev.dynamicreports.report.definition.DRIValue} object.
-     * @param number a {@link java.lang.Number} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.condition.EqualValueExpression} object.
-     */
-    public static <T extends Number> EqualValueExpression<T> equal(DRIValue<T> value, Number... number) {
-        return new EqualValueExpression<T>(value, number);
-    }
-
-    /**
-     * <p>unEqual.</p>
-     *
-     * @param value  a {@link software.xdev.dynamicreports.report.definition.DRIValue} object.
-     * @param values a T object.
-     * @param values a T object.
-     * @param <T>    a T object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.condition.UnEqualExpression} object.
-     */
-    @SafeVarargs
-    public static <T> UnEqualExpression unEqual(DRIValue<T> value, T... values) {
-        return new UnEqualExpression(value, values);
-    }
-
-    /**
-     * <p>unEqual.</p>
-     *
-     * @param value  a {@link software.xdev.dynamicreports.report.definition.DRIValue} object.
-     * @param number a {@link java.lang.Number} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.condition.UnEqualValueExpression} object.
-     */
-    public static <T extends Number> UnEqualValueExpression<T> unEqual(DRIValue<T> value, Number... number) {
-        return new UnEqualValueExpression<T>(value, number);
-    }
-
-    /**
-     * <p>smaller.</p>
-     *
-     * @param value  a {@link software.xdev.dynamicreports.report.definition.DRIValue} object.
-     * @param number a {@link java.lang.Number} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.condition.SmallerValueExpression} object.
-     */
-    public static <T extends Number> SmallerValueExpression<T> smaller(DRIValue<T> value, Number number) {
-        return new SmallerValueExpression<T>(value, number);
-    }
-
-    /**
-     * <p>smallerOrEquals.</p>
-     *
-     * @param value  a {@link software.xdev.dynamicreports.report.definition.DRIValue} object.
-     * @param number a {@link java.lang.Number} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.condition.SmallerOrEqualsValueExpression} object.
-     */
-    public static <T extends Number> SmallerOrEqualsValueExpression<T> smallerOrEquals(DRIValue<T> value, Number number) {
-        return new SmallerOrEqualsValueExpression<T>(value, number);
-    }
-
-    /**
-     * <p>greater.</p>
-     *
-     * @param value  a {@link software.xdev.dynamicreports.report.definition.DRIValue} object.
-     * @param number a {@link java.lang.Number} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.condition.GreaterValueExpression} object.
-     */
-    public static <T extends Number> GreaterValueExpression<T> greater(DRIValue<T> value, Number number) {
-        return new GreaterValueExpression<T>(value, number);
-    }
-
-    /**
-     * <p>greaterOrEquals.</p>
-     *
-     * @param value  a {@link software.xdev.dynamicreports.report.definition.DRIValue} object.
-     * @param number a {@link java.lang.Number} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.condition.GreaterOrEqualsValueExpression} object.
-     */
-    public static <T extends Number> GreaterOrEqualsValueExpression<T> greaterOrEquals(DRIValue<T> value, Number number) {
-        return new GreaterOrEqualsValueExpression<T>(value, number);
-    }
-
-    /**
-     * <p>between.</p>
-     *
-     * @param value a {@link software.xdev.dynamicreports.report.definition.DRIValue} object.
-     * @param min   a {@link java.lang.Number} object.
-     * @param max   a {@link java.lang.Number} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.condition.BetweenValueExpression} object.
-     */
-    public static <T extends Number> BetweenValueExpression<T> between(DRIValue<T> value, Number min, Number max) {
-        return new BetweenValueExpression<T>(value, min, max);
-    }
-
-    /**
-     * <p>notBetween.</p>
-     *
-     * @param value a {@link software.xdev.dynamicreports.report.definition.DRIValue} object.
-     * @param min   a {@link java.lang.Number} object.
-     * @param max   a {@link java.lang.Number} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.condition.NotBetweenValueExpression} object.
-     */
-    public static <T extends Number> NotBetweenValueExpression<T> notBetween(DRIValue<T> value, Number min, Number max) {
-        return new NotBetweenValueExpression<T>(value, min, max);
-    }
+@SuppressWarnings("java:S1221")
+public final class Conditions
+{
+	private Conditions()
+	{
+	}
+	
+	@SafeVarargs
+	public static <T> EqualExpression equal(final DRIValue<T> value, final T... values)
+	{
+		return new EqualExpression(value, values);
+	}
+	
+	public static <T extends Number> EqualValueExpression<T> equal(final DRIValue<T> value, final Number... number)
+	{
+		return new EqualValueExpression<>(value, number);
+	}
+	
+	@SafeVarargs
+	public static <T> UnEqualExpression unEqual(final DRIValue<T> value, final T... values)
+	{
+		return new UnEqualExpression(value, values);
+	}
+	
+	public static <T extends Number> UnEqualValueExpression<T> unEqual(final DRIValue<T> value, final Number... number)
+	{
+		return new UnEqualValueExpression<>(value, number);
+	}
+	
+	public static <T extends Number> SmallerValueExpression<T> smaller(final DRIValue<T> value, final Number number)
+	{
+		return new SmallerValueExpression<>(value, number);
+	}
+	
+	public static <T extends Number> SmallerOrEqualsValueExpression<T> smallerOrEquals(
+		final DRIValue<T> value,
+		final Number number)
+	{
+		return new SmallerOrEqualsValueExpression<>(value, number);
+	}
+	
+	public static <T extends Number> GreaterValueExpression<T> greater(final DRIValue<T> value, final Number number)
+	{
+		return new GreaterValueExpression<>(value, number);
+	}
+	
+	public static <T extends Number> GreaterOrEqualsValueExpression<T> greaterOrEquals(
+		final DRIValue<T> value,
+		final Number number)
+	{
+		return new GreaterOrEqualsValueExpression<>(value, number);
+	}
+	
+	public static <T extends Number> BetweenValueExpression<T> between(
+		final DRIValue<T> value,
+		final Number min,
+		final Number max)
+	{
+		return new BetweenValueExpression<>(value, min, max);
+	}
+	
+	public static <T extends Number> NotBetweenValueExpression<T> notBetween(
+		final DRIValue<T> value,
+		final Number min,
+		final Number max)
+	{
+		return new NotBetweenValueExpression<>(value, min, max);
+	}
 }

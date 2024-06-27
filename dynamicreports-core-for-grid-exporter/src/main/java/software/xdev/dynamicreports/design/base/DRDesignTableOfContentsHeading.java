@@ -19,32 +19,21 @@ package software.xdev.dynamicreports.design.base;
 
 import software.xdev.dynamicreports.design.base.component.DRDesignTextField;
 import software.xdev.dynamicreports.design.definition.DRIDesignTableOfContentsHeading;
-import software.xdev.dynamicreports.report.constant.Constants;
 
-/**
- * <p>DRDesignTableOfContentsHeading class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class DRDesignTableOfContentsHeading implements DRIDesignTableOfContentsHeading {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    private DRDesignTextField referenceField;
+public class DRDesignTableOfContentsHeading implements DRIDesignTableOfContentsHeading
+{
 
-    /** {@inheritDoc} */
-    @Override
-    public DRDesignTextField getReferenceField() {
-        return referenceField;
-    }
-
-    /**
-     * <p>Setter for the field <code>referenceField</code>.</p>
-     *
-     * @param referenceField a {@link software.xdev.dynamicreports.design.base.component.DRDesignTextField} object.
-     */
-    public void setReferenceField(DRDesignTextField referenceField) {
-        this.referenceField = referenceField;
-    }
-
+	private DRDesignTextField referenceField;
+	
+	@Override
+	public DRDesignTextField getReferenceField()
+	{
+		return this.referenceField;
+	}
+	
+	public void setReferenceField(final DRDesignTextField referenceField)
+	{
+		this.referenceField = referenceField;
+	}
 }

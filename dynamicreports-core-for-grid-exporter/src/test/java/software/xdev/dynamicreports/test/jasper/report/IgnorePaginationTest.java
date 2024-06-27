@@ -17,48 +17,51 @@
  */
 package software.xdev.dynamicreports.test.jasper.report;
 
-import org.junit.jupiter.api.Assertions;
-import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
-import software.xdev.dynamicreports.report.datasource.DRDataSource;
-import software.xdev.dynamicreports.test.jasper.AbstractJasperValueTest;
-import net.sf.jasperreports.engine.JRDataSource;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.type.OrientationEnum;
+import static software.xdev.dynamicreports.report.builder.DynamicReports.col;
 
 import java.io.Serializable;
 
-import static software.xdev.dynamicreports.report.builder.DynamicReports.col;
+import org.junit.jupiter.api.Assertions;
 
-/**
- * @author Ricardo Mariaca
- */
-public class IgnorePaginationTest extends AbstractJasperValueTest implements Serializable {
-    private static final long serialVersionUID = 1L;
+import net.sf.jasperreports.engine.JRDataSource;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.type.OrientationEnum;
+import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
+import software.xdev.dynamicreports.report.datasource.DRDataSource;
+import software.xdev.dynamicreports.test.jasper.AbstractJasperValueTest;
 
-    @Override
-    protected void configureReport(JasperReportBuilder rb) {
 
-        rb.columns(col.column("Column1", "field1", Integer.class)).setIgnorePagination(true);
-    }
+public class IgnorePaginationTest extends AbstractJasperValueTest implements Serializable
+{
 
-    @Override
-    public void test() {
-        super.test();
-
-        numberOfPagesTest(1);
-
-        JasperPrint jasperPrint = getJasperPrint();
-        Assertions.assertEquals(OrientationEnum.PORTRAIT, jasperPrint.getOrientationValue());
-        Assertions.assertEquals(595, jasperPrint.getPageWidth());
-        Assertions.assertEquals(1636, jasperPrint.getPageHeight());
-    }
-
-    @Override
-    protected JRDataSource createDataSource() {
-        DRDataSource dataSource = new DRDataSource("field1");
-        for (int i = 0; i < 100; i++) {
-            dataSource.add(i);
-        }
-        return dataSource;
-    }
+	@Override
+	protected void configureReport(final JasperReportBuilder rb)
+	{
+		
+		rb.columns(col.column("Column1", "field1", Integer.class)).setIgnorePagination(true);
+	}
+	
+	@Override
+	public void test()
+	{
+		super.test();
+		
+		this.numberOfPagesTest(1);
+		
+		final JasperPrint jasperPrint = this.getJasperPrint();
+		Assertions.assertEquals(OrientationEnum.PORTRAIT, jasperPrint.getOrientationValue());
+		Assertions.assertEquals(595, jasperPrint.getPageWidth());
+		Assertions.assertEquals(1636, jasperPrint.getPageHeight());
+	}
+	
+	@Override
+	protected JRDataSource createDataSource()
+	{
+		final DRDataSource dataSource = new DRDataSource("field1");
+		for(int i = 0; i < 100; i++)
+		{
+			dataSource.add(i);
+		}
+		return dataSource;
+	}
 }

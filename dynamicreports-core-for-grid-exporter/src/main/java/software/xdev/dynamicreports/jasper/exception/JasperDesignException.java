@@ -17,33 +17,17 @@
  */
 package software.xdev.dynamicreports.jasper.exception;
 
-import software.xdev.dynamicreports.report.constant.Constants;
 
-/**
- * <p>JasperDesignException class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class JasperDesignException extends RuntimeException {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
+public class JasperDesignException extends RuntimeException
+{
 
-    /**
-     * <p>Constructor for JasperDesignException.</p>
-     *
-     * @param message a {@link java.lang.String} object.
-     */
-    public JasperDesignException(String message) {
-        super(message);
-    }
-
-    /**
-     * <p>Constructor for JasperDesignException.</p>
-     *
-     * @param message a {@link java.lang.String} object.
-     * @param cause   a {@link java.lang.Throwable} object.
-     */
-    public JasperDesignException(String message, Throwable cause) {
-        super(message, cause);
-    }
+	public JasperDesignException(final String message)
+	{
+		super(message);
+	}
+	
+	public JasperDesignException(final String message, final Throwable cause)
+	{
+		super(message, cause);
+	}
 }

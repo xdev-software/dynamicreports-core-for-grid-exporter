@@ -21,18 +21,15 @@ import java.util.List;
 
 import org.junit.jupiter.api.Assertions;
 
-import software.xdev.dynamicreports.report.builder.column.ColumnBuilder;
-import software.xdev.dynamicreports.report.builder.group.GroupBuilder;
-import software.xdev.dynamicreports.report.builder.subtotal.BaseSubtotalBuilder;
 import net.sf.jasperreports.engine.DefaultJasperReportsContext;
 import net.sf.jasperreports.engine.JRPrintElement;
 import net.sf.jasperreports.engine.JRPrintText;
 import net.sf.jasperreports.engine.util.JRStyledTextUtil;
+import software.xdev.dynamicreports.report.builder.column.ColumnBuilder;
+import software.xdev.dynamicreports.report.builder.group.GroupBuilder;
+import software.xdev.dynamicreports.report.builder.subtotal.BaseSubtotalBuilder;
 
 
-/**
- * @author Ricardo Mariaca
- */
 public abstract class AbstractJasperValueTest extends AbstractJasperTest
 {
 	
@@ -141,8 +138,9 @@ public abstract class AbstractJasperValueTest extends AbstractJasperTest
 		this.elementCountTest(JasperTestUtils.getSubtotalLabelName(subtotal, 1), expectedNumberOfElements);
 	}
 	
-	protected void subtotalLabelValueTest(final BaseSubtotalBuilder<?, ?> subtotal, final int index,
-        final String value)
+	protected void subtotalLabelValueTest(
+		final BaseSubtotalBuilder<?, ?> subtotal, final int index,
+		final String value)
 	{
 		this.elementValueTest(JasperTestUtils.getSubtotalLabelName(subtotal, 1), index, value);
 	}

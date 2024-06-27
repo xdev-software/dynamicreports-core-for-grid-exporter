@@ -18,47 +18,33 @@
 package software.xdev.dynamicreports.jasper.base.export;
 
 import software.xdev.dynamicreports.jasper.definition.export.JasperICsvExporter;
-import software.xdev.dynamicreports.report.constant.Constants;
 
-/**
- * <p>JasperCsvExporter class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class JasperCsvExporter extends AbstractJasperExporter implements JasperICsvExporter {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    private String fieldDelimiter;
-    private String recordDelimiter;
+public class JasperCsvExporter extends AbstractJasperExporter implements JasperICsvExporter
+{
 
-    /** {@inheritDoc} */
-    @Override
-    public String getFieldDelimiter() {
-        return fieldDelimiter;
-    }
-
-    /**
-     * <p>Setter for the field <code>fieldDelimiter</code>.</p>
-     *
-     * @param fieldDelimiter a {@link java.lang.String} object.
-     */
-    public void setFieldDelimiter(String fieldDelimiter) {
-        this.fieldDelimiter = fieldDelimiter;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public String getRecordDelimiter() {
-        return recordDelimiter;
-    }
-
-    /**
-     * <p>Setter for the field <code>recordDelimiter</code>.</p>
-     *
-     * @param recordDelimiter a {@link java.lang.String} object.
-     */
-    public void setRecordDelimiter(String recordDelimiter) {
-        this.recordDelimiter = recordDelimiter;
-    }
+	private String fieldDelimiter;
+	private String recordDelimiter;
+	
+	@Override
+	public String getFieldDelimiter()
+	{
+		return this.fieldDelimiter;
+	}
+	
+	public void setFieldDelimiter(final String fieldDelimiter)
+	{
+		this.fieldDelimiter = fieldDelimiter;
+	}
+	
+	@Override
+	public String getRecordDelimiter()
+	{
+		return this.recordDelimiter;
+	}
+	
+	public void setRecordDelimiter(final String recordDelimiter)
+	{
+		this.recordDelimiter = recordDelimiter;
+	}
 }

@@ -17,79 +17,30 @@
  */
 package software.xdev.dynamicreports.design.definition.style;
 
-import software.xdev.dynamicreports.report.constant.LineSpacing;
-
 import java.io.Serializable;
 import java.util.List;
 
-/**
- * <p>DRIDesignParagraph interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface DRIDesignParagraph extends Serializable {
+import software.xdev.dynamicreports.report.constant.LineSpacing;
 
-    /**
-     * <p>getLineSpacing.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.constant.LineSpacing} object.
-     */
-    public LineSpacing getLineSpacing();
 
-    /**
-     * <p>getLineSpacingSize.</p>
-     *
-     * @return a {@link java.lang.Float} object.
-     */
-    public Float getLineSpacingSize();
-
-    /**
-     * <p>getFirstLineIndent.</p>
-     *
-     * @return a {@link java.lang.Integer} object.
-     */
-    public Integer getFirstLineIndent();
-
-    /**
-     * <p>getLeftIndent.</p>
-     *
-     * @return a {@link java.lang.Integer} object.
-     */
-    public Integer getLeftIndent();
-
-    /**
-     * <p>getRightIndent.</p>
-     *
-     * @return a {@link java.lang.Integer} object.
-     */
-    public Integer getRightIndent();
-
-    /**
-     * <p>getSpacingBefore.</p>
-     *
-     * @return a {@link java.lang.Integer} object.
-     */
-    public Integer getSpacingBefore();
-
-    /**
-     * <p>getSpacingAfter.</p>
-     *
-     * @return a {@link java.lang.Integer} object.
-     */
-    public Integer getSpacingAfter();
-
-    /**
-     * <p>getTabStopWidth.</p>
-     *
-     * @return a {@link java.lang.Integer} object.
-     */
-    public Integer getTabStopWidth();
-
-    /**
-     * <p>getTabStops.</p>
-     *
-     * @return a {@link java.util.List} object.
-     */
-    public List<DRIDesignTabStop> getTabStops();
+public interface DRIDesignParagraph extends Serializable
+{
+	
+	public LineSpacing getLineSpacing();
+	
+	public Float getLineSpacingSize();
+	
+	public Integer getFirstLineIndent();
+	
+	public Integer getLeftIndent();
+	
+	public Integer getRightIndent();
+	
+	public Integer getSpacingBefore();
+	
+	public Integer getSpacingAfter();
+	
+	public Integer getTabStopWidth();
+	
+	public List<DRIDesignTabStop> getTabStops();
 }

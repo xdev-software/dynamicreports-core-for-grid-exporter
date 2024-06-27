@@ -19,26 +19,11 @@ package software.xdev.dynamicreports.design.definition.component;
 
 import software.xdev.dynamicreports.design.definition.style.DRIDesignPen;
 
-/**
- * <p>DRIDesignRectangle interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface DRIDesignRectangle extends DRIDesignComponent {
 
-    /**
-     * <p>getRadius.</p>
-     *
-     * @return a {@link java.lang.Integer} object.
-     */
-    public Integer getRadius();
-
-    /**
-     * <p>getPen.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.design.definition.style.DRIDesignPen} object.
-     */
-    public DRIDesignPen getPen();
-
+public interface DRIDesignRectangle extends DRIDesignComponent
+{
+	
+	public Integer getRadius();
+	
+	public DRIDesignPen getPen();
 }

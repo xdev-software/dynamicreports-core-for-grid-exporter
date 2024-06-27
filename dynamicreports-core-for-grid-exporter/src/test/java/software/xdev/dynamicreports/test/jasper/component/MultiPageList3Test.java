@@ -17,63 +17,70 @@
  */
 package software.xdev.dynamicreports.test.jasper.component;
 
-import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
-import software.xdev.dynamicreports.report.builder.column.TextColumnBuilder;
-import software.xdev.dynamicreports.report.builder.component.MultiPageListBuilder;
-import software.xdev.dynamicreports.report.datasource.DRDataSource;
-import software.xdev.dynamicreports.test.jasper.AbstractJasperValueTest;
-import net.sf.jasperreports.engine.JRDataSource;
-
 import static software.xdev.dynamicreports.report.builder.DynamicReports.cmp;
 import static software.xdev.dynamicreports.report.builder.DynamicReports.col;
 import static software.xdev.dynamicreports.report.builder.DynamicReports.report;
 import static software.xdev.dynamicreports.report.builder.DynamicReports.type;
 
-/**
- * @author Ricardo Mariaca
- */
-public class MultiPageList3Test extends AbstractJasperValueTest {
-    private TextColumnBuilder<Integer> column1;
+import net.sf.jasperreports.engine.JRDataSource;
+import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
+import software.xdev.dynamicreports.report.builder.column.TextColumnBuilder;
+import software.xdev.dynamicreports.report.builder.component.MultiPageListBuilder;
+import software.xdev.dynamicreports.report.datasource.DRDataSource;
+import software.xdev.dynamicreports.test.jasper.AbstractJasperValueTest;
 
-    @Override
-    protected void configureReport(JasperReportBuilder rb) {
-        column1 = col.column("Column1", "field1", type.integerType());
 
-        MultiPageListBuilder multiPageList = cmp.multiPageList();
-        multiPageList.add(cmp.subreport(createSubreport(80)));
-        multiPageList.newPage();
-        multiPageList.add(cmp.subreport(createSubreport(80)));
-        multiPageList.newPage();
-        multiPageList.add(cmp.subreport(createSubreport(10)));
-        multiPageList.newPage();
-        multiPageList.add(cmp.subreport(createSubreport(10)));
-        rb.title(multiPageList);
-    }
-
-    @Override
-    public void test() {
-        super.test();
-
-        numberOfPagesTest(4);
-
-        columnDetailAtPageIndexTest(column1, 0);
-        columnDetailAtPageIndexTest(column1, 1);
-        columnDetailAtPageIndexTest(column1, 2);
-        columnDetailAtPageIndexTest(column1, 3);
-    }
-
-    private JasperReportBuilder createSubreport(int numberOfRecords) {
-        JasperReportBuilder report = report();
-        report.title(cmp.verticalGap(6)).setPageColumnsPerPage(2).columns(column1).setDataSource(createSubreportDataSource(numberOfRecords));
-
-        return report;
-    }
-
-    protected JRDataSource createSubreportDataSource(int numberOfRecords) {
-        DRDataSource dataSource = new DRDataSource("field1");
-        for (int i = 0; i < numberOfRecords; i++) {
-            dataSource.add(i);
-        }
-        return dataSource;
-    }
+public class MultiPageList3Test extends AbstractJasperValueTest
+{
+	private TextColumnBuilder<Integer> column1;
+	
+	@Override
+	protected void configureReport(final JasperReportBuilder rb)
+	{
+		this.column1 = col.column("Column1", "field1", type.integerType());
+		
+		final MultiPageListBuilder multiPageList = cmp.multiPageList();
+		multiPageList.add(cmp.subreport(this.createSubreport(80)));
+		multiPageList.newPage();
+		multiPageList.add(cmp.subreport(this.createSubreport(80)));
+		multiPageList.newPage();
+		multiPageList.add(cmp.subreport(this.createSubreport(10)));
+		multiPageList.newPage();
+		multiPageList.add(cmp.subreport(this.createSubreport(10)));
+		rb.title(multiPageList);
+	}
+	
+	@Override
+	public void test()
+	{
+		super.test();
+		
+		this.numberOfPagesTest(4);
+		
+		this.columnDetailAtPageIndexTest(this.column1, 0);
+		this.columnDetailAtPageIndexTest(this.column1, 1);
+		this.columnDetailAtPageIndexTest(this.column1, 2);
+		this.columnDetailAtPageIndexTest(this.column1, 3);
+	}
+	
+	private JasperReportBuilder createSubreport(final int numberOfRecords)
+	{
+		final JasperReportBuilder report = report();
+		report.title(cmp.verticalGap(6))
+			.setPageColumnsPerPage(2)
+			.columns(this.column1)
+			.setDataSource(this.createSubreportDataSource(numberOfRecords));
+		
+		return report;
+	}
+	
+	protected JRDataSource createSubreportDataSource(final int numberOfRecords)
+	{
+		final DRDataSource dataSource = new DRDataSource("field1");
+		for(int i = 0; i < numberOfRecords; i++)
+		{
+			dataSource.add(i);
+		}
+		return dataSource;
+	}
 }

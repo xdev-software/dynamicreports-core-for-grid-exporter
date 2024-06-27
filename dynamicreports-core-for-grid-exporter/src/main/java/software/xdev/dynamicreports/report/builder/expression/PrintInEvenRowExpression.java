@@ -18,21 +18,15 @@
 package software.xdev.dynamicreports.report.builder.expression;
 
 import software.xdev.dynamicreports.report.base.expression.AbstractSimpleExpression;
-import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.definition.ReportParameters;
 
-/**
- * <p>PrintInEvenRowExpression class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class PrintInEvenRowExpression extends AbstractSimpleExpression<Boolean> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    /** {@inheritDoc} */
-    @Override
-    public Boolean evaluate(ReportParameters reportParameters) {
-        return reportParameters.getReportRowNumber().doubleValue() % 2 != 0;
-    }
+public class PrintInEvenRowExpression extends AbstractSimpleExpression<Boolean>
+{
+
+	@Override
+	public Boolean evaluate(final ReportParameters reportParameters)
+	{
+		return reportParameters.getReportRowNumber().doubleValue() % 2 != 0;
+	}
 }

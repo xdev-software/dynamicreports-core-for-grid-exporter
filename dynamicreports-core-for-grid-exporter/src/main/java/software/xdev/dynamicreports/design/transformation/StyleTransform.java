@@ -59,11 +59,6 @@ import software.xdev.dynamicreports.report.definition.style.DRITemplateStyle;
 import software.xdev.dynamicreports.report.exception.DRException;
 
 
-/**
- * <p>StyleTransform class.</p>
- *
- * @author Ricardo Mariaca
- */
 public class StyleTransform
 {
 	private final DesignTransformAccessor accessor;
@@ -71,11 +66,6 @@ public class StyleTransform
 	private Map<String, DRDesignStyle> designStyles;
 	private Map<String, DRIStyle> templateStyles;
 	
-	/**
-	 * <p>Constructor for StyleTransform.</p>
-	 *
-	 * @param accessor a {@link software.xdev.dynamicreports.design.transformation.DesignTransformAccessor} object.
-	 */
 	public StyleTransform(final DesignTransformAccessor accessor)
 	{
 		this.accessor = accessor;
@@ -94,15 +84,6 @@ public class StyleTransform
 		return this.transformStyle(style, textStyle, DefaultStyleType.NONE);
 	}
 	
-	/**
-	 * <p>transformStyle.</p>
-	 *
-	 * @param style            a {@link software.xdev.dynamicreports.report.definition.style.DRIReportStyle} object.
-	 * @param textStyle        a boolean.
-	 * @param defaultStyleType a {@link software.xdev.dynamicreports.design.constant.DefaultStyleType} object.
-	 * @return a {@link software.xdev.dynamicreports.design.base.style.DRDesignStyle} object.
-	 * @throws software.xdev.dynamicreports.report.exception.DRException if any.
-	 */
 	protected DRDesignStyle transformStyle(
 		final DRIReportStyle style,
 		final boolean textStyle,
@@ -163,12 +144,6 @@ public class StyleTransform
 		return designStyle;
 	}
 	
-	/**
-	 * <p>transformFont.</p>
-	 *
-	 * @param font a {@link software.xdev.dynamicreports.report.definition.style.DRIFont} object.
-	 * @return a {@link software.xdev.dynamicreports.design.base.style.DRDesignFont} object.
-	 */
 	protected DRDesignFont transformFont(final DRIFont font)
 	{
 		if(font == null)
@@ -213,12 +188,6 @@ public class StyleTransform
 		return designStyle;
 	}
 	
-	/**
-	 * <p>getStyle.</p>
-	 *
-	 * @param reportStyle a {@link software.xdev.dynamicreports.report.definition.style.DRIReportStyle} object.
-	 * @return a {@link software.xdev.dynamicreports.report.definition.style.DRIStyle} object.
-	 */
 	protected DRIStyle getStyle(final DRIReportStyle reportStyle)
 	{
 		if(reportStyle == null)
@@ -242,11 +211,6 @@ public class StyleTransform
 		throw new DRDesignReportException("Style " + reportStyle.getClass().getName() + " not supported");
 	}
 	
-	/**
-	 * <p>transformTemplateStyles.</p>
-	 *
-	 * @throws software.xdev.dynamicreports.report.exception.DRException if any.
-	 */
 	public void transformTemplateStyles() throws DRException
 	{
 		for(final DRIStyle style : this.templateStyles.values())
@@ -332,12 +296,6 @@ public class StyleTransform
 		return designPadding;
 	}
 	
-	/**
-	 * <p>pen.</p>
-	 *
-	 * @param pen a {@link software.xdev.dynamicreports.report.definition.style.DRIPen} object.
-	 * @return a {@link software.xdev.dynamicreports.design.base.style.DRDesignPen} object.
-	 */
 	protected DRDesignPen pen(final DRIPen pen)
 	{
 		if(pen == null)
@@ -351,13 +309,6 @@ public class StyleTransform
 		return designPen;
 	}
 	
-	/**
-	 * <p>getDefaultStyle.</p>
-	 *
-	 * @param defaultStyleType a {@link software.xdev.dynamicreports.design.constant.DefaultStyleType} object.
-	 * @return a {@link software.xdev.dynamicreports.design.base.style.DRDesignStyle} object.
-	 * @throws software.xdev.dynamicreports.report.exception.DRException if any.
-	 */
 	protected DRDesignStyle getDefaultStyle(final DefaultStyleType defaultStyleType) throws DRException
 	{
 		final TemplateTransform templateTransform = this.accessor.getTemplateTransform();
@@ -402,12 +353,6 @@ public class StyleTransform
 		this.designStyles.put(styleName, designStyle);
 	}
 	
-	/**
-	 * <p>copyStyle.</p>
-	 *
-	 * @param toStyle   a {@link software.xdev.dynamicreports.report.base.style.DRBaseStyle} object.
-	 * @param fromStyle a {@link software.xdev.dynamicreports.report.definition.style.DRIBaseStyle} object.
-	 */
 	public void copyStyle(final DRBaseStyle toStyle, final DRIBaseStyle fromStyle)
 	{
 		toStyle.setForegroundColor(fromStyle.getForegroundColor());
@@ -428,11 +373,6 @@ public class StyleTransform
 		toStyle.setLinePen((DRPen)fromStyle.getLinePen());
 	}
 	
-	/**
-	 * <p>Getter for the field <code>styles</code>.</p>
-	 *
-	 * @return a {@link java.util.Collection} object.
-	 */
 	public Collection<DRIDesignStyle> getStyles()
 	{
 		return this.styles.values();

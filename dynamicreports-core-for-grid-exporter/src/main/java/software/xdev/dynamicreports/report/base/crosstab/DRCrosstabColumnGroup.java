@@ -17,48 +17,34 @@
  */
 package software.xdev.dynamicreports.report.base.crosstab;
 
-import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.definition.crosstab.DRICrosstabColumnGroup;
 
-/**
- * <p>DRCrosstabColumnGroup class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class DRCrosstabColumnGroup<T> extends DRCrosstabGroup<T> implements DRICrosstabColumnGroup<T> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    private Integer headerHeight;
-    private Integer totalHeaderWidth;
+public class DRCrosstabColumnGroup<T> extends DRCrosstabGroup<T> implements DRICrosstabColumnGroup<T>
+{
 
-    /** {@inheritDoc} */
-    @Override
-    public Integer getHeaderHeight() {
-        return headerHeight;
-    }
-
-    /**
-     * <p>Setter for the field <code>headerHeight</code>.</p>
-     *
-     * @param headerHeight a {@link java.lang.Integer} object.
-     */
-    public void setHeaderHeight(Integer headerHeight) {
-        this.headerHeight = headerHeight;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Integer getTotalHeaderWidth() {
-        return totalHeaderWidth;
-    }
-
-    /**
-     * <p>Setter for the field <code>totalHeaderWidth</code>.</p>
-     *
-     * @param totalHeaderWidth a {@link java.lang.Integer} object.
-     */
-    public void setTotalHeaderWidth(Integer totalHeaderWidth) {
-        this.totalHeaderWidth = totalHeaderWidth;
-    }
+	private Integer headerHeight;
+	private Integer totalHeaderWidth;
+	
+	@Override
+	public Integer getHeaderHeight()
+	{
+		return this.headerHeight;
+	}
+	
+	public void setHeaderHeight(final Integer headerHeight)
+	{
+		this.headerHeight = headerHeight;
+	}
+	
+	@Override
+	public Integer getTotalHeaderWidth()
+	{
+		return this.totalHeaderWidth;
+	}
+	
+	public void setTotalHeaderWidth(final Integer totalHeaderWidth)
+	{
+		this.totalHeaderWidth = totalHeaderWidth;
+	}
 }

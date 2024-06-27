@@ -17,187 +17,138 @@
  */
 package software.xdev.dynamicreports.report.base;
 
-import software.xdev.dynamicreports.report.constant.Constants;
+import org.apache.commons.lang3.Validate;
+
 import software.xdev.dynamicreports.report.constant.PageOrientation;
 import software.xdev.dynamicreports.report.constant.PageType;
 import software.xdev.dynamicreports.report.definition.DRIPage;
-import org.apache.commons.lang3.Validate;
 
-/**
- * <p>DRPage class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class DRPage implements DRIPage {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    private Integer width;
-    private Integer height;
-    private PageOrientation orientation;
-    private DRMargin margin;
-    private Integer columnsPerPage;
-    private Integer columnSpace;
-    private Boolean ignorePageWidth;
+public class DRPage implements DRIPage
+{
 
-    /**
-     * <p>setPageFormat.</p>
-     *
-     * @param pageType    a {@link software.xdev.dynamicreports.report.constant.PageType} object.
-     * @param orientation a {@link software.xdev.dynamicreports.report.constant.PageOrientation} object.
-     */
-    public void setPageFormat(PageType pageType, PageOrientation orientation) {
-        Validate.notNull(pageType, "pageType must not be null");
-        setPageFormat(pageType.getWidth(), pageType.getHeight(), orientation);
-    }
+	private Integer width;
+	private Integer height;
+	private PageOrientation orientation;
+	private DRMargin margin;
+	private Integer columnsPerPage;
+	private Integer columnSpace;
+	private Boolean ignorePageWidth;
+	
+	public void setPageFormat(final PageType pageType, final PageOrientation orientation)
+	{
+		Validate.notNull(pageType, "pageType must not be null");
+		this.setPageFormat(pageType.getWidth(), pageType.getHeight(), orientation);
+	}
+	
+	public void setPageFormat(final Integer width, final Integer height, final PageOrientation orientation)
+	{
+		Validate.isTrue(width >= 0, "width must be >= 0");
+		Validate.isTrue(height >= 0, "height must be >= 0");
+		Validate.notNull(orientation, "orientation must not be null");
+		if(orientation.equals(PageOrientation.PORTRAIT))
+		{
+			this.setWidth(width);
+			this.setHeight(height);
+		}
+		else
+		{
+			this.setWidth(height);
+			this.setHeight(width);
+		}
+		this.setOrientation(orientation);
+	}
+	
+	@Override
+	public Integer getWidth()
+	{
+		return this.width;
+	}
 
-    /**
-     * <p>setPageFormat.</p>
-     *
-     * @param width       a {@link java.lang.Integer} object.
-     * @param height      a {@link java.lang.Integer} object.
-     * @param orientation a {@link software.xdev.dynamicreports.report.constant.PageOrientation} object.
-     */
-    public void setPageFormat(Integer width, Integer height, PageOrientation orientation) {
-        Validate.isTrue(width >= 0, "width must be >= 0");
-        Validate.isTrue(height >= 0, "height must be >= 0");
-        Validate.notNull(orientation, "orientation must not be null");
-        if (orientation.equals(PageOrientation.PORTRAIT)) {
-            setWidth(width);
-            setHeight(height);
-        } else {
-            setWidth(height);
-            setHeight(width);
-        }
-        setOrientation(orientation);
-    }
-
-    /**
-     * {@inheritDoc}
-     * <p>
-     * Returns the page width.
-     */
-    @Override
-    public Integer getWidth() {
-        return width;
-    }
-
-    /**
-     * Sets the page width.
-     *
-     * @param width the page width >= 0
-     * @throws java.lang.IllegalArgumentException if <code>width</code> is < 0
-     * @see software.xdev.dynamicreports.report.builder.Units
-     */
-    public void setWidth(Integer width) {
-        if (width != null) {
-            Validate.isTrue(width >= 0, "width must be >= 0");
-        }
-        this.width = width;
-    }
-
-    /**
-     * {@inheritDoc}
-     * <p>
-     * Returns the page height.
-     */
-    @Override
-    public Integer getHeight() {
-        return height;
-    }
-
-    /**
-     * Sets the page height.
-     *
-     * @param height the page height >= 0
-     * @throws java.lang.IllegalArgumentException if <code>height</code> is < 0
-     * @see software.xdev.dynamicreports.report.builder.Units
-     */
-    public void setHeight(Integer height) {
-        if (height != null) {
-            Validate.isTrue(height >= 0, "height must be >= 0");
-        }
-        this.height = height;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public PageOrientation getOrientation() {
-        return orientation;
-    }
-
-    /**
-     * <p>Setter for the field <code>orientation</code>.</p>
-     *
-     * @param orientation a {@link software.xdev.dynamicreports.report.constant.PageOrientation} object.
-     */
-    public void setOrientation(PageOrientation orientation) {
-        this.orientation = orientation;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRMargin getMargin() {
-        return margin;
-    }
-
-    /**
-     * <p>Setter for the field <code>margin</code>.</p>
-     *
-     * @param margin a {@link software.xdev.dynamicreports.report.base.DRMargin} object.
-     */
-    public void setMargin(DRMargin margin) {
-        this.margin = margin;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Integer getColumnsPerPage() {
-        return columnsPerPage;
-    }
-
-    /**
-     * <p>Setter for the field <code>columnsPerPage</code>.</p>
-     *
-     * @param columnsPerPage a {@link java.lang.Integer} object.
-     */
-    public void setColumnsPerPage(Integer columnsPerPage) {
-        if (columnsPerPage != null) {
-            Validate.isTrue(columnsPerPage >= 1, "columnsPerPage must be >= 1");
-        }
-        this.columnsPerPage = columnsPerPage;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Integer getColumnSpace() {
-        return columnSpace;
-    }
-
-    /**
-     * <p>Setter for the field <code>columnSpace</code>.</p>
-     *
-     * @param columnSpace a {@link java.lang.Integer} object.
-     */
-    public void setColumnSpace(Integer columnSpace) {
-        if (columnSpace != null) {
-            Validate.isTrue(columnSpace >= 0, "columnSpace must be >= 0");
-        }
-        this.columnSpace = columnSpace;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Boolean getIgnorePageWidth() {
-        return ignorePageWidth;
-    }
-
-    /**
-     * <p>Setter for the field <code>ignorePageWidth</code>.</p>
-     *
-     * @param ignorePageWidth a {@link java.lang.Boolean} object.
-     */
-    public void setIgnorePageWidth(Boolean ignorePageWidth) {
-        this.ignorePageWidth = ignorePageWidth;
-    }
+	public void setWidth(final Integer width)
+	{
+		if(width != null)
+		{
+			Validate.isTrue(width >= 0, "width must be >= 0");
+		}
+		this.width = width;
+	}
+	
+	@Override
+	public Integer getHeight()
+	{
+		return this.height;
+	}
+	
+	public void setHeight(final Integer height)
+	{
+		if(height != null)
+		{
+			Validate.isTrue(height >= 0, "height must be >= 0");
+		}
+		this.height = height;
+	}
+	
+	@Override
+	public PageOrientation getOrientation()
+	{
+		return this.orientation;
+	}
+	
+	public void setOrientation(final PageOrientation orientation)
+	{
+		this.orientation = orientation;
+	}
+	
+	@Override
+	public DRMargin getMargin()
+	{
+		return this.margin;
+	}
+	
+	public void setMargin(final DRMargin margin)
+	{
+		this.margin = margin;
+	}
+	
+	@Override
+	public Integer getColumnsPerPage()
+	{
+		return this.columnsPerPage;
+	}
+	
+	public void setColumnsPerPage(final Integer columnsPerPage)
+	{
+		if(columnsPerPage != null)
+		{
+			Validate.isTrue(columnsPerPage >= 1, "columnsPerPage must be >= 1");
+		}
+		this.columnsPerPage = columnsPerPage;
+	}
+	
+	@Override
+	public Integer getColumnSpace()
+	{
+		return this.columnSpace;
+	}
+	
+	public void setColumnSpace(final Integer columnSpace)
+	{
+		if(columnSpace != null)
+		{
+			Validate.isTrue(columnSpace >= 0, "columnSpace must be >= 0");
+		}
+		this.columnSpace = columnSpace;
+	}
+	
+	@Override
+	public Boolean getIgnorePageWidth()
+	{
+		return this.ignorePageWidth;
+	}
+	
+	public void setIgnorePageWidth(final Boolean ignorePageWidth)
+	{
+		this.ignorePageWidth = ignorePageWidth;
+	}
 }

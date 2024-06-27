@@ -17,42 +17,33 @@
  */
 package software.xdev.dynamicreports.design.transformation.expressions;
 
+import java.util.List;
+
 import software.xdev.dynamicreports.report.builder.expression.AbstractComplexExpression;
-import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.definition.ReportParameters;
 import software.xdev.dynamicreports.report.definition.expression.DRIExpression;
 
-import java.util.List;
 
-/**
- * <p>TocPrintWhenExpression class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class TocPrintWhenExpression extends AbstractComplexExpression<Boolean> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
+public class TocPrintWhenExpression extends AbstractComplexExpression<Boolean>
+{
 
-    private Object lastValue;
-
-    /**
-     * <p>Constructor for TocPrintWhenExpression.</p>
-     *
-     * @param expression a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     */
-    public TocPrintWhenExpression(DRIExpression<?> expression) {
-        addExpression(expression);
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Boolean evaluate(List<?> values, ReportParameters reportParameters) {
-        Object value = values.get(0);
-        if (lastValue != null && lastValue.equals(value)) {
-            lastValue = value;
-            return false;
-        }
-        lastValue = value;
-        return true;
-    }
+	private Object lastValue;
+	
+	public TocPrintWhenExpression(final DRIExpression<?> expression)
+	{
+		this.addExpression(expression);
+	}
+	
+	@Override
+	public Boolean evaluate(final List<?> values, final ReportParameters reportParameters)
+	{
+		final Object value = values.get(0);
+		if(this.lastValue != null && this.lastValue.equals(value))
+		{
+			this.lastValue = value;
+			return false;
+		}
+		this.lastValue = value;
+		return true;
+	}
 }

@@ -19,16 +19,13 @@ package software.xdev.dynamicreports.test.jasper.column;
 
 import static software.xdev.dynamicreports.report.builder.DynamicReports.col;
 
+import net.sf.jasperreports.engine.JRDataSource;
 import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
 import software.xdev.dynamicreports.report.constant.BooleanComponentType;
 import software.xdev.dynamicreports.report.datasource.DRDataSource;
 import software.xdev.dynamicreports.test.jasper.AbstractJasperPositionTest;
-import net.sf.jasperreports.engine.JRDataSource;
 
 
-/**
- * @author Ricardo Mariaca
- */
 public class BooleanColumnPosition3Test extends AbstractJasperPositionTest
 {
 	
@@ -44,16 +41,16 @@ public class BooleanColumnPosition3Test extends AbstractJasperPositionTest
 	public void test()
 	{
 		super.test();
-        
-        this.numberOfPagesTest(1);
-        
-        this.elementPositionTest("columnHeader.list1", 0, 10, 10, 210, 16);
-        this.elementPositionTest("columnHeader.column_field1.title1", 0, 0, 0, 100, 16);
-        this.elementPositionTest("columnHeader.column_field1.title2", 0, 100, 0, 110, 16);
-        
-        this.elementPositionTest("detail.list1", 0, 10, 26, 210, 40);
-        this.elementPositionTest("detail.column_field11", 0, 0, 0, 100, 40);
-        this.elementPositionTest("detail.column_field12", 0, 100, 0, 110, 40);
+		
+		this.numberOfPagesTest(1);
+		
+		this.elementPositionTest("columnHeader.list1", 0, 10, 10, 210, 16);
+		this.elementPositionTest("columnHeader.column_field1.title1", 0, 0, 0, 100, 16);
+		this.elementPositionTest("columnHeader.column_field1.title2", 0, 100, 0, 110, 16);
+		
+		this.elementPositionTest("detail.list1", 0, 10, 26, 210, 40);
+		this.elementPositionTest("detail.column_field11", 0, 0, 0, 100, 40);
+		this.elementPositionTest("detail.column_field12", 0, 100, 0, 110, 40);
 	}
 	
 	@Override

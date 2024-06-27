@@ -17,8 +17,9 @@
  */
 package software.xdev.dynamicreports.design.transformation.expressions;
 
+import java.util.List;
+
 import software.xdev.dynamicreports.report.builder.expression.AbstractComplexExpression;
-import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.definition.DRICustomValues;
 import software.xdev.dynamicreports.report.definition.ReportParameters;
 import software.xdev.dynamicreports.report.definition.crosstab.DRICrosstab;
@@ -28,63 +29,59 @@ import software.xdev.dynamicreports.report.definition.expression.DRIComplexExpre
 import software.xdev.dynamicreports.report.definition.expression.DRIExpression;
 import software.xdev.dynamicreports.report.exception.DRException;
 
-import java.util.List;
 
-/**
- * <p>CrosstabExpression class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class CrosstabExpression<T> extends AbstractComplexExpression<T> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
+public class CrosstabExpression<T> extends AbstractComplexExpression<T>
+{
 
-    private DRIExpression<T> expression;
-
-    /**
-     * <p>Constructor for CrosstabExpression.</p>
-     *
-     * @param crosstab   a {@link software.xdev.dynamicreports.report.definition.crosstab.DRICrosstab} object.
-     * @param expression a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     * @throws software.xdev.dynamicreports.report.exception.DRException if any.
-     */
-    public CrosstabExpression(DRICrosstab crosstab, DRIExpression<T> expression) throws DRException {
-        this.expression = expression;
-        if (expression instanceof DRIComplexExpression) {
-            for (DRIExpression<?> express : ((DRIComplexExpression<?>) expression).getExpressions()) {
-                addExpression(express);
-            }
-        }
-        for (DRICrosstabVariable<?> variable : crosstab.getVariables()) {
-            addExpression(variable);
-        }
-        for (DRICrosstabMeasure<?> measure : crosstab.getMeasures()) {
-            if (measure.getExpression() instanceof DRICrosstabVariable<?>) {
-                addExpression(measure.getExpression());
-            }
-        }
-    }
-
-    /** {@inheritDoc} */
-    @SuppressWarnings("unchecked")
-    @Override
-    public T evaluate(List<?> values, ReportParameters reportParameters) {
-        DRICustomValues customValues = (DRICustomValues) reportParameters.getParameterValue(DRICustomValues.NAME);
-        for (int i = 0; i < getExpressions().size(); i++) {
-            customValues.setSystemValue(getExpressions().get(i).getName(), values.get(i));
-        }
-        if (expression instanceof DRIComplexExpression) {
-            DRIComplexExpression<?> express = (DRIComplexExpression<?>) expression;
-            return (T) express.evaluate(values, reportParameters);
-        } else {
-            return reportParameters.getValue(expression.getName());
-        }
-    }
-
-    /** {@inheritDoc} */
-    @SuppressWarnings( {"rawtypes", "unchecked"})
-    @Override
-    public Class getValueClass() {
-        return expression.getValueClass();
-    }
+	private final DRIExpression<T> expression;
+	
+	public CrosstabExpression(final DRICrosstab crosstab, final DRIExpression<T> expression) throws DRException
+	{
+		this.expression = expression;
+		if(expression instanceof DRIComplexExpression)
+		{
+			for(final DRIExpression<?> express : ((DRIComplexExpression<?>)expression).getExpressions())
+			{
+				this.addExpression(express);
+			}
+		}
+		for(final DRICrosstabVariable<?> variable : crosstab.getVariables())
+		{
+			this.addExpression(variable);
+		}
+		for(final DRICrosstabMeasure<?> measure : crosstab.getMeasures())
+		{
+			if(measure.getExpression() instanceof DRICrosstabVariable<?>)
+			{
+				this.addExpression(measure.getExpression());
+			}
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public T evaluate(final List<?> values, final ReportParameters reportParameters)
+	{
+		final DRICustomValues customValues = (DRICustomValues)reportParameters.getParameterValue(DRICustomValues.NAME);
+		for(int i = 0; i < this.getExpressions().size(); i++)
+		{
+			customValues.setSystemValue(this.getExpressions().get(i).getName(), values.get(i));
+		}
+		if(this.expression instanceof DRIComplexExpression)
+		{
+			final DRIComplexExpression<?> express = (DRIComplexExpression<?>)this.expression;
+			return (T)express.evaluate(values, reportParameters);
+		}
+		else
+		{
+			return reportParameters.getValue(this.expression.getName());
+		}
+	}
+	
+	@SuppressWarnings({"rawtypes", "unchecked"})
+	@Override
+	public Class getValueClass()
+	{
+		return this.expression.getValueClass();
+	}
 }

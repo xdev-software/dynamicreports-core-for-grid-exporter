@@ -17,44 +17,49 @@
  */
 package software.xdev.dynamicreports.test.jasper.component;
 
+import static software.xdev.dynamicreports.report.builder.DynamicReports.cmp;
+import static software.xdev.dynamicreports.report.builder.DynamicReports.col;
+
+import net.sf.jasperreports.engine.JRDataSource;
 import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
 import software.xdev.dynamicreports.report.builder.column.TextColumnBuilder;
 import software.xdev.dynamicreports.report.datasource.DRDataSource;
 import software.xdev.dynamicreports.test.jasper.AbstractJasperPositionTest;
-import net.sf.jasperreports.engine.JRDataSource;
 
-import static software.xdev.dynamicreports.report.builder.DynamicReports.cmp;
-import static software.xdev.dynamicreports.report.builder.DynamicReports.col;
 
-/**
- * @author Ricardo Mariaca
- */
-public class TextField2Test extends AbstractJasperPositionTest {
-    private TextColumnBuilder<String> column1;
-
-    @Override
-    protected void configureReport(JasperReportBuilder rb) {
-        rb.columns(column1 = col.column("test test", "field1", String.class).setFixedWidth(25).setStretchWithOverflow(false).setTitleStretchWithOverflow(false))
-          .title(cmp.text("test test").setFixedWidth(25).setStretchWithOverflow(false), cmp.text("test test").setFixedWidth(25));
-    }
-
-    @Override
-    public void test() {
-        super.test();
-
-        numberOfPagesTest(1);
-
-        elementPositionTest("title.textField1", 0, 10, 10, 25, 16);
-        elementPositionTest("title.textField2", 0, 10, 26, 25, 26);
-
-        columnTitlePositionTest(column1, 0, 10, 52, 25, 16);
-        columnDetailPositionTest(column1, 0, 10, 68, 25, 16);
-    }
-
-    @Override
-    protected JRDataSource createDataSource() {
-        DRDataSource dataSource = new DRDataSource("field1");
-        dataSource.add("test test");
-        return dataSource;
-    }
+public class TextField2Test extends AbstractJasperPositionTest
+{
+	private TextColumnBuilder<String> column1;
+	
+	@Override
+	protected void configureReport(final JasperReportBuilder rb)
+	{
+		rb.columns(this.column1 = col.column("test test", "field1", String.class)
+				.setFixedWidth(25))
+			.title(
+				cmp.text("test test").setFixedWidth(25),
+				cmp.text("test test").setFixedWidth(25));
+	}
+	
+	@Override
+	public void test()
+	{
+		super.test();
+		
+		this.numberOfPagesTest(1);
+		
+		this.elementPositionTest("title.textField1", 0, 10, 10, 25, 16);
+		this.elementPositionTest("title.textField2", 0, 10, 26, 25, 26);
+		
+		this.columnTitlePositionTest(this.column1, 0, 10, 52, 25, 16);
+		this.columnDetailPositionTest(this.column1, 0, 10, 68, 25, 16);
+	}
+	
+	@Override
+	protected JRDataSource createDataSource()
+	{
+		final DRDataSource dataSource = new DRDataSource("field1");
+		dataSource.add("test test");
+		return dataSource;
+	}
 }

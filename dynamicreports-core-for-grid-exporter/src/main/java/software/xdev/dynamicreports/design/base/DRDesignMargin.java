@@ -18,79 +18,57 @@
 package software.xdev.dynamicreports.design.base;
 
 import software.xdev.dynamicreports.design.definition.DRIDesignMargin;
-import software.xdev.dynamicreports.report.constant.Constants;
 
-/**
- * <p>DRDesignMargin class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class DRDesignMargin implements DRIDesignMargin {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    private int top;
-    private int left;
-    private int bottom;
-    private int right;
+public class DRDesignMargin implements DRIDesignMargin
+{
 
-    /** {@inheritDoc} */
-    @Override
-    public int getTop() {
-        return top;
-    }
-
-    /**
-     * <p>Setter for the field <code>top</code>.</p>
-     *
-     * @param top a int.
-     */
-    public void setTop(int top) {
-        this.top = top;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public int getLeft() {
-        return left;
-    }
-
-    /**
-     * <p>Setter for the field <code>left</code>.</p>
-     *
-     * @param left a int.
-     */
-    public void setLeft(int left) {
-        this.left = left;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public int getBottom() {
-        return bottom;
-    }
-
-    /**
-     * <p>Setter for the field <code>bottom</code>.</p>
-     *
-     * @param bottom a int.
-     */
-    public void setBottom(int bottom) {
-        this.bottom = bottom;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public int getRight() {
-        return right;
-    }
-
-    /**
-     * <p>Setter for the field <code>right</code>.</p>
-     *
-     * @param right a int.
-     */
-    public void setRight(int right) {
-        this.right = right;
-    }
+	private int top;
+	private int left;
+	private int bottom;
+	private int right;
+	
+	@Override
+	public int getTop()
+	{
+		return this.top;
+	}
+	
+	public void setTop(final int top)
+	{
+		this.top = top;
+	}
+	
+	@Override
+	public int getLeft()
+	{
+		return this.left;
+	}
+	
+	public void setLeft(final int left)
+	{
+		this.left = left;
+	}
+	
+	@Override
+	public int getBottom()
+	{
+		return this.bottom;
+	}
+	
+	public void setBottom(final int bottom)
+	{
+		this.bottom = bottom;
+	}
+	
+	@Override
+	public int getRight()
+	{
+		return this.right;
+	}
+	
+	public void setRight(final int right)
+	{
+		this.right = right;
+	}
 }

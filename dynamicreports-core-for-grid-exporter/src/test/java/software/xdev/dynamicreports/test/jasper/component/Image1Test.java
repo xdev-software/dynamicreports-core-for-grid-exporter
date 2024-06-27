@@ -31,10 +31,6 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Assertions;
 
-import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
-import software.xdev.dynamicreports.report.constant.ImageScale;
-import software.xdev.dynamicreports.report.constant.WhenNoDataType;
-import software.xdev.dynamicreports.test.jasper.AbstractJasperTest;
 import net.sf.jasperreports.engine.DefaultJasperReportsContext;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JRPrintImage;
@@ -42,11 +38,12 @@ import net.sf.jasperreports.engine.type.ImageTypeEnum;
 import net.sf.jasperreports.engine.type.ScaleImageEnum;
 import net.sf.jasperreports.engine.util.JRImageLoader;
 import net.sf.jasperreports.renderers.SimpleDataRenderer;
+import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
+import software.xdev.dynamicreports.report.constant.ImageScale;
+import software.xdev.dynamicreports.report.constant.WhenNoDataType;
+import software.xdev.dynamicreports.test.jasper.AbstractJasperTest;
 
 
-/**
- * @author Ricardo Mariaca
- */
 public class Image1Test extends AbstractJasperTest
 {
 	private Image image;
@@ -63,8 +60,8 @@ public class Image1Test extends AbstractJasperTest
 	public void test()
 	{
 		super.test();
-        
-        this.numberOfPagesTest(1);
+		
+		this.numberOfPagesTest(1);
 		
 		try
 		{
@@ -91,8 +88,7 @@ public class Image1Test extends AbstractJasperTest
 	
 	private class TestImage extends BufferedImage implements Serializable
 	{
-		private static final long serialVersionUID = 1L;
-		
+
 		public TestImage()
 		{
 			super(100, 100, BufferedImage.TYPE_INT_RGB);

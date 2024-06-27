@@ -17,6 +17,13 @@
  */
 package software.xdev.dynamicreports.design.transformation;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+
 import software.xdev.dynamicreports.design.base.DRDesignField;
 import software.xdev.dynamicreports.design.base.DRDesignGroup;
 import software.xdev.dynamicreports.design.base.DRDesignSort;
@@ -60,400 +67,371 @@ import software.xdev.dynamicreports.report.definition.expression.DRISystemExpres
 import software.xdev.dynamicreports.report.definition.expression.DRIValueFormatter;
 import software.xdev.dynamicreports.report.exception.DRException;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
 
-/**
- * <p>Abstract AbstractExpressionTransform class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public abstract class AbstractExpressionTransform {
-    protected DesignTransformAccessor accessor;
-    private Map<String, DRIDesignField> fields;
-    private Map<String, DRIDesignVariable> variables;
-    private Map<String, DRIDesignSystemExpression> systemExpressions;
-    private Map<String, DRIDesignJasperExpression> jasperExpressions;
-    private Map<String, DRIDesignSimpleExpression> simpleExpressions;
-    private Map<String, DRIDesignComplexExpression> complexExpressions;
-    private Map<DRIExpression<?>, DRIDesignExpression> expressions;
-    private List<DRIDesignSort> sorts;
-
-    /**
-     * <p>Constructor for AbstractExpressionTransform.</p>
-     *
-     * @param accessor a {@link software.xdev.dynamicreports.design.transformation.DesignTransformAccessor} object.
-     */
-    public AbstractExpressionTransform(DesignTransformAccessor accessor) {
-        this.accessor = accessor;
-        init();
-    }
-
-    private void init() {
-        fields = new LinkedHashMap<String, DRIDesignField>();
-        variables = new LinkedHashMap<String, DRIDesignVariable>();
-        systemExpressions = new HashMap<String, DRIDesignSystemExpression>();
-        jasperExpressions = new HashMap<String, DRIDesignJasperExpression>();
-        simpleExpressions = new HashMap<String, DRIDesignSimpleExpression>();
-        complexExpressions = new HashMap<String, DRIDesignComplexExpression>();
-        expressions = new HashMap<DRIExpression<?>, DRIDesignExpression>();
-        sorts = new ArrayList<DRIDesignSort>();
-    }
-
-    /**
-     * <p>transform.</p>
-     *
-     * @throws software.xdev.dynamicreports.report.exception.DRException if any.
-     */
-    public void transform() throws DRException {
-        for (DRIField<?> field : transformFields()) {
-            transformExpression(field);
-        }
-        for (DRIVariable<?> variable : transformVariables()) {
-            transformExpression(variable);
-        }
-        for (DRISort sort : transformSorts()) {
-            transformSort(sort);
-        }
-    }
-
-    /**
-     * <p>transformExpression.</p>
-     *
-     * @param expression a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     * @return a {@link software.xdev.dynamicreports.design.definition.expression.DRIDesignExpression} object.
-     * @throws software.xdev.dynamicreports.report.exception.DRException if any.
-     */
-    public DRIDesignExpression transformExpression(DRIExpression<?> expression) throws DRException {
-        return transformExpression(expression, null, null);
-    }
-
-    /**
-     * <p>transformExpression.</p>
-     *
-     * @param expression    a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     * @param parameterName a {@link java.lang.String} object.
-     * @return a {@link software.xdev.dynamicreports.design.definition.expression.DRIDesignExpression} object.
-     * @throws software.xdev.dynamicreports.report.exception.DRException if any.
-     */
-    protected DRIDesignExpression transformExpression(DRIExpression<?> expression, String parameterName) throws DRException {
-        return transformExpression(expression, null, parameterName);
-    }
-
-    /**
-     * <p>transformExpression.</p>
-     *
-     * @param expression     a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     * @param valueFormatter a {@link software.xdev.dynamicreports.report.definition.expression.DRIValueFormatter} object.
-     * @param parameterName  a {@link java.lang.String} object.
-     * @return a {@link software.xdev.dynamicreports.design.definition.expression.DRIDesignExpression} object.
-     * @throws software.xdev.dynamicreports.report.exception.DRException if any.
-     */
-    protected DRIDesignExpression transformExpression(DRIExpression<?> expression, DRIValueFormatter<?, ?> valueFormatter, String parameterName) throws DRException {
-        if (expression == null) {
-            return null;
-        }
-
-        if (valueFormatter != null) {
-            return addExpression(new DRDesignValueFormatter(valueFormatter, transformExpression(expression)));
-        }
-        if (expressions.containsKey(expression)) {
-            return expressions.get(expression);
-        }
-
-        DRIDesignExpression express;
-        if (expression instanceof DRISystemExpression<?>) {
-            express = new DRDesignSystemExpression((DRISystemExpression<?>) expression);
-        } else if (expression instanceof DRIJasperExpression<?>) {
-            express = new DRDesignJasperExpression((DRIJasperExpression<?>) expression);
-        } else if (expression instanceof DRISimpleExpression<?>) {
-            express = new DRDesignSimpleExpression((DRISimpleExpression<?>) expression, parameterName);
-        } else if (expression instanceof DRIComplexExpression<?>) {
-            express = transformComplexExpression((DRIComplexExpression<?>) expression, parameterName);
-        } else if (expression instanceof DRIField<?>) {
-            express = transformField((DRIField<?>) expression);
-        } else if (expression instanceof DRIVariable<?>) {
-            express = transformVariable((DRIVariable<?>) expression);
-        } else if (expression instanceof DRIValueColumn<?>) {
-            express = transformExpression(((DRIValueColumn<?>) expression).getComponent().getValueExpression());
-        } else if (expression instanceof DRIBooleanColumn) {
-            express = transformExpression(((DRIBooleanColumn) expression).getComponent().getValueExpression());
-        } else if (expression instanceof DRISubtotal<?>) {
-            express = transformExpression(((DRISubtotal<?>) expression).getValueField().getValueExpression());
-        } else {
-            throw new DRDesignReportException("Expression " + expression.getClass().getName() + " not supported");
-        }
-        express = addExpression(express);
-        if (valueFormatter == null) {
-            expressions.put(expression, express);
-        }
-        return express;
-    }
-
-    private DRDesignField transformField(DRIField<?> field) {
-        DRDesignField designField = new DRDesignField();
-        designField.setName(field.getName());
-        designField.setValueClass(field.getValueClass());
-        designField.setDescription(accessor.getTemplateTransform().getFieldDescription(field));
-        return designField;
-    }
-
-    private DRIDesignExpression transformComplexExpression(DRIComplexExpression<?> complexExpression, String parameterName) throws DRException {
-        DRDesignComplexExpression designComplexExpression = new DRDesignComplexExpression(complexExpression, parameterName);
-        for (DRIExpression<?> expression : complexExpression.getExpressions()) {
-            designComplexExpression.addExpression(transformExpression(expression));
-        }
-        return designComplexExpression;
-    }
-
-    private DRIDesignExpression transformVariable(DRIVariable<?> variable) throws DRException {
-        DRDesignVariable designVariable = new DRDesignVariable(variable.getName());
-        designVariable.setValueExpression(transformExpression(variable.getValueExpression()));
-        designVariable.setInitialValueExpression(transformExpression(variable.getInitialValueExpression()));
-        designVariable.setCalculation(variable.getCalculation());
-        designVariable.setResetType(getVariableResetType(variable));
-        designVariable.setResetGroup(getVariableResetGroup(variable));
-        return designVariable;
-    }
-
-    /**
-     * <p>getVariableResetType.</p>
-     *
-     * @param variable a {@link software.xdev.dynamicreports.report.definition.DRIVariable} object.
-     * @return a {@link software.xdev.dynamicreports.design.constant.ResetType} object.
-     */
-    protected ResetType getVariableResetType(DRIVariable<?> variable) {
-        return null;
-    }
-
-    /**
-     * <p>getVariableResetGroup.</p>
-     *
-     * @param variable a {@link software.xdev.dynamicreports.report.definition.DRIVariable} object.
-     * @return a {@link software.xdev.dynamicreports.design.base.DRDesignGroup} object.
-     * @throws software.xdev.dynamicreports.report.exception.DRException if any.
-     */
-    protected DRDesignGroup getVariableResetGroup(DRIVariable<?> variable) throws DRException {
-        return null;
-    }
-
-    private void transformSort(DRISort sort) throws DRException {
-        DRIDesignExpression expression = transformExpression(sort.getExpression());
-        DRIDesignExpression sortExpression;
-        if (expression instanceof DRIDesignField || expression instanceof DRIDesignVariable) {
-            sortExpression = expression;
-        } else {
-            @SuppressWarnings( {"rawtypes", "unchecked"}) DRVariable variable = new DRVariable(sort.getExpression(), Calculation.NOTHING);
-            variable.setResetType(Evaluation.NONE);
-            sortExpression = transformExpression(variable);
-        }
-
-        DRDesignSort designSort = new DRDesignSort();
-        designSort.setExpression(sortExpression);
-        designSort.setOrderType(sort.getOrderType());
-
-        sorts.add(designSort);
-    }
-
-    /**
-     * <p>transformPropertyExpression.</p>
-     *
-     * @param propertyExpression a {@link software.xdev.dynamicreports.report.definition.expression.DRIPropertyExpression} object.
-     * @return a {@link software.xdev.dynamicreports.design.definition.expression.DRIDesignPropertyExpression} object.
-     * @throws software.xdev.dynamicreports.report.exception.DRException if any.
-     */
-    protected DRIDesignPropertyExpression transformPropertyExpression(DRIPropertyExpression propertyExpression) throws DRException {
-        DRDesignPropertyExpression designPropertyExpression = new DRDesignPropertyExpression();
-        designPropertyExpression.setName(propertyExpression.getName());
-        designPropertyExpression.setValueExpression(transformExpression(propertyExpression.getValueExpression()));
-        return designPropertyExpression;
-    }
-
-    /**
-     * <p>transformParameterExpression.</p>
-     *
-     * @param parameterExpression a {@link software.xdev.dynamicreports.report.definition.expression.DRIParameterExpression} object.
-     * @return a {@link software.xdev.dynamicreports.design.definition.expression.DRIDesignParameterExpression} object.
-     * @throws software.xdev.dynamicreports.report.exception.DRException if any.
-     */
-    protected DRIDesignParameterExpression transformParameterExpression(DRIParameterExpression parameterExpression) throws DRException {
-        DRDesignParameterExpression designParameterExpression = new DRDesignParameterExpression();
-        designParameterExpression.setName(parameterExpression.getName());
-        designParameterExpression.setValueExpression(transformExpression(parameterExpression.getValueExpression()));
-        return designParameterExpression;
-    }
-
-    private DRIDesignExpression addExpression(DRIDesignExpression expression) {
-        if (expression == null) {
-            return null;
-        }
-        if (expression instanceof DRIDesignField) {
-            return addField((DRIDesignField) expression);
-        } else if (expression instanceof DRIDesignVariable) {
-            addVariable((DRDesignVariable) expression);
-        } else if (expression instanceof DRIDesignSystemExpression) {
-            addSystemExpression((DRIDesignSystemExpression) expression);
-        } else if (expression instanceof DRIDesignJasperExpression) {
-            addJasperExpression((DRIDesignJasperExpression) expression);
-        } else if (expression instanceof DRIDesignSimpleExpression) {
-            addSimpleExpression((DRIDesignSimpleExpression) expression);
-        } else if (expression instanceof DRIDesignComplexExpression) {
-            addComplexExpression((DRIDesignComplexExpression) expression);
-        } else {
-            throw new DRDesignReportException("Expression " + expression.getClass().getName() + " not supported");
-        }
-        return expression;
-    }
-
-    private void addVariable(DRDesignVariable variable) {
-        if (variables.containsKey(variable.getName())) {
-            if (!variables.get(variable.getName()).equals(variable)) {
-                throw new DRDesignReportException("Duplicate declaration of variable \"" + variable.getName() + "\"");
-            }
-            return;
-        }
-        variables.put(variable.getName(), variable);
-    }
-
-    private DRIDesignField addField(DRIDesignField field) {
-        if (fields.containsKey(field.getName())) {
-            DRIDesignField fld = fields.get(field.getName());
-            if (!fld.getValueClass().equals(field.getValueClass())) {
-                throw new DRDesignReportException("Duplicate declaration of field \"" + field.getName() + "\"");
-            }
-            return fld;
-        }
-        fields.put(field.getName(), field);
-        return field;
-    }
-
-    private void addSystemExpression(DRIDesignSystemExpression systemExpression) {
-        if (systemExpressions.containsKey(systemExpression.getName())) {
-            return;
-        }
-        systemExpressions.put(systemExpression.getName(), systemExpression);
-    }
-
-    private void addJasperExpression(DRIDesignJasperExpression jasperExpression) {
-        if (jasperExpressions.containsKey(jasperExpression.getName())) {
-            return;
-        }
-        jasperExpressions.put(jasperExpression.getName(), jasperExpression);
-    }
-
-    private void addSimpleExpression(DRIDesignSimpleExpression simpleExpression) {
-        if (simpleExpressions.containsKey(simpleExpression.getName())) {
-            if (!simpleExpressions.get(simpleExpression.getName()).equals(simpleExpression)) {
-                throw new DRDesignReportException("Duplicate declaration of simple expression \"" + simpleExpression.getName() + "\"");
-            }
-            return;
-        }
-        simpleExpressions.put(simpleExpression.getName(), simpleExpression);
-    }
-
-    private void addComplexExpression(DRIDesignComplexExpression complexExpression) {
-        if (complexExpressions.containsKey(complexExpression.getName())) {
-            if (!complexExpressions.get(complexExpression.getName()).equals(complexExpression)) {
-                throw new DRDesignReportException("Duplicate declaration of complex expression \"" + complexExpression.getName() + "\"");
-            }
-            return;
-        }
-        complexExpressions.put(complexExpression.getName(), complexExpression);
-    }
-
-    /**
-     * <p>Getter for the field <code>fields</code>.</p>
-     *
-     * @return a {@link java.util.Collection} object.
-     */
-    public Collection<DRIDesignField> getFields() {
-        return fields.values();
-    }
-
-    /**
-     * <p>Getter for the field <code>variables</code>.</p>
-     *
-     * @return a {@link java.util.Collection} object.
-     */
-    public Collection<DRIDesignVariable> getVariables() {
-        return variables.values();
-    }
-
-    /**
-     * <p>Getter for the field <code>systemExpressions</code>.</p>
-     *
-     * @return a {@link java.util.Collection} object.
-     */
-    public Collection<DRIDesignSystemExpression> getSystemExpressions() {
-        return systemExpressions.values();
-    }
-
-    /**
-     * <p>Getter for the field <code>jasperExpressions</code>.</p>
-     *
-     * @return a {@link java.util.Collection} object.
-     */
-    public Collection<DRIDesignJasperExpression> getJasperExpressions() {
-        return jasperExpressions.values();
-    }
-
-    /**
-     * <p>Getter for the field <code>simpleExpressions</code>.</p>
-     *
-     * @return a {@link java.util.Collection} object.
-     */
-    public Collection<DRIDesignSimpleExpression> getSimpleExpressions() {
-        return simpleExpressions.values();
-    }
-
-    /**
-     * <p>Getter for the field <code>complexExpressions</code>.</p>
-     *
-     * @return a {@link java.util.Collection} object.
-     */
-    public Collection<DRIDesignComplexExpression> getComplexExpressions() {
-        return complexExpressions.values();
-    }
-
-    /**
-     * <p>Getter for the field <code>sorts</code>.</p>
-     *
-     * @return a {@link java.util.Collection} object.
-     */
-    public Collection<DRIDesignSort> getSorts() {
-        return sorts;
-    }
-
-    /**
-     * <p>transformFields.</p>
-     *
-     * @return a {@link java.util.List} object.
-     */
-    protected abstract List<? extends DRIField<?>> transformFields();
-
-    /**
-     * <p>transformVariables.</p>
-     *
-     * @return a {@link java.util.List} object.
-     */
-    protected abstract List<? extends DRIVariable<?>> transformVariables();
-
-    /**
-     * <p>transformSorts.</p>
-     *
-     * @return a {@link java.util.List} object.
-     */
-    protected abstract List<? extends DRISort> transformSorts();
-
-    /**
-     * <p>getDataset.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.design.definition.DRIDesignDataset} object.
-     */
-    protected abstract DRIDesignDataset getDataset();
+public abstract class AbstractExpressionTransform
+{
+	protected DesignTransformAccessor accessor;
+	private Map<String, DRIDesignField> fields;
+	private Map<String, DRIDesignVariable> variables;
+	private Map<String, DRIDesignSystemExpression> systemExpressions;
+	private Map<String, DRIDesignJasperExpression> jasperExpressions;
+	private Map<String, DRIDesignSimpleExpression> simpleExpressions;
+	private Map<String, DRIDesignComplexExpression> complexExpressions;
+	private Map<DRIExpression<?>, DRIDesignExpression> expressions;
+	private List<DRIDesignSort> sorts;
+	
+	public AbstractExpressionTransform(final DesignTransformAccessor accessor)
+	{
+		this.accessor = accessor;
+		this.init();
+	}
+	
+	private void init()
+	{
+		this.fields = new LinkedHashMap<>();
+		this.variables = new LinkedHashMap<>();
+		this.systemExpressions = new HashMap<>();
+		this.jasperExpressions = new HashMap<>();
+		this.simpleExpressions = new HashMap<>();
+		this.complexExpressions = new HashMap<>();
+		this.expressions = new HashMap<>();
+		this.sorts = new ArrayList<>();
+	}
+	
+	public void transform() throws DRException
+	{
+		for(final DRIField<?> field : this.transformFields())
+		{
+			this.transformExpression(field);
+		}
+		for(final DRIVariable<?> variable : this.transformVariables())
+		{
+			this.transformExpression(variable);
+		}
+		for(final DRISort sort : this.transformSorts())
+		{
+			this.transformSort(sort);
+		}
+	}
+	
+	public DRIDesignExpression transformExpression(final DRIExpression<?> expression) throws DRException
+	{
+		return this.transformExpression(expression, null, null);
+	}
+	
+	protected DRIDesignExpression transformExpression(final DRIExpression<?> expression, final String parameterName)
+		throws DRException
+	{
+		return this.transformExpression(expression, null, parameterName);
+	}
+	
+	protected DRIDesignExpression transformExpression(
+		final DRIExpression<?> expression,
+		final DRIValueFormatter<?, ?> valueFormatter,
+		final String parameterName) throws DRException
+	{
+		if(expression == null)
+		{
+			return null;
+		}
+		
+		if(valueFormatter != null)
+		{
+			return this.addExpression(new DRDesignValueFormatter(
+				valueFormatter,
+				this.transformExpression(expression)));
+		}
+		if(this.expressions.containsKey(expression))
+		{
+			return this.expressions.get(expression);
+		}
+		
+		DRIDesignExpression express;
+		if(expression instanceof DRISystemExpression<?>)
+		{
+			express = new DRDesignSystemExpression((DRISystemExpression<?>)expression);
+		}
+		else if(expression instanceof DRIJasperExpression<?>)
+		{
+			express = new DRDesignJasperExpression((DRIJasperExpression<?>)expression);
+		}
+		else if(expression instanceof DRISimpleExpression<?>)
+		{
+			express = new DRDesignSimpleExpression((DRISimpleExpression<?>)expression, parameterName);
+		}
+		else if(expression instanceof DRIComplexExpression<?>)
+		{
+			express = this.transformComplexExpression((DRIComplexExpression<?>)expression, parameterName);
+		}
+		else if(expression instanceof DRIField<?>)
+		{
+			express = this.transformField((DRIField<?>)expression);
+		}
+		else if(expression instanceof DRIVariable<?>)
+		{
+			express = this.transformVariable((DRIVariable<?>)expression);
+		}
+		else if(expression instanceof DRIValueColumn<?>)
+		{
+			express = this.transformExpression(((DRIValueColumn<?>)expression).getComponent().getValueExpression());
+		}
+		else if(expression instanceof DRIBooleanColumn)
+		{
+			express = this.transformExpression(((DRIBooleanColumn)expression).getComponent().getValueExpression());
+		}
+		else if(expression instanceof DRISubtotal<?>)
+		{
+			express = this.transformExpression(((DRISubtotal<?>)expression).getValueField().getValueExpression());
+		}
+		else
+		{
+			throw new DRDesignReportException("Expression " + expression.getClass().getName() + " not supported");
+		}
+		express = this.addExpression(express);
+		if(valueFormatter == null)
+		{
+			this.expressions.put(expression, express);
+		}
+		return express;
+	}
+	
+	private DRDesignField transformField(final DRIField<?> field)
+	{
+		final DRDesignField designField = new DRDesignField();
+		designField.setName(field.getName());
+		designField.setValueClass(field.getValueClass());
+		designField.setDescription(this.accessor.getTemplateTransform().getFieldDescription(field));
+		return designField;
+	}
+	
+	private DRIDesignExpression transformComplexExpression(
+		final DRIComplexExpression<?> complexExpression,
+		final String parameterName) throws DRException
+	{
+		final DRDesignComplexExpression designComplexExpression =
+			new DRDesignComplexExpression(complexExpression, parameterName);
+		for(final DRIExpression<?> expression : complexExpression.getExpressions())
+		{
+			designComplexExpression.addExpression(this.transformExpression(expression));
+		}
+		return designComplexExpression;
+	}
+	
+	private DRIDesignExpression transformVariable(final DRIVariable<?> variable) throws DRException
+	{
+		final DRDesignVariable designVariable = new DRDesignVariable(variable.getName());
+		designVariable.setValueExpression(this.transformExpression(variable.getValueExpression()));
+		designVariable.setInitialValueExpression(this.transformExpression(variable.getInitialValueExpression()));
+		designVariable.setCalculation(variable.getCalculation());
+		designVariable.setResetType(this.getVariableResetType(variable));
+		designVariable.setResetGroup(this.getVariableResetGroup(variable));
+		return designVariable;
+	}
+	
+	protected ResetType getVariableResetType(final DRIVariable<?> variable)
+	{
+		return null;
+	}
+	
+	protected DRDesignGroup getVariableResetGroup(final DRIVariable<?> variable) throws DRException
+	{
+		return null;
+	}
+	
+	private void transformSort(final DRISort sort) throws DRException
+	{
+		final DRIDesignExpression expression = this.transformExpression(sort.getExpression());
+		final DRIDesignExpression sortExpression;
+		if(expression instanceof DRIDesignField || expression instanceof DRIDesignVariable)
+		{
+			sortExpression = expression;
+		}
+		else
+		{
+			@SuppressWarnings({"rawtypes", "unchecked"})
+			final DRVariable variable = new DRVariable(sort.getExpression(), Calculation.NOTHING);
+			variable.setResetType(Evaluation.NONE);
+			sortExpression = this.transformExpression(variable);
+		}
+		
+		final DRDesignSort designSort = new DRDesignSort();
+		designSort.setExpression(sortExpression);
+		designSort.setOrderType(sort.getOrderType());
+		
+		this.sorts.add(designSort);
+	}
+	
+	protected DRIDesignPropertyExpression transformPropertyExpression(final DRIPropertyExpression propertyExpression)
+		throws DRException
+	{
+		final DRDesignPropertyExpression designPropertyExpression = new DRDesignPropertyExpression();
+		designPropertyExpression.setName(propertyExpression.getName());
+		designPropertyExpression.setValueExpression(this.transformExpression(propertyExpression.getValueExpression()));
+		return designPropertyExpression;
+	}
+	
+	protected DRIDesignParameterExpression transformParameterExpression(
+		final DRIParameterExpression parameterExpression)
+		throws DRException
+	{
+		final DRDesignParameterExpression designParameterExpression = new DRDesignParameterExpression();
+		designParameterExpression.setName(parameterExpression.getName());
+		designParameterExpression.setValueExpression(
+			this.transformExpression(parameterExpression.getValueExpression()));
+		return designParameterExpression;
+	}
+	
+	private DRIDesignExpression addExpression(final DRIDesignExpression expression)
+	{
+		if(expression == null)
+		{
+			return null;
+		}
+		if(expression instanceof DRIDesignField)
+		{
+			return this.addField((DRIDesignField)expression);
+		}
+		else if(expression instanceof DRIDesignVariable)
+		{
+			this.addVariable((DRDesignVariable)expression);
+		}
+		else if(expression instanceof DRIDesignSystemExpression)
+		{
+			this.addSystemExpression((DRIDesignSystemExpression)expression);
+		}
+		else if(expression instanceof DRIDesignJasperExpression)
+		{
+			this.addJasperExpression((DRIDesignJasperExpression)expression);
+		}
+		else if(expression instanceof DRIDesignSimpleExpression)
+		{
+			this.addSimpleExpression((DRIDesignSimpleExpression)expression);
+		}
+		else if(expression instanceof DRIDesignComplexExpression)
+		{
+			this.addComplexExpression((DRIDesignComplexExpression)expression);
+		}
+		else
+		{
+			throw new DRDesignReportException("Expression " + expression.getClass().getName() + " not supported");
+		}
+		return expression;
+	}
+	
+	private void addVariable(final DRDesignVariable variable)
+	{
+		if(this.variables.containsKey(variable.getName()))
+		{
+			if(!this.variables.get(variable.getName()).equals(variable))
+			{
+				throw new DRDesignReportException("Duplicate declaration of variable \"" + variable.getName() + "\"");
+			}
+			return;
+		}
+		this.variables.put(variable.getName(), variable);
+	}
+	
+	private DRIDesignField addField(final DRIDesignField field)
+	{
+		if(this.fields.containsKey(field.getName()))
+		{
+			final DRIDesignField fld = this.fields.get(field.getName());
+			if(!fld.getValueClass().equals(field.getValueClass()))
+			{
+				throw new DRDesignReportException("Duplicate declaration of field \"" + field.getName() + "\"");
+			}
+			return fld;
+		}
+		this.fields.put(field.getName(), field);
+		return field;
+	}
+	
+	private void addSystemExpression(final DRIDesignSystemExpression systemExpression)
+	{
+		if(this.systemExpressions.containsKey(systemExpression.getName()))
+		{
+			return;
+		}
+		this.systemExpressions.put(systemExpression.getName(), systemExpression);
+	}
+	
+	private void addJasperExpression(final DRIDesignJasperExpression jasperExpression)
+	{
+		if(this.jasperExpressions.containsKey(jasperExpression.getName()))
+		{
+			return;
+		}
+		this.jasperExpressions.put(jasperExpression.getName(), jasperExpression);
+	}
+	
+	private void addSimpleExpression(final DRIDesignSimpleExpression simpleExpression)
+	{
+		if(this.simpleExpressions.containsKey(simpleExpression.getName()))
+		{
+			if(!this.simpleExpressions.get(simpleExpression.getName()).equals(simpleExpression))
+			{
+				throw new DRDesignReportException(
+					"Duplicate declaration of simple expression \"" + simpleExpression.getName() + "\"");
+			}
+			return;
+		}
+		this.simpleExpressions.put(simpleExpression.getName(), simpleExpression);
+	}
+	
+	private void addComplexExpression(final DRIDesignComplexExpression complexExpression)
+	{
+		if(this.complexExpressions.containsKey(complexExpression.getName()))
+		{
+			if(!this.complexExpressions.get(complexExpression.getName()).equals(complexExpression))
+			{
+				throw new DRDesignReportException(
+					"Duplicate declaration of complex expression \"" + complexExpression.getName() + "\"");
+			}
+			return;
+		}
+		this.complexExpressions.put(complexExpression.getName(), complexExpression);
+	}
+	
+	public Collection<DRIDesignField> getFields()
+	{
+		return this.fields.values();
+	}
+	
+	public Collection<DRIDesignVariable> getVariables()
+	{
+		return this.variables.values();
+	}
+	
+	public Collection<DRIDesignSystemExpression> getSystemExpressions()
+	{
+		return this.systemExpressions.values();
+	}
+	
+	public Collection<DRIDesignJasperExpression> getJasperExpressions()
+	{
+		return this.jasperExpressions.values();
+	}
+	
+	public Collection<DRIDesignSimpleExpression> getSimpleExpressions()
+	{
+		return this.simpleExpressions.values();
+	}
+	
+	public Collection<DRIDesignComplexExpression> getComplexExpressions()
+	{
+		return this.complexExpressions.values();
+	}
+	
+	public Collection<DRIDesignSort> getSorts()
+	{
+		return this.sorts;
+	}
+	
+	protected abstract List<? extends DRIField<?>> transformFields();
+	
+	protected abstract List<? extends DRIVariable<?>> transformVariables();
+	
+	protected abstract List<? extends DRISort> transformSorts();
+	
+	protected abstract DRIDesignDataset getDataset();
 }

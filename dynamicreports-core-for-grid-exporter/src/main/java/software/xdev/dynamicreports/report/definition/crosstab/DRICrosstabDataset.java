@@ -17,29 +17,15 @@
  */
 package software.xdev.dynamicreports.report.definition.crosstab;
 
-import software.xdev.dynamicreports.report.definition.DRIDataset;
-
 import java.io.Serializable;
 
-/**
- * <p>DRICrosstabDataset interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface DRICrosstabDataset extends Serializable {
+import software.xdev.dynamicreports.report.definition.DRIDataset;
 
-    /**
-     * <p>getSubDataset.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.definition.DRIDataset} object.
-     */
-    public DRIDataset getSubDataset();
 
-    /**
-     * <p>getDataPreSorted.</p>
-     *
-     * @return a {@link java.lang.Boolean} object.
-     */
-    public Boolean getDataPreSorted();
+public interface DRICrosstabDataset extends Serializable
+{
+	
+	public DRIDataset getSubDataset();
+	
+	public Boolean getDataPreSorted();
 }

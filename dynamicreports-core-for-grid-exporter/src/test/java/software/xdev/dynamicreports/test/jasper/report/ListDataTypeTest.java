@@ -17,57 +17,62 @@
  */
 package software.xdev.dynamicreports.test.jasper.report;
 
-import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
-import software.xdev.dynamicreports.report.builder.column.TextColumnBuilder;
-import software.xdev.dynamicreports.report.datasource.DRDataSource;
-import software.xdev.dynamicreports.test.jasper.AbstractJasperValueTest;
-import net.sf.jasperreports.engine.JRDataSource;
+import static software.xdev.dynamicreports.report.builder.DynamicReports.col;
+import static software.xdev.dynamicreports.report.builder.DynamicReports.type;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static software.xdev.dynamicreports.report.builder.DynamicReports.col;
-import static software.xdev.dynamicreports.report.builder.DynamicReports.type;
+import net.sf.jasperreports.engine.JRDataSource;
+import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
+import software.xdev.dynamicreports.report.builder.column.TextColumnBuilder;
+import software.xdev.dynamicreports.report.datasource.DRDataSource;
+import software.xdev.dynamicreports.test.jasper.AbstractJasperValueTest;
 
-/**
- * @author Ricardo Mariaca
- */
-public class ListDataTypeTest extends AbstractJasperValueTest {
-    private TextColumnBuilder<String> column1;
-    @SuppressWarnings("rawtypes")
-    private TextColumnBuilder<List> column2;
-    @SuppressWarnings("rawtypes")
-    private TextColumnBuilder<List> column3;
 
-    @Override
-    protected void configureReport(JasperReportBuilder rb) {
-
-        rb.columns(column1 = col.column("Column1", "field1", String.class), column2 = col.column("Column2", "field2", List.class), column3 = col.column("Column3", "field2", type.listType()));
-    }
-
-    @Override
-    public void test() {
-        super.test();
-
-        numberOfPagesTest(1);
-
-        columnDetailValueTest(column1, "row1", "row2");
-        columnDetailValueTest(column2, "comment1\ncomment2\ncomment3", "comment1\ncomment2");
-        columnDetailValueTest(column3, "comment1\ncomment2\ncomment3", "comment1\ncomment2");
-    }
-
-    @Override
-    protected JRDataSource createDataSource() {
-        DRDataSource dataSource = new DRDataSource("field1", "field2");
-        List<String> comments = new ArrayList<String>();
-        comments.add("comment1");
-        comments.add("comment2");
-        comments.add("comment3");
-        dataSource.add("row1", comments);
-        comments = new ArrayList<String>();
-        comments.add("comment1");
-        comments.add("comment2");
-        dataSource.add("row2", comments);
-        return dataSource;
-    }
+public class ListDataTypeTest extends AbstractJasperValueTest
+{
+	private TextColumnBuilder<String> column1;
+	@SuppressWarnings("rawtypes")
+	private TextColumnBuilder<List> column2;
+	@SuppressWarnings("rawtypes")
+	private TextColumnBuilder<List> column3;
+	
+	@Override
+	protected void configureReport(final JasperReportBuilder rb)
+	{
+		
+		rb.columns(
+			this.column1 = col.column("Column1", "field1", String.class),
+			this.column2 = col.column("Column2", "field2", List.class),
+			this.column3 = col.column("Column3", "field2", type.listType()));
+	}
+	
+	@Override
+	public void test()
+	{
+		super.test();
+		
+		this.numberOfPagesTest(1);
+		
+		this.columnDetailValueTest(this.column1, "row1", "row2");
+		this.columnDetailValueTest(this.column2, "comment1\ncomment2\ncomment3", "comment1\ncomment2");
+		this.columnDetailValueTest(this.column3, "comment1\ncomment2\ncomment3", "comment1\ncomment2");
+	}
+	
+	@Override
+	protected JRDataSource createDataSource()
+	{
+		final DRDataSource dataSource = new DRDataSource("field1", "field2");
+		List<String> comments = new ArrayList<>();
+		comments.add("comment1");
+		comments.add("comment2");
+		comments.add("comment3");
+		dataSource.add("row1", comments);
+		comments = new ArrayList<>();
+		comments.add("comment1");
+		comments.add("comment2");
+		dataSource.add("row2", comments);
+		return dataSource;
+	}
 }

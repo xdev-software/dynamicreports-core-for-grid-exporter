@@ -17,44 +17,34 @@
  */
 package software.xdev.dynamicreports.report.base;
 
-import software.xdev.dynamicreports.report.constant.Constants;
-import software.xdev.dynamicreports.report.definition.DRIQuery;
 import org.apache.commons.lang3.Validate;
 
-/**
- * <p>DRQuery class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class DRQuery implements DRIQuery {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
+import software.xdev.dynamicreports.report.definition.DRIQuery;
 
-    private String text;
-    private String language;
 
-    /**
-     * <p>Constructor for DRQuery.</p>
-     *
-     * @param text     a {@link java.lang.String} object.
-     * @param language a {@link java.lang.String} object.
-     */
-    public DRQuery(String text, String language) {
-        Validate.notNull(text, "text must not be null");
-        Validate.notNull(language, "language must not be null");
-        this.text = text;
-        this.language = language;
-    }
+public class DRQuery implements DRIQuery
+{
 
-    /** {@inheritDoc} */
-    @Override
-    public String getText() {
-        return text;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public String getLanguage() {
-        return language;
-    }
+	private final String text;
+	private final String language;
+	
+	public DRQuery(final String text, final String language)
+	{
+		Validate.notNull(text, "text must not be null");
+		Validate.notNull(language, "language must not be null");
+		this.text = text;
+		this.language = language;
+	}
+	
+	@Override
+	public String getText()
+	{
+		return this.text;
+	}
+	
+	@Override
+	public String getLanguage()
+	{
+		return this.language;
+	}
 }

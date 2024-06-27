@@ -24,24 +24,20 @@ import java.io.Serializable;
 
 import org.junit.jupiter.api.Assertions;
 
+import net.sf.jasperreports.engine.JRStyle;
+import net.sf.jasperreports.engine.TabStop;
+import net.sf.jasperreports.engine.type.LineSpacingEnum;
+import net.sf.jasperreports.engine.type.TabStopAlignEnum;
 import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
 import software.xdev.dynamicreports.report.builder.style.StyleBuilder;
 import software.xdev.dynamicreports.report.constant.LineSpacing;
 import software.xdev.dynamicreports.report.constant.TabStopAlignment;
 import software.xdev.dynamicreports.test.jasper.AbstractJasperStyleTest;
-import net.sf.jasperreports.engine.JRStyle;
-import net.sf.jasperreports.engine.TabStop;
-import net.sf.jasperreports.engine.type.LineSpacingEnum;
-import net.sf.jasperreports.engine.type.TabStopAlignEnum;
 
 
-/**
- * @author Ricardo Mariaca
- */
 class Style7Test extends AbstractJasperStyleTest implements Serializable
 {
-	private static final long serialVersionUID = 1L;
-	
+
 	@Override
 	protected void configureReport(final JasperReportBuilder rb)
 	{
@@ -63,8 +59,8 @@ class Style7Test extends AbstractJasperStyleTest implements Serializable
 	public void test()
 	{
 		super.test();
-        
-        this.numberOfPagesTest(1);
+		
+		this.numberOfPagesTest(1);
 		
 		final JRStyle style = this.getElementAt("title.textField1", 0).getStyle();
 		Assertions.assertEquals(LineSpacingEnum.DOUBLE, style.getParagraph().getLineSpacing());

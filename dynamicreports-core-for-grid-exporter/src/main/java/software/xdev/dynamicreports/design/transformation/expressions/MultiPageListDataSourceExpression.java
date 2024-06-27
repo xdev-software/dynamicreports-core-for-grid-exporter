@@ -17,41 +17,31 @@
  */
 package software.xdev.dynamicreports.design.transformation.expressions;
 
-import software.xdev.dynamicreports.report.base.expression.AbstractSimpleExpression;
-import software.xdev.dynamicreports.report.constant.Constants;
-import software.xdev.dynamicreports.report.definition.ReportParameters;
 import net.sf.jasperreports.engine.JRDataSource;
 import net.sf.jasperreports.engine.JREmptyDataSource;
+import software.xdev.dynamicreports.report.base.expression.AbstractSimpleExpression;
+import software.xdev.dynamicreports.report.definition.ReportParameters;
 
-/**
- * <p>MultiPageListDataSourceExpression class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class MultiPageListDataSourceExpression extends AbstractSimpleExpression<JRDataSource> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    private int count;
+public class MultiPageListDataSourceExpression extends AbstractSimpleExpression<JRDataSource>
+{
 
-    /**
-     * <p>Constructor for MultiPageListDataSourceExpression.</p>
-     *
-     * @param count a int.
-     */
-    public MultiPageListDataSourceExpression(int count) {
-        this.count = count;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public JRDataSource evaluate(ReportParameters reportParameters) {
-        return new JREmptyDataSource(count);
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Class<JRDataSource> getValueClass() {
-        return JRDataSource.class;
-    }
+	private final int count;
+	
+	public MultiPageListDataSourceExpression(final int count)
+	{
+		this.count = count;
+	}
+	
+	@Override
+	public JRDataSource evaluate(final ReportParameters reportParameters)
+	{
+		return new JREmptyDataSource(this.count);
+	}
+	
+	@Override
+	public Class<JRDataSource> getValueClass()
+	{
+		return JRDataSource.class;
+	}
 }

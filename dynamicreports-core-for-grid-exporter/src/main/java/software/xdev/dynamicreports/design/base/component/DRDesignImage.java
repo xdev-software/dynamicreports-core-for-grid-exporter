@@ -19,105 +19,76 @@ package software.xdev.dynamicreports.design.base.component;
 
 import software.xdev.dynamicreports.design.definition.component.DRIDesignImage;
 import software.xdev.dynamicreports.design.definition.expression.DRIDesignExpression;
-import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.constant.HorizontalImageAlignment;
 import software.xdev.dynamicreports.report.constant.ImageScale;
 
-/**
- * <p>DRDesignImage class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class DRDesignImage extends DRDesignHyperlinkComponent implements DRIDesignImage {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    private ImageScale imageScale;
-    private DRIDesignExpression imageExpression;
-    private Boolean usingCache;
-    private Boolean lazy;
-    private HorizontalImageAlignment horizontalImageAlignment;
+public class DRDesignImage extends DRDesignHyperlinkComponent implements DRIDesignImage
+{
 
-    /**
-     * <p>Constructor for DRDesignImage.</p>
-     */
-    public DRDesignImage() {
-        super("image");
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRIDesignExpression getImageExpression() {
-        return imageExpression;
-    }
-
-    /**
-     * <p>Setter for the field <code>imageExpression</code>.</p>
-     *
-     * @param imageExpression a {@link software.xdev.dynamicreports.design.definition.expression.DRIDesignExpression} object.
-     */
-    public void setImageExpression(DRIDesignExpression imageExpression) {
-        this.imageExpression = imageExpression;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public ImageScale getImageScale() {
-        return imageScale;
-    }
-
-    /**
-     * <p>Setter for the field <code>imageScale</code>.</p>
-     *
-     * @param imageScale a {@link software.xdev.dynamicreports.report.constant.ImageScale} object.
-     */
-    public void setImageScale(ImageScale imageScale) {
-        this.imageScale = imageScale;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Boolean getUsingCache() {
-        return usingCache;
-    }
-
-    /**
-     * <p>Setter for the field <code>usingCache</code>.</p>
-     *
-     * @param usingCache a {@link java.lang.Boolean} object.
-     */
-    public void setUsingCache(Boolean usingCache) {
-        this.usingCache = usingCache;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Boolean getLazy() {
-        return lazy;
-    }
-
-    /**
-     * <p>Setter for the field <code>lazy</code>.</p>
-     *
-     * @param lazy a {@link java.lang.Boolean} object.
-     */
-    public void setLazy(Boolean lazy) {
-        this.lazy = lazy;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public HorizontalImageAlignment getHorizontalImageAlignment() {
-        return horizontalImageAlignment;
-    }
-
-    /**
-     * <p>Setter for the field <code>horizontalImageAlignment</code>.</p>
-     *
-     * @param horizontalImageAlignment a {@link software.xdev.dynamicreports.report.constant.HorizontalImageAlignment} object.
-     */
-    public void setHorizontalImageAlignment(HorizontalImageAlignment horizontalImageAlignment) {
-        this.horizontalImageAlignment = horizontalImageAlignment;
-    }
-
+	private ImageScale imageScale;
+	private DRIDesignExpression imageExpression;
+	private Boolean usingCache;
+	private Boolean lazy;
+	private HorizontalImageAlignment horizontalImageAlignment;
+	
+	public DRDesignImage()
+	{
+		super("image");
+	}
+	
+	@Override
+	public DRIDesignExpression getImageExpression()
+	{
+		return this.imageExpression;
+	}
+	
+	public void setImageExpression(final DRIDesignExpression imageExpression)
+	{
+		this.imageExpression = imageExpression;
+	}
+	
+	@Override
+	public ImageScale getImageScale()
+	{
+		return this.imageScale;
+	}
+	
+	public void setImageScale(final ImageScale imageScale)
+	{
+		this.imageScale = imageScale;
+	}
+	
+	@Override
+	public Boolean getUsingCache()
+	{
+		return this.usingCache;
+	}
+	
+	public void setUsingCache(final Boolean usingCache)
+	{
+		this.usingCache = usingCache;
+	}
+	
+	@Override
+	public Boolean getLazy()
+	{
+		return this.lazy;
+	}
+	
+	public void setLazy(final Boolean lazy)
+	{
+		this.lazy = lazy;
+	}
+	
+	@Override
+	public HorizontalImageAlignment getHorizontalImageAlignment()
+	{
+		return this.horizontalImageAlignment;
+	}
+	
+	public void setHorizontalImageAlignment(final HorizontalImageAlignment horizontalImageAlignment)
+	{
+		this.horizontalImageAlignment = horizontalImageAlignment;
+	}
 }

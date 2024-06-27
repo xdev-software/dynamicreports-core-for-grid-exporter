@@ -17,12 +17,7 @@
  */
 package software.xdev.dynamicreports.report.constant;
 
-/**
- * <p>AxisPosition class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public enum AxisPosition {
-    LEFT_OR_TOP, RIGHT_OR_BOTTOM
+public enum AxisPosition
+{
+	LEFT_OR_TOP, RIGHT_OR_BOTTOM
 }

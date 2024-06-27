@@ -19,25 +19,11 @@ package software.xdev.dynamicreports.report.definition;
 
 import java.io.Serializable;
 
-/**
- * <p>DRIQuery interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface DRIQuery extends Serializable {
 
-    /**
-     * <p>getText.</p>
-     *
-     * @return a {@link java.lang.String} object.
-     */
-    public String getText();
-
-    /**
-     * <p>getLanguage.</p>
-     *
-     * @return a {@link java.lang.String} object.
-     */
-    public String getLanguage();
+public interface DRIQuery extends Serializable
+{
+	
+	public String getText();
+	
+	public String getLanguage();
 }

@@ -17,62 +17,68 @@
  */
 package software.xdev.dynamicreports.test.jasper.templatedesign;
 
+import static software.xdev.dynamicreports.report.builder.DynamicReports.col;
+import static software.xdev.dynamicreports.report.builder.DynamicReports.margin;
+
+import java.io.InputStream;
+import java.io.Serializable;
+
+import net.sf.jasperreports.engine.JRDataSource;
 import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
 import software.xdev.dynamicreports.report.builder.column.TextColumnBuilder;
 import software.xdev.dynamicreports.report.datasource.DRDataSource;
 import software.xdev.dynamicreports.report.exception.DRException;
 import software.xdev.dynamicreports.test.jasper.AbstractJasperPositionTest;
-import net.sf.jasperreports.engine.JRDataSource;
 
-import java.io.InputStream;
-import java.io.Serializable;
 
-import static software.xdev.dynamicreports.report.builder.DynamicReports.col;
-import static software.xdev.dynamicreports.report.builder.DynamicReports.margin;
+public class TemplateDesignPosition3Test extends AbstractJasperPositionTest implements Serializable
+{
 
-/**
- * @author Ricardo Mariaca
- */
-public class TemplateDesignPosition3Test extends AbstractJasperPositionTest implements Serializable {
-    private static final long serialVersionUID = 1L;
-
-    private TextColumnBuilder<String> column1;
-    private TextColumnBuilder<Integer> column2;
-
-    @Override
-    protected void configureReport(JasperReportBuilder rb) throws DRException {
-        InputStream is = TemplateDesignPosition3Test.class.getResourceAsStream("templatedesign1.jrxml");
-        rb.setTemplateDesign(is).setPageMargin(margin(50)).columns(column1 = col.column("Column1", "field1", String.class), column2 = col.column("Column2", "field2", Integer.class));
-    }
-
-    @Override
-    public void test() {
-        super.test();
-
-        numberOfPagesTest(1);
-
-        elementPositionTest("columnHeader.list1", 0, 50, 164, 495, 16);
-        columnTitlePositionTest(column1, 0, 0, 0, 247, 16);
-        columnTitlePositionTest(column2, 0, 247, 0, 248, 16);
-        elementPositionTest("detail.list1", 0, 50, 201, 495, 16);
-        columnDetailPositionTest(column1, 0, 0, 0, 247, 16);
-        columnDetailPositionTest(column2, 0, 247, 0, 248, 16);
-        elementPositionTest("detail.list1", 1, 50, 238, 495, 16);
-        columnDetailPositionTest(column1, 1, 0, 0, 247, 16);
-        columnDetailPositionTest(column2, 1, 247, 0, 248, 16);
-
-        elementPositionTest("templateDesign.title1", 0, 176, 78, 100, 20);
-        elementPositionTest("templateDesign.pageHeader", 0, 176, 142, 100, 20);
-        elementPositionTest("templateDesign.pageFooter", 0, 176, 755, 100, 20);
-        elementPositionTest("templateDesign.detail", 0, 176, 180, 100, 20);
-    }
-
-    @Override
-    protected JRDataSource createDataSource() {
-        DRDataSource dataSource = new DRDataSource("field1", "field2");
-        for (int i = 0; i < 2; i++) {
-            dataSource.add("row" + i, i);
-        }
-        return dataSource;
-    }
+	private TextColumnBuilder<String> column1;
+	private TextColumnBuilder<Integer> column2;
+	
+	@Override
+	protected void configureReport(final JasperReportBuilder rb) throws DRException
+	{
+		final InputStream is = TemplateDesignPosition3Test.class.getResourceAsStream("templatedesign1.jrxml");
+		rb.setTemplateDesign(is)
+			.setPageMargin(margin(50))
+			.columns(
+				this.column1 = col.column("Column1", "field1", String.class),
+				this.column2 = col.column("Column2", "field2", Integer.class));
+	}
+	
+	@Override
+	public void test()
+	{
+		super.test();
+		
+		this.numberOfPagesTest(1);
+		
+		this.elementPositionTest("columnHeader.list1", 0, 50, 164, 495, 16);
+		this.columnTitlePositionTest(this.column1, 0, 0, 0, 247, 16);
+		this.columnTitlePositionTest(this.column2, 0, 247, 0, 248, 16);
+		this.elementPositionTest("detail.list1", 0, 50, 201, 495, 16);
+		this.columnDetailPositionTest(this.column1, 0, 0, 0, 247, 16);
+		this.columnDetailPositionTest(this.column2, 0, 247, 0, 248, 16);
+		this.elementPositionTest("detail.list1", 1, 50, 238, 495, 16);
+		this.columnDetailPositionTest(this.column1, 1, 0, 0, 247, 16);
+		this.columnDetailPositionTest(this.column2, 1, 247, 0, 248, 16);
+		
+		this.elementPositionTest("templateDesign.title1", 0, 176, 78, 100, 20);
+		this.elementPositionTest("templateDesign.pageHeader", 0, 176, 142, 100, 20);
+		this.elementPositionTest("templateDesign.pageFooter", 0, 176, 755, 100, 20);
+		this.elementPositionTest("templateDesign.detail", 0, 176, 180, 100, 20);
+	}
+	
+	@Override
+	protected JRDataSource createDataSource()
+	{
+		final DRDataSource dataSource = new DRDataSource("field1", "field2");
+		for(int i = 0; i < 2; i++)
+		{
+			dataSource.add("row" + i, i);
+		}
+		return dataSource;
+	}
 }

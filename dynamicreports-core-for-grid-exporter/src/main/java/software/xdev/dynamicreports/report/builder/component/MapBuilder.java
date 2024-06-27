@@ -19,88 +19,50 @@ package software.xdev.dynamicreports.report.builder.component;
 
 import software.xdev.dynamicreports.report.base.component.DRMap;
 import software.xdev.dynamicreports.report.builder.expression.Expressions;
-import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.definition.expression.DRIExpression;
 
-/**
- * <p>MapBuilder class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class MapBuilder extends DimensionComponentBuilder<MapBuilder, DRMap> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    /**
-     * <p>Constructor for MapBuilder.</p>
-     */
-    protected MapBuilder() {
-        super(new DRMap());
-    }
+public class MapBuilder extends DimensionComponentBuilder<MapBuilder, DRMap>
+{
 
-    /**
-     * <p>setLatitude.</p>
-     *
-     * @param latitude a {@link java.lang.Float} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.MapBuilder} object.
-     */
-    public MapBuilder setLatitude(Float latitude) {
-        getObject().setLatitudeExpression(Expressions.value(latitude));
-        return this;
-    }
-
-    /**
-     * <p>setLatitude.</p>
-     *
-     * @param latitudeExpression a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.MapBuilder} object.
-     */
-    public MapBuilder setLatitude(DRIExpression<Float> latitudeExpression) {
-        getObject().setLatitudeExpression(latitudeExpression);
-        return this;
-    }
-
-    /**
-     * <p>setLongitude.</p>
-     *
-     * @param longitude a {@link java.lang.Float} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.MapBuilder} object.
-     */
-    public MapBuilder setLongitude(Float longitude) {
-        getObject().setLongitudeExpression(Expressions.value(longitude));
-        return this;
-    }
-
-    /**
-     * <p>setLongitude.</p>
-     *
-     * @param longitudeExpression a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.MapBuilder} object.
-     */
-    public MapBuilder setLongitude(DRIExpression<Float> longitudeExpression) {
-        getObject().setLongitudeExpression(longitudeExpression);
-        return this;
-    }
-
-    /**
-     * <p>setZoom.</p>
-     *
-     * @param zoom a {@link java.lang.Integer} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.MapBuilder} object.
-     */
-    public MapBuilder setZoom(Integer zoom) {
-        getObject().setZoomExpression(Expressions.value(zoom));
-        return this;
-    }
-
-    /**
-     * <p>setZoom.</p>
-     *
-     * @param zoomExpression a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.MapBuilder} object.
-     */
-    public MapBuilder setZoom(DRIExpression<Integer> zoomExpression) {
-        getObject().setZoomExpression(zoomExpression);
-        return this;
-    }
+	protected MapBuilder()
+	{
+		super(new DRMap());
+	}
+	
+	public MapBuilder setLatitude(final Float latitude)
+	{
+		this.getObject().setLatitudeExpression(Expressions.value(latitude));
+		return this;
+	}
+	
+	public MapBuilder setLatitude(final DRIExpression<Float> latitudeExpression)
+	{
+		this.getObject().setLatitudeExpression(latitudeExpression);
+		return this;
+	}
+	
+	public MapBuilder setLongitude(final Float longitude)
+	{
+		this.getObject().setLongitudeExpression(Expressions.value(longitude));
+		return this;
+	}
+	
+	public MapBuilder setLongitude(final DRIExpression<Float> longitudeExpression)
+	{
+		this.getObject().setLongitudeExpression(longitudeExpression);
+		return this;
+	}
+	
+	public MapBuilder setZoom(final Integer zoom)
+	{
+		this.getObject().setZoomExpression(Expressions.value(zoom));
+		return this;
+	}
+	
+	public MapBuilder setZoom(final DRIExpression<Integer> zoomExpression)
+	{
+		this.getObject().setZoomExpression(zoomExpression);
+		return this;
+	}
 }

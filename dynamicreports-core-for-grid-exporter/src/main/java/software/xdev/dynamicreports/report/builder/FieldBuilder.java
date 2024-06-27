@@ -18,63 +18,38 @@
 package software.xdev.dynamicreports.report.builder;
 
 import software.xdev.dynamicreports.report.base.DRField;
-import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.definition.DRIValue;
 import software.xdev.dynamicreports.report.definition.datatype.DRIDataType;
 
-/**
- * <p>FieldBuilder class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class FieldBuilder<T> extends AbstractBuilder<FieldBuilder<T>, DRField<T>> implements DRIValue<T> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    /**
-     * <p>Constructor for FieldBuilder.</p>
-     *
-     * @param name       a {@link java.lang.String} object.
-     * @param valueClass a {@link java.lang.Class} object.
-     */
-    protected FieldBuilder(String name, Class<? super T> valueClass) {
-        super(new DRField<T>(name, valueClass));
-    }
+public class FieldBuilder<T> extends AbstractBuilder<FieldBuilder<T>, DRField<T>> implements DRIValue<T>
+{
 
-    /**
-     * <p>setDataType.</p>
-     *
-     * @param dataType a {@link software.xdev.dynamicreports.report.definition.datatype.DRIDataType} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.FieldBuilder} object.
-     */
-    public FieldBuilder<T> setDataType(DRIDataType<? super T, T> dataType) {
-        getObject().setDataType(dataType);
-        return this;
-    }
-
-    /**
-     * <p>setDescription.</p>
-     *
-     * @param description a {@link java.lang.String} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.FieldBuilder} object.
-     */
-    public FieldBuilder<T> setDescription(String description) {
-        getObject().setDescription(description);
-        return this;
-    }
-
-    /**
-     * <p>getField.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.base.DRField} object.
-     */
-    public DRField<T> getField() {
-        return build();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public String getName() {
-        return getField().getName();
-    }
+	protected FieldBuilder(final String name, final Class<? super T> valueClass)
+	{
+		super(new DRField<>(name, valueClass));
+	}
+	
+	public FieldBuilder<T> setDataType(final DRIDataType<? super T, T> dataType)
+	{
+		this.getObject().setDataType(dataType);
+		return this;
+	}
+	
+	public FieldBuilder<T> setDescription(final String description)
+	{
+		this.getObject().setDescription(description);
+		return this;
+	}
+	
+	public DRField<T> getField()
+	{
+		return this.build();
+	}
+	
+	@Override
+	public String getName()
+	{
+		return this.getField().getName();
+	}
 }
