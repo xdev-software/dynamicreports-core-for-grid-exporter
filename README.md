@@ -5,7 +5,7 @@
 # dynamicreports-core-for-grid-exporter
 This is a fork of [dynamicreports-core](https://github.com/dynamicreports/dynamicreports) and specially designed for [XDEV's Vaadin Grid Exporter](https://github.com/xdev-software/vaadin-grid-exporter).
 
-Differences from the original project are roughly described in the [changelog](./CHANGELOG.md).
+Differences from the original project are roughly described in the [changelog](./CHANGELOG.md#differences-to-dynamicreportsdynamicreports-core).
 
 ## Installation
 [Installation guide for the latest release](https://github.com/xdev-software/dynamicreports-core-for-grid-exporter/releases/latest#Installation)
