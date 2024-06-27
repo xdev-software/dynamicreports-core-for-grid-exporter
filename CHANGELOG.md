@@ -1,6 +1,6 @@
 # 1.2.0
-* Removed all auto-generated JavaDoc comments to de-bloat
-* Delete a bunch of deprecated code
+* Removed all auto-generated JavaDoc comments
+* Deleted deprecated code
 * Changed source to use XDEV CodeStyle
 
 # 1.1.2
