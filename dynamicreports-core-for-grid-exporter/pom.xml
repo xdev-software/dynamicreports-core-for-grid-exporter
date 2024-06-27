@@ -106,6 +106,13 @@
 			<artifactId>jasperreports-pdf</artifactId>
 			<version>7.0.0</version>
 		</dependency>
+		<!-- Required for compiling reports dynamically, see #12 -->
+		<dependency>
+			<groupId>net.sf.jasperreports</groupId>
+			<artifactId>jasperreports-jdt</artifactId>
+			<version>7.0.0</version>
+		</dependency>
+
 		<!-- Use for validation and minor shorthand methods -->
 		<dependency>
 			<groupId>org.apache.commons</groupId>
