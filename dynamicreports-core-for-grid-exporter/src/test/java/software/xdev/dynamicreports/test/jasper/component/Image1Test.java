@@ -71,7 +71,7 @@ public class Image1Test extends AbstractJasperTest
 			Assertions.assertTrue(Arrays.equals(
 				imageData,
 				((SimpleDataRenderer)jrImage.getRenderer()).getData(DefaultJasperReportsContext.getInstance())));
-			Assertions.assertEquals(ScaleImageEnum.CLIP, jrImage.getScaleImageValue());
+			Assertions.assertEquals(ScaleImageEnum.CLIP, jrImage.getScaleImage());
 		}
 		catch(final JRException e)
 		{

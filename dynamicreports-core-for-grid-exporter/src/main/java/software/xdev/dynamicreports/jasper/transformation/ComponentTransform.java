@@ -22,10 +22,7 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 
-import net.sf.jasperreports.components.ComponentsExtensionsRegistryFactory;
-import net.sf.jasperreports.components.map.StandardMapComponent;
 import net.sf.jasperreports.engine.JRGenericElementType;
-import net.sf.jasperreports.engine.component.ComponentKey;
 import net.sf.jasperreports.engine.design.JRDesignBreak;
 import net.sf.jasperreports.engine.design.JRDesignComponentElement;
 import net.sf.jasperreports.engine.design.JRDesignElement;
@@ -55,7 +52,6 @@ import software.xdev.dynamicreports.design.definition.component.DRIDesignGeneric
 import software.xdev.dynamicreports.design.definition.component.DRIDesignImage;
 import software.xdev.dynamicreports.design.definition.component.DRIDesignLine;
 import software.xdev.dynamicreports.design.definition.component.DRIDesignList;
-import software.xdev.dynamicreports.design.definition.component.DRIDesignMap;
 import software.xdev.dynamicreports.design.definition.component.DRIDesignRectangle;
 import software.xdev.dynamicreports.design.definition.component.DRIDesignSubreport;
 import software.xdev.dynamicreports.design.definition.component.DRIDesignTextField;
@@ -144,11 +140,6 @@ public class ComponentTransform
 				this.accessor.getCrosstabTransform().transform((DRIDesignCrosstab)component);
 			jrElements = this.component(jrElement, component, listType);
 		}
-		else if(component instanceof DRIDesignMap)
-		{
-			final JRDesignElement jrElement = this.map((DRIDesignMap)component);
-			jrElements = this.component(jrElement, component, listType);
-		}
 		else if(component instanceof DRIDesignCustomComponent)
 		{
 			final JRDesignElement jrElement = this.customComponent(component);
@@ -195,7 +186,7 @@ public class ComponentTransform
 		if(component.getPrintWhenGroupChanges() != null)
 		{
 			jrElement.setPrintWhenGroupChanges(this.accessor.getGroupTransform()
-				.getGroup(component.getPrintWhenGroupChanges()));
+				.getGroup(component.getPrintWhenGroupChanges()).getName());
 		}
 		jrElement.setKey(component.getUniqueName());
 		jrElement.setX(component.getX());
@@ -339,7 +330,9 @@ public class ComponentTransform
 		if(evaluationTime != null && evaluationTime.equals(EvaluationTime.GROUP)
 			&& textField.getEvaluationGroup() != null)
 		{
-			jrTextField.setEvaluationGroup(this.accessor.getGroupTransform().getGroup(textField.getEvaluationGroup()));
+			jrTextField.setEvaluationGroup(this.accessor.getGroupTransform()
+				.getGroup(textField.getEvaluationGroup())
+				.getName());
 		}
 		
 		if(textField.getTextAdjust() != null)
@@ -526,7 +519,7 @@ public class ComponentTransform
 		if(evaluationTime != null && evaluationTime.equals(EvaluationTime.GROUP)
 			&& genericElement.getEvaluationGroup() != null)
 		{
-			jrDesignGenericElement.setEvaluationGroupName(this.accessor.getGroupTransform()
+			jrDesignGenericElement.setEvaluationGroup(this.accessor.getGroupTransform()
 				.getGroup(genericElement.getEvaluationGroup())
 				.getName());
 		}
@@ -536,28 +529,6 @@ public class ComponentTransform
 				.getGenericElementParameterExpression(parameterExpression));
 		}
 		return jrDesignGenericElement;
-	}
-	
-	// map
-	private JRDesignElement map(final DRIDesignMap map)
-	{
-		final StandardMapComponent jrMap = new StandardMapComponent();
-		final EvaluationTime evaluationTime = map.getEvaluationTime();
-		jrMap.setEvaluationTime(ConstantTransform.evaluationTime(evaluationTime));
-		if(evaluationTime != null && evaluationTime.equals(EvaluationTime.GROUP) && map.getEvaluationGroup() != null)
-		{
-			jrMap.setEvaluationGroup(this.accessor.getGroupTransform().getGroup(map.getEvaluationGroup()).getName());
-		}
-		jrMap.setLatitudeExpression(this.accessor.getExpressionTransform().getExpression(map.getLatitudeExpression()));
-		jrMap.setLongitudeExpression(this.accessor.getExpressionTransform()
-			.getExpression(map.getLongitudeExpression()));
-		jrMap.setZoomExpression(this.accessor.getExpressionTransform().getExpression(map.getZoomExpression()));
-		
-		final JRDesignComponentElement jrComponent = new JRDesignComponentElement();
-		jrComponent.setComponent(jrMap);
-		jrComponent.setComponentKey(new ComponentKey(ComponentsExtensionsRegistryFactory.NAMESPACE, "jr", "map"));
-		
-		return jrComponent;
 	}
 	
 	// custom component

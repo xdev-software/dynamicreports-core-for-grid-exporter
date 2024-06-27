@@ -68,8 +68,8 @@ class CrosstabTest extends AbstractJasperTest
 		Assertions.assertFalse(crosstab.isRepeatRowHeaders());
 		Assertions.assertEquals(100, crosstab.getColumnBreakOffset());
 		Assertions.assertTrue(crosstab.getIgnoreWidth());
-		Assertions.assertEquals(RunDirectionEnum.RTL, crosstab.getRunDirectionValue());
-		Assertions.assertEquals(CrosstabRowPositionEnum.STRETCH, crosstab.getRowGroups()[0].getPositionValue());
-		Assertions.assertEquals(CrosstabColumnPositionEnum.STRETCH, crosstab.getColumnGroups()[0].getPositionValue());
+		Assertions.assertEquals(RunDirectionEnum.RTL, crosstab.getRunDirection());
+		Assertions.assertEquals(CrosstabRowPositionEnum.STRETCH, crosstab.getRowGroups()[0].getPosition());
+		Assertions.assertEquals(CrosstabColumnPositionEnum.STRETCH, crosstab.getColumnGroups()[0].getPosition());
 	}
 }

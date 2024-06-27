@@ -65,11 +65,11 @@ public class Component3Test extends AbstractJasperTest
 		this.numberOfPagesTest(1);
 		
 		JRElement textField = this.getJasperReport().getTitle().getElementByKey("title.textField1");
-		Assertions.assertEquals(PositionTypeEnum.FIX_RELATIVE_TO_TOP, textField.getPositionTypeValue());
-		Assertions.assertEquals(StretchTypeEnum.NO_STRETCH, textField.getStretchTypeValue());
+		Assertions.assertEquals(PositionTypeEnum.FIX_RELATIVE_TO_TOP, textField.getPositionType());
+		Assertions.assertEquals(StretchTypeEnum.NO_STRETCH, textField.getStretchType());
 		Assertions.assertTrue(textField.isPrintInFirstWholeBand());
 		Assertions.assertTrue(textField.isPrintWhenDetailOverflows());
-		Assertions.assertEquals("group1", textField.getPrintWhenGroupChanges().getName());
+		Assertions.assertEquals("group1", textField.getPrintWhenGroupChanges());
 		
 		textField = this.getJasperReport().getDetailSection().getBands()[0].getElementByKey("detail.column_column11");
 		Assertions.assertTrue(textField.isPrintWhenDetailOverflows());

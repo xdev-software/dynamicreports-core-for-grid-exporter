@@ -60,7 +60,7 @@ class TitleTest extends AbstractJasperValueTest
 		final JRPrintText textField = (JRPrintText)this.getElementAt("title.textField1", 0);
 		Assertions.assertEquals("link", textField.getHyperlinkReference());
 		Assertions.assertEquals("tooltip", textField.getHyperlinkTooltip());
-		Assertions.assertEquals(HyperlinkTypeEnum.REFERENCE, textField.getHyperlinkTypeValue());
+		Assertions.assertEquals(HyperlinkTypeEnum.REFERENCE, textField.getHyperlinkType());
 		
 		this.elementCountTest("title.textField2", 1);
 		this.elementValueTest("title.textField2", "title 2");

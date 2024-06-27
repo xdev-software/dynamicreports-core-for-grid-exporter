@@ -351,22 +351,6 @@ public final class Components
 		return new RectangleBuilder().setRadius(radius);
 	}
 	
-	// map
-	
-	public static MapBuilder map()
-	{
-		return new MapBuilder();
-	}
-	
-	public static MapBuilder map(final Float latitude, final Float longitude, final Integer zoom)
-	{
-		final MapBuilder mapBuilder = new MapBuilder();
-		mapBuilder.setLatitude(latitude);
-		mapBuilder.setLongitude(longitude);
-		mapBuilder.setZoom(zoom);
-		return mapBuilder;
-	}
-	
 	// alignment
 	
 	public static HorizontalListBuilder centerHorizontal(final ComponentBuilder<?, ?> component)

@@ -30,7 +30,6 @@ import software.xdev.dynamicreports.design.base.component.DRDesignHyperlinkCompo
 import software.xdev.dynamicreports.design.base.component.DRDesignImage;
 import software.xdev.dynamicreports.design.base.component.DRDesignLine;
 import software.xdev.dynamicreports.design.base.component.DRDesignList;
-import software.xdev.dynamicreports.design.base.component.DRDesignMap;
 import software.xdev.dynamicreports.design.base.component.DRDesignRectangle;
 import software.xdev.dynamicreports.design.base.component.DRDesignSubreport;
 import software.xdev.dynamicreports.design.base.component.DRDesignTextField;
@@ -90,7 +89,6 @@ import software.xdev.dynamicreports.report.definition.component.DRIImage;
 import software.xdev.dynamicreports.report.definition.component.DRILine;
 import software.xdev.dynamicreports.report.definition.component.DRIList;
 import software.xdev.dynamicreports.report.definition.component.DRIListCell;
-import software.xdev.dynamicreports.report.definition.component.DRIMap;
 import software.xdev.dynamicreports.report.definition.component.DRIMultiPageList;
 import software.xdev.dynamicreports.report.definition.component.DRIPageNumber;
 import software.xdev.dynamicreports.report.definition.component.DRIPageXofY;
@@ -196,10 +194,6 @@ public class ComponentTransform
 		if(component instanceof DRICrosstab)
 		{
 			return this.crosstab((DRICrosstab)component, resetType, resetGroup);
-		}
-		if(component instanceof DRIMap)
-		{
-			return this.map((DRIMap)component, resetType, resetGroup);
 		}
 		if(component instanceof DRICustomComponent)
 		{
@@ -837,25 +831,6 @@ public class ComponentTransform
 			this.accessor.getCrosstabTransform().transform(crosstab, resetType, resetGroup);
 		this.component(designCrosstab, crosstab, crosstab.getStyle(), false, DefaultStyleType.NONE);
 		return designCrosstab;
-	}
-	
-	// map
-	private DRDesignMap map(final DRIMap map, final ResetType resetType, final DRDesignGroup resetGroup)
-		throws DRException
-	{
-		final DRDesignMap designMap = new DRDesignMap();
-		this.component(designMap, map, map.getStyle(), false, DefaultStyleType.NONE);
-		designMap.setLatitudeExpression(this.accessor.getExpressionTransform()
-			.transformExpression(map.getLatitudeExpression()));
-		designMap.setLongitudeExpression(this.accessor.getExpressionTransform()
-			.transformExpression(map.getLongitudeExpression()));
-		designMap.setZoomExpression(this.accessor.getExpressionTransform()
-			.transformExpression(map.getZoomExpression()));
-		designMap.setWidth(this.accessor.getTemplateTransform().getMapWidth(map));
-		designMap.setHeight(this.accessor.getTemplateTransform().getMapHeight(map));
-		designMap.setEvaluationTime(this.evaluationTimeFromResetType(resetType));
-		designMap.setEvaluationGroup(resetGroup);
-		return designMap;
 	}
 	
 	// custom component

@@ -218,7 +218,7 @@ public abstract class AbstractExpressionTransform
 		jrVariable.setResetType(ConstantTransform.variableResetType(resetType));
 		if(resetType.equals(ResetType.GROUP) && variable.getResetGroup() != null)
 		{
-			jrVariable.setResetGroup(this.getGroup(variable.getResetGroup()));
+			jrVariable.setResetGroup(this.getGroup(variable.getResetGroup()).getName());
 		}
 		return jrVariable;
 	}

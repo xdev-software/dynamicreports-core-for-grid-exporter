@@ -88,7 +88,7 @@ public class Report1Test extends AbstractJasperValueTest
 		
 		final JasperPrint jasperPrint = this.getJasperPrint();
 		Assertions.assertEquals("Report", jasperPrint.getName());
-		Assertions.assertEquals(OrientationEnum.LANDSCAPE, jasperPrint.getOrientationValue());
+		Assertions.assertEquals(OrientationEnum.LANDSCAPE, jasperPrint.getOrientation());
 		Assertions.assertEquals(1190, jasperPrint.getPageWidth());
 		Assertions.assertEquals(842, jasperPrint.getPageHeight());
 		

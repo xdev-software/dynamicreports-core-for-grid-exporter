@@ -91,8 +91,7 @@ public final class JasperTocReport
 			final DRPage tocPage = tocReport.getReport().getPage();
 			tocPage.setWidth(jasperReportDesign.getDesign().getPageWidth());
 			tocPage.setHeight(jasperReportDesign.getDesign().getPageHeight());
-			tocPage.setOrientation(ConstantTransform.pageOrientation(jasperReportDesign.getDesign()
-				.getOrientationValue()));
+			tocPage.setOrientation(ConstantTransform.pageOrientation(jasperReportDesign.getDesign().getOrientation()));
 			final MarginBuilder tocMargin = margin();
 			tocMargin.setTop(jasperReportDesign.getDesign().getTopMargin());
 			tocMargin.setLeft(jasperReportDesign.getDesign().getLeftMargin());

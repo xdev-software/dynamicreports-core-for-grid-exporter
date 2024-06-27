@@ -145,7 +145,7 @@ public class CrosstabTransform
 		jrDataset.setResetType(ConstantTransform.variableDatabaseResetType(resetType));
 		if(resetType.equals(ResetType.GROUP) && dataset.getResetGroup() != null)
 		{
-			jrDataset.setResetGroup(this.accessor.getGroupTransform().getGroup(dataset.getResetGroup()));
+			jrDataset.setResetGroup(this.accessor.getGroupTransform().getGroup(dataset.getResetGroup()).getName());
 		}
 	}
 	

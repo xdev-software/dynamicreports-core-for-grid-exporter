@@ -19,15 +19,11 @@ package software.xdev.dynamicreports.jasper.base;
 
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Map;
 
 import net.sf.jasperreports.engine.JRDefaultScriptlet;
 import net.sf.jasperreports.engine.JRScriptlet;
 import net.sf.jasperreports.engine.JRScriptletException;
-import net.sf.jasperreports.engine.fill.JRFillField;
-import net.sf.jasperreports.engine.fill.JRFillGroup;
-import net.sf.jasperreports.engine.fill.JRFillParameter;
-import net.sf.jasperreports.engine.fill.JRFillVariable;
+import net.sf.jasperreports.engine.fill.JRFillDataset;
 import software.xdev.dynamicreports.design.definition.expression.DRIDesignComplexExpression;
 import software.xdev.dynamicreports.design.definition.expression.DRIDesignSimpleExpression;
 import software.xdev.dynamicreports.jasper.constant.ValueType;
@@ -109,13 +105,9 @@ public class JasperScriptlet extends JRDefaultScriptlet
 	}
 	
 	@Override
-	public void setData(
-		final Map<String, JRFillParameter> parsm,
-		final Map<String, JRFillField> fldsm,
-		final Map<String, JRFillVariable> varsm,
-		final JRFillGroup[] grps)
+	public void setData(final JRFillDataset dataset)
 	{
-		super.setData(parsm, fldsm, varsm, grps);
+		super.setData(dataset);
 		this.reportParameters = new JasperReportParameters(this);
 	}
 	

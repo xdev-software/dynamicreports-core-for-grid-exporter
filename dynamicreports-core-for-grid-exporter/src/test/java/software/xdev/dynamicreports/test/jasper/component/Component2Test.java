@@ -67,9 +67,9 @@ public class Component2Test extends AbstractJasperPositionTest
 		this.elementPositionTest("title.line5", 0, 288, 0, 287, 50);
 		
 		JRPrintLine line = (JRPrintLine)this.getElementAt("title.line4", 0);
-		Assertions.assertEquals(LineDirectionEnum.TOP_DOWN, line.getDirectionValue());
+		Assertions.assertEquals(LineDirectionEnum.TOP_DOWN, line.getDirection());
 		line = (JRPrintLine)this.getElementAt("title.line5", 0);
-		Assertions.assertEquals(LineDirectionEnum.BOTTOM_UP, line.getDirectionValue());
+		Assertions.assertEquals(LineDirectionEnum.BOTTOM_UP, line.getDirection());
 		
 		this.elementPositionTest("title.ellipse1", 0, 10, 61, 575, 100);
 		this.elementPositionTest("title.rectangle1", 0, 10, 161, 575, 100);

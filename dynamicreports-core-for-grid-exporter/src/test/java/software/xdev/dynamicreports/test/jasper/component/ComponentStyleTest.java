@@ -79,6 +79,6 @@ public class ComponentStyleTest extends AbstractJasperStyleTest
 	{
 		Assertions.assertEquals(width, pen.getLineWidth());
 		Assertions.assertEquals(color, pen.getLineColor());
-		Assertions.assertEquals(style, pen.getLineStyleValue());
+		Assertions.assertEquals(style, pen.getLineStyle());
 	}
 }

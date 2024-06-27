@@ -49,7 +49,7 @@ public class IgnorePaginationTest extends AbstractJasperValueTest implements Ser
 		this.numberOfPagesTest(1);
 		
 		final JasperPrint jasperPrint = this.getJasperPrint();
-		Assertions.assertEquals(OrientationEnum.PORTRAIT, jasperPrint.getOrientationValue());
+		Assertions.assertEquals(OrientationEnum.PORTRAIT, jasperPrint.getOrientation());
 		Assertions.assertEquals(595, jasperPrint.getPageWidth());
 		Assertions.assertEquals(1636, jasperPrint.getPageHeight());
 	}

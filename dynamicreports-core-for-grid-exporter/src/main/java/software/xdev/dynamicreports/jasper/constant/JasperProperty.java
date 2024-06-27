@@ -21,12 +21,10 @@ import net.sf.jasperreports.engine.JRAbstractExporter;
 import net.sf.jasperreports.engine.JRTextElement;
 import net.sf.jasperreports.engine.export.HtmlExporter;
 import net.sf.jasperreports.engine.export.JRCsvMetadataExporter;
-import net.sf.jasperreports.engine.export.JRPdfExporterTagHelper;
 import net.sf.jasperreports.engine.export.JRXlsAbstractExporter;
 import net.sf.jasperreports.engine.export.JRXlsAbstractMetadataExporter;
 import net.sf.jasperreports.engine.export.ooxml.JRDocxExporter;
 import net.sf.jasperreports.engine.util.JRTextMeasurerUtil;
-import net.sf.jasperreports.engine.xml.PrintSaxParserFactory;
 import net.sf.jasperreports.export.CommonExportConfiguration;
 import net.sf.jasperreports.export.CsvExporterConfiguration;
 import net.sf.jasperreports.export.CsvMetadataReportConfiguration;
@@ -34,14 +32,14 @@ import net.sf.jasperreports.export.DocxReportConfiguration;
 import net.sf.jasperreports.export.Graphics2DReportConfiguration;
 import net.sf.jasperreports.export.HtmlExporterConfiguration;
 import net.sf.jasperreports.export.HtmlReportConfiguration;
-import net.sf.jasperreports.export.PdfExporterConfiguration;
-import net.sf.jasperreports.export.PdfReportConfiguration;
 import net.sf.jasperreports.export.ReportExportConfiguration;
 import net.sf.jasperreports.export.TextReportConfiguration;
 import net.sf.jasperreports.export.WriterExporterOutput;
 import net.sf.jasperreports.export.XlsExporterConfiguration;
 import net.sf.jasperreports.export.XlsMetadataReportConfiguration;
 import net.sf.jasperreports.export.XlsReportConfiguration;
+import net.sf.jasperreports.pdf.PdfExporterConfiguration;
+import net.sf.jasperreports.pdf.PdfReportConfiguration;
 
 
 public final class JasperProperty
@@ -71,15 +69,6 @@ public final class JasperProperty
 	public static final String EXPORT_TEXT_PAGE_HEIGHT = TextReportConfiguration.PROPERTY_PAGE_HEIGHT;
 	
 	// pdf
-	public static final String EXPORT_PDF_TAG_TABLE = JRPdfExporterTagHelper.PROPERTY_TAG_TABLE;
-	public static final String EXPORT_PDF_TAG_TR = JRPdfExporterTagHelper.PROPERTY_TAG_TR;
-	public static final String EXPORT_PDF_TAG_TH = JRPdfExporterTagHelper.PROPERTY_TAG_TH;
-	public static final String EXPORT_PDF_TAG_TD = JRPdfExporterTagHelper.PROPERTY_TAG_TD;
-	public static final String EXPORT_PDF_TAG_H1 = JRPdfExporterTagHelper.PROPERTY_TAG_H1;
-	public static final String EXPORT_PDF_TAG_H2 = JRPdfExporterTagHelper.PROPERTY_TAG_H2;
-	public static final String EXPORT_PDF_TAG_H3 = JRPdfExporterTagHelper.PROPERTY_TAG_H3;
-	public static final String EXPORT_PDF_TAG_COLSPAN = JRPdfExporterTagHelper.PROPERTY_TAG_COLSPAN;
-	public static final String EXPORT_PDF_TAG_ROWSPAN = JRPdfExporterTagHelper.PROPERTY_TAG_ROWSPAN;
 	public static final String EXPORT_PDF_CREATE_BATCH_MODE_BOOKMARKS =
 		PdfExporterConfiguration.PROPERTY_CREATE_BATCH_MODE_BOOKMARKS;
 	public static final String EXPORT_PDF_COMPRESSED = PdfExporterConfiguration.PROPERTY_COMPRESSED;
@@ -163,9 +152,6 @@ public final class JasperProperty
 	public static final String EXPORT_XLSMETADATA_COLUMN_NAME = JRXlsAbstractMetadataExporter.PROPERTY_COLUMN_NAME;
 	public static final String EXPORT_XLSMETADATA_REPEAT_VALUE = JRXlsAbstractMetadataExporter.PROPERTY_REPEAT_VALUE;
 	public static final String EXPORT_XLSMETADATA_DATA = JRXlsAbstractMetadataExporter.PROPERTY_DATA;
-	
-	// xml
-	public static final String EXPORT_XML_VALIDATION = PrintSaxParserFactory.EXPORT_XML_VALIDATION;
 	
 	// csv
 	public static final String EXPORT_CSV_FIELD_DELIMITER = CsvExporterConfiguration.PROPERTY_FIELD_DELIMITER;

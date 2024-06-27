@@ -1,4 +1,7 @@
-# 1.2.0
+# 2.0.0
+* Updated to JasperReports 7
+* Removed support for Maps
+* Removed unused dependencies
 * Removed all auto-generated JavaDoc comments
 * Deleted deprecated code
 * Changed source to use XDEV CodeStyle

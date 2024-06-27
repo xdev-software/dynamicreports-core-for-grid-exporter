@@ -27,15 +27,13 @@ import software.xdev.dynamicreports.report.definition.crosstab.DRICrosstabMeasur
 import software.xdev.dynamicreports.report.definition.crosstab.DRICrosstabVariable;
 import software.xdev.dynamicreports.report.definition.expression.DRIComplexExpression;
 import software.xdev.dynamicreports.report.definition.expression.DRIExpression;
-import software.xdev.dynamicreports.report.exception.DRException;
 
 
 public class CrosstabExpression<T> extends AbstractComplexExpression<T>
 {
-
 	private final DRIExpression<T> expression;
 	
-	public CrosstabExpression(final DRICrosstab crosstab, final DRIExpression<T> expression) throws DRException
+	public CrosstabExpression(final DRICrosstab crosstab, final DRIExpression<T> expression)
 	{
 		this.expression = expression;
 		if(expression instanceof DRIComplexExpression)
@@ -62,14 +60,13 @@ public class CrosstabExpression<T> extends AbstractComplexExpression<T>
 	@Override
 	public T evaluate(final List<?> values, final ReportParameters reportParameters)
 	{
-		final DRICustomValues customValues = (DRICustomValues)reportParameters.getParameterValue(DRICustomValues.NAME);
+		final DRICustomValues customValues = reportParameters.getParameterValue(DRICustomValues.NAME);
 		for(int i = 0; i < this.getExpressions().size(); i++)
 		{
 			customValues.setSystemValue(this.getExpressions().get(i).getName(), values.get(i));
 		}
-		if(this.expression instanceof DRIComplexExpression)
+		if(this.expression instanceof final DRIComplexExpression<?> express)
 		{
-			final DRIComplexExpression<?> express = (DRIComplexExpression<?>)this.expression;
 			return (T)express.evaluate(values, reportParameters);
 		}
 		else

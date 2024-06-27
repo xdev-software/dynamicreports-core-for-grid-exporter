@@ -328,18 +328,6 @@ public class ComponentBuilders
 		return Components.roundRectangle(radius);
 	}
 	
-	// map
-	
-	public MapBuilder map()
-	{
-		return Components.map();
-	}
-	
-	public MapBuilder map(final Float latitude, final Float longitude, final Integer zoom)
-	{
-		return Components.map(latitude, longitude, zoom);
-	}
-	
 	// alignment
 	
 	public HorizontalListBuilder centerHorizontal(final ComponentBuilder<?, ?> component)

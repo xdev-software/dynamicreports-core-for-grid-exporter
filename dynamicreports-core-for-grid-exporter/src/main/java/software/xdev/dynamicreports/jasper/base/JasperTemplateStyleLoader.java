@@ -148,7 +148,7 @@ public final class JasperTemplateStyleLoader
 		style.setForegroundColor(jrStyle.getOwnForecolor());
 		style.setBackgroundColor(jrStyle.getOwnBackcolor());
 		style.setRadius(jrStyle.getOwnRadius());
-		style.setImageScale(imageScale(jrStyle.getOwnScaleImageValue()));
+		style.setImageScale(imageScale(jrStyle.getOwnScaleImage()));
 		style.setHorizontalImageAlignment(horizontalImageAlignment(jrStyle.getOwnHorizontalImageAlign()));
 		style.setVerticalImageAlignment(verticalImageAlignment(jrStyle.getOwnVerticalImageAlign()));
 		style.setHorizontalTextAlignment(horizontalTextAlignment(jrStyle.getOwnHorizontalTextAlign()));
@@ -156,7 +156,7 @@ public final class JasperTemplateStyleLoader
 		border(jrStyle.getLineBox(), style.getBorder());
 		padding(jrStyle.getLineBox(), style.getPadding());
 		font(jrStyle, style.getFont());
-		style.setRotation(rotation(jrStyle.getOwnRotationValue()));
+		style.setRotation(rotation(jrStyle.getOwnRotation()));
 		style.setPattern(jrStyle.getOwnPattern());
 		style.setMarkup(markup(jrStyle.getOwnMarkup()));
 		paragraph(jrStyle.getParagraph(), style.getParagraph());
@@ -188,7 +188,7 @@ public final class JasperTemplateStyleLoader
 	protected static void pen(final JRPen jrPen, final DRPen pen)
 	{
 		pen.setLineColor(jrPen.getOwnLineColor());
-		pen.setLineStyle(lineStyle(jrPen.getOwnLineStyleValue()));
+		pen.setLineStyle(lineStyle(jrPen.getOwnLineStyle()));
 		pen.setLineWidth(jrPen.getOwnLineWidth());
 	}
 	
@@ -213,7 +213,7 @@ public final class JasperTemplateStyleLoader
 		font.setFontName(jrStyle.getOwnFontName());
 		font.setBold(jrStyle.isOwnBold());
 		font.setItalic(jrStyle.isOwnItalic());
-		font.setFontSize(jrStyle.getOwnFontsize() == null ? null : jrStyle.getOwnFontsize().intValue());
+		font.setFontSize(jrStyle.getOwnFontSize() == null ? null : jrStyle.getOwnFontSize().intValue());
 		font.setStrikeThrough(jrStyle.isOwnStrikeThrough());
 		font.setUnderline(jrStyle.isOwnUnderline());
 	}

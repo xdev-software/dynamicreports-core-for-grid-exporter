@@ -74,7 +74,6 @@ import software.xdev.dynamicreports.report.definition.component.DRIGenericElemen
 import software.xdev.dynamicreports.report.definition.component.DRIImage;
 import software.xdev.dynamicreports.report.definition.component.DRILine;
 import software.xdev.dynamicreports.report.definition.component.DRIList;
-import software.xdev.dynamicreports.report.definition.component.DRIMap;
 import software.xdev.dynamicreports.report.definition.component.DRIMultiPageList;
 import software.xdev.dynamicreports.report.definition.component.DRIPageXofY;
 import software.xdev.dynamicreports.report.definition.component.DRIRectangle;
@@ -1457,26 +1456,6 @@ public class TemplateTransform
 			return rectangle.getHeight();
 		}
 		return Defaults.getDefaults().getRectangleHeight();
-	}
-	
-	// map
-	
-	protected int getMapWidth(final DRIMap map)
-	{
-		if(map.getWidth() != null)
-		{
-			return map.getWidth();
-		}
-		return Defaults.getDefaults().getMapWidth();
-	}
-	
-	protected int getMapHeight(final DRIMap map)
-	{
-		if(map.getHeight() != null)
-		{
-			return map.getHeight();
-		}
-		return Defaults.getDefaults().getMapHeight();
 	}
 	
 	// custom component

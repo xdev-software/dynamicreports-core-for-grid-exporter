@@ -170,13 +170,13 @@ public class JasperTemplateDesign implements DRITemplateDesign<JasperDesign>
 	@Override
 	public WhenNoDataType getWhenNoDataType()
 	{
-		return ConstantTransform.whenNoDataType(this.jasperDesign.getWhenNoDataTypeValue());
+		return ConstantTransform.whenNoDataType(this.jasperDesign.getWhenNoDataType());
 	}
 	
 	@Override
 	public WhenResourceMissingType getWhenResourceMissingType()
 	{
-		return ConstantTransform.whenResourceMissingType(this.jasperDesign.getWhenResourceMissingTypeValue());
+		return ConstantTransform.whenResourceMissingType(this.jasperDesign.getWhenResourceMissingType());
 	}
 	
 	@Override
@@ -218,7 +218,7 @@ public class JasperTemplateDesign implements DRITemplateDesign<JasperDesign>
 	@Override
 	public PageOrientation getPageOrientation()
 	{
-		return ConstantTransform.pageOrientation(this.jasperDesign.getOrientationValue());
+		return ConstantTransform.pageOrientation(this.jasperDesign.getOrientation());
 	}
 	
 	@Override

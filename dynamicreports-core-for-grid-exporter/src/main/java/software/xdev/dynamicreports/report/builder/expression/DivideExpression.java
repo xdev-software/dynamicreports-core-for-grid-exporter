@@ -18,6 +18,7 @@
 package software.xdev.dynamicreports.report.builder.expression;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 import software.xdev.dynamicreports.report.definition.expression.DRIExpression;
 
@@ -37,6 +38,6 @@ public class DivideExpression extends CalculationExpression
 	@Override
 	protected BigDecimal calculate(final BigDecimal value1, final BigDecimal value2)
 	{
-		return value1.divide(value2, this.scale, BigDecimal.ROUND_HALF_UP);
+		return value1.divide(value2, this.scale, RoundingMode.HALF_UP);
 	}
 }

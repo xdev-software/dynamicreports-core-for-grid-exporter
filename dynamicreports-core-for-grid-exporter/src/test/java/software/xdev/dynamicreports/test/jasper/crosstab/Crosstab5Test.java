@@ -24,6 +24,7 @@ import static software.xdev.dynamicreports.report.builder.DynamicReports.type;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 import java.util.Locale;
 
@@ -47,7 +48,6 @@ import software.xdev.dynamicreports.test.jasper.AbstractJasperCrosstabValueTest;
 
 public class Crosstab5Test extends AbstractJasperCrosstabValueTest implements Serializable
 {
-
 	private CrosstabRowGroupBuilder<String> rowGroup;
 	private CrosstabColumnGroupBuilder<String> columnGroup;
 	private CrosstabVariableBuilder<Integer> variable1;
@@ -187,7 +187,7 @@ public class Crosstab5Test extends AbstractJasperCrosstabValueTest implements Se
 		{
 			final Integer value1 = (Integer)values.get(0);
 			final Integer value2 = (Integer)values.get(1);
-			return new BigDecimal(value1).divide(new BigDecimal(value2), 3, BigDecimal.ROUND_HALF_UP)
+			return new BigDecimal(value1).divide(new BigDecimal(value2), 3, RoundingMode.HALF_UP)
 				.multiply(new BigDecimal(100));
 		}
 	}
@@ -213,7 +213,7 @@ public class Crosstab5Test extends AbstractJasperCrosstabValueTest implements Se
 			final Integer measure1Value = reportParameters.getValue(Crosstab5Test.this.measure1);
 			Assertions.assertEquals(value1, measure1Value);
 			Assertions.assertEquals(value2, values.get(2));
-			return new BigDecimal(value1).divide(new BigDecimal(value2), 3, BigDecimal.ROUND_HALF_UP)
+			return new BigDecimal(value1).divide(new BigDecimal(value2), 3, RoundingMode.HALF_UP)
 				.multiply(new BigDecimal(100));
 		}
 	}

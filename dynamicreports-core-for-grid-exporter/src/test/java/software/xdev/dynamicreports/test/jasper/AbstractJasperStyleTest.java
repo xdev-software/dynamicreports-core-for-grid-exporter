@@ -56,7 +56,7 @@ public abstract class AbstractJasperStyleTest extends AbstractJasperTest
 		Assertions.assertEquals(foreColor, style.getForecolor());
 		Assertions.assertEquals(backColor, style.getBackcolor());
 		Assertions.assertEquals(fontName, style.getFontName());
-		Assertions.assertEquals(fontSize, style.getFontsize());
+		Assertions.assertEquals(fontSize, style.getFontSize());
 		Assertions.assertEquals(bold, style.isBold());
 		Assertions.assertEquals(italic, style.isItalic());
 	}
@@ -82,22 +82,22 @@ public abstract class AbstractJasperStyleTest extends AbstractJasperTest
 		JRBoxPen pen = style.getLineBox().getTopPen();
 		Assertions.assertEquals(top, pen.getLineWidth().floatValue(), 0);
 		Assertions.assertEquals(topColor, pen.getLineColor());
-		Assertions.assertEquals(topLineStyle, pen.getLineStyleValue());
+		Assertions.assertEquals(topLineStyle, pen.getLineStyle());
 		
 		pen = style.getLineBox().getBottomPen();
 		Assertions.assertEquals(bottom, pen.getLineWidth().floatValue(), 0);
 		Assertions.assertEquals(bottomColor, pen.getLineColor());
-		Assertions.assertEquals(bottomLineStyle, pen.getLineStyleValue());
+		Assertions.assertEquals(bottomLineStyle, pen.getLineStyle());
 		
 		pen = style.getLineBox().getLeftPen();
 		Assertions.assertEquals(left, pen.getLineWidth().floatValue(), 0);
 		Assertions.assertEquals(leftColor, pen.getLineColor());
-		Assertions.assertEquals(leftLineStyle, pen.getLineStyleValue());
+		Assertions.assertEquals(leftLineStyle, pen.getLineStyle());
 		
 		pen = style.getLineBox().getRightPen();
 		Assertions.assertEquals(right, pen.getLineWidth().floatValue(), 0);
 		Assertions.assertEquals(rightColor, pen.getLineColor());
-		Assertions.assertEquals(rightLineStyle, pen.getLineStyleValue());
+		Assertions.assertEquals(rightLineStyle, pen.getLineStyle());
 	}
 	
 	protected void paddingTest(
