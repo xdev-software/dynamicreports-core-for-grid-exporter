@@ -593,7 +593,7 @@ final class ComponentPosition
 		}
 	}
 	
-	@SuppressWarnings("checkstyle:FinalParameters")
+	@SuppressWarnings({"checkstyle:FinalParameters", "java:S3518"})
 	private static void listCellWidth(final DRDesignList list, int availableWidth, final int maxWidth)
 	{
 		if(!list.isCalculateComponents())
@@ -635,7 +635,8 @@ final class ComponentPosition
 								if(expandCells > 1)
 								{
 									availableCellWidth =
-										(int)((double)availableWidth / expandCellsWidth * component.getWidth());
+										(int)((double)availableWidth / Math.max(1, expandCellsWidth)
+											* component.getWidth());
 									expandCellsWidth -= component.getWidth();
 									availableWidth -= availableCellWidth;
 								}
