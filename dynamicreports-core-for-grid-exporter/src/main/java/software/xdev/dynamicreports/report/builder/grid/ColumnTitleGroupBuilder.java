@@ -154,13 +154,6 @@ public class ColumnTitleGroupBuilder extends AbstractBuilder<ColumnTitleGroupBui
 		return this;
 	}
 	
-	@Deprecated
-	public ColumnTitleGroupBuilder setTitleStretchWithOverflow(final Boolean stretchWithOverflow)
-	{
-		this.getObject().setTitleStretchWithOverflow(stretchWithOverflow);
-		return this;
-	}
-	
 	public ColumnTitleGroupBuilder setTitleTextAdjust(final TextAdjust textAdjust)
 	{
 		this.getObject().setTitleTextAdjust(textAdjust);

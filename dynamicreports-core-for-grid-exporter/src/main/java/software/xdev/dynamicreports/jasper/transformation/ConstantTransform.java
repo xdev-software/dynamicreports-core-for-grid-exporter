@@ -792,10 +792,6 @@ public final class ConstantTransform
 		{
 			case NO_STRETCH:
 				return StretchTypeEnum.NO_STRETCH;
-			case RELATIVE_TO_BAND_HEIGHT:
-				return StretchTypeEnum.CONTAINER_HEIGHT;
-			case RELATIVE_TO_TALLEST_OBJECT:
-				return StretchTypeEnum.ELEMENT_GROUP_HEIGHT;
 			case ELEMENT_GROUP_HEIGHT:
 				return StretchTypeEnum.ELEMENT_GROUP_HEIGHT;
 			case ELEMENT_GROUP_BOTTOM:

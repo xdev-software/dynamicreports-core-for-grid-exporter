@@ -208,7 +208,6 @@ public final class JasperTemplateStyleLoader
 		padding.setBottom(jrLineBox.getOwnBottomPadding());
 	}
 	
-	@SuppressWarnings("deprecation")
 	private static void font(final JRStyle jrStyle, final DRFont font)
 	{
 		font.setFontName(jrStyle.getOwnFontName());
@@ -217,9 +216,6 @@ public final class JasperTemplateStyleLoader
 		font.setFontSize(jrStyle.getOwnFontsize() == null ? null : jrStyle.getOwnFontsize().intValue());
 		font.setStrikeThrough(jrStyle.isOwnStrikeThrough());
 		font.setUnderline(jrStyle.isOwnUnderline());
-		font.setPdfFontName(jrStyle.getOwnPdfFontName());
-		font.setPdfEncoding(jrStyle.getOwnPdfEncoding());
-		font.setPdfEmbedded(jrStyle.isOwnPdfEmbedded());
 	}
 	
 	private static LineStyle lineStyle(final LineStyleEnum lineStyle)

@@ -45,9 +45,6 @@ public interface DRICrosstabGroup<T> extends DRISystemExpression<T>
 	
 	DRIValueFormatter<?, ? super T> getHeaderValueFormatter();
 	
-	@Deprecated
-	Boolean getHeaderStretchWithOverflow();
-	
 	TextAdjust getHeaderTextAdjust();
 	
 	DRIHyperLink getHeaderHyperLink();
@@ -61,9 +58,6 @@ public interface DRICrosstabGroup<T> extends DRISystemExpression<T>
 	CrosstabTotalPosition getTotalPosition();
 	
 	DRIExpression<?> getTotalHeaderExpression();
-	
-	@Deprecated
-	Boolean getTotalHeaderStretchWithOverflow();
 	
 	TextAdjust getTotalHeaderTextAdjust();
 	

@@ -31,16 +31,14 @@ import software.xdev.dynamicreports.report.constant.LineSpacing;
 import software.xdev.dynamicreports.report.constant.Markup;
 import software.xdev.dynamicreports.report.constant.Rotation;
 import software.xdev.dynamicreports.report.constant.TabStopAlignment;
-import software.xdev.dynamicreports.report.constant.VerticalAlignment;
 import software.xdev.dynamicreports.report.constant.VerticalImageAlignment;
 import software.xdev.dynamicreports.report.constant.VerticalTextAlignment;
 
 
-@SuppressWarnings({"unchecked", "deprecation"})
+@SuppressWarnings({"unchecked"})
 public abstract class BaseStyleBuilder<T extends BaseStyleBuilder<T, U>, U extends DRBaseStyle>
 	extends AbstractBuilder<T, U>
 {
-
 	protected BaseStyleBuilder(final U baseStyle)
 	{
 		super(baseStyle);
@@ -175,27 +173,6 @@ public abstract class BaseStyleBuilder<T extends BaseStyleBuilder<T, U>, U exten
 		return this.setItalic(true);
 	}
 	
-	@Deprecated
-	public T setPdfEmbedded(final Boolean pdfEmbedded)
-	{
-		this.getObject().getFont().setPdfEmbedded(pdfEmbedded);
-		return (T)this;
-	}
-	
-	@Deprecated
-	public T setPdfEncoding(final String pdfEncoding)
-	{
-		this.getObject().getFont().setPdfEncoding(pdfEncoding);
-		return (T)this;
-	}
-	
-	@Deprecated
-	public T setPdfFontName(final String pdfFontName)
-	{
-		this.getObject().getFont().setPdfFontName(pdfFontName);
-		return (T)this;
-	}
-	
 	public T strikeThrough()
 	{
 		return this.setStrikeThrough(true);
@@ -317,20 +294,6 @@ public abstract class BaseStyleBuilder<T extends BaseStyleBuilder<T, U>, U exten
 	{
 		this.getObject().setHorizontalImageAlignment(horizontalImageAlignment);
 		this.getObject().setVerticalImageAlignment(verticalImageAlignment);
-		return (T)this;
-	}
-	
-	@Deprecated
-	public T setVerticalAlignment(final VerticalAlignment verticalAlignment)
-	{
-		if(verticalAlignment != null)
-		{
-			this.getObject().setVerticalTextAlignment(VerticalTextAlignment.valueOf(verticalAlignment.name()));
-		}
-		else
-		{
-			this.getObject().setVerticalTextAlignment(null);
-		}
 		return (T)this;
 	}
 	

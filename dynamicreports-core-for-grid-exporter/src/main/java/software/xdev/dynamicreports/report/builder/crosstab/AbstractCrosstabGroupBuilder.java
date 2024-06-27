@@ -93,13 +93,6 @@ public abstract class AbstractCrosstabGroupBuilder<T extends AbstractCrosstabGro
 		return (T)this;
 	}
 	
-	@Deprecated
-	public T setHeaderStretchWithOverflow(final Boolean stretchWithOverflow)
-	{
-		this.getObject().setHeaderStretchWithOverflow(stretchWithOverflow);
-		return (T)this;
-	}
-	
 	public T setHeaderTextAdjust(final TextAdjust textAdjust)
 	{
 		this.getObject().setHeaderTextAdjust(textAdjust);
@@ -171,13 +164,6 @@ public abstract class AbstractCrosstabGroupBuilder<T extends AbstractCrosstabGro
 	public T setTotalHeader(final String totalHeader)
 	{
 		this.getObject().setTotalHeaderExpression(Expressions.text(totalHeader));
-		return (T)this;
-	}
-	
-	@Deprecated
-	public T setTotalHeaderStretchWithOverflow(final Boolean stretchWithOverflow)
-	{
-		this.getObject().setTotalHeaderStretchWithOverflow(stretchWithOverflow);
 		return (T)this;
 	}
 	

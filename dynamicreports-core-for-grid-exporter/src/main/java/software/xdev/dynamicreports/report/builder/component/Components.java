@@ -257,12 +257,6 @@ public final class Components
 		return new ImageBuilder().setImage(Expressions.value(image, Renderable.class));
 	}
 	
-	@Deprecated
-	public static ImageBuilder image(final net.sf.jasperreports.engine.Renderable image)
-	{
-		return new ImageBuilder().setImage(Expressions.value(image, net.sf.jasperreports.engine.Renderable.class));
-	}
-	
 	// subreport
 	
 	public static SubreportBuilder subreport(final JasperReportBuilder reportBuilder)

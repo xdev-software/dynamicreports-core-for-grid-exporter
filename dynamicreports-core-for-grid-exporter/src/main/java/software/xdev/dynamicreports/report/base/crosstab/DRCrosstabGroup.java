@@ -44,7 +44,6 @@ public abstract class DRCrosstabGroup<T> implements DRICrosstabGroup<T>
 	private String headerPattern;
 	private HorizontalTextAlignment headerHorizontalTextAlignment;
 	private DRIValueFormatter<?, ? super T> headerValueFormatter;
-	private Boolean headerStretchWithOverflow;
 	private TextAdjust headerTextAdjust;
 	private DRHyperLink headerHyperLink;
 	private DRIReportStyle headerStyle;
@@ -52,7 +51,6 @@ public abstract class DRCrosstabGroup<T> implements DRICrosstabGroup<T>
 	private Boolean showTotal;
 	private CrosstabTotalPosition totalPosition;
 	private DRIExpression<?> totalHeaderExpression;
-	private Boolean totalHeaderStretchWithOverflow;
 	private TextAdjust totalHeaderTextAdjust;
 	private DRIReportStyle totalHeaderStyle;
 	private List<DRIPropertyExpression> totalHeaderPropertyExpressions;
@@ -106,18 +104,6 @@ public abstract class DRCrosstabGroup<T> implements DRICrosstabGroup<T>
 	public void setHeaderValueFormatter(final DRIValueFormatter<?, ? super T> headerValueFormatter)
 	{
 		this.headerValueFormatter = headerValueFormatter;
-	}
-	
-	@Override
-	public Boolean getHeaderStretchWithOverflow()
-	{
-		return this.headerStretchWithOverflow;
-	}
-	
-	@Deprecated
-	public void setHeaderStretchWithOverflow(final Boolean headerStretchWithOverflow)
-	{
-		this.headerStretchWithOverflow = headerStretchWithOverflow;
 	}
 	
 	@Override
@@ -201,18 +187,6 @@ public abstract class DRCrosstabGroup<T> implements DRICrosstabGroup<T>
 	public void setTotalHeaderExpression(final DRIExpression<?> totalHeaderExpression)
 	{
 		this.totalHeaderExpression = totalHeaderExpression;
-	}
-	
-	@Override
-	public Boolean getTotalHeaderStretchWithOverflow()
-	{
-		return this.totalHeaderStretchWithOverflow;
-	}
-	
-	@Deprecated
-	public void setTotalHeaderStretchWithOverflow(final Boolean totalHeaderStretchWithOverflow)
-	{
-		this.totalHeaderStretchWithOverflow = totalHeaderStretchWithOverflow;
 	}
 	
 	@Override

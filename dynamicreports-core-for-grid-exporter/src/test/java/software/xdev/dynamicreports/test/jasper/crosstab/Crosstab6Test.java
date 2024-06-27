@@ -48,14 +48,10 @@ public class Crosstab6Test extends AbstractJasperCrosstabValueTest
 			.rowGroups(this.rowGroup = ctab.rowGroup("field1", String.class)
 				.addHeaderProperty(JasperProperty.PRINT_KEEP_FULL_TEXT, "true")
 				.addTotalHeaderProperty(JasperProperty.PRINT_KEEP_FULL_TEXT, "true")
-				.setHeaderStretchWithOverflow(false)
-				.setTotalHeaderStretchWithOverflow(false)
 				.setHeaderWidth(18))
 			.columnGroups(this.columnGroup = ctab.columnGroup("field2", String.class)
 				.addHeaderProperty(JasperProperty.PRINT_KEEP_FULL_TEXT, "true")
-				.addTotalHeaderProperty(JasperProperty.PRINT_KEEP_FULL_TEXT, "true")
-				.setHeaderStretchWithOverflow(false)
-				.setTotalHeaderStretchWithOverflow(false))
+				.addTotalHeaderProperty(JasperProperty.PRINT_KEEP_FULL_TEXT, "true"))
 			.measures(this.measure1);
 		
 		rb.summary(crosstab);

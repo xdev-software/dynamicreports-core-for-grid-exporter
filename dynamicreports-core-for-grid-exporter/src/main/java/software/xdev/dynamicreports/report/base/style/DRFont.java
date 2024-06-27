@@ -129,33 +129,15 @@ public class DRFont implements DRIFont
 		return this.pdfFontName;
 	}
 	
-	@Deprecated
-	public void setPdfFontName(final String pdfFontName)
-	{
-		this.pdfFontName = pdfFontName;
-	}
-	
 	@Override
 	public String getPdfEncoding()
 	{
 		return this.pdfEncoding;
 	}
 	
-	@Deprecated
-	public void setPdfEncoding(final String pdfEncoding)
-	{
-		this.pdfEncoding = pdfEncoding;
-	}
-	
 	@Override
 	public Boolean getPdfEmbedded()
 	{
 		return this.pdfEmbedded;
-	}
-	
-	@Deprecated
-	public void setPdfEmbedded(final Boolean pdfEmbedded)
-	{
-		this.pdfEmbedded = pdfEmbedded;
 	}
 }

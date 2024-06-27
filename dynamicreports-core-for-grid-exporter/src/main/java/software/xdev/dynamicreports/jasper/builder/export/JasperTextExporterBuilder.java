@@ -28,23 +28,12 @@ public class JasperTextExporterBuilder
 	{
 		super(new JasperTextExporter());
 	}
-	
-	@Deprecated
-	public JasperTextExporterBuilder setCharacterWidth(final Integer characterWidth)
-	{
-		return this.setCharacterWidth(characterWidth != null ? characterWidth.floatValue() : null);
-	}
+
 	
 	public JasperTextExporterBuilder setCharacterWidth(final Float characterWidth)
 	{
 		this.getObject().setCharacterWidth(characterWidth);
 		return this;
-	}
-	
-	@Deprecated
-	public JasperTextExporterBuilder setCharacterHeight(final Integer characterHeight)
-	{
-		return this.setCharacterHeight(characterHeight != null ? characterHeight.floatValue() : null);
 	}
 	
 	public JasperTextExporterBuilder setCharacterHeight(final Float characterHeight)
@@ -53,34 +42,16 @@ public class JasperTextExporterBuilder
 		return this;
 	}
 	
-	@Deprecated
-	public JasperTextExporterBuilder setPageWidth(final Integer pageWidth)
-	{
-		return this.setPageWidthInChars(pageWidth);
-	}
-	
 	public JasperTextExporterBuilder setPageWidthInChars(final Integer pageWidth)
 	{
 		this.getObject().setPageWidthInChars(pageWidth);
 		return this;
 	}
 	
-	@Deprecated
-	public JasperTextExporterBuilder setPageHeight(final Integer pageHeight)
-	{
-		return this.setPageHeightInChars(pageHeight);
-	}
-	
 	public JasperTextExporterBuilder setPageHeightInChars(final Integer pageHeight)
 	{
 		this.getObject().setPageHeightInChars(pageHeight);
 		return this;
-	}
-	
-	@Deprecated
-	public JasperTextExporterBuilder setBetweenPagesText(final String betweenPagesText)
-	{
-		return this.setPageSeparator(betweenPagesText);
 	}
 	
 	public JasperTextExporterBuilder setPageSeparator(final String pageSeparator)

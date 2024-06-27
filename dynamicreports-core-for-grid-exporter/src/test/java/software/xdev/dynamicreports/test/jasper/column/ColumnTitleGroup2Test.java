@@ -43,7 +43,6 @@ public class ColumnTitleGroup2Test extends AbstractJasperValueTest
 		this.column3 = col.column("Column3", "field3", String.class).setFixedWidth(25);
 		
 		final ColumnTitleGroupBuilder titleGroup = grid.titleGroup("test test test", this.column2, this.column3)
-			.setTitleStretchWithOverflow(false)
 			.addTitleProperty(JasperProperty.PRINT_KEEP_FULL_TEXT, "true");
 		rb.columnGrid(this.column1, titleGroup).columns(this.column1, this.column2, this.column3);
 	}

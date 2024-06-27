@@ -74,27 +74,6 @@ public class FontBuilder extends AbstractBuilder<FontBuilder, DRFont>
 		return this.setItalic(true);
 	}
 	
-	@Deprecated
-	public FontBuilder setPdfEmbedded(final Boolean pdfEmbedded)
-	{
-		this.getObject().setPdfEmbedded(pdfEmbedded);
-		return this;
-	}
-	
-	@Deprecated
-	public FontBuilder setPdfEncoding(final String pdfEncoding)
-	{
-		this.getObject().setPdfEncoding(pdfEncoding);
-		return this;
-	}
-	
-	@Deprecated
-	public FontBuilder setPdfFontName(final String pdfFontName)
-	{
-		this.getObject().setPdfFontName(pdfFontName);
-		return this;
-	}
-	
 	public FontBuilder strikeThrough()
 	{
 		return this.setStrikeThrough(true);

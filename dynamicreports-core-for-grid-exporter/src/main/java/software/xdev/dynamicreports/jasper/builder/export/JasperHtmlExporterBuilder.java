@@ -79,12 +79,6 @@ public class JasperHtmlExporterBuilder
 		return this;
 	}
 	
-	@Deprecated
-	public JasperHtmlExporterBuilder setUsingImagesToAlign(final Boolean usingImagesToAlign)
-	{
-		this.getObject().setUsingImagesToAlign(usingImagesToAlign);
-		return this;
-	}
 	
 	public JasperHtmlExporterBuilder setWrapBreakWord(final Boolean wrapBreakWord)
 	{
@@ -95,13 +89,6 @@ public class JasperHtmlExporterBuilder
 	public JasperHtmlExporterBuilder setSizeUnit(final SizeUnit sizeUnit)
 	{
 		this.getObject().setSizeUnit(sizeUnit);
-		return this;
-	}
-	
-	@Deprecated
-	public JasperHtmlExporterBuilder setFramesAsNestedTables(final Boolean framesAsNestedTables)
-	{
-		this.getObject().setFramesAsNestedTables(framesAsNestedTables);
 		return this;
 	}
 	

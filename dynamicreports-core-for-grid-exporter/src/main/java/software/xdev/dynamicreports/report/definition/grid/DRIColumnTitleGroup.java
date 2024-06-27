@@ -47,9 +47,6 @@ public interface DRIColumnTitleGroup extends DRIColumnGridComponent
 	
 	Integer getTitleRows();
 	
-	@Deprecated
-	Boolean getTitleStretchWithOverflow();
-	
 	TextAdjust getTitleTextAdjust();
 	
 	List<DRIPropertyExpression> getTitlePropertyExpressions();

@@ -244,12 +244,6 @@ public class ComponentBuilders
 		return Components.image(image);
 	}
 	
-	@Deprecated
-	public ImageBuilder image(final net.sf.jasperreports.engine.Renderable image)
-	{
-		return Components.image(image);
-	}
-	
 	// subreport
 	
 	public SubreportBuilder subreport(final JasperReportBuilder reportBuilder)
