@@ -17,18 +17,8 @@
  */
 package software.xdev.dynamicreports.report.definition;
 
-/**
- * <p>DRIValue interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface DRIValue<T> {
-
-    /**
-     * <p>getName.</p>
-     *
-     * @return a {@link java.lang.String} object.
-     */
-    public String getName();
+public interface DRIValue<T>
+{
+	
+	public String getName();
 }

@@ -18,32 +18,19 @@
 package software.xdev.dynamicreports.jasper.builder.export;
 
 import software.xdev.dynamicreports.jasper.base.export.JasperRtfExporter;
-import software.xdev.dynamicreports.report.constant.Constants;
 
-/**
- * <p>JasperRtfExporterBuilder class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class JasperRtfExporterBuilder extends AbstractJasperExporterBuilder<JasperRtfExporterBuilder, JasperRtfExporter> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    /**
-     * <p>Constructor for JasperRtfExporterBuilder.</p>
-     */
-    protected JasperRtfExporterBuilder() {
-        super(new JasperRtfExporter());
-    }
+public class JasperRtfExporterBuilder extends AbstractJasperExporterBuilder<JasperRtfExporterBuilder, JasperRtfExporter>
+{
 
-    /**
-     * <p>setIgnoreHyperLink.</p>
-     *
-     * @param ignoreHyperLink a {@link java.lang.Boolean} object.
-     * @return a {@link software.xdev.dynamicreports.jasper.builder.export.JasperRtfExporterBuilder} object.
-     */
-    public JasperRtfExporterBuilder setIgnoreHyperLink(Boolean ignoreHyperLink) {
-        this.getObject().setIgnoreHyperLink(ignoreHyperLink);
-        return this;
-    }
+	protected JasperRtfExporterBuilder()
+	{
+		super(new JasperRtfExporter());
+	}
+	
+	public JasperRtfExporterBuilder setIgnoreHyperLink(final Boolean ignoreHyperLink)
+	{
+		this.getObject().setIgnoreHyperLink(ignoreHyperLink);
+		return this;
+	}
 }

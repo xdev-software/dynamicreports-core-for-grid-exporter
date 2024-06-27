@@ -17,35 +17,27 @@
  */
 package software.xdev.dynamicreports.report.builder.expression;
 
+import java.util.ResourceBundle;
+
 import software.xdev.dynamicreports.report.base.expression.AbstractSimpleExpression;
 import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.definition.ReportParameters;
 
-import java.util.ResourceBundle;
 
-/**
- * <p>SystemMessageExpression class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class SystemMessageExpression extends AbstractSimpleExpression<String> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
+public class SystemMessageExpression extends AbstractSimpleExpression<String>
+{
 
-    private String key;
-
-    /**
-     * <p>Constructor for SystemMessageExpression.</p>
-     *
-     * @param key a {@link java.lang.String} object.
-     */
-    public SystemMessageExpression(String key) {
-        this.key = key;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public String evaluate(ReportParameters reportParameters) {
-        return ResourceBundle.getBundle(Constants.RESOURCE_BUNDLE_NAME, reportParameters.getLocale()).getString(key);
-    }
+	private final String key;
+	
+	public SystemMessageExpression(final String key)
+	{
+		this.key = key;
+	}
+	
+	@Override
+	public String evaluate(final ReportParameters reportParameters)
+	{
+		return ResourceBundle.getBundle(Constants.RESOURCE_BUNDLE_NAME, reportParameters.getLocale())
+			.getString(this.key);
+	}
 }

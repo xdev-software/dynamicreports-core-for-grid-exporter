@@ -26,21 +26,17 @@ import java.io.Serializable;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.Assertions;
 
+import net.sf.jasperreports.engine.JRDataSource;
 import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
 import software.xdev.dynamicreports.report.builder.column.TextColumnBuilder;
 import software.xdev.dynamicreports.report.datasource.DRDataSource;
 import software.xdev.dynamicreports.report.exception.DRException;
 import software.xdev.dynamicreports.test.jasper.AbstractJasperValueTest;
-import net.sf.jasperreports.engine.JRDataSource;
 
 
-/**
- * @author Ricardo Mariaca
- */
 public class JasperExpressionTest extends AbstractJasperValueTest implements Serializable
 {
-	private static final long serialVersionUID = 1L;
-	
+
 	private TextColumnBuilder<Integer> column2;
 	private TextColumnBuilder<Integer> column3;
 	
@@ -48,26 +44,26 @@ public class JasperExpressionTest extends AbstractJasperValueTest implements Ser
 	protected void configureReport(final JasperReportBuilder rb)
 	{
 		rb.columns(
-            this.column2 = col.column("field2", Integer.class).setTitle(exp.jasperSyntax("\"Column2\"", String.class)),
-            this.column3 = col.column(exp.jasperSyntax("$F{field1} - $F{field2}", Integer.class)));
+			this.column2 = col.column("field2", Integer.class).setTitle(exp.jasperSyntax("\"Column2\"", String.class)),
+			this.column3 = col.column(exp.jasperSyntax("$F{field1} - $F{field2}", Integer.class)));
 	}
 	
 	@Override
 	public void test()
 	{
 		super.test();
-        
-        this.numberOfPagesTest(1);
-        
-        this.columnTitleCountTest(this.column2, 1);
-        this.columnTitleValueTest(this.column2, "Column2");
-        
-        this.columnDetailValueTest(this.column3, "0", "8", "3");
+		
+		this.numberOfPagesTest(1);
+		
+		this.columnTitleCountTest(this.column2, 1);
+		this.columnTitleValueTest(this.column2, "Column2");
+		
+		this.columnDetailValueTest(this.column3, "0", "8", "3");
 		
 		try
 		{
 			final ByteArrayOutputStream bos = new ByteArrayOutputStream();
-            this.getReportBuilder().toJrXml(bos);
+			this.getReportBuilder().toJrXml(bos);
 			final String jrxml = bos.toString();
 			Assertions.assertFalse(StringUtils.contains(jrxml, "software.xdev.dynamicreports"));
 		}

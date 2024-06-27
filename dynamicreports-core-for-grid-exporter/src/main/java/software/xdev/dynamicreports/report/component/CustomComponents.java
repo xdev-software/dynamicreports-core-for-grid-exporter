@@ -17,32 +17,29 @@
  */
 package software.xdev.dynamicreports.report.component;
 
-import net.sf.jasperreports.extensions.ExtensionsEnvironment;
-
 import java.util.List;
 
-/**
- * <p>CustomComponents class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class CustomComponents {
+import net.sf.jasperreports.extensions.ExtensionsEnvironment;
 
-    /**
-     * <p>getComponentTransform.</p>
-     *
-     * @param component a {@link java.lang.Object} object.
-     * @return a {@link software.xdev.dynamicreports.report.component.CustomComponentTransform} object.
-     */
-    @SuppressWarnings("rawtypes")
-    public static CustomComponentTransform<?, ?> getComponentTransform(Object component) {
-        List<CustomComponentTransform> transforms = ExtensionsEnvironment.getExtensionsRegistry().getExtensions(CustomComponentTransform.class);
-        for (CustomComponentTransform transform : transforms) {
-            if (transform.isTransform(component)) {
-                return transform;
-            }
-        }
-        return null;
-    }
+
+public final class CustomComponents
+{
+	private CustomComponents()
+	{
+	}
+	
+	@SuppressWarnings("rawtypes")
+	public static CustomComponentTransform<?, ?> getComponentTransform(final Object component)
+	{
+		final List<CustomComponentTransform> transforms =
+			ExtensionsEnvironment.getExtensionsRegistry().getExtensions(CustomComponentTransform.class);
+		for(final CustomComponentTransform transform : transforms)
+		{
+			if(transform.isTransform(component))
+			{
+				return transform;
+			}
+		}
+		return null;
+	}
 }

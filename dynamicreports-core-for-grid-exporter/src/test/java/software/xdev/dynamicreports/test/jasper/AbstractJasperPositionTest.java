@@ -19,15 +19,12 @@ package software.xdev.dynamicreports.test.jasper;
 
 import org.junit.jupiter.api.Assertions;
 
+import net.sf.jasperreports.engine.JRPrintElement;
 import software.xdev.dynamicreports.report.builder.column.ColumnBuilder;
 import software.xdev.dynamicreports.report.builder.group.GroupBuilder;
 import software.xdev.dynamicreports.report.builder.subtotal.SubtotalBuilder;
-import net.sf.jasperreports.engine.JRPrintElement;
 
 
-/**
- * @author Ricardo Mariaca
- */
 public abstract class AbstractJasperPositionTest extends AbstractJasperTest
 {
 	

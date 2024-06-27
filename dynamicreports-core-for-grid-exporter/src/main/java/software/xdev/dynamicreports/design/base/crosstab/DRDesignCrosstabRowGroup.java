@@ -18,31 +18,21 @@
 package software.xdev.dynamicreports.design.base.crosstab;
 
 import software.xdev.dynamicreports.design.definition.crosstab.DRIDesignCrosstabRowGroup;
-import software.xdev.dynamicreports.report.constant.Constants;
 
-/**
- * <p>DRDesignCrosstabRowGroup class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class DRDesignCrosstabRowGroup extends DRDesignCrosstabGroup implements DRIDesignCrosstabRowGroup {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    private int width;
+public class DRDesignCrosstabRowGroup extends DRDesignCrosstabGroup implements DRIDesignCrosstabRowGroup
+{
 
-    /** {@inheritDoc} */
-    @Override
-    public int getWidth() {
-        return width;
-    }
-
-    /**
-     * <p>Setter for the field <code>width</code>.</p>
-     *
-     * @param width a int.
-     */
-    public void setWidth(int width) {
-        this.width = width;
-    }
+	private int width;
+	
+	@Override
+	public int getWidth()
+	{
+		return this.width;
+	}
+	
+	public void setWidth(final int width)
+	{
+		this.width = width;
+	}
 }

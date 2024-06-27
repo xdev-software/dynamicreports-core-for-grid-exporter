@@ -17,12 +17,7 @@
  */
 package software.xdev.dynamicreports.report.constant;
 
-/**
- * <p>MeterShape class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public enum MeterShape {
-    CHORD, CIRCLE, PIE, DIAL
+public enum MeterShape
+{
+	CHORD, CIRCLE, PIE, DIAL
 }

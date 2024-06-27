@@ -17,55 +17,49 @@
  */
 package software.xdev.dynamicreports.jasper.transformation.expression;
 
-import software.xdev.dynamicreports.design.base.expression.AbstractDesignComplexExpression;
-import software.xdev.dynamicreports.design.definition.expression.DRIDesignExpression;
-import software.xdev.dynamicreports.jasper.base.JasperReportParameters;
-import software.xdev.dynamicreports.report.ReportUtils;
-import software.xdev.dynamicreports.report.constant.Constants;
-import software.xdev.dynamicreports.report.definition.ReportParameters;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * <p>JasperSubreportParametersExpression class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class JasperSubreportParametersExpression extends AbstractDesignComplexExpression {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
+import software.xdev.dynamicreports.design.base.expression.AbstractDesignComplexExpression;
+import software.xdev.dynamicreports.design.definition.expression.DRIDesignExpression;
+import software.xdev.dynamicreports.jasper.base.JasperReportParameters;
+import software.xdev.dynamicreports.report.ReportUtils;
+import software.xdev.dynamicreports.report.definition.ReportParameters;
 
-    /**
-     * <p>Constructor for JasperSubreportParametersExpression.</p>
-     *
-     * @param parametersExpression a {@link software.xdev.dynamicreports.design.definition.expression.DRIDesignExpression} object.
-     */
-    public JasperSubreportParametersExpression(DRIDesignExpression parametersExpression) {
-        super(ReportUtils.generateUniqueName("jasperSubreportParametersExpression"));
-        if (parametersExpression != null) {
-            addExpression(parametersExpression);
-        }
-    }
 
-    /** {@inheritDoc} */
-    @Override
-    @SuppressWarnings("unchecked")
-    public Object evaluate(List<?> values, ReportParameters reportParameters) {
-        Map<String, Object> parameters = null;
-        if (!values.isEmpty()) {
-            parameters = (Map<String, Object>) values.get(0);
-        } else {
-            parameters = new HashMap<String, Object>();
-        }
-        parameters.put(JasperReportParameters.MASTER_REPORT_PARAMETERS, reportParameters);
-        return parameters;
-    }
+public class JasperSubreportParametersExpression extends AbstractDesignComplexExpression
+{
 
-    /** {@inheritDoc} */
-    @Override
-    public Class<?> getValueClass() {
-        return Map.class;
-    }
+	public JasperSubreportParametersExpression(final DRIDesignExpression parametersExpression)
+	{
+		super(ReportUtils.generateUniqueName("jasperSubreportParametersExpression"));
+		if(parametersExpression != null)
+		{
+			this.addExpression(parametersExpression);
+		}
+	}
+	
+	@Override
+	@SuppressWarnings("unchecked")
+	public Object evaluate(final List<?> values, final ReportParameters reportParameters)
+	{
+		Map<String, Object> parameters = null;
+		if(!values.isEmpty())
+		{
+			parameters = (Map<String, Object>)values.get(0);
+		}
+		else
+		{
+			parameters = new HashMap<>();
+		}
+		parameters.put(JasperReportParameters.MASTER_REPORT_PARAMETERS, reportParameters);
+		return parameters;
+	}
+	
+	@Override
+	public Class<?> getValueClass()
+	{
+		return Map.class;
+	}
 }

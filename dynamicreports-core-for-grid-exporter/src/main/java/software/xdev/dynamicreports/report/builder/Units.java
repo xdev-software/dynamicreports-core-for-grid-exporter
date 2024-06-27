@@ -17,48 +17,34 @@
  */
 package software.xdev.dynamicreports.report.builder;
 
-/**
- * A set of methods of converting unit values to pixels.
- *
- * @author Ricardo Mariaca
- * 
- */
-public class Units {
-
-    /**
-     * Converts a value in centimeters to pixels.
-     *
-     * @param value - the value in centimeters
-     * @return pixels
-     */
-    public static int cm(Number value) {
-        return unit(value, 28.3464);
-    }
-
-    /**
-     * Converts a value in inches to pixels.
-     *
-     * @param value - the value in inches
-     * @return pixels
-     */
-    public static int inch(Number value) {
-        return unit(value, 72);
-    }
-
-    /**
-     * Converts a value in milimeters to pixels.
-     *
-     * @param value - the value in milimeters
-     * @return pixels
-     */
-    public static int mm(Number value) {
-        return unit(value, 2.83464);
-    }
-
-    private static int unit(Number value, double unitValue) {
-        if (value != null) {
-            return (int) ((value.doubleValue()) * unitValue);
-        }
-        return 0;
-    }
+@SuppressWarnings("checkstyle:MagicNumber")
+public final class Units
+{
+	private Units()
+	{
+	}
+	
+	public static int cm(final Number value)
+	{
+		return unit(value, 28.3464);
+	}
+	
+	public static int inch(final Number value)
+	{
+		return unit(value, 72);
+	}
+	
+	public static int mm(final Number value)
+	{
+		return unit(value, 2.83464);
+	}
+	
+	private static int unit(final Number value, final double unitValue)
+	{
+		if(value != null)
+		{
+			return (int)((value.doubleValue()) * unitValue);
+		}
+		return 0;
+	}
 }

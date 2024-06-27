@@ -17,59 +17,53 @@
  */
 package software.xdev.dynamicreports.report.builder.datatype;
 
-import software.xdev.dynamicreports.report.ReportUtils;
-import software.xdev.dynamicreports.report.base.datatype.AbstractDataType;
-import software.xdev.dynamicreports.report.constant.Constants;
-import software.xdev.dynamicreports.report.exception.DRException;
-
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.text.ParseException;
 import java.util.Locale;
 
-/**
- * <p>Abstract NumberType class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public abstract class NumberType<T extends Number> extends AbstractDataType<Number, T> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
+import software.xdev.dynamicreports.report.ReportUtils;
+import software.xdev.dynamicreports.report.base.datatype.AbstractDataType;
+import software.xdev.dynamicreports.report.exception.DRException;
 
-    /** {@inheritDoc} */
-    @Override
-    public String valueToString(Number value, Locale locale) {
-        if (value != null) {
-            return new DecimalFormat(getPattern(), new DecimalFormatSymbols(locale)).format(value);
-        }
-        return null;
-    }
 
-    /** {@inheritDoc} */
-    @Override
-    public T stringToValue(String value, Locale locale) throws DRException {
-        if (value != null) {
-            try {
-                return numberToValue(new DecimalFormat(getPattern(), new DecimalFormatSymbols(locale)).parse(value));
-            } catch (ParseException e) {
-                throw new DRException("Unable to convert string value to date", e);
-            }
-        }
-        return null;
-    }
+public abstract class NumberType<T extends Number> extends AbstractDataType<Number, T>
+{
 
-    /**
-     * <p>numberToValue.</p>
-     *
-     * @param number a {@link java.lang.Number} object.
-     * @return a T object.
-     */
-    protected abstract T numberToValue(Number number);
-
-    /** {@inheritDoc} */
-    @SuppressWarnings("unchecked")
-    @Override
-    public Class<T> getValueClass() {
-        return (Class<T>) ReportUtils.getGenericClass(this, 0);
-    }
+	@Override
+	public String valueToString(final Number value, final Locale locale)
+	{
+		if(value != null)
+		{
+			return new DecimalFormat(this.getPattern(), new DecimalFormatSymbols(locale)).format(value);
+		}
+		return null;
+	}
+	
+	@Override
+	public T stringToValue(final String value, final Locale locale) throws DRException
+	{
+		if(value != null)
+		{
+			try
+			{
+				return this.numberToValue(new DecimalFormat(this.getPattern(), new DecimalFormatSymbols(locale)).parse(
+					value));
+			}
+			catch(final ParseException e)
+			{
+				throw new DRException("Unable to convert string value to date", e);
+			}
+		}
+		return null;
+	}
+	
+	protected abstract T numberToValue(Number number);
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public Class<T> getValueClass()
+	{
+		return (Class<T>)ReportUtils.getGenericClass(this, 0);
+	}
 }

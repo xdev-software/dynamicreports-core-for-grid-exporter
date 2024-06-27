@@ -17,41 +17,46 @@
  */
 package software.xdev.dynamicreports.test.jasper.component;
 
+import static software.xdev.dynamicreports.report.builder.DynamicReports.cmp;
+
 import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
 import software.xdev.dynamicreports.report.constant.PageType;
 import software.xdev.dynamicreports.report.constant.SplitType;
 import software.xdev.dynamicreports.report.constant.WhenNoDataType;
 import software.xdev.dynamicreports.test.jasper.AbstractJasperPositionTest;
 
-import static software.xdev.dynamicreports.report.builder.DynamicReports.cmp;
 
-/**
- * @author Ricardo Mariaca
- */
-public class ListComponentGroupTypeTest extends AbstractJasperPositionTest {
-
-    @Override
-    protected void configureReport(JasperReportBuilder rb) {
-        rb.setPageFormat(PageType.A8)
-          .setWhenNoDataType(WhenNoDataType.ALL_SECTIONS_NO_DETAIL)
-          .title(cmp.text("title").setFixedHeight(130))
-          .summary(cmp.text("text1"), cmp.text("text2"), cmp.horizontalList(cmp.verticalList(cmp.text("text3"), cmp.text("text4")), cmp.text("text5")), cmp.text("text6"))
-          .setSummarySplitType(SplitType.IMMEDIATE);
-    }
-
-    @Override
-    public void test() {
-        super.test();
-
-        numberOfPagesTest(2);
-
-        elementPositionTest("summary.list2", 0, 10, 10, 128, 32);
-
-        elementPositionTest("summary.textField1", 0, 10, 140, 128, 16);
-        elementPositionTest("summary.textField2", 0, 10, 156, 128, 16);
-        elementPositionTest("summary.textField3", 0, 0, 0, 64, 16);
-        elementPositionTest("summary.textField4", 0, 0, 16, 64, 16);
-        elementPositionTest("summary.textField5", 0, 64, 0, 64, 32);
-        elementPositionTest("summary.textField6", 0, 10, 42, 128, 16);
-    }
+public class ListComponentGroupTypeTest extends AbstractJasperPositionTest
+{
+	
+	@Override
+	protected void configureReport(final JasperReportBuilder rb)
+	{
+		rb.setPageFormat(PageType.A8)
+			.setWhenNoDataType(WhenNoDataType.ALL_SECTIONS_NO_DETAIL)
+			.title(cmp.text("title").setFixedHeight(130))
+			.summary(
+				cmp.text("text1"),
+				cmp.text("text2"),
+				cmp.horizontalList(cmp.verticalList(cmp.text("text3"), cmp.text("text4")), cmp.text("text5")),
+				cmp.text("text6"))
+			.setSummarySplitType(SplitType.IMMEDIATE);
+	}
+	
+	@Override
+	public void test()
+	{
+		super.test();
+		
+		this.numberOfPagesTest(2);
+		
+		this.elementPositionTest("summary.list2", 0, 10, 10, 128, 32);
+		
+		this.elementPositionTest("summary.textField1", 0, 10, 140, 128, 16);
+		this.elementPositionTest("summary.textField2", 0, 10, 156, 128, 16);
+		this.elementPositionTest("summary.textField3", 0, 0, 0, 64, 16);
+		this.elementPositionTest("summary.textField4", 0, 0, 16, 64, 16);
+		this.elementPositionTest("summary.textField5", 0, 64, 0, 64, 32);
+		this.elementPositionTest("summary.textField6", 0, 10, 42, 128, 16);
+	}
 }

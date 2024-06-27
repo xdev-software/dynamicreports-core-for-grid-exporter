@@ -17,12 +17,7 @@
  */
 package software.xdev.dynamicreports.report.constant;
 
-/**
- * <p>TimePeriod class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public enum TimePeriod {
-    YEAR, QUARTER, MONTH, WEEK, DAY, HOUR, MINUTE, SECOND, MILLISECOND
+public enum TimePeriod
+{
+	YEAR, QUARTER, MONTH, WEEK, DAY, HOUR, MINUTE, SECOND, MILLISECOND
 }

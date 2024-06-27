@@ -19,32 +19,13 @@ package software.xdev.dynamicreports.report.definition.component;
 
 import java.io.Serializable;
 
-/**
- * <p>DRIXyListCell interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface DRIXyListCell extends Serializable {
 
-    /**
-     * <p>getX.</p>
-     *
-     * @return a {@link java.lang.Integer} object.
-     */
-    public Integer getX();
-
-    /**
-     * <p>getY.</p>
-     *
-     * @return a {@link java.lang.Integer} object.
-     */
-    public Integer getY();
-
-    /**
-     * <p>getComponent.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.definition.component.DRIComponent} object.
-     */
-    public DRIComponent getComponent();
+public interface DRIXyListCell extends Serializable
+{
+	
+	public Integer getX();
+	
+	public Integer getY();
+	
+	public DRIComponent getComponent();
 }

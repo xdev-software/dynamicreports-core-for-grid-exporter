@@ -23,6 +23,8 @@ import static software.xdev.dynamicreports.report.builder.DynamicReports.sbt;
 
 import org.junit.jupiter.api.Assertions;
 
+import net.sf.jasperreports.engine.JRDataSource;
+import net.sf.jasperreports.engine.JRGroup;
 import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
 import software.xdev.dynamicreports.report.builder.column.TextColumnBuilder;
 import software.xdev.dynamicreports.report.builder.group.ColumnGroupBuilder;
@@ -30,13 +32,8 @@ import software.xdev.dynamicreports.report.builder.subtotal.AggregationSubtotalB
 import software.xdev.dynamicreports.report.constant.GroupFooterPosition;
 import software.xdev.dynamicreports.report.datasource.DRDataSource;
 import software.xdev.dynamicreports.test.jasper.AbstractJasperPositionTest;
-import net.sf.jasperreports.engine.JRDataSource;
-import net.sf.jasperreports.engine.JRGroup;
 
 
-/**
- * @author Ricardo Mariaca
- */
 public class GroupPosition3Test extends AbstractJasperPositionTest
 {
 	
@@ -51,7 +48,7 @@ public class GroupPosition3Test extends AbstractJasperPositionTest
 		
 		rb.columns(
 				column1 = col.column("Column1", "field1", String.class),
-                this.column2 = col.column("Column2", "field2", Integer.class))
+				this.column2 = col.column("Column2", "field2", Integer.class))
 			.groupBy(this.group1 = grp.group(column1)
 				.setFooterPosition(GroupFooterPosition.FORCE_AT_BOTTOM)
 				.keepTogether()
@@ -63,27 +60,27 @@ public class GroupPosition3Test extends AbstractJasperPositionTest
 	public void test()
 	{
 		super.test();
-        
-        this.numberOfPagesTest(1);
-        this.elementPositionTest("columnHeader.list1", 0, 10, 10, 575, 16);
-        this.elementPositionTest("columnHeader.filler1", 0, 0, 0, 10, 16);
-        this.elementPositionTest("detail.list1", 0, 10, 42, 575, 16);
-        this.elementPositionTest("detail.list1", 1, 10, 58, 575, 16);
+		
+		this.numberOfPagesTest(1);
+		this.elementPositionTest("columnHeader.list1", 0, 10, 10, 575, 16);
+		this.elementPositionTest("columnHeader.filler1", 0, 0, 0, 10, 16);
+		this.elementPositionTest("detail.list1", 0, 10, 42, 575, 16);
+		this.elementPositionTest("detail.list1", 1, 10, 58, 575, 16);
 		
 		// group1
-        this.groupHeaderPositionTest(this.group1, 0, 10, 26, 575, 16);
+		this.groupHeaderPositionTest(this.group1, 0, 10, 26, 575, 16);
 		// column2
-        this.columnTitlePositionTest(this.column2, 0, 10, 0, 565, 16);
-        this.columnDetailPositionTest(this.column2, 0, 10, 0, 565, 16);
-        this.columnDetailPositionTest(this.column2, 1, 10, 0, 565, 16);
+		this.columnTitlePositionTest(this.column2, 0, 10, 0, 565, 16);
+		this.columnDetailPositionTest(this.column2, 0, 10, 0, 565, 16);
+		this.columnDetailPositionTest(this.column2, 1, 10, 0, 565, 16);
 		// summary
-        this.elementPositionTest("subtotalGroupFooter.list1", 0, 10, 816, 575, 16);
-        this.subtotalPositionTest(this.subtotal1, 0, 10, 0, 565, 16);
+		this.elementPositionTest("subtotalGroupFooter.list1", 0, 10, 816, 575, 16);
+		this.subtotalPositionTest(this.subtotal1, 0, 10, 0, 565, 16);
 		
 		final JRGroup jrGroup = this.getJasperReport().getGroups()[0];
 		Assertions.assertTrue(jrGroup.isKeepTogether());
 		// Assertions.assertEquals("Min height to start new page", new Integer(100), jrGroup
-        // .getMinHeightToStartNewPage()); // remove this ambiguous function call
+		// .getMinHeightToStartNewPage()); // remove this ambiguous function call
 		Assertions.assertEquals(100, jrGroup.getMinHeightToStartNewPage());
 	}
 	

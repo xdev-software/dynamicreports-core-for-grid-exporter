@@ -18,31 +18,21 @@
 package software.xdev.dynamicreports.jasper.base.export;
 
 import software.xdev.dynamicreports.jasper.definition.export.JasperIRtfExporter;
-import software.xdev.dynamicreports.report.constant.Constants;
 
-/**
- * <p>JasperRtfExporter class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class JasperRtfExporter extends AbstractJasperExporter implements JasperIRtfExporter {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    private Boolean ignoreHyperLink;
+public class JasperRtfExporter extends AbstractJasperExporter implements JasperIRtfExporter
+{
 
-    /** {@inheritDoc} */
-    @Override
-    public Boolean getIgnoreHyperLink() {
-        return ignoreHyperLink;
-    }
-
-    /**
-     * <p>Setter for the field <code>ignoreHyperLink</code>.</p>
-     *
-     * @param ignoreHyperLink a {@link java.lang.Boolean} object.
-     */
-    public void setIgnoreHyperLink(Boolean ignoreHyperLink) {
-        this.ignoreHyperLink = ignoreHyperLink;
-    }
+	private Boolean ignoreHyperLink;
+	
+	@Override
+	public Boolean getIgnoreHyperLink()
+	{
+		return this.ignoreHyperLink;
+	}
+	
+	public void setIgnoreHyperLink(final Boolean ignoreHyperLink)
+	{
+		this.ignoreHyperLink = ignoreHyperLink;
+	}
 }

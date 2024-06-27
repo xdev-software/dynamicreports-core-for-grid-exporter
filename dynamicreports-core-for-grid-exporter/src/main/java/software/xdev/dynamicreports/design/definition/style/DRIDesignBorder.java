@@ -19,39 +19,15 @@ package software.xdev.dynamicreports.design.definition.style;
 
 import java.io.Serializable;
 
-/**
- * <p>DRIDesignBorder interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface DRIDesignBorder extends Serializable {
 
-    /**
-     * <p>getTopPen.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.design.definition.style.DRIDesignPen} object.
-     */
-    public DRIDesignPen getTopPen();
-
-    /**
-     * <p>getLeftPen.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.design.definition.style.DRIDesignPen} object.
-     */
-    public DRIDesignPen getLeftPen();
-
-    /**
-     * <p>getBottomPen.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.design.definition.style.DRIDesignPen} object.
-     */
-    public DRIDesignPen getBottomPen();
-
-    /**
-     * <p>getRightPen.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.design.definition.style.DRIDesignPen} object.
-     */
-    public DRIDesignPen getRightPen();
+public interface DRIDesignBorder extends Serializable
+{
+	
+	public DRIDesignPen getTopPen();
+	
+	public DRIDesignPen getLeftPen();
+	
+	public DRIDesignPen getBottomPen();
+	
+	public DRIDesignPen getRightPen();
 }

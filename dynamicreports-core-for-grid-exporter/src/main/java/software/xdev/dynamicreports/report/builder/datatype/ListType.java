@@ -17,61 +17,59 @@
  */
 package software.xdev.dynamicreports.report.builder.datatype;
 
+import java.util.List;
+
 import software.xdev.dynamicreports.report.base.datatype.AbstractDataType;
 import software.xdev.dynamicreports.report.base.expression.AbstractValueFormatter;
-import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.constant.HorizontalTextAlignment;
 import software.xdev.dynamicreports.report.defaults.Defaults;
 import software.xdev.dynamicreports.report.definition.ReportParameters;
 import software.xdev.dynamicreports.report.definition.expression.DRIValueFormatter;
 
-import java.util.List;
 
-/**
- * <p>ListType class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
 @SuppressWarnings("rawtypes")
-public class ListType extends AbstractDataType<List, List> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
+public class ListType extends AbstractDataType<List, List>
+{
 
-    private static ListFormatter listFormatter = new ListFormatter();
+	private static final ListFormatter LIST_FORMATTER = new ListFormatter();
+	
+	@Override
+	public DRIValueFormatter<?, ? extends List> getValueFormatter()
+	{
+		return LIST_FORMATTER;
+	}
+	
+	@Override
+	public String getPattern()
+	{
+		return Defaults.getDefaults().getStringType().getPattern();
+	}
+	
+	@Override
+	public HorizontalTextAlignment getHorizontalTextAlignment()
+	{
+		return Defaults.getDefaults().getStringType().getHorizontalTextAlignment();
+	}
+	
+	static class ListFormatter extends AbstractValueFormatter<String, List>
+	{
 
-    /** {@inheritDoc} */
-    @Override
-    public DRIValueFormatter<?, ? extends List> getValueFormatter() {
-        return listFormatter;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public String getPattern() {
-        return Defaults.getDefaults().getStringType().getPattern();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public HorizontalTextAlignment getHorizontalTextAlignment() {
-        return Defaults.getDefaults().getStringType().getHorizontalTextAlignment();
-    }
-
-    private static class ListFormatter extends AbstractValueFormatter<String, List> {
-        private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
-
-        @Override
-        public String format(List values, ReportParameters reportParameters) {
-            StringBuilder result = new StringBuilder();
-            for (Object value : values) {
-                if (result.length() > 0) {
-                    result.append("\n");
-                }
-                if (value != null) {
-                    result.append(value.toString());
-                }
-            }
-            return result.toString();
-        }
-    }
+		@Override
+		public String format(final List values, final ReportParameters reportParameters)
+		{
+			final StringBuilder result = new StringBuilder();
+			for(final Object value : values)
+			{
+				if(!result.isEmpty())
+				{
+					result.append("\n");
+				}
+				if(value != null)
+				{
+					result.append(value.toString());
+				}
+			}
+			return result.toString();
+		}
+	}
 }

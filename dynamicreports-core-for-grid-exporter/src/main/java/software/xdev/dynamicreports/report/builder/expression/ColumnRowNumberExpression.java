@@ -18,21 +18,15 @@
 package software.xdev.dynamicreports.report.builder.expression;
 
 import software.xdev.dynamicreports.report.base.expression.AbstractSimpleExpression;
-import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.definition.ReportParameters;
 
-/**
- * <p>ColumnRowNumberExpression class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class ColumnRowNumberExpression extends AbstractSimpleExpression<Integer> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    /** {@inheritDoc} */
-    @Override
-    public Integer evaluate(ReportParameters reportParameters) {
-        return reportParameters.getColumnRowNumber();
-    }
+public class ColumnRowNumberExpression extends AbstractSimpleExpression<Integer>
+{
+
+	@Override
+	public Integer evaluate(final ReportParameters reportParameters)
+	{
+		return reportParameters.getColumnRowNumber();
+	}
 }

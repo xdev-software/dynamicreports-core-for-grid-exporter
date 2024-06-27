@@ -17,63 +17,70 @@
  */
 package software.xdev.dynamicreports.test.jasper.tableofcontents;
 
+import static software.xdev.dynamicreports.report.builder.DynamicReports.col;
+import static software.xdev.dynamicreports.report.builder.DynamicReports.margin;
+import static software.xdev.dynamicreports.report.builder.DynamicReports.type;
+
+import net.sf.jasperreports.engine.JRDataSource;
 import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
 import software.xdev.dynamicreports.report.builder.column.TextColumnBuilder;
 import software.xdev.dynamicreports.report.constant.PageOrientation;
 import software.xdev.dynamicreports.report.constant.PageType;
 import software.xdev.dynamicreports.report.datasource.DRDataSource;
 import software.xdev.dynamicreports.test.jasper.AbstractJasperPositionTest;
-import net.sf.jasperreports.engine.JRDataSource;
 
-import static software.xdev.dynamicreports.report.builder.DynamicReports.col;
-import static software.xdev.dynamicreports.report.builder.DynamicReports.margin;
-import static software.xdev.dynamicreports.report.builder.DynamicReports.type;
 
-/**
- * @author Ricardo Mariaca
- */
-public class TableOfContentsPosition3Test extends AbstractJasperPositionTest {
-    private TextColumnBuilder<String> column1;
-
-    @Override
-    protected void configureReport(JasperReportBuilder rb) {
-        rb.setPageFormat(PageType.A6, PageOrientation.LANDSCAPE)
-          .setPageMargin(margin(10).setLeft(30))
-          .tableOfContents()
-          .columns(column1 = col.column("Column1", "field1", type.stringType()), col.column("Column2", "field2", type.stringType()))
-          .groupBy(column1);
-    }
-
-    @Override
-    public void test() {
-        super.test();
-
-        numberOfPagesTest(5);
-
-        elementPositionTest("title.textField1", 0, 30, 10, 381, 19);
-
-        for (int i = 0; i < 14; i++) {
-            elementPositionTest("detail.list2", i, 30, 49 + 16 * i, 381, 16);
-            elementPositionTest("detail.textField1", i, 0, 0, 179, 16);
-            elementPositionTest("detail.textField2", i, 179, 0, 180, 16);
-            elementPositionTest("detail.textField3", i, 359, 0, 22, 16);
-        }
-        for (int i = 14; i < 20; i++) {
-            elementPositionTest("detail.list2", i, 30, 10 + 16 * (i - 14), 381, 16);
-            elementPositionTest("detail.textField1", i, 0, 0, 179, 16);
-            elementPositionTest("detail.textField2", i, 179, 0, 180, 16);
-            elementPositionTest("detail.textField3", i, 359, 0, 22, 16);
-        }
-
-        containsElement("title.textField1", 0);
-    }
-
-    @Override
-    protected JRDataSource createDataSource() {
-        DRDataSource dataSource = new DRDataSource("field1", "field2");
-        for (int i = 0; i < 20; i++) {
-            dataSource.add("value" + i, "text");
-        }
-        return dataSource;
-    }
+public class TableOfContentsPosition3Test extends AbstractJasperPositionTest
+{
+	private TextColumnBuilder<String> column1;
+	
+	@Override
+	protected void configureReport(final JasperReportBuilder rb)
+	{
+		rb.setPageFormat(PageType.A6, PageOrientation.LANDSCAPE)
+			.setPageMargin(margin(10).setLeft(30))
+			.tableOfContents()
+			.columns(
+				this.column1 = col.column("Column1", "field1", type.stringType()),
+				col.column("Column2", "field2", type.stringType()))
+			.groupBy(this.column1);
+	}
+	
+	@Override
+	public void test()
+	{
+		super.test();
+		
+		this.numberOfPagesTest(5);
+		
+		this.elementPositionTest("title.textField1", 0, 30, 10, 381, 19);
+		
+		for(int i = 0; i < 14; i++)
+		{
+			this.elementPositionTest("detail.list2", i, 30, 49 + 16 * i, 381, 16);
+			this.elementPositionTest("detail.textField1", i, 0, 0, 179, 16);
+			this.elementPositionTest("detail.textField2", i, 179, 0, 180, 16);
+			this.elementPositionTest("detail.textField3", i, 359, 0, 22, 16);
+		}
+		for(int i = 14; i < 20; i++)
+		{
+			this.elementPositionTest("detail.list2", i, 30, 10 + 16 * (i - 14), 381, 16);
+			this.elementPositionTest("detail.textField1", i, 0, 0, 179, 16);
+			this.elementPositionTest("detail.textField2", i, 179, 0, 180, 16);
+			this.elementPositionTest("detail.textField3", i, 359, 0, 22, 16);
+		}
+		
+		this.containsElement("title.textField1", 0);
+	}
+	
+	@Override
+	protected JRDataSource createDataSource()
+	{
+		final DRDataSource dataSource = new DRDataSource("field1", "field2");
+		for(int i = 0; i < 20; i++)
+		{
+			dataSource.add("value" + i, "text");
+		}
+		return dataSource;
+	}
 }

@@ -17,70 +17,15 @@
  */
 package software.xdev.dynamicreports.report.constant;
 
-/**
- * <p>HorizontalCellComponentAlignment class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public enum HorizontalCellComponentAlignment {
-    /**
-     * <pre>
-     *
-     *  -------------
-     * | -           |
-     * ||C|          |
-     * | -           |
-     *  -------------
-     * </pre>
-     */
-    LEFT,
-
-    /**
-     * <pre>
-     *
-     *  -------------
-     * |      -      |
-     * |     |C|     |
-     * |      -      |
-     *  -------------
-     * </pre>
-     */
-    CENTER,
-
-    /**
-     * <pre>
-     *
-     *  -------------
-     * |           - |
-     * |          |C||
-     * |           - |
-     *  -------------
-     * </pre>
-     */
-    RIGHT,
-
-    /**
-     * <pre>
-     *
-     *  -------------
-     * | ----------- |
-     * ||     C     ||
-     * | ----------- |
-     *  -------------
-     * </pre>
-     */
-    FLOAT,
-
-    /**
-     * <pre>
-     *
-     *  -------------
-     * | ----------- |
-     * ||     C     ||
-     * | ----------- |
-     *  -------------
-     * </pre>
-     */
-    EXPAND
+public enum HorizontalCellComponentAlignment
+{
+	LEFT,
+	
+	CENTER,
+	
+	RIGHT,
+	
+	FLOAT,
+	
+	EXPAND
 }

@@ -17,37 +17,27 @@
  */
 package software.xdev.dynamicreports.report.builder.expression;
 
-import software.xdev.dynamicreports.report.constant.Constants;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 import software.xdev.dynamicreports.report.definition.expression.DRIExpression;
 
-import java.math.BigDecimal;
 
-/**
- * <p>DivideExpression class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class DivideExpression extends CalculationExpression {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
+public class DivideExpression extends CalculationExpression
+{
 
-    private int scale;
-
-    @SafeVarargs
-    /**
-     * <p>Constructor for DivideExpression.</p>
-     *
-     * @param scale a int.
-     * @param expressions a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     */
-    public DivideExpression(int scale, DRIExpression<? extends Number>... expressions) {
-        super(expressions);
-        this.scale = scale;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    protected BigDecimal calculate(BigDecimal value1, BigDecimal value2) {
-        return value1.divide(value2, scale, BigDecimal.ROUND_HALF_UP);
-    }
+	private final int scale;
+	
+	@SafeVarargs
+	public DivideExpression(final int scale, final DRIExpression<? extends Number>... expressions)
+	{
+		super(expressions);
+		this.scale = scale;
+	}
+	
+	@Override
+	protected BigDecimal calculate(final BigDecimal value1, final BigDecimal value2)
+	{
+		return value1.divide(value2, this.scale, RoundingMode.HALF_UP);
+	}
 }

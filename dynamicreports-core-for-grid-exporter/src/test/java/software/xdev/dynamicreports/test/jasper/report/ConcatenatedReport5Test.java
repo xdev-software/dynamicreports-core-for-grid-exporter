@@ -27,18 +27,15 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import net.sf.jasperreports.engine.JRDataSource;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JRField;
 import software.xdev.dynamicreports.jasper.builder.JasperConcatenatedReportBuilder;
 import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
 import software.xdev.dynamicreports.report.constant.WhenNoDataType;
 import software.xdev.dynamicreports.report.exception.DRException;
-import net.sf.jasperreports.engine.JRDataSource;
-import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JRField;
 
 
-/**
- * @author Ricardo Mariaca
- */
 class ConcatenatedReport5Test
 {
 	JasperConcatenatedReportBuilder concatenatedReport;
@@ -80,7 +77,7 @@ class ConcatenatedReport5Test
 		}
 	}
 	
-	private class DataSource implements JRDataSource
+	static class DataSource implements JRDataSource
 	{
 		private boolean next = true;
 		

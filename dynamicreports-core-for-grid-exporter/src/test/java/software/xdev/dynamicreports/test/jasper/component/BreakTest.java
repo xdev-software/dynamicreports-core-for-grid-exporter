@@ -17,66 +17,72 @@
  */
 package software.xdev.dynamicreports.test.jasper.component;
 
-import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
-import software.xdev.dynamicreports.report.base.expression.AbstractSimpleExpression;
-import software.xdev.dynamicreports.report.constant.Constants;
-import software.xdev.dynamicreports.report.definition.ReportParameters;
-import software.xdev.dynamicreports.test.jasper.AbstractJasperPositionTest;
-import net.sf.jasperreports.engine.JRDataSource;
-import net.sf.jasperreports.engine.JREmptyDataSource;
-
-import java.io.Serializable;
-
 import static software.xdev.dynamicreports.report.builder.DynamicReports.cmp;
 import static software.xdev.dynamicreports.report.builder.DynamicReports.col;
 
-/**
- * @author Ricardo Mariaca
- */
-public class BreakTest extends AbstractJasperPositionTest implements Serializable {
-    private static final long serialVersionUID = 1L;
+import java.io.Serializable;
 
-    @Override
-    protected void configureReport(JasperReportBuilder rb) {
-        rb.setPageColumnsPerPage(2)
-          .columns(col.componentColumn("Column1",
-                                       cmp.verticalList(cmp.text("value"), cmp.pageBreak().setPrintWhenExpression(new Expression1()), cmp.columnBreak().setPrintWhenExpression(new Expression2()))))
-          .title(cmp.text("text1"), cmp.pageBreak(), cmp.text("text1"));
-    }
+import net.sf.jasperreports.engine.JRDataSource;
+import net.sf.jasperreports.engine.JREmptyDataSource;
+import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
+import software.xdev.dynamicreports.report.base.expression.AbstractSimpleExpression;
+import software.xdev.dynamicreports.report.definition.ReportParameters;
+import software.xdev.dynamicreports.test.jasper.AbstractJasperPositionTest;
 
-    @Override
-    public void test() {
-        super.test();
 
-        numberOfPagesTest(3);
+public class BreakTest extends AbstractJasperPositionTest implements Serializable
+{
+	@Override
+	protected void configureReport(final JasperReportBuilder rb)
+	{
+		rb.setPageColumnsPerPage(2)
+			.columns(col.componentColumn(
+				"Column1",
+				cmp.verticalList(
+					cmp.text("value"),
+					cmp.pageBreak().setPrintWhenExpression(new Expression1()),
+					cmp.columnBreak().setPrintWhenExpression(new Expression2()))))
+			.title(cmp.text("text1"), cmp.pageBreak(), cmp.text("text1"));
+	}
+	
+	@Override
+	public void test()
+	{
+		super.test();
+		
+		this.numberOfPagesTest(3);
+		
+		this.elementPositionTest("title.textField1", 0, 10, 10, 575, 16);
+		this.elementPositionTest("title.textField2", 0, 10, 10, 575, 16);
+		this.elementPositionTest("detail.textField1", 0, 10, 42, 287, 16);
+		this.elementPositionTest("detail.textField1", 1, 10, 26, 287, 16);
+		this.elementPositionTest("detail.textField1", 2, 297, 26, 287, 16);
+	}
+	
+	@Override
+	protected JRDataSource createDataSource()
+	{
+		return new JREmptyDataSource(3);
+	}
+	
+	public class Expression1 extends AbstractSimpleExpression<Boolean>
+	{
 
-        elementPositionTest("title.textField1", 0, 10, 10, 575, 16);
-        elementPositionTest("title.textField2", 0, 10, 10, 575, 16);
-        elementPositionTest("detail.textField1", 0, 10, 42, 287, 16);
-        elementPositionTest("detail.textField1", 1, 10, 26, 287, 16);
-        elementPositionTest("detail.textField1", 2, 297, 26, 287, 16);
-    }
+		@Override
+		public Boolean evaluate(final ReportParameters reportParameters)
+		{
+			return reportParameters.getReportRowNumber() == 1;
+		}
+	}
+	
+	
+	public class Expression2 extends AbstractSimpleExpression<Boolean>
+	{
 
-    @Override
-    protected JRDataSource createDataSource() {
-        return new JREmptyDataSource(3);
-    }
-
-    public class Expression1 extends AbstractSimpleExpression<Boolean> {
-        private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
-
-        @Override
-        public Boolean evaluate(ReportParameters reportParameters) {
-            return reportParameters.getReportRowNumber() == 1;
-        }
-    }
-
-    public class Expression2 extends AbstractSimpleExpression<Boolean> {
-        private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
-
-        @Override
-        public Boolean evaluate(ReportParameters reportParameters) {
-            return reportParameters.getReportRowNumber() == 2;
-        }
-    }
+		@Override
+		public Boolean evaluate(final ReportParameters reportParameters)
+		{
+			return reportParameters.getReportRowNumber() == 2;
+		}
+	}
 }

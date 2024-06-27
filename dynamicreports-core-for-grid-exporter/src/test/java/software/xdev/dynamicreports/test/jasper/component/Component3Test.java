@@ -25,22 +25,19 @@ import static software.xdev.dynamicreports.report.builder.DynamicReports.type;
 
 import org.junit.jupiter.api.Assertions;
 
+import net.sf.jasperreports.engine.JRDataSource;
+import net.sf.jasperreports.engine.JRElement;
+import net.sf.jasperreports.engine.JREmptyDataSource;
+import net.sf.jasperreports.engine.type.PositionTypeEnum;
+import net.sf.jasperreports.engine.type.StretchTypeEnum;
 import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
 import software.xdev.dynamicreports.report.builder.component.TextFieldBuilder;
 import software.xdev.dynamicreports.report.builder.group.CustomGroupBuilder;
 import software.xdev.dynamicreports.report.constant.ComponentPositionType;
 import software.xdev.dynamicreports.report.constant.StretchType;
 import software.xdev.dynamicreports.test.jasper.AbstractJasperTest;
-import net.sf.jasperreports.engine.JRDataSource;
-import net.sf.jasperreports.engine.JRElement;
-import net.sf.jasperreports.engine.JREmptyDataSource;
-import net.sf.jasperreports.engine.type.PositionTypeEnum;
-import net.sf.jasperreports.engine.type.StretchTypeEnum;
 
 
-/**
- * @author Ricardo Mariaca
- */
 public class Component3Test extends AbstractJasperTest
 {
 	
@@ -64,15 +61,15 @@ public class Component3Test extends AbstractJasperTest
 	public void test()
 	{
 		super.test();
-        
-        this.numberOfPagesTest(1);
+		
+		this.numberOfPagesTest(1);
 		
 		JRElement textField = this.getJasperReport().getTitle().getElementByKey("title.textField1");
-		Assertions.assertEquals(PositionTypeEnum.FIX_RELATIVE_TO_TOP, textField.getPositionTypeValue());
-		Assertions.assertEquals(StretchTypeEnum.NO_STRETCH, textField.getStretchTypeValue());
+		Assertions.assertEquals(PositionTypeEnum.FIX_RELATIVE_TO_TOP, textField.getPositionType());
+		Assertions.assertEquals(StretchTypeEnum.NO_STRETCH, textField.getStretchType());
 		Assertions.assertTrue(textField.isPrintInFirstWholeBand());
 		Assertions.assertTrue(textField.isPrintWhenDetailOverflows());
-		Assertions.assertEquals("group1", textField.getPrintWhenGroupChanges().getName());
+		Assertions.assertEquals("group1", textField.getPrintWhenGroupChanges());
 		
 		textField = this.getJasperReport().getDetailSection().getBands()[0].getElementByKey("detail.column_column11");
 		Assertions.assertTrue(textField.isPrintWhenDetailOverflows());

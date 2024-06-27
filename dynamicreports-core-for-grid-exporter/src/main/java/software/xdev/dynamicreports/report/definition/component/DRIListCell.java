@@ -17,37 +17,18 @@
  */
 package software.xdev.dynamicreports.report.definition.component;
 
+import java.io.Serializable;
+
 import software.xdev.dynamicreports.report.constant.HorizontalCellComponentAlignment;
 import software.xdev.dynamicreports.report.constant.VerticalCellComponentAlignment;
 
-import java.io.Serializable;
 
-/**
- * <p>DRIListCell interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface DRIListCell extends Serializable {
-
-    /**
-     * <p>getHorizontalAlignment.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.constant.HorizontalCellComponentAlignment} object.
-     */
-    public HorizontalCellComponentAlignment getHorizontalAlignment();
-
-    /**
-     * <p>getVerticalAlignment.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.constant.VerticalCellComponentAlignment} object.
-     */
-    public VerticalCellComponentAlignment getVerticalAlignment();
-
-    /**
-     * <p>getComponent.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.definition.component.DRIComponent} object.
-     */
-    public DRIComponent getComponent();
+public interface DRIListCell extends Serializable
+{
+	
+	public HorizontalCellComponentAlignment getHorizontalAlignment();
+	
+	public VerticalCellComponentAlignment getVerticalAlignment();
+	
+	public DRIComponent getComponent();
 }

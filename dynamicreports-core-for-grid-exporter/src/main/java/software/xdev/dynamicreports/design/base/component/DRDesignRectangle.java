@@ -19,54 +19,38 @@ package software.xdev.dynamicreports.design.base.component;
 
 import software.xdev.dynamicreports.design.base.style.DRDesignPen;
 import software.xdev.dynamicreports.design.definition.component.DRIDesignRectangle;
-import software.xdev.dynamicreports.report.constant.Constants;
 
-/**
- * <p>DRDesignRectangle class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class DRDesignRectangle extends DRDesignComponent implements DRIDesignRectangle {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    private Integer radius;
-    private DRDesignPen pen;
+public class DRDesignRectangle extends DRDesignComponent implements DRIDesignRectangle
+{
 
-    /**
-     * <p>Constructor for DRDesignRectangle.</p>
-     */
-    public DRDesignRectangle() {
-        super("rectangle");
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Integer getRadius() {
-        return radius;
-    }
-
-    /**
-     * <p>Setter for the field <code>radius</code>.</p>
-     *
-     * @param radius a {@link java.lang.Integer} object.
-     */
-    public void setRadius(Integer radius) {
-        this.radius = radius;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRDesignPen getPen() {
-        return pen;
-    }
-
-    /**
-     * <p>Setter for the field <code>pen</code>.</p>
-     *
-     * @param pen a {@link software.xdev.dynamicreports.design.base.style.DRDesignPen} object.
-     */
-    public void setPen(DRDesignPen pen) {
-        this.pen = pen;
-    }
+	private Integer radius;
+	private DRDesignPen pen;
+	
+	public DRDesignRectangle()
+	{
+		super("rectangle");
+	}
+	
+	@Override
+	public Integer getRadius()
+	{
+		return this.radius;
+	}
+	
+	public void setRadius(final Integer radius)
+	{
+		this.radius = radius;
+	}
+	
+	@Override
+	public DRDesignPen getPen()
+	{
+		return this.pen;
+	}
+	
+	public void setPen(final DRDesignPen pen)
+	{
+		this.pen = pen;
+	}
 }

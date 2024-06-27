@@ -17,12 +17,7 @@
  */
 package software.xdev.dynamicreports.report.constant;
 
-/**
- * <p>PdfPrintScaling class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public enum PdfPrintScaling {
-    NONE, DEFAULT
+public enum PdfPrintScaling
+{
+	NONE, DEFAULT
 }

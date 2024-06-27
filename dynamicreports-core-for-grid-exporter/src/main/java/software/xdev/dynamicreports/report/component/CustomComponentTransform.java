@@ -17,6 +17,7 @@
  */
 package software.xdev.dynamicreports.report.component;
 
+import net.sf.jasperreports.engine.JRComponentElement;
 import software.xdev.dynamicreports.design.base.DRDesignGroup;
 import software.xdev.dynamicreports.design.constant.ResetType;
 import software.xdev.dynamicreports.design.definition.component.DRIDesignComponent;
@@ -24,43 +25,18 @@ import software.xdev.dynamicreports.design.transformation.DesignTransformAccesso
 import software.xdev.dynamicreports.jasper.transformation.JasperTransformAccessor;
 import software.xdev.dynamicreports.report.definition.component.DRIComponent;
 import software.xdev.dynamicreports.report.exception.DRException;
-import net.sf.jasperreports.engine.JRComponentElement;
 
-/**
- * <p>CustomComponentTransform interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface CustomComponentTransform<T extends DRIComponent, U extends DRIDesignComponent> {
 
-    /**
-     * <p>isTransform.</p>
-     *
-     * @param component a {@link java.lang.Object} object.
-     * @return a boolean.
-     */
-    public boolean isTransform(Object component);
-
-    /**
-     * <p>designComponent.</p>
-     *
-     * @param accessor   a {@link software.xdev.dynamicreports.design.transformation.DesignTransformAccessor} object.
-     * @param component  a T object.
-     * @param resetType  a {@link software.xdev.dynamicreports.design.constant.ResetType} object.
-     * @param resetGroup a {@link software.xdev.dynamicreports.design.base.DRDesignGroup} object.
-     * @return a U object.
-     * @throws software.xdev.dynamicreports.report.exception.DRException if any.
-     */
-    public U designComponent(DesignTransformAccessor accessor, T component, ResetType resetType, DRDesignGroup resetGroup) throws DRException;
-
-    /**
-     * <p>jasperComponent.</p>
-     *
-     * @param accessor  a {@link software.xdev.dynamicreports.jasper.transformation.JasperTransformAccessor} object.
-     * @param component a U object.
-     * @return a {@link net.sf.jasperreports.engine.JRComponentElement} object.
-     */
-    public JRComponentElement jasperComponent(JasperTransformAccessor accessor, U component);
-
+public interface CustomComponentTransform<T extends DRIComponent, U extends DRIDesignComponent>
+{
+	
+	public boolean isTransform(Object component);
+	
+	public U designComponent(
+		DesignTransformAccessor accessor,
+		T component,
+		ResetType resetType,
+		DRDesignGroup resetGroup) throws DRException;
+	
+	public JRComponentElement jasperComponent(JasperTransformAccessor accessor, U component);
 }

@@ -23,36 +23,16 @@ import software.xdev.dynamicreports.report.definition.DRIValue;
 import software.xdev.dynamicreports.report.definition.expression.DRIExpression;
 import software.xdev.dynamicreports.report.definition.expression.DRISystemExpression;
 
-/**
- * <p>DRICrosstabVariable interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface DRICrosstabVariable<T> extends DRISystemExpression<T>, DRIValue<T> {
 
-    /** {@inheritDoc} */
-    @Override
-    public Class<? super T> getValueClass();
-
-    /**
-     * <p>getValueExpression.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     */
-    public DRIExpression<?> getValueExpression();
-
-    /**
-     * <p>getCalculation.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.constant.Calculation} object.
-     */
-    public Calculation getCalculation();
-
-    /**
-     * <p>getPercentageType.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.constant.CrosstabPercentageType} object.
-     */
-    public CrosstabPercentageType getPercentageType();
+public interface DRICrosstabVariable<T> extends DRISystemExpression<T>, DRIValue<T>
+{
+	
+	@Override
+	public Class<? super T> getValueClass();
+	
+	public DRIExpression<?> getValueExpression();
+	
+	public Calculation getCalculation();
+	
+	public CrosstabPercentageType getPercentageType();
 }

@@ -17,88 +17,67 @@
  */
 package software.xdev.dynamicreports.report.base.style;
 
-import software.xdev.dynamicreports.report.constant.Constants;
-import software.xdev.dynamicreports.report.definition.style.DRIReportStyle;
-import software.xdev.dynamicreports.report.definition.style.DRIStyle;
-import org.apache.commons.lang3.Validate;
-
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * <p>DRStyle class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class DRStyle extends DRBaseStyle implements DRIStyle {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
+import org.apache.commons.lang3.Validate;
 
-    private String name;
-    private DRIReportStyle parentStyle;
-    private List<DRConditionalStyle> conditionalStyles;
+import software.xdev.dynamicreports.report.definition.style.DRIReportStyle;
+import software.xdev.dynamicreports.report.definition.style.DRIStyle;
 
-    /** {@inheritDoc} */
-    @Override
-    protected void init() {
-        super.init();
-        conditionalStyles = new ArrayList<DRConditionalStyle>();
-    }
 
-    /** {@inheritDoc} */
-    @Override
-    public String getName() {
-        return name;
-    }
+public class DRStyle extends DRBaseStyle implements DRIStyle
+{
 
-    /**
-     * <p>Setter for the field <code>name</code>.</p>
-     *
-     * @param name a {@link java.lang.String} object.
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRIReportStyle getParentStyle() {
-        return parentStyle;
-    }
-
-    /**
-     * <p>Setter for the field <code>parentStyle</code>.</p>
-     *
-     * @param parentStyle a {@link software.xdev.dynamicreports.report.definition.style.DRIReportStyle} object.
-     */
-    public void setParentStyle(DRIReportStyle parentStyle) {
-        this.parentStyle = parentStyle;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public List<DRConditionalStyle> getConditionalStyles() {
-        return conditionalStyles;
-    }
-
-    /**
-     * <p>Setter for the field <code>conditionalStyles</code>.</p>
-     *
-     * @param conditionalStyles a {@link java.util.List} object.
-     */
-    public void setConditionalStyles(List<DRConditionalStyle> conditionalStyles) {
-        Validate.notNull(conditionalStyles, "conditionalStyles must not be null");
-        Validate.noNullElements(conditionalStyles, "conditionalStyles must not contains null conditionalStyle");
-        this.conditionalStyles = conditionalStyles;
-    }
-
-    /**
-     * <p>addConditionalStyle.</p>
-     *
-     * @param conditionalStyle a {@link software.xdev.dynamicreports.report.base.style.DRConditionalStyle} object.
-     */
-    public void addConditionalStyle(DRConditionalStyle conditionalStyle) {
-        Validate.notNull(conditionalStyle, "conditionalStyle must not be null");
-        this.conditionalStyles.add(conditionalStyle);
-    }
+	private String name;
+	private DRIReportStyle parentStyle;
+	private List<DRConditionalStyle> conditionalStyles;
+	
+	@Override
+	protected void init()
+	{
+		super.init();
+		this.conditionalStyles = new ArrayList<>();
+	}
+	
+	@Override
+	public String getName()
+	{
+		return this.name;
+	}
+	
+	public void setName(final String name)
+	{
+		this.name = name;
+	}
+	
+	@Override
+	public DRIReportStyle getParentStyle()
+	{
+		return this.parentStyle;
+	}
+	
+	public void setParentStyle(final DRIReportStyle parentStyle)
+	{
+		this.parentStyle = parentStyle;
+	}
+	
+	@Override
+	public List<DRConditionalStyle> getConditionalStyles()
+	{
+		return this.conditionalStyles;
+	}
+	
+	public void setConditionalStyles(final List<DRConditionalStyle> conditionalStyles)
+	{
+		Validate.notNull(conditionalStyles, "conditionalStyles must not be null");
+		Validate.noNullElements(conditionalStyles, "conditionalStyles must not contains null conditionalStyle");
+		this.conditionalStyles = conditionalStyles;
+	}
+	
+	public void addConditionalStyle(final DRConditionalStyle conditionalStyle)
+	{
+		Validate.notNull(conditionalStyle, "conditionalStyle must not be null");
+		this.conditionalStyles.add(conditionalStyle);
+	}
 }

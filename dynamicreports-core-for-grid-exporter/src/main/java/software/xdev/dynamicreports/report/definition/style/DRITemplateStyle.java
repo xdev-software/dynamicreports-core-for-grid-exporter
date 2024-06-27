@@ -17,19 +17,8 @@
  */
 package software.xdev.dynamicreports.report.definition.style;
 
-/**
- * <p>DRITemplateStyle interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface DRITemplateStyle extends DRIReportStyle {
-
-    /**
-     * <p>getName.</p>
-     *
-     * @return a {@link java.lang.String} object.
-     */
-    public String getName();
-
+public interface DRITemplateStyle extends DRIReportStyle
+{
+	
+	public String getName();
 }

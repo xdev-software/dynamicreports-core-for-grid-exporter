@@ -17,32 +17,20 @@
  */
 package software.xdev.dynamicreports.report.builder.condition;
 
-import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.definition.DRIValue;
 
-/**
- * <p>NotBetweenValueExpression class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class NotBetweenValueExpression<T extends Number> extends AbstractBetweenValueExpression<T> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    /**
-     * <p>Constructor for NotBetweenValueExpression.</p>
-     *
-     * @param value a {@link software.xdev.dynamicreports.report.definition.DRIValue} object.
-     * @param min   a {@link java.lang.Number} object.
-     * @param max   a {@link java.lang.Number} object.
-     */
-    public NotBetweenValueExpression(DRIValue<T> value, Number min, Number max) {
-        super(value, min, max);
-    }
+public class NotBetweenValueExpression<T extends Number> extends AbstractBetweenValueExpression<T>
+{
 
-    /** {@inheritDoc} */
-    @Override
-    protected Boolean compare(Number actualValue, Number min, Number max) {
-        return actualValue.doubleValue() < min.doubleValue() || actualValue.doubleValue() > max.doubleValue();
-    }
+	public NotBetweenValueExpression(final DRIValue<T> value, final Number min, final Number max)
+	{
+		super(value, min, max);
+	}
+	
+	@Override
+	protected Boolean compare(final Number actualValue, final Number min, final Number max)
+	{
+		return actualValue.doubleValue() < min.doubleValue() || actualValue.doubleValue() > max.doubleValue();
+	}
 }

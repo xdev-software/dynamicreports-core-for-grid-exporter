@@ -24,7 +24,6 @@ import org.apache.commons.lang3.Validate;
 
 import software.xdev.dynamicreports.report.ReportUtils;
 import software.xdev.dynamicreports.report.base.DRHyperLink;
-import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.constant.HorizontalTextAlignment;
 import software.xdev.dynamicreports.report.constant.TextAdjust;
 import software.xdev.dynamicreports.report.definition.crosstab.DRICrosstabCellStyle;
@@ -35,228 +34,157 @@ import software.xdev.dynamicreports.report.definition.expression.DRIPropertyExpr
 import software.xdev.dynamicreports.report.definition.expression.DRIValueFormatter;
 import software.xdev.dynamicreports.report.definition.style.DRIReportStyle;
 
-/**
- * <p>DRCrosstabMeasure class.</p>
- *
- * @author Ricardo Mariaca, Jan Moxter
- * 
- */
-public class DRCrosstabMeasure<T> implements DRICrosstabMeasure<T> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    private final String name;
-    private final DRIExpression<?> expression;
-    private DRIDataType<? super T, T> dataType;
-    private String pattern;
-    private HorizontalTextAlignment horizontalTextAlignment;
-    private DRIValueFormatter<?, ? super T> valueFormatter;
-    private Boolean stretchWithOverflow;
-    private TextAdjust textAdjust;
-    private DRHyperLink hyperLink;
-    private List<DRIPropertyExpression> propertyExpressions;
-    private List<DRICrosstabCellStyle> styles;
-    private DRIExpression<?> titleExpression;
-    private DRIReportStyle titleStyle;
+public class DRCrosstabMeasure<T> implements DRICrosstabMeasure<T>
+{
 
-    /**
-     * <p>Constructor for DRCrosstabMeasure.</p>
-     *
-     * @param expression a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     */
-    public DRCrosstabMeasure(final DRIExpression<?> expression) {
-        Validate.notNull(expression, "expression must not be null");
-        this.expression = expression;
-        this.name = ReportUtils.generateUniqueName("crosstabMeasure");
-        this.styles = new ArrayList<>();
-        propertyExpressions = new ArrayList<>();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public String getName() {
-        return name;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRIExpression<?> getExpression() {
-        return expression;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRIDataType<? super T, T> getDataType() {
-        return dataType;
-    }
-
-    /**
-     * <p>Setter for the field <code>dataType</code>.</p>
-     *
-     * @param dataType a {@link software.xdev.dynamicreports.report.definition.datatype.DRIDataType} object.
-     */
-    public void setDataType(final DRIDataType<? super T, T> dataType) {
-        this.dataType = dataType;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public String getPattern() {
-        return pattern;
-    }
-
-    /**
-     * <p>Setter for the field <code>pattern</code>.</p>
-     *
-     * @param pattern a {@link java.lang.String} object.
-     */
-    public void setPattern(final String pattern) {
-        this.pattern = pattern;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public HorizontalTextAlignment getHorizontalTextAlignment() {
-        return horizontalTextAlignment;
-    }
-
-    /**
-     * <p>Setter for the field <code>horizontalTextAlignment</code>.</p>
-     *
-     * @param horizontalTextAlignment a {@link software.xdev.dynamicreports.report.constant.HorizontalTextAlignment} object.
-     */
-    public void setHorizontalTextAlignment(final HorizontalTextAlignment horizontalTextAlignment) {
-        this.horizontalTextAlignment = horizontalTextAlignment;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRIValueFormatter<?, ? super T> getValueFormatter() {
-        return valueFormatter;
-    }
-
-    /**
-     * <p>Setter for the field <code>valueFormatter</code>.</p>
-     *
-     * @param valueFormatter a {@link software.xdev.dynamicreports.report.definition.expression.DRIValueFormatter} object.
-     */
-    public void setValueFormatter(final DRIValueFormatter<?, ? super T> valueFormatter) {
-        this.valueFormatter = valueFormatter;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Boolean getStretchWithOverflow() {
-        return stretchWithOverflow;
-    }
-
-    /**
-     * <p>Setter for the field <code>stretchWithOverflow</code>.</p>
-     *
-     * @param stretchWithOverflow a {@link java.lang.Boolean} object.
-     * @deprecated replaced by {@link #setTextAdjust(TextAdjust)}
-     */
-    @Deprecated
-    public void setStretchWithOverflow(final Boolean stretchWithOverflow) {
-        this.stretchWithOverflow = stretchWithOverflow;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public TextAdjust getTextAdjust() {
-        return this.textAdjust;
-    }
-
-    /**
-     * <p>Setter for the field <code>textAdjust</code>.</p>
-     *
-     * @param textAdjust a {@link software.xdev.dynamicreports.report.constant.TextAdjust} object.
-     */
-    public void setTextAdjust(final TextAdjust textAdjust) {
-        this.textAdjust = textAdjust;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRHyperLink getHyperLink() {
-        return hyperLink;
-    }
-
-    /**
-     * <p>Setter for the field <code>hyperLink</code>.</p>
-     *
-     * @param hyperLink a {@link software.xdev.dynamicreports.report.base.DRHyperLink} object.
-     */
-    public void setHyperLink(final DRHyperLink hyperLink) {
-        this.hyperLink = hyperLink;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public List<DRIPropertyExpression> getPropertyExpressions() {
-        return propertyExpressions;
-    }
-
-    /**
-     * <p>Setter for the field <code>propertyExpressions</code>.</p>
-     *
-     * @param propertyExpressions a {@link java.util.List} object.
-     */
-    public void setPropertyExpressions(final List<DRIPropertyExpression> propertyExpressions) {
-        this.propertyExpressions = propertyExpressions;
-    }
-
-    /**
-     * <p>addPropertyExpression.</p>
-     *
-     * @param propertyExpression a {@link software.xdev.dynamicreports.report.definition.expression.DRIPropertyExpression} object.
-     */
-    public void addPropertyExpression(final DRIPropertyExpression propertyExpression) {
-        Validate.notNull(propertyExpression, "propertyExpression must not be null");
-        this.propertyExpressions.add(propertyExpression);
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public List<DRICrosstabCellStyle> getStyles() {
-        return styles;
-    }
-
-    /**
-     * <p>setStyle.</p>
-     *
-     * @param styles a {@link java.util.List} object.
-     */
-    public void setStyle(final List<DRICrosstabCellStyle> styles) {
-        this.styles = styles;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRIExpression<?> getTitleExpression() {
-        return titleExpression;
-    }
-
-    /**
-     * <p>Setter for the field <code>titleExpression</code>.</p>
-     *
-     * @param titleExpression a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     */
-    public void setTitleExpression(final DRIExpression<?> titleExpression) {
-        this.titleExpression = titleExpression;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRIReportStyle getTitleStyle() {
-        return titleStyle;
-    }
-
-    /**
-     * <p>Setter for the field <code>titleStyle</code>.</p>
-     *
-     * @param titleStyle a {@link software.xdev.dynamicreports.report.definition.style.DRIReportStyle} object.
-     */
-    public void setTitleStyle(final DRIReportStyle titleStyle) {
-        this.titleStyle = titleStyle;
-    }
+	private final String name;
+	private final DRIExpression<?> expression;
+	private DRIDataType<? super T, T> dataType;
+	private String pattern;
+	private HorizontalTextAlignment horizontalTextAlignment;
+	private DRIValueFormatter<?, ? super T> valueFormatter;
+	private TextAdjust textAdjust;
+	private DRHyperLink hyperLink;
+	private List<DRIPropertyExpression> propertyExpressions;
+	private List<DRICrosstabCellStyle> styles;
+	private DRIExpression<?> titleExpression;
+	private DRIReportStyle titleStyle;
+	
+	public DRCrosstabMeasure(final DRIExpression<?> expression)
+	{
+		Validate.notNull(expression, "expression must not be null");
+		this.expression = expression;
+		this.name = ReportUtils.generateUniqueName("crosstabMeasure");
+		this.styles = new ArrayList<>();
+		this.propertyExpressions = new ArrayList<>();
+	}
+	
+	@Override
+	public String getName()
+	{
+		return this.name;
+	}
+	
+	@Override
+	public DRIExpression<?> getExpression()
+	{
+		return this.expression;
+	}
+	
+	@Override
+	public DRIDataType<? super T, T> getDataType()
+	{
+		return this.dataType;
+	}
+	
+	public void setDataType(final DRIDataType<? super T, T> dataType)
+	{
+		this.dataType = dataType;
+	}
+	
+	@Override
+	public String getPattern()
+	{
+		return this.pattern;
+	}
+	
+	public void setPattern(final String pattern)
+	{
+		this.pattern = pattern;
+	}
+	
+	@Override
+	public HorizontalTextAlignment getHorizontalTextAlignment()
+	{
+		return this.horizontalTextAlignment;
+	}
+	
+	public void setHorizontalTextAlignment(final HorizontalTextAlignment horizontalTextAlignment)
+	{
+		this.horizontalTextAlignment = horizontalTextAlignment;
+	}
+	
+	@Override
+	public DRIValueFormatter<?, ? super T> getValueFormatter()
+	{
+		return this.valueFormatter;
+	}
+	
+	public void setValueFormatter(final DRIValueFormatter<?, ? super T> valueFormatter)
+	{
+		this.valueFormatter = valueFormatter;
+	}
+	
+	@Override
+	public TextAdjust getTextAdjust()
+	{
+		return this.textAdjust;
+	}
+	
+	public void setTextAdjust(final TextAdjust textAdjust)
+	{
+		this.textAdjust = textAdjust;
+	}
+	
+	@Override
+	public DRHyperLink getHyperLink()
+	{
+		return this.hyperLink;
+	}
+	
+	public void setHyperLink(final DRHyperLink hyperLink)
+	{
+		this.hyperLink = hyperLink;
+	}
+	
+	@Override
+	public List<DRIPropertyExpression> getPropertyExpressions()
+	{
+		return this.propertyExpressions;
+	}
+	
+	public void setPropertyExpressions(final List<DRIPropertyExpression> propertyExpressions)
+	{
+		this.propertyExpressions = propertyExpressions;
+	}
+	
+	public void addPropertyExpression(final DRIPropertyExpression propertyExpression)
+	{
+		Validate.notNull(propertyExpression, "propertyExpression must not be null");
+		this.propertyExpressions.add(propertyExpression);
+	}
+	
+	@Override
+	public List<DRICrosstabCellStyle> getStyles()
+	{
+		return this.styles;
+	}
+	
+	public void setStyle(final List<DRICrosstabCellStyle> styles)
+	{
+		this.styles = styles;
+	}
+	
+	@Override
+	public DRIExpression<?> getTitleExpression()
+	{
+		return this.titleExpression;
+	}
+	
+	public void setTitleExpression(final DRIExpression<?> titleExpression)
+	{
+		this.titleExpression = titleExpression;
+	}
+	
+	@Override
+	public DRIReportStyle getTitleStyle()
+	{
+		return this.titleStyle;
+	}
+	
+	public void setTitleStyle(final DRIReportStyle titleStyle)
+	{
+		this.titleStyle = titleStyle;
+	}
 }

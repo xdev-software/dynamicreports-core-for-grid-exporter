@@ -18,64 +18,45 @@
 package software.xdev.dynamicreports.jasper.base.export;
 
 import software.xdev.dynamicreports.jasper.definition.export.JasperIDocxExporter;
-import software.xdev.dynamicreports.report.constant.Constants;
 
-/**
- * <p>JasperDocxExporter class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class JasperDocxExporter extends AbstractJasperExporter implements JasperIDocxExporter {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    private Boolean framesAsNestedTables;
-    private Boolean flexibleRowHeight;
-    private Boolean ignoreHyperLink;
+public class JasperDocxExporter extends AbstractJasperExporter implements JasperIDocxExporter
+{
 
-    /** {@inheritDoc} */
-    @Override
-    public Boolean getFramesAsNestedTables() {
-        return framesAsNestedTables;
-    }
-
-    /**
-     * <p>Setter for the field <code>framesAsNestedTables</code>.</p>
-     *
-     * @param framesAsNestedTables a {@link java.lang.Boolean} object.
-     */
-    public void setFramesAsNestedTables(Boolean framesAsNestedTables) {
-        this.framesAsNestedTables = framesAsNestedTables;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Boolean getFlexibleRowHeight() {
-        return flexibleRowHeight;
-    }
-
-    /**
-     * <p>Setter for the field <code>flexibleRowHeight</code>.</p>
-     *
-     * @param flexibleRowHeight a {@link java.lang.Boolean} object.
-     */
-    public void setFlexibleRowHeight(Boolean flexibleRowHeight) {
-        this.flexibleRowHeight = flexibleRowHeight;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Boolean getIgnoreHyperLink() {
-        return ignoreHyperLink;
-    }
-
-    /**
-     * <p>Setter for the field <code>ignoreHyperLink</code>.</p>
-     *
-     * @param ignoreHyperLink a {@link java.lang.Boolean} object.
-     */
-    public void setIgnoreHyperLink(Boolean ignoreHyperLink) {
-        this.ignoreHyperLink = ignoreHyperLink;
-    }
-
+	private Boolean framesAsNestedTables;
+	private Boolean flexibleRowHeight;
+	private Boolean ignoreHyperLink;
+	
+	@Override
+	public Boolean getFramesAsNestedTables()
+	{
+		return this.framesAsNestedTables;
+	}
+	
+	public void setFramesAsNestedTables(final Boolean framesAsNestedTables)
+	{
+		this.framesAsNestedTables = framesAsNestedTables;
+	}
+	
+	@Override
+	public Boolean getFlexibleRowHeight()
+	{
+		return this.flexibleRowHeight;
+	}
+	
+	public void setFlexibleRowHeight(final Boolean flexibleRowHeight)
+	{
+		this.flexibleRowHeight = flexibleRowHeight;
+	}
+	
+	@Override
+	public Boolean getIgnoreHyperLink()
+	{
+		return this.ignoreHyperLink;
+	}
+	
+	public void setIgnoreHyperLink(final Boolean ignoreHyperLink)
+	{
+		this.ignoreHyperLink = ignoreHyperLink;
+	}
 }

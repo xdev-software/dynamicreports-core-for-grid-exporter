@@ -21,24 +21,22 @@ import static software.xdev.dynamicreports.report.builder.DynamicReports.cmp;
 
 import org.junit.jupiter.api.Assertions;
 
-import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
-import software.xdev.dynamicreports.report.constant.LineDirection;
-import software.xdev.dynamicreports.test.jasper.AbstractJasperPositionTest;
 import net.sf.jasperreports.engine.JRPrintLine;
 import net.sf.jasperreports.engine.JRPrintRectangle;
 import net.sf.jasperreports.engine.type.LineDirectionEnum;
+import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
+import software.xdev.dynamicreports.report.constant.LineDirection;
+import software.xdev.dynamicreports.test.jasper.AbstractJasperPositionTest;
 
 
-/**
- * @author Ricardo Mariaca
- */
 public class Component2Test extends AbstractJasperPositionTest
 {
 	
 	@Override
 	protected void configureReport(final JasperReportBuilder rb)
 	{
-		rb.title(cmp.horizontalList(cmp.line(), cmp.filler().setFixedWidth(10), cmp.line()),
+		rb.title(
+			cmp.horizontalList(cmp.line(), cmp.filler().setFixedWidth(10), cmp.line()),
 			cmp.horizontalList(
 				cmp.line().setFixedDimension(1, 50),
 				cmp.line().setDirection(LineDirection.TOP_DOWN),
@@ -59,24 +57,24 @@ public class Component2Test extends AbstractJasperPositionTest
 	public void test()
 	{
 		super.test();
-        
-        this.numberOfPagesTest(1);
-        
-        this.elementPositionTest("title.line1", 0, 0, 0, 282, 1);
-        this.elementPositionTest("title.line2", 0, 292, 0, 283, 1);
-        this.elementPositionTest("title.line3", 0, 0, 0, 1, 50);
-        this.elementPositionTest("title.line4", 0, 1, 0, 287, 50);
-        this.elementPositionTest("title.line5", 0, 288, 0, 287, 50);
+		
+		this.numberOfPagesTest(1);
+		
+		this.elementPositionTest("title.line1", 0, 0, 0, 282, 1);
+		this.elementPositionTest("title.line2", 0, 292, 0, 283, 1);
+		this.elementPositionTest("title.line3", 0, 0, 0, 1, 50);
+		this.elementPositionTest("title.line4", 0, 1, 0, 287, 50);
+		this.elementPositionTest("title.line5", 0, 288, 0, 287, 50);
 		
 		JRPrintLine line = (JRPrintLine)this.getElementAt("title.line4", 0);
-		Assertions.assertEquals(LineDirectionEnum.TOP_DOWN, line.getDirectionValue());
+		Assertions.assertEquals(LineDirectionEnum.TOP_DOWN, line.getDirection());
 		line = (JRPrintLine)this.getElementAt("title.line5", 0);
-		Assertions.assertEquals(LineDirectionEnum.BOTTOM_UP, line.getDirectionValue());
-        
-        this.elementPositionTest("title.ellipse1", 0, 10, 61, 575, 100);
-        this.elementPositionTest("title.rectangle1", 0, 10, 161, 575, 100);
-        this.elementPositionTest("title.rectangle2", 0, 10, 261, 575, 100);
-        this.elementPositionTest("title.rectangle3", 0, 10, 361, 575, 100);
+		Assertions.assertEquals(LineDirectionEnum.BOTTOM_UP, line.getDirection());
+		
+		this.elementPositionTest("title.ellipse1", 0, 10, 61, 575, 100);
+		this.elementPositionTest("title.rectangle1", 0, 10, 161, 575, 100);
+		this.elementPositionTest("title.rectangle2", 0, 10, 261, 575, 100);
+		this.elementPositionTest("title.rectangle3", 0, 10, 361, 575, 100);
 		
 		JRPrintRectangle rectangle = (JRPrintRectangle)this.getElementAt("title.rectangle1", 0);
 		Assertions.assertEquals(0, rectangle.getRadius());
@@ -84,16 +82,16 @@ public class Component2Test extends AbstractJasperPositionTest
 		Assertions.assertEquals(10, rectangle.getRadius());
 		rectangle = (JRPrintRectangle)this.getElementAt("title.rectangle3", 0);
 		Assertions.assertEquals(20, rectangle.getRadius());
-        
-        this.elementPositionTest("title.list4", 0, 10, 491, 575, 16);
-        this.elementPositionTest("title.textField1", 0, 0, 0, 282, 16);
-        this.elementPositionTest("title.textField2", 0, 292, 0, 283, 16);
-        
-        this.elementPositionTest("title.textField3", 0, 262, 0, 50, 16);
-        this.elementPositionTest("title.textField4", 0, 100, 0, 50, 16);
-        
-        this.elementPositionTest("title.textField5", 0, 0, 11, 287, 16);
-        this.elementPositionTest("title.textField6", 0, 287, 0, 288, 39);
-        this.elementPositionTest("title.textField7", 0, 10, 595, 575, 16);
+		
+		this.elementPositionTest("title.list4", 0, 10, 491, 575, 16);
+		this.elementPositionTest("title.textField1", 0, 0, 0, 282, 16);
+		this.elementPositionTest("title.textField2", 0, 292, 0, 283, 16);
+		
+		this.elementPositionTest("title.textField3", 0, 262, 0, 50, 16);
+		this.elementPositionTest("title.textField4", 0, 100, 0, 50, 16);
+		
+		this.elementPositionTest("title.textField5", 0, 0, 11, 287, 16);
+		this.elementPositionTest("title.textField6", 0, 287, 0, 288, 39);
+		this.elementPositionTest("title.textField7", 0, 10, 595, 575, 16);
 	}
 }

@@ -17,6 +17,15 @@
  */
 package software.xdev.dynamicreports.test.jasper.column;
 
+import static software.xdev.dynamicreports.report.builder.DynamicReports.col;
+import static software.xdev.dynamicreports.report.builder.DynamicReports.field;
+
+import java.io.Serializable;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
+
+import net.sf.jasperreports.engine.JRDataSource;
 import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
 import software.xdev.dynamicreports.report.base.expression.AbstractValueFormatter;
 import software.xdev.dynamicreports.report.builder.column.PercentageColumnBuilder;
@@ -24,67 +33,64 @@ import software.xdev.dynamicreports.report.builder.column.TextColumnBuilder;
 import software.xdev.dynamicreports.report.datasource.DRDataSource;
 import software.xdev.dynamicreports.report.definition.ReportParameters;
 import software.xdev.dynamicreports.test.jasper.AbstractJasperValueTest;
-import net.sf.jasperreports.engine.JRDataSource;
 
-import java.io.Serializable;
-import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
-import java.util.Locale;
 
-import static software.xdev.dynamicreports.report.builder.DynamicReports.col;
-import static software.xdev.dynamicreports.report.builder.DynamicReports.field;
+public class PercentageColumnTest extends AbstractJasperValueTest implements Serializable
+{
 
-/**
- * @author Ricardo Mariaca
- */
-public class PercentageColumnTest extends AbstractJasperValueTest implements Serializable {
-    private static final long serialVersionUID = 1L;
+	private PercentageColumnBuilder percentage1;
+	private PercentageColumnBuilder percentage2;
+	private PercentageColumnBuilder percentage3;
+	
+	@Override
+	protected void configureReport(final JasperReportBuilder rb)
+	{
+		final TextColumnBuilder<Integer> column2;
+		
+		rb.setLocale(Locale.ENGLISH)
+			.fields(field("field1", Integer.class))
+			.columns(
+				column2 = col.column("field2", Integer.class),
+				this.percentage1 = col.percentageColumn("field1", Integer.class),
+				this.percentage2 = col.percentageColumn(column2),
+				this.percentage3 =
+					col.percentageColumn("field3", Integer.class).setValueFormatter(new ColumnValueFormatter()));
+	}
+	
+	@Override
+	public void test()
+	{
+		super.test();
+		
+		this.numberOfPagesTest(1);
+		// percentage1
+		this.columnDetailCountTest(this.percentage1, 3);
+		this.columnDetailValueTest(this.percentage1, "16.67%", "33.33%", "50.00%");
+		// percentage2
+		this.columnDetailCountTest(this.percentage2, 3);
+		this.columnDetailValueTest(this.percentage2, "26.67%", "33.33%", "40.00%");
+		// percentage3
+		this.columnDetailCountTest(this.percentage3, 3);
+		this.columnDetailValueTest(this.percentage3, "value = 29.17%", "value = 33.33%", "value = 37.50%");
+	}
+	
+	@Override
+	protected JRDataSource createDataSource()
+	{
+		final DRDataSource dataSource = new DRDataSource("field1", "field2", "field3");
+		dataSource.add(1, 4, 7);
+		dataSource.add(2, 5, 8);
+		dataSource.add(3, 6, 9);
+		return dataSource;
+	}
+	
+	static class ColumnValueFormatter extends AbstractValueFormatter<String, Double>
+	{
 
-    private PercentageColumnBuilder percentage1;
-    private PercentageColumnBuilder percentage2;
-    private PercentageColumnBuilder percentage3;
-
-    @Override
-    protected void configureReport(JasperReportBuilder rb) {
-        TextColumnBuilder<Integer> column2;
-
-        rb.setLocale(Locale.ENGLISH)
-          .fields(field("field1", Integer.class))
-          .columns(column2 = col.column("field2", Integer.class), percentage1 = col.percentageColumn("field1", Integer.class), percentage2 = col.percentageColumn(column2),
-                   percentage3 = col.percentageColumn("field3", Integer.class).setValueFormatter(new ColumnValueFormatter()));
-    }
-
-    @Override
-    public void test() {
-        super.test();
-
-        numberOfPagesTest(1);
-        // percentage1
-        columnDetailCountTest(percentage1, 3);
-        columnDetailValueTest(percentage1, "16.67%", "33.33%", "50.00%");
-        // percentage2
-        columnDetailCountTest(percentage2, 3);
-        columnDetailValueTest(percentage2, "26.67%", "33.33%", "40.00%");
-        // percentage3
-        columnDetailCountTest(percentage3, 3);
-        columnDetailValueTest(percentage3, "value = 29.17%", "value = 33.33%", "value = 37.50%");
-    }
-
-    @Override
-    protected JRDataSource createDataSource() {
-        DRDataSource dataSource = new DRDataSource("field1", "field2", "field3");
-        dataSource.add(1, 4, 7);
-        dataSource.add(2, 5, 8);
-        dataSource.add(3, 6, 9);
-        return dataSource;
-    }
-
-    private class ColumnValueFormatter extends AbstractValueFormatter<String, Double> {
-        private static final long serialVersionUID = 1L;
-
-        @Override
-        public String format(Double value, ReportParameters reportParameters) {
-            return "value = " + new DecimalFormat("#,##0.00%", new DecimalFormatSymbols(Locale.ENGLISH)).format(value);
-        }
-    }
+		@Override
+		public String format(final Double value, final ReportParameters reportParameters)
+		{
+			return "value = " + new DecimalFormat("#,##0.00%", new DecimalFormatSymbols(Locale.ENGLISH)).format(value);
+		}
+	}
 }

@@ -17,12 +17,7 @@
  */
 package software.xdev.dynamicreports.report.constant;
 
-/**
- * <p>Position class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public enum Position {
-    TOP, BOTTOM, LEFT, RIGHT
+public enum Position
+{
+	TOP, BOTTOM, LEFT, RIGHT
 }

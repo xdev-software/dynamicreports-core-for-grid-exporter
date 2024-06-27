@@ -17,6 +17,8 @@
  */
 package software.xdev.dynamicreports.design.transformation;
 
+import java.util.List;
+
 import software.xdev.dynamicreports.design.constant.ResetType;
 import software.xdev.dynamicreports.design.definition.DRIDesignDataset;
 import software.xdev.dynamicreports.report.definition.DRIDataset;
@@ -24,55 +26,44 @@ import software.xdev.dynamicreports.report.definition.DRIField;
 import software.xdev.dynamicreports.report.definition.DRISort;
 import software.xdev.dynamicreports.report.definition.DRIVariable;
 
-import java.util.List;
 
-/**
- * <p>DatasetExpressionTransform class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class DatasetExpressionTransform extends AbstractExpressionTransform {
-    private DRIDataset dataset;
-
-    /**
-     * <p>Constructor for DatasetExpressionTransform.</p>
-     *
-     * @param accessor a {@link software.xdev.dynamicreports.design.transformation.DesignTransformAccessor} object.
-     * @param dataset  a {@link software.xdev.dynamicreports.report.definition.DRIDataset} object.
-     */
-    public DatasetExpressionTransform(DesignTransformAccessor accessor, DRIDataset dataset) {
-        super(accessor);
-        this.dataset = dataset;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    protected ResetType getVariableResetType(DRIVariable<?> variable) {
-        return ResetType.REPORT;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    protected List<? extends DRIField<?>> transformFields() {
-        return dataset.getFields();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    protected List<? extends DRIVariable<?>> transformVariables() {
-        return dataset.getVariables();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    protected List<? extends DRISort> transformSorts() {
-        return dataset.getSorts();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    protected DRIDesignDataset getDataset() {
-        return accessor.getDatasetTransform().getDesignDataset(dataset);
-    }
+public class DatasetExpressionTransform extends AbstractExpressionTransform
+{
+	private final DRIDataset dataset;
+	
+	public DatasetExpressionTransform(final DesignTransformAccessor accessor, final DRIDataset dataset)
+	{
+		super(accessor);
+		this.dataset = dataset;
+	}
+	
+	@Override
+	protected ResetType getVariableResetType(final DRIVariable<?> variable)
+	{
+		return ResetType.REPORT;
+	}
+	
+	@Override
+	protected List<? extends DRIField<?>> transformFields()
+	{
+		return this.dataset.getFields();
+	}
+	
+	@Override
+	protected List<? extends DRIVariable<?>> transformVariables()
+	{
+		return this.dataset.getVariables();
+	}
+	
+	@Override
+	protected List<? extends DRISort> transformSorts()
+	{
+		return this.dataset.getSorts();
+	}
+	
+	@Override
+	protected DRIDesignDataset getDataset()
+	{
+		return this.accessor.getDatasetTransform().getDesignDataset(this.dataset);
+	}
 }

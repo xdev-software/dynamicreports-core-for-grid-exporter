@@ -17,51 +17,22 @@
  */
 package software.xdev.dynamicreports.report.definition.component;
 
-import software.xdev.dynamicreports.report.definition.expression.DRIExpression;
-
 import java.sql.Connection;
 import java.util.Map;
 
-/**
- * <p>DRISubreport interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface DRISubreport extends DRIDimensionComponent {
+import software.xdev.dynamicreports.report.definition.expression.DRIExpression;
 
-    /**
-     * <p>getReportExpression.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     */
-    public DRIExpression<?> getReportExpression();
 
-    /**
-     * <p>getParametersExpression.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     */
-    public DRIExpression<Map<String, Object>> getParametersExpression();
-
-    /**
-     * <p>getConnectionExpression.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     */
-    public DRIExpression<Connection> getConnectionExpression();
-
-    /**
-     * <p>getDataSourceExpression.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     */
-    public DRIExpression<?> getDataSourceExpression();
-
-    /**
-     * <p>getRunToBottom.</p>
-     *
-     * @return a {@link java.lang.Boolean} object.
-     */
-    public Boolean getRunToBottom();
+public interface DRISubreport extends DRIDimensionComponent
+{
+	
+	public DRIExpression<?> getReportExpression();
+	
+	public DRIExpression<Map<String, Object>> getParametersExpression();
+	
+	public DRIExpression<Connection> getConnectionExpression();
+	
+	public DRIExpression<?> getDataSourceExpression();
+	
+	public Boolean getRunToBottom();
 }

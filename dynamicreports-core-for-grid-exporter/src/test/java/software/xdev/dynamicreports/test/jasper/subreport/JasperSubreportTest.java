@@ -22,6 +22,11 @@ import java.io.Serializable;
 
 import org.junit.jupiter.api.Assertions;
 
+import net.sf.jasperreports.engine.JRDataSource;
+import net.sf.jasperreports.engine.JREmptyDataSource;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperReport;
 import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
 import software.xdev.dynamicreports.report.base.expression.AbstractSimpleExpression;
 import software.xdev.dynamicreports.report.builder.component.Components;
@@ -29,20 +34,11 @@ import software.xdev.dynamicreports.report.builder.component.SubreportBuilder;
 import software.xdev.dynamicreports.report.datasource.DRDataSource;
 import software.xdev.dynamicreports.report.definition.ReportParameters;
 import software.xdev.dynamicreports.test.jasper.AbstractJasperValueTest;
-import net.sf.jasperreports.engine.JRDataSource;
-import net.sf.jasperreports.engine.JREmptyDataSource;
-import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JasperCompileManager;
-import net.sf.jasperreports.engine.JasperReport;
 
 
-/**
- * @author Ricardo Mariaca
- */
 public class JasperSubreportTest extends AbstractJasperValueTest implements Serializable
 {
-	private static final long serialVersionUID = 1L;
-	
+
 	@Override
 	protected void configureReport(final JasperReportBuilder rb)
 	{
@@ -103,10 +99,9 @@ public class JasperSubreportTest extends AbstractJasperValueTest implements Seri
 		return new JREmptyDataSource(3);
 	}
 	
-	private class SubreportExpression extends AbstractSimpleExpression<JasperReport>
+	static class SubreportExpression extends AbstractSimpleExpression<JasperReport>
 	{
-		private static final long serialVersionUID = 1L;
-		
+
 		@Override
 		public JasperReport evaluate(final ReportParameters reportParameters)
 		{
@@ -126,10 +121,9 @@ public class JasperSubreportTest extends AbstractJasperValueTest implements Seri
 	}
 	
 	
-	private class SubreportDataSourceExpression extends AbstractSimpleExpression<JRDataSource>
+	static class SubreportDataSourceExpression extends AbstractSimpleExpression<JRDataSource>
 	{
-		private static final long serialVersionUID = 1L;
-		
+
 		@Override
 		public JRDataSource evaluate(final ReportParameters reportParameters)
 		{

@@ -17,52 +17,53 @@
  */
 package software.xdev.dynamicreports.test.jasper.report;
 
-import org.junit.jupiter.api.Assertions;
-import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
-import software.xdev.dynamicreports.report.constant.WhenNoDataType;
-import software.xdev.dynamicreports.test.jasper.AbstractJasperValueTest;
-import net.sf.jasperreports.engine.JasperPrint;
+import static software.xdev.dynamicreports.report.builder.DynamicReports.cmp;
 
 import java.io.Serializable;
 
-import static software.xdev.dynamicreports.report.builder.DynamicReports.cmp;
+import org.junit.jupiter.api.Assertions;
 
-/**
- * @author Ricardo Mariaca
- */
-public class Report3Test extends AbstractJasperValueTest implements Serializable {
-    private static final long serialVersionUID = 1L;
+import net.sf.jasperreports.engine.JasperPrint;
+import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
+import software.xdev.dynamicreports.report.constant.WhenNoDataType;
+import software.xdev.dynamicreports.test.jasper.AbstractJasperValueTest;
 
-    @Override
-    protected void configureReport(JasperReportBuilder rb) {
-        rb.setReportName("report1")
-          .setWhenNoDataType(WhenNoDataType.ALL_SECTIONS_NO_DETAIL)
-          .setSummaryOnANewPage(true)
-          .setSummaryWithPageHeaderAndFooter(true)
-          .pageHeader(cmp.text("page header"))
-          .pageFooter(cmp.text("page footer"))
-          .summary(cmp.text("summary"));
-    }
 
-    @Override
-    public void test() {
-        super.test();
+public class Report3Test extends AbstractJasperValueTest implements Serializable
+{
 
-        numberOfPagesTest(2);
-
-        JasperPrint jasperPrint = getJasperPrint();
-        Assertions.assertEquals("report1", jasperPrint.getName());
-
-        // page header
-        elementCountTest("pageHeader.textField1", 2);
-        elementValueTest("pageHeader.textField1", "page header", "page header");
-
-        // page footer
-        elementCountTest("pageFooter.textField1", 2);
-        elementValueTest("pageFooter.textField1", "page footer", "page footer");
-
-        // summary
-        elementCountTest("summary.textField1", 1);
-        elementValueTest("summary.textField1", "summary");
-    }
+	@Override
+	protected void configureReport(final JasperReportBuilder rb)
+	{
+		rb.setReportName("report1")
+			.setWhenNoDataType(WhenNoDataType.ALL_SECTIONS_NO_DETAIL)
+			.setSummaryOnANewPage(true)
+			.setSummaryWithPageHeaderAndFooter(true)
+			.pageHeader(cmp.text("page header"))
+			.pageFooter(cmp.text("page footer"))
+			.summary(cmp.text("summary"));
+	}
+	
+	@Override
+	public void test()
+	{
+		super.test();
+		
+		this.numberOfPagesTest(2);
+		
+		final JasperPrint jasperPrint = this.getJasperPrint();
+		Assertions.assertEquals("report1", jasperPrint.getName());
+		
+		// page header
+		this.elementCountTest("pageHeader.textField1", 2);
+		this.elementValueTest("pageHeader.textField1", "page header", "page header");
+		
+		// page footer
+		this.elementCountTest("pageFooter.textField1", 2);
+		this.elementValueTest("pageFooter.textField1", "page footer", "page footer");
+		
+		// summary
+		this.elementCountTest("summary.textField1", 1);
+		this.elementValueTest("summary.textField1", "summary");
+	}
 }

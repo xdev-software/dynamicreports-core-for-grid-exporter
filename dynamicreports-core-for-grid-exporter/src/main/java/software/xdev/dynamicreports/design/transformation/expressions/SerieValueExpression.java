@@ -17,98 +17,100 @@
  */
 package software.xdev.dynamicreports.design.transformation.expressions;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import software.xdev.dynamicreports.design.base.DRDesignGroup;
 import software.xdev.dynamicreports.design.constant.ResetType;
 import software.xdev.dynamicreports.design.definition.expression.DRIDesignExpression;
 import software.xdev.dynamicreports.design.exception.DRDesignReportException;
 import software.xdev.dynamicreports.report.base.expression.AbstractSimpleExpression;
-import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.definition.ReportParameters;
 
-import java.util.HashMap;
-import java.util.Map;
 
-/**
- * <p>SerieValueExpression class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class SerieValueExpression extends AbstractSimpleExpression<Number> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
+public class SerieValueExpression extends AbstractSimpleExpression<Number>
+{
 
-    private DRIDesignExpression valueExpression;
-    private DRIDesignExpression serieExpression;
-    private ResetType resetType;
-    private DRDesignGroup resetGroup;
-    private String key;
-    private Object resetValue;
-    private Map<Object, Double> values;
-
-    /**
-     * <p>Constructor for SerieValueExpression.</p>
-     *
-     * @param valueExpression a {@link software.xdev.dynamicreports.design.definition.expression.DRIDesignExpression} object.
-     * @param serieExpression a {@link software.xdev.dynamicreports.design.definition.expression.DRIDesignExpression} object.
-     * @param resetType       a {@link software.xdev.dynamicreports.design.constant.ResetType} object.
-     * @param resetGroup      a {@link software.xdev.dynamicreports.design.base.DRDesignGroup} object.
-     * @param key             a {@link java.lang.String} object.
-     */
-    public SerieValueExpression(DRIDesignExpression valueExpression, DRIDesignExpression serieExpression, ResetType resetType, DRDesignGroup resetGroup, String key) {
-        this.valueExpression = valueExpression;
-        this.serieExpression = serieExpression;
-        this.resetType = resetType;
-        this.resetGroup = resetGroup;
-        this.key = key;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Number evaluate(ReportParameters reportParameters) {
-        if (reportParameters.getReportRowNumber() <= 1) {
-            resetValue = null;
-            values = new HashMap<Object, Double>();
-        }
-
-        Object resetValue = null;
-        switch (resetType) {
-            case NONE:
-            case REPORT:
-                break;
-            case PAGE:
-                resetValue = reportParameters.getPageNumber();
-                break;
-            case COLUMN:
-                resetValue = reportParameters.getColumnNumber();
-                break;
-            case GROUP:
-                resetValue = reportParameters.getValue(resetGroup.getGroupExpression().getName());
-                break;
-            default:
-                throw new DRDesignReportException("Reset type " + resetType.name() + " not supported");
-        }
-        if (this.resetValue != null && !this.resetValue.equals(resetValue)) {
-            this.values = new HashMap<Object, Double>();
-        }
-        this.resetValue = resetValue;
-
-        Object keyValue;
-        if (key != null) {
-            keyValue = reportParameters.getValue(valueExpression.getName()) + "_" + reportParameters.getValue(key);
-        } else {
-            keyValue = reportParameters.getValue(valueExpression.getName());
-        }
-        Number serieValue = reportParameters.getValue(serieExpression.getName());
-        Double value = values.get(keyValue);
-        if (serieValue != null) {
-            if (value == null) {
-                value = serieValue.doubleValue();
-            } else {
-                value += serieValue.doubleValue();
-            }
-            values.put(keyValue, value);
-        }
-
-        return value;
-    }
+	private final DRIDesignExpression valueExpression;
+	private final DRIDesignExpression serieExpression;
+	private final ResetType resetType;
+	private final DRDesignGroup resetGroup;
+	private final String key;
+	private Object resetValue;
+	private Map<Object, Double> values;
+	
+	public SerieValueExpression(
+		final DRIDesignExpression valueExpression,
+		final DRIDesignExpression serieExpression,
+		final ResetType resetType,
+		final DRDesignGroup resetGroup,
+		final String key)
+	{
+		this.valueExpression = valueExpression;
+		this.serieExpression = serieExpression;
+		this.resetType = resetType;
+		this.resetGroup = resetGroup;
+		this.key = key;
+	}
+	
+	@Override
+	public Number evaluate(final ReportParameters reportParameters)
+	{
+		if(reportParameters.getReportRowNumber() <= 1)
+		{
+			this.resetValue = null;
+			this.values = new HashMap<>();
+		}
+		
+		Object resetValue = null;
+		switch(this.resetType)
+		{
+			case NONE:
+			case REPORT:
+				break;
+			case PAGE:
+				resetValue = reportParameters.getPageNumber();
+				break;
+			case COLUMN:
+				resetValue = reportParameters.getColumnNumber();
+				break;
+			case GROUP:
+				resetValue = reportParameters.getValue(this.resetGroup.getGroupExpression().getName());
+				break;
+			default:
+				throw new DRDesignReportException("Reset type " + this.resetType.name() + " not supported");
+		}
+		if(this.resetValue != null && !this.resetValue.equals(resetValue))
+		{
+			this.values = new HashMap<>();
+		}
+		this.resetValue = resetValue;
+		
+		final Object keyValue;
+		if(this.key != null)
+		{
+			keyValue =
+				reportParameters.getValue(this.valueExpression.getName()) + "_" + reportParameters.getValue(this.key);
+		}
+		else
+		{
+			keyValue = reportParameters.getValue(this.valueExpression.getName());
+		}
+		final Number serieValue = reportParameters.getValue(this.serieExpression.getName());
+		Double value = this.values.get(keyValue);
+		if(serieValue != null)
+		{
+			if(value == null)
+			{
+				value = serieValue.doubleValue();
+			}
+			else
+			{
+				value += serieValue.doubleValue();
+			}
+			this.values.put(keyValue, value);
+		}
+		
+		return value;
+	}
 }

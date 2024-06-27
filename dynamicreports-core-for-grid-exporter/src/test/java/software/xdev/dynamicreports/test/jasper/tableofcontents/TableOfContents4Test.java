@@ -17,6 +17,16 @@
  */
 package software.xdev.dynamicreports.test.jasper.tableofcontents;
 
+import static software.xdev.dynamicreports.report.builder.DynamicReports.cmp;
+import static software.xdev.dynamicreports.report.builder.DynamicReports.col;
+import static software.xdev.dynamicreports.report.builder.DynamicReports.type;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import net.sf.jasperreports.engine.JRDataSource;
 import software.xdev.dynamicreports.jasper.base.tableofcontents.JasperTocHeading;
 import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
 import software.xdev.dynamicreports.report.base.expression.AbstractSimpleExpression;
@@ -25,68 +35,66 @@ import software.xdev.dynamicreports.report.datasource.DRDataSource;
 import software.xdev.dynamicreports.report.definition.DRICustomValues;
 import software.xdev.dynamicreports.report.definition.ReportParameters;
 import software.xdev.dynamicreports.test.jasper.AbstractJasperValueTest;
-import net.sf.jasperreports.engine.JRDataSource;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
-import static software.xdev.dynamicreports.report.builder.DynamicReports.cmp;
-import static software.xdev.dynamicreports.report.builder.DynamicReports.col;
-import static software.xdev.dynamicreports.report.builder.DynamicReports.type;
+public class TableOfContents4Test extends AbstractJasperValueTest implements Serializable
+{
 
-/**
- * @author Ricardo Mariaca
- */
-public class TableOfContents4Test extends AbstractJasperValueTest implements Serializable {
-    private static final long serialVersionUID = 1L;
+	@Override
+	protected void configureReport(final JasperReportBuilder rb)
+	{
+		final TextColumnBuilder<String> column1;
+		
+		rb.tableOfContents()
+			.pageHeader(cmp.text(new PageHeaderExpression()))
+			.columns(
+				column1 = col.column("Column1", "field1", type.stringType()),
+				col.column("Column2", "field2", type.stringType()))
+			.groupBy(column1);
+	}
+	
+	@Override
+	public void test()
+	{
+		super.test();
+		
+		this.numberOfPagesTest(4);
+		
+		this.elementCountTest("pageHeader.textField1", 3);
+		this.elementValueTest("pageHeader.textField1", "value1", "value3", "value5");
+	}
+	
+	@Override
+	protected JRDataSource createDataSource()
+	{
+		final String[] values = new String[]{"value1", "value2", "value3", "value4", "value5", "value6"};
+		final DRDataSource dataSource = new DRDataSource("field1", "field2");
+		for(final String value : values)
+		{
+			for(int i = 0; i < 20; i++)
+			{
+				dataSource.add(value, "text");
+			}
+		}
+		return dataSource;
+	}
+	
+	static class PageHeaderExpression extends AbstractSimpleExpression<String>
+	{
 
-    @Override
-    protected void configureReport(JasperReportBuilder rb) {
-        TextColumnBuilder<String> column1;
-
-        rb.tableOfContents()
-          .pageHeader(cmp.text(new PageHeaderExpression()))
-          .columns(column1 = col.column("Column1", "field1", type.stringType()), col.column("Column2", "field2", type.stringType()))
-          .groupBy(column1);
-    }
-
-    @Override
-    public void test() {
-        super.test();
-
-        numberOfPagesTest(4);
-
-        elementCountTest("pageHeader.textField1", 3);
-        elementValueTest("pageHeader.textField1", "value1", "value3", "value5");
-    }
-
-    @Override
-    protected JRDataSource createDataSource() {
-        String[] values = new String[] {"value1", "value2", "value3", "value4", "value5", "value6"};
-        DRDataSource dataSource = new DRDataSource("field1", "field2");
-        for (String value : values) {
-            for (int i = 0; i < 20; i++) {
-                dataSource.add(value, "text");
-            }
-        }
-        return dataSource;
-    }
-
-    private class PageHeaderExpression extends AbstractSimpleExpression<String> {
-        private static final long serialVersionUID = 1L;
-
-        @Override
-        public String evaluate(ReportParameters reportParameters) {
-            DRICustomValues customValues = (DRICustomValues) reportParameters.getParameterValue(DRICustomValues.NAME);
-            Map<String, JasperTocHeading> tocHeadings = customValues.getTocHeadings();
-            if (tocHeadings.isEmpty()) {
-                return reportParameters.getValue("field1");
-            }
-            List<JasperTocHeading> headings = new ArrayList<JasperTocHeading>(tocHeadings.values());
-            JasperTocHeading jasperTocHeading = headings.get(headings.size() - 1);
-            return jasperTocHeading.getText();
-        }
-    }
+		@Override
+		public String evaluate(final ReportParameters reportParameters)
+		{
+			final DRICustomValues customValues =
+				(DRICustomValues)reportParameters.getParameterValue(DRICustomValues.NAME);
+			final Map<String, JasperTocHeading> tocHeadings = customValues.getTocHeadings();
+			if(tocHeadings.isEmpty())
+			{
+				return reportParameters.getValue("field1");
+			}
+			final List<JasperTocHeading> headings = new ArrayList<>(tocHeadings.values());
+			final JasperTocHeading jasperTocHeading = headings.get(headings.size() - 1);
+			return jasperTocHeading.getText();
+		}
+	}
 }

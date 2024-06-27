@@ -24,20 +24,17 @@ import static software.xdev.dynamicreports.report.builder.DynamicReports.type;
 
 import org.junit.jupiter.api.Assertions;
 
+import net.sf.jasperreports.engine.JRDataSource;
+import net.sf.jasperreports.engine.JRPrintElement;
+import net.sf.jasperreports.engine.JRPrintText;
 import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
 import software.xdev.dynamicreports.report.builder.column.TextColumnBuilder;
 import software.xdev.dynamicreports.report.builder.component.MultiPageListBuilder;
 import software.xdev.dynamicreports.report.constant.SplitType;
 import software.xdev.dynamicreports.report.datasource.DRDataSource;
 import software.xdev.dynamicreports.test.jasper.AbstractJasperValueTest;
-import net.sf.jasperreports.engine.JRDataSource;
-import net.sf.jasperreports.engine.JRPrintElement;
-import net.sf.jasperreports.engine.JRPrintText;
 
 
-/**
- * @author Ricardo Mariaca
- */
 public class MultiPageList4Test extends AbstractJasperValueTest
 {
 	private TextColumnBuilder<String> column1;
@@ -45,7 +42,7 @@ public class MultiPageList4Test extends AbstractJasperValueTest
 	@Override
 	protected void configureReport(final JasperReportBuilder rb)
 	{
-        this.column1 = col.column("Column1", "field1", type.stringType());
+		this.column1 = col.column("Column1", "field1", type.stringType());
 		
 		final MultiPageListBuilder multiPageList = cmp.multiPageList();
 		multiPageList.setSplitType(SplitType.PREVENT);
@@ -59,8 +56,8 @@ public class MultiPageList4Test extends AbstractJasperValueTest
 	public void test()
 	{
 		super.test();
-        
-        this.numberOfPagesTest(2);
+		
+		this.numberOfPagesTest(2);
 		
 		int count = 0;
 		for(final JRPrintElement element : this.getJasperPrint().getPages().get(0).getElements())

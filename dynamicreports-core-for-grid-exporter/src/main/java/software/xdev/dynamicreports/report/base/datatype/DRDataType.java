@@ -17,101 +17,67 @@
  */
 package software.xdev.dynamicreports.report.base.datatype;
 
-import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.constant.HorizontalTextAlignment;
 import software.xdev.dynamicreports.report.definition.expression.DRIValueFormatter;
 
-/**
- * <p>DRDataType class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class DRDataType<U, T extends U> extends AbstractDataType<U, T> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    private String pattern;
-    private HorizontalTextAlignment horizontalTextAlignment;
-    private DRIValueFormatter<?, ? extends U> valueFormatter;
+public class DRDataType<U, T extends U> extends AbstractDataType<U, T>
+{
 
-    /**
-     * <p>Constructor for DRDataType.</p>
-     */
-    public DRDataType() {
-    }
-
-    /**
-     * <p>Constructor for DRDataType.</p>
-     *
-     * @param pattern a {@link java.lang.String} object.
-     */
-    public DRDataType(String pattern) {
-        this.pattern = pattern;
-    }
-
-    /**
-     * <p>Constructor for DRDataType.</p>
-     *
-     * @param pattern                 a {@link java.lang.String} object.
-     * @param horizontalTextAlignment a {@link software.xdev.dynamicreports.report.constant.HorizontalTextAlignment} object.
-     */
-    public DRDataType(String pattern, HorizontalTextAlignment horizontalTextAlignment) {
-        this.pattern = pattern;
-        this.horizontalTextAlignment = horizontalTextAlignment;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public String getPattern() {
-        return pattern;
-    }
-
-    /**
-     * <p>Setter for the field <code>pattern</code>.</p>
-     *
-     * @param pattern a {@link java.lang.String} object.
-     */
-    public void setPattern(String pattern) {
-        this.pattern = pattern;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public HorizontalTextAlignment getHorizontalTextAlignment() {
-        return horizontalTextAlignment;
-    }
-
-    /**
-     * <p>Setter for the field <code>horizontalTextAlignment</code>.</p>
-     *
-     * @param horizontalTextAlignment a {@link software.xdev.dynamicreports.report.constant.HorizontalTextAlignment} object.
-     */
-    public void setHorizontalTextAlignment(HorizontalTextAlignment horizontalTextAlignment) {
-        this.horizontalTextAlignment = horizontalTextAlignment;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRIValueFormatter<?, ? extends U> getValueFormatter() {
-        return valueFormatter;
-    }
-
-    /**
-     * <p>Setter for the field <code>valueFormatter</code>.</p>
-     *
-     * @param valueFormatter a {@link software.xdev.dynamicreports.report.definition.expression.DRIValueFormatter} object.
-     */
-    public void setValueFormatter(DRIValueFormatter<?, ? extends U> valueFormatter) {
-        this.valueFormatter = valueFormatter;
-    }
-
-    /**
-     * <p>toString.</p>
-     *
-     * @param value a T object.
-     * @return a {@link java.lang.String} object.
-     */
-    public String toString(T value) {
-        return String.valueOf(value);
-    }
+	private String pattern;
+	private HorizontalTextAlignment horizontalTextAlignment;
+	private DRIValueFormatter<?, ? extends U> valueFormatter;
+	
+	public DRDataType()
+	{
+	}
+	
+	public DRDataType(final String pattern)
+	{
+		this.pattern = pattern;
+	}
+	
+	public DRDataType(final String pattern, final HorizontalTextAlignment horizontalTextAlignment)
+	{
+		this.pattern = pattern;
+		this.horizontalTextAlignment = horizontalTextAlignment;
+	}
+	
+	@Override
+	public String getPattern()
+	{
+		return this.pattern;
+	}
+	
+	public void setPattern(final String pattern)
+	{
+		this.pattern = pattern;
+	}
+	
+	@Override
+	public HorizontalTextAlignment getHorizontalTextAlignment()
+	{
+		return this.horizontalTextAlignment;
+	}
+	
+	public void setHorizontalTextAlignment(final HorizontalTextAlignment horizontalTextAlignment)
+	{
+		this.horizontalTextAlignment = horizontalTextAlignment;
+	}
+	
+	@Override
+	public DRIValueFormatter<?, ? extends U> getValueFormatter()
+	{
+		return this.valueFormatter;
+	}
+	
+	public void setValueFormatter(final DRIValueFormatter<?, ? extends U> valueFormatter)
+	{
+		this.valueFormatter = valueFormatter;
+	}
+	
+	public String toString(final T value)
+	{
+		return String.valueOf(value);
+	}
 }

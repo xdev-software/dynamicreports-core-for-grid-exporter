@@ -17,6 +17,10 @@
  */
 package software.xdev.dynamicreports.design.transformation;
 
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+
 import software.xdev.dynamicreports.design.base.DRDesignDataset;
 import software.xdev.dynamicreports.design.definition.DRIDesignDataset;
 import software.xdev.dynamicreports.design.exception.DRDesignReportException;
@@ -24,96 +28,74 @@ import software.xdev.dynamicreports.jasper.base.JasperScriptlet;
 import software.xdev.dynamicreports.report.definition.DRIDataset;
 import software.xdev.dynamicreports.report.exception.DRException;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
 
-/**
- * <p>DatasetTransform class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class DatasetTransform {
-    private DesignTransformAccessor accessor;
-    private Map<String, DRIDesignDataset> datasets;
-    private Map<DRIDataset, DRDesignDataset> designDatasets;
-
-    /**
-     * <p>Constructor for DatasetTransform.</p>
-     *
-     * @param accessor a {@link software.xdev.dynamicreports.design.transformation.DesignTransformAccessor} object.
-     */
-    public DatasetTransform(DesignTransformAccessor accessor) {
-        this.accessor = accessor;
-        datasets = new HashMap<>();
-        designDatasets = new HashMap<>();
-    }
-
-    /**
-     * <p>transform.</p>
-     *
-     * @param dataset a {@link software.xdev.dynamicreports.report.definition.DRIDataset} object.
-     * @return a {@link software.xdev.dynamicreports.design.base.DRDesignDataset} object.
-     * @throws software.xdev.dynamicreports.report.exception.DRException if any.
-     */
-    public DRDesignDataset transform(DRIDataset dataset) throws DRException {
-        if (dataset == null) {
-            return null;
-        }
-        if (designDatasets.containsKey(dataset)) {
-            return designDatasets.get(dataset);
-        }
-
-        DatasetExpressionTransform datasetExpressionTransform = new DatasetExpressionTransform(accessor, dataset);
-        datasetExpressionTransform.transform();
-        DRDesignDataset designDataset = new DRDesignDataset(datasetExpressionTransform);
-        if (dataset.getQuery() != null) {
-            designDataset.setQuery(accessor.getReportTransform().query(dataset.getQuery()));
-        }
-        designDataset.setConnectionExpression(accessor.getExpressionTransform().transformExpression(dataset.getConnectionExpression()));
-        designDataset.setDataSourceExpression(accessor.getExpressionTransform().transformExpression(dataset.getDataSourceExpression()));
-        designDataset.setFilterExpression(datasetExpressionTransform.transformExpression(dataset.getFilterExpression(), JasperScriptlet.SCRIPTLET_NAME));
-
-        addDataset(dataset, designDataset);
-
-        return designDataset;
-    }
-
-    /**
-     * <p>getDatasetExpressionTransform.</p>
-     *
-     * @param dataset a {@link software.xdev.dynamicreports.report.definition.DRIDataset} object.
-     * @return a {@link software.xdev.dynamicreports.design.transformation.DatasetExpressionTransform} object.
-     */
-    public DatasetExpressionTransform getDatasetExpressionTransform(DRIDataset dataset) {
-        return designDatasets.get(dataset).getDatasetExpressionTransform();
-    }
-
-    /**
-     * <p>getDesignDataset.</p>
-     *
-     * @param dataset a {@link software.xdev.dynamicreports.report.definition.DRIDataset} object.
-     * @return a {@link software.xdev.dynamicreports.design.base.DRDesignDataset} object.
-     */
-    protected DRDesignDataset getDesignDataset(DRIDataset dataset) {
-        return designDatasets.get(dataset);
-    }
-
-    private void addDataset(DRIDataset dataset, DRDesignDataset designDataset) {
-        if (datasets.containsKey(designDataset.getName())) {
-            throw new DRDesignReportException("Duplicate declaration of dataset \"" + designDataset.getName() + "\"");
-        }
-        datasets.put(designDataset.getName(), designDataset);
-        designDatasets.put(dataset, designDataset);
-    }
-
-    /**
-     * <p>Getter for the field <code>datasets</code>.</p>
-     *
-     * @return a {@link java.util.Collection} object.
-     */
-    public Collection<DRIDesignDataset> getDatasets() {
-        return datasets.values();
-    }
+public class DatasetTransform
+{
+	private final DesignTransformAccessor accessor;
+	private final Map<String, DRIDesignDataset> datasets;
+	private final Map<DRIDataset, DRDesignDataset> designDatasets;
+	
+	public DatasetTransform(final DesignTransformAccessor accessor)
+	{
+		this.accessor = accessor;
+		this.datasets = new HashMap<>();
+		this.designDatasets = new HashMap<>();
+	}
+	
+	public DRDesignDataset transform(final DRIDataset dataset) throws DRException
+	{
+		if(dataset == null)
+		{
+			return null;
+		}
+		if(this.designDatasets.containsKey(dataset))
+		{
+			return this.designDatasets.get(dataset);
+		}
+		
+		final DatasetExpressionTransform datasetExpressionTransform =
+			new DatasetExpressionTransform(this.accessor, dataset);
+		datasetExpressionTransform.transform();
+		final DRDesignDataset designDataset = new DRDesignDataset(datasetExpressionTransform);
+		if(dataset.getQuery() != null)
+		{
+			designDataset.setQuery(this.accessor.getReportTransform().query(dataset.getQuery()));
+		}
+		designDataset.setConnectionExpression(this.accessor.getExpressionTransform()
+			.transformExpression(dataset.getConnectionExpression()));
+		designDataset.setDataSourceExpression(this.accessor.getExpressionTransform()
+			.transformExpression(dataset.getDataSourceExpression()));
+		designDataset.setFilterExpression(datasetExpressionTransform.transformExpression(
+			dataset.getFilterExpression(),
+			JasperScriptlet.SCRIPTLET_NAME));
+		
+		this.addDataset(dataset, designDataset);
+		
+		return designDataset;
+	}
+	
+	public DatasetExpressionTransform getDatasetExpressionTransform(final DRIDataset dataset)
+	{
+		return this.designDatasets.get(dataset).getDatasetExpressionTransform();
+	}
+	
+	protected DRDesignDataset getDesignDataset(final DRIDataset dataset)
+	{
+		return this.designDatasets.get(dataset);
+	}
+	
+	private void addDataset(final DRIDataset dataset, final DRDesignDataset designDataset)
+	{
+		if(this.datasets.containsKey(designDataset.getName()))
+		{
+			throw new DRDesignReportException("Duplicate declaration of dataset \"" + designDataset.getName() + "\"");
+		}
+		this.datasets.put(designDataset.getName(), designDataset);
+		this.designDatasets.put(dataset, designDataset);
+	}
+	
+	public Collection<DRIDesignDataset> getDatasets()
+	{
+		return this.datasets.values();
+	}
 }

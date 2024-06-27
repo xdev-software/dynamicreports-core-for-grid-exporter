@@ -17,212 +17,123 @@
  */
 package software.xdev.dynamicreports.report.builder;
 
+import org.apache.commons.lang3.Validate;
+
 import software.xdev.dynamicreports.report.base.DRHyperLink;
 import software.xdev.dynamicreports.report.builder.expression.Expressions;
-import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.constant.HyperLinkTarget;
 import software.xdev.dynamicreports.report.constant.HyperLinkType;
 import software.xdev.dynamicreports.report.definition.expression.DRIExpression;
-import org.apache.commons.lang3.Validate;
 
-/**
- * <p>HyperLinkBuilder class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class HyperLinkBuilder extends AbstractBuilder<HyperLinkBuilder, DRHyperLink> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    /**
-     * <p>Constructor for HyperLinkBuilder.</p>
-     */
-    protected HyperLinkBuilder() {
-        super(new DRHyperLink());
-    }
+public class HyperLinkBuilder extends AbstractBuilder<HyperLinkBuilder, DRHyperLink>
+{
 
-    /**
-     * <p>Constructor for HyperLinkBuilder.</p>
-     *
-     * @param link a {@link java.lang.String} object.
-     */
-    protected HyperLinkBuilder(String link) {
-        super(new DRHyperLink());
-        setLink(link);
-    }
-
-    /**
-     * <p>Constructor for HyperLinkBuilder.</p>
-     *
-     * @param linkExpression a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     */
-    protected HyperLinkBuilder(DRIExpression<String> linkExpression) {
-        super(new DRHyperLink());
-        setLink(linkExpression);
-    }
-
-    /**
-     * <p>setLink.</p>
-     *
-     * @param link a {@link java.lang.String} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.HyperLinkBuilder} object.
-     */
-    public HyperLinkBuilder setLink(String link) {
-        Validate.notNull(link, "link must not be null");
-        return setLink(Expressions.text(link));
-    }
-
-    /**
-     * <p>setLink.</p>
-     *
-     * @param linkExpression a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.HyperLinkBuilder} object.
-     */
-    public HyperLinkBuilder setLink(DRIExpression<String> linkExpression) {
-        Validate.notNull(linkExpression, "linkExpression must not be null");
-        getObject().setReferenceExpression(linkExpression);
-        getObject().setType(HyperLinkType.REFERENCE.name());
-        return this;
-    }
-
-    /**
-     * <p>setAnchor.</p>
-     *
-     * @param anchor a {@link java.lang.String} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.HyperLinkBuilder} object.
-     */
-    public HyperLinkBuilder setAnchor(String anchor) {
-        getObject().setAnchorExpression(Expressions.text(anchor));
-        return this;
-    }
-
-    /**
-     * <p>setAnchor.</p>
-     *
-     * @param anchorExpression a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.HyperLinkBuilder} object.
-     */
-    public HyperLinkBuilder setAnchor(DRIExpression<String> anchorExpression) {
-        getObject().setAnchorExpression(anchorExpression);
-        return this;
-    }
-
-    /**
-     * <p>setPage.</p>
-     *
-     * @param page a {@link java.lang.Integer} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.HyperLinkBuilder} object.
-     */
-    public HyperLinkBuilder setPage(Integer page) {
-        getObject().setPageExpression(Expressions.value(page));
-        return this;
-    }
-
-    /**
-     * <p>setPage.</p>
-     *
-     * @param pageExpression a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.HyperLinkBuilder} object.
-     */
-    public HyperLinkBuilder setPage(DRIExpression<Integer> pageExpression) {
-        getObject().setPageExpression(pageExpression);
-        return this;
-    }
-
-    /**
-     * <p>setReference.</p>
-     *
-     * @param reference a {@link java.lang.String} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.HyperLinkBuilder} object.
-     */
-    public HyperLinkBuilder setReference(String reference) {
-        getObject().setReferenceExpression(Expressions.text(reference));
-        return this;
-    }
-
-    /**
-     * <p>setReference.</p>
-     *
-     * @param referenceExpression a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.HyperLinkBuilder} object.
-     */
-    public HyperLinkBuilder setReference(DRIExpression<String> referenceExpression) {
-        getObject().setReferenceExpression(referenceExpression);
-        return this;
-    }
-
-    /**
-     * <p>setTooltip.</p>
-     *
-     * @param tooltip a {@link java.lang.String} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.HyperLinkBuilder} object.
-     */
-    public HyperLinkBuilder setTooltip(String tooltip) {
-        getObject().setTooltipExpression(Expressions.text(tooltip));
-        return this;
-    }
-
-    /**
-     * <p>setTooltip.</p>
-     *
-     * @param tooltipExpression a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.HyperLinkBuilder} object.
-     */
-    public HyperLinkBuilder setTooltip(DRIExpression<String> tooltipExpression) {
-        getObject().setTooltipExpression(tooltipExpression);
-        return this;
-    }
-
-    /**
-     * <p>setType.</p>
-     *
-     * @param hyperLinkType a {@link software.xdev.dynamicreports.report.constant.HyperLinkType} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.HyperLinkBuilder} object.
-     */
-    public HyperLinkBuilder setType(HyperLinkType hyperLinkType) {
-        getObject().setType(hyperLinkType.name());
-        return this;
-    }
-
-    /**
-     * <p>setType.</p>
-     *
-     * @param hyperLinkType a {@link java.lang.String} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.HyperLinkBuilder} object.
-     */
-    public HyperLinkBuilder setType(String hyperLinkType) {
-        getObject().setType(hyperLinkType);
-        return this;
-    }
-
-    /**
-     * <p>setTarget.</p>
-     *
-     * @param hyperLinkTarget a {@link software.xdev.dynamicreports.report.constant.HyperLinkTarget} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.HyperLinkBuilder} object.
-     */
-    public HyperLinkBuilder setTarget(HyperLinkTarget hyperLinkTarget) {
-        getObject().setTarget(hyperLinkTarget.name());
-        return this;
-    }
-
-    /**
-     * <p>setTarget.</p>
-     *
-     * @param hyperLinkTarget a {@link java.lang.String} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.HyperLinkBuilder} object.
-     */
-    public HyperLinkBuilder setTarget(String hyperLinkTarget) {
-        getObject().setTarget(hyperLinkTarget);
-        return this;
-    }
-
-    /**
-     * <p>getHyperLink.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.base.DRHyperLink} object.
-     */
-    public DRHyperLink getHyperLink() {
-        return build();
-    }
+	protected HyperLinkBuilder()
+	{
+		super(new DRHyperLink());
+	}
+	
+	protected HyperLinkBuilder(final String link)
+	{
+		super(new DRHyperLink());
+		this.setLink(link);
+	}
+	
+	protected HyperLinkBuilder(final DRIExpression<String> linkExpression)
+	{
+		super(new DRHyperLink());
+		this.setLink(linkExpression);
+	}
+	
+	public HyperLinkBuilder setLink(final String link)
+	{
+		Validate.notNull(link, "link must not be null");
+		return this.setLink(Expressions.text(link));
+	}
+	
+	public HyperLinkBuilder setLink(final DRIExpression<String> linkExpression)
+	{
+		Validate.notNull(linkExpression, "linkExpression must not be null");
+		this.getObject().setReferenceExpression(linkExpression);
+		this.getObject().setType(HyperLinkType.REFERENCE.name());
+		return this;
+	}
+	
+	public HyperLinkBuilder setAnchor(final String anchor)
+	{
+		this.getObject().setAnchorExpression(Expressions.text(anchor));
+		return this;
+	}
+	
+	public HyperLinkBuilder setAnchor(final DRIExpression<String> anchorExpression)
+	{
+		this.getObject().setAnchorExpression(anchorExpression);
+		return this;
+	}
+	
+	public HyperLinkBuilder setPage(final Integer page)
+	{
+		this.getObject().setPageExpression(Expressions.value(page));
+		return this;
+	}
+	
+	public HyperLinkBuilder setPage(final DRIExpression<Integer> pageExpression)
+	{
+		this.getObject().setPageExpression(pageExpression);
+		return this;
+	}
+	
+	public HyperLinkBuilder setReference(final String reference)
+	{
+		this.getObject().setReferenceExpression(Expressions.text(reference));
+		return this;
+	}
+	
+	public HyperLinkBuilder setReference(final DRIExpression<String> referenceExpression)
+	{
+		this.getObject().setReferenceExpression(referenceExpression);
+		return this;
+	}
+	
+	public HyperLinkBuilder setTooltip(final String tooltip)
+	{
+		this.getObject().setTooltipExpression(Expressions.text(tooltip));
+		return this;
+	}
+	
+	public HyperLinkBuilder setTooltip(final DRIExpression<String> tooltipExpression)
+	{
+		this.getObject().setTooltipExpression(tooltipExpression);
+		return this;
+	}
+	
+	public HyperLinkBuilder setType(final HyperLinkType hyperLinkType)
+	{
+		this.getObject().setType(hyperLinkType.name());
+		return this;
+	}
+	
+	public HyperLinkBuilder setType(final String hyperLinkType)
+	{
+		this.getObject().setType(hyperLinkType);
+		return this;
+	}
+	
+	public HyperLinkBuilder setTarget(final HyperLinkTarget hyperLinkTarget)
+	{
+		this.getObject().setTarget(hyperLinkTarget.name());
+		return this;
+	}
+	
+	public HyperLinkBuilder setTarget(final String hyperLinkTarget)
+	{
+		this.getObject().setTarget(hyperLinkTarget);
+		return this;
+	}
+	
+	public DRHyperLink getHyperLink()
+	{
+		return this.build();
+	}
 }

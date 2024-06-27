@@ -26,111 +26,33 @@ import software.xdev.dynamicreports.report.definition.datatype.DRIDataType;
 import software.xdev.dynamicreports.report.definition.expression.DRIExpression;
 import software.xdev.dynamicreports.report.definition.expression.DRIValueFormatter;
 
-/**
- * <p>DRITextField interface.</p>
- *
- * @author Ricardo Mariaca, Jan Moxter
- * 
- */
-public interface DRITextField<T> extends DRIHyperLinkComponent {
 
-    /**
-     * <p>getValueExpression.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     */
-    DRIExpression<T> getValueExpression();
-
-    /**
-     * <p>getPattern.</p>
-     *
-     * @return a {@link java.lang.String} object.
-     */
-    String getPattern();
-
-    /**
-     * <p>getPatternExpression.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     */
-    DRIExpression<String> getPatternExpression();
-
-    /**
-     * <p>getHorizontalTextAlignment.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.constant.HorizontalTextAlignment} object.
-     */
-    HorizontalTextAlignment getHorizontalTextAlignment();
-
-    /**
-     * <p>getValueFormatter.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.definition.expression.DRIValueFormatter} object.
-     */
-    DRIValueFormatter<?, ? super T> getValueFormatter();
-
-    /**
-     * <p>getDataType.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.definition.datatype.DRIDataType} object.
-     */
-    DRIDataType<? super T, T> getDataType();
-
-    /**
-     * <p>getColumns.</p>
-     *
-     * @return a {@link java.lang.Integer} object.
-     */
-    Integer getColumns();
-
-    /**
-     * <p>getRows.</p>
-     *
-     * @return a {@link java.lang.Integer} object.
-     */
-    Integer getRows();
-
-    /**
-     * <p>getEvaluationTime.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.constant.Evaluation} object.
-     */
-    Evaluation getEvaluationTime();
-
-    /**
-     * <p>getEvaluationGroup.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.definition.DRIGroup} object.
-     */
-    DRIGroup getEvaluationGroup();
-
-    /**
-     * <p>getMarkup.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.constant.Markup} object.
-     */
-    Markup getMarkup();
-
-    /**
-     * <p>getStretchWithOverflow.</p>
-     *
-     * @return a {@link java.lang.Boolean} object.
-     * @deprecated replaced {@link #getTextAdjust()}
-     */
-    @Deprecated
-    Boolean getStretchWithOverflow();
-
-    /**
-     * <p>getPrintRepeatedValues.</p>
-     *
-     * @return a {@link java.lang.Boolean} object.
-     */
-    Boolean getPrintRepeatedValues();
-
-    /**
-     * <p>getTextAdjust.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.constant.TextAdjust} object.
-     */
-    TextAdjust getTextAdjust();
+public interface DRITextField<T> extends DRIHyperLinkComponent
+{
+	
+	DRIExpression<T> getValueExpression();
+	
+	String getPattern();
+	
+	DRIExpression<String> getPatternExpression();
+	
+	HorizontalTextAlignment getHorizontalTextAlignment();
+	
+	DRIValueFormatter<?, ? super T> getValueFormatter();
+	
+	DRIDataType<? super T, T> getDataType();
+	
+	Integer getColumns();
+	
+	Integer getRows();
+	
+	Evaluation getEvaluationTime();
+	
+	DRIGroup getEvaluationGroup();
+	
+	Markup getMarkup();
+	
+	Boolean getPrintRepeatedValues();
+	
+	TextAdjust getTextAdjust();
 }

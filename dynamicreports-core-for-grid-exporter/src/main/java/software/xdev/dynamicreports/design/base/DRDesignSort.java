@@ -19,49 +19,34 @@ package software.xdev.dynamicreports.design.base;
 
 import software.xdev.dynamicreports.design.definition.DRIDesignSort;
 import software.xdev.dynamicreports.design.definition.expression.DRIDesignExpression;
-import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.constant.OrderType;
 
-/**
- * <p>DRDesignSort class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class DRDesignSort implements DRIDesignSort {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    private DRIDesignExpression expression;
-    private OrderType orderType;
+public class DRDesignSort implements DRIDesignSort
+{
 
-    /** {@inheritDoc} */
-    @Override
-    public DRIDesignExpression getExpression() {
-        return expression;
-    }
-
-    /**
-     * <p>Setter for the field <code>expression</code>.</p>
-     *
-     * @param expression a {@link software.xdev.dynamicreports.design.definition.expression.DRIDesignExpression} object.
-     */
-    public void setExpression(DRIDesignExpression expression) {
-        this.expression = expression;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public OrderType getOrderType() {
-        return orderType;
-    }
-
-    /**
-     * <p>Setter for the field <code>orderType</code>.</p>
-     *
-     * @param orderType a {@link software.xdev.dynamicreports.report.constant.OrderType} object.
-     */
-    public void setOrderType(OrderType orderType) {
-        this.orderType = orderType;
-    }
-
+	private DRIDesignExpression expression;
+	private OrderType orderType;
+	
+	@Override
+	public DRIDesignExpression getExpression()
+	{
+		return this.expression;
+	}
+	
+	public void setExpression(final DRIDesignExpression expression)
+	{
+		this.expression = expression;
+	}
+	
+	@Override
+	public OrderType getOrderType()
+	{
+		return this.orderType;
+	}
+	
+	public void setOrderType(final OrderType orderType)
+	{
+		this.orderType = orderType;
+	}
 }

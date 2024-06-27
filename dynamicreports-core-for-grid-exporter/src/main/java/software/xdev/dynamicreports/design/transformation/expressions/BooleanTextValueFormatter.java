@@ -17,50 +17,43 @@
  */
 package software.xdev.dynamicreports.design.transformation.expressions;
 
+import java.util.ResourceBundle;
+
 import software.xdev.dynamicreports.report.base.expression.AbstractValueFormatter;
 import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.definition.ReportParameters;
 
-import java.util.ResourceBundle;
 
-/**
- * <p>BooleanTextValueFormatter class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class BooleanTextValueFormatter extends AbstractValueFormatter<String, Boolean> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
+public class BooleanTextValueFormatter extends AbstractValueFormatter<String, Boolean>
+{
 
-    private String keyTrue;
-    private String keyFalse;
-    private boolean emptyWhenNullValue;
-
-    /**
-     * <p>Constructor for BooleanTextValueFormatter.</p>
-     *
-     * @param keyTrue            a {@link java.lang.String} object.
-     * @param keyFalse           a {@link java.lang.String} object.
-     * @param emptyWhenNullValue a boolean.
-     */
-    public BooleanTextValueFormatter(String keyTrue, String keyFalse, boolean emptyWhenNullValue) {
-        this.keyTrue = keyTrue;
-        this.keyFalse = keyFalse;
-        this.emptyWhenNullValue = emptyWhenNullValue;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public String format(Boolean value, ReportParameters reportParameters) {
-        if (emptyWhenNullValue && value == null) {
-            return "";
-        }
-        String key;
-        if (value != null && value) {
-            key = keyTrue;
-        } else {
-            key = keyFalse;
-        }
-        return ResourceBundle.getBundle(Constants.RESOURCE_BUNDLE_NAME, reportParameters.getLocale()).getString(key);
-    }
+	private final String keyTrue;
+	private final String keyFalse;
+	private final boolean emptyWhenNullValue;
+	
+	public BooleanTextValueFormatter(final String keyTrue, final String keyFalse, final boolean emptyWhenNullValue)
+	{
+		this.keyTrue = keyTrue;
+		this.keyFalse = keyFalse;
+		this.emptyWhenNullValue = emptyWhenNullValue;
+	}
+	
+	@Override
+	public String format(final Boolean value, final ReportParameters reportParameters)
+	{
+		if(this.emptyWhenNullValue && value == null)
+		{
+			return "";
+		}
+		final String key;
+		if(value != null && value)
+		{
+			key = this.keyTrue;
+		}
+		else
+		{
+			key = this.keyFalse;
+		}
+		return ResourceBundle.getBundle(Constants.RESOURCE_BUNDLE_NAME, reportParameters.getLocale()).getString(key);
+	}
 }

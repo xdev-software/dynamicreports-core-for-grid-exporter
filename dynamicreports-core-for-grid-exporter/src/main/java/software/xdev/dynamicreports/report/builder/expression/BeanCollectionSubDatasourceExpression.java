@@ -17,43 +17,29 @@
  */
 package software.xdev.dynamicreports.report.builder.expression;
 
-import software.xdev.dynamicreports.report.constant.Constants;
-import software.xdev.dynamicreports.report.definition.expression.DRIExpression;
-import net.sf.jasperreports.engine.JRDataSource;
-import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
-
 import java.util.Collection;
 
-/**
- * <p>BeanCollectionSubDatasourceExpression class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class BeanCollectionSubDatasourceExpression extends AbstractSubDatasourceExpression<Collection<?>> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
+import net.sf.jasperreports.engine.JRDataSource;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import software.xdev.dynamicreports.report.definition.expression.DRIExpression;
 
-    /**
-     * <p>Constructor for BeanCollectionSubDatasourceExpression.</p>
-     *
-     * @param fieldName a {@link java.lang.String} object.
-     */
-    public BeanCollectionSubDatasourceExpression(String fieldName) {
-        super(fieldName);
-    }
 
-    /**
-     * <p>Constructor for BeanCollectionSubDatasourceExpression.</p>
-     *
-     * @param expression a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     */
-    public BeanCollectionSubDatasourceExpression(DRIExpression<? extends Collection<?>> expression) {
-        super(expression);
-    }
+public class BeanCollectionSubDatasourceExpression extends AbstractSubDatasourceExpression<Collection<?>>
+{
 
-    /** {@inheritDoc} */
-    @Override
-    protected JRDataSource createSubDatasource(Collection<?> data) {
-        return new JRBeanCollectionDataSource(data);
-    }
+	public BeanCollectionSubDatasourceExpression(final String fieldName)
+	{
+		super(fieldName);
+	}
+	
+	public BeanCollectionSubDatasourceExpression(final DRIExpression<? extends Collection<?>> expression)
+	{
+		super(expression);
+	}
+	
+	@Override
+	protected JRDataSource createSubDatasource(final Collection<?> data)
+	{
+		return new JRBeanCollectionDataSource(data);
+	}
 }

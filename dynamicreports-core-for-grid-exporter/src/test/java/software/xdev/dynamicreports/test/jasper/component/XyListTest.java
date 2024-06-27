@@ -17,72 +17,73 @@
  */
 package software.xdev.dynamicreports.test.jasper.component;
 
+import static software.xdev.dynamicreports.report.builder.DynamicReports.cmp;
+import static software.xdev.dynamicreports.report.builder.DynamicReports.stl;
+
 import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
 import software.xdev.dynamicreports.report.builder.component.XyListBuilder;
 import software.xdev.dynamicreports.report.builder.style.StyleBuilder;
 import software.xdev.dynamicreports.test.jasper.AbstractJasperPositionTest;
 
-import static software.xdev.dynamicreports.report.builder.DynamicReports.cmp;
-import static software.xdev.dynamicreports.report.builder.DynamicReports.stl;
 
-/**
- * @author Ricardo Mariaca
- */
-public class XyListTest extends AbstractJasperPositionTest {
-
-    @Override
-    protected void configureReport(JasperReportBuilder rb) {
-        StyleBuilder style = stl.style(stl.pen1Point());
-
-        XyListBuilder list1 = cmp.xyList();
-        list1.add(10, 10, cmp.text(""));
-        list1.add(50, 15, cmp.text(""));
-
-        XyListBuilder list2 = cmp.xyList().setStyle(style);
-        list2.add(10, 10, cmp.text(""));
-        list2.add(50, 15, cmp.text(""));
-        list2.add(200, 5, cmp.horizontalList(cmp.text(""), cmp.text("")).setWidth(100));
-        list2.add(350, 5, cmp.verticalList(cmp.text(""), cmp.text("")).setWidth(150));
-
-        XyListBuilder list3 = cmp.xyList();
-        list3.add(10, 10, cmp.horizontalList(cmp.text("").setWidth(50), cmp.text("")).newRow().add(cmp.text("")));
-        list3.add(200, 10, cmp.xyList().add(5, 5, cmp.horizontalList(cmp.text(""), cmp.text(""))));
-
-        XyListBuilder list4 = cmp.xyList().setStyle(style).setFixedWidth(250);
-        list4.add(100, 10, cmp.xyList().setStyle(style).add(5, 5, cmp.verticalList(cmp.text(""), cmp.text(""))));
-
-        rb.title(list1, list2, list3, list4);
-    }
-
-    @Override
-    public void test() {
-        super.test();
-
-        numberOfPagesTest(1);
-
-        elementPositionTest("title.textField1", 0, 20, 20, 100, 16);
-        elementPositionTest("title.textField2", 0, 60, 25, 100, 16);
-
-        elementPositionTest("title.list3", 0, 10, 41, 575, 37);
-        elementPositionTest("title.textField3", 0, 10, 10, 100, 16);
-        elementPositionTest("title.textField4", 0, 50, 15, 100, 16);
-        elementPositionTest("title.list4", 0, 200, 5, 100, 16);
-        elementPositionTest("title.textField5", 0, 0, 0, 50, 16);
-        elementPositionTest("title.textField6", 0, 50, 0, 50, 16);
-        elementPositionTest("title.textField7", 0, 350, 5, 150, 16);
-        elementPositionTest("title.textField8", 0, 350, 21, 150, 16);
-
-        elementPositionTest("title.list8", 0, 20, 88, 150, 16);
-        elementPositionTest("title.textField9", 0, 0, 0, 50, 16);
-        elementPositionTest("title.textField10", 0, 50, 0, 100, 16);
-        elementPositionTest("title.textField11", 0, 20, 104, 150, 16);
-        elementPositionTest("title.list9", 0, 215, 93, 200, 16);
-        elementPositionTest("title.textField12", 0, 0, 0, 100, 16);
-        elementPositionTest("title.textField13", 0, 100, 0, 100, 16);
-
-        elementPositionTest("title.list10", 0, 10, 120, 250, 47);
-        elementPositionTest("title.list11", 0, 100, 10, 105, 37);
-        elementPositionTest("title.textField14", 0, 5, 5, 100, 16);
-        elementPositionTest("title.textField15", 0, 5, 21, 100, 16);
-    }
+public class XyListTest extends AbstractJasperPositionTest
+{
+	
+	@Override
+	protected void configureReport(final JasperReportBuilder rb)
+	{
+		final StyleBuilder style = stl.style(stl.pen1Point());
+		
+		final XyListBuilder list1 = cmp.xyList();
+		list1.add(10, 10, cmp.text(""));
+		list1.add(50, 15, cmp.text(""));
+		
+		final XyListBuilder list2 = cmp.xyList().setStyle(style);
+		list2.add(10, 10, cmp.text(""));
+		list2.add(50, 15, cmp.text(""));
+		list2.add(200, 5, cmp.horizontalList(cmp.text(""), cmp.text("")).setWidth(100));
+		list2.add(350, 5, cmp.verticalList(cmp.text(""), cmp.text("")).setWidth(150));
+		
+		final XyListBuilder list3 = cmp.xyList();
+		list3.add(10, 10, cmp.horizontalList(cmp.text("").setWidth(50), cmp.text("")).newRow().add(cmp.text("")));
+		list3.add(200, 10, cmp.xyList().add(5, 5, cmp.horizontalList(cmp.text(""), cmp.text(""))));
+		
+		final XyListBuilder list4 = cmp.xyList().setStyle(style).setFixedWidth(250);
+		list4.add(100, 10, cmp.xyList().setStyle(style).add(5, 5, cmp.verticalList(cmp.text(""), cmp.text(""))));
+		
+		rb.title(list1, list2, list3, list4);
+	}
+	
+	@Override
+	public void test()
+	{
+		super.test();
+		
+		this.numberOfPagesTest(1);
+		
+		this.elementPositionTest("title.textField1", 0, 20, 20, 100, 16);
+		this.elementPositionTest("title.textField2", 0, 60, 25, 100, 16);
+		
+		this.elementPositionTest("title.list3", 0, 10, 41, 575, 37);
+		this.elementPositionTest("title.textField3", 0, 10, 10, 100, 16);
+		this.elementPositionTest("title.textField4", 0, 50, 15, 100, 16);
+		this.elementPositionTest("title.list4", 0, 200, 5, 100, 16);
+		this.elementPositionTest("title.textField5", 0, 0, 0, 50, 16);
+		this.elementPositionTest("title.textField6", 0, 50, 0, 50, 16);
+		this.elementPositionTest("title.textField7", 0, 350, 5, 150, 16);
+		this.elementPositionTest("title.textField8", 0, 350, 21, 150, 16);
+		
+		this.elementPositionTest("title.list8", 0, 20, 88, 150, 16);
+		this.elementPositionTest("title.textField9", 0, 0, 0, 50, 16);
+		this.elementPositionTest("title.textField10", 0, 50, 0, 100, 16);
+		this.elementPositionTest("title.textField11", 0, 20, 104, 150, 16);
+		this.elementPositionTest("title.list9", 0, 215, 93, 200, 16);
+		this.elementPositionTest("title.textField12", 0, 0, 0, 100, 16);
+		this.elementPositionTest("title.textField13", 0, 100, 0, 100, 16);
+		
+		this.elementPositionTest("title.list10", 0, 10, 120, 250, 47);
+		this.elementPositionTest("title.list11", 0, 100, 10, 105, 37);
+		this.elementPositionTest("title.textField14", 0, 5, 5, 100, 16);
+		this.elementPositionTest("title.textField15", 0, 5, 21, 100, 16);
+	}
 }

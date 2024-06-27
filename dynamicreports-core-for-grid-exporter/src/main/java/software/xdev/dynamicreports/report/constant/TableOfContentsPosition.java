@@ -17,12 +17,7 @@
  */
 package software.xdev.dynamicreports.report.constant;
 
-/**
- * <p>TableOfContentsPosition class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public enum TableOfContentsPosition {
-    TOP, BOTTOM
+public enum TableOfContentsPosition
+{
+	TOP, BOTTOM
 }

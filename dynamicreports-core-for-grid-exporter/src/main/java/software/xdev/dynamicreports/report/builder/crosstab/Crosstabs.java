@@ -17,307 +17,176 @@
  */
 package software.xdev.dynamicreports.report.builder.crosstab;
 
+import org.apache.commons.lang3.Validate;
+
 import software.xdev.dynamicreports.report.builder.DynamicReports;
 import software.xdev.dynamicreports.report.builder.FieldBuilder;
 import software.xdev.dynamicreports.report.builder.column.ValueColumnBuilder;
 import software.xdev.dynamicreports.report.constant.Calculation;
 import software.xdev.dynamicreports.report.definition.expression.DRIExpression;
-import org.apache.commons.lang3.Validate;
 
-/**
- * A set of methods of creating and customizing crosstabs
- *
- * @author Ricardo Mariaca
- * 
- */
-public class Crosstabs {
 
-    /**
-     * <p>crosstab.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.builder.crosstab.CrosstabBuilder} object.
-     */
-    public static CrosstabBuilder crosstab() {
-        return new CrosstabBuilder();
-    }
-
-    // column group
-
-    /**
-     * <p>columnGroup.</p>
-     *
-     * @param column a {@link software.xdev.dynamicreports.report.builder.column.ValueColumnBuilder} object.
-     * @param <T>    a T object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.crosstab.CrosstabColumnGroupBuilder} object.
-     */
-    public static <T> CrosstabColumnGroupBuilder<T> columnGroup(ValueColumnBuilder<?, T> column) {
-        return new CrosstabColumnGroupBuilder<T>(column);
-    }
-
-    /**
-     * <p>columnGroup.</p>
-     *
-     * @param field a {@link software.xdev.dynamicreports.report.builder.FieldBuilder} object.
-     * @param <T>   a T object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.crosstab.CrosstabColumnGroupBuilder} object.
-     */
-    public static <T> CrosstabColumnGroupBuilder<T> columnGroup(FieldBuilder<T> field) {
-        return new CrosstabColumnGroupBuilder<T>(field);
-    }
-
-    /**
-     * <p>columnGroup.</p>
-     *
-     * @param fieldName  a {@link java.lang.String} object.
-     * @param valueClass a {@link java.lang.Class} object.
-     * @param <T>        a T object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.crosstab.CrosstabColumnGroupBuilder} object.
-     */
-    public static <T> CrosstabColumnGroupBuilder<T> columnGroup(String fieldName, Class<T> valueClass) {
-        return new CrosstabColumnGroupBuilder<T>(DynamicReports.<T>field(fieldName, valueClass));
-    }
-
-    /**
-     * <p>columnGroup.</p>
-     *
-     * @param expression a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     * @param <T>        a T object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.crosstab.CrosstabColumnGroupBuilder} object.
-     */
-    public static <T> CrosstabColumnGroupBuilder<T> columnGroup(DRIExpression<T> expression) {
-        return new CrosstabColumnGroupBuilder<T>(expression);
-    }
-
-    // row group
-
-    /**
-     * <p>rowGroup.</p>
-     *
-     * @param column a {@link software.xdev.dynamicreports.report.builder.column.ValueColumnBuilder} object.
-     * @param <T>    a T object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.crosstab.CrosstabRowGroupBuilder} object.
-     */
-    public static <T> CrosstabRowGroupBuilder<T> rowGroup(ValueColumnBuilder<?, T> column) {
-        return new CrosstabRowGroupBuilder<T>(column);
-    }
-
-    /**
-     * <p>rowGroup.</p>
-     *
-     * @param field a {@link software.xdev.dynamicreports.report.builder.FieldBuilder} object.
-     * @param <T>   a T object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.crosstab.CrosstabRowGroupBuilder} object.
-     */
-    public static <T> CrosstabRowGroupBuilder<T> rowGroup(FieldBuilder<T> field) {
-        return new CrosstabRowGroupBuilder<T>(field);
-    }
-
-    /**
-     * <p>rowGroup.</p>
-     *
-     * @param fieldName  a {@link java.lang.String} object.
-     * @param valueClass a {@link java.lang.Class} object.
-     * @param <T>        a T object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.crosstab.CrosstabRowGroupBuilder} object.
-     */
-    public static <T> CrosstabRowGroupBuilder<T> rowGroup(String fieldName, Class<T> valueClass) {
-        return new CrosstabRowGroupBuilder<T>(DynamicReports.<T>field(fieldName, valueClass));
-    }
-
-    /**
-     * <p>rowGroup.</p>
-     *
-     * @param expression a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     * @param <T>        a T object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.crosstab.CrosstabRowGroupBuilder} object.
-     */
-    public static <T> CrosstabRowGroupBuilder<T> rowGroup(DRIExpression<T> expression) {
-        return new CrosstabRowGroupBuilder<T>(expression);
-    }
-
-    // variable
-
-    /**
-     * <p>variable.</p>
-     *
-     * @param column      a {@link software.xdev.dynamicreports.report.builder.column.ValueColumnBuilder} object.
-     * @param calculation a {@link software.xdev.dynamicreports.report.constant.Calculation} object.
-     * @param <T>         a T object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.crosstab.CrosstabVariableBuilder} object.
-     */
-    public static <T> CrosstabVariableBuilder<T> variable(ValueColumnBuilder<?, ?> column, Calculation calculation) {
-        Validate.notNull(column, "column must not be null");
-        return new CrosstabVariableBuilder<T>(column, calculation);
-    }
-
-    /**
-     * <p>variable.</p>
-     *
-     * @param field       a {@link software.xdev.dynamicreports.report.builder.FieldBuilder} object.
-     * @param calculation a {@link software.xdev.dynamicreports.report.constant.Calculation} object.
-     * @param <T>         a T object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.crosstab.CrosstabVariableBuilder} object.
-     */
-    public static <T> CrosstabVariableBuilder<T> variable(FieldBuilder<T> field, Calculation calculation) {
-        Validate.notNull(field, "field must not be null");
-        return new CrosstabVariableBuilder<T>(field, calculation);
-    }
-
-    /**
-     * <p>variable.</p>
-     *
-     * @param fieldName   a {@link java.lang.String} object.
-     * @param valueClass  a {@link java.lang.Class} object.
-     * @param calculation a {@link software.xdev.dynamicreports.report.constant.Calculation} object.
-     * @param <T>         a T object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.crosstab.CrosstabVariableBuilder} object.
-     */
-    public static <T> CrosstabVariableBuilder<T> variable(String fieldName, Class<?> valueClass, Calculation calculation) {
-        return new CrosstabVariableBuilder<T>(DynamicReports.field(fieldName, valueClass), calculation);
-    }
-
-    /**
-     * <p>variable.</p>
-     *
-     * @param expression  a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     * @param calculation a {@link software.xdev.dynamicreports.report.constant.Calculation} object.
-     * @param <T>         a T object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.crosstab.CrosstabVariableBuilder} object.
-     */
-    public static <T> CrosstabVariableBuilder<T> variable(DRIExpression<?> expression, Calculation calculation) {
-        return new CrosstabVariableBuilder<T>(expression, calculation);
-    }
-
-    // measure
-
-    /**
-     * <p>measure.</p>
-     *
-     * @param column      a {@link software.xdev.dynamicreports.report.builder.column.ValueColumnBuilder} object.
-     * @param calculation a {@link software.xdev.dynamicreports.report.constant.Calculation} object.
-     * @param <T>         a T object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.crosstab.CrosstabMeasureBuilder} object.
-     */
-    public static <T> CrosstabMeasureBuilder<T> measure(ValueColumnBuilder<?, ?> column, Calculation calculation) {
-        Validate.notNull(column, "column must not be null");
-        return new CrosstabMeasureBuilder<T>(column, calculation);
-    }
-
-    /**
-     * <p>measure.</p>
-     *
-     * @param title       a {@link java.lang.String} object.
-     * @param column      a {@link software.xdev.dynamicreports.report.builder.column.ValueColumnBuilder} object.
-     * @param calculation a {@link software.xdev.dynamicreports.report.constant.Calculation} object.
-     * @param <T>         a T object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.crosstab.CrosstabMeasureBuilder} object.
-     */
-    public static <T> CrosstabMeasureBuilder<T> measure(String title, ValueColumnBuilder<?, ?> column, Calculation calculation) {
-        CrosstabMeasureBuilder<T> measure = measure(column, calculation);
-        return measure.setTitle(title);
-    }
-
-    /**
-     * <p>measure.</p>
-     *
-     * @param field       a {@link software.xdev.dynamicreports.report.builder.FieldBuilder} object.
-     * @param calculation a {@link software.xdev.dynamicreports.report.constant.Calculation} object.
-     * @param <T>         a T object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.crosstab.CrosstabMeasureBuilder} object.
-     */
-    public static <T> CrosstabMeasureBuilder<T> measure(FieldBuilder<T> field, Calculation calculation) {
-        Validate.notNull(field, "field must not be null");
-        return new CrosstabMeasureBuilder<T>(field, calculation);
-    }
-
-    /**
-     * <p>measure.</p>
-     *
-     * @param title       a {@link java.lang.String} object.
-     * @param field       a {@link software.xdev.dynamicreports.report.builder.FieldBuilder} object.
-     * @param calculation a {@link software.xdev.dynamicreports.report.constant.Calculation} object.
-     * @param <T>         a T object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.crosstab.CrosstabMeasureBuilder} object.
-     */
-    public static <T> CrosstabMeasureBuilder<T> measure(String title, FieldBuilder<T> field, Calculation calculation) {
-        return measure(field, calculation).setTitle(title);
-    }
-
-    /**
-     * <p>measure.</p>
-     *
-     * @param fieldName   a {@link java.lang.String} object.
-     * @param valueClass  a {@link java.lang.Class} object.
-     * @param calculation a {@link software.xdev.dynamicreports.report.constant.Calculation} object.
-     * @param <T>         a T object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.crosstab.CrosstabMeasureBuilder} object.
-     */
-    public static <T> CrosstabMeasureBuilder<T> measure(String fieldName, Class<?> valueClass, Calculation calculation) {
-        return new CrosstabMeasureBuilder<T>(DynamicReports.field(fieldName, valueClass), calculation);
-    }
-
-    /**
-     * <p>measure.</p>
-     *
-     * @param title       a {@link java.lang.String} object.
-     * @param fieldName   a {@link java.lang.String} object.
-     * @param valueClass  a {@link java.lang.Class} object.
-     * @param calculation a {@link software.xdev.dynamicreports.report.constant.Calculation} object.
-     * @param <T>         a T object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.crosstab.CrosstabMeasureBuilder} object.
-     */
-    public static <T> CrosstabMeasureBuilder<T> measure(String title, String fieldName, Class<?> valueClass, Calculation calculation) {
-        CrosstabMeasureBuilder<T> measure = measure(fieldName, valueClass, calculation);
-        return measure.setTitle(title);
-    }
-
-    /**
-     * <p>measure.</p>
-     *
-     * @param expression  a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     * @param calculation a {@link software.xdev.dynamicreports.report.constant.Calculation} object.
-     * @param <T>         a T object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.crosstab.CrosstabMeasureBuilder} object.
-     */
-    public static <T> CrosstabMeasureBuilder<T> measure(DRIExpression<?> expression, Calculation calculation) {
-        return new CrosstabMeasureBuilder<T>(expression, calculation);
-    }
-
-    /**
-     * <p>measure.</p>
-     *
-     * @param title       a {@link java.lang.String} object.
-     * @param expression  a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     * @param calculation a {@link software.xdev.dynamicreports.report.constant.Calculation} object.
-     * @param <T>         a T object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.crosstab.CrosstabMeasureBuilder} object.
-     */
-    public static <T> CrosstabMeasureBuilder<T> measure(String title, DRIExpression<?> expression, Calculation calculation) {
-        CrosstabMeasureBuilder<T> measure = measure(expression, calculation);
-        return measure.setTitle(title);
-    }
-
-    /**
-     * <p>measure.</p>
-     *
-     * @param expression a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     * @param <T>        a T object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.crosstab.CrosstabMeasureBuilder} object.
-     */
-    public static <T> CrosstabMeasureBuilder<T> measure(DRIExpression<?> expression) {
-        return new CrosstabMeasureBuilder<T>(expression);
-    }
-
-    /**
-     * <p>measure.</p>
-     *
-     * @param title      a {@link java.lang.String} object.
-     * @param expression a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     * @param <T>        a T object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.crosstab.CrosstabMeasureBuilder} object.
-     */
-    public static <T> CrosstabMeasureBuilder<T> measure(String title, DRIExpression<?> expression) {
-        CrosstabMeasureBuilder<T> measure = measure(expression);
-        return measure.setTitle(title);
-    }
+public final class Crosstabs
+{
+	private Crosstabs()
+	{
+	}
+	
+	public static CrosstabBuilder crosstab()
+	{
+		return new CrosstabBuilder();
+	}
+	
+	// column group
+	
+	public static <T> CrosstabColumnGroupBuilder<T> columnGroup(final ValueColumnBuilder<?, T> column)
+	{
+		return new CrosstabColumnGroupBuilder<>(column);
+	}
+	
+	public static <T> CrosstabColumnGroupBuilder<T> columnGroup(final FieldBuilder<T> field)
+	{
+		return new CrosstabColumnGroupBuilder<>(field);
+	}
+	
+	public static <T> CrosstabColumnGroupBuilder<T> columnGroup(final String fieldName, final Class<T> valueClass)
+	{
+		return new CrosstabColumnGroupBuilder<>(DynamicReports.<T>field(fieldName, valueClass));
+	}
+	
+	public static <T> CrosstabColumnGroupBuilder<T> columnGroup(final DRIExpression<T> expression)
+	{
+		return new CrosstabColumnGroupBuilder<>(expression);
+	}
+	
+	// row group
+	
+	public static <T> CrosstabRowGroupBuilder<T> rowGroup(final ValueColumnBuilder<?, T> column)
+	{
+		return new CrosstabRowGroupBuilder<>(column);
+	}
+	
+	public static <T> CrosstabRowGroupBuilder<T> rowGroup(final FieldBuilder<T> field)
+	{
+		return new CrosstabRowGroupBuilder<>(field);
+	}
+	
+	public static <T> CrosstabRowGroupBuilder<T> rowGroup(final String fieldName, final Class<T> valueClass)
+	{
+		return new CrosstabRowGroupBuilder<>(DynamicReports.<T>field(fieldName, valueClass));
+	}
+	
+	public static <T> CrosstabRowGroupBuilder<T> rowGroup(final DRIExpression<T> expression)
+	{
+		return new CrosstabRowGroupBuilder<>(expression);
+	}
+	
+	// variable
+	
+	public static <T> CrosstabVariableBuilder<T> variable(
+		final ValueColumnBuilder<?, ?> column,
+		final Calculation calculation)
+	{
+		Validate.notNull(column, "column must not be null");
+		return new CrosstabVariableBuilder<>(column, calculation);
+	}
+	
+	public static <T> CrosstabVariableBuilder<T> variable(final FieldBuilder<T> field, final Calculation calculation)
+	{
+		Validate.notNull(field, "field must not be null");
+		return new CrosstabVariableBuilder<>(field, calculation);
+	}
+	
+	public static <T> CrosstabVariableBuilder<T> variable(
+		final String fieldName,
+		final Class<?> valueClass,
+		final Calculation calculation)
+	{
+		return new CrosstabVariableBuilder<>(DynamicReports.field(fieldName, valueClass), calculation);
+	}
+	
+	public static <T> CrosstabVariableBuilder<T> variable(
+		final DRIExpression<?> expression,
+		final Calculation calculation)
+	{
+		return new CrosstabVariableBuilder<>(expression, calculation);
+	}
+	
+	// measure
+	
+	public static <T> CrosstabMeasureBuilder<T> measure(
+		final ValueColumnBuilder<?, ?> column,
+		final Calculation calculation)
+	{
+		Validate.notNull(column, "column must not be null");
+		return new CrosstabMeasureBuilder<>(column, calculation);
+	}
+	
+	public static <T> CrosstabMeasureBuilder<T> measure(
+		final String title,
+		final ValueColumnBuilder<?, ?> column,
+		final Calculation calculation)
+	{
+		final CrosstabMeasureBuilder<T> measure = measure(column, calculation);
+		return measure.setTitle(title);
+	}
+	
+	public static <T> CrosstabMeasureBuilder<T> measure(final FieldBuilder<T> field, final Calculation calculation)
+	{
+		Validate.notNull(field, "field must not be null");
+		return new CrosstabMeasureBuilder<>(field, calculation);
+	}
+	
+	public static <T> CrosstabMeasureBuilder<T> measure(
+		final String title,
+		final FieldBuilder<T> field,
+		final Calculation calculation)
+	{
+		return measure(field, calculation).setTitle(title);
+	}
+	
+	public static <T> CrosstabMeasureBuilder<T> measure(
+		final String fieldName,
+		final Class<?> valueClass,
+		final Calculation calculation)
+	{
+		return new CrosstabMeasureBuilder<>(DynamicReports.field(fieldName, valueClass), calculation);
+	}
+	
+	public static <T> CrosstabMeasureBuilder<T> measure(
+		final String title,
+		final String fieldName,
+		final Class<?> valueClass,
+		final Calculation calculation)
+	{
+		final CrosstabMeasureBuilder<T> measure = measure(fieldName, valueClass, calculation);
+		return measure.setTitle(title);
+	}
+	
+	public static <T> CrosstabMeasureBuilder<T> measure(
+		final DRIExpression<?> expression,
+		final Calculation calculation)
+	{
+		return new CrosstabMeasureBuilder<>(expression, calculation);
+	}
+	
+	public static <T> CrosstabMeasureBuilder<T> measure(
+		final String title,
+		final DRIExpression<?> expression,
+		final Calculation calculation)
+	{
+		final CrosstabMeasureBuilder<T> measure = measure(expression, calculation);
+		return measure.setTitle(title);
+	}
+	
+	public static <T> CrosstabMeasureBuilder<T> measure(final DRIExpression<?> expression)
+	{
+		return new CrosstabMeasureBuilder<>(expression);
+	}
+	
+	public static <T> CrosstabMeasureBuilder<T> measure(final String title, final DRIExpression<?> expression)
+	{
+		final CrosstabMeasureBuilder<T> measure = measure(expression);
+		return measure.setTitle(title);
+	}
 }

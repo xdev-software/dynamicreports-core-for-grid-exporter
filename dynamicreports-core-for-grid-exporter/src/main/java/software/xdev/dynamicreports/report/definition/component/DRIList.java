@@ -17,43 +17,19 @@
  */
 package software.xdev.dynamicreports.report.definition.component;
 
-import software.xdev.dynamicreports.report.constant.ListType;
-
 import java.util.List;
 
-/**
- * <p>DRIList interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface DRIList extends DRIDimensionComponent {
+import software.xdev.dynamicreports.report.constant.ListType;
 
-    /**
-     * <p>getListCells.</p>
-     *
-     * @return a {@link java.util.List} object.
-     */
-    public List<? extends DRIListCell> getListCells();
 
-    /**
-     * <p>getType.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.constant.ListType} object.
-     */
-    public ListType getType();
-
-    /**
-     * <p>getGap.</p>
-     *
-     * @return a {@link java.lang.Integer} object.
-     */
-    public Integer getGap();
-
-    /**
-     * <p>getBackgroundComponent.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.definition.component.DRIComponent} object.
-     */
-    public DRIComponent getBackgroundComponent();
+public interface DRIList extends DRIDimensionComponent
+{
+	
+	public List<? extends DRIListCell> getListCells();
+	
+	public ListType getType();
+	
+	public Integer getGap();
+	
+	public DRIComponent getBackgroundComponent();
 }

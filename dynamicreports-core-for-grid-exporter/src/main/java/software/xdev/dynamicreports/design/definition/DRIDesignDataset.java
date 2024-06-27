@@ -17,104 +17,39 @@
  */
 package software.xdev.dynamicreports.design.definition;
 
+import java.io.Serializable;
+import java.util.Collection;
+
 import software.xdev.dynamicreports.design.definition.expression.DRIDesignComplexExpression;
 import software.xdev.dynamicreports.design.definition.expression.DRIDesignExpression;
 import software.xdev.dynamicreports.design.definition.expression.DRIDesignJasperExpression;
 import software.xdev.dynamicreports.design.definition.expression.DRIDesignSimpleExpression;
 import software.xdev.dynamicreports.design.definition.expression.DRIDesignSystemExpression;
 
-import java.io.Serializable;
-import java.util.Collection;
 
-/**
- * <p>DRIDesignDataset interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface DRIDesignDataset extends Serializable {
-
-    /**
-     * <p>getName.</p>
-     *
-     * @return a {@link java.lang.String} object.
-     */
-    public String getName();
-
-    /**
-     * <p>getFields.</p>
-     *
-     * @return a {@link java.util.Collection} object.
-     */
-    public Collection<DRIDesignField> getFields();
-
-    /**
-     * <p>getVariables.</p>
-     *
-     * @return a {@link java.util.Collection} object.
-     */
-    public Collection<DRIDesignVariable> getVariables();
-
-    /**
-     * <p>getSystemExpressions.</p>
-     *
-     * @return a {@link java.util.Collection} object.
-     */
-    public Collection<DRIDesignSystemExpression> getSystemExpressions();
-
-    /**
-     * <p>getJasperExpressions.</p>
-     *
-     * @return a {@link java.util.Collection} object.
-     */
-    public Collection<DRIDesignJasperExpression> getJasperExpressions();
-
-    /**
-     * <p>getSimpleExpressions.</p>
-     *
-     * @return a {@link java.util.Collection} object.
-     */
-    public Collection<DRIDesignSimpleExpression> getSimpleExpressions();
-
-    /**
-     * <p>getComplexExpressions.</p>
-     *
-     * @return a {@link java.util.Collection} object.
-     */
-    public Collection<DRIDesignComplexExpression> getComplexExpressions();
-
-    /**
-     * <p>getSorts.</p>
-     *
-     * @return a {@link java.util.Collection} object.
-     */
-    public Collection<DRIDesignSort> getSorts();
-
-    /**
-     * <p>getQuery.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.design.definition.DRIDesignQuery} object.
-     */
-    public DRIDesignQuery getQuery();
-
-    /**
-     * <p>getConnectionExpression.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.design.definition.expression.DRIDesignExpression} object.
-     */
-    public DRIDesignExpression getConnectionExpression();
-
-    /**
-     * <p>getDataSourceExpression.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.design.definition.expression.DRIDesignExpression} object.
-     */
-    public DRIDesignExpression getDataSourceExpression();
-
-    /**
-     * <p>getFilterExpression.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.design.definition.expression.DRIDesignExpression} object.
-     */
-    public DRIDesignExpression getFilterExpression();
+public interface DRIDesignDataset extends Serializable
+{
+	public String getName();
+	
+	public Collection<DRIDesignField> getFields();
+	
+	public Collection<DRIDesignVariable> getVariables();
+	
+	public Collection<DRIDesignSystemExpression> getSystemExpressions();
+	
+	public Collection<DRIDesignJasperExpression> getJasperExpressions();
+	
+	public Collection<DRIDesignSimpleExpression> getSimpleExpressions();
+	
+	public Collection<DRIDesignComplexExpression> getComplexExpressions();
+	
+	public Collection<DRIDesignSort> getSorts();
+	
+	public DRIDesignQuery getQuery();
+	
+	public DRIDesignExpression getConnectionExpression();
+	
+	public DRIDesignExpression getDataSourceExpression();
+	
+	public DRIDesignExpression getFilterExpression();
 }

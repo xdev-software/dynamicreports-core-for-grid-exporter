@@ -17,40 +17,43 @@
  */
 package software.xdev.dynamicreports.test.jasper.report;
 
-import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
-import software.xdev.dynamicreports.test.jasper.AbstractJasperValueTest;
+import static software.xdev.dynamicreports.report.builder.DynamicReports.cmp;
+
 import net.sf.jasperreports.engine.JRDataSource;
 import net.sf.jasperreports.engine.JREmptyDataSource;
 import net.sf.jasperreports.engine.fill.JRFileVirtualizer;
+import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
+import software.xdev.dynamicreports.test.jasper.AbstractJasperValueTest;
 
-import static software.xdev.dynamicreports.report.builder.DynamicReports.cmp;
 
-/**
- * @author Ricardo Mariaca
- */
-public class VirtualizerTest extends AbstractJasperValueTest {
-
-    @Override
-    protected void configureReport(JasperReportBuilder rb) {
-        rb.title(cmp.text("title")).setVirtualizer(new JRFileVirtualizer(2));
-    }
-
-    @Override
-    public void test() {
-        super.test();
-
-        numberOfPagesTest(1);
-        elementCountTest("title.textField1", 1);
-        elementValueTest("title.textField1", "title");
-    }
-
-    @Override
-    protected boolean serializableTest() {
-        return false;
-    }
-
-    @Override
-    protected JRDataSource createDataSource() {
-        return new JREmptyDataSource(10);
-    }
+public class VirtualizerTest extends AbstractJasperValueTest
+{
+	
+	@Override
+	protected void configureReport(final JasperReportBuilder rb)
+	{
+		rb.title(cmp.text("title")).setVirtualizer(new JRFileVirtualizer(2));
+	}
+	
+	@Override
+	public void test()
+	{
+		super.test();
+		
+		this.numberOfPagesTest(1);
+		this.elementCountTest("title.textField1", 1);
+		this.elementValueTest("title.textField1", "title");
+	}
+	
+	@Override
+	protected boolean serializableTest()
+	{
+		return false;
+	}
+	
+	@Override
+	protected JRDataSource createDataSource()
+	{
+		return new JREmptyDataSource(10);
+	}
 }

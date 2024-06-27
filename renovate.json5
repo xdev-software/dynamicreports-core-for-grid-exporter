@@ -1,4 +1,14 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "rebaseWhen": "behind-base-branch"
+  "rebaseWhen": "behind-base-branch",
+  "packageRules": [
+    {
+      "description": "Ignore project internal dependencies",
+      "packagePattern": "^software.xdev:dynamicreports-core-for-grid-exporter",
+      "datasources": [
+        "maven"
+      ],
+      "enabled": false
+    }
+  ]
 }

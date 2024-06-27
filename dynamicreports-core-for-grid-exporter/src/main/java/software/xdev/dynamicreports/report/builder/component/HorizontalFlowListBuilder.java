@@ -17,26 +17,16 @@
  */
 package software.xdev.dynamicreports.report.builder.component;
 
-import software.xdev.dynamicreports.report.constant.Constants;
+public class HorizontalFlowListBuilder extends HorizontalListBuilder
+{
 
-/**
- * <p>HorizontalFlowListBuilder class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class HorizontalFlowListBuilder extends HorizontalListBuilder {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
-
-    /**
-     * <p>Constructor for HorizontalFlowListBuilder.</p>
-     */
-    protected HorizontalFlowListBuilder() {
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    protected void init() {
-        newFlowRow();
-    }
+	protected HorizontalFlowListBuilder()
+	{
+	}
+	
+	@Override
+	protected void init()
+	{
+		this.newFlowRow();
+	}
 }

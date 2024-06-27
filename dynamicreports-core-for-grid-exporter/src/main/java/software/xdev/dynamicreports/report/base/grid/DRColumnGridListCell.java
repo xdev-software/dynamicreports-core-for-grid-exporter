@@ -17,82 +17,62 @@
  */
 package software.xdev.dynamicreports.report.base.grid;
 
-import software.xdev.dynamicreports.report.constant.Constants;
+import org.apache.commons.lang3.Validate;
+
 import software.xdev.dynamicreports.report.constant.HorizontalCellComponentAlignment;
 import software.xdev.dynamicreports.report.constant.VerticalCellComponentAlignment;
 import software.xdev.dynamicreports.report.definition.grid.DRIColumnGridComponent;
 import software.xdev.dynamicreports.report.definition.grid.DRIColumnGridListCell;
-import org.apache.commons.lang3.Validate;
 
-/**
- * <p>DRColumnGridListCell class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class DRColumnGridListCell implements DRIColumnGridListCell {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    private HorizontalCellComponentAlignment horizontalAlignment;
-    private VerticalCellComponentAlignment verticalAlignment;
-    private DRIColumnGridComponent component;
+public class DRColumnGridListCell implements DRIColumnGridListCell
+{
 
-    /**
-     * <p>Constructor for DRColumnGridListCell.</p>
-     *
-     * @param component a {@link software.xdev.dynamicreports.report.definition.grid.DRIColumnGridComponent} object.
-     */
-    public DRColumnGridListCell(DRIColumnGridComponent component) {
-        Validate.notNull(component, "component must not be null");
-        this.component = component;
-    }
-
-    /**
-     * <p>Constructor for DRColumnGridListCell.</p>
-     *
-     * @param horizontalAlignment a {@link software.xdev.dynamicreports.report.constant.HorizontalCellComponentAlignment} object.
-     * @param verticalAlignment   a {@link software.xdev.dynamicreports.report.constant.VerticalCellComponentAlignment} object.
-     * @param component           a {@link software.xdev.dynamicreports.report.definition.grid.DRIColumnGridComponent} object.
-     */
-    public DRColumnGridListCell(HorizontalCellComponentAlignment horizontalAlignment, VerticalCellComponentAlignment verticalAlignment, DRIColumnGridComponent component) {
-        this(component);
-        this.horizontalAlignment = horizontalAlignment;
-        this.verticalAlignment = verticalAlignment;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public HorizontalCellComponentAlignment getHorizontalAlignment() {
-        return horizontalAlignment;
-    }
-
-    /**
-     * <p>Setter for the field <code>horizontalAlignment</code>.</p>
-     *
-     * @param horizontalAlignment a {@link software.xdev.dynamicreports.report.constant.HorizontalCellComponentAlignment} object.
-     */
-    public void setHorizontalAlignment(HorizontalCellComponentAlignment horizontalAlignment) {
-        this.horizontalAlignment = horizontalAlignment;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public VerticalCellComponentAlignment getVerticalAlignment() {
-        return verticalAlignment;
-    }
-
-    /**
-     * <p>Setter for the field <code>verticalAlignment</code>.</p>
-     *
-     * @param verticalAlignment a {@link software.xdev.dynamicreports.report.constant.VerticalCellComponentAlignment} object.
-     */
-    public void setVerticalAlignment(VerticalCellComponentAlignment verticalAlignment) {
-        this.verticalAlignment = verticalAlignment;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRIColumnGridComponent getComponent() {
-        return component;
-    }
+	private HorizontalCellComponentAlignment horizontalAlignment;
+	private VerticalCellComponentAlignment verticalAlignment;
+	private final DRIColumnGridComponent component;
+	
+	public DRColumnGridListCell(final DRIColumnGridComponent component)
+	{
+		Validate.notNull(component, "component must not be null");
+		this.component = component;
+	}
+	
+	public DRColumnGridListCell(
+		final HorizontalCellComponentAlignment horizontalAlignment,
+		final VerticalCellComponentAlignment verticalAlignment,
+		final DRIColumnGridComponent component)
+	{
+		this(component);
+		this.horizontalAlignment = horizontalAlignment;
+		this.verticalAlignment = verticalAlignment;
+	}
+	
+	@Override
+	public HorizontalCellComponentAlignment getHorizontalAlignment()
+	{
+		return this.horizontalAlignment;
+	}
+	
+	public void setHorizontalAlignment(final HorizontalCellComponentAlignment horizontalAlignment)
+	{
+		this.horizontalAlignment = horizontalAlignment;
+	}
+	
+	@Override
+	public VerticalCellComponentAlignment getVerticalAlignment()
+	{
+		return this.verticalAlignment;
+	}
+	
+	public void setVerticalAlignment(final VerticalCellComponentAlignment verticalAlignment)
+	{
+		this.verticalAlignment = verticalAlignment;
+	}
+	
+	@Override
+	public DRIColumnGridComponent getComponent()
+	{
+		return this.component;
+	}
 }

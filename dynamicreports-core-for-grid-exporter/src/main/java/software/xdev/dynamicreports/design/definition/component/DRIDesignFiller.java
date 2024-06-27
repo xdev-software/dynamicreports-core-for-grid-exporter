@@ -17,12 +17,7 @@
  */
 package software.xdev.dynamicreports.design.definition.component;
 
-/**
- * <p>DRIDesignFiller interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface DRIDesignFiller extends DRIDesignComponent {
+public interface DRIDesignFiller extends DRIDesignComponent
+{
 
 }

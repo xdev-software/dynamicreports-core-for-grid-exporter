@@ -17,217 +17,71 @@
  */
 package software.xdev.dynamicreports.report.definition;
 
+import java.io.Serializable;
+import java.util.List;
+
 import software.xdev.dynamicreports.report.constant.PageOrientation;
 import software.xdev.dynamicreports.report.constant.WhenNoDataType;
 import software.xdev.dynamicreports.report.constant.WhenResourceMissingType;
 import software.xdev.dynamicreports.report.exception.DRException;
 
-import java.io.Serializable;
-import java.util.List;
 
-/**
- * <p>DRITemplateDesign interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface DRITemplateDesign<T> extends Serializable {
-
-    /**
-     * <p>getReportName.</p>
-     *
-     * @return a {@link java.lang.String} object.
-     */
-    public String getReportName();
-
-    /**
-     * <p>getFields.</p>
-     *
-     * @return a {@link java.util.List} object.
-     */
-    public List<DRIField<?>> getFields();
-
-    /**
-     * <p>isDefinedParameter.</p>
-     *
-     * @param name a {@link java.lang.String} object.
-     * @return a boolean.
-     */
-    public boolean isDefinedParameter(String name);
-
-    /**
-     * <p>getResourceBundleName.</p>
-     *
-     * @return a {@link java.lang.String} object.
-     */
-    public String getResourceBundleName();
-
-    /**
-     * <p>getIgnorePagination.</p>
-     *
-     * @return a {@link java.lang.Boolean} object.
-     */
-    public Boolean getIgnorePagination();
-
-    /**
-     * <p>getWhenNoDataType.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.constant.WhenNoDataType} object.
-     */
-    public WhenNoDataType getWhenNoDataType();
-
-    /**
-     * <p>getWhenResourceMissingType.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.constant.WhenResourceMissingType} object.
-     */
-    public WhenResourceMissingType getWhenResourceMissingType();
-
-    /**
-     * <p>getTitleOnANewPage.</p>
-     *
-     * @return a {@link java.lang.Boolean} object.
-     */
-    public Boolean getTitleOnANewPage();
-
-    /**
-     * <p>getSummaryOnANewPage.</p>
-     *
-     * @return a {@link java.lang.Boolean} object.
-     */
-    public Boolean getSummaryOnANewPage();
-
-    /**
-     * <p>getSummaryWithPageHeaderAndFooter.</p>
-     *
-     * @return a {@link java.lang.Boolean} object.
-     */
-    public Boolean getSummaryWithPageHeaderAndFooter();
-
-    /**
-     * <p>getFloatColumnFooter.</p>
-     *
-     * @return a {@link java.lang.Boolean} object.
-     */
-    public Boolean getFloatColumnFooter();
-
-    /**
-     * <p>getPageWidth.</p>
-     *
-     * @return a {@link java.lang.Integer} object.
-     */
-    public Integer getPageWidth();
-
-    /**
-     * <p>getPageHeight.</p>
-     *
-     * @return a {@link java.lang.Integer} object.
-     */
-    public Integer getPageHeight();
-
-    /**
-     * <p>getPageOrientation.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.constant.PageOrientation} object.
-     */
-    public PageOrientation getPageOrientation();
-
-    /**
-     * <p>getPageMargin.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.definition.DRIMargin} object.
-     */
-    public DRIMargin getPageMargin();
-
-    /**
-     * <p>getPageColumnsPerPage.</p>
-     *
-     * @return a {@link java.lang.Integer} object.
-     */
-    public Integer getPageColumnsPerPage();
-
-    /**
-     * <p>getPageColumnSpace.</p>
-     *
-     * @return a {@link java.lang.Integer} object.
-     */
-    public Integer getPageColumnSpace();
-
-    /**
-     * <p>getPageColumnWidth.</p>
-     *
-     * @return a {@link java.lang.Integer} object.
-     */
-    public Integer getPageColumnWidth();
-
-    /**
-     * <p>getTitleComponentsCount.</p>
-     *
-     * @return a int.
-     */
-    public int getTitleComponentsCount();
-
-    /**
-     * <p>getPageHeaderComponentsCount.</p>
-     *
-     * @return a int.
-     */
-    public int getPageHeaderComponentsCount();
-
-    /**
-     * <p>getPageFooterComponentsCount.</p>
-     *
-     * @return a int.
-     */
-    public int getPageFooterComponentsCount();
-
-    /**
-     * <p>getColumnHeaderComponentsCount.</p>
-     *
-     * @return a int.
-     */
-    public int getColumnHeaderComponentsCount();
-
-    /**
-     * <p>getColumnFooterComponentsCount.</p>
-     *
-     * @return a int.
-     */
-    public int getColumnFooterComponentsCount();
-
-    /**
-     * <p>getLastPageFooterComponentsCount.</p>
-     *
-     * @return a int.
-     */
-    public int getLastPageFooterComponentsCount();
-
-    /**
-     * <p>getSummaryComponentsCount.</p>
-     *
-     * @return a int.
-     */
-    public int getSummaryComponentsCount();
-
-    /**
-     * <p>getNoDataComponentsCount.</p>
-     *
-     * @return a int.
-     */
-    public int getNoDataComponentsCount();
-
-    /**
-     * <p>getBackgroundComponentsCount.</p>
-     *
-     * @return a int.
-     */
-    public int getBackgroundComponentsCount();
-
-    /**
-     * <p>getDesign.</p>
-     *
-     * @return a T object.
-     * @throws software.xdev.dynamicreports.report.exception.DRException if any.
-     */
-    public T getDesign() throws DRException;
+public interface DRITemplateDesign<T> extends Serializable
+{
+	
+	public String getReportName();
+	
+	public List<DRIField<?>> getFields();
+	
+	public boolean isDefinedParameter(String name);
+	
+	public String getResourceBundleName();
+	
+	public Boolean getIgnorePagination();
+	
+	public WhenNoDataType getWhenNoDataType();
+	
+	public WhenResourceMissingType getWhenResourceMissingType();
+	
+	public Boolean getTitleOnANewPage();
+	
+	public Boolean getSummaryOnANewPage();
+	
+	public Boolean getSummaryWithPageHeaderAndFooter();
+	
+	public Boolean getFloatColumnFooter();
+	
+	public Integer getPageWidth();
+	
+	public Integer getPageHeight();
+	
+	public PageOrientation getPageOrientation();
+	
+	public DRIMargin getPageMargin();
+	
+	public Integer getPageColumnsPerPage();
+	
+	public Integer getPageColumnSpace();
+	
+	public Integer getPageColumnWidth();
+	
+	public int getTitleComponentsCount();
+	
+	public int getPageHeaderComponentsCount();
+	
+	public int getPageFooterComponentsCount();
+	
+	public int getColumnHeaderComponentsCount();
+	
+	public int getColumnFooterComponentsCount();
+	
+	public int getLastPageFooterComponentsCount();
+	
+	public int getSummaryComponentsCount();
+	
+	public int getNoDataComponentsCount();
+	
+	public int getBackgroundComponentsCount();
+	
+	public T getDesign() throws DRException;
 }

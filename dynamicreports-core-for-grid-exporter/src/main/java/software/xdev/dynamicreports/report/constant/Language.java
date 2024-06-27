@@ -17,23 +17,13 @@
  */
 package software.xdev.dynamicreports.report.constant;
 
-/**
- * <p>Language class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class Language {
-    /**
-     * Constant <code>JAVA="java"</code>
-     */
-    public static final String JAVA = "java";
-    /**
-     * Constant <code>GROOVY="groovy"</code>
-     */
-    public static final String GROOVY = "groovy";
-    /**
-     * Constant <code>JAVA_SCRIPT="javascript"</code>
-     */
-    public static final String JAVA_SCRIPT = "javascript";
+public final class Language
+{
+	private Language()
+	{
+	}
+	
+	public static final String JAVA = "java";
+	public static final String GROOVY = "groovy";
+	public static final String JAVA_SCRIPT = "javascript";
 }

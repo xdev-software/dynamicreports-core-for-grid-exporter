@@ -18,32 +18,22 @@
 package software.xdev.dynamicreports.report.base.component;
 
 import software.xdev.dynamicreports.report.base.style.DRPen;
-import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.definition.component.DRIEllipse;
 
-/**
- * <p>DREllipse class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class DREllipse extends DRDimensionComponent implements DRIEllipse {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    private DRPen pen;
+public class DREllipse extends DRDimensionComponent implements DRIEllipse
+{
 
-    /** {@inheritDoc} */
-    @Override
-    public DRPen getPen() {
-        return pen;
-    }
-
-    /**
-     * <p>Setter for the field <code>pen</code>.</p>
-     *
-     * @param pen a {@link software.xdev.dynamicreports.report.base.style.DRPen} object.
-     */
-    public void setPen(DRPen pen) {
-        this.pen = pen;
-    }
+	private DRPen pen;
+	
+	@Override
+	public DRPen getPen()
+	{
+		return this.pen;
+	}
+	
+	public void setPen(final DRPen pen)
+	{
+		this.pen = pen;
+	}
 }

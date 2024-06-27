@@ -20,25 +20,11 @@ package software.xdev.dynamicreports.design.definition.style;
 import software.xdev.dynamicreports.design.definition.DRIDesignDataset;
 import software.xdev.dynamicreports.design.definition.expression.DRIDesignExpression;
 
-/**
- * <p>DRIDesignConditionalStyle interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface DRIDesignConditionalStyle extends DRIDesignBaseStyle {
 
-    /**
-     * <p>getConditionExpression.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.design.definition.expression.DRIDesignExpression} object.
-     */
-    public DRIDesignExpression getConditionExpression();
-
-    /**
-     * <p>getDataset.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.design.definition.DRIDesignDataset} object.
-     */
-    public DRIDesignDataset getDataset();
+public interface DRIDesignConditionalStyle extends DRIDesignBaseStyle
+{
+	
+	public DRIDesignExpression getConditionExpression();
+	
+	public DRIDesignDataset getDataset();
 }

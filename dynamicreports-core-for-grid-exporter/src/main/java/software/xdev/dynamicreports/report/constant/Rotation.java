@@ -17,24 +17,10 @@
  */
 package software.xdev.dynamicreports.report.constant;
 
-/**
- * <p>Rotation class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public enum Rotation {
-    /**
-     * Constant useful for displaying the text without rotating it
-     */
-    NONE, /**
-     * Constant useful for rotating the text 90 degrees counter clockwise.
-     */
-    LEFT, /**
-     * Constant useful for rotating the text 90 degrees clockwise.
-     */
-    RIGHT, /**
-     * Constant useful for rotating the text 180 degrees.
-     */
-    UPSIDE_DOWN
+public enum Rotation
+{
+	NONE,
+	LEFT,
+	RIGHT,
+	UPSIDE_DOWN
 }

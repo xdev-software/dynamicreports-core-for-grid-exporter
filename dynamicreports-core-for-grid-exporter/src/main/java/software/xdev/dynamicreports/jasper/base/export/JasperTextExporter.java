@@ -18,128 +18,93 @@
 package software.xdev.dynamicreports.jasper.base.export;
 
 import software.xdev.dynamicreports.jasper.definition.export.JasperITextExporter;
-import software.xdev.dynamicreports.report.constant.Constants;
 
-/**
- * <p>JasperTextExporter class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class JasperTextExporter extends AbstractJasperExporter implements JasperITextExporter {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    private Float characterWidth;
-    private Float characterHeight;
-    private Integer pageWidthInChars;
-    private Integer pageHeightInChars;
-    private String pageSeparator;
-    private String lineSeparator;
-    private Boolean trimLineRight;
+public class JasperTextExporter extends AbstractJasperExporter implements JasperITextExporter
+{
 
-    /** {@inheritDoc} */
-    @Override
-    public Float getCharacterWidth() {
-        return characterWidth;
-    }
-
-    /**
-     * <p>Setter for the field <code>characterWidth</code>.</p>
-     *
-     * @param characterWidth a {@link java.lang.Float} object.
-     */
-    public void setCharacterWidth(Float characterWidth) {
-        this.characterWidth = characterWidth;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Float getCharacterHeight() {
-        return characterHeight;
-    }
-
-    /**
-     * <p>Setter for the field <code>characterHeight</code>.</p>
-     *
-     * @param characterHeight a {@link java.lang.Float} object.
-     */
-    public void setCharacterHeight(Float characterHeight) {
-        this.characterHeight = characterHeight;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Integer getPageWidthInChars() {
-        return pageWidthInChars;
-    }
-
-    /**
-     * <p>Setter for the field <code>pageWidthInChars</code>.</p>
-     *
-     * @param pageWidthInChars a {@link java.lang.Integer} object.
-     */
-    public void setPageWidthInChars(Integer pageWidthInChars) {
-        this.pageWidthInChars = pageWidthInChars;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Integer getPageHeightInChars() {
-        return pageHeightInChars;
-    }
-
-    /**
-     * <p>Setter for the field <code>pageHeightInChars</code>.</p>
-     *
-     * @param pageHeightInChars a {@link java.lang.Integer} object.
-     */
-    public void setPageHeightInChars(Integer pageHeightInChars) {
-        this.pageHeightInChars = pageHeightInChars;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public String getPageSeparator() {
-        return pageSeparator;
-    }
-
-    /**
-     * <p>Setter for the field <code>pageSeparator</code>.</p>
-     *
-     * @param pageSeparator a {@link java.lang.String} object.
-     */
-    public void setPageSeparator(String pageSeparator) {
-        this.pageSeparator = pageSeparator;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public String getLineSeparator() {
-        return lineSeparator;
-    }
-
-    /**
-     * <p>Setter for the field <code>lineSeparator</code>.</p>
-     *
-     * @param lineSeparator a {@link java.lang.String} object.
-     */
-    public void setLineSeparator(String lineSeparator) {
-        this.lineSeparator = lineSeparator;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Boolean getTrimLineRight() {
-        return trimLineRight;
-    }
-
-    /**
-     * <p>Setter for the field <code>trimLineRight</code>.</p>
-     *
-     * @param trimLineRight a {@link java.lang.Boolean} object.
-     */
-    public void setTrimLineRight(Boolean trimLineRight) {
-        this.trimLineRight = trimLineRight;
-    }
-
+	private Float characterWidth;
+	private Float characterHeight;
+	private Integer pageWidthInChars;
+	private Integer pageHeightInChars;
+	private String pageSeparator;
+	private String lineSeparator;
+	private Boolean trimLineRight;
+	
+	@Override
+	public Float getCharacterWidth()
+	{
+		return this.characterWidth;
+	}
+	
+	public void setCharacterWidth(final Float characterWidth)
+	{
+		this.characterWidth = characterWidth;
+	}
+	
+	@Override
+	public Float getCharacterHeight()
+	{
+		return this.characterHeight;
+	}
+	
+	public void setCharacterHeight(final Float characterHeight)
+	{
+		this.characterHeight = characterHeight;
+	}
+	
+	@Override
+	public Integer getPageWidthInChars()
+	{
+		return this.pageWidthInChars;
+	}
+	
+	public void setPageWidthInChars(final Integer pageWidthInChars)
+	{
+		this.pageWidthInChars = pageWidthInChars;
+	}
+	
+	@Override
+	public Integer getPageHeightInChars()
+	{
+		return this.pageHeightInChars;
+	}
+	
+	public void setPageHeightInChars(final Integer pageHeightInChars)
+	{
+		this.pageHeightInChars = pageHeightInChars;
+	}
+	
+	@Override
+	public String getPageSeparator()
+	{
+		return this.pageSeparator;
+	}
+	
+	public void setPageSeparator(final String pageSeparator)
+	{
+		this.pageSeparator = pageSeparator;
+	}
+	
+	@Override
+	public String getLineSeparator()
+	{
+		return this.lineSeparator;
+	}
+	
+	public void setLineSeparator(final String lineSeparator)
+	{
+		this.lineSeparator = lineSeparator;
+	}
+	
+	@Override
+	public Boolean getTrimLineRight()
+	{
+		return this.trimLineRight;
+	}
+	
+	public void setTrimLineRight(final Boolean trimLineRight)
+	{
+		this.trimLineRight = trimLineRight;
+	}
 }

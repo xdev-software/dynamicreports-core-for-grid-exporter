@@ -17,68 +17,58 @@
  */
 package software.xdev.dynamicreports.design.base.style;
 
+import java.util.Objects;
+
 import software.xdev.dynamicreports.design.definition.style.DRIDesignTabStop;
-import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.constant.TabStopAlignment;
-import org.apache.commons.lang3.builder.EqualsBuilder;
 
-/**
- * <p>DRDesignTabStop class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class DRDesignTabStop implements DRIDesignTabStop {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    private int position;
-    private TabStopAlignment alignment;
+public class DRDesignTabStop implements DRIDesignTabStop
+{
 
-    /** {@inheritDoc} */
-    @Override
-    public int getPosition() {
-        return position;
-    }
-
-    /**
-     * <p>Setter for the field <code>position</code>.</p>
-     *
-     * @param position a int.
-     */
-    public void setPosition(int position) {
-        this.position = position;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public TabStopAlignment getAlignment() {
-        return alignment;
-    }
-
-    /**
-     * <p>Setter for the field <code>alignment</code>.</p>
-     *
-     * @param alignment a {@link software.xdev.dynamicreports.report.constant.TabStopAlignment} object.
-     */
-    public void setAlignment(TabStopAlignment alignment) {
-        this.alignment = alignment;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (obj == this) {
-            return true;
-        }
-        if (obj.getClass() != getClass()) {
-            return false;
-        }
-
-        DRDesignTabStop o = (DRDesignTabStop) obj;
-        EqualsBuilder equalsBuilder = new EqualsBuilder().append(position, o.position).append(alignment, o.alignment);
-        return equalsBuilder.isEquals();
-    }
+	private int position;
+	private TabStopAlignment alignment;
+	
+	@Override
+	public int getPosition()
+	{
+		return this.position;
+	}
+	
+	public void setPosition(final int position)
+	{
+		this.position = position;
+	}
+	
+	@Override
+	public TabStopAlignment getAlignment()
+	{
+		return this.alignment;
+	}
+	
+	public void setAlignment(final TabStopAlignment alignment)
+	{
+		this.alignment = alignment;
+	}
+	
+	@Override
+	public boolean equals(final Object o)
+	{
+		if(this == o)
+		{
+			return true;
+		}
+		if(o == null || this.getClass() != o.getClass())
+		{
+			return false;
+		}
+		final DRDesignTabStop that = (DRDesignTabStop)o;
+		return this.getPosition() == that.getPosition() && this.getAlignment() == that.getAlignment();
+	}
+	
+	@Override
+	public int hashCode()
+	{
+		return Objects.hash(this.getPosition(), this.getAlignment());
+	}
 }

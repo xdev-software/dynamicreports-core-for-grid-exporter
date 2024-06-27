@@ -19,19 +19,9 @@ package software.xdev.dynamicreports.design.definition.component;
 
 import software.xdev.dynamicreports.report.constant.BreakType;
 
-/**
- * <p>DRIDesignBreak interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface DRIDesignBreak extends DRIDesignComponent {
 
-    /**
-     * <p>getType.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.constant.BreakType} object.
-     */
-    public BreakType getType();
-
+public interface DRIDesignBreak extends DRIDesignComponent
+{
+	
+	public BreakType getType();
 }

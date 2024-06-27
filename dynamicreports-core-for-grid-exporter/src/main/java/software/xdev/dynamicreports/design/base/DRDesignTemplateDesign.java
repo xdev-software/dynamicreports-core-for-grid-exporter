@@ -18,87 +18,77 @@
 package software.xdev.dynamicreports.design.base;
 
 import software.xdev.dynamicreports.design.definition.DRIDesignTemplateDesign;
-import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.definition.DRITemplateDesign;
 import software.xdev.dynamicreports.report.exception.DRException;
 
-/**
- * <p>DRDesignTemplateDesign class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class DRDesignTemplateDesign implements DRIDesignTemplateDesign {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    private DRITemplateDesign<?> templateDesign;
+public class DRDesignTemplateDesign implements DRIDesignTemplateDesign
+{
 
-    /**
-     * <p>Constructor for DRDesignTemplateDesign.</p>
-     *
-     * @param templateDesign a {@link software.xdev.dynamicreports.report.definition.DRITemplateDesign} object.
-     */
-    public DRDesignTemplateDesign(DRITemplateDesign<?> templateDesign) {
-        this.templateDesign = templateDesign;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public int getTitleComponentsCount() {
-        return templateDesign.getTitleComponentsCount();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public int getPageHeaderComponentsCount() {
-        return templateDesign.getPageHeaderComponentsCount();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public int getPageFooterComponentsCount() {
-        return templateDesign.getPageFooterComponentsCount();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public int getColumnHeaderComponentsCount() {
-        return templateDesign.getColumnHeaderComponentsCount();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public int getColumnFooterComponentsCount() {
-        return templateDesign.getColumnFooterComponentsCount();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public int getLastPageFooterComponentsCount() {
-        return templateDesign.getLastPageFooterComponentsCount();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public int getSummaryComponentsCount() {
-        return templateDesign.getSummaryComponentsCount();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public int getNoDataComponentsCount() {
-        return templateDesign.getNoDataComponentsCount();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public int getBackgroundComponentsCount() {
-        return templateDesign.getBackgroundComponentsCount();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Object getDesign() throws DRException {
-        return templateDesign.getDesign();
-    }
+	private final DRITemplateDesign<?> templateDesign;
+	
+	public DRDesignTemplateDesign(final DRITemplateDesign<?> templateDesign)
+	{
+		this.templateDesign = templateDesign;
+	}
+	
+	@Override
+	public int getTitleComponentsCount()
+	{
+		return this.templateDesign.getTitleComponentsCount();
+	}
+	
+	@Override
+	public int getPageHeaderComponentsCount()
+	{
+		return this.templateDesign.getPageHeaderComponentsCount();
+	}
+	
+	@Override
+	public int getPageFooterComponentsCount()
+	{
+		return this.templateDesign.getPageFooterComponentsCount();
+	}
+	
+	@Override
+	public int getColumnHeaderComponentsCount()
+	{
+		return this.templateDesign.getColumnHeaderComponentsCount();
+	}
+	
+	@Override
+	public int getColumnFooterComponentsCount()
+	{
+		return this.templateDesign.getColumnFooterComponentsCount();
+	}
+	
+	@Override
+	public int getLastPageFooterComponentsCount()
+	{
+		return this.templateDesign.getLastPageFooterComponentsCount();
+	}
+	
+	@Override
+	public int getSummaryComponentsCount()
+	{
+		return this.templateDesign.getSummaryComponentsCount();
+	}
+	
+	@Override
+	public int getNoDataComponentsCount()
+	{
+		return this.templateDesign.getNoDataComponentsCount();
+	}
+	
+	@Override
+	public int getBackgroundComponentsCount()
+	{
+		return this.templateDesign.getBackgroundComponentsCount();
+	}
+	
+	@Override
+	public Object getDesign() throws DRException
+	{
+		return this.templateDesign.getDesign();
+	}
 }

@@ -34,9 +34,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
-import software.xdev.dynamicreports.report.builder.DynamicReports;
-import software.xdev.dynamicreports.report.exception.DRException;
 import net.sf.jasperreports.engine.JRDataSource;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JRPrintElement;
@@ -46,11 +43,11 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.engine.util.JRSaver;
+import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
+import software.xdev.dynamicreports.report.builder.DynamicReports;
+import software.xdev.dynamicreports.report.exception.DRException;
 
 
-/**
- * @author Ricardo Mariaca
- */
 public abstract class AbstractJasperTest
 {
 	private JasperReportBuilder reportBuilder;
@@ -187,12 +184,10 @@ public abstract class AbstractJasperTest
 	protected List<JRPrintElement> findElement(final String key)
 	{
 		final List<JRPrintElement> elements = new ArrayList<>();
-		for(
-			final Iterator<?> iterator = this.jasperPrint.getPages().iterator(); iterator.hasNext(); )
+		for(final Iterator<?> iterator = this.jasperPrint.getPages().iterator(); iterator.hasNext();)
 		{
 			final JRPrintPage page = (JRPrintPage)iterator.next();
-			for(
-				final Iterator<?> iterator2 = page.getElements().iterator(); iterator2.hasNext(); )
+			for(final Iterator<?> iterator2 = page.getElements().iterator(); iterator2.hasNext();)
 			{
 				final JRPrintElement element = (JRPrintElement)iterator2.next();
 				this.findElement(key, elements, element);
@@ -209,8 +204,7 @@ public abstract class AbstractJasperTest
 		}
 		if(element instanceof JRPrintFrame)
 		{
-			for(
-				final Iterator<?> iterator = ((JRPrintFrame)element).getElements().iterator(); iterator.hasNext(); )
+			for(final Iterator<?> iterator = ((JRPrintFrame)element).getElements().iterator(); iterator.hasNext();)
 			{
 				final JRPrintElement element2 = (JRPrintElement)iterator.next();
 				this.findElement(key, elements, element2);
@@ -222,8 +216,7 @@ public abstract class AbstractJasperTest
 	{
 		final List<JRPrintElement> elements = new ArrayList<>();
 		final JRPrintPage page = this.getJasperPrint().getPages().get(pageIndex);
-		for(
-			final Iterator<?> iterator = page.getElements().iterator(); iterator.hasNext(); )
+		for(final Iterator<?> iterator = page.getElements().iterator(); iterator.hasNext();)
 		{
 			final JRPrintElement element = (JRPrintElement)iterator.next();
 			this.findElement(key, elements, element);

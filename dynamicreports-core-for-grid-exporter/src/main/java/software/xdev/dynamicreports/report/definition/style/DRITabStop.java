@@ -17,29 +17,15 @@
  */
 package software.xdev.dynamicreports.report.definition.style;
 
-import software.xdev.dynamicreports.report.constant.TabStopAlignment;
-
 import java.io.Serializable;
 
-/**
- * <p>DRITabStop interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface DRITabStop extends Serializable {
+import software.xdev.dynamicreports.report.constant.TabStopAlignment;
 
-    /**
-     * <p>getPosition.</p>
-     *
-     * @return a int.
-     */
-    public int getPosition();
 
-    /**
-     * <p>getAlignment.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.constant.TabStopAlignment} object.
-     */
-    public TabStopAlignment getAlignment();
+public interface DRITabStop extends Serializable
+{
+	
+	public int getPosition();
+	
+	public TabStopAlignment getAlignment();
 }

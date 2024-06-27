@@ -20,25 +20,11 @@ package software.xdev.dynamicreports.report.definition;
 import software.xdev.dynamicreports.report.definition.datatype.DRIDataType;
 import software.xdev.dynamicreports.report.definition.expression.DRIExpression;
 
-/**
- * <p>DRIField interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface DRIField<T> extends DRIExpression<T>, DRIValue<T> {
 
-    /**
-     * <p>getDataType.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.definition.datatype.DRIDataType} object.
-     */
-    public DRIDataType<? super T, T> getDataType();
-
-    /**
-     * <p>getDescription.</p>
-     *
-     * @return a {@link java.lang.String} object.
-     */
-    public String getDescription();
+public interface DRIField<T> extends DRIExpression<T>, DRIValue<T>
+{
+	
+	public DRIDataType<? super T, T> getDataType();
+	
+	public String getDescription();
 }

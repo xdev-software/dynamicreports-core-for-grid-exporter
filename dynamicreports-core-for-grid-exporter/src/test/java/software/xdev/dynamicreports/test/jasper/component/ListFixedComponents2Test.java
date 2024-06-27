@@ -17,30 +17,31 @@
  */
 package software.xdev.dynamicreports.test.jasper.component;
 
-import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
-import software.xdev.dynamicreports.test.jasper.AbstractJasperPositionTest;
-
 import static software.xdev.dynamicreports.report.builder.DynamicReports.cmp;
 import static software.xdev.dynamicreports.report.builder.DynamicReports.stl;
 
-/**
- * @author Ricardo Mariaca
- */
-public class ListFixedComponents2Test extends AbstractJasperPositionTest {
+import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
+import software.xdev.dynamicreports.test.jasper.AbstractJasperPositionTest;
 
-    @Override
-    protected void configureReport(JasperReportBuilder rb) {
-        rb.title(cmp.horizontalList(cmp.text("")).setFixedWidth(300).setBaseStyle(stl.style().setPadding(5)));
-    }
 
-    @Override
-    public void test() {
-        super.test();
-
-        numberOfPagesTest(1);
-
-        elementPositionTest("title.list1", 0, 10, 10, 300, 26);
-
-        elementPositionTest("title.textField1", 0, 0, 0, 290, 16);
-    }
+public class ListFixedComponents2Test extends AbstractJasperPositionTest
+{
+	
+	@Override
+	protected void configureReport(final JasperReportBuilder rb)
+	{
+		rb.title(cmp.horizontalList(cmp.text("")).setFixedWidth(300).setBaseStyle(stl.style().setPadding(5)));
+	}
+	
+	@Override
+	public void test()
+	{
+		super.test();
+		
+		this.numberOfPagesTest(1);
+		
+		this.elementPositionTest("title.list1", 0, 10, 10, 300, 26);
+		
+		this.elementPositionTest("title.textField1", 0, 0, 0, 290, 16);
+	}
 }

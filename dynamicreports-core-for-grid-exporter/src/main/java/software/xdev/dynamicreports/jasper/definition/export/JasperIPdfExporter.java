@@ -17,207 +17,68 @@
  */
 package software.xdev.dynamicreports.jasper.definition.export;
 
+import java.util.List;
+
 import software.xdev.dynamicreports.jasper.constant.PdfPermission;
 import software.xdev.dynamicreports.jasper.constant.PdfVersion;
 import software.xdev.dynamicreports.report.constant.PdfPrintScaling;
 import software.xdev.dynamicreports.report.constant.PdfaConformance;
 
-import java.util.List;
 
-/**
- * <p>JasperIPdfExporter interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface JasperIPdfExporter extends JasperIExporter {
-
-    /**
-     * <p>getCreatingBatchModeBookmarks.</p>
-     *
-     * @return a {@link java.lang.Boolean} object.
-     */
-    public Boolean getCreatingBatchModeBookmarks();
-
-    /**
-     * <p>getCompressed.</p>
-     *
-     * @return a {@link java.lang.Boolean} object.
-     */
-    public Boolean getCompressed();
-
-    /**
-     * <p>getEncrypted.</p>
-     *
-     * @return a {@link java.lang.Boolean} object.
-     */
-    public Boolean getEncrypted();
-
-    /**
-     * <p>getBitKey128.</p>
-     *
-     * @return a {@link java.lang.Boolean} object.
-     */
-    public Boolean getBitKey128();
-
-    /**
-     * <p>getUserPassword.</p>
-     *
-     * @return a {@link java.lang.String} object.
-     */
-    public String getUserPassword();
-
-    /**
-     * <p>getOwnerPassword.</p>
-     *
-     * @return a {@link java.lang.String} object.
-     */
-    public String getOwnerPassword();
-
-    /**
-     * <p>getPermissions.</p>
-     *
-     * @return a {@link java.util.List} object.
-     */
-    public List<PdfPermission> getPermissions();
-
-    /**
-     * <p>getPdfVersion.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.jasper.constant.PdfVersion} object.
-     */
-    public PdfVersion getPdfVersion();
-
-    /**
-     * <p>getMetadataTitle.</p>
-     *
-     * @return a {@link java.lang.String} object.
-     */
-    public String getMetadataTitle();
-
-    /**
-     * <p>getMetadataAuthor.</p>
-     *
-     * @return a {@link java.lang.String} object.
-     */
-    public String getMetadataAuthor();
-
-    /**
-     * <p>getMetadataSubject.</p>
-     *
-     * @return a {@link java.lang.String} object.
-     */
-    public String getMetadataSubject();
-
-    /**
-     * <p>getMetadataKeyWords.</p>
-     *
-     * @return a {@link java.lang.String} object.
-     */
-    public String getMetadataKeyWords();
-
-    /**
-     * <p>getMetadataCreator.</p>
-     *
-     * @return a {@link java.lang.String} object.
-     */
-    public String getMetadataCreator();
-
-    /**
-     * <p>getForceSvgShapes.</p>
-     *
-     * @return a {@link java.lang.Boolean} object.
-     */
-    public Boolean getForceSvgShapes();
-
-    /**
-     * <p>getPdfJavaScript.</p>
-     *
-     * @return a {@link java.lang.String} object.
-     */
-    public String getPdfJavaScript();
-
-    /**
-     * <p>getTagged.</p>
-     *
-     * @return a {@link java.lang.Boolean} object.
-     */
-    public Boolean getTagged();
-
-    /**
-     * <p>getTagLanguage.</p>
-     *
-     * @return a {@link java.lang.String} object.
-     */
-    public String getTagLanguage();
-
-    /**
-     * <p>getCollapseMissingBookmarkLevels.</p>
-     *
-     * @return a {@link java.lang.Boolean} object.
-     */
-    public Boolean getCollapseMissingBookmarkLevels();
-
-    /**
-     * <p>getSizePageToContent.</p>
-     *
-     * @return a {@link java.lang.Boolean} object.
-     */
-    public Boolean getSizePageToContent();
-
-    /**
-     * <p>getIgnoreHyperLink.</p>
-     *
-     * @return a {@link java.lang.Boolean} object.
-     */
-    public Boolean getIgnoreHyperLink();
-
-    /**
-     * <p>getForceLineBreakPolicy.</p>
-     *
-     * @return a {@link java.lang.Boolean} object.
-     */
-    public Boolean getForceLineBreakPolicy();
-
-    /**
-     * <p>getPrintScaling.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.constant.PdfPrintScaling} object.
-     */
-    public PdfPrintScaling getPrintScaling();
-
-    /**
-     * <p>getPdfaConformance.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.constant.PdfaConformance} object.
-     */
-    public PdfaConformance getPdfaConformance();
-
-    /**
-     * <p>getIccProfilePath.</p>
-     *
-     * @return a {@link java.lang.String} object.
-     */
-    public String getIccProfilePath();
-
-    /**
-     * <p>getAllowedPermissionsHint.</p>
-     *
-     * @return a {@link java.lang.String} object.
-     */
-    public String getAllowedPermissionsHint();
-
-    /**
-     * <p>getDeniedPermissionsHint.</p>
-     *
-     * @return a {@link java.lang.String} object.
-     */
-    public String getDeniedPermissionsHint();
-
-    /**
-     * <p>getDisplayMetadataTitle.</p>
-     *
-     * @return a {@link java.lang.Boolean} object.
-     */
-    public Boolean getDisplayMetadataTitle();
+public interface JasperIPdfExporter extends JasperIExporter
+{
+	
+	public Boolean getCreatingBatchModeBookmarks();
+	
+	public Boolean getCompressed();
+	
+	public Boolean getEncrypted();
+	
+	public Boolean getBitKey128();
+	
+	public String getUserPassword();
+	
+	public String getOwnerPassword();
+	
+	public List<PdfPermission> getPermissions();
+	
+	public PdfVersion getPdfVersion();
+	
+	public String getMetadataTitle();
+	
+	public String getMetadataAuthor();
+	
+	public String getMetadataSubject();
+	
+	public String getMetadataKeyWords();
+	
+	public String getMetadataCreator();
+	
+	public Boolean getForceSvgShapes();
+	
+	public String getPdfJavaScript();
+	
+	public Boolean getTagged();
+	
+	public String getTagLanguage();
+	
+	public Boolean getCollapseMissingBookmarkLevels();
+	
+	public Boolean getSizePageToContent();
+	
+	public Boolean getIgnoreHyperLink();
+	
+	public Boolean getForceLineBreakPolicy();
+	
+	public PdfPrintScaling getPrintScaling();
+	
+	public PdfaConformance getPdfaConformance();
+	
+	public String getIccProfilePath();
+	
+	public String getAllowedPermissionsHint();
+	
+	public String getDeniedPermissionsHint();
+	
+	public Boolean getDisplayMetadataTitle();
 }

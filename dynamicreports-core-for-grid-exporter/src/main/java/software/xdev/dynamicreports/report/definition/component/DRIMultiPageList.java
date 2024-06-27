@@ -17,30 +17,15 @@
  */
 package software.xdev.dynamicreports.report.definition.component;
 
-import software.xdev.dynamicreports.report.constant.SplitType;
-
 import java.util.List;
 
-/**
- * <p>DRIMultiPageList interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface DRIMultiPageList extends DRIDimensionComponent {
+import software.xdev.dynamicreports.report.constant.SplitType;
 
-    /**
-     * <p>getComponents.</p>
-     *
-     * @return a {@link java.util.List} object.
-     */
-    public List<DRIComponent> getComponents();
 
-    /**
-     * <p>getSplitType.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.constant.SplitType} object.
-     */
-    public SplitType getSplitType();
-
+public interface DRIMultiPageList extends DRIDimensionComponent
+{
+	
+	public List<DRIComponent> getComponents();
+	
+	public SplitType getSplitType();
 }

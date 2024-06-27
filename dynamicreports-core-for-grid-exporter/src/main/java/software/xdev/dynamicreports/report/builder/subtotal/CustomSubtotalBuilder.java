@@ -18,33 +18,22 @@
 package software.xdev.dynamicreports.report.builder.subtotal;
 
 import software.xdev.dynamicreports.report.builder.column.ColumnBuilder;
-import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.definition.DRIValue;
 import software.xdev.dynamicreports.report.definition.expression.DRIExpression;
 
-/**
- * <p>CustomSubtotalBuilder class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class CustomSubtotalBuilder<T> extends SubtotalBuilder<CustomSubtotalBuilder<T>, T> implements DRIValue<T> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    /**
-     * <p>Constructor for CustomSubtotalBuilder.</p>
-     *
-     * @param expression   a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     * @param showInColumn a {@link software.xdev.dynamicreports.report.builder.column.ColumnBuilder} object.
-     */
-    protected CustomSubtotalBuilder(DRIExpression<T> expression, ColumnBuilder<?, ?> showInColumn) {
-        super(showInColumn);
-        setValueExpression(expression);
-    }
+public class CustomSubtotalBuilder<T> extends SubtotalBuilder<CustomSubtotalBuilder<T>, T> implements DRIValue<T>
+{
 
-    /** {@inheritDoc} */
-    @Override
-    public String getName() {
-        return getSubtotal().getName();
-    }
+	protected CustomSubtotalBuilder(final DRIExpression<T> expression, final ColumnBuilder<?, ?> showInColumn)
+	{
+		super(showInColumn);
+		this.setValueExpression(expression);
+	}
+	
+	@Override
+	public String getName()
+	{
+		return this.getSubtotal().getName();
+	}
 }

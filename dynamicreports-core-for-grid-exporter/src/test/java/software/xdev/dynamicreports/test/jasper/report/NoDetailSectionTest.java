@@ -17,27 +17,28 @@
  */
 package software.xdev.dynamicreports.test.jasper.report;
 
+import static software.xdev.dynamicreports.report.builder.DynamicReports.cmp;
+
 import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
 import software.xdev.dynamicreports.test.jasper.AbstractJasperValueTest;
 
-import static software.xdev.dynamicreports.report.builder.DynamicReports.cmp;
 
-/**
- * @author Ricardo Mariaca
- */
-public class NoDetailSectionTest extends AbstractJasperValueTest {
-
-    @Override
-    protected void configureReport(JasperReportBuilder rb) {
-        rb.title(cmp.text("Empty data"));
-    }
-
-    @Override
-    public void test() {
-        super.test();
-
-        numberOfPagesTest(1);
-        elementCountTest("title.textField1", 1);
-        elementValueTest("title.textField1", "Empty data");
-    }
+public class NoDetailSectionTest extends AbstractJasperValueTest
+{
+	
+	@Override
+	protected void configureReport(final JasperReportBuilder rb)
+	{
+		rb.title(cmp.text("Empty data"));
+	}
+	
+	@Override
+	public void test()
+	{
+		super.test();
+		
+		this.numberOfPagesTest(1);
+		this.elementCountTest("title.textField1", 1);
+		this.elementValueTest("title.textField1", "Empty data");
+	}
 }

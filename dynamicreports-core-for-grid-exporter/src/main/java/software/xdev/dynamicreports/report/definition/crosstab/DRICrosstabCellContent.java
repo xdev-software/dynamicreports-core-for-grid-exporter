@@ -17,30 +17,16 @@
  */
 package software.xdev.dynamicreports.report.definition.crosstab;
 
+import java.io.Serializable;
+
 import software.xdev.dynamicreports.report.definition.component.DRIList;
 import software.xdev.dynamicreports.report.definition.style.DRIReportStyle;
 
-import java.io.Serializable;
 
-/**
- * <p>DRICrosstabCellContent interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface DRICrosstabCellContent extends Serializable {
-
-    /**
-     * <p>getList.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.definition.component.DRIList} object.
-     */
-    public DRIList getList();
-
-    /**
-     * <p>getStyle.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.definition.style.DRIReportStyle} object.
-     */
-    public DRIReportStyle getStyle();
+public interface DRICrosstabCellContent extends Serializable
+{
+	
+	public DRIList getList();
+	
+	public DRIReportStyle getStyle();
 }

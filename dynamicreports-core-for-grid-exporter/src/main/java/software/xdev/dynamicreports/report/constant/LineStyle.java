@@ -17,24 +17,10 @@
  */
 package software.xdev.dynamicreports.report.constant;
 
-/**
- * <p>LineStyle class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public enum LineStyle {
-    /**
-     * Constant useful for specifying solid line style.
-     */
-    SOLID, /**
-     * Constant useful for specifying dashed line style.
-     */
-    DASHED, /**
-     * Constant useful for specifying dotted line style.
-     */
-    DOTTED, /**
-     * Constant useful for specifying double line style.
-     */
-    DOUBLE
+public enum LineStyle
+{
+	SOLID,
+	DASHED,
+	DOTTED,
+	DOUBLE
 }

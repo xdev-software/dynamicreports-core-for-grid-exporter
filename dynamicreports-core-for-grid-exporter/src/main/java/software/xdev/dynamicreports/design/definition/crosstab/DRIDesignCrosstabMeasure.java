@@ -17,52 +17,23 @@
  */
 package software.xdev.dynamicreports.design.definition.crosstab;
 
+import java.io.Serializable;
+
 import software.xdev.dynamicreports.design.definition.expression.DRIDesignExpression;
 import software.xdev.dynamicreports.report.constant.Calculation;
 import software.xdev.dynamicreports.report.constant.CrosstabPercentageType;
 
-import java.io.Serializable;
 
-/**
- * <p>DRIDesignCrosstabMeasure interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface DRIDesignCrosstabMeasure extends Serializable {
-
-    /**
-     * <p>getName.</p>
-     *
-     * @return a {@link java.lang.String} object.
-     */
-    public String getName();
-
-    /**
-     * <p>getValueClass.</p>
-     *
-     * @return a {@link java.lang.Class} object.
-     */
-    public Class<?> getValueClass();
-
-    /**
-     * <p>getValueExpression.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.design.definition.expression.DRIDesignExpression} object.
-     */
-    public DRIDesignExpression getValueExpression();
-
-    /**
-     * <p>getCalculation.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.constant.Calculation} object.
-     */
-    public Calculation getCalculation();
-
-    /**
-     * <p>getPercentageType.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.constant.CrosstabPercentageType} object.
-     */
-    public CrosstabPercentageType getPercentageType();
+public interface DRIDesignCrosstabMeasure extends Serializable
+{
+	
+	public String getName();
+	
+	public Class<?> getValueClass();
+	
+	public DRIDesignExpression getValueExpression();
+	
+	public Calculation getCalculation();
+	
+	public CrosstabPercentageType getPercentageType();
 }

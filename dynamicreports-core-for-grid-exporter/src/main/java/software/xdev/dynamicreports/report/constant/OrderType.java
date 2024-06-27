@@ -17,12 +17,7 @@
  */
 package software.xdev.dynamicreports.report.constant;
 
-/**
- * <p>OrderType class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public enum OrderType {
-    ASCENDING, DESCENDING
+public enum OrderType
+{
+	ASCENDING, DESCENDING
 }

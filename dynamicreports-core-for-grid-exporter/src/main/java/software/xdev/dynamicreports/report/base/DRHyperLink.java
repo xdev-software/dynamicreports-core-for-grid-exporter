@@ -17,113 +17,83 @@
  */
 package software.xdev.dynamicreports.report.base;
 
-import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.definition.DRIHyperLink;
 import software.xdev.dynamicreports.report.definition.expression.DRIExpression;
 
-/**
- * <p>DRHyperLink class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class DRHyperLink implements DRIHyperLink {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    private DRIExpression<String> anchorExpression;
-    private DRIExpression<Integer> pageExpression;
-    private DRIExpression<String> referenceExpression;
-    private DRIExpression<String> tooltipExpression;
-    private String hyperLinkType;
-    private String hyperLinkTarget;
+public class DRHyperLink implements DRIHyperLink
+{
 
-    /** {@inheritDoc} */
-    @Override
-    public DRIExpression<String> getAnchorExpression() {
-        return anchorExpression;
-    }
-
-    /**
-     * <p>Setter for the field <code>anchorExpression</code>.</p>
-     *
-     * @param anchorExpression a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     */
-    public void setAnchorExpression(DRIExpression<String> anchorExpression) {
-        this.anchorExpression = anchorExpression;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRIExpression<Integer> getPageExpression() {
-        return pageExpression;
-    }
-
-    /**
-     * <p>Setter for the field <code>pageExpression</code>.</p>
-     *
-     * @param pageExpression a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     */
-    public void setPageExpression(DRIExpression<Integer> pageExpression) {
-        this.pageExpression = pageExpression;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRIExpression<String> getReferenceExpression() {
-        return referenceExpression;
-    }
-
-    /**
-     * <p>Setter for the field <code>referenceExpression</code>.</p>
-     *
-     * @param referenceExpression a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     */
-    public void setReferenceExpression(DRIExpression<String> referenceExpression) {
-        this.referenceExpression = referenceExpression;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRIExpression<String> getTooltipExpression() {
-        return tooltipExpression;
-    }
-
-    /**
-     * <p>Setter for the field <code>tooltipExpression</code>.</p>
-     *
-     * @param tooltipExpression a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     */
-    public void setTooltipExpression(DRIExpression<String> tooltipExpression) {
-        this.tooltipExpression = tooltipExpression;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public String getType() {
-        return hyperLinkType;
-    }
-
-    /**
-     * <p>setType.</p>
-     *
-     * @param hyperLinkType a {@link java.lang.String} object.
-     */
-    public void setType(String hyperLinkType) {
-        this.hyperLinkType = hyperLinkType;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public String getTarget() {
-        return hyperLinkTarget;
-    }
-
-    /**
-     * <p>setTarget.</p>
-     *
-     * @param hyperLinkTarget a {@link java.lang.String} object.
-     */
-    public void setTarget(String hyperLinkTarget) {
-        this.hyperLinkTarget = hyperLinkTarget;
-    }
+	private DRIExpression<String> anchorExpression;
+	private DRIExpression<Integer> pageExpression;
+	private DRIExpression<String> referenceExpression;
+	private DRIExpression<String> tooltipExpression;
+	private String hyperLinkType;
+	private String hyperLinkTarget;
+	
+	@Override
+	public DRIExpression<String> getAnchorExpression()
+	{
+		return this.anchorExpression;
+	}
+	
+	public void setAnchorExpression(final DRIExpression<String> anchorExpression)
+	{
+		this.anchorExpression = anchorExpression;
+	}
+	
+	@Override
+	public DRIExpression<Integer> getPageExpression()
+	{
+		return this.pageExpression;
+	}
+	
+	public void setPageExpression(final DRIExpression<Integer> pageExpression)
+	{
+		this.pageExpression = pageExpression;
+	}
+	
+	@Override
+	public DRIExpression<String> getReferenceExpression()
+	{
+		return this.referenceExpression;
+	}
+	
+	public void setReferenceExpression(final DRIExpression<String> referenceExpression)
+	{
+		this.referenceExpression = referenceExpression;
+	}
+	
+	@Override
+	public DRIExpression<String> getTooltipExpression()
+	{
+		return this.tooltipExpression;
+	}
+	
+	public void setTooltipExpression(final DRIExpression<String> tooltipExpression)
+	{
+		this.tooltipExpression = tooltipExpression;
+	}
+	
+	@Override
+	public String getType()
+	{
+		return this.hyperLinkType;
+	}
+	
+	public void setType(final String hyperLinkType)
+	{
+		this.hyperLinkType = hyperLinkType;
+	}
+	
+	@Override
+	public String getTarget()
+	{
+		return this.hyperLinkTarget;
+	}
+	
+	public void setTarget(final String hyperLinkTarget)
+	{
+		this.hyperLinkTarget = hyperLinkTarget;
+	}
 }

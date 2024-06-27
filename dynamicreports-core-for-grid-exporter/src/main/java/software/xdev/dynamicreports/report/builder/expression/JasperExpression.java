@@ -17,53 +17,43 @@
  */
 package software.xdev.dynamicreports.report.builder.expression;
 
-import software.xdev.dynamicreports.report.ReportUtils;
-import software.xdev.dynamicreports.report.constant.Constants;
-import software.xdev.dynamicreports.report.definition.expression.DRIJasperExpression;
 import org.apache.commons.lang3.Validate;
 
-/**
- * <p>JasperExpression class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class JasperExpression<T> implements DRIJasperExpression<T> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
+import software.xdev.dynamicreports.report.ReportUtils;
+import software.xdev.dynamicreports.report.definition.expression.DRIJasperExpression;
 
-    private String name;
-    private String expression;
-    private Class<? super T> valueClass;
 
-    /**
-     * <p>Constructor for JasperExpression.</p>
-     *
-     * @param expression a {@link java.lang.String} object.
-     * @param valueClass a {@link java.lang.Class} object.
-     */
-    protected JasperExpression(String expression, Class<? super T> valueClass) {
-        Validate.notNull(expression, "expression must not be null");
-        Validate.notNull(valueClass, "valueClass must not be null");
-        this.expression = expression;
-        this.valueClass = valueClass;
-        this.name = ReportUtils.generateUniqueName("jasperExpression");
-    }
+public class JasperExpression<T> implements DRIJasperExpression<T>
+{
 
-    /** {@inheritDoc} */
-    @Override
-    public String getName() {
-        return name;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public String getExpression() {
-        return expression;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Class<? super T> getValueClass() {
-        return valueClass;
-    }
+	private final String name;
+	private final String expression;
+	private final Class<? super T> valueClass;
+	
+	protected JasperExpression(final String expression, final Class<? super T> valueClass)
+	{
+		Validate.notNull(expression, "expression must not be null");
+		Validate.notNull(valueClass, "valueClass must not be null");
+		this.expression = expression;
+		this.valueClass = valueClass;
+		this.name = ReportUtils.generateUniqueName("jasperExpression");
+	}
+	
+	@Override
+	public String getName()
+	{
+		return this.name;
+	}
+	
+	@Override
+	public String getExpression()
+	{
+		return this.expression;
+	}
+	
+	@Override
+	public Class<? super T> getValueClass()
+	{
+		return this.valueClass;
+	}
 }

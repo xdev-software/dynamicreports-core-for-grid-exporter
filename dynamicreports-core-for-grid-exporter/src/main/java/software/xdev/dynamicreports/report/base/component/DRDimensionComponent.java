@@ -17,171 +17,132 @@
  */
 package software.xdev.dynamicreports.report.base.component;
 
+import org.apache.commons.lang3.Validate;
+
 import software.xdev.dynamicreports.report.constant.ComponentDimensionType;
 import software.xdev.dynamicreports.report.constant.ComponentPositionType;
-import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.constant.StretchType;
 import software.xdev.dynamicreports.report.definition.DRIGroup;
 import software.xdev.dynamicreports.report.definition.component.DRIDimensionComponent;
-import org.apache.commons.lang3.Validate;
 
-/**
- * <p>Abstract DRDimensionComponent class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public abstract class DRDimensionComponent extends DRComponent implements DRIDimensionComponent {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    private Integer width;
-    private Integer height;
-    private ComponentDimensionType widthType;
-    private ComponentDimensionType heightType;
-    private ComponentPositionType positionType;
-    private StretchType stretchType;
-    private Boolean printInFirstWholeBand;
-    private Boolean printWhenDetailOverflows;
-    private DRIGroup printWhenGroupChanges;
+public abstract class DRDimensionComponent extends DRComponent implements DRIDimensionComponent
+{
 
-    /** {@inheritDoc} */
-    @Override
-    public Integer getWidth() {
-        return width;
-    }
-
-    /**
-     * <p>Setter for the field <code>width</code>.</p>
-     *
-     * @param width a {@link java.lang.Integer} object.
-     */
-    public void setWidth(Integer width) {
-        if (width != null) {
-            Validate.isTrue(width >= 0, "width must be >= 0");
-        }
-        this.width = width;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Integer getHeight() {
-        return height;
-    }
-
-    /**
-     * <p>Setter for the field <code>height</code>.</p>
-     *
-     * @param height a {@link java.lang.Integer} object.
-     */
-    public void setHeight(Integer height) {
-        if (height != null) {
-            Validate.isTrue(height >= 0, "height must be >= 0");
-        }
-        this.height = height;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public ComponentDimensionType getWidthType() {
-        return widthType;
-    }
-
-    /**
-     * <p>Setter for the field <code>widthType</code>.</p>
-     *
-     * @param widthType a {@link software.xdev.dynamicreports.report.constant.ComponentDimensionType} object.
-     */
-    public void setWidthType(ComponentDimensionType widthType) {
-        this.widthType = widthType;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public ComponentDimensionType getHeightType() {
-        return heightType;
-    }
-
-    /**
-     * <p>Setter for the field <code>heightType</code>.</p>
-     *
-     * @param heightType a {@link software.xdev.dynamicreports.report.constant.ComponentDimensionType} object.
-     */
-    public void setHeightType(ComponentDimensionType heightType) {
-        this.heightType = heightType;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public ComponentPositionType getPositionType() {
-        return positionType;
-    }
-
-    /**
-     * <p>Setter for the field <code>positionType</code>.</p>
-     *
-     * @param positionType a {@link software.xdev.dynamicreports.report.constant.ComponentPositionType} object.
-     */
-    public void setPositionType(ComponentPositionType positionType) {
-        this.positionType = positionType;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public StretchType getStretchType() {
-        return stretchType;
-    }
-
-    /**
-     * <p>Setter for the field <code>stretchType</code>.</p>
-     *
-     * @param stretchType a {@link software.xdev.dynamicreports.report.constant.StretchType} object.
-     */
-    public void setStretchType(StretchType stretchType) {
-        this.stretchType = stretchType;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Boolean getPrintInFirstWholeBand() {
-        return printInFirstWholeBand;
-    }
-
-    /**
-     * <p>Setter for the field <code>printInFirstWholeBand</code>.</p>
-     *
-     * @param printInFirstWholeBand a {@link java.lang.Boolean} object.
-     */
-    public void setPrintInFirstWholeBand(Boolean printInFirstWholeBand) {
-        this.printInFirstWholeBand = printInFirstWholeBand;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Boolean getPrintWhenDetailOverflows() {
-        return printWhenDetailOverflows;
-    }
-
-    /**
-     * <p>Setter for the field <code>printWhenDetailOverflows</code>.</p>
-     *
-     * @param printWhenDetailOverflows a {@link java.lang.Boolean} object.
-     */
-    public void setPrintWhenDetailOverflows(Boolean printWhenDetailOverflows) {
-        this.printWhenDetailOverflows = printWhenDetailOverflows;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRIGroup getPrintWhenGroupChanges() {
-        return printWhenGroupChanges;
-    }
-
-    /**
-     * <p>Setter for the field <code>printWhenGroupChanges</code>.</p>
-     *
-     * @param printWhenGroupChanges a {@link software.xdev.dynamicreports.report.definition.DRIGroup} object.
-     */
-    public void setPrintWhenGroupChanges(DRIGroup printWhenGroupChanges) {
-        this.printWhenGroupChanges = printWhenGroupChanges;
-    }
+	private Integer width;
+	private Integer height;
+	private ComponentDimensionType widthType;
+	private ComponentDimensionType heightType;
+	private ComponentPositionType positionType;
+	private StretchType stretchType;
+	private Boolean printInFirstWholeBand;
+	private Boolean printWhenDetailOverflows;
+	private DRIGroup printWhenGroupChanges;
+	
+	@Override
+	public Integer getWidth()
+	{
+		return this.width;
+	}
+	
+	public void setWidth(final Integer width)
+	{
+		if(width != null)
+		{
+			Validate.isTrue(width >= 0, "width must be >= 0");
+		}
+		this.width = width;
+	}
+	
+	@Override
+	public Integer getHeight()
+	{
+		return this.height;
+	}
+	
+	public void setHeight(final Integer height)
+	{
+		if(height != null)
+		{
+			Validate.isTrue(height >= 0, "height must be >= 0");
+		}
+		this.height = height;
+	}
+	
+	@Override
+	public ComponentDimensionType getWidthType()
+	{
+		return this.widthType;
+	}
+	
+	public void setWidthType(final ComponentDimensionType widthType)
+	{
+		this.widthType = widthType;
+	}
+	
+	@Override
+	public ComponentDimensionType getHeightType()
+	{
+		return this.heightType;
+	}
+	
+	public void setHeightType(final ComponentDimensionType heightType)
+	{
+		this.heightType = heightType;
+	}
+	
+	@Override
+	public ComponentPositionType getPositionType()
+	{
+		return this.positionType;
+	}
+	
+	public void setPositionType(final ComponentPositionType positionType)
+	{
+		this.positionType = positionType;
+	}
+	
+	@Override
+	public StretchType getStretchType()
+	{
+		return this.stretchType;
+	}
+	
+	public void setStretchType(final StretchType stretchType)
+	{
+		this.stretchType = stretchType;
+	}
+	
+	@Override
+	public Boolean getPrintInFirstWholeBand()
+	{
+		return this.printInFirstWholeBand;
+	}
+	
+	public void setPrintInFirstWholeBand(final Boolean printInFirstWholeBand)
+	{
+		this.printInFirstWholeBand = printInFirstWholeBand;
+	}
+	
+	@Override
+	public Boolean getPrintWhenDetailOverflows()
+	{
+		return this.printWhenDetailOverflows;
+	}
+	
+	public void setPrintWhenDetailOverflows(final Boolean printWhenDetailOverflows)
+	{
+		this.printWhenDetailOverflows = printWhenDetailOverflows;
+	}
+	
+	@Override
+	public DRIGroup getPrintWhenGroupChanges()
+	{
+		return this.printWhenGroupChanges;
+	}
+	
+	public void setPrintWhenGroupChanges(final DRIGroup printWhenGroupChanges)
+	{
+		this.printWhenGroupChanges = printWhenGroupChanges;
+	}
 }

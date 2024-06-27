@@ -22,64 +22,39 @@ import software.xdev.dynamicreports.report.builder.AbstractBuilder;
 import software.xdev.dynamicreports.report.builder.FieldBuilder;
 import software.xdev.dynamicreports.report.builder.column.ValueColumnBuilder;
 import software.xdev.dynamicreports.report.constant.Calculation;
-import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.constant.CrosstabPercentageType;
 import software.xdev.dynamicreports.report.definition.DRICrosstabValue;
 import software.xdev.dynamicreports.report.definition.expression.DRIExpression;
 
-/**
- * <p>CrosstabVariableBuilder class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class CrosstabVariableBuilder<T> extends AbstractBuilder<CrosstabVariableBuilder<T>, DRCrosstabVariable<T>> implements DRICrosstabValue<T> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    /**
-     * <p>Constructor for CrosstabVariableBuilder.</p>
-     *
-     * @param column      a {@link software.xdev.dynamicreports.report.builder.column.ValueColumnBuilder} object.
-     * @param calculation a {@link software.xdev.dynamicreports.report.constant.Calculation} object.
-     */
-    protected CrosstabVariableBuilder(ValueColumnBuilder<?, ?> column, Calculation calculation) {
-        super(new DRCrosstabVariable<T>(column.build(), calculation));
-    }
+public class CrosstabVariableBuilder<T> extends AbstractBuilder<CrosstabVariableBuilder<T>, DRCrosstabVariable<T>>
+	implements DRICrosstabValue<T>
+{
 
-    /**
-     * <p>Constructor for CrosstabVariableBuilder.</p>
-     *
-     * @param field       a {@link software.xdev.dynamicreports.report.builder.FieldBuilder} object.
-     * @param calculation a {@link software.xdev.dynamicreports.report.constant.Calculation} object.
-     */
-    protected CrosstabVariableBuilder(FieldBuilder<?> field, Calculation calculation) {
-        super(new DRCrosstabVariable<T>(field.getField(), calculation));
-    }
-
-    /**
-     * <p>Constructor for CrosstabVariableBuilder.</p>
-     *
-     * @param expression  a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     * @param calculation a {@link software.xdev.dynamicreports.report.constant.Calculation} object.
-     */
-    protected CrosstabVariableBuilder(DRIExpression<?> expression, Calculation calculation) {
-        super(new DRCrosstabVariable<T>(expression, calculation));
-    }
-
-    /**
-     * <p>setPercentageType.</p>
-     *
-     * @param percentageType a {@link software.xdev.dynamicreports.report.constant.CrosstabPercentageType} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.crosstab.CrosstabVariableBuilder} object.
-     */
-    public CrosstabVariableBuilder<T> setPercentageType(CrosstabPercentageType percentageType) {
-        getObject().setPercentageType(percentageType);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public String getName() {
-        return getObject().getName();
-    }
+	protected CrosstabVariableBuilder(final ValueColumnBuilder<?, ?> column, final Calculation calculation)
+	{
+		super(new DRCrosstabVariable<>(column.build(), calculation));
+	}
+	
+	protected CrosstabVariableBuilder(final FieldBuilder<?> field, final Calculation calculation)
+	{
+		super(new DRCrosstabVariable<>(field.getField(), calculation));
+	}
+	
+	protected CrosstabVariableBuilder(final DRIExpression<?> expression, final Calculation calculation)
+	{
+		super(new DRCrosstabVariable<>(expression, calculation));
+	}
+	
+	public CrosstabVariableBuilder<T> setPercentageType(final CrosstabPercentageType percentageType)
+	{
+		this.getObject().setPercentageType(percentageType);
+		return this;
+	}
+	
+	@Override
+	public String getName()
+	{
+		return this.getObject().getName();
+	}
 }

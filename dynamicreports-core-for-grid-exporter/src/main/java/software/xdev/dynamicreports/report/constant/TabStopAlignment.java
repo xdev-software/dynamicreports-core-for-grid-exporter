@@ -17,12 +17,7 @@
  */
 package software.xdev.dynamicreports.report.constant;
 
-/**
- * <p>TabStopAlignment class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public enum TabStopAlignment {
-    LEFT, CENTER, RIGHT
+public enum TabStopAlignment
+{
+	LEFT, CENTER, RIGHT
 }

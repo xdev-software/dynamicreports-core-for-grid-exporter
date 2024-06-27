@@ -17,12 +17,7 @@
  */
 package software.xdev.dynamicreports.report.constant;
 
-/**
- * <p>Calculation class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public enum Calculation {
-    NOTHING, COUNT, SUM, AVERAGE, LOWEST, HIGHEST, STANDARD_DEVIATION, VARIANCE, FIRST, DISTINCT_COUNT
+public enum Calculation
+{
+	NOTHING, COUNT, SUM, AVERAGE, LOWEST, HIGHEST, STANDARD_DEVIATION, VARIANCE, FIRST, DISTINCT_COUNT
 }

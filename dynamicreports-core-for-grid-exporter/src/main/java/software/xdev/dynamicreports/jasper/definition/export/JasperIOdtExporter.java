@@ -17,25 +17,10 @@
  */
 package software.xdev.dynamicreports.jasper.definition.export;
 
-/**
- * <p>JasperIOdtExporter interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface JasperIOdtExporter extends JasperIExporter {
-
-    /**
-     * <p>getFlexibleRowHeight.</p>
-     *
-     * @return a {@link java.lang.Boolean} object.
-     */
-    public Boolean getFlexibleRowHeight();
-
-    /**
-     * <p>getIgnoreHyperLink.</p>
-     *
-     * @return a {@link java.lang.Boolean} object.
-     */
-    public Boolean getIgnoreHyperLink();
+public interface JasperIOdtExporter extends JasperIExporter
+{
+	
+	public Boolean getFlexibleRowHeight();
+	
+	public Boolean getIgnoreHyperLink();
 }

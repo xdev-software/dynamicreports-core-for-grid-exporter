@@ -17,12 +17,7 @@
  */
 package software.xdev.dynamicreports.report.constant;
 
-/**
- * <p>Orientation class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public enum Orientation {
-    HORIZONTAL, VERTICAL
+public enum Orientation
+{
+	HORIZONTAL, VERTICAL
 }

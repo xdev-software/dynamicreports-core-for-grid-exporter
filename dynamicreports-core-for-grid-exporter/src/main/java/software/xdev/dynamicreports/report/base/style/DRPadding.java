@@ -17,114 +17,92 @@
  */
 package software.xdev.dynamicreports.report.base.style;
 
-import software.xdev.dynamicreports.report.constant.Constants;
-import software.xdev.dynamicreports.report.definition.style.DRIPadding;
 import org.apache.commons.lang3.Validate;
 
-/**
- * <p>DRPadding class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class DRPadding implements DRIPadding {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
+import software.xdev.dynamicreports.report.definition.style.DRIPadding;
 
-    private Integer top;
-    private Integer left;
-    private Integer bottom;
-    private Integer right;
 
-    /**
-     * <p>Constructor for DRPadding.</p>
-     */
-    public DRPadding() {
-    }
+public class DRPadding implements DRIPadding
+{
 
-    /**
-     * <p>Constructor for DRPadding.</p>
-     *
-     * @param padding a {@link java.lang.Integer} object.
-     */
-    public DRPadding(Integer padding) {
-        if (padding != null) {
-            Validate.isTrue(padding >= 0, "padding must be >= 0");
-        }
-        top = padding;
-        left = padding;
-        bottom = padding;
-        right = padding;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Integer getTop() {
-        return top;
-    }
-
-    /**
-     * <p>Setter for the field <code>top</code>.</p>
-     *
-     * @param top a {@link java.lang.Integer} object.
-     */
-    public void setTop(Integer top) {
-        if (top != null) {
-            Validate.isTrue(top >= 0, "top must be >= 0");
-        }
-        this.top = top;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Integer getLeft() {
-        return left;
-    }
-
-    /**
-     * <p>Setter for the field <code>left</code>.</p>
-     *
-     * @param left a {@link java.lang.Integer} object.
-     */
-    public void setLeft(Integer left) {
-        if (left != null) {
-            Validate.isTrue(left >= 0, "left must be >= 0");
-        }
-        this.left = left;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Integer getBottom() {
-        return bottom;
-    }
-
-    /**
-     * <p>Setter for the field <code>bottom</code>.</p>
-     *
-     * @param bottom a {@link java.lang.Integer} object.
-     */
-    public void setBottom(Integer bottom) {
-        if (bottom != null) {
-            Validate.isTrue(bottom >= 0, "bottom must be >= 0");
-        }
-        this.bottom = bottom;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Integer getRight() {
-        return right;
-    }
-
-    /**
-     * <p>Setter for the field <code>right</code>.</p>
-     *
-     * @param right a {@link java.lang.Integer} object.
-     */
-    public void setRight(Integer right) {
-        if (right != null) {
-            Validate.isTrue(right >= 0, "right must be >= 0");
-        }
-        this.right = right;
-    }
+	private Integer top;
+	private Integer left;
+	private Integer bottom;
+	private Integer right;
+	
+	public DRPadding()
+	{
+	}
+	
+	public DRPadding(final Integer padding)
+	{
+		if(padding != null)
+		{
+			Validate.isTrue(padding >= 0, "padding must be >= 0");
+		}
+		this.top = padding;
+		this.left = padding;
+		this.bottom = padding;
+		this.right = padding;
+	}
+	
+	@Override
+	public Integer getTop()
+	{
+		return this.top;
+	}
+	
+	public void setTop(final Integer top)
+	{
+		if(top != null)
+		{
+			Validate.isTrue(top >= 0, "top must be >= 0");
+		}
+		this.top = top;
+	}
+	
+	@Override
+	public Integer getLeft()
+	{
+		return this.left;
+	}
+	
+	public void setLeft(final Integer left)
+	{
+		if(left != null)
+		{
+			Validate.isTrue(left >= 0, "left must be >= 0");
+		}
+		this.left = left;
+	}
+	
+	@Override
+	public Integer getBottom()
+	{
+		return this.bottom;
+	}
+	
+	public void setBottom(final Integer bottom)
+	{
+		if(bottom != null)
+		{
+			Validate.isTrue(bottom >= 0, "bottom must be >= 0");
+		}
+		this.bottom = bottom;
+	}
+	
+	@Override
+	public Integer getRight()
+	{
+		return this.right;
+	}
+	
+	public void setRight(final Integer right)
+	{
+		if(right != null)
+		{
+			Validate.isTrue(right >= 0, "right must be >= 0");
+		}
+		this.right = right;
+	}
 }

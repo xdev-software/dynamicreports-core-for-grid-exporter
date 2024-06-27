@@ -17,12 +17,7 @@
  */
 package software.xdev.dynamicreports.design.constant;
 
-/**
- * <p>ResetType class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public enum ResetType {
-    NONE, REPORT, PAGE, COLUMN, GROUP
+public enum ResetType
+{
+	NONE, REPORT, PAGE, COLUMN, GROUP
 }

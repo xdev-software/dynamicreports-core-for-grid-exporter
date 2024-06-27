@@ -19,39 +19,15 @@ package software.xdev.dynamicreports.design.definition.crosstab;
 
 import java.io.Serializable;
 
-/**
- * <p>DRIDesignCrosstabCell interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface DRIDesignCrosstabCell extends Serializable {
 
-    /**
-     * <p>getName.</p>
-     *
-     * @return a {@link java.lang.String} object.
-     */
-    public String getName();
-
-    /**
-     * <p>getRowTotalGroup.</p>
-     *
-     * @return a {@link java.lang.String} object.
-     */
-    public String getRowTotalGroup();
-
-    /**
-     * <p>getColumnTotalGroup.</p>
-     *
-     * @return a {@link java.lang.String} object.
-     */
-    public String getColumnTotalGroup();
-
-    /**
-     * <p>getContent.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.design.definition.crosstab.DRIDesignCrosstabCellContent} object.
-     */
-    public DRIDesignCrosstabCellContent getContent();
+public interface DRIDesignCrosstabCell extends Serializable
+{
+	
+	public String getName();
+	
+	public String getRowTotalGroup();
+	
+	public String getColumnTotalGroup();
+	
+	public DRIDesignCrosstabCellContent getContent();
 }

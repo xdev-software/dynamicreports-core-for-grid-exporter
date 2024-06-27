@@ -17,187 +17,158 @@
  */
 package software.xdev.dynamicreports.design.base.style;
 
+import java.util.Objects;
+
 import software.xdev.dynamicreports.design.definition.style.DRIDesignFont;
-import software.xdev.dynamicreports.report.constant.Constants;
-import org.apache.commons.lang3.builder.EqualsBuilder;
 
-/**
- * <p>DRDesignFont class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class DRDesignFont implements DRIDesignFont {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    private String fontName;
-    private Integer fontSize;
-    private Boolean bold;
-    private Boolean italic;
-    private Boolean underline;
-    private Boolean strikeThrough;
-    private String pdfFontName;
-    private String pdfEncoding;
-    private Boolean pdfEmbedded;
+public class DRDesignFont implements DRIDesignFont
+{
 
-    /** {@inheritDoc} */
-    @Override
-    public String getFontName() {
-        return fontName;
-    }
-
-    /**
-     * <p>Setter for the field <code>fontName</code>.</p>
-     *
-     * @param fontName a {@link java.lang.String} object.
-     */
-    public void setFontName(String fontName) {
-        this.fontName = fontName;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Boolean getBold() {
-        return bold;
-    }
-
-    /**
-     * <p>Setter for the field <code>bold</code>.</p>
-     *
-     * @param bold a {@link java.lang.Boolean} object.
-     */
-    public void setBold(Boolean bold) {
-        this.bold = bold;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Boolean getItalic() {
-        return italic;
-    }
-
-    /**
-     * <p>Setter for the field <code>italic</code>.</p>
-     *
-     * @param italic a {@link java.lang.Boolean} object.
-     */
-    public void setItalic(Boolean italic) {
-        this.italic = italic;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Boolean getUnderline() {
-        return underline;
-    }
-
-    /**
-     * <p>Setter for the field <code>underline</code>.</p>
-     *
-     * @param underline a {@link java.lang.Boolean} object.
-     */
-    public void setUnderline(Boolean underline) {
-        this.underline = underline;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Boolean getStrikeThrough() {
-        return strikeThrough;
-    }
-
-    /**
-     * <p>Setter for the field <code>strikeThrough</code>.</p>
-     *
-     * @param strikeThrough a {@link java.lang.Boolean} object.
-     */
-    public void setStrikeThrough(Boolean strikeThrough) {
-        this.strikeThrough = strikeThrough;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Integer getFontSize() {
-        return fontSize;
-    }
-
-    /**
-     * <p>Setter for the field <code>fontSize</code>.</p>
-     *
-     * @param fontSize a {@link java.lang.Integer} object.
-     */
-    public void setFontSize(Integer fontSize) {
-        this.fontSize = fontSize;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public String getPdfFontName() {
-        return pdfFontName;
-    }
-
-    /**
-     * <p>Setter for the field <code>pdfFontName</code>.</p>
-     *
-     * @param pdfFontName a {@link java.lang.String} object.
-     */
-    public void setPdfFontName(String pdfFontName) {
-        this.pdfFontName = pdfFontName;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public String getPdfEncoding() {
-        return pdfEncoding;
-    }
-
-    /**
-     * <p>Setter for the field <code>pdfEncoding</code>.</p>
-     *
-     * @param pdfEncoding a {@link java.lang.String} object.
-     */
-    public void setPdfEncoding(String pdfEncoding) {
-        this.pdfEncoding = pdfEncoding;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Boolean getPdfEmbedded() {
-        return pdfEmbedded;
-    }
-
-    /**
-     * <p>Setter for the field <code>pdfEmbedded</code>.</p>
-     *
-     * @param pdfEmbedded a {@link java.lang.Boolean} object.
-     */
-    public void setPdfEmbedded(Boolean pdfEmbedded) {
-        this.pdfEmbedded = pdfEmbedded;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (obj == this) {
-            return true;
-        }
-        if (obj.getClass() != getClass()) {
-            return false;
-        }
-
-        DRDesignFont o = (DRDesignFont) obj;
-        EqualsBuilder equalsBuilder = new EqualsBuilder().append(fontName, o.fontName)
-                                                         .append(fontSize, o.fontSize)
-                                                         .append(bold, o.bold)
-                                                         .append(italic, o.italic)
-                                                         .append(underline, o.underline)
-                                                         .append(strikeThrough, o.strikeThrough)
-                                                         .append(pdfFontName, o.pdfFontName)
-                                                         .append(pdfEncoding, o.pdfEncoding)
-                                                         .append(pdfEmbedded, o.pdfEmbedded);
-        return equalsBuilder.isEquals();
-    }
+	private String fontName;
+	private Integer fontSize;
+	private Boolean bold;
+	private Boolean italic;
+	private Boolean underline;
+	private Boolean strikeThrough;
+	private String pdfFontName;
+	private String pdfEncoding;
+	private Boolean pdfEmbedded;
+	
+	@Override
+	public String getFontName()
+	{
+		return this.fontName;
+	}
+	
+	public void setFontName(final String fontName)
+	{
+		this.fontName = fontName;
+	}
+	
+	@Override
+	public Boolean getBold()
+	{
+		return this.bold;
+	}
+	
+	public void setBold(final Boolean bold)
+	{
+		this.bold = bold;
+	}
+	
+	@Override
+	public Boolean getItalic()
+	{
+		return this.italic;
+	}
+	
+	public void setItalic(final Boolean italic)
+	{
+		this.italic = italic;
+	}
+	
+	@Override
+	public Boolean getUnderline()
+	{
+		return this.underline;
+	}
+	
+	public void setUnderline(final Boolean underline)
+	{
+		this.underline = underline;
+	}
+	
+	@Override
+	public Boolean getStrikeThrough()
+	{
+		return this.strikeThrough;
+	}
+	
+	public void setStrikeThrough(final Boolean strikeThrough)
+	{
+		this.strikeThrough = strikeThrough;
+	}
+	
+	@Override
+	public Integer getFontSize()
+	{
+		return this.fontSize;
+	}
+	
+	public void setFontSize(final Integer fontSize)
+	{
+		this.fontSize = fontSize;
+	}
+	
+	@Override
+	public String getPdfFontName()
+	{
+		return this.pdfFontName;
+	}
+	
+	public void setPdfFontName(final String pdfFontName)
+	{
+		this.pdfFontName = pdfFontName;
+	}
+	
+	@Override
+	public String getPdfEncoding()
+	{
+		return this.pdfEncoding;
+	}
+	
+	public void setPdfEncoding(final String pdfEncoding)
+	{
+		this.pdfEncoding = pdfEncoding;
+	}
+	
+	@Override
+	public Boolean getPdfEmbedded()
+	{
+		return this.pdfEmbedded;
+	}
+	
+	public void setPdfEmbedded(final Boolean pdfEmbedded)
+	{
+		this.pdfEmbedded = pdfEmbedded;
+	}
+	
+	@Override
+	public boolean equals(final Object o)
+	{
+		if(this == o)
+		{
+			return true;
+		}
+		if(o == null || this.getClass() != o.getClass())
+		{
+			return false;
+		}
+		final DRDesignFont that = (DRDesignFont)o;
+		return Objects.equals(this.getFontName(), that.getFontName()) && Objects.equals(
+			this.getFontSize(),
+			that.getFontSize()) && Objects.equals(this.getBold(), that.getBold())
+			&& Objects.equals(this.getItalic(), that.getItalic()) && Objects.equals(
+			this.getUnderline(),
+			that.getUnderline()) && Objects.equals(this.getStrikeThrough(), that.getStrikeThrough())
+			&& Objects.equals(this.getPdfFontName(), that.getPdfFontName())
+			&& Objects.equals(this.getPdfEncoding(), that.getPdfEncoding())
+			&& Objects.equals(this.getPdfEmbedded(), that.getPdfEmbedded());
+	}
+	
+	@Override
+	public int hashCode()
+	{
+		return Objects.hash(
+			this.getFontName(),
+			this.getFontSize(),
+			this.getBold(),
+			this.getItalic(),
+			this.getUnderline(),
+			this.getStrikeThrough(),
+			this.getPdfFontName(),
+			this.getPdfEncoding(),
+			this.getPdfEmbedded());
+	}
 }

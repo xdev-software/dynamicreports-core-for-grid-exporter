@@ -19,47 +19,33 @@ package software.xdev.dynamicreports.design.base.expression;
 
 import software.xdev.dynamicreports.design.definition.expression.DRIDesignExpression;
 import software.xdev.dynamicreports.design.definition.expression.DRIDesignPropertyExpression;
-import software.xdev.dynamicreports.report.constant.Constants;
 
-/**
- * <p>DRDesignPropertyExpression class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class DRDesignPropertyExpression implements DRIDesignPropertyExpression {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    private String name;
-    private DRIDesignExpression valueExpression;
+public class DRDesignPropertyExpression implements DRIDesignPropertyExpression
+{
 
-    /** {@inheritDoc} */
-    @Override
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * <p>Setter for the field <code>name</code>.</p>
-     *
-     * @param name a {@link java.lang.String} object.
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRIDesignExpression getValueExpression() {
-        return valueExpression;
-    }
-
-    /**
-     * <p>Setter for the field <code>valueExpression</code>.</p>
-     *
-     * @param valueExpression a {@link software.xdev.dynamicreports.design.definition.expression.DRIDesignExpression} object.
-     */
-    public void setValueExpression(DRIDesignExpression valueExpression) {
-        this.valueExpression = valueExpression;
-    }
+	private String name;
+	private DRIDesignExpression valueExpression;
+	
+	@Override
+	public String getName()
+	{
+		return this.name;
+	}
+	
+	public void setName(final String name)
+	{
+		this.name = name;
+	}
+	
+	@Override
+	public DRIDesignExpression getValueExpression()
+	{
+		return this.valueExpression;
+	}
+	
+	public void setValueExpression(final DRIDesignExpression valueExpression)
+	{
+		this.valueExpression = valueExpression;
+	}
 }

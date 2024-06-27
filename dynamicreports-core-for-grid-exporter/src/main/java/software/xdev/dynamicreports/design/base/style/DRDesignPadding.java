@@ -17,99 +17,84 @@
  */
 package software.xdev.dynamicreports.design.base.style;
 
+import java.util.Objects;
+
 import software.xdev.dynamicreports.design.definition.style.DRIDesignPadding;
-import software.xdev.dynamicreports.report.constant.Constants;
-import org.apache.commons.lang3.builder.EqualsBuilder;
 
-/**
- * <p>DRDesignPadding class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class DRDesignPadding implements DRIDesignPadding {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    private Integer top;
-    private Integer left;
-    private Integer bottom;
-    private Integer right;
+public class DRDesignPadding implements DRIDesignPadding
+{
 
-    /** {@inheritDoc} */
-    @Override
-    public Integer getTop() {
-        return top;
-    }
-
-    /**
-     * <p>Setter for the field <code>top</code>.</p>
-     *
-     * @param top a {@link java.lang.Integer} object.
-     */
-    public void setTop(Integer top) {
-        this.top = top;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Integer getLeft() {
-        return left;
-    }
-
-    /**
-     * <p>Setter for the field <code>left</code>.</p>
-     *
-     * @param left a {@link java.lang.Integer} object.
-     */
-    public void setLeft(Integer left) {
-        this.left = left;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Integer getBottom() {
-        return bottom;
-    }
-
-    /**
-     * <p>Setter for the field <code>bottom</code>.</p>
-     *
-     * @param bottom a {@link java.lang.Integer} object.
-     */
-    public void setBottom(Integer bottom) {
-        this.bottom = bottom;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Integer getRight() {
-        return right;
-    }
-
-    /**
-     * <p>Setter for the field <code>right</code>.</p>
-     *
-     * @param right a {@link java.lang.Integer} object.
-     */
-    public void setRight(Integer right) {
-        this.right = right;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (obj == this) {
-            return true;
-        }
-        if (obj.getClass() != getClass()) {
-            return false;
-        }
-
-        DRDesignPadding o = (DRDesignPadding) obj;
-        EqualsBuilder equalsBuilder = new EqualsBuilder().append(top, o.top).append(left, o.left).append(bottom, o.bottom).append(right, o.right);
-        return equalsBuilder.isEquals();
-    }
+	private Integer top;
+	private Integer left;
+	private Integer bottom;
+	private Integer right;
+	
+	@Override
+	public Integer getTop()
+	{
+		return this.top;
+	}
+	
+	public void setTop(final Integer top)
+	{
+		this.top = top;
+	}
+	
+	@Override
+	public Integer getLeft()
+	{
+		return this.left;
+	}
+	
+	public void setLeft(final Integer left)
+	{
+		this.left = left;
+	}
+	
+	@Override
+	public Integer getBottom()
+	{
+		return this.bottom;
+	}
+	
+	public void setBottom(final Integer bottom)
+	{
+		this.bottom = bottom;
+	}
+	
+	@Override
+	public Integer getRight()
+	{
+		return this.right;
+	}
+	
+	public void setRight(final Integer right)
+	{
+		this.right = right;
+	}
+	
+	@Override
+	public boolean equals(final Object o)
+	{
+		if(this == o)
+		{
+			return true;
+		}
+		if(o == null || this.getClass() != o.getClass())
+		{
+			return false;
+		}
+		final DRDesignPadding that = (DRDesignPadding)o;
+		return Objects.equals(this.getTop(), that.getTop())
+			&& Objects.equals(this.getLeft(), that.getLeft())
+			&& Objects.equals(this.getBottom(), that.getBottom())
+			&& Objects.equals(this.getRight(), that.getRight());
+	}
+	
+	@Override
+	public int hashCode()
+	{
+		return Objects.hash(this.getTop(), this.getLeft(), this.getBottom(), this.getRight());
+	}
 }

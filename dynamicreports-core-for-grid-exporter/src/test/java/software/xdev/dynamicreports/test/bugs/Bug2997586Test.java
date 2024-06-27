@@ -25,13 +25,7 @@ import org.junit.jupiter.api.Test;
 import software.xdev.dynamicreports.report.builder.component.TextFieldBuilder;
 
 
-/**
- * @author Ricardo Mariaca
- * <p>
- * The height in setDimension(Integer width, Integer height) of the DimensionComponentBuilder class is set with the
- * width.
- */
-class Bug_2997586_Test
+class Bug2997586Test
 {
 	
 	@Test

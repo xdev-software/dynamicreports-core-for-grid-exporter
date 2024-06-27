@@ -17,50 +17,55 @@
  */
 package software.xdev.dynamicreports.test.jasper.component;
 
-import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
-import software.xdev.dynamicreports.report.datasource.DRDataSource;
-import software.xdev.dynamicreports.test.jasper.AbstractJasperValueTest;
-import net.sf.jasperreports.engine.JRDataSource;
-
-import java.io.Serializable;
-
 import static software.xdev.dynamicreports.report.builder.DynamicReports.cmp;
 import static software.xdev.dynamicreports.report.builder.DynamicReports.field;
 import static software.xdev.dynamicreports.report.builder.DynamicReports.type;
 
-/**
- * @author Ricardo Mariaca
- */
-public class TextField5Test extends AbstractJasperValueTest implements Serializable {
-    private static final long serialVersionUID = 1L;
+import java.io.Serializable;
 
-    @Override
-    protected void configureReport(JasperReportBuilder rb) {
-        rb.detail(cmp.horizontalList(cmp.text(field("field1", type.stringType())).setPrintRepeatedValues(false).setPrintInFirstWholeBand(true), cmp.text(field("field2", type.integerType()))));
-    }
+import net.sf.jasperreports.engine.JRDataSource;
+import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
+import software.xdev.dynamicreports.report.datasource.DRDataSource;
+import software.xdev.dynamicreports.test.jasper.AbstractJasperValueTest;
 
-    @Override
-    public void test() {
-        super.test();
 
-        numberOfPagesTest(2);
-        // textField1
-        elementCountTest("detail.textField1", 3);
-        elementValueTest("detail.textField1", "test1", "test2", "test2");
-        // textField2
-        elementCountTest("detail.textField2", 60);
-        elementValueTest("detail.textField2", 0, "0");
-    }
+public class TextField5Test extends AbstractJasperValueTest implements Serializable
+{
 
-    @Override
-    protected JRDataSource createDataSource() {
-        DRDataSource dataSource = new DRDataSource("field1", "field2");
-        for (int i = 0; i < 30; i++) {
-            dataSource.add("test1", i);
-        }
-        for (int i = 0; i < 30; i++) {
-            dataSource.add("test2", i);
-        }
-        return dataSource;
-    }
+	@Override
+	protected void configureReport(final JasperReportBuilder rb)
+	{
+		rb.detail(cmp.horizontalList(cmp.text(field("field1", type.stringType()))
+			.setPrintRepeatedValues(false)
+			.setPrintInFirstWholeBand(true), cmp.text(field("field2", type.integerType()))));
+	}
+	
+	@Override
+	public void test()
+	{
+		super.test();
+		
+		this.numberOfPagesTest(2);
+		// textField1
+		this.elementCountTest("detail.textField1", 3);
+		this.elementValueTest("detail.textField1", "test1", "test2", "test2");
+		// textField2
+		this.elementCountTest("detail.textField2", 60);
+		this.elementValueTest("detail.textField2", 0, "0");
+	}
+	
+	@Override
+	protected JRDataSource createDataSource()
+	{
+		final DRDataSource dataSource = new DRDataSource("field1", "field2");
+		for(int i = 0; i < 30; i++)
+		{
+			dataSource.add("test1", i);
+		}
+		for(int i = 0; i < 30; i++)
+		{
+			dataSource.add("test2", i);
+		}
+		return dataSource;
+	}
 }

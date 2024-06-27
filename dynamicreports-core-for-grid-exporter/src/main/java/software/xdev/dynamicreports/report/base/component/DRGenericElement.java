@@ -17,101 +17,73 @@
  */
 package software.xdev.dynamicreports.report.base.component;
 
-import software.xdev.dynamicreports.report.constant.Constants;
-import software.xdev.dynamicreports.report.definition.component.DRIGenericElement;
-import software.xdev.dynamicreports.report.definition.expression.DRIParameterExpression;
-import org.apache.commons.lang3.Validate;
-
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * <p>DRGenericElement class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class DRGenericElement extends DRDimensionComponent implements DRIGenericElement {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
+import org.apache.commons.lang3.Validate;
 
-    private String genericElementNamespace;
-    private String genericElementName;
-    private List<DRIParameterExpression> parameterExpressions;
+import software.xdev.dynamicreports.report.definition.component.DRIGenericElement;
+import software.xdev.dynamicreports.report.definition.expression.DRIParameterExpression;
 
-    /**
-     * <p>Constructor for DRGenericElement.</p>
-     *
-     * @param namespace a {@link java.lang.String} object.
-     * @param namespace a {@link java.lang.String} object.
-     * @param name      a {@link java.lang.String} object.
-     */
-    public DRGenericElement(String namespace, String name) {
-        Validate.notEmpty(namespace, "namespace must not be empty");
-        Validate.notEmpty(name, "name must not be empty");
-        genericElementNamespace = namespace;
-        genericElementName = name;
-    }
 
-    /** {@inheritDoc} */
-    @Override
-    protected void init() {
-        super.init();
-        parameterExpressions = new ArrayList<DRIParameterExpression>();
-    }
+public class DRGenericElement extends DRDimensionComponent implements DRIGenericElement
+{
 
-    /** {@inheritDoc} */
-    @Override
-    public String getGenericElementNamespace() {
-        return genericElementNamespace;
-    }
-
-    /**
-     * <p>Setter for the field <code>genericElementNamespace</code>.</p>
-     *
-     * @param genericElementNamespace a {@link java.lang.String} object.
-     */
-    public void setGenericElementNamespace(String genericElementNamespace) {
-        this.genericElementNamespace = genericElementNamespace;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public String getGenericElementName() {
-        return genericElementName;
-    }
-
-    /**
-     * <p>Setter for the field <code>genericElementName</code>.</p>
-     *
-     * @param genericElementName a {@link java.lang.String} object.
-     */
-    public void setGenericElementName(String genericElementName) {
-        this.genericElementName = genericElementName;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public List<DRIParameterExpression> getParameterExpressions() {
-        return parameterExpressions;
-    }
-
-    /**
-     * <p>Setter for the field <code>parameterExpressions</code>.</p>
-     *
-     * @param parameterExpressions a {@link java.util.List} object.
-     */
-    public void setParameterExpressions(List<DRIParameterExpression> parameterExpressions) {
-        this.parameterExpressions = parameterExpressions;
-    }
-
-    /**
-     * <p>addParameterExpression.</p>
-     *
-     * @param parameterExpression a {@link software.xdev.dynamicreports.report.definition.expression.DRIParameterExpression} object.
-     */
-    public void addParameterExpression(DRIParameterExpression parameterExpression) {
-        Validate.notNull(parameterExpression, "parameterExpression must not be null");
-        this.parameterExpressions.add(parameterExpression);
-    }
-
+	private String genericElementNamespace;
+	private String genericElementName;
+	private List<DRIParameterExpression> parameterExpressions;
+	
+	public DRGenericElement(final String namespace, final String name)
+	{
+		Validate.notEmpty(namespace, "namespace must not be empty");
+		Validate.notEmpty(name, "name must not be empty");
+		this.genericElementNamespace = namespace;
+		this.genericElementName = name;
+	}
+	
+	@Override
+	protected void init()
+	{
+		super.init();
+		this.parameterExpressions = new ArrayList<>();
+	}
+	
+	@Override
+	public String getGenericElementNamespace()
+	{
+		return this.genericElementNamespace;
+	}
+	
+	public void setGenericElementNamespace(final String genericElementNamespace)
+	{
+		this.genericElementNamespace = genericElementNamespace;
+	}
+	
+	@Override
+	public String getGenericElementName()
+	{
+		return this.genericElementName;
+	}
+	
+	public void setGenericElementName(final String genericElementName)
+	{
+		this.genericElementName = genericElementName;
+	}
+	
+	@Override
+	public List<DRIParameterExpression> getParameterExpressions()
+	{
+		return this.parameterExpressions;
+	}
+	
+	public void setParameterExpressions(final List<DRIParameterExpression> parameterExpressions)
+	{
+		this.parameterExpressions = parameterExpressions;
+	}
+	
+	public void addParameterExpression(final DRIParameterExpression parameterExpression)
+	{
+		Validate.notNull(parameterExpression, "parameterExpression must not be null");
+		this.parameterExpressions.add(parameterExpression);
+	}
 }

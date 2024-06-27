@@ -17,12 +17,7 @@
  */
 package software.xdev.dynamicreports.report.constant;
 
-/**
- * <p>ScaleType class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public enum ScaleType {
-    ON_BOTH_AXES, ON_DOMAIN_AXIS, ON_RANGE_AXIS
+public enum ScaleType
+{
+	ON_BOTH_AXES, ON_DOMAIN_AXIS, ON_RANGE_AXIS
 }

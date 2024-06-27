@@ -23,10 +23,6 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Assertions;
 
-import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
-import software.xdev.dynamicreports.report.builder.component.ImageBuilder;
-import software.xdev.dynamicreports.report.constant.HorizontalImageAlignment;
-import software.xdev.dynamicreports.test.jasper.AbstractJasperTest;
 import net.sf.jasperreports.engine.DefaultJasperReportsContext;
 import net.sf.jasperreports.engine.JRDataSource;
 import net.sf.jasperreports.engine.JREmptyDataSource;
@@ -34,11 +30,12 @@ import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JRPrintImage;
 import net.sf.jasperreports.engine.type.HorizontalImageAlignEnum;
 import net.sf.jasperreports.renderers.SimpleDataRenderer;
+import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
+import software.xdev.dynamicreports.report.builder.component.ImageBuilder;
+import software.xdev.dynamicreports.report.constant.HorizontalImageAlignment;
+import software.xdev.dynamicreports.test.jasper.AbstractJasperTest;
 
 
-/**
- * @author Ricardo Mariaca
- */
 class Image2Test extends AbstractJasperTest
 {
 	
@@ -54,8 +51,8 @@ class Image2Test extends AbstractJasperTest
 	public void test()
 	{
 		super.test();
-        
-        this.numberOfPagesTest(2);
+		
+		this.numberOfPagesTest(2);
 		
 		try
 		{

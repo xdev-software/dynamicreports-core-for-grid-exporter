@@ -17,41 +17,27 @@
  */
 package software.xdev.dynamicreports.report.builder.expression;
 
-import software.xdev.dynamicreports.report.constant.Constants;
-import software.xdev.dynamicreports.report.definition.expression.DRIExpression;
 import net.sf.jasperreports.engine.JRDataSource;
 import net.sf.jasperreports.engine.data.JRMapArrayDataSource;
+import software.xdev.dynamicreports.report.definition.expression.DRIExpression;
 
-/**
- * <p>MapArraySubDatasourceExpression class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class MapArraySubDatasourceExpression extends AbstractSubDatasourceExpression<Object[]> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    /**
-     * <p>Constructor for MapArraySubDatasourceExpression.</p>
-     *
-     * @param fieldName a {@link java.lang.String} object.
-     */
-    public MapArraySubDatasourceExpression(String fieldName) {
-        super(fieldName);
-    }
+public class MapArraySubDatasourceExpression extends AbstractSubDatasourceExpression<Object[]>
+{
 
-    /**
-     * <p>Constructor for MapArraySubDatasourceExpression.</p>
-     *
-     * @param expression a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     */
-    public MapArraySubDatasourceExpression(DRIExpression<? extends Object[]> expression) {
-        super(expression);
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    protected JRDataSource createSubDatasource(Object[] data) {
-        return new JRMapArrayDataSource(data);
-    }
+	public MapArraySubDatasourceExpression(final String fieldName)
+	{
+		super(fieldName);
+	}
+	
+	public MapArraySubDatasourceExpression(final DRIExpression<? extends Object[]> expression)
+	{
+		super(expression);
+	}
+	
+	@Override
+	protected JRDataSource createSubDatasource(final Object[] data)
+	{
+		return new JRMapArrayDataSource(data);
+	}
 }

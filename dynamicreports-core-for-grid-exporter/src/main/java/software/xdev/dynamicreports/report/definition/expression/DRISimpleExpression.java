@@ -20,19 +20,8 @@ package software.xdev.dynamicreports.report.definition.expression;
 import software.xdev.dynamicreports.report.definition.DRIValue;
 import software.xdev.dynamicreports.report.definition.ReportParameters;
 
-/**
- * The basic and the simplest implementation of an expression.
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface DRISimpleExpression<T> extends DRIValue<T>, DRIExpression<T> {
 
-    /**
-     * Evaluates the expression.
-     *
-     * @param reportParameters access to report fields, variables, parameters, expressions, and other report values
-     * @return the result of the expression evaluation
-     */
-    public T evaluate(ReportParameters reportParameters);
+public interface DRISimpleExpression<T> extends DRIValue<T>, DRIExpression<T>
+{
+	public T evaluate(ReportParameters reportParameters);
 }

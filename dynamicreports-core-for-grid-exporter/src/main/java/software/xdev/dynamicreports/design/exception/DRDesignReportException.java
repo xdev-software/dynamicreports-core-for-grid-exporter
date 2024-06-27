@@ -17,33 +17,16 @@
  */
 package software.xdev.dynamicreports.design.exception;
 
-import software.xdev.dynamicreports.report.constant.Constants;
+public class DRDesignReportException extends RuntimeException
+{
 
-/**
- * <p>DRDesignReportException class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class DRDesignReportException extends RuntimeException {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
-
-    /**
-     * <p>Constructor for DRDesignReportException.</p>
-     *
-     * @param message a {@link java.lang.String} object.
-     */
-    public DRDesignReportException(String message) {
-        super(message);
-    }
-
-    /**
-     * <p>Constructor for DRDesignReportException.</p>
-     *
-     * @param message a {@link java.lang.String} object.
-     * @param cause   a {@link java.lang.Throwable} object.
-     */
-    public DRDesignReportException(String message, Throwable cause) {
-        super(message, cause);
-    }
+	public DRDesignReportException(final String message)
+	{
+		super(message);
+	}
+	
+	public DRDesignReportException(final String message, final Throwable cause)
+	{
+		super(message, cause);
+	}
 }

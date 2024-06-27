@@ -17,66 +17,47 @@
  */
 package software.xdev.dynamicreports.report.base;
 
-import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.definition.DRITableOfContentsHeading;
 import software.xdev.dynamicreports.report.definition.expression.DRIExpression;
 
-/**
- * <p>DRTableOfContentsHeading class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class DRTableOfContentsHeading implements DRITableOfContentsHeading {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    private DRTableOfContentsHeading parentHeading;
-    private DRIExpression<String> labelExpression;
-    private DRIExpression<?> customValueExpression;
+public class DRTableOfContentsHeading implements DRITableOfContentsHeading
+{
 
-    /** {@inheritDoc} */
-    @Override
-    public DRTableOfContentsHeading getParentHeading() {
-        return parentHeading;
-    }
-
-    /**
-     * <p>Setter for the field <code>parentHeading</code>.</p>
-     *
-     * @param parentHeading a {@link software.xdev.dynamicreports.report.base.DRTableOfContentsHeading} object.
-     */
-    public void setParentHeading(DRTableOfContentsHeading parentHeading) {
-        this.parentHeading = parentHeading;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRIExpression<String> getLabelExpression() {
-        return labelExpression;
-    }
-
-    /**
-     * <p>Setter for the field <code>labelExpression</code>.</p>
-     *
-     * @param labelExpression a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     */
-    public void setLabelExpression(DRIExpression<String> labelExpression) {
-        this.labelExpression = labelExpression;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRIExpression<?> getCustomValueExpression() {
-        return customValueExpression;
-    }
-
-    /**
-     * <p>Setter for the field <code>customValueExpression</code>.</p>
-     *
-     * @param customValueExpression a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     */
-    public void setCustomValueExpression(DRIExpression<?> customValueExpression) {
-        this.customValueExpression = customValueExpression;
-    }
-
+	private DRTableOfContentsHeading parentHeading;
+	private DRIExpression<String> labelExpression;
+	private DRIExpression<?> customValueExpression;
+	
+	@Override
+	public DRTableOfContentsHeading getParentHeading()
+	{
+		return this.parentHeading;
+	}
+	
+	public void setParentHeading(final DRTableOfContentsHeading parentHeading)
+	{
+		this.parentHeading = parentHeading;
+	}
+	
+	@Override
+	public DRIExpression<String> getLabelExpression()
+	{
+		return this.labelExpression;
+	}
+	
+	public void setLabelExpression(final DRIExpression<String> labelExpression)
+	{
+		this.labelExpression = labelExpression;
+	}
+	
+	@Override
+	public DRIExpression<?> getCustomValueExpression()
+	{
+		return this.customValueExpression;
+	}
+	
+	public void setCustomValueExpression(final DRIExpression<?> customValueExpression)
+	{
+		this.customValueExpression = customValueExpression;
+	}
 }

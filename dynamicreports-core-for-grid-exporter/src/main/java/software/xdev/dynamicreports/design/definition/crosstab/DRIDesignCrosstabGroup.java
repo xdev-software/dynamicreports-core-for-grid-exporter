@@ -17,73 +17,29 @@
  */
 package software.xdev.dynamicreports.design.definition.crosstab;
 
+import java.io.Serializable;
+
 import software.xdev.dynamicreports.design.definition.expression.DRIDesignExpression;
 import software.xdev.dynamicreports.report.constant.CrosstabTotalPosition;
 import software.xdev.dynamicreports.report.constant.OrderType;
 
-import java.io.Serializable;
 
-/**
- * <p>DRIDesignCrosstabGroup interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface DRIDesignCrosstabGroup extends Serializable {
-
-    /**
-     * <p>getName.</p>
-     *
-     * @return a {@link java.lang.String} object.
-     */
-    public String getName();
-
-    /**
-     * <p>getTotalPosition.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.constant.CrosstabTotalPosition} object.
-     */
-    public CrosstabTotalPosition getTotalPosition();
-
-    /**
-     * <p>getOrderType.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.constant.OrderType} object.
-     */
-    public OrderType getOrderType();
-
-    /**
-     * <p>getExpression.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.design.definition.expression.DRIDesignExpression} object.
-     */
-    public DRIDesignExpression getExpression();
-
-    /**
-     * <p>getOrderByExpression.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.design.definition.expression.DRIDesignExpression} object.
-     */
-    public DRIDesignExpression getOrderByExpression();
-
-    /**
-     * <p>getComparatorExpression.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.design.definition.expression.DRIDesignExpression} object.
-     */
-    public DRIDesignExpression getComparatorExpression();
-
-    /**
-     * <p>getHeader.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.design.definition.crosstab.DRIDesignCrosstabCellContent} object.
-     */
-    public DRIDesignCrosstabCellContent getHeader();
-
-    /**
-     * <p>getTotalHeader.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.design.definition.crosstab.DRIDesignCrosstabCellContent} object.
-     */
-    public DRIDesignCrosstabCellContent getTotalHeader();
+public interface DRIDesignCrosstabGroup extends Serializable
+{
+	
+	public String getName();
+	
+	public CrosstabTotalPosition getTotalPosition();
+	
+	public OrderType getOrderType();
+	
+	public DRIDesignExpression getExpression();
+	
+	public DRIDesignExpression getOrderByExpression();
+	
+	public DRIDesignExpression getComparatorExpression();
+	
+	public DRIDesignCrosstabCellContent getHeader();
+	
+	public DRIDesignCrosstabCellContent getTotalHeader();
 }

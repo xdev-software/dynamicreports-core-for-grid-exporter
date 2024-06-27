@@ -17,44 +17,20 @@
  */
 package software.xdev.dynamicreports.design.definition.crosstab;
 
+import java.io.Serializable;
+
 import software.xdev.dynamicreports.design.definition.component.DRIDesignComponent;
 import software.xdev.dynamicreports.design.definition.style.DRIDesignStyle;
 
-import java.io.Serializable;
 
-/**
- * <p>DRIDesignCrosstabCellContent interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface DRIDesignCrosstabCellContent extends Serializable {
-
-    /**
-     * <p>getWidth.</p>
-     *
-     * @return a int.
-     */
-    public int getWidth();
-
-    /**
-     * <p>getHeight.</p>
-     *
-     * @return a int.
-     */
-    public int getHeight();
-
-    /**
-     * <p>getComponent.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.design.definition.component.DRIDesignComponent} object.
-     */
-    public DRIDesignComponent getComponent();
-
-    /**
-     * <p>getStyle.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.design.definition.style.DRIDesignStyle} object.
-     */
-    public DRIDesignStyle getStyle();
+public interface DRIDesignCrosstabCellContent extends Serializable
+{
+	
+	public int getWidth();
+	
+	public int getHeight();
+	
+	public DRIDesignComponent getComponent();
+	
+	public DRIDesignStyle getStyle();
 }

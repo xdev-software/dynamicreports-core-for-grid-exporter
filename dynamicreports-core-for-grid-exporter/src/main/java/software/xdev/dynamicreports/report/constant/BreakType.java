@@ -17,12 +17,7 @@
  */
 package software.xdev.dynamicreports.report.constant;
 
-/**
- * <p>BreakType class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public enum BreakType {
-    PAGE, COLUMN
+public enum BreakType
+{
+	PAGE, COLUMN
 }

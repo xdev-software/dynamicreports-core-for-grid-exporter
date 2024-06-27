@@ -19,135 +19,47 @@ package software.xdev.dynamicreports.jasper.transformation;
 
 import java.util.Map;
 
+import net.sf.jasperreports.engine.design.JasperDesign;
 import software.xdev.dynamicreports.design.definition.DRIDesignDataset;
 import software.xdev.dynamicreports.design.definition.DRIDesignReport;
 import software.xdev.dynamicreports.jasper.base.JasperCustomValues;
 import software.xdev.dynamicreports.report.definition.ReportParameters;
-import net.sf.jasperreports.engine.design.JasperDesign;
 
-/**
- * <p>JasperTransformAccessor interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface JasperTransformAccessor {
 
-    /**
-     * <p>getReport.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.design.definition.DRIDesignReport} object.
-     */
-    public DRIDesignReport getReport();
-
-    /**
-     * <p>getDesign.</p>
-     *
-     * @return a {@link net.sf.jasperreports.engine.design.JasperDesign} object.
-     */
-    public JasperDesign getDesign();
-
-    /**
-     * <p>getCustomValues.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.jasper.base.JasperCustomValues} object.
-     */
-    public JasperCustomValues getCustomValues();
-
-    /**
-     * <p>getParameters.</p>
-     *
-     * @return a {@link java.util.Map} object.
-     */
-    public Map<String, Object> getParameters();
-
-    /**
-     * <p>getParameterValues.</p>
-     *
-     * @return a {@link java.util.Map} object.
-     */
-    public Map<String, Object> getParameterValues();
-
-    /**
-     * <p>getStartPageNumber.</p>
-     *
-     * @return a {@link java.lang.Integer} object.
-     */
-    public Integer getStartPageNumber();
-
-    /**
-     * <p>getMasterReportParameters.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.definition.ReportParameters} object.
-     */
-    public ReportParameters getMasterReportParameters();
-
-    /**
-     * <p>getReportTransform.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.jasper.transformation.ReportTransform} object.
-     */
-    public ReportTransform getReportTransform();
-
-    /**
-     * <p>transformToMainDataset.</p>
-     */
-    public void transformToMainDataset();
-
-    /**
-     * <p>transformToDataset.</p>
-     *
-     * @param dataset a {@link software.xdev.dynamicreports.design.definition.DRIDesignDataset} object.
-     */
-    public void transformToDataset(DRIDesignDataset dataset);
-
-    /**
-     * <p>getExpressionTransform.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.jasper.transformation.AbstractExpressionTransform} object.
-     */
-    public AbstractExpressionTransform getExpressionTransform();
-
-    /**
-     * <p>getExpressionTransform.</p>
-     *
-     * @param dataset a {@link software.xdev.dynamicreports.design.definition.DRIDesignDataset} object.
-     * @return a {@link software.xdev.dynamicreports.jasper.transformation.AbstractExpressionTransform} object.
-     */
-    public AbstractExpressionTransform getExpressionTransform(DRIDesignDataset dataset);
-
-    /**
-     * <p>getGroupTransform.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.jasper.transformation.GroupTransform} object.
-     */
-    public GroupTransform getGroupTransform();
-
-    /**
-     * <p>getComponentTransform.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.jasper.transformation.ComponentTransform} object.
-     */
-    public ComponentTransform getComponentTransform();
-
-    /**
-     * <p>getStyleTransform.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.jasper.transformation.StyleTransform} object.
-     */
-    public StyleTransform getStyleTransform();
-
-    /**
-     * <p>getCrosstabTransform.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.jasper.transformation.CrosstabTransform} object.
-     */
-    public CrosstabTransform getCrosstabTransform();
-
-    /**
-     * <p>getDatasetTransform.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.jasper.transformation.DatasetTransform} object.
-     */
-    public DatasetTransform getDatasetTransform();
+public interface JasperTransformAccessor
+{
+	
+	public DRIDesignReport getReport();
+	
+	public JasperDesign getDesign();
+	
+	public JasperCustomValues getCustomValues();
+	
+	public Map<String, Object> getParameters();
+	
+	public Map<String, Object> getParameterValues();
+	
+	public Integer getStartPageNumber();
+	
+	public ReportParameters getMasterReportParameters();
+	
+	public ReportTransform getReportTransform();
+	
+	public void transformToMainDataset();
+	
+	public void transformToDataset(DRIDesignDataset dataset);
+	
+	public AbstractExpressionTransform getExpressionTransform();
+	
+	public AbstractExpressionTransform getExpressionTransform(DRIDesignDataset dataset);
+	
+	public GroupTransform getGroupTransform();
+	
+	public ComponentTransform getComponentTransform();
+	
+	public StyleTransform getStyleTransform();
+	
+	public CrosstabTransform getCrosstabTransform();
+	
+	public DatasetTransform getDatasetTransform();
 }

@@ -17,57 +17,23 @@
  */
 package software.xdev.dynamicreports.design.definition;
 
-import software.xdev.dynamicreports.design.definition.expression.DRIDesignExpression;
-
 import java.io.Serializable;
 
-/**
- * <p>DRIDesignHyperLink interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface DRIDesignHyperLink extends Serializable {
+import software.xdev.dynamicreports.design.definition.expression.DRIDesignExpression;
 
-    /**
-     * <p>getAnchorExpression.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.design.definition.expression.DRIDesignExpression} object.
-     */
-    public DRIDesignExpression getAnchorExpression();
 
-    /**
-     * <p>getPageExpression.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.design.definition.expression.DRIDesignExpression} object.
-     */
-    public DRIDesignExpression getPageExpression();
-
-    /**
-     * <p>getReferenceExpression.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.design.definition.expression.DRIDesignExpression} object.
-     */
-    public DRIDesignExpression getReferenceExpression();
-
-    /**
-     * <p>getTooltipExpression.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.design.definition.expression.DRIDesignExpression} object.
-     */
-    public DRIDesignExpression getTooltipExpression();
-
-    /**
-     * <p>getType.</p>
-     *
-     * @return a {@link java.lang.String} object.
-     */
-    public String getType();
-
-    /**
-     * <p>getTarget.</p>
-     *
-     * @return a {@link java.lang.String} object.
-     */
-    public String getTarget();
+public interface DRIDesignHyperLink extends Serializable
+{
+	
+	public DRIDesignExpression getAnchorExpression();
+	
+	public DRIDesignExpression getPageExpression();
+	
+	public DRIDesignExpression getReferenceExpression();
+	
+	public DRIDesignExpression getTooltipExpression();
+	
+	public String getType();
+	
+	public String getTarget();
 }

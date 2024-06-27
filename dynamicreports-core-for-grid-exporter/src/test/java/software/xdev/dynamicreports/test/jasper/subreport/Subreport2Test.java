@@ -17,6 +17,15 @@
  */
 package software.xdev.dynamicreports.test.jasper.subreport;
 
+import static software.xdev.dynamicreports.report.builder.DynamicReports.cmp;
+import static software.xdev.dynamicreports.report.builder.DynamicReports.col;
+import static software.xdev.dynamicreports.report.builder.DynamicReports.report;
+import static software.xdev.dynamicreports.report.builder.DynamicReports.type;
+
+import java.io.Serializable;
+
+import net.sf.jasperreports.engine.JRDataSource;
+import net.sf.jasperreports.engine.JREmptyDataSource;
 import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
 import software.xdev.dynamicreports.report.base.expression.AbstractSimpleExpression;
 import software.xdev.dynamicreports.report.builder.column.TextColumnBuilder;
@@ -24,101 +33,103 @@ import software.xdev.dynamicreports.report.builder.component.SubreportBuilder;
 import software.xdev.dynamicreports.report.datasource.DRDataSource;
 import software.xdev.dynamicreports.report.definition.ReportParameters;
 import software.xdev.dynamicreports.test.jasper.AbstractJasperValueTest;
-import net.sf.jasperreports.engine.JRDataSource;
-import net.sf.jasperreports.engine.JREmptyDataSource;
 
-import java.io.Serializable;
 
-import static software.xdev.dynamicreports.report.builder.DynamicReports.cmp;
-import static software.xdev.dynamicreports.report.builder.DynamicReports.col;
-import static software.xdev.dynamicreports.report.builder.DynamicReports.report;
-import static software.xdev.dynamicreports.report.builder.DynamicReports.type;
+public class Subreport2Test extends AbstractJasperValueTest implements Serializable
+{
 
-/**
- * @author Ricardo Mariaca
- */
-public class Subreport2Test extends AbstractJasperValueTest implements Serializable {
-    private static final long serialVersionUID = 1L;
+	private TextColumnBuilder<String> column1;
+	private TextColumnBuilder<String> column2;
+	
+	@Override
+	protected void configureReport(final JasperReportBuilder rb)
+	{
+		final SubreportBuilder detailSubreport =
+			cmp.subreport(this.detailSubreport()).setDataSource(new SubreportDataSourceExpression());
+		
+		rb.title(cmp.subreport(this.titleSubreport())).detail(detailSubreport);
+	}
+	
+	@Override
+	public void test()
+	{
+		super.test();
+		
+		this.numberOfPagesTest(1);
+		
+		// title subreport
+		this.columnDetailCountTest(this.column1, 3);
+		this.columnDetailValueTest(this.column1, "value1", "value2", "value3");
+		
+		// detail subreport
+		this.elementCountTest("title.textField1", 3);
+		this.elementValueTest("title.textField1", "Subreport1", "Subreport2", "Subreport3");
+		
+		this.columnDetailCountTest(this.column2, 6);
+		this.columnDetailValueTest(this.column2, "1_1", "1_2", "2_1", "2_2", "3_1", "3_2");
+	}
+	
+	@Override
+	protected JRDataSource createDataSource()
+	{
+		return new JREmptyDataSource(3);
+	}
+	
+	private JasperReportBuilder titleSubreport()
+	{
+		final JasperReportBuilder report = report();
+		this.column1 = col.column("Column1", "field1", type.stringType());
+		report.columns(this.column1).setDataSource(this.titleSubreportDataSource());
+		return report;
+	}
+	
+	private JasperReportBuilder detailSubreport()
+	{
+		final JasperReportBuilder report = report();
+		this.column2 = col.column(new ValueExpression());
+		report.columns(this.column2).title(cmp.text(new SubreportTitleExpression()));
+		return report;
+	}
+	
+	private JRDataSource titleSubreportDataSource()
+	{
+		final DRDataSource dataSource = new DRDataSource("field1");
+		dataSource.add("value1");
+		dataSource.add("value2");
+		dataSource.add("value3");
+		return dataSource;
+	}
+	
+	static class SubreportDataSourceExpression extends AbstractSimpleExpression<JRDataSource>
+	{
 
-    private TextColumnBuilder<String> column1;
-    private TextColumnBuilder<String> column2;
+		@Override
+		public JRDataSource evaluate(final ReportParameters reportParameters)
+		{
+			return new JREmptyDataSource(2);
+		}
+	}
+	
+	
+	static class SubreportTitleExpression extends AbstractSimpleExpression<String>
+	{
 
-    @Override
-    protected void configureReport(JasperReportBuilder rb) {
-        SubreportBuilder detailSubreport = cmp.subreport(detailSubreport()).setDataSource(new SubreportDataSourceExpression());
+		@Override
+		public String evaluate(final ReportParameters reportParameters)
+		{
+			return "Subreport" + reportParameters.getMasterParameters().getReportRowNumber();
+		}
+	}
+	
+	
+	static class ValueExpression extends AbstractSimpleExpression<String>
+	{
 
-        rb.title(cmp.subreport(titleSubreport())).detail(detailSubreport);
-    }
-
-    @Override
-    public void test() {
-        super.test();
-
-        numberOfPagesTest(1);
-
-        // title subreport
-        columnDetailCountTest(column1, 3);
-        columnDetailValueTest(column1, "value1", "value2", "value3");
-
-        // detail subreport
-        elementCountTest("title.textField1", 3);
-        elementValueTest("title.textField1", "Subreport1", "Subreport2", "Subreport3");
-
-        columnDetailCountTest(column2, 6);
-        columnDetailValueTest(column2, "1_1", "1_2", "2_1", "2_2", "3_1", "3_2");
-    }
-
-    @Override
-    protected JRDataSource createDataSource() {
-        return new JREmptyDataSource(3);
-    }
-
-    private JasperReportBuilder titleSubreport() {
-        JasperReportBuilder report = report();
-        column1 = col.column("Column1", "field1", type.stringType());
-        report.columns(column1).setDataSource(titleSubreportDataSource());
-        return report;
-    }
-
-    private JasperReportBuilder detailSubreport() {
-        JasperReportBuilder report = report();
-        column2 = col.column(new ValueExpression());
-        report.columns(column2).title(cmp.text(new SubreportTitleExpression()));
-        return report;
-    }
-
-    private JRDataSource titleSubreportDataSource() {
-        DRDataSource dataSource = new DRDataSource("field1");
-        dataSource.add("value1");
-        dataSource.add("value2");
-        dataSource.add("value3");
-        return dataSource;
-    }
-
-    private class SubreportDataSourceExpression extends AbstractSimpleExpression<JRDataSource> {
-        private static final long serialVersionUID = 1L;
-
-        @Override
-        public JRDataSource evaluate(ReportParameters reportParameters) {
-            return new JREmptyDataSource(2);
-        }
-    }
-
-    private class SubreportTitleExpression extends AbstractSimpleExpression<String> {
-        private static final long serialVersionUID = 1L;
-
-        @Override
-        public String evaluate(ReportParameters reportParameters) {
-            return "Subreport" + reportParameters.getMasterParameters().getReportRowNumber();
-        }
-    }
-
-    private class ValueExpression extends AbstractSimpleExpression<String> {
-        private static final long serialVersionUID = 1L;
-
-        @Override
-        public String evaluate(ReportParameters reportParameters) {
-            return reportParameters.getMasterParameters().getReportRowNumber() + "_" + reportParameters.getReportRowNumber();
-        }
-    }
+		@Override
+		public String evaluate(final ReportParameters reportParameters)
+		{
+			return reportParameters.getMasterParameters().getReportRowNumber() + "_"
+				+ reportParameters.getReportRowNumber();
+		}
+	}
 }

@@ -17,11 +17,6 @@
  */
 package software.xdev.dynamicreports.report.definition.expression;
 
-/**
- * <p>DRISystemExpression interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface DRISystemExpression<T> extends DRIExpression<T> {
+public interface DRISystemExpression<T> extends DRIExpression<T>
+{
 }

@@ -17,24 +17,18 @@
  */
 package software.xdev.dynamicreports.jasper.base.templatedesign;
 
-import software.xdev.dynamicreports.report.base.AbstractTemplateDesign;
-import software.xdev.dynamicreports.report.constant.Constants;
-import software.xdev.dynamicreports.report.exception.DRException;
 import net.sf.jasperreports.engine.design.JasperDesign;
+import software.xdev.dynamicreports.report.base.AbstractTemplateDesign;
+import software.xdev.dynamicreports.report.exception.DRException;
 
-/**
- * <p>JasperEmptyTemplateDesign class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class JasperEmptyTemplateDesign extends AbstractTemplateDesign<JasperDesign> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    /** {@inheritDoc} */
-    @Override
-    public JasperDesign getDesign() throws DRException {
-        JasperDesign design = new JasperDesign();
-        return design;
-    }
+public class JasperEmptyTemplateDesign extends AbstractTemplateDesign<JasperDesign>
+{
+
+	@Override
+	public JasperDesign getDesign() throws DRException
+	{
+		final JasperDesign design = new JasperDesign();
+		return design;
+	}
 }

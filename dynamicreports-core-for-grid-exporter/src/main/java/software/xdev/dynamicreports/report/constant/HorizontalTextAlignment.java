@@ -17,12 +17,7 @@
  */
 package software.xdev.dynamicreports.report.constant;
 
-/**
- * <p>HorizontalTextAlignment class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public enum HorizontalTextAlignment {
-    LEFT, CENTER, RIGHT, JUSTIFIED
+public enum HorizontalTextAlignment
+{
+	LEFT, CENTER, RIGHT, JUSTIFIED
 }

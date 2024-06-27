@@ -17,6 +17,14 @@
  */
 package software.xdev.dynamicreports.test.jasper.component;
 
+import static software.xdev.dynamicreports.report.builder.DynamicReports.cmp;
+import static software.xdev.dynamicreports.report.builder.DynamicReports.col;
+import static software.xdev.dynamicreports.report.builder.DynamicReports.type;
+import static software.xdev.dynamicreports.report.builder.DynamicReports.variable;
+
+import java.io.Serializable;
+
+import net.sf.jasperreports.engine.JRDataSource;
 import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
 import software.xdev.dynamicreports.report.base.expression.AbstractSimpleExpression;
 import software.xdev.dynamicreports.report.builder.VariableBuilder;
@@ -26,52 +34,48 @@ import software.xdev.dynamicreports.report.constant.Evaluation;
 import software.xdev.dynamicreports.report.datasource.DRDataSource;
 import software.xdev.dynamicreports.report.definition.ReportParameters;
 import software.xdev.dynamicreports.test.jasper.AbstractJasperValueTest;
-import net.sf.jasperreports.engine.JRDataSource;
 
-import java.io.Serializable;
 
-import static software.xdev.dynamicreports.report.builder.DynamicReports.cmp;
-import static software.xdev.dynamicreports.report.builder.DynamicReports.col;
-import static software.xdev.dynamicreports.report.builder.DynamicReports.type;
-import static software.xdev.dynamicreports.report.builder.DynamicReports.variable;
+public class TextField4Test extends AbstractJasperValueTest implements Serializable
+{
 
-/**
- * @author Ricardo Mariaca
- */
-public class TextField4Test extends AbstractJasperValueTest implements Serializable {
-    private static final long serialVersionUID = 1L;
+	@Override
+	protected void configureReport(final JasperReportBuilder rb)
+	{
+		final TextColumnBuilder<Integer> column1 = col.column("Column1", "field1", type.integerType());
+		final VariableBuilder<Integer> variable1 = variable("variable1", column1, Calculation.SUM);
+		
+		rb.columns(column1)
+			.variables(variable1)
+			.title(cmp.text(new TextExpression()).setEvaluationTime(Evaluation.REPORT));
+	}
+	
+	@Override
+	public void test()
+	{
+		super.test();
+		
+		this.numberOfPagesTest(1);
+		
+		this.elementValueTest("title.textField1", 0, "sum = 14");
+	}
+	
+	@Override
+	protected JRDataSource createDataSource()
+	{
+		final DRDataSource dataSource = new DRDataSource("field1");
+		dataSource.add(5);
+		dataSource.add(9);
+		return dataSource;
+	}
+	
+	static class TextExpression extends AbstractSimpleExpression<String>
+	{
 
-    @Override
-    protected void configureReport(JasperReportBuilder rb) {
-        TextColumnBuilder<Integer> column1 = col.column("Column1", "field1", type.integerType());
-        VariableBuilder<Integer> variable1 = variable("variable1", column1, Calculation.SUM);
-
-        rb.columns(column1).variables(variable1).title(cmp.text(new TextExpression()).setEvaluationTime(Evaluation.REPORT));
-    }
-
-    @Override
-    public void test() {
-        super.test();
-
-        numberOfPagesTest(1);
-
-        elementValueTest("title.textField1", 0, "sum = 14");
-    }
-
-    @Override
-    protected JRDataSource createDataSource() {
-        DRDataSource dataSource = new DRDataSource("field1");
-        dataSource.add(5);
-        dataSource.add(9);
-        return dataSource;
-    }
-
-    private class TextExpression extends AbstractSimpleExpression<String> {
-        private static final long serialVersionUID = 1L;
-
-        @Override
-        public String evaluate(ReportParameters reportParameters) {
-            return "sum = " + reportParameters.getValue("variable1");
-        }
-    }
+		@Override
+		public String evaluate(final ReportParameters reportParameters)
+		{
+			return "sum = " + reportParameters.getValue("variable1");
+		}
+	}
 }

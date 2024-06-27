@@ -17,6 +17,12 @@
  */
 package software.xdev.dynamicreports.test.jasper.crosstab;
 
+import static software.xdev.dynamicreports.report.builder.DynamicReports.ctab;
+
+import java.io.Serializable;
+import java.util.Locale;
+
+import net.sf.jasperreports.engine.JRDataSource;
 import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
 import software.xdev.dynamicreports.report.base.expression.AbstractValueFormatter;
 import software.xdev.dynamicreports.report.builder.crosstab.CrosstabBuilder;
@@ -27,96 +33,98 @@ import software.xdev.dynamicreports.report.constant.Calculation;
 import software.xdev.dynamicreports.report.datasource.DRDataSource;
 import software.xdev.dynamicreports.report.definition.ReportParameters;
 import software.xdev.dynamicreports.test.jasper.AbstractJasperCrosstabValueTest;
-import net.sf.jasperreports.engine.JRDataSource;
 
-import java.io.Serializable;
-import java.util.Locale;
 
-import static software.xdev.dynamicreports.report.builder.DynamicReports.ctab;
+public class Crosstab3Test extends AbstractJasperCrosstabValueTest implements Serializable
+{
 
-/**
- * @author Ricardo Mariaca
- */
-public class Crosstab3Test extends AbstractJasperCrosstabValueTest implements Serializable {
-    private static final long serialVersionUID = 1L;
+	private CrosstabRowGroupBuilder<String> rowGroup;
+	private CrosstabColumnGroupBuilder<String> columnGroup;
+	private CrosstabMeasureBuilder<Integer> measure1;
+	
+	@Override
+	protected void configureReport(final JasperReportBuilder rb)
+	{
+		this.measure1 = ctab.measure("field3", Integer.class, Calculation.SUM);
+		this.measure1.setValueFormatter(new ValueFormatter1());
+		
+		final CrosstabBuilder crosstab = ctab.crosstab()
+			.rowGroups(
+				this.rowGroup = ctab.rowGroup("field1", String.class)
+					.setHeaderValueFormatter(new ValueFormatter2()))
+			.columnGroups(
+				this.columnGroup = ctab.columnGroup("field2", String.class)
+					.setHeaderValueFormatter(new ValueFormatter2()))
+			.measures(this.measure1);
+		
+		rb.setLocale(Locale.ENGLISH).summary(crosstab);
+	}
+	
+	@Override
+	public void test()
+	{
+		super.test();
+		
+		this.numberOfPagesTest(1);
+		
+		this.setCrosstabBand("summary");
+		
+		// column group
+		this.crosstabGroupHeaderCountTest(this.columnGroup, 2);
+		this.crosstabGroupHeaderValueTest(this.columnGroup, "value = c", "value = d");
+		this.crosstabGroupTotalHeaderCountTest(this.columnGroup, 1);
+		this.crosstabGroupTotalHeaderValueTest(this.columnGroup, "Total");
+		
+		// row group
+		this.crosstabGroupHeaderCountTest(this.rowGroup, 2);
+		this.crosstabGroupHeaderValueTest(this.rowGroup, "value = a", "value = b");
+		this.crosstabGroupTotalHeaderCountTest(this.rowGroup, 1);
+		this.crosstabGroupTotalHeaderValueTest(this.rowGroup, "Total");
+		
+		// measure1
+		this.crosstabCellCountTest(this.measure1, null, null, 4);
+		this.crosstabCellValueTest(this.measure1, null, null, "value = 3", "value = 7", "value = 11", "value = 15");
+		this.crosstabCellCountTest(this.measure1, null, this.columnGroup, 2);
+		this.crosstabCellValueTest(this.measure1, null, this.columnGroup, "value = 10", "value = 26");
+		this.crosstabCellCountTest(this.measure1, this.rowGroup, null, 2);
+		this.crosstabCellValueTest(this.measure1, this.rowGroup, null, "value = 14", "value = 22");
+		this.crosstabCellCountTest(this.measure1, this.rowGroup, this.columnGroup, 1);
+		this.crosstabCellValueTest(this.measure1, this.rowGroup, this.columnGroup, "value = 36");
+	}
+	
+	@Override
+	protected JRDataSource createDataSource()
+	{
+		final DRDataSource dataSource = new DRDataSource("field1", "field2", "field3");
+		dataSource.add("a", "c", 1);
+		dataSource.add("a", "c", 2);
+		dataSource.add("a", "d", 3);
+		dataSource.add("a", "d", 4);
+		dataSource.add("b", "c", 5);
+		dataSource.add("b", "c", 6);
+		dataSource.add("b", "d", 7);
+		dataSource.add("b", "d", 8);
+		return dataSource;
+	}
+	
+	static class ValueFormatter1 extends AbstractValueFormatter<String, Integer>
+	{
 
-    private CrosstabRowGroupBuilder<String> rowGroup;
-    private CrosstabColumnGroupBuilder<String> columnGroup;
-    private CrosstabMeasureBuilder<Integer> measure1;
+		@Override
+		public String format(final Integer value, final ReportParameters reportParameters)
+		{
+			return "value = " + value;
+		}
+	}
+	
+	
+	static class ValueFormatter2 extends AbstractValueFormatter<String, String>
+	{
 
-    @Override
-    protected void configureReport(JasperReportBuilder rb) {
-        measure1 = ctab.measure("field3", Integer.class, Calculation.SUM);
-        measure1.setValueFormatter(new ValueFormatter1());
-
-        CrosstabBuilder crosstab = ctab.crosstab()
-                                       .rowGroups(rowGroup = ctab.rowGroup("field1", String.class).setHeaderValueFormatter(new ValueFormatter2()))
-                                       .columnGroups(columnGroup = ctab.columnGroup("field2", String.class).setHeaderValueFormatter(new ValueFormatter2()))
-                                       .measures(measure1);
-
-        rb.setLocale(Locale.ENGLISH).summary(crosstab);
-    }
-
-    @Override
-    public void test() {
-        super.test();
-
-        numberOfPagesTest(1);
-
-        setCrosstabBand("summary");
-
-        // column group
-        crosstabGroupHeaderCountTest(columnGroup, 2);
-        crosstabGroupHeaderValueTest(columnGroup, "value = c", "value = d");
-        crosstabGroupTotalHeaderCountTest(columnGroup, 1);
-        crosstabGroupTotalHeaderValueTest(columnGroup, "Total");
-
-        // row group
-        crosstabGroupHeaderCountTest(rowGroup, 2);
-        crosstabGroupHeaderValueTest(rowGroup, "value = a", "value = b");
-        crosstabGroupTotalHeaderCountTest(rowGroup, 1);
-        crosstabGroupTotalHeaderValueTest(rowGroup, "Total");
-
-        // measure1
-        crosstabCellCountTest(measure1, null, null, 4);
-        crosstabCellValueTest(measure1, null, null, "value = 3", "value = 7", "value = 11", "value = 15");
-        crosstabCellCountTest(measure1, null, columnGroup, 2);
-        crosstabCellValueTest(measure1, null, columnGroup, "value = 10", "value = 26");
-        crosstabCellCountTest(measure1, rowGroup, null, 2);
-        crosstabCellValueTest(measure1, rowGroup, null, "value = 14", "value = 22");
-        crosstabCellCountTest(measure1, rowGroup, columnGroup, 1);
-        crosstabCellValueTest(measure1, rowGroup, columnGroup, "value = 36");
-    }
-
-    @Override
-    protected JRDataSource createDataSource() {
-        DRDataSource dataSource = new DRDataSource("field1", "field2", "field3");
-        dataSource.add("a", "c", 1);
-        dataSource.add("a", "c", 2);
-        dataSource.add("a", "d", 3);
-        dataSource.add("a", "d", 4);
-        dataSource.add("b", "c", 5);
-        dataSource.add("b", "c", 6);
-        dataSource.add("b", "d", 7);
-        dataSource.add("b", "d", 8);
-        return dataSource;
-    }
-
-    private class ValueFormatter1 extends AbstractValueFormatter<String, Integer> {
-        private static final long serialVersionUID = 1L;
-
-        @Override
-        public String format(Integer value, ReportParameters reportParameters) {
-            return "value = " + value;
-        }
-    }
-
-    private class ValueFormatter2 extends AbstractValueFormatter<String, String> {
-        private static final long serialVersionUID = 1L;
-
-        @Override
-        public String format(String value, ReportParameters reportParameters) {
-            return "value = " + value;
-        }
-    }
+		@Override
+		public String format(final String value, final ReportParameters reportParameters)
+		{
+			return "value = " + value;
+		}
+	}
 }

@@ -17,12 +17,7 @@
  */
 package software.xdev.dynamicreports.report.constant;
 
-/**
- * <p>ImageAnchorType class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public enum ImageAnchorType {
-    MOVE_SIZE, MOVE_NO_SIZE, NO_MOVE_NO_SIZE
+public enum ImageAnchorType
+{
+	MOVE_SIZE, MOVE_NO_SIZE, NO_MOVE_NO_SIZE
 }

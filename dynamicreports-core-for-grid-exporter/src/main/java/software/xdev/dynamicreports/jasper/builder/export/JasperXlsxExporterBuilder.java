@@ -18,33 +18,20 @@
 package software.xdev.dynamicreports.jasper.builder.export;
 
 import software.xdev.dynamicreports.jasper.base.export.JasperXlsxExporter;
-import software.xdev.dynamicreports.report.constant.Constants;
 
-/**
- * <p>JasperXlsxExporterBuilder class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class JasperXlsxExporterBuilder extends AbstractJasperExcelExporterBuilder<JasperXlsxExporterBuilder, JasperXlsxExporter> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    /**
-     * <p>Constructor for JasperXlsxExporterBuilder.</p>
-     */
-    protected JasperXlsxExporterBuilder() {
-        super(new JasperXlsxExporter());
-    }
+public class JasperXlsxExporterBuilder
+	extends AbstractJasperExcelExporterBuilder<JasperXlsxExporterBuilder, JasperXlsxExporter>
+{
 
-    /**
-     * <p>setMacroTemplate.</p>
-     *
-     * @param macroTemplate a {@link java.lang.String} object.
-     * @return a {@link software.xdev.dynamicreports.jasper.builder.export.JasperXlsxExporterBuilder} object.
-     */
-    public JasperXlsxExporterBuilder setMacroTemplate(String macroTemplate) {
-        getObject().setMacroTemplate(macroTemplate);
-        return this;
-    }
-
+	protected JasperXlsxExporterBuilder()
+	{
+		super(new JasperXlsxExporter());
+	}
+	
+	public JasperXlsxExporterBuilder setMacroTemplate(final String macroTemplate)
+	{
+		this.getObject().setMacroTemplate(macroTemplate);
+		return this;
+	}
 }

@@ -17,262 +17,119 @@
  */
 package software.xdev.dynamicreports.report.builder.component;
 
+import org.apache.commons.lang3.Validate;
+
 import software.xdev.dynamicreports.report.base.component.DRDimensionComponent;
 import software.xdev.dynamicreports.report.builder.group.GroupBuilder;
 import software.xdev.dynamicreports.report.constant.ComponentDimensionType;
 import software.xdev.dynamicreports.report.constant.ComponentPositionType;
-import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.constant.StretchType;
-import org.apache.commons.lang3.Validate;
 
-/**
- * <p>Abstract DimensionComponentBuilder class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
+
 @SuppressWarnings("unchecked")
-public abstract class DimensionComponentBuilder<T extends DimensionComponentBuilder<T, U>, U extends DRDimensionComponent> extends ComponentBuilder<T, U> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
+public abstract class DimensionComponentBuilder<T extends DimensionComponentBuilder<T, U>,
+	U extends DRDimensionComponent>
+	extends ComponentBuilder<T, U>
+{
 
-    /**
-     * <p>Constructor for DimensionComponentBuilder.</p>
-     *
-     * @param component a U object.
-     */
-    public DimensionComponentBuilder(U component) {
-        super(component);
-    }
-
-    /**
-     * Sets the component preferred dimension.
-     *
-     * @param width  the component preferred width >= 0
-     * @param height the component preferred height >= 0
-     * @return a T object.
-     * @throws java.lang.IllegalArgumentException if <code>width</code> is < 0
-     * @throws java.lang.IllegalArgumentException if <code>height</code> is < 0
-     * @throws java.lang.IllegalArgumentException if <code>width</code> is < 0
-     * @throws java.lang.IllegalArgumentException if <code>height</code> is < 0
-     * @throws java.lang.IllegalArgumentException if <code>width</code> is < 0
-     * @throws java.lang.IllegalArgumentException if <code>height</code> is < 0
-     * @throws java.lang.IllegalArgumentException if <code>width</code> is < 0
-     * @throws java.lang.IllegalArgumentException if <code>height</code> is < 0
-     * @throws java.lang.IllegalArgumentException if <code>width</code> is < 0
-     * @throws java.lang.IllegalArgumentException if <code>height</code> is < 0
-     * @throws java.lang.IllegalArgumentException if <code>width</code> is < 0
-     * @throws java.lang.IllegalArgumentException if <code>height</code> is < 0
-     * @throws java.lang.IllegalArgumentException if <code>width</code> is < 0
-     * @throws java.lang.IllegalArgumentException if <code>height</code> is < 0
-     * @throws java.lang.IllegalArgumentException if <code>width</code> is < 0
-     * @throws java.lang.IllegalArgumentException if <code>height</code> is < 0
-     * @see software.xdev.dynamicreports.report.builder.Units
-     */
-    public T setDimension(Integer width, Integer height) {
-        getObject().setWidth(width);
-        getObject().setHeight(height);
-        return (T) this;
-    }
-
-    /**
-     * Sets the component fixed dimension.
-     *
-     * @param width  the component fixed width >= 0
-     * @param height the component fixed height >= 0
-     * @return a T object.
-     * @throws java.lang.IllegalArgumentException if <code>width</code> is < 0
-     * @throws java.lang.IllegalArgumentException if <code>height</code> is < 0
-     * @throws java.lang.IllegalArgumentException if <code>width</code> is < 0
-     * @throws java.lang.IllegalArgumentException if <code>height</code> is < 0
-     * @throws java.lang.IllegalArgumentException if <code>width</code> is < 0
-     * @throws java.lang.IllegalArgumentException if <code>height</code> is < 0
-     * @throws java.lang.IllegalArgumentException if <code>width</code> is < 0
-     * @throws java.lang.IllegalArgumentException if <code>height</code> is < 0
-     * @throws java.lang.IllegalArgumentException if <code>width</code> is < 0
-     * @throws java.lang.IllegalArgumentException if <code>height</code> is < 0
-     * @throws java.lang.IllegalArgumentException if <code>width</code> is < 0
-     * @throws java.lang.IllegalArgumentException if <code>height</code> is < 0
-     * @throws java.lang.IllegalArgumentException if <code>width</code> is < 0
-     * @throws java.lang.IllegalArgumentException if <code>height</code> is < 0
-     * @throws java.lang.IllegalArgumentException if <code>width</code> is < 0
-     * @throws java.lang.IllegalArgumentException if <code>height</code> is < 0
-     * @see software.xdev.dynamicreports.report.builder.Units
-     */
-    public T setFixedDimension(Integer width, Integer height) {
-        getObject().setWidth(width);
-        getObject().setHeight(height);
-        getObject().setWidthType(ComponentDimensionType.FIXED);
-        getObject().setHeightType(ComponentDimensionType.FIXED);
-        return (T) this;
-    }
-
-    /**
-     * Sets the component minimum dimension.
-     *
-     * @param width  the component minimum width >= 0
-     * @param height the component minimum height >= 0
-     * @return a T object.
-     * @throws java.lang.IllegalArgumentException if <code>width</code> is < 0
-     * @throws java.lang.IllegalArgumentException if <code>height</code> is < 0
-     * @throws java.lang.IllegalArgumentException if <code>width</code> is < 0
-     * @throws java.lang.IllegalArgumentException if <code>height</code> is < 0
-     * @throws java.lang.IllegalArgumentException if <code>width</code> is < 0
-     * @throws java.lang.IllegalArgumentException if <code>height</code> is < 0
-     * @throws java.lang.IllegalArgumentException if <code>width</code> is < 0
-     * @throws java.lang.IllegalArgumentException if <code>height</code> is < 0
-     * @throws java.lang.IllegalArgumentException if <code>width</code> is < 0
-     * @throws java.lang.IllegalArgumentException if <code>height</code> is < 0
-     * @throws java.lang.IllegalArgumentException if <code>width</code> is < 0
-     * @throws java.lang.IllegalArgumentException if <code>height</code> is < 0
-     * @throws java.lang.IllegalArgumentException if <code>width</code> is < 0
-     * @throws java.lang.IllegalArgumentException if <code>height</code> is < 0
-     * @throws java.lang.IllegalArgumentException if <code>width</code> is < 0
-     * @throws java.lang.IllegalArgumentException if <code>height</code> is < 0
-     * @see software.xdev.dynamicreports.report.builder.Units
-     */
-    public T setMinDimension(Integer width, Integer height) {
-        getObject().setWidth(width);
-        getObject().setHeight(height);
-        getObject().setWidthType(ComponentDimensionType.EXPAND);
-        getObject().setHeightType(ComponentDimensionType.EXPAND);
-        return (T) this;
-    }
-
-    /**
-     * Sets the component preferred width.
-     *
-     * @param width the component preferred width >= 0
-     * @return a T object.
-     * @throws java.lang.IllegalArgumentException if <code>width</code> is < 0
-     * @see software.xdev.dynamicreports.report.builder.Units
-     */
-    public T setWidth(Integer width) {
-        getObject().setWidth(width);
-        return (T) this;
-    }
-
-    /**
-     * Sets the component fixed width.
-     *
-     * @param width the component fixed width >= 0
-     * @return a T object.
-     * @throws java.lang.IllegalArgumentException if <code>width</code> is < 0
-     * @see software.xdev.dynamicreports.report.builder.Units
-     */
-    public T setFixedWidth(Integer width) {
-        getObject().setWidth(width);
-        getObject().setWidthType(ComponentDimensionType.FIXED);
-        return (T) this;
-    }
-
-    /**
-     * Sets the component minimum width.
-     *
-     * @param width the component minimum width >= 0
-     * @return a T object.
-     * @throws java.lang.IllegalArgumentException if <code>width</code> is < 0
-     * @see software.xdev.dynamicreports.report.builder.Units
-     */
-    public T setMinWidth(Integer width) {
-        getObject().setWidth(width);
-        getObject().setWidthType(ComponentDimensionType.EXPAND);
-        return (T) this;
-    }
-
-    /**
-     * Sets the component preferred height.
-     *
-     * @param height the component preferred height >= 0
-     * @return a T object.
-     * @throws java.lang.IllegalArgumentException if <code>height</code> is < 0
-     * @see software.xdev.dynamicreports.report.builder.Units
-     */
-    public T setHeight(Integer height) {
-        getObject().setHeight(height);
-        return (T) this;
-    }
-
-    /**
-     * Sets the component fixed height.
-     *
-     * @param height the component fixed height >= 0
-     * @return a T object.
-     * @throws java.lang.IllegalArgumentException if <code>height</code> is < 0
-     * @see software.xdev.dynamicreports.report.builder.Units
-     */
-    public T setFixedHeight(Integer height) {
-        getObject().setHeight(height);
-        getObject().setHeightType(ComponentDimensionType.FIXED);
-        return (T) this;
-    }
-
-    /**
-     * Sets the component minimum height.
-     *
-     * @param height the component minimum height >= 0
-     * @return a T object.
-     * @throws java.lang.IllegalArgumentException if <code>height</code> is < 0
-     * @see software.xdev.dynamicreports.report.builder.Units
-     */
-    public T setMinHeight(Integer height) {
-        getObject().setHeight(height);
-        getObject().setHeightType(ComponentDimensionType.EXPAND);
-        return (T) this;
-    }
-
-    /**
-     * <p>setPositionType.</p>
-     *
-     * @param positionType a {@link software.xdev.dynamicreports.report.constant.ComponentPositionType} object.
-     * @return a T object.
-     */
-    public T setPositionType(ComponentPositionType positionType) {
-        getObject().setPositionType(positionType);
-        return (T) this;
-    }
-
-    /**
-     * <p>setStretchType.</p>
-     *
-     * @param stretchType a {@link software.xdev.dynamicreports.report.constant.StretchType} object.
-     * @return a T object.
-     */
-    public T setStretchType(StretchType stretchType) {
-        getObject().setStretchType(stretchType);
-        return (T) this;
-    }
-
-    /**
-     * <p>setPrintInFirstWholeBand.</p>
-     *
-     * @param printInFirstWholeBand a {@link java.lang.Boolean} object.
-     * @return a T object.
-     */
-    public T setPrintInFirstWholeBand(Boolean printInFirstWholeBand) {
-        getObject().setPrintInFirstWholeBand(printInFirstWholeBand);
-        return (T) this;
-    }
-
-    /**
-     * <p>setPrintWhenDetailOverflows.</p>
-     *
-     * @param printWhenDetailOverflows a {@link java.lang.Boolean} object.
-     * @return a T object.
-     */
-    public T setPrintWhenDetailOverflows(Boolean printWhenDetailOverflows) {
-        getObject().setPrintWhenDetailOverflows(printWhenDetailOverflows);
-        return (T) this;
-    }
-
-    /**
-     * <p>setPrintWhenGroupChanges.</p>
-     *
-     * @param group a {@link software.xdev.dynamicreports.report.builder.group.GroupBuilder} object.
-     * @return a T object.
-     */
-    public T setPrintWhenGroupChanges(GroupBuilder<?> group) {
-        Validate.notNull(group, "group must not be null");
-        getObject().setPrintWhenGroupChanges(group.getGroup());
-        return (T) this;
-    }
+	public DimensionComponentBuilder(final U component)
+	{
+		super(component);
+	}
+	
+	public T setDimension(final Integer width, final Integer height)
+	{
+		this.getObject().setWidth(width);
+		this.getObject().setHeight(height);
+		return (T)this;
+	}
+	
+	public T setFixedDimension(final Integer width, final Integer height)
+	{
+		this.getObject().setWidth(width);
+		this.getObject().setHeight(height);
+		this.getObject().setWidthType(ComponentDimensionType.FIXED);
+		this.getObject().setHeightType(ComponentDimensionType.FIXED);
+		return (T)this;
+	}
+	
+	public T setMinDimension(final Integer width, final Integer height)
+	{
+		this.getObject().setWidth(width);
+		this.getObject().setHeight(height);
+		this.getObject().setWidthType(ComponentDimensionType.EXPAND);
+		this.getObject().setHeightType(ComponentDimensionType.EXPAND);
+		return (T)this;
+	}
+	
+	public T setWidth(final Integer width)
+	{
+		this.getObject().setWidth(width);
+		return (T)this;
+	}
+	
+	public T setFixedWidth(final Integer width)
+	{
+		this.getObject().setWidth(width);
+		this.getObject().setWidthType(ComponentDimensionType.FIXED);
+		return (T)this;
+	}
+	
+	public T setMinWidth(final Integer width)
+	{
+		this.getObject().setWidth(width);
+		this.getObject().setWidthType(ComponentDimensionType.EXPAND);
+		return (T)this;
+	}
+	
+	public T setHeight(final Integer height)
+	{
+		this.getObject().setHeight(height);
+		return (T)this;
+	}
+	
+	public T setFixedHeight(final Integer height)
+	{
+		this.getObject().setHeight(height);
+		this.getObject().setHeightType(ComponentDimensionType.FIXED);
+		return (T)this;
+	}
+	
+	public T setMinHeight(final Integer height)
+	{
+		this.getObject().setHeight(height);
+		this.getObject().setHeightType(ComponentDimensionType.EXPAND);
+		return (T)this;
+	}
+	
+	public T setPositionType(final ComponentPositionType positionType)
+	{
+		this.getObject().setPositionType(positionType);
+		return (T)this;
+	}
+	
+	public T setStretchType(final StretchType stretchType)
+	{
+		this.getObject().setStretchType(stretchType);
+		return (T)this;
+	}
+	
+	public T setPrintInFirstWholeBand(final Boolean printInFirstWholeBand)
+	{
+		this.getObject().setPrintInFirstWholeBand(printInFirstWholeBand);
+		return (T)this;
+	}
+	
+	public T setPrintWhenDetailOverflows(final Boolean printWhenDetailOverflows)
+	{
+		this.getObject().setPrintWhenDetailOverflows(printWhenDetailOverflows);
+		return (T)this;
+	}
+	
+	public T setPrintWhenGroupChanges(final GroupBuilder<?> group)
+	{
+		Validate.notNull(group, "group must not be null");
+		this.getObject().setPrintWhenGroupChanges(group.getGroup());
+		return (T)this;
+	}
 }

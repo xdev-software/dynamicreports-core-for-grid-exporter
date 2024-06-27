@@ -17,61 +17,55 @@
  */
 package software.xdev.dynamicreports.jasper.transformation.expression;
 
-import software.xdev.dynamicreports.design.base.expression.AbstractDesignComplexExpression;
-import software.xdev.dynamicreports.design.definition.expression.DRIDesignExpression;
-import software.xdev.dynamicreports.jasper.base.JasperReportParameters;
-import software.xdev.dynamicreports.report.ReportUtils;
-import software.xdev.dynamicreports.report.constant.Constants;
-import software.xdev.dynamicreports.report.definition.ReportParameters;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * <p>SubreportParametersExpression class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class SubreportParametersExpression extends AbstractDesignComplexExpression {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
+import software.xdev.dynamicreports.design.base.expression.AbstractDesignComplexExpression;
+import software.xdev.dynamicreports.design.definition.expression.DRIDesignExpression;
+import software.xdev.dynamicreports.jasper.base.JasperReportParameters;
+import software.xdev.dynamicreports.report.ReportUtils;
+import software.xdev.dynamicreports.report.definition.ReportParameters;
 
-    private SubreportExpression subreportExpression;
 
-    /**
-     * <p>Constructor for SubreportParametersExpression.</p>
-     *
-     * @param subreportExpression  a {@link software.xdev.dynamicreports.jasper.transformation.expression.SubreportExpression} object.
-     * @param parametersExpression a {@link software.xdev.dynamicreports.design.definition.expression.DRIDesignExpression} object.
-     */
-    public SubreportParametersExpression(SubreportExpression subreportExpression, DRIDesignExpression parametersExpression) {
-        super(ReportUtils.generateUniqueName("subreportParametersExpression"));
-        this.subreportExpression = subreportExpression;
-        if (parametersExpression != null) {
-            addExpression(parametersExpression);
-        }
-    }
+public class SubreportParametersExpression extends AbstractDesignComplexExpression
+{
 
-    /** {@inheritDoc} */
-    @Override
-    @SuppressWarnings("unchecked")
-    public Object evaluate(List<?> values, ReportParameters reportParameters) {
-        Map<String, Object> parameters = new HashMap<String, Object>();
-        parameters.putAll(subreportExpression.getReportDesign().getParameters());
-        if (subreportExpression.getReportBuilder().getReport().getParameterValues() != null) {
-            parameters.putAll(subreportExpression.getReportBuilder().getReport().getParameterValues());
-        }
-        if (!values.isEmpty()) {
-            parameters.putAll((Map<String, Object>) values.get(0));
-        }
-        parameters.put(JasperReportParameters.MASTER_REPORT_PARAMETERS, reportParameters);
-        return parameters;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Class<?> getValueClass() {
-        return Map.class;
-    }
+	private final SubreportExpression subreportExpression;
+	
+	public SubreportParametersExpression(
+		final SubreportExpression subreportExpression,
+		final DRIDesignExpression parametersExpression)
+	{
+		super(ReportUtils.generateUniqueName("subreportParametersExpression"));
+		this.subreportExpression = subreportExpression;
+		if(parametersExpression != null)
+		{
+			this.addExpression(parametersExpression);
+		}
+	}
+	
+	@Override
+	@SuppressWarnings("unchecked")
+	public Object evaluate(final List<?> values, final ReportParameters reportParameters)
+	{
+		final Map<String, Object> parameters = new HashMap<>();
+		parameters.putAll(this.subreportExpression.getReportDesign().getParameters());
+		if(this.subreportExpression.getReportBuilder().getReport().getParameterValues() != null)
+		{
+			parameters.putAll(this.subreportExpression.getReportBuilder().getReport().getParameterValues());
+		}
+		if(!values.isEmpty())
+		{
+			parameters.putAll((Map<String, Object>)values.get(0));
+		}
+		parameters.put(JasperReportParameters.MASTER_REPORT_PARAMETERS, reportParameters);
+		return parameters;
+	}
+	
+	@Override
+	public Class<?> getValueClass()
+	{
+		return Map.class;
+	}
 }

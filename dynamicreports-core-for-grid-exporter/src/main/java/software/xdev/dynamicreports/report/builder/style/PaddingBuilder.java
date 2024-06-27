@@ -19,83 +19,47 @@ package software.xdev.dynamicreports.report.builder.style;
 
 import software.xdev.dynamicreports.report.base.style.DRPadding;
 import software.xdev.dynamicreports.report.builder.AbstractBuilder;
-import software.xdev.dynamicreports.report.constant.Constants;
 
-/**
- * <p>PaddingBuilder class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class PaddingBuilder extends AbstractBuilder<PaddingBuilder, DRPadding> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    /**
-     * <p>Constructor for PaddingBuilder.</p>
-     */
-    protected PaddingBuilder() {
-        super(new DRPadding());
-    }
+public class PaddingBuilder extends AbstractBuilder<PaddingBuilder, DRPadding>
+{
 
-    /**
-     * <p>Constructor for PaddingBuilder.</p>
-     *
-     * @param padding a int.
-     */
-    protected PaddingBuilder(int padding) {
-        super(new DRPadding(padding));
-    }
-
-    /**
-     * <p>setTop.</p>
-     *
-     * @param top a {@link java.lang.Integer} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.style.PaddingBuilder} object.
-     */
-    public PaddingBuilder setTop(Integer top) {
-        getObject().setTop(top);
-        return this;
-    }
-
-    /**
-     * <p>setLeft.</p>
-     *
-     * @param left a {@link java.lang.Integer} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.style.PaddingBuilder} object.
-     */
-    public PaddingBuilder setLeft(Integer left) {
-        getObject().setLeft(left);
-        return this;
-    }
-
-    /**
-     * <p>setBottom.</p>
-     *
-     * @param bottom a {@link java.lang.Integer} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.style.PaddingBuilder} object.
-     */
-    public PaddingBuilder setBottom(Integer bottom) {
-        getObject().setBottom(bottom);
-        return this;
-    }
-
-    /**
-     * <p>setRight.</p>
-     *
-     * @param right a {@link java.lang.Integer} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.style.PaddingBuilder} object.
-     */
-    public PaddingBuilder setRight(Integer right) {
-        getObject().setRight(right);
-        return this;
-    }
-
-    /**
-     * <p>getPadding.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.base.style.DRPadding} object.
-     */
-    public DRPadding getPadding() {
-        return build();
-    }
+	protected PaddingBuilder()
+	{
+		super(new DRPadding());
+	}
+	
+	protected PaddingBuilder(final int padding)
+	{
+		super(new DRPadding(padding));
+	}
+	
+	public PaddingBuilder setTop(final Integer top)
+	{
+		this.getObject().setTop(top);
+		return this;
+	}
+	
+	public PaddingBuilder setLeft(final Integer left)
+	{
+		this.getObject().setLeft(left);
+		return this;
+	}
+	
+	public PaddingBuilder setBottom(final Integer bottom)
+	{
+		this.getObject().setBottom(bottom);
+		return this;
+	}
+	
+	public PaddingBuilder setRight(final Integer right)
+	{
+		this.getObject().setRight(right);
+		return this;
+	}
+	
+	public DRPadding getPadding()
+	{
+		return this.build();
+	}
 }

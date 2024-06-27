@@ -17,32 +17,22 @@
  */
 package software.xdev.dynamicreports.report.base.component;
 
-import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.definition.component.DRICurrentDate;
 
-/**
- * <p>DRCurrentDate class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class DRCurrentDate extends DRFormatField implements DRICurrentDate {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    private String pattern;
+public class DRCurrentDate extends DRFormatField implements DRICurrentDate
+{
 
-    /** {@inheritDoc} */
-    @Override
-    public String getPattern() {
-        return pattern;
-    }
-
-    /**
-     * <p>Setter for the field <code>pattern</code>.</p>
-     *
-     * @param pattern a {@link java.lang.String} object.
-     */
-    public void setPattern(String pattern) {
-        this.pattern = pattern;
-    }
+	private String pattern;
+	
+	@Override
+	public String getPattern()
+	{
+		return this.pattern;
+	}
+	
+	public void setPattern(final String pattern)
+	{
+		this.pattern = pattern;
+	}
 }

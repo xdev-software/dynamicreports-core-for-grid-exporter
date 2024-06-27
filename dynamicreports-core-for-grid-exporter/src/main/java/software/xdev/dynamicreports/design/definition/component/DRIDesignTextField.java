@@ -24,81 +24,25 @@ import software.xdev.dynamicreports.report.constant.HorizontalTextAlignment;
 import software.xdev.dynamicreports.report.constant.Markup;
 import software.xdev.dynamicreports.report.constant.TextAdjust;
 
-/**
- * <p>DRIDesignTextField interface.</p>
- *
- * @author Ricardo Mariaca, Jan Moxter
- *
- */
-public interface DRIDesignTextField extends DRIDesignHyperLinkComponent {
 
-    /**
-     * <p>getPattern.</p>
-     *
-     * @return a {@link java.lang.String} object.
-     */
-    String getPattern();
-
-    /**
-     * <p>getPatternExpression.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.design.definition.expression.DRIDesignExpression} object.
-     */
-    DRIDesignExpression getPatternExpression();
-
-    /**
-     * <p>getHorizontalTextAlignment.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.constant.HorizontalTextAlignment} object.
-     */
-    HorizontalTextAlignment getHorizontalTextAlignment();
-
-    /**
-     * <p>getValueExpression.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.design.definition.expression.DRIDesignExpression} object.
-     */
-    DRIDesignExpression getValueExpression();
-
-    /**
-     * <p>isPrintRepeatedValues.</p>
-     *
-     * @return a boolean.
-     */
-    boolean isPrintRepeatedValues();
-
-    /**
-     * <p>getEvaluationTime.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.design.constant.EvaluationTime} object.
-     */
-    EvaluationTime getEvaluationTime();
-
-    /**
-     * <p>getEvaluationGroup.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.design.definition.DRIDesignGroup} object.
-     */
-    DRIDesignGroup getEvaluationGroup();
-
-    /**
-     * <p>getMarkup.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.constant.Markup} object.
-     */
-    Markup getMarkup();
-
-    /**
-     * <p>isStretchWithOverflow.</p>
-     *
-     * @return a boolean.
-     * @deprecated Replaced by {@link #getTextAdjust()}.
-     */
-    @Deprecated
-    boolean isStretchWithOverflow();
-
-    /**
-     * @return a {@link software.xdev.dynamicreports.report.constant.TextAdjust} object.
-     */
-    TextAdjust getTextAdjust();
+public interface DRIDesignTextField extends DRIDesignHyperLinkComponent
+{
+	
+	String getPattern();
+	
+	DRIDesignExpression getPatternExpression();
+	
+	HorizontalTextAlignment getHorizontalTextAlignment();
+	
+	DRIDesignExpression getValueExpression();
+	
+	boolean isPrintRepeatedValues();
+	
+	EvaluationTime getEvaluationTime();
+	
+	DRIDesignGroup getEvaluationGroup();
+	
+	Markup getMarkup();
+	
+	TextAdjust getTextAdjust();
 }

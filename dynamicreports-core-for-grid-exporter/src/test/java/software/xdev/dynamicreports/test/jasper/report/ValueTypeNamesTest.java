@@ -26,21 +26,17 @@ import java.io.Serializable;
 
 import org.junit.jupiter.api.Assertions;
 
+import net.sf.jasperreports.engine.JRDataSource;
 import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
 import software.xdev.dynamicreports.report.base.expression.AbstractSimpleExpression;
 import software.xdev.dynamicreports.report.datasource.DRDataSource;
 import software.xdev.dynamicreports.report.definition.ReportParameters;
 import software.xdev.dynamicreports.test.jasper.AbstractJasperValueTest;
-import net.sf.jasperreports.engine.JRDataSource;
 
 
-/**
- * @author Ricardo Mariaca
- */
 public class ValueTypeNamesTest extends AbstractJasperValueTest implements Serializable
 {
-	private static final long serialVersionUID = 1L;
-	
+
 	@Override
 	protected void configureReport(final JasperReportBuilder rb)
 	{
@@ -53,8 +49,8 @@ public class ValueTypeNamesTest extends AbstractJasperValueTest implements Seria
 	public void test()
 	{
 		super.test();
-        
-        this.numberOfPagesTest(1);
+		
+		this.numberOfPagesTest(1);
 	}
 	
 	@Override
@@ -65,10 +61,9 @@ public class ValueTypeNamesTest extends AbstractJasperValueTest implements Seria
 		return dataSource;
 	}
 	
-	private class ColumnExpression extends AbstractSimpleExpression<String>
+	static class ColumnExpression extends AbstractSimpleExpression<String>
 	{
-		private static final long serialVersionUID = 1L;
-		
+
 		@Override
 		public String evaluate(final ReportParameters reportParameters)
 		{

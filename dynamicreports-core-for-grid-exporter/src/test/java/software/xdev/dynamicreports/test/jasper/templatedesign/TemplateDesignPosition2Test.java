@@ -17,48 +17,50 @@
  */
 package software.xdev.dynamicreports.test.jasper.templatedesign;
 
+import static software.xdev.dynamicreports.report.builder.DynamicReports.col;
+
+import java.io.InputStream;
+import java.io.Serializable;
+
+import net.sf.jasperreports.engine.JRDataSource;
 import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
 import software.xdev.dynamicreports.report.builder.column.TextColumnBuilder;
 import software.xdev.dynamicreports.report.datasource.DRDataSource;
 import software.xdev.dynamicreports.report.exception.DRException;
 import software.xdev.dynamicreports.test.jasper.AbstractJasperPositionTest;
-import net.sf.jasperreports.engine.JRDataSource;
 
-import java.io.InputStream;
-import java.io.Serializable;
 
-import static software.xdev.dynamicreports.report.builder.DynamicReports.col;
+public class TemplateDesignPosition2Test extends AbstractJasperPositionTest implements Serializable
+{
 
-/**
- * @author Ricardo Mariaca
- */
-public class TemplateDesignPosition2Test extends AbstractJasperPositionTest implements Serializable {
-    private static final long serialVersionUID = 1L;
-
-    private TextColumnBuilder<String> column1;
-
-    @Override
-    protected void configureReport(JasperReportBuilder rb) throws DRException {
-        InputStream is = TemplateDesignPosition1Test.class.getResourceAsStream("templatedesign2.jrxml");
-        rb.setTemplateDesign(is).columns(column1 = col.column("Column1", "field1", String.class));
-    }
-
-    @Override
-    public void test() {
-        super.test();
-
-        numberOfPagesTest(1);
-
-        columnTitlePositionTest(column1, 0, 20, 134, 555, 16);
-        columnDetailPositionTest(column1, 0, 20, 150, 555, 16);
-    }
-
-    @Override
-    protected JRDataSource createDataSource() {
-        DRDataSource dataSource = new DRDataSource("field1");
-        for (int i = 0; i < 1; i++) {
-            dataSource.add("row");
-        }
-        return dataSource;
-    }
+	private TextColumnBuilder<String> column1;
+	
+	@Override
+	protected void configureReport(final JasperReportBuilder rb) throws DRException
+	{
+		final InputStream is = TemplateDesignPosition1Test.class.getResourceAsStream("templatedesign2.jrxml");
+		rb.setTemplateDesign(is).columns(this.column1 = col.column("Column1", "field1", String.class));
+	}
+	
+	@Override
+	public void test()
+	{
+		super.test();
+		
+		this.numberOfPagesTest(1);
+		
+		this.columnTitlePositionTest(this.column1, 0, 20, 134, 555, 16);
+		this.columnDetailPositionTest(this.column1, 0, 20, 150, 555, 16);
+	}
+	
+	@Override
+	protected JRDataSource createDataSource()
+	{
+		final DRDataSource dataSource = new DRDataSource("field1");
+		for(int i = 0; i < 1; i++)
+		{
+			dataSource.add("row");
+		}
+		return dataSource;
+	}
 }

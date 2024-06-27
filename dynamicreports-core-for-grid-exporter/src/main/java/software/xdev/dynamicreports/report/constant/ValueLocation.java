@@ -17,12 +17,7 @@
  */
 package software.xdev.dynamicreports.report.constant;
 
-/**
- * <p>ValueLocation class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public enum ValueLocation {
-    NONE, LEFT, RIGHT, BULB
+public enum ValueLocation
+{
+	NONE, LEFT, RIGHT, BULB
 }

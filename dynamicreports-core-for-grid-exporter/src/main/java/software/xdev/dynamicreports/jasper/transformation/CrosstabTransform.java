@@ -19,19 +19,6 @@ package software.xdev.dynamicreports.jasper.transformation;
 
 import java.util.Map;
 
-import software.xdev.dynamicreports.design.constant.ResetType;
-import software.xdev.dynamicreports.design.definition.crosstab.DRIDesignCrosstab;
-import software.xdev.dynamicreports.design.definition.crosstab.DRIDesignCrosstabCell;
-import software.xdev.dynamicreports.design.definition.crosstab.DRIDesignCrosstabCellContent;
-import software.xdev.dynamicreports.design.definition.crosstab.DRIDesignCrosstabColumnGroup;
-import software.xdev.dynamicreports.design.definition.crosstab.DRIDesignCrosstabDataset;
-import software.xdev.dynamicreports.design.definition.crosstab.DRIDesignCrosstabGroup;
-import software.xdev.dynamicreports.design.definition.crosstab.DRIDesignCrosstabMeasure;
-import software.xdev.dynamicreports.design.definition.crosstab.DRIDesignCrosstabRowGroup;
-import software.xdev.dynamicreports.jasper.base.JasperCustomValues;
-import software.xdev.dynamicreports.jasper.exception.JasperDesignException;
-import software.xdev.dynamicreports.jasper.transformation.expression.CrosstabParametersExpression;
-import software.xdev.dynamicreports.report.constant.ListType;
 import net.sf.jasperreports.crosstabs.design.JRDesignCellContents;
 import net.sf.jasperreports.crosstabs.design.JRDesignCrosstab;
 import net.sf.jasperreports.crosstabs.design.JRDesignCrosstabBucket;
@@ -46,33 +33,30 @@ import net.sf.jasperreports.crosstabs.type.CrosstabColumnPositionEnum;
 import net.sf.jasperreports.crosstabs.type.CrosstabRowPositionEnum;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.design.JRDesignElement;
+import software.xdev.dynamicreports.design.constant.ResetType;
+import software.xdev.dynamicreports.design.definition.crosstab.DRIDesignCrosstab;
+import software.xdev.dynamicreports.design.definition.crosstab.DRIDesignCrosstabCell;
+import software.xdev.dynamicreports.design.definition.crosstab.DRIDesignCrosstabCellContent;
+import software.xdev.dynamicreports.design.definition.crosstab.DRIDesignCrosstabColumnGroup;
+import software.xdev.dynamicreports.design.definition.crosstab.DRIDesignCrosstabDataset;
+import software.xdev.dynamicreports.design.definition.crosstab.DRIDesignCrosstabGroup;
+import software.xdev.dynamicreports.design.definition.crosstab.DRIDesignCrosstabMeasure;
+import software.xdev.dynamicreports.design.definition.crosstab.DRIDesignCrosstabRowGroup;
+import software.xdev.dynamicreports.jasper.base.JasperCustomValues;
+import software.xdev.dynamicreports.jasper.exception.JasperDesignException;
+import software.xdev.dynamicreports.jasper.transformation.expression.CrosstabParametersExpression;
+import software.xdev.dynamicreports.report.constant.ListType;
 
 
-/**
- * <p>CrosstabTransform class.</p>
- *
- * @author Ricardo Mariaca
- */
 public class CrosstabTransform
 {
 	private final JasperTransformAccessor accessor;
 	
-	/**
-	 * <p>Constructor for CrosstabTransform.</p>
-	 *
-	 * @param accessor a {@link software.xdev.dynamicreports.jasper.transformation.JasperTransformAccessor} object.
-	 */
 	public CrosstabTransform(final JasperTransformAccessor accessor)
 	{
 		this.accessor = accessor;
 	}
 	
-	/**
-	 * <p>transform.</p>
-	 *
-	 * @param crosstab a {@link software.xdev.dynamicreports.design.definition.crosstab.DRIDesignCrosstab} object.
-	 * @return a {@link net.sf.jasperreports.engine.design.JRDesignElement} object.
-	 */
 	protected JRDesignElement transform(final DRIDesignCrosstab crosstab)
 	{
 		final JRDesignCrosstab jrCrosstab = new JRDesignCrosstab();
@@ -161,7 +145,7 @@ public class CrosstabTransform
 		jrDataset.setResetType(ConstantTransform.variableDatabaseResetType(resetType));
 		if(resetType.equals(ResetType.GROUP) && dataset.getResetGroup() != null)
 		{
-			jrDataset.setResetGroup(this.accessor.getGroupTransform().getGroup(dataset.getResetGroup()));
+			jrDataset.setResetGroup(this.accessor.getGroupTransform().getGroup(dataset.getResetGroup()).getName());
 		}
 	}
 	

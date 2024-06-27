@@ -17,18 +17,8 @@
  */
 package software.xdev.dynamicreports.report.definition.component;
 
-/**
- * <p>DRICurrentDate interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface DRICurrentDate extends DRIFormatField {
-
-    /**
-     * <p>getPattern.</p>
-     *
-     * @return a {@link java.lang.String} object.
-     */
-    public String getPattern();
+public interface DRICurrentDate extends DRIFormatField
+{
+	
+	public String getPattern();
 }

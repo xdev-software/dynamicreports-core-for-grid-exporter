@@ -17,101 +17,87 @@
  */
 package software.xdev.dynamicreports.design.base.style;
 
-import software.xdev.dynamicreports.design.definition.style.DRIDesignStyle;
-import software.xdev.dynamicreports.report.ReportUtils;
-import software.xdev.dynamicreports.report.constant.Constants;
-import org.apache.commons.lang3.Validate;
-import org.apache.commons.lang3.builder.EqualsBuilder;
-
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * <p>DRDesignStyle class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class DRDesignStyle extends DRDesignBaseStyle implements DRIDesignStyle {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
+import org.apache.commons.lang3.Validate;
+import org.apache.commons.lang3.builder.EqualsBuilder;
 
-    private String name;
-    private DRDesignStyle parentStyle;
-    private List<DRDesignConditionalStyle> conditionalStyles;
+import software.xdev.dynamicreports.design.definition.style.DRIDesignStyle;
+import software.xdev.dynamicreports.report.ReportUtils;
 
-    /**
-     * <p>Constructor for DRDesignStyle.</p>
-     */
-    public DRDesignStyle() {
-        this(ReportUtils.generateUniqueName("style"));
-    }
 
-    /**
-     * <p>Constructor for DRDesignStyle.</p>
-     *
-     * @param name a {@link java.lang.String} object.
-     */
-    public DRDesignStyle(String name) {
-        this.name = Validate.notBlank(name);
-        this.conditionalStyles = new ArrayList<DRDesignConditionalStyle>();
-    }
+public class DRDesignStyle extends DRDesignBaseStyle implements DRIDesignStyle
+{
 
-    /** {@inheritDoc} */
-    @Override
-    public String getName() {
-        return name;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRDesignStyle getParentStyle() {
-        return parentStyle;
-    }
-
-    /**
-     * <p>Setter for the field <code>parentStyle</code>.</p>
-     *
-     * @param parentStyle a {@link software.xdev.dynamicreports.design.base.style.DRDesignStyle} object.
-     */
-    public void setParentStyle(DRDesignStyle parentStyle) {
-        this.parentStyle = parentStyle;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public List<DRDesignConditionalStyle> getConditionalStyles() {
-        return conditionalStyles;
-    }
-
-    /**
-     * <p>Setter for the field <code>conditionalStyles</code>.</p>
-     *
-     * @param conditionalStyles a {@link java.util.List} object.
-     */
-    public void setConditionalStyles(List<DRDesignConditionalStyle> conditionalStyles) {
-        this.conditionalStyles = conditionalStyles;
-    }
-
-    /**
-     * <p>addConditionalStyle.</p>
-     *
-     * @param conditionalStyle a {@link software.xdev.dynamicreports.design.base.style.DRDesignConditionalStyle} object.
-     */
-    public void addConditionalStyle(DRDesignConditionalStyle conditionalStyle) {
-        this.conditionalStyles.add(conditionalStyle);
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public boolean equals(Object obj) {
-        EqualsBuilder equalsBuilder = new EqualsBuilder().appendSuper(super.equals(obj));
-        if (equalsBuilder.isEquals()) {
-            DRDesignStyle o = (DRDesignStyle) obj;
-            if (!(parentStyle == null ? o.getParentStyle() == null : parentStyle.getName().equals(o.getParentStyle().getName()))) {
-                return false;
-            }
-            equalsBuilder.append(name, o.name).append(conditionalStyles, o.conditionalStyles);
-        }
-        return equalsBuilder.isEquals();
-    }
+	private final String name;
+	private DRDesignStyle parentStyle;
+	private List<DRDesignConditionalStyle> conditionalStyles;
+	
+	public DRDesignStyle()
+	{
+		this(ReportUtils.generateUniqueName("style"));
+	}
+	
+	public DRDesignStyle(final String name)
+	{
+		this.name = Validate.notBlank(name);
+		this.conditionalStyles = new ArrayList<>();
+	}
+	
+	@Override
+	public String getName()
+	{
+		return this.name;
+	}
+	
+	@Override
+	public DRDesignStyle getParentStyle()
+	{
+		return this.parentStyle;
+	}
+	
+	public void setParentStyle(final DRDesignStyle parentStyle)
+	{
+		this.parentStyle = parentStyle;
+	}
+	
+	@Override
+	public List<DRDesignConditionalStyle> getConditionalStyles()
+	{
+		return this.conditionalStyles;
+	}
+	
+	public void setConditionalStyles(final List<DRDesignConditionalStyle> conditionalStyles)
+	{
+		this.conditionalStyles = conditionalStyles;
+	}
+	
+	public void addConditionalStyle(final DRDesignConditionalStyle conditionalStyle)
+	{
+		this.conditionalStyles.add(conditionalStyle);
+	}
+	
+	@SuppressWarnings({"checkstyle:EqualsHashCode", "java:S1206", "java:S2097"}) // Upstream
+	@Override
+	public boolean equals(final Object obj)
+	{
+		if(obj == null)
+		{
+			return false;
+		}
+		final EqualsBuilder equalsBuilder = new EqualsBuilder().appendSuper(super.equals(obj));
+		if(equalsBuilder.isEquals())
+		{
+			final DRDesignStyle o = (DRDesignStyle)obj;
+			if(!(this.parentStyle == null
+				? o.getParentStyle() == null
+				: this.parentStyle.getName().equals(o.getParentStyle().getName())))
+			{
+				return false;
+			}
+			equalsBuilder.append(this.name, o.name).append(this.conditionalStyles, o.conditionalStyles);
+		}
+		return equalsBuilder.isEquals();
+	}
 }

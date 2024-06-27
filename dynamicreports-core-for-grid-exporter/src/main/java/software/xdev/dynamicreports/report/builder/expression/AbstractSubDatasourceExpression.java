@@ -17,71 +17,48 @@
  */
 package software.xdev.dynamicreports.report.builder.expression;
 
-import software.xdev.dynamicreports.report.ReportUtils;
-import software.xdev.dynamicreports.report.constant.Constants;
-import software.xdev.dynamicreports.report.definition.ReportParameters;
-import software.xdev.dynamicreports.report.definition.expression.DRIExpression;
-import net.sf.jasperreports.engine.JRDataSource;
-import org.apache.commons.lang3.Validate;
-
 import java.util.List;
 
-/**
- * <p>Abstract AbstractSubDatasourceExpression class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public abstract class AbstractSubDatasourceExpression<T> extends AbstractComplexExpression<JRDataSource> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
+import org.apache.commons.lang3.Validate;
 
-    /**
-     * <p>Constructor for AbstractSubDatasourceExpression.</p>
-     *
-     * @param fieldName a {@link java.lang.String} object.
-     */
-    protected AbstractSubDatasourceExpression(String fieldName) {
-        Validate.notNull(fieldName, "fieldName must not be null");
-        addExpression(fieldName, getSubDatasourceDataClass());
-    }
+import net.sf.jasperreports.engine.JRDataSource;
+import software.xdev.dynamicreports.report.ReportUtils;
+import software.xdev.dynamicreports.report.definition.ReportParameters;
+import software.xdev.dynamicreports.report.definition.expression.DRIExpression;
 
-    /**
-     * <p>Constructor for AbstractSubDatasourceExpression.</p>
-     *
-     * @param expression a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     */
-    protected AbstractSubDatasourceExpression(DRIExpression<? extends T> expression) {
-        addExpression(expression);
-    }
 
-    /** {@inheritDoc} */
-    @SuppressWarnings("unchecked")
-    @Override
-    public JRDataSource evaluate(List<?> values, ReportParameters reportParameters) {
-        return createSubDatasource((T) values.get(0));
-    }
+public abstract class AbstractSubDatasourceExpression<T> extends AbstractComplexExpression<JRDataSource>
+{
 
-    /** {@inheritDoc} */
-    @Override
-    public Class<? super JRDataSource> getValueClass() {
-        return JRDataSource.class;
-    }
-
-    /**
-     * <p>getSubDatasourceDataClass.</p>
-     *
-     * @return a {@link java.lang.Class} object.
-     */
-    @SuppressWarnings("unchecked")
-    protected Class<T> getSubDatasourceDataClass() {
-        return (Class<T>) ReportUtils.getGenericClass(this, 0);
-    }
-
-    /**
-     * <p>createSubDatasource.</p>
-     *
-     * @param data a T object.
-     * @return a {@link net.sf.jasperreports.engine.JRDataSource} object.
-     */
-    protected abstract JRDataSource createSubDatasource(T data);
+	protected AbstractSubDatasourceExpression(final String fieldName)
+	{
+		Validate.notNull(fieldName, "fieldName must not be null");
+		this.addExpression(fieldName, this.getSubDatasourceDataClass());
+	}
+	
+	protected AbstractSubDatasourceExpression(final DRIExpression<? extends T> expression)
+	{
+		this.addExpression(expression);
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public JRDataSource evaluate(final List<?> values, final ReportParameters reportParameters)
+	{
+		return this.createSubDatasource((T)values.get(0));
+	}
+	
+	@Override
+	public Class<? super JRDataSource> getValueClass()
+	{
+		return JRDataSource.class;
+	}
+	
+	@SuppressWarnings("unchecked")
+	protected Class<T> getSubDatasourceDataClass()
+	{
+		return (Class<T>)ReportUtils.getGenericClass(this, 0);
+	}
+	
+	protected abstract JRDataSource createSubDatasource(T data);
 }

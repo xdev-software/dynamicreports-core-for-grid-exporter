@@ -19,12 +19,8 @@ package software.xdev.dynamicreports.report.component;
 
 import software.xdev.dynamicreports.report.definition.component.DRIDimensionComponent;
 
-/**
- * <p>DRICustomComponent interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface DRICustomComponent extends DRIDimensionComponent {
+
+public interface DRICustomComponent extends DRIDimensionComponent
+{
 
 }

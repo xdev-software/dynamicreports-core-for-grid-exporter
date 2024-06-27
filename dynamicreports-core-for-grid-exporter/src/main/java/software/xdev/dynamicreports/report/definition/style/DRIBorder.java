@@ -19,39 +19,15 @@ package software.xdev.dynamicreports.report.definition.style;
 
 import java.io.Serializable;
 
-/**
- * <p>DRIBorder interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface DRIBorder extends Serializable {
 
-    /**
-     * <p>getTopPen.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.definition.style.DRIPen} object.
-     */
-    public DRIPen getTopPen();
-
-    /**
-     * <p>getLeftPen.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.definition.style.DRIPen} object.
-     */
-    public DRIPen getLeftPen();
-
-    /**
-     * <p>getBottomPen.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.definition.style.DRIPen} object.
-     */
-    public DRIPen getBottomPen();
-
-    /**
-     * <p>getRightPen.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.definition.style.DRIPen} object.
-     */
-    public DRIPen getRightPen();
+public interface DRIBorder extends Serializable
+{
+	
+	public DRIPen getTopPen();
+	
+	public DRIPen getLeftPen();
+	
+	public DRIPen getBottomPen();
+	
+	public DRIPen getRightPen();
 }

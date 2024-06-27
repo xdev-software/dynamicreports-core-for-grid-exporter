@@ -19,41 +19,29 @@ package software.xdev.dynamicreports.report.builder.component;
 
 import software.xdev.dynamicreports.report.base.component.DRCurrentDate;
 import software.xdev.dynamicreports.report.builder.expression.SystemMessageExpression;
-import software.xdev.dynamicreports.report.constant.Constants;
 
-/**
- * <p>CurrentDateBuilder class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class CurrentDateBuilder extends AbstractFormatFieldBuilder<CurrentDateBuilder, DRCurrentDate> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    /**
-     * <p>Constructor for CurrentDateBuilder.</p>
-     */
-    protected CurrentDateBuilder() {
-        super(new DRCurrentDate());
-    }
+public class CurrentDateBuilder extends AbstractFormatFieldBuilder<CurrentDateBuilder, DRCurrentDate>
+{
 
-    /**
-     * <p>setPattern.</p>
-     *
-     * @param pattern a {@link java.lang.String} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.CurrentDateBuilder} object.
-     */
-    public CurrentDateBuilder setPattern(String pattern) {
-        getObject().setPattern(pattern);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    protected void configure() {
-        if (getObject().getFormatExpression() == null) {
-            setFormatExpression(new SystemMessageExpression("current_date"));
-        }
-        super.configure();
-    }
+	protected CurrentDateBuilder()
+	{
+		super(new DRCurrentDate());
+	}
+	
+	public CurrentDateBuilder setPattern(final String pattern)
+	{
+		this.getObject().setPattern(pattern);
+		return this;
+	}
+	
+	@Override
+	protected void configure()
+	{
+		if(this.getObject().getFormatExpression() == null)
+		{
+			this.setFormatExpression(new SystemMessageExpression("current_date"));
+		}
+		super.configure();
+	}
 }

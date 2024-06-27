@@ -17,18 +17,8 @@
  */
 package software.xdev.dynamicreports.design.definition.crosstab;
 
-/**
- * <p>DRIDesignCrosstabRowGroup interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface DRIDesignCrosstabRowGroup extends DRIDesignCrosstabGroup {
-
-    /**
-     * <p>getWidth.</p>
-     *
-     * @return a int.
-     */
-    public int getWidth();
+public interface DRIDesignCrosstabRowGroup extends DRIDesignCrosstabGroup
+{
+	
+	public int getWidth();
 }

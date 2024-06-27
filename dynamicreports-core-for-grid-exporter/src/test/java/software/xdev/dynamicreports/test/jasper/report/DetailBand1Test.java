@@ -17,53 +17,56 @@
  */
 package software.xdev.dynamicreports.test.jasper.report;
 
+import static software.xdev.dynamicreports.report.builder.DynamicReports.cmp;
+import static software.xdev.dynamicreports.report.builder.DynamicReports.col;
+
+import java.io.Serializable;
+
+import net.sf.jasperreports.engine.JRDataSource;
 import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
 import software.xdev.dynamicreports.report.builder.column.TextColumnBuilder;
 import software.xdev.dynamicreports.report.datasource.DRDataSource;
 import software.xdev.dynamicreports.test.jasper.AbstractJasperValueTest;
-import net.sf.jasperreports.engine.JRDataSource;
 
-import java.io.Serializable;
 
-import static software.xdev.dynamicreports.report.builder.DynamicReports.cmp;
-import static software.xdev.dynamicreports.report.builder.DynamicReports.col;
+public class DetailBand1Test extends AbstractJasperValueTest implements Serializable
+{
 
-/**
- * @author Ricardo Mariaca
- */
-public class DetailBand1Test extends AbstractJasperValueTest implements Serializable {
-    private static final long serialVersionUID = 1L;
-
-    private TextColumnBuilder<String> column1;
-
-    @Override
-    protected void configureReport(JasperReportBuilder rb) {
-        rb.columns(column1 = col.column("Column1", "field1", String.class)).detailHeader(cmp.text("detailHeader")).detailFooter(cmp.text("detailFooter"));
-
-    }
-
-    @Override
-    public void test() {
-        super.test();
-
-        numberOfPagesTest(1);
-
-        elementCountTest("detailHeader.textField1", 2);
-        elementValueTest("detailHeader.textField1", "detailHeader", "detailHeader");
-
-        columnDetailCountTest(column1, 2);
-        columnDetailValueTest(column1, "detail", "detail");
-
-        elementCountTest("detailFooter.textField1", 2);
-        elementValueTest("detailFooter.textField1", "detailFooter", "detailFooter");
-    }
-
-    @Override
-    protected JRDataSource createDataSource() {
-        DRDataSource dataSource = new DRDataSource("field1");
-        for (int i = 0; i < 2; i++) {
-            dataSource.add("detail");
-        }
-        return dataSource;
-    }
+	private TextColumnBuilder<String> column1;
+	
+	@Override
+	protected void configureReport(final JasperReportBuilder rb)
+	{
+		rb.columns(this.column1 = col.column("Column1", "field1", String.class))
+			.detailHeader(cmp.text("detailHeader"))
+			.detailFooter(cmp.text("detailFooter"));
+	}
+	
+	@Override
+	public void test()
+	{
+		super.test();
+		
+		this.numberOfPagesTest(1);
+		
+		this.elementCountTest("detailHeader.textField1", 2);
+		this.elementValueTest("detailHeader.textField1", "detailHeader", "detailHeader");
+		
+		this.columnDetailCountTest(this.column1, 2);
+		this.columnDetailValueTest(this.column1, "detail", "detail");
+		
+		this.elementCountTest("detailFooter.textField1", 2);
+		this.elementValueTest("detailFooter.textField1", "detailFooter", "detailFooter");
+	}
+	
+	@Override
+	protected JRDataSource createDataSource()
+	{
+		final DRDataSource dataSource = new DRDataSource("field1");
+		for(int i = 0; i < 2; i++)
+		{
+			dataSource.add("detail");
+		}
+		return dataSource;
+	}
 }

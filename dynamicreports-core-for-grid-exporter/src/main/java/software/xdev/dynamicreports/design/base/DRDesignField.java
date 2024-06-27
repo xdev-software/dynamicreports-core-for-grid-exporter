@@ -18,86 +18,62 @@
 package software.xdev.dynamicreports.design.base;
 
 import software.xdev.dynamicreports.design.definition.DRIDesignField;
-import software.xdev.dynamicreports.report.constant.Constants;
 
-/**
- * <p>DRDesignField class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class DRDesignField implements DRIDesignField {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    private String name;
-    private Class<?> valueClass;
-    private boolean external;
-    private String description;
+public class DRDesignField implements DRIDesignField
+{
 
-    /**
-     * <p>Constructor for DRDesignField.</p>
-     */
-    public DRDesignField() {
-        this.external = false;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * <p>Setter for the field <code>name</code>.</p>
-     *
-     * @param name a {@link java.lang.String} object.
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Class<?> getValueClass() {
-        return valueClass;
-    }
-
-    /**
-     * <p>Setter for the field <code>valueClass</code>.</p>
-     *
-     * @param valueClass a {@link java.lang.Class} object.
-     */
-    public void setValueClass(Class<?> valueClass) {
-        this.valueClass = valueClass;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public boolean isExternal() {
-        return external;
-    }
-
-    /**
-     * <p>Setter for the field <code>external</code>.</p>
-     *
-     * @param external a boolean.
-     */
-    public void setExternal(boolean external) {
-        this.external = external;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public String getDescription() {
-        return description;
-    }
-
-    /**
-     * <p>Setter for the field <code>description</code>.</p>
-     *
-     * @param description a {@link java.lang.String} object.
-     */
-    public void setDescription(String description) {
-        this.description = description;
-    }
+	private String name;
+	private Class<?> valueClass;
+	private boolean external;
+	private String description;
+	
+	public DRDesignField()
+	{
+		this.external = false;
+	}
+	
+	@Override
+	public String getName()
+	{
+		return this.name;
+	}
+	
+	public void setName(final String name)
+	{
+		this.name = name;
+	}
+	
+	@Override
+	public Class<?> getValueClass()
+	{
+		return this.valueClass;
+	}
+	
+	public void setValueClass(final Class<?> valueClass)
+	{
+		this.valueClass = valueClass;
+	}
+	
+	@Override
+	public boolean isExternal()
+	{
+		return this.external;
+	}
+	
+	public void setExternal(final boolean external)
+	{
+		this.external = external;
+	}
+	
+	@Override
+	public String getDescription()
+	{
+		return this.description;
+	}
+	
+	public void setDescription(final String description)
+	{
+		this.description = description;
+	}
 }

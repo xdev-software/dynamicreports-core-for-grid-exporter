@@ -17,6 +17,13 @@
  */
 package software.xdev.dynamicreports.test.jasper.datasource;
 
+import static software.xdev.dynamicreports.report.builder.DynamicReports.col;
+import static software.xdev.dynamicreports.report.builder.DynamicReports.ctab;
+import static software.xdev.dynamicreports.report.builder.DynamicReports.type;
+
+import java.io.Serializable;
+
+import net.sf.jasperreports.engine.JRDataSource;
 import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
 import software.xdev.dynamicreports.report.base.expression.AbstractSimpleExpression;
 import software.xdev.dynamicreports.report.builder.DatasetBuilder;
@@ -30,125 +37,129 @@ import software.xdev.dynamicreports.report.constant.Calculation;
 import software.xdev.dynamicreports.report.datasource.DRDataSource;
 import software.xdev.dynamicreports.report.definition.ReportParameters;
 import software.xdev.dynamicreports.test.jasper.AbstractJasperCrosstabValueTest;
-import net.sf.jasperreports.engine.JRDataSource;
 
-import java.io.Serializable;
 
-import static software.xdev.dynamicreports.report.builder.DynamicReports.col;
-import static software.xdev.dynamicreports.report.builder.DynamicReports.ctab;
-import static software.xdev.dynamicreports.report.builder.DynamicReports.type;
+public class FilterTest extends AbstractJasperCrosstabValueTest implements Serializable
+{
 
-/**
- * @author Ricardo Mariaca
- */
-public class FilterTest extends AbstractJasperCrosstabValueTest implements Serializable {
-    private static final long serialVersionUID = 1L;
+	private TextColumnBuilder<String> column1;
+	private TextColumnBuilder<String> column2;
+	
+	private CrosstabRowGroupBuilder<String> rowGroup;
+	private CrosstabColumnGroupBuilder<String> columnGroup;
+	private CrosstabMeasureBuilder<Integer> measure1;
+	
+	@Override
+	protected void configureReport(final JasperReportBuilder rb)
+	{
+		this.measure1 = ctab.measure("field3", Integer.class, Calculation.SUM);
+		
+		final DatasetBuilder dataset = DynamicReports.dataset();
+		dataset.setDataSource(this.createCrosstabDataSource());
+		dataset.setFilterExpression(new CrosstabFilterExpression());
+		
+		final CrosstabBuilder crosstab =
+			ctab.crosstab()
+				.setSubDataset(dataset)
+				.rowGroups(this.rowGroup = ctab.rowGroup("field1", String.class))
+				.columnGroups(this.columnGroup = ctab.columnGroup("field2", String.class))
+				.measures(this.measure1);
+		
+		rb.columns(
+				this.column1 = col.column("Column1", "field1", type.stringType()),
+				this.column2 = col.column("Column2", "field2", type.stringType()))
+			.title(crosstab)
+			.setFilterExpression(new FilterExpression());
+	}
+	
+	@Override
+	public void test()
+	{
+		super.test();
+		
+		this.numberOfPagesTest(1);
+		
+		// column1
+		this.columnTitleCountTest(this.column1, 1);
+		this.columnTitleValueTest(this.column1, "Column1");
+		this.columnDetailCountTest(this.column1, 1);
+		this.columnDetailValueTest(this.column1, "1");
+		// column2
+		this.columnTitleCountTest(this.column2, 1);
+		this.columnTitleValueTest(this.column2, "Column2");
+		this.columnDetailCountTest(this.column2, 1);
+		this.columnDetailValueTest(this.column2, "text1");
+		
+		this.setCrosstabBand("title");
+		
+		// column group
+		this.crosstabGroupHeaderCountTest(this.columnGroup, 2);
+		this.crosstabGroupHeaderValueTest(this.columnGroup, "c", "d");
+		this.crosstabGroupTotalHeaderCountTest(this.columnGroup, 1);
+		this.crosstabGroupTotalHeaderValueTest(this.columnGroup, "Total");
+		
+		// row group
+		this.crosstabGroupHeaderCountTest(this.rowGroup, 1);
+		this.crosstabGroupHeaderValueTest(this.rowGroup, "a");
+		this.crosstabGroupTotalHeaderCountTest(this.rowGroup, 1);
+		this.crosstabGroupTotalHeaderValueTest(this.rowGroup, "Total");
+		
+		// measure1
+		this.crosstabCellCountTest(this.measure1, null, null, 2);
+		this.crosstabCellValueTest(this.measure1, null, null, "3", "7");
+		this.crosstabCellCountTest(this.measure1, null, this.columnGroup, 1);
+		this.crosstabCellValueTest(this.measure1, null, this.columnGroup, "10");
+		this.crosstabCellCountTest(this.measure1, this.rowGroup, null, 2);
+		this.crosstabCellValueTest(this.measure1, this.rowGroup, null, "3", "7");
+		this.crosstabCellCountTest(this.measure1, this.rowGroup, this.columnGroup, 1);
+		this.crosstabCellValueTest(this.measure1, this.rowGroup, this.columnGroup, "10");
+	}
+	
+	@Override
+	protected JRDataSource createDataSource()
+	{
+		final DRDataSource dataSource = new DRDataSource("field1", "field2");
+		dataSource.add("1", "text1");
+		dataSource.add("2", "text2");
+		dataSource.add("3", "text3");
+		dataSource.add("4", "text4");
+		return dataSource;
+	}
+	
+	private JRDataSource createCrosstabDataSource()
+	{
+		final DRDataSource dataSource = new DRDataSource("field1", "field2", "field3");
+		dataSource.add("a", "c", 1);
+		dataSource.add("a", "c", 2);
+		dataSource.add("a", "d", 3);
+		dataSource.add("a", "d", 4);
+		dataSource.add("b", "c", 5);
+		dataSource.add("b", "c", 6);
+		dataSource.add("b", "d", 7);
+		dataSource.add("b", "d", 8);
+		return dataSource;
+	}
+	
+	static class FilterExpression extends AbstractSimpleExpression<Boolean>
+	{
 
-    private TextColumnBuilder<String> column1;
-    private TextColumnBuilder<String> column2;
+		@Override
+		public Boolean evaluate(final ReportParameters reportParameters)
+		{
+			final String value = reportParameters.getValue("field1");
+			return value.equals("1");
+		}
+	}
+	
+	
+	static class CrosstabFilterExpression extends AbstractSimpleExpression<Boolean>
+	{
 
-    private CrosstabRowGroupBuilder<String> rowGroup;
-    private CrosstabColumnGroupBuilder<String> columnGroup;
-    private CrosstabMeasureBuilder<Integer> measure1;
-
-    @Override
-    protected void configureReport(JasperReportBuilder rb) {
-        measure1 = ctab.measure("field3", Integer.class, Calculation.SUM);
-
-        DatasetBuilder dataset = DynamicReports.dataset();
-        dataset.setDataSource(createCrosstabDataSource());
-        dataset.setFilterExpression(new CrosstabFilterExpression());
-
-        CrosstabBuilder crosstab =
-            ctab.crosstab().setSubDataset(dataset).rowGroups(rowGroup = ctab.rowGroup("field1", String.class)).columnGroups(columnGroup = ctab.columnGroup("field2", String.class)).measures(measure1);
-
-        rb.columns(column1 = col.column("Column1", "field1", type.stringType()), column2 = col.column("Column2", "field2", type.stringType()))
-          .title(crosstab)
-          .setFilterExpression(new FilterExpression());
-    }
-
-    @Override
-    public void test() {
-        super.test();
-
-        numberOfPagesTest(1);
-
-        // column1
-        columnTitleCountTest(column1, 1);
-        columnTitleValueTest(column1, "Column1");
-        columnDetailCountTest(column1, 1);
-        columnDetailValueTest(column1, "1");
-        // column2
-        columnTitleCountTest(column2, 1);
-        columnTitleValueTest(column2, "Column2");
-        columnDetailCountTest(column2, 1);
-        columnDetailValueTest(column2, "text1");
-
-        setCrosstabBand("title");
-
-        // column group
-        crosstabGroupHeaderCountTest(columnGroup, 2);
-        crosstabGroupHeaderValueTest(columnGroup, "c", "d");
-        crosstabGroupTotalHeaderCountTest(columnGroup, 1);
-        crosstabGroupTotalHeaderValueTest(columnGroup, "Total");
-
-        // row group
-        crosstabGroupHeaderCountTest(rowGroup, 1);
-        crosstabGroupHeaderValueTest(rowGroup, "a");
-        crosstabGroupTotalHeaderCountTest(rowGroup, 1);
-        crosstabGroupTotalHeaderValueTest(rowGroup, "Total");
-
-        // measure1
-        crosstabCellCountTest(measure1, null, null, 2);
-        crosstabCellValueTest(measure1, null, null, "3", "7");
-        crosstabCellCountTest(measure1, null, columnGroup, 1);
-        crosstabCellValueTest(measure1, null, columnGroup, "10");
-        crosstabCellCountTest(measure1, rowGroup, null, 2);
-        crosstabCellValueTest(measure1, rowGroup, null, "3", "7");
-        crosstabCellCountTest(measure1, rowGroup, columnGroup, 1);
-        crosstabCellValueTest(measure1, rowGroup, columnGroup, "10");
-    }
-
-    @Override
-    protected JRDataSource createDataSource() {
-        DRDataSource dataSource = new DRDataSource("field1", "field2");
-        dataSource.add("1", "text1");
-        dataSource.add("2", "text2");
-        dataSource.add("3", "text3");
-        dataSource.add("4", "text4");
-        return dataSource;
-    }
-
-    private JRDataSource createCrosstabDataSource() {
-        DRDataSource dataSource = new DRDataSource("field1", "field2", "field3");
-        dataSource.add("a", "c", 1);
-        dataSource.add("a", "c", 2);
-        dataSource.add("a", "d", 3);
-        dataSource.add("a", "d", 4);
-        dataSource.add("b", "c", 5);
-        dataSource.add("b", "c", 6);
-        dataSource.add("b", "d", 7);
-        dataSource.add("b", "d", 8);
-        return dataSource;
-    }
-
-    private class FilterExpression extends AbstractSimpleExpression<Boolean> {
-        private static final long serialVersionUID = 1L;
-
-        @Override
-        public Boolean evaluate(ReportParameters reportParameters) {
-            String value = reportParameters.getValue("field1");
-            return value.equals("1");
-        }
-    }
-
-    private class CrosstabFilterExpression extends AbstractSimpleExpression<Boolean> {
-        private static final long serialVersionUID = 1L;
-
-        @Override
-        public Boolean evaluate(ReportParameters reportParameters) {
-            String value = reportParameters.getValue("field1");
-            return value.equals("a");
-        }
-    }
+		@Override
+		public Boolean evaluate(final ReportParameters reportParameters)
+		{
+			final String value = reportParameters.getValue("field1");
+			return value.equals("a");
+		}
+	}
 }

@@ -21,6 +21,12 @@ import static software.xdev.dynamicreports.report.builder.DynamicReports.col;
 import static software.xdev.dynamicreports.report.builder.DynamicReports.stl;
 import static software.xdev.dynamicreports.report.builder.DynamicReports.type;
 
+import net.sf.jasperreports.engine.JRDataSource;
+import net.sf.jasperreports.engine.type.HorizontalImageAlignEnum;
+import net.sf.jasperreports.engine.type.HorizontalTextAlignEnum;
+import net.sf.jasperreports.engine.type.LineStyleEnum;
+import net.sf.jasperreports.engine.type.VerticalImageAlignEnum;
+import net.sf.jasperreports.engine.type.VerticalTextAlignEnum;
 import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
 import software.xdev.dynamicreports.report.builder.column.BooleanColumnBuilder;
 import software.xdev.dynamicreports.report.builder.column.TextColumnBuilder;
@@ -28,19 +34,8 @@ import software.xdev.dynamicreports.report.constant.HorizontalImageAlignment;
 import software.xdev.dynamicreports.report.constant.VerticalImageAlignment;
 import software.xdev.dynamicreports.report.datasource.DRDataSource;
 import software.xdev.dynamicreports.test.jasper.AbstractJasperStyleTest;
-import net.sf.jasperreports.engine.JRDataSource;
-import net.sf.jasperreports.engine.type.HorizontalImageAlignEnum;
-import net.sf.jasperreports.engine.type.HorizontalTextAlignEnum;
-import net.sf.jasperreports.engine.type.LineStyleEnum;
-import net.sf.jasperreports.engine.type.VerticalImageAlignEnum;
-import net.sf.jasperreports.engine.type.VerticalTextAlignEnum;
 
 
-/**
- * Style tests.
- *
- * @author Ricardo Mariaca
- */
 public class Style8Test extends AbstractJasperStyleTest
 {
 	private BooleanColumnBuilder column1;

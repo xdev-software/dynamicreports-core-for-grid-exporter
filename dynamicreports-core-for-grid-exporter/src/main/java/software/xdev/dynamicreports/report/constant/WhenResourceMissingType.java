@@ -17,30 +17,13 @@
  */
 package software.xdev.dynamicreports.report.constant;
 
-/**
- * <p>WhenResourceMissingType class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public enum WhenResourceMissingType {
-    /**
-     * Return NULL when a resource is missing.
-     */
-    NULL,
-
-    /**
-     * Return empty string when a resource is missing.
-     */
-    EMPTY,
-
-    /**
-     * Return the key when a resource is missing.
-     */
-    KEY,
-
-    /**
-     * Throw an exception when a resource is missing.
-     */
-    ERROR;
+public enum WhenResourceMissingType
+{
+	NULL,
+	
+	EMPTY,
+	
+	KEY,
+	
+	ERROR
 }

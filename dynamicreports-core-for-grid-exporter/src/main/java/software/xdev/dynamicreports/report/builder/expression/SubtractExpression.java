@@ -17,33 +17,23 @@
  */
 package software.xdev.dynamicreports.report.builder.expression;
 
-import software.xdev.dynamicreports.report.constant.Constants;
-import software.xdev.dynamicreports.report.definition.expression.DRIExpression;
-
 import java.math.BigDecimal;
 
-/**
- * <p>SubtractExpression class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class SubtractExpression extends CalculationExpression {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
+import software.xdev.dynamicreports.report.definition.expression.DRIExpression;
 
-    @SafeVarargs
-    /**
-     * <p>Constructor for SubtractExpression.</p>
-     *
-     * @param expressions a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     */
-    public SubtractExpression(DRIExpression<? extends Number>... expressions) {
-        super(expressions);
-    }
 
-    /** {@inheritDoc} */
-    @Override
-    protected BigDecimal calculate(BigDecimal value1, BigDecimal value2) {
-        return value1.subtract(value2);
-    }
+public class SubtractExpression extends CalculationExpression
+{
+
+	@SafeVarargs
+	public SubtractExpression(final DRIExpression<? extends Number>... expressions)
+	{
+		super(expressions);
+	}
+	
+	@Override
+	protected BigDecimal calculate(final BigDecimal value1, final BigDecimal value2)
+	{
+		return value1.subtract(value2);
+	}
 }

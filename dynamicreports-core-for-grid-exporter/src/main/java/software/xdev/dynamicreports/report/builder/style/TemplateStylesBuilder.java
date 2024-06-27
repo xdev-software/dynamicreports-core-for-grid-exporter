@@ -17,130 +17,88 @@
  */
 package software.xdev.dynamicreports.report.builder.style;
 
-import software.xdev.dynamicreports.jasper.base.JasperTemplateStyleLoader;
-import software.xdev.dynamicreports.report.base.style.DRStyle;
-import software.xdev.dynamicreports.report.builder.AbstractBuilder;
-import software.xdev.dynamicreports.report.constant.Constants;
-import software.xdev.dynamicreports.report.exception.DRException;
-import org.apache.commons.lang3.Validate;
-
 import java.io.File;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * <p>TemplateStylesBuilder class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class TemplateStylesBuilder extends AbstractBuilder<TemplateStylesBuilder, List<StyleBuilder>> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
+import org.apache.commons.lang3.Validate;
 
-    /**
-     * <p>Constructor for TemplateStylesBuilder.</p>
-     */
-    protected TemplateStylesBuilder() {
-        super(new ArrayList<StyleBuilder>());
-    }
+import software.xdev.dynamicreports.jasper.base.JasperTemplateStyleLoader;
+import software.xdev.dynamicreports.report.base.style.DRStyle;
+import software.xdev.dynamicreports.report.builder.AbstractBuilder;
+import software.xdev.dynamicreports.report.exception.DRException;
 
-    /**
-     * <p>loadStyles.</p>
-     *
-     * @param inputStream a {@link java.io.InputStream} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.style.TemplateStylesBuilder} object.
-     */
-    public TemplateStylesBuilder loadStyles(InputStream inputStream) {
-        return addStyles(JasperTemplateStyleLoader.loadStyles(inputStream));
-    }
 
-    /**
-     * <p>loadStyles.</p>
-     *
-     * @param file a {@link java.io.File} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.style.TemplateStylesBuilder} object.
-     */
-    public TemplateStylesBuilder loadStyles(File file) {
-        return addStyles(JasperTemplateStyleLoader.loadStyles(file));
-    }
+public class TemplateStylesBuilder extends AbstractBuilder<TemplateStylesBuilder, List<StyleBuilder>>
+{
 
-    /**
-     * <p>loadStyles.</p>
-     *
-     * @param fileName a {@link java.lang.String} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.style.TemplateStylesBuilder} object.
-     * @throws software.xdev.dynamicreports.report.exception.DRException if any.
-     */
-    public TemplateStylesBuilder loadStyles(String fileName) throws DRException {
-        return addStyles(JasperTemplateStyleLoader.loadStyles(fileName));
-    }
-
-    /**
-     * <p>loadStyles.</p>
-     *
-     * @param url a {@link java.net.URL} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.style.TemplateStylesBuilder} object.
-     */
-    public TemplateStylesBuilder loadStyles(URL url) {
-        return addStyles(JasperTemplateStyleLoader.loadStyles(url));
-    }
-
-    private TemplateStylesBuilder addStyles(DRStyle[] styles) {
-        for (DRStyle style : styles) {
-            this.getObject().add(new StyleBuilder(style));
-        }
-        return this;
-    }
-
-    /**
-     * <p>styles.</p>
-     *
-     * @param styles a {@link software.xdev.dynamicreports.report.builder.style.StyleBuilder} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.style.TemplateStylesBuilder} object.
-     */
-    public TemplateStylesBuilder styles(StyleBuilder... styles) {
-        return addStyle(styles);
-    }
-
-    /**
-     * <p>addStyle.</p>
-     *
-     * @param styles a {@link software.xdev.dynamicreports.report.builder.style.StyleBuilder} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.style.TemplateStylesBuilder} object.
-     */
-    public TemplateStylesBuilder addStyle(StyleBuilder... styles) {
-        Validate.notNull(styles, "styles must not be null");
-        Validate.noNullElements(styles, "styles must not contains null style");
-        for (StyleBuilder templateStyle : styles) {
-            getObject().add(templateStyle);
-        }
-        return this;
-    }
-
-    /**
-     * <p>getStyle.</p>
-     *
-     * @param name a {@link java.lang.String} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.style.StyleBuilder} object.
-     */
-    public StyleBuilder getStyle(String name) {
-        Validate.notNull(name, "name must not be null");
-        for (StyleBuilder style : getStyles()) {
-            if (name.equals(style.getStyle().getName())) {
-                return style;
-            }
-        }
-        return null;
-    }
-
-    /**
-     * <p>getStyles.</p>
-     *
-     * @return a {@link java.util.List} object.
-     */
-    public List<StyleBuilder> getStyles() {
-        return build();
-    }
+	protected TemplateStylesBuilder()
+	{
+		super(new ArrayList<>());
+	}
+	
+	public TemplateStylesBuilder loadStyles(final InputStream inputStream)
+	{
+		return this.addStyles(JasperTemplateStyleLoader.loadStyles(inputStream));
+	}
+	
+	public TemplateStylesBuilder loadStyles(final File file)
+	{
+		return this.addStyles(JasperTemplateStyleLoader.loadStyles(file));
+	}
+	
+	public TemplateStylesBuilder loadStyles(final String fileName) throws DRException
+	{
+		return this.addStyles(JasperTemplateStyleLoader.loadStyles(fileName));
+	}
+	
+	public TemplateStylesBuilder loadStyles(final URL url)
+	{
+		return this.addStyles(JasperTemplateStyleLoader.loadStyles(url));
+	}
+	
+	private TemplateStylesBuilder addStyles(final DRStyle[] styles)
+	{
+		for(final DRStyle style : styles)
+		{
+			this.getObject().add(new StyleBuilder(style));
+		}
+		return this;
+	}
+	
+	public TemplateStylesBuilder styles(final StyleBuilder... styles)
+	{
+		return this.addStyle(styles);
+	}
+	
+	public TemplateStylesBuilder addStyle(final StyleBuilder... styles)
+	{
+		Validate.notNull(styles, "styles must not be null");
+		Validate.noNullElements(styles, "styles must not contains null style");
+		for(final StyleBuilder templateStyle : styles)
+		{
+			this.getObject().add(templateStyle);
+		}
+		return this;
+	}
+	
+	public StyleBuilder getStyle(final String name)
+	{
+		Validate.notNull(name, "name must not be null");
+		for(final StyleBuilder style : this.getStyles())
+		{
+			if(name.equals(style.getStyle().getName()))
+			{
+				return style;
+			}
+		}
+		return null;
+	}
+	
+	public List<StyleBuilder> getStyles()
+	{
+		return this.build();
+	}
 }

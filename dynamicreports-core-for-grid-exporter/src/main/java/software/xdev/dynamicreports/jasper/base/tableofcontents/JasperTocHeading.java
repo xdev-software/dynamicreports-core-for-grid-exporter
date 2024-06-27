@@ -17,113 +17,65 @@
  */
 package software.xdev.dynamicreports.jasper.base.tableofcontents;
 
-import software.xdev.dynamicreports.report.constant.Constants;
-
 import java.io.Serializable;
 
-/**
- * <p>JasperTocHeading class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class JasperTocHeading implements Serializable {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    private Integer level;
-    private String text;
-    private String reference;
-    private Integer pageIndex;
-    private Object customValue;
+public class JasperTocHeading implements Serializable
+{
 
-    /**
-     * <p>Getter for the field <code>level</code>.</p>
-     *
-     * @return a {@link java.lang.Integer} object.
-     */
-    public Integer getLevel() {
-        return level;
-    }
-
-    /**
-     * <p>Setter for the field <code>level</code>.</p>
-     *
-     * @param level a {@link java.lang.Integer} object.
-     */
-    public void setLevel(Integer level) {
-        this.level = level;
-    }
-
-    /**
-     * <p>Getter for the field <code>text</code>.</p>
-     *
-     * @return a {@link java.lang.String} object.
-     */
-    public String getText() {
-        return text;
-    }
-
-    /**
-     * <p>Setter for the field <code>text</code>.</p>
-     *
-     * @param text a {@link java.lang.String} object.
-     */
-    public void setText(String text) {
-        this.text = text;
-    }
-
-    /**
-     * <p>Getter for the field <code>reference</code>.</p>
-     *
-     * @return a {@link java.lang.String} object.
-     */
-    public String getReference() {
-        return reference;
-    }
-
-    /**
-     * <p>Setter for the field <code>reference</code>.</p>
-     *
-     * @param reference a {@link java.lang.String} object.
-     */
-    public void setReference(String reference) {
-        this.reference = reference;
-    }
-
-    /**
-     * <p>Getter for the field <code>pageIndex</code>.</p>
-     *
-     * @return a {@link java.lang.Integer} object.
-     */
-    public Integer getPageIndex() {
-        return pageIndex;
-    }
-
-    /**
-     * <p>Setter for the field <code>pageIndex</code>.</p>
-     *
-     * @param pageIndex a {@link java.lang.Integer} object.
-     */
-    public void setPageIndex(Integer pageIndex) {
-        this.pageIndex = pageIndex;
-    }
-
-    /**
-     * <p>Getter for the field <code>customValue</code>.</p>
-     *
-     * @return a {@link java.lang.Object} object.
-     */
-    public Object getCustomValue() {
-        return customValue;
-    }
-
-    /**
-     * <p>Setter for the field <code>customValue</code>.</p>
-     *
-     * @param customValue a {@link java.lang.Object} object.
-     */
-    public void setCustomValue(Object customValue) {
-        this.customValue = customValue;
-    }
-
+	private Integer level;
+	private String text;
+	private String reference;
+	private Integer pageIndex;
+	private Object customValue;
+	
+	public Integer getLevel()
+	{
+		return this.level;
+	}
+	
+	public void setLevel(final Integer level)
+	{
+		this.level = level;
+	}
+	
+	public String getText()
+	{
+		return this.text;
+	}
+	
+	public void setText(final String text)
+	{
+		this.text = text;
+	}
+	
+	public String getReference()
+	{
+		return this.reference;
+	}
+	
+	public void setReference(final String reference)
+	{
+		this.reference = reference;
+	}
+	
+	public Integer getPageIndex()
+	{
+		return this.pageIndex;
+	}
+	
+	public void setPageIndex(final Integer pageIndex)
+	{
+		this.pageIndex = pageIndex;
+	}
+	
+	public Object getCustomValue()
+	{
+		return this.customValue;
+	}
+	
+	public void setCustomValue(final Object customValue)
+	{
+		this.customValue = customValue;
+	}
 }

@@ -17,34 +17,35 @@
  */
 package software.xdev.dynamicreports.jasper.base;
 
-import software.xdev.dynamicreports.jasper.exception.JasperDesignException;
 import net.sf.jasperreports.engine.JRDefaultScriptlet;
 import net.sf.jasperreports.engine.JRScriptletException;
 import net.sf.jasperreports.engine.JRVariable;
+import software.xdev.dynamicreports.jasper.exception.JasperDesignException;
 
-/**
- * <p>StartPageNumberScriptlet class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class StartPageNumberScriptlet extends JRDefaultScriptlet {
 
-    private JasperCustomValues getCustomValues() {
-        try {
-            return (JasperCustomValues) getParameterValue(JasperCustomValues.NAME, false);
-        } catch (JRScriptletException e) {
-            throw new JasperDesignException("Custom values not found", e);
-        }
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void afterReportInit() throws JRScriptletException {
-        super.afterReportInit();
-        JasperCustomValues customValues = getCustomValues();
-        if (customValues != null && customValues.getStartPageNumber() != null) {
-            setVariableValue(JRVariable.PAGE_NUMBER, customValues.getStartPageNumber());
-        }
-    }
+public class StartPageNumberScriptlet extends JRDefaultScriptlet
+{
+	
+	private JasperCustomValues getCustomValues()
+	{
+		try
+		{
+			return (JasperCustomValues)this.getParameterValue(JasperCustomValues.NAME, false);
+		}
+		catch(final JRScriptletException e)
+		{
+			throw new JasperDesignException("Custom values not found", e);
+		}
+	}
+	
+	@Override
+	public void afterReportInit() throws JRScriptletException
+	{
+		super.afterReportInit();
+		final JasperCustomValues customValues = this.getCustomValues();
+		if(customValues != null && customValues.getStartPageNumber() != null)
+		{
+			this.setVariableValue(JRVariable.PAGE_NUMBER, customValues.getStartPageNumber());
+		}
+	}
 }

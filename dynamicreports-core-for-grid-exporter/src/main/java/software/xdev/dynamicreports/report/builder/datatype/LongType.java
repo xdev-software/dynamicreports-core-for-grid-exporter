@@ -17,34 +17,28 @@
  */
 package software.xdev.dynamicreports.report.builder.datatype;
 
-import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.constant.HorizontalTextAlignment;
 import software.xdev.dynamicreports.report.defaults.Defaults;
 
-/**
- * <p>LongType class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class LongType extends NumberType<Long> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    /** {@inheritDoc} */
-    @Override
-    public String getPattern() {
-        return Defaults.getDefaults().getLongType().getPattern();
-    }
+public class LongType extends NumberType<Long>
+{
 
-    /** {@inheritDoc} */
-    @Override
-    public HorizontalTextAlignment getHorizontalTextAlignment() {
-        return Defaults.getDefaults().getLongType().getHorizontalTextAlignment();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    protected Long numberToValue(Number number) {
-        return number.longValue();
-    }
+	@Override
+	public String getPattern()
+	{
+		return Defaults.getDefaults().getLongType().getPattern();
+	}
+	
+	@Override
+	public HorizontalTextAlignment getHorizontalTextAlignment()
+	{
+		return Defaults.getDefaults().getLongType().getHorizontalTextAlignment();
+	}
+	
+	@Override
+	protected Long numberToValue(final Number number)
+	{
+		return number.longValue();
+	}
 }

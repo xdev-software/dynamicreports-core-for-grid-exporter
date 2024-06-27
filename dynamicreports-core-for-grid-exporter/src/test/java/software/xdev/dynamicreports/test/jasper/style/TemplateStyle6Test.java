@@ -23,46 +23,45 @@ import static software.xdev.dynamicreports.report.builder.DynamicReports.templat
 
 import java.io.Serializable;
 
+import net.sf.jasperreports.engine.JRDataSource;
 import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
 import software.xdev.dynamicreports.report.builder.ReportTemplateBuilder;
 import software.xdev.dynamicreports.report.builder.style.StyleBuilder;
 import software.xdev.dynamicreports.report.datasource.DRDataSource;
 import software.xdev.dynamicreports.test.jasper.AbstractJasperStyleTest;
-import net.sf.jasperreports.engine.JRDataSource;
 
-/**
- * Template style tests.
- * 
- * @author Ricardo Mariaca
- */
-public class TemplateStyle6Test extends AbstractJasperStyleTest implements Serializable {
-  private static final long serialVersionUID = 1L;
 
-  @Override
-  protected void configureReport(JasperReportBuilder rb) {
-    StyleBuilder textStyle = stl.style().setName("textStyle").setPadding(2);
-    StyleBuilder boldStyle = stl.style(textStyle).setName("boldStyle").bold();
+public class TemplateStyle6Test extends AbstractJasperStyleTest implements Serializable
+{
 
-    ReportTemplateBuilder template = template().templateStyles(textStyle, boldStyle);
-
-    rb.setTemplate(template)
-        .title(cmp.multiPageList(cmp.text("title").setStyle(stl.templateStyle("boldStyle"))));
-  }
-
-  @Override
-  public void test() {
-    super.test();
-
-    numberOfPagesTest(1);
-
-    styleTest("title.textField1", 0, null, null, TEST_FONT_NAME, 10f, true, null);
-    paddingTest("title.textField1", 0, 2, 2, 2, 2);
-  }
-
-  @Override
-  protected JRDataSource createDataSource() {
-    DRDataSource dataSource = new DRDataSource("field1", "field2");
-    dataSource.add(1, "1");
-    return dataSource;
-  }
+	@Override
+	protected void configureReport(final JasperReportBuilder rb)
+	{
+		final StyleBuilder textStyle = stl.style().setName("textStyle").setPadding(2);
+		final StyleBuilder boldStyle = stl.style(textStyle).setName("boldStyle").bold();
+		
+		final ReportTemplateBuilder template = template().templateStyles(textStyle, boldStyle);
+		
+		rb.setTemplate(template)
+			.title(cmp.multiPageList(cmp.text("title").setStyle(stl.templateStyle("boldStyle"))));
+	}
+	
+	@Override
+	public void test()
+	{
+		super.test();
+		
+		this.numberOfPagesTest(1);
+		
+		this.styleTest("title.textField1", 0, null, null, TEST_FONT_NAME, 10f, true, null);
+		this.paddingTest("title.textField1", 0, 2, 2, 2, 2);
+	}
+	
+	@Override
+	protected JRDataSource createDataSource()
+	{
+		final DRDataSource dataSource = new DRDataSource("field1", "field2");
+		dataSource.add(1, "1");
+		return dataSource;
+	}
 }

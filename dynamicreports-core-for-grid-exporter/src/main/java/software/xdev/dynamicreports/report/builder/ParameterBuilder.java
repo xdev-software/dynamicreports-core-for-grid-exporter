@@ -18,43 +18,23 @@
 package software.xdev.dynamicreports.report.builder;
 
 import software.xdev.dynamicreports.report.base.DRParameter;
-import software.xdev.dynamicreports.report.constant.Constants;
 
-/**
- * <p>ParameterBuilder class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class ParameterBuilder<T> extends AbstractBuilder<ParameterBuilder<T>, DRParameter<T>> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    /**
-     * <p>Constructor for ParameterBuilder.</p>
-     *
-     * @param name  a {@link java.lang.String} object.
-     * @param value a T object.
-     */
-    protected ParameterBuilder(String name, T value) {
-        super(new DRParameter<T>(name, value));
-    }
+public class ParameterBuilder<T> extends AbstractBuilder<ParameterBuilder<T>, DRParameter<T>>
+{
 
-    /**
-     * <p>Constructor for ParameterBuilder.</p>
-     *
-     * @param name       a {@link java.lang.String} object.
-     * @param valueClass a {@link java.lang.Class} object.
-     */
-    protected ParameterBuilder(String name, Class<T> valueClass) {
-        super(new DRParameter<T>(name, valueClass));
-    }
-
-    /**
-     * <p>getParameter.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.base.DRParameter} object.
-     */
-    public DRParameter<T> getParameter() {
-        return build();
-    }
+	protected ParameterBuilder(final String name, final T value)
+	{
+		super(new DRParameter<>(name, value));
+	}
+	
+	protected ParameterBuilder(final String name, final Class<T> valueClass)
+	{
+		super(new DRParameter<>(name, valueClass));
+	}
+	
+	public DRParameter<T> getParameter()
+	{
+		return this.build();
+	}
 }

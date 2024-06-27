@@ -19,38 +19,26 @@ package software.xdev.dynamicreports.design.base.component;
 
 import software.xdev.dynamicreports.design.base.style.DRDesignPen;
 import software.xdev.dynamicreports.design.definition.component.DRIDesignEllipse;
-import software.xdev.dynamicreports.report.constant.Constants;
 
-/**
- * <p>DRDesignEllipse class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class DRDesignEllipse extends DRDesignComponent implements DRIDesignEllipse {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    private DRDesignPen pen;
+public class DRDesignEllipse extends DRDesignComponent implements DRIDesignEllipse
+{
 
-    /**
-     * <p>Constructor for DRDesignEllipse.</p>
-     */
-    public DRDesignEllipse() {
-        super("ellipse");
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRDesignPen getPen() {
-        return pen;
-    }
-
-    /**
-     * <p>Setter for the field <code>pen</code>.</p>
-     *
-     * @param pen a {@link software.xdev.dynamicreports.design.base.style.DRDesignPen} object.
-     */
-    public void setPen(DRDesignPen pen) {
-        this.pen = pen;
-    }
+	private DRDesignPen pen;
+	
+	public DRDesignEllipse()
+	{
+		super("ellipse");
+	}
+	
+	@Override
+	public DRDesignPen getPen()
+	{
+		return this.pen;
+	}
+	
+	public void setPen(final DRDesignPen pen)
+	{
+		this.pen = pen;
+	}
 }

@@ -17,35 +17,26 @@
  */
 package software.xdev.dynamicreports.report.builder.expression;
 
-import software.xdev.dynamicreports.report.constant.Constants;
+import java.util.List;
+
 import software.xdev.dynamicreports.report.definition.ReportParameters;
 import software.xdev.dynamicreports.report.definition.expression.DRIExpression;
 
-import java.util.List;
 
-/**
- * <p>PercentageExpression class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class PercentageExpression extends AbstractComplexExpression<Double> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
+public class PercentageExpression extends AbstractComplexExpression<Double>
+{
 
-    /**
-     * <p>Constructor for PercentageExpression.</p>
-     *
-     * @param actualExpression a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     * @param totalExpression  a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     */
-    public PercentageExpression(DRIExpression<? extends Number> actualExpression, DRIExpression<? extends Number> totalExpression) {
-        addExpression(actualExpression);
-        addExpression(totalExpression);
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Double evaluate(List<?> values, ReportParameters reportParameters) {
-        return ((Number) values.get(0)).doubleValue() / ((Number) values.get(1)).doubleValue();
-    }
+	public PercentageExpression(
+		final DRIExpression<? extends Number> actualExpression,
+		final DRIExpression<? extends Number> totalExpression)
+	{
+		this.addExpression(actualExpression);
+		this.addExpression(totalExpression);
+	}
+	
+	@Override
+	public Double evaluate(final List<?> values, final ReportParameters reportParameters)
+	{
+		return ((Number)values.get(0)).doubleValue() / ((Number)values.get(1)).doubleValue();
+	}
 }

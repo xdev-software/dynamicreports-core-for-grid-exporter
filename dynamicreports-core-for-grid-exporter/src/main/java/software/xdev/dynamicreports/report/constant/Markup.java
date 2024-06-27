@@ -17,12 +17,7 @@
  */
 package software.xdev.dynamicreports.report.constant;
 
-/**
- * <p>Markup class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public enum Markup {
-    NONE, STYLED, RTF, HTML
+public enum Markup
+{
+	NONE, STYLED, RTF, HTML
 }

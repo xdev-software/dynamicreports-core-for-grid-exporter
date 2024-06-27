@@ -21,46 +21,17 @@ import software.xdev.dynamicreports.report.constant.HorizontalImageAlignment;
 import software.xdev.dynamicreports.report.constant.ImageScale;
 import software.xdev.dynamicreports.report.definition.expression.DRIExpression;
 
-/**
- * <p>DRIImage interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface DRIImage extends DRIHyperLinkComponent {
 
-    /**
-     * <p>getImageExpression.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     */
-    public DRIExpression<?> getImageExpression();
-
-    /**
-     * <p>getImageScale.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.constant.ImageScale} object.
-     */
-    public ImageScale getImageScale();
-
-    /**
-     * <p>getUsingCache.</p>
-     *
-     * @return a {@link java.lang.Boolean} object.
-     */
-    public Boolean getUsingCache();
-
-    /**
-     * <p>getLazy.</p>
-     *
-     * @return a {@link java.lang.Boolean} object.
-     */
-    public Boolean getLazy();
-
-    /**
-     * <p>getHorizontalImageAlignment.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.constant.HorizontalImageAlignment} object.
-     */
-    public HorizontalImageAlignment getHorizontalImageAlignment();
+public interface DRIImage extends DRIHyperLinkComponent
+{
+	
+	public DRIExpression<?> getImageExpression();
+	
+	public ImageScale getImageScale();
+	
+	public Boolean getUsingCache();
+	
+	public Boolean getLazy();
+	
+	public HorizontalImageAlignment getHorizontalImageAlignment();
 }
