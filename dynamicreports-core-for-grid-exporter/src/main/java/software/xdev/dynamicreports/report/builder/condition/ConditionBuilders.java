@@ -20,9 +20,9 @@ package software.xdev.dynamicreports.report.builder.condition;
 import software.xdev.dynamicreports.report.definition.DRIValue;
 
 
+@SuppressWarnings("java:S1221")
 public class ConditionBuilders
 {
-	
 	@SuppressWarnings("unchecked")
 	public <T> EqualExpression equal(final DRIValue<T> value, final T... values)
 	{

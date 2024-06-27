@@ -20,6 +20,7 @@ package software.xdev.dynamicreports.report.builder.condition;
 import software.xdev.dynamicreports.report.definition.DRIValue;
 
 
+@SuppressWarnings("java:S1221")
 public final class Conditions
 {
 	private Conditions()

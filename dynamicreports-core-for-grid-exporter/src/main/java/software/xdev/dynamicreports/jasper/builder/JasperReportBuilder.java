@@ -26,6 +26,7 @@ import java.sql.ResultSet;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 import org.apache.commons.lang3.Validate;
 
@@ -97,7 +98,7 @@ public class JasperReportBuilder extends ReportBuilder<JasperReportBuilder>
 	
 	public JasperReportBuilder setStartPageNumber(final Integer startPageNumber) throws DRException
 	{
-		if(this.startPageNumber == startPageNumber)
+		if(Objects.equals(this.startPageNumber, startPageNumber))
 		{
 			return this;
 		}

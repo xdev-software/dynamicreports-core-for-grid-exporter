@@ -78,10 +78,14 @@ public class DRDesignStyle extends DRDesignBaseStyle implements DRIDesignStyle
 		this.conditionalStyles.add(conditionalStyle);
 	}
 	
-	@SuppressWarnings("checkstyle:EqualsHashCode")
+	@SuppressWarnings({"checkstyle:EqualsHashCode", "java:S1206", "java:S2097"}) // Upstream
 	@Override
 	public boolean equals(final Object obj)
 	{
+		if(obj == null)
+		{
+			return false;
+		}
 		final EqualsBuilder equalsBuilder = new EqualsBuilder().appendSuper(super.equals(obj));
 		if(equalsBuilder.isEquals())
 		{
