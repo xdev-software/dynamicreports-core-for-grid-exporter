@@ -26,125 +26,107 @@ import software.xdev.dynamicreports.report.builder.datatype.DataTypes;
 import software.xdev.dynamicreports.report.builder.expression.PercentageExpression;
 import software.xdev.dynamicreports.report.builder.group.GroupBuilder;
 import software.xdev.dynamicreports.report.constant.Calculation;
-import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.constant.Evaluation;
 import software.xdev.dynamicreports.report.constant.PercentageTotalType;
 import software.xdev.dynamicreports.report.definition.expression.DRIExpression;
 import software.xdev.dynamicreports.report.exception.DRReportException;
 
-/**
- * <p>PercentageSubtotalBuilder class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class PercentageSubtotalBuilder extends BaseSubtotalBuilder<PercentageSubtotalBuilder, Double> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    private DRIExpression<? extends Number> expression;
-    private PercentageTotalType totalType;
-    private DRGroup totalGroup;
+public class PercentageSubtotalBuilder extends BaseSubtotalBuilder<PercentageSubtotalBuilder, Double>
+{
 
-    // column
-
-    /**
-     * <p>Constructor for PercentageSubtotalBuilder.</p>
-     *
-     * @param column a {@link software.xdev.dynamicreports.report.builder.column.ValueColumnBuilder} object.
-     */
-    protected PercentageSubtotalBuilder(ValueColumnBuilder<?, ? extends Number> column) {
-        this(column.build(), column);
-    }
-
-    // field
-
-    /**
-     * <p>Constructor for PercentageSubtotalBuilder.</p>
-     *
-     * @param field        a {@link software.xdev.dynamicreports.report.builder.FieldBuilder} object.
-     * @param showInColumn a {@link software.xdev.dynamicreports.report.builder.column.ColumnBuilder} object.
-     */
-    protected PercentageSubtotalBuilder(FieldBuilder<? extends Number> field, ColumnBuilder<?, ?> showInColumn) {
-        this(field.getField(), showInColumn);
-    }
-
-    // expression
-
-    /**
-     * <p>Constructor for PercentageSubtotalBuilder.</p>
-     *
-     * @param expression   a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     * @param showInColumn a {@link software.xdev.dynamicreports.report.builder.column.ColumnBuilder} object.
-     */
-    protected PercentageSubtotalBuilder(DRIExpression<? extends Number> expression, ColumnBuilder<?, ?> showInColumn) {
-        super(showInColumn);
-        this.expression = expression;
-    }
-
-    /**
-     * <p>Setter for the field <code>totalType</code>.</p>
-     *
-     * @param totalType a {@link software.xdev.dynamicreports.report.constant.PercentageTotalType} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.subtotal.PercentageSubtotalBuilder} object.
-     */
-    public PercentageSubtotalBuilder setTotalType(PercentageTotalType totalType) {
-        this.totalType = totalType;
-        return this;
-    }
-
-    /**
-     * <p>Setter for the field <code>totalGroup</code>.</p>
-     *
-     * @param totalGroup a {@link software.xdev.dynamicreports.report.builder.group.GroupBuilder} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.subtotal.PercentageSubtotalBuilder} object.
-     */
-    public PercentageSubtotalBuilder setTotalGroup(GroupBuilder<?> totalGroup) {
-        if (totalGroup != null) {
-            this.totalGroup = totalGroup.getGroup();
-            setTotalType(PercentageTotalType.GROUP);
-        } else {
-            this.totalGroup = null;
-        }
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    protected void configure() {
-        if (getObject().getValueField().getDataType() == null) {
-            getObject().getValueField().setDataType(DataTypes.percentageType());
-        }
-
-        DRVariable<Number> actualExpression = new DRVariable<Number>(expression, Calculation.SUM);
-        actualExpression.setResetType(Evaluation.GROUP);
-        actualExpression.setResetGroup(getObject().getGroup());
-
-        DRVariable<Number> totalExpression = new DRVariable<Number>(expression, Calculation.SUM);
-        if (totalType != null) {
-            switch (totalType) {
-                case REPORT:
-                    totalExpression.setResetType(Evaluation.REPORT);
-                    break;
-                case GROUP:
-                    totalExpression.setResetType(Evaluation.GROUP);
-                    break;
-                case FIRST_GROUP:
-                    totalExpression.setResetType(Evaluation.FIRST_GROUP);
-                    break;
-                case LAST_GROUP:
-                    totalExpression.setResetType(Evaluation.LAST_GROUP);
-                    break;
-                default:
-                    throw new DRReportException("Percentage total type " + totalType.name() + " not supported.");
-            }
-        } else {
-            totalExpression.setResetType(Evaluation.BEFORE_GROUP);
-            totalGroup = getObject().getGroup();
-        }
-        totalExpression.setResetGroup(totalGroup);
-
-        setValueExpression(new PercentageExpression(actualExpression, totalExpression));
-
-        super.configure();
-    }
+	private final DRIExpression<? extends Number> expression;
+	private PercentageTotalType totalType;
+	private DRGroup totalGroup;
+	
+	// column
+	
+	protected PercentageSubtotalBuilder(final ValueColumnBuilder<?, ? extends Number> column)
+	{
+		this(column.build(), column);
+	}
+	
+	// field
+	
+	protected PercentageSubtotalBuilder(
+		final FieldBuilder<? extends Number> field,
+		final ColumnBuilder<?, ?> showInColumn)
+	{
+		this(field.getField(), showInColumn);
+	}
+	
+	// expression
+	
+	protected PercentageSubtotalBuilder(
+		final DRIExpression<? extends Number> expression,
+		final ColumnBuilder<?, ?> showInColumn)
+	{
+		super(showInColumn);
+		this.expression = expression;
+	}
+	
+	public PercentageSubtotalBuilder setTotalType(final PercentageTotalType totalType)
+	{
+		this.totalType = totalType;
+		return this;
+	}
+	
+	public PercentageSubtotalBuilder setTotalGroup(final GroupBuilder<?> totalGroup)
+	{
+		if(totalGroup != null)
+		{
+			this.totalGroup = totalGroup.getGroup();
+			this.setTotalType(PercentageTotalType.GROUP);
+		}
+		else
+		{
+			this.totalGroup = null;
+		}
+		return this;
+	}
+	
+	@Override
+	protected void configure()
+	{
+		if(this.getObject().getValueField().getDataType() == null)
+		{
+			this.getObject().getValueField().setDataType(DataTypes.percentageType());
+		}
+		
+		final DRVariable<Number> actualExpression = new DRVariable<>(this.expression, Calculation.SUM);
+		actualExpression.setResetType(Evaluation.GROUP);
+		actualExpression.setResetGroup(this.getObject().getGroup());
+		
+		final DRVariable<Number> totalExpression = new DRVariable<>(this.expression, Calculation.SUM);
+		if(this.totalType != null)
+		{
+			switch(this.totalType)
+			{
+				case REPORT:
+					totalExpression.setResetType(Evaluation.REPORT);
+					break;
+				case GROUP:
+					totalExpression.setResetType(Evaluation.GROUP);
+					break;
+				case FIRST_GROUP:
+					totalExpression.setResetType(Evaluation.FIRST_GROUP);
+					break;
+				case LAST_GROUP:
+					totalExpression.setResetType(Evaluation.LAST_GROUP);
+					break;
+				default:
+					throw new DRReportException("Percentage total type " + this.totalType.name() + " not supported.");
+			}
+		}
+		else
+		{
+			totalExpression.setResetType(Evaluation.BEFORE_GROUP);
+			this.totalGroup = this.getObject().getGroup();
+		}
+		totalExpression.setResetGroup(this.totalGroup);
+		
+		this.setValueExpression(new PercentageExpression(actualExpression, totalExpression));
+		
+		super.configure();
+	}
 }

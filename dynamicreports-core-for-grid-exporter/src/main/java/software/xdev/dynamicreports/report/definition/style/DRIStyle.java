@@ -19,32 +19,13 @@ package software.xdev.dynamicreports.report.definition.style;
 
 import java.util.List;
 
-/**
- * <p>DRIStyle interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface DRIStyle extends DRIBaseStyle, DRIReportStyle {
 
-    /**
-     * <p>getName.</p>
-     *
-     * @return a {@link java.lang.String} object.
-     */
-    public String getName();
-
-    /**
-     * <p>getParentStyle.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.definition.style.DRIReportStyle} object.
-     */
-    public DRIReportStyle getParentStyle();
-
-    /**
-     * <p>getConditionalStyles.</p>
-     *
-     * @return a {@link java.util.List} object.
-     */
-    public List<? extends DRIConditionalStyle> getConditionalStyles();
+public interface DRIStyle extends DRIBaseStyle, DRIReportStyle
+{
+	
+	public String getName();
+	
+	public DRIReportStyle getParentStyle();
+	
+	public List<? extends DRIConditionalStyle> getConditionalStyles();
 }

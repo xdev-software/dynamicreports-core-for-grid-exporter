@@ -17,36 +17,30 @@
  */
 package software.xdev.dynamicreports.report.builder.datatype;
 
-import software.xdev.dynamicreports.report.constant.Constants;
+import java.math.BigInteger;
+
 import software.xdev.dynamicreports.report.constant.HorizontalTextAlignment;
 import software.xdev.dynamicreports.report.defaults.Defaults;
 
-import java.math.BigInteger;
 
-/**
- * <p>BigIntegerType class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class BigIntegerType extends NumberType<BigInteger> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
+public class BigIntegerType extends NumberType<BigInteger>
+{
 
-    /** {@inheritDoc} */
-    @Override
-    public String getPattern() {
-        return Defaults.getDefaults().getBigIntegerType().getPattern();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public HorizontalTextAlignment getHorizontalTextAlignment() {
-        return Defaults.getDefaults().getBigIntegerType().getHorizontalTextAlignment();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    protected BigInteger numberToValue(Number number) {
-        return BigInteger.valueOf(number.longValue());
-    }
+	@Override
+	public String getPattern()
+	{
+		return Defaults.getDefaults().getBigIntegerType().getPattern();
+	}
+	
+	@Override
+	public HorizontalTextAlignment getHorizontalTextAlignment()
+	{
+		return Defaults.getDefaults().getBigIntegerType().getHorizontalTextAlignment();
+	}
+	
+	@Override
+	protected BigInteger numberToValue(final Number number)
+	{
+		return BigInteger.valueOf(number.longValue());
+	}
 }

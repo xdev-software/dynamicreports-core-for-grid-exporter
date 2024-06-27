@@ -17,30 +17,14 @@
  */
 package software.xdev.dynamicreports.jasper.base;
 
-/**
- * Interface for managers of {@link software.xdev.dynamicreports.jasper.base.JasperScriptlet} used in {@link software.xdev.dynamicreports.jasper.base.JasperCustomValues}.
- *
- * @author edwin.njeru
- * @version 6.0.1-SNAPSHOT
- */
-public interface JasperScriptletManager {
 
-    /**
-     * Property key used for selecting thread safe implementation.
-     */
-    public static final String USE_THREAD_SAFE_SCRIPLET_MANAGER_PROPERTY_KEY = "software.xdev.dynamicreports.useThreadSafeScriptletManager";
-
-    /**
-     * Getter for the {@link software.xdev.dynamicreports.jasper.base.JasperScriptlet} instance.
-     *
-     * @return the set {@link software.xdev.dynamicreports.jasper.base.JasperScriptlet} instance
-     */
-    JasperScriptlet getJasperScriptlet();
-
-    /**
-     * Setter for the {@link software.xdev.dynamicreports.jasper.base.JasperScriptlet} instance.
-     *
-     * @param jasperScriptlet the {@link software.xdev.dynamicreports.jasper.base.JasperScriptlet} instance to set
-     */
-    void setJasperScriptlet(JasperScriptlet jasperScriptlet);
+public interface JasperScriptletManager
+{
+	
+	public static final String USE_THREAD_SAFE_SCRIPLET_MANAGER_PROPERTY_KEY =
+		"software.xdev.dynamicreports.useThreadSafeScriptletManager";
+	
+	JasperScriptlet getJasperScriptlet();
+	
+	void setJasperScriptlet(JasperScriptlet jasperScriptlet);
 }

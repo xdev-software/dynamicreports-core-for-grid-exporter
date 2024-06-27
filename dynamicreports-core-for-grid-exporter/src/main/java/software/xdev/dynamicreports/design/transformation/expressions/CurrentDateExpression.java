@@ -17,53 +17,45 @@
  */
 package software.xdev.dynamicreports.design.transformation.expressions;
 
-import software.xdev.dynamicreports.report.builder.datatype.DataTypes;
-import software.xdev.dynamicreports.report.builder.expression.AbstractComplexExpression;
-import software.xdev.dynamicreports.report.constant.Constants;
-import software.xdev.dynamicreports.report.definition.ReportParameters;
-import software.xdev.dynamicreports.report.definition.expression.DRIExpression;
-
 import java.text.MessageFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-/**
- * <p>CurrentDateExpression class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class CurrentDateExpression extends AbstractComplexExpression<String> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
+import software.xdev.dynamicreports.report.builder.datatype.DataTypes;
+import software.xdev.dynamicreports.report.builder.expression.AbstractComplexExpression;
+import software.xdev.dynamicreports.report.definition.ReportParameters;
+import software.xdev.dynamicreports.report.definition.expression.DRIExpression;
 
-    private String datePattern;
 
-    /**
-     * <p>Constructor for CurrentDateExpression.</p>
-     *
-     * @param currentDateExpression a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     * @param datePattern           a {@link java.lang.String} object.
-     */
-    public CurrentDateExpression(DRIExpression<String> currentDateExpression, String datePattern) {
-        this.datePattern = datePattern;
-        addExpression(currentDateExpression);
-    }
+public class CurrentDateExpression extends AbstractComplexExpression<String>
+{
 
-    /** {@inheritDoc} */
-    @Override
-    public String evaluate(List<?> values, ReportParameters reportParameters) {
-        String pattern = (String) values.get(0);
-        Locale locale = reportParameters.getLocale();
-        MessageFormat format = new MessageFormat(pattern, locale);
-        String date;
-        if (datePattern == null) {
-            date = DataTypes.dateType().valueToString(new Date(), locale);
-        } else {
-            date = new SimpleDateFormat(datePattern, locale).format(new Date());
-        }
-        String result = format.format(new Object[] {date});
-        return result;
-    }
+	private final String datePattern;
+	
+	public CurrentDateExpression(final DRIExpression<String> currentDateExpression, final String datePattern)
+	{
+		this.datePattern = datePattern;
+		this.addExpression(currentDateExpression);
+	}
+	
+	@Override
+	public String evaluate(final List<?> values, final ReportParameters reportParameters)
+	{
+		final String pattern = (String)values.get(0);
+		final Locale locale = reportParameters.getLocale();
+		final MessageFormat format = new MessageFormat(pattern, locale);
+		final String date;
+		if(this.datePattern == null)
+		{
+			date = DataTypes.dateType().valueToString(new Date(), locale);
+		}
+		else
+		{
+			date = new SimpleDateFormat(this.datePattern, locale).format(new Date());
+		}
+		final String result = format.format(new Object[]{date});
+		return result;
+	}
 }

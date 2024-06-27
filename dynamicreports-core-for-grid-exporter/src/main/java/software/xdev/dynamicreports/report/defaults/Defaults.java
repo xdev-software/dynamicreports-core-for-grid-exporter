@@ -22,21 +22,21 @@ import java.util.ServiceLoader;
 
 public final class Defaults
 {
-    private static Default instance = ServiceLoader.load(Default.class)
-        .findFirst()
-        .orElseGet(Default::new);
-    
-    private Defaults()
-    {
-    }
-    
-    public static Default getDefaults()
-    {
-        return instance;
-    }
-    
-    public static void setDefault(final Default d)
-    {
-        instance = d;
-    }
+	private static Default instance = ServiceLoader.load(Default.class)
+		.findFirst()
+		.orElseGet(Default::new);
+	
+	private Defaults()
+	{
+	}
+	
+	public static Default getDefaults()
+	{
+		return instance;
+	}
+	
+	public static void setDefault(final Default d)
+	{
+		instance = d;
+	}
 }

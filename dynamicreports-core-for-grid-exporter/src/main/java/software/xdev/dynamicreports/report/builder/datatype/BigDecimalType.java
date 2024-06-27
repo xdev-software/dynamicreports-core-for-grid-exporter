@@ -19,34 +19,28 @@ package software.xdev.dynamicreports.report.builder.datatype;
 
 import java.math.BigDecimal;
 
-import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.constant.HorizontalTextAlignment;
 import software.xdev.dynamicreports.report.defaults.Defaults;
 
-/**
- * <p>BigDecimalType class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class BigDecimalType extends NumberType<BigDecimal> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    /** {@inheritDoc} */
-    @Override
-    public String getPattern() {
-        return Defaults.getDefaults().getBigDecimalType().getPattern();
-    }
+public class BigDecimalType extends NumberType<BigDecimal>
+{
 
-    /** {@inheritDoc} */
-    @Override
-    public HorizontalTextAlignment getHorizontalTextAlignment() {
-        return Defaults.getDefaults().getBigDecimalType().getHorizontalTextAlignment();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    protected BigDecimal numberToValue(final Number number) {
-        return BigDecimal.valueOf(number.doubleValue());
-    }
+	@Override
+	public String getPattern()
+	{
+		return Defaults.getDefaults().getBigDecimalType().getPattern();
+	}
+	
+	@Override
+	public HorizontalTextAlignment getHorizontalTextAlignment()
+	{
+		return Defaults.getDefaults().getBigDecimalType().getHorizontalTextAlignment();
+	}
+	
+	@Override
+	protected BigDecimal numberToValue(final Number number)
+	{
+		return BigDecimal.valueOf(number.doubleValue());
+	}
 }

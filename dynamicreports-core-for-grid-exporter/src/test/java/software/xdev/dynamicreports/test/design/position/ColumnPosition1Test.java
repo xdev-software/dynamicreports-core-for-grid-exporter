@@ -17,7 +17,10 @@
  */
 package software.xdev.dynamicreports.test.design.position;
 
+import static software.xdev.dynamicreports.report.builder.DynamicReports.col;
+
 import org.junit.jupiter.api.Assertions;
+
 import software.xdev.dynamicreports.design.base.DRDesignBand;
 import software.xdev.dynamicreports.design.base.component.DRDesignComponent;
 import software.xdev.dynamicreports.design.base.component.DRDesignList;
@@ -26,42 +29,43 @@ import software.xdev.dynamicreports.report.builder.ReportBuilder;
 import software.xdev.dynamicreports.report.constant.ListType;
 import software.xdev.dynamicreports.test.design.AbstractBandTest;
 
-import static software.xdev.dynamicreports.report.builder.DynamicReports.col;
 
-/**
- * @author Ricardo Mariaca
- */
-public class ColumnPosition1Test extends AbstractBandTest {
-
-    @Override
-    public void configureReport(ReportBuilder<?> rb) {
-        rb.columns(col.column("Column1", "field1", Integer.class), col.column("Column2", "field2", Integer.class));
-    }
-
-    @Override
-    protected void columnHeaderBandTest(DRDesignBand band) {
-        testBand(band);
-    }
-
-    @Override
-    protected void detailBandTest(DRDesignBand band) {
-        testBand(band);
-    }
-
-    protected void testBand(DRDesignBand band) {
-        DRDesignComponent component = band.getBandComponent();
-        Assertions.assertTrue(component instanceof DRDesignList);
-        DRDesignList list = (DRDesignList) component;
-        Assertions.assertEquals(ListType.HORIZONTAL, list.getType());
-        Assertions.assertEquals(2, list.getComponents().size());
-        componentPositionTest(list, 0, 0, 575, 16);
-        Assertions.assertTrue(list.getComponents().get(0) instanceof DRDesignTextField);
-        Assertions.assertTrue(list.getComponents().get(1) instanceof DRDesignTextField);
-
-        // column1
-        componentPositionTest(list.getComponents().get(0), 0, 0, 287, 16);
-
-        // column2
-        componentPositionTest(list.getComponents().get(1), 287, 0, 288, 16);
-    }
+public class ColumnPosition1Test extends AbstractBandTest
+{
+	
+	@Override
+	public void configureReport(final ReportBuilder<?> rb)
+	{
+		rb.columns(col.column("Column1", "field1", Integer.class), col.column("Column2", "field2", Integer.class));
+	}
+	
+	@Override
+	protected void columnHeaderBandTest(final DRDesignBand band)
+	{
+		this.testBand(band);
+	}
+	
+	@Override
+	protected void detailBandTest(final DRDesignBand band)
+	{
+		this.testBand(band);
+	}
+	
+	protected void testBand(final DRDesignBand band)
+	{
+		final DRDesignComponent component = band.getBandComponent();
+		Assertions.assertTrue(component instanceof DRDesignList);
+		final DRDesignList list = (DRDesignList)component;
+		Assertions.assertEquals(ListType.HORIZONTAL, list.getType());
+		Assertions.assertEquals(2, list.getComponents().size());
+		this.componentPositionTest(list, 0, 0, 575, 16);
+		Assertions.assertTrue(list.getComponents().get(0) instanceof DRDesignTextField);
+		Assertions.assertTrue(list.getComponents().get(1) instanceof DRDesignTextField);
+		
+		// column1
+		this.componentPositionTest(list.getComponents().get(0), 0, 0, 287, 16);
+		
+		// column2
+		this.componentPositionTest(list.getComponents().get(1), 287, 0, 288, 16);
+	}
 }

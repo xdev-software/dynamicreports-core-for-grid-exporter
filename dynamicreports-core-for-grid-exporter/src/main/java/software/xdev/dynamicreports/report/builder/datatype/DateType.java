@@ -17,57 +17,56 @@
  */
 package software.xdev.dynamicreports.report.builder.datatype;
 
-import software.xdev.dynamicreports.report.base.datatype.AbstractDataType;
-import software.xdev.dynamicreports.report.constant.Constants;
-import software.xdev.dynamicreports.report.constant.HorizontalTextAlignment;
-import software.xdev.dynamicreports.report.defaults.Defaults;
-import software.xdev.dynamicreports.report.exception.DRException;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-/**
- * <p>DateType class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class DateType extends AbstractDataType<Date, Date> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
+import software.xdev.dynamicreports.report.base.datatype.AbstractDataType;
+import software.xdev.dynamicreports.report.constant.HorizontalTextAlignment;
+import software.xdev.dynamicreports.report.defaults.Defaults;
+import software.xdev.dynamicreports.report.exception.DRException;
 
-    /** {@inheritDoc} */
-    @Override
-    public String getPattern() {
-        return Defaults.getDefaults().getDateType().getPattern();
-    }
 
-    /** {@inheritDoc} */
-    @Override
-    public HorizontalTextAlignment getHorizontalTextAlignment() {
-        return Defaults.getDefaults().getDateType().getHorizontalTextAlignment();
-    }
+public class DateType extends AbstractDataType<Date, Date>
+{
 
-    /** {@inheritDoc} */
-    @Override
-    public String valueToString(Date value, Locale locale) {
-        if (value != null) {
-            return new SimpleDateFormat(getPattern(), locale).format(value);
-        }
-        return null;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Date stringToValue(String value, Locale locale) throws DRException {
-        if (value != null) {
-            try {
-                return new SimpleDateFormat(getPattern(), locale).parse(value);
-            } catch (ParseException e) {
-                throw new DRException("Unable to convert string value to date", e);
-            }
-        }
-        return null;
-    }
+	@Override
+	public String getPattern()
+	{
+		return Defaults.getDefaults().getDateType().getPattern();
+	}
+	
+	@Override
+	public HorizontalTextAlignment getHorizontalTextAlignment()
+	{
+		return Defaults.getDefaults().getDateType().getHorizontalTextAlignment();
+	}
+	
+	@Override
+	public String valueToString(final Date value, final Locale locale)
+	{
+		if(value != null)
+		{
+			return new SimpleDateFormat(this.getPattern(), locale).format(value);
+		}
+		return null;
+	}
+	
+	@Override
+	public Date stringToValue(final String value, final Locale locale) throws DRException
+	{
+		if(value != null)
+		{
+			try
+			{
+				return new SimpleDateFormat(this.getPattern(), locale).parse(value);
+			}
+			catch(final ParseException e)
+			{
+				throw new DRException("Unable to convert string value to date", e);
+			}
+		}
+		return null;
+	}
 }

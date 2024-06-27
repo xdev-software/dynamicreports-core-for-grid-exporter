@@ -27,24 +27,20 @@ import java.nio.charset.Charset;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import net.sf.jasperreports.engine.JRStyle;
+import net.sf.jasperreports.engine.design.JasperDesign;
 import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
 import software.xdev.dynamicreports.report.builder.style.StyleBuilder;
 import software.xdev.dynamicreports.report.builder.style.TemplateStyleBuilder;
 import software.xdev.dynamicreports.report.exception.DRException;
-import net.sf.jasperreports.engine.JRStyle;
-import net.sf.jasperreports.engine.design.JasperDesign;
 
 
-/**
- * @author Ramunas Belkauskas
- */
 class StyleNamesTest
 {
-	
-	private static final String jrtxStr =
+	private static final String JRTX_STR =
 		"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
 			+ "<!DOCTYPE jasperTemplate PUBLIC \"-//JasperReports//DTD Template//EN\" \"http://jasperreports"
-            + ".sourceforge.net/dtds/jaspertemplate.dtd\">\n"
+			+ ".sourceforge.net/dtds/jaspertemplate.dtd\">\n"
 			+
 			"<jasperTemplate>\n" + "  <style name=\"MyBoldStyle2\" isBold=\"true\"/>\n" + "</jasperTemplate>";
 	
@@ -67,7 +63,7 @@ class StyleNamesTest
 	@Test
 	void testStyleFromTemplateName() throws DRException
 	{
-		final ByteArrayInputStream is = new ByteArrayInputStream(jrtxStr.getBytes(Charset.forName("UTF-8")));
+		final ByteArrayInputStream is = new ByteArrayInputStream(JRTX_STR.getBytes(Charset.forName("UTF-8")));
 		// name defined in style template:
 		final TemplateStyleBuilder templateStyle = stl.templateStyle("MyBoldStyle2");
 		final JasperReportBuilder builder =

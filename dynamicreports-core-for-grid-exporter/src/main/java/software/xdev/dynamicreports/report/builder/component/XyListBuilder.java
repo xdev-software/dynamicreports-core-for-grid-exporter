@@ -17,85 +17,60 @@
  */
 package software.xdev.dynamicreports.report.builder.component;
 
-import software.xdev.dynamicreports.report.base.component.DRXyList;
-import software.xdev.dynamicreports.report.constant.Constants;
 import org.apache.commons.lang3.Validate;
 
-/**
- * <p>XyListBuilder class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class XyListBuilder extends DimensionComponentBuilder<XyListBuilder, DRXyList> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
+import software.xdev.dynamicreports.report.base.component.DRXyList;
 
-    /**
-     * <p>Constructor for XyListBuilder.</p>
-     */
-    protected XyListBuilder() {
-        super(new DRXyList());
-    }
 
-    /**
-     * <p>add.</p>
-     *
-     * @param x         a {@link java.lang.Integer} object.
-     * @param y         a {@link java.lang.Integer} object.
-     * @param component a {@link software.xdev.dynamicreports.report.builder.component.ComponentBuilder} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.XyListBuilder} object.
-     */
-    public XyListBuilder add(Integer x, Integer y, ComponentBuilder<?, ?> component) {
-        Validate.notNull(x, "x must not be null");
-        Validate.notNull(y, "y must not be null");
-        Validate.notNull(component, "component must not be null");
-        getObject().addComponent(x, y, component.getComponent());
-        return this;
-    }
+public class XyListBuilder extends DimensionComponentBuilder<XyListBuilder, DRXyList>
+{
 
-    /**
-     * <p>add.</p>
-     *
-     * @param x         a {@link java.lang.Integer} object.
-     * @param y         a {@link java.lang.Integer} object.
-     * @param width     a {@link java.lang.Integer} object.
-     * @param height    a {@link java.lang.Integer} object.
-     * @param component a {@link software.xdev.dynamicreports.report.builder.component.ComponentBuilder} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.XyListBuilder} object.
-     */
-    public XyListBuilder add(Integer x, Integer y, Integer width, Integer height, ComponentBuilder<?, ?> component) {
-        Validate.notNull(x, "x must not be null");
-        Validate.notNull(y, "y must not be null");
-        Validate.notNull(component, "component must not be null");
-        if (component instanceof DimensionComponentBuilder) {
-            ((DimensionComponentBuilder<?, ?>) component).setWidth(width);
-            ((DimensionComponentBuilder<?, ?>) component).setHeight(height);
-        }
-        getObject().addComponent(x, y, component.getComponent());
-        return this;
-    }
-
-    /**
-     * <p>add.</p>
-     *
-     * @param cells a {@link software.xdev.dynamicreports.report.builder.component.XyListCellBuilder} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.XyListBuilder} object.
-     */
-    public XyListBuilder add(XyListCellBuilder... cells) {
-        Validate.notNull(cells, "cells must not be null");
-        Validate.noNullElements(cells, "cells must not contains null cell");
-        for (XyListCellBuilder cell : cells) {
-            getObject().addCell(cell.build());
-        }
-        return this;
-    }
-
-    /**
-     * <p>getXyList.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.base.component.DRXyList} object.
-     */
-    public DRXyList getXyList() {
-        return build();
-    }
+	protected XyListBuilder()
+	{
+		super(new DRXyList());
+	}
+	
+	public XyListBuilder add(final Integer x, final Integer y, final ComponentBuilder<?, ?> component)
+	{
+		Validate.notNull(x, "x must not be null");
+		Validate.notNull(y, "y must not be null");
+		Validate.notNull(component, "component must not be null");
+		this.getObject().addComponent(x, y, component.getComponent());
+		return this;
+	}
+	
+	public XyListBuilder add(
+		final Integer x,
+		final Integer y,
+		final Integer width,
+		final Integer height,
+		final ComponentBuilder<?, ?> component)
+	{
+		Validate.notNull(x, "x must not be null");
+		Validate.notNull(y, "y must not be null");
+		Validate.notNull(component, "component must not be null");
+		if(component instanceof DimensionComponentBuilder)
+		{
+			((DimensionComponentBuilder<?, ?>)component).setWidth(width);
+			((DimensionComponentBuilder<?, ?>)component).setHeight(height);
+		}
+		this.getObject().addComponent(x, y, component.getComponent());
+		return this;
+	}
+	
+	public XyListBuilder add(final XyListCellBuilder... cells)
+	{
+		Validate.notNull(cells, "cells must not be null");
+		Validate.noNullElements(cells, "cells must not contains null cell");
+		for(final XyListCellBuilder cell : cells)
+		{
+			this.getObject().addCell(cell.build());
+		}
+		return this;
+	}
+	
+	public DRXyList getXyList()
+	{
+		return this.build();
+	}
 }

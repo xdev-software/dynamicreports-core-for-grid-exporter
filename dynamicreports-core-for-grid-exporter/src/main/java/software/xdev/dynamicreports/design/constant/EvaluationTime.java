@@ -17,12 +17,7 @@
  */
 package software.xdev.dynamicreports.design.constant;
 
-/**
- * <p>EvaluationTime class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public enum EvaluationTime {
-    NOW, REPORT, PAGE, COLUMN, GROUP, BAND, AUTO
+public enum EvaluationTime
+{
+	NOW, REPORT, PAGE, COLUMN, GROUP, BAND, AUTO
 }

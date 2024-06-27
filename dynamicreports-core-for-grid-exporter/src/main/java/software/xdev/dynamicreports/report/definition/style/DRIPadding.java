@@ -19,39 +19,15 @@ package software.xdev.dynamicreports.report.definition.style;
 
 import java.io.Serializable;
 
-/**
- * <p>DRIPadding interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface DRIPadding extends Serializable {
 
-    /**
-     * <p>getTop.</p>
-     *
-     * @return a {@link java.lang.Integer} object.
-     */
-    public Integer getTop();
-
-    /**
-     * <p>getLeft.</p>
-     *
-     * @return a {@link java.lang.Integer} object.
-     */
-    public Integer getLeft();
-
-    /**
-     * <p>getBottom.</p>
-     *
-     * @return a {@link java.lang.Integer} object.
-     */
-    public Integer getBottom();
-
-    /**
-     * <p>getRight.</p>
-     *
-     * @return a {@link java.lang.Integer} object.
-     */
-    public Integer getRight();
+public interface DRIPadding extends Serializable
+{
+	
+	public Integer getTop();
+	
+	public Integer getLeft();
+	
+	public Integer getBottom();
+	
+	public Integer getRight();
 }

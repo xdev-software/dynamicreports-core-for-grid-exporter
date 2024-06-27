@@ -17,59 +17,60 @@
  */
 package software.xdev.dynamicreports.test.jasper.component;
 
+import static software.xdev.dynamicreports.report.builder.DynamicReports.cmp;
+
 import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
 import software.xdev.dynamicreports.report.builder.component.VerticalListBuilder;
 import software.xdev.dynamicreports.test.jasper.AbstractJasperPositionTest;
 
-import static software.xdev.dynamicreports.report.builder.DynamicReports.cmp;
 
-/**
- * @author Ricardo Mariaca
- */
-public class List2Test extends AbstractJasperPositionTest {
-
-    @Override
-    protected void configureReport(JasperReportBuilder rb) {
-        VerticalListBuilder list1 = cmp.verticalList();
-        list1.add(cmp.text(""));
-
-        VerticalListBuilder list2 = cmp.verticalList();
-        list2.add(cmp.text(""));
-        list2.add(cmp.filler().setFixedWidth(500));
-
-        VerticalListBuilder list3 = cmp.verticalList();
-        list3.add(cmp.text(""));
-
-        VerticalListBuilder list4 = cmp.verticalList();
-        list4.add(cmp.text(""));
-        list4.add(cmp.filler().setFixedWidth(50));
-
-        VerticalListBuilder list5 = cmp.verticalList();
-        list5.add(cmp.text(""));
-
-        VerticalListBuilder list6 = cmp.verticalList();
-        list6.add(cmp.text(""));
-        list6.add(cmp.filler().setFixedWidth(200));
-        list6.add(cmp.text(""));
-        list6.add(cmp.filler().setFixedWidth(500));
-
-        rb.title(cmp.horizontalList(list1, list2), cmp.horizontalList(list3, list4), cmp.horizontalList(list5, list6));
-    }
-
-    @Override
-    public void test() {
-        super.test();
-
-        numberOfPagesTest(1);
-
-        elementPositionTest("title.textField1", 0, 0, 0, 75, 16);
-        elementPositionTest("title.textField2", 0, 75, 0, 500, 16);
-
-        elementPositionTest("title.textField3", 0, 0, 0, 287, 16);
-        elementPositionTest("title.textField4", 0, 287, 0, 288, 16);
-
-        elementPositionTest("title.textField5", 0, 0, 0, 75, 32);
-        elementPositionTest("title.textField6", 0, 75, 0, 500, 16);
-        elementPositionTest("title.textField7", 0, 75, 16, 500, 16);
-    }
+public class List2Test extends AbstractJasperPositionTest
+{
+	
+	@Override
+	protected void configureReport(final JasperReportBuilder rb)
+	{
+		final VerticalListBuilder list1 = cmp.verticalList();
+		list1.add(cmp.text(""));
+		
+		final VerticalListBuilder list2 = cmp.verticalList();
+		list2.add(cmp.text(""));
+		list2.add(cmp.filler().setFixedWidth(500));
+		
+		final VerticalListBuilder list3 = cmp.verticalList();
+		list3.add(cmp.text(""));
+		
+		final VerticalListBuilder list4 = cmp.verticalList();
+		list4.add(cmp.text(""));
+		list4.add(cmp.filler().setFixedWidth(50));
+		
+		final VerticalListBuilder list5 = cmp.verticalList();
+		list5.add(cmp.text(""));
+		
+		final VerticalListBuilder list6 = cmp.verticalList();
+		list6.add(cmp.text(""));
+		list6.add(cmp.filler().setFixedWidth(200));
+		list6.add(cmp.text(""));
+		list6.add(cmp.filler().setFixedWidth(500));
+		
+		rb.title(cmp.horizontalList(list1, list2), cmp.horizontalList(list3, list4), cmp.horizontalList(list5, list6));
+	}
+	
+	@Override
+	public void test()
+	{
+		super.test();
+		
+		this.numberOfPagesTest(1);
+		
+		this.elementPositionTest("title.textField1", 0, 0, 0, 75, 16);
+		this.elementPositionTest("title.textField2", 0, 75, 0, 500, 16);
+		
+		this.elementPositionTest("title.textField3", 0, 0, 0, 287, 16);
+		this.elementPositionTest("title.textField4", 0, 287, 0, 288, 16);
+		
+		this.elementPositionTest("title.textField5", 0, 0, 0, 75, 32);
+		this.elementPositionTest("title.textField6", 0, 75, 0, 500, 16);
+		this.elementPositionTest("title.textField7", 0, 75, 16, 500, 16);
+	}
 }

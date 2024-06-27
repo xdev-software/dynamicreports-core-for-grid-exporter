@@ -314,6 +314,11 @@
 							<rulesets>
 								<ruleset>../.config/pmd/ruleset.xml</ruleset>
 							</rulesets>
+							<excludes>
+								<!-- Exclude everything as upstream is catastrophic -->
+								<!-- To fix it complete project must be rewritten which is too time-consuming -->
+								<exclude>software/xdev/dynamicreports/**</exclude>
+							</excludes>
 						</configuration>
 						<dependencies>
 							<dependency>

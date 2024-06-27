@@ -17,19 +17,6 @@
  */
 package software.xdev.dynamicreports.jasper.base;
 
-import software.xdev.dynamicreports.design.definition.expression.DRIDesignComplexExpression;
-import software.xdev.dynamicreports.design.definition.expression.DRIDesignExpression;
-import software.xdev.dynamicreports.design.transformation.expressions.CrosstabRowCounter;
-import software.xdev.dynamicreports.jasper.constant.ValueType;
-import software.xdev.dynamicreports.report.definition.DRIScriptlet;
-import software.xdev.dynamicreports.report.definition.DRIValue;
-import software.xdev.dynamicreports.report.definition.ReportParameters;
-import software.xdev.dynamicreports.report.exception.DRReportException;
-import net.sf.jasperreports.engine.JRParameter;
-import net.sf.jasperreports.engine.JRScriptlet;
-import net.sf.jasperreports.engine.JRScriptletException;
-import net.sf.jasperreports.engine.JRVariable;
-
 import java.sql.Connection;
 import java.text.MessageFormat;
 import java.util.ArrayList;
@@ -39,242 +26,264 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
 
-/**
- * <p>JasperReportParameters class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class JasperReportParameters implements ReportParameters {
-    /**
-     * Constant <code>MASTER_REPORT_PARAMETERS="MASTER_REPORT_PARAMETERS"</code>
-     */
-    public static final String MASTER_REPORT_PARAMETERS = "MASTER_REPORT_PARAMETERS";
+import net.sf.jasperreports.engine.JRParameter;
+import net.sf.jasperreports.engine.JRScriptlet;
+import net.sf.jasperreports.engine.JRScriptletException;
+import net.sf.jasperreports.engine.JRVariable;
+import software.xdev.dynamicreports.design.definition.expression.DRIDesignComplexExpression;
+import software.xdev.dynamicreports.design.definition.expression.DRIDesignExpression;
+import software.xdev.dynamicreports.design.transformation.expressions.CrosstabRowCounter;
+import software.xdev.dynamicreports.jasper.constant.ValueType;
+import software.xdev.dynamicreports.report.definition.DRIScriptlet;
+import software.xdev.dynamicreports.report.definition.DRIValue;
+import software.xdev.dynamicreports.report.definition.ReportParameters;
+import software.xdev.dynamicreports.report.exception.DRReportException;
 
-    private JasperScriptlet jasperScriptlet;
 
-    /**
-     * <p>Constructor for JasperReportParameters.</p>
-     *
-     * @param jasperScriptlet a {@link software.xdev.dynamicreports.jasper.base.JasperScriptlet} object.
-     */
-    protected JasperReportParameters(JasperScriptlet jasperScriptlet) {
-        this.jasperScriptlet = jasperScriptlet;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    @SuppressWarnings("unchecked")
-    public <T> T getValue(String name) {
-        ValueType type = jasperScriptlet.getValueType(name);
-        if (type != null) {
-            switch (type) {
-                case FIELD:
-                    return (T) getFieldValue(name);
-                case VARIABLE:
-                    return (T) getVariableValue(name);
-                case PARAMETER:
-                    return (T) getParameterValue(name);
-                case SIMPLE_EXPRESSION:
-                    return (T) getSimpleExpressionValue(name);
-                case COMPLEX_EXPRESSION:
-                    return (T) getComplexExpressionValue(name);
-                case SYSTEM_EXPRESSION:
-                    return (T) getSystemExpressionValue(name);
-                default:
-                    break;
-            }
-        }
-
-        throw new DRReportException("Value " + name + " not found");
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    @SuppressWarnings("unchecked")
-    public <T> T getValue(DRIValue<T> value) {
-        return (T) getValue(value.getName());
-    }
-
-    // field
-
-    /** {@inheritDoc} */
-    @Override
-    @SuppressWarnings("unchecked")
-    public <T> T getFieldValue(String name) {
-        try {
-            return (T) jasperScriptlet.getFieldValue(name);
-        } catch (JRScriptletException e) {
-            throw new DRReportException(e);
-        }
-    }
-
-    // variable
-
-    /** {@inheritDoc} */
-    @Override
-    @SuppressWarnings("unchecked")
-    public <T> T getVariableValue(String name) {
-        try {
-            return (T) jasperScriptlet.getVariableValue(name);
-        } catch (JRScriptletException e) {
-            throw new DRReportException(e);
-        }
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Integer getPageNumber() {
-        return (Integer) getVariableValue(JRVariable.PAGE_NUMBER);
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Integer getColumnNumber() {
-        return (Integer) getVariableValue(JRVariable.COLUMN_NUMBER);
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Integer getReportRowNumber() {
-        return (Integer) getVariableValue(JRVariable.REPORT_COUNT);
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Integer getPageRowNumber() {
-        return (Integer) getVariableValue(JRVariable.PAGE_COUNT);
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Integer getColumnRowNumber() {
-        return (Integer) getVariableValue(JRVariable.COLUMN_COUNT);
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Integer getCrosstabRowNumber() {
-        CrosstabRowCounter counter = (CrosstabRowCounter) getValue(CROSSTAB_ROW_COUNTER);
-        if (counter != null) {
-            return counter.getRowNumber();
-        }
-        return 0;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Integer getGroupCount(String groupName) {
-        return (Integer) getVariableValue(groupName + "_COUNT");
-    }
-
-    // parameter
-
-    /** {@inheritDoc} */
-    @Override
-    @SuppressWarnings("unchecked")
-    public <T> T getParameterValue(String name) {
-        try {
-            return (T) ((Map<?, ?>) jasperScriptlet.getParameterValue(JRParameter.REPORT_PARAMETERS_MAP)).get(name);
-        } catch (JRScriptletException e) {
-            throw new DRReportException(e);
-        }
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Connection getConnection() {
-        return (Connection) getParameterValue(JRParameter.REPORT_CONNECTION);
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Locale getLocale() {
-        return (Locale) getParameterValue(JRParameter.REPORT_LOCALE);
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRIScriptlet getScriptlet(String name) {
-        return ((CustomScriptlet) getParameterValue(name + JRScriptlet.SCRIPTLET_PARAMETER_NAME_SUFFIX)).getScriptlet();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public String getMessage(String key) {
-        return ((ResourceBundle) getParameterValue(JRParameter.REPORT_RESOURCE_BUNDLE)).getString(key);
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public String getMessage(String key, Object[] arguments) {
-        String message = getMessage(key);
-        if (arguments != null) {
-            MessageFormat format = new MessageFormat(message, getLocale());
-            message = format.format(arguments);
-        }
-        return message;
-    }
-
-    // simple expression
-    private Object getSimpleExpressionValue(String name) {
-        return jasperScriptlet.getSimpleExpression(name).evaluate(this);
-    }
-
-    // complex expression
-    private Object getComplexExpressionValue(String name) {
-        List<Object> values = new ArrayList<Object>();
-        DRIDesignComplexExpression complexExpression = jasperScriptlet.getComplexExpression(name);
-        for (DRIDesignExpression valueExpression : complexExpression.getExpressions()) {
-            values.add(getValue(valueExpression.getName()));
-        }
-        return complexExpression.evaluate(values, this);
-    }
-
-    // system expression
-    private Object getSystemExpressionValue(String name) {
-        return jasperScriptlet.getSystemValue(name);
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public ReportParameters getMasterParameters() {
-        return (ReportParameters) getParameterValue(MASTER_REPORT_PARAMETERS);
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Integer getSubreportWidth() {
-        return jasperScriptlet.getSubreportWidth();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public String toString() {
-        StringBuilder result = new StringBuilder();
-
-        result.append("FIELDS:\n");
-        Collection<String> names = jasperScriptlet.getFields();
-        for (String name : names) {
-            result.append(name + " = " + getFieldValue(name));
-            result.append("\n");
-        }
-
-        result.append("VARIABLES:\n");
-        names = jasperScriptlet.getVariables();
-        for (String name : names) {
-            result.append(name + " = " + getVariableValue(name));
-            result.append("\n");
-        }
-
-        result.append("PARAMETERS:\n");
-        names = jasperScriptlet.getParameters();
-        for (String name : names) {
-            result.append(name + " = " + getParameterValue(name));
-            result.append("\n");
-        }
-
-        return result.toString();
-    }
-
+public class JasperReportParameters implements ReportParameters
+{
+	public static final String MASTER_REPORT_PARAMETERS = "MASTER_REPORT_PARAMETERS";
+	
+	private final JasperScriptlet jasperScriptlet;
+	
+	protected JasperReportParameters(final JasperScriptlet jasperScriptlet)
+	{
+		this.jasperScriptlet = jasperScriptlet;
+	}
+	
+	@Override
+	@SuppressWarnings("unchecked")
+	public <T> T getValue(final String name)
+	{
+		final ValueType type = this.jasperScriptlet.getValueType(name);
+		if(type != null)
+		{
+			switch(type)
+			{
+				case FIELD:
+					return (T)this.getFieldValue(name);
+				case VARIABLE:
+					return (T)this.getVariableValue(name);
+				case PARAMETER:
+					return (T)this.getParameterValue(name);
+				case SIMPLE_EXPRESSION:
+					return (T)this.getSimpleExpressionValue(name);
+				case COMPLEX_EXPRESSION:
+					return (T)this.getComplexExpressionValue(name);
+				case SYSTEM_EXPRESSION:
+					return (T)this.getSystemExpressionValue(name);
+				default:
+					break;
+			}
+		}
+		
+		throw new DRReportException("Value " + name + " not found");
+	}
+	
+	@Override
+	@SuppressWarnings("unchecked")
+	public <T> T getValue(final DRIValue<T> value)
+	{
+		return (T)this.getValue(value.getName());
+	}
+	
+	// field
+	
+	@Override
+	@SuppressWarnings("unchecked")
+	public <T> T getFieldValue(final String name)
+	{
+		try
+		{
+			return (T)this.jasperScriptlet.getFieldValue(name);
+		}
+		catch(final JRScriptletException e)
+		{
+			throw new DRReportException(e);
+		}
+	}
+	
+	// variable
+	
+	@Override
+	@SuppressWarnings("unchecked")
+	public <T> T getVariableValue(final String name)
+	{
+		try
+		{
+			return (T)this.jasperScriptlet.getVariableValue(name);
+		}
+		catch(final JRScriptletException e)
+		{
+			throw new DRReportException(e);
+		}
+	}
+	
+	@Override
+	public Integer getPageNumber()
+	{
+		return (Integer)this.getVariableValue(JRVariable.PAGE_NUMBER);
+	}
+	
+	@Override
+	public Integer getColumnNumber()
+	{
+		return (Integer)this.getVariableValue(JRVariable.COLUMN_NUMBER);
+	}
+	
+	@Override
+	public Integer getReportRowNumber()
+	{
+		return (Integer)this.getVariableValue(JRVariable.REPORT_COUNT);
+	}
+	
+	@Override
+	public Integer getPageRowNumber()
+	{
+		return (Integer)this.getVariableValue(JRVariable.PAGE_COUNT);
+	}
+	
+	@Override
+	public Integer getColumnRowNumber()
+	{
+		return (Integer)this.getVariableValue(JRVariable.COLUMN_COUNT);
+	}
+	
+	@Override
+	public Integer getCrosstabRowNumber()
+	{
+		final CrosstabRowCounter counter = (CrosstabRowCounter)this.getValue(CROSSTAB_ROW_COUNTER);
+		if(counter != null)
+		{
+			return counter.getRowNumber();
+		}
+		return 0;
+	}
+	
+	@Override
+	public Integer getGroupCount(final String groupName)
+	{
+		return (Integer)this.getVariableValue(groupName + "_COUNT");
+	}
+	
+	// parameter
+	
+	@Override
+	@SuppressWarnings("unchecked")
+	public <T> T getParameterValue(final String name)
+	{
+		try
+		{
+			return (T)((Map<?, ?>)this.jasperScriptlet.getParameterValue(JRParameter.REPORT_PARAMETERS_MAP)).get(name);
+		}
+		catch(final JRScriptletException e)
+		{
+			throw new DRReportException(e);
+		}
+	}
+	
+	@Override
+	public Connection getConnection()
+	{
+		return (Connection)this.getParameterValue(JRParameter.REPORT_CONNECTION);
+	}
+	
+	@Override
+	public Locale getLocale()
+	{
+		return (Locale)this.getParameterValue(JRParameter.REPORT_LOCALE);
+	}
+	
+	@Override
+	public DRIScriptlet getScriptlet(final String name)
+	{
+		return ((CustomScriptlet)this.getParameterValue(
+			name + JRScriptlet.SCRIPTLET_PARAMETER_NAME_SUFFIX)).getScriptlet();
+	}
+	
+	@Override
+	public String getMessage(final String key)
+	{
+		return ((ResourceBundle)this.getParameterValue(JRParameter.REPORT_RESOURCE_BUNDLE)).getString(key);
+	}
+	
+	@Override
+	public String getMessage(final String key, final Object[] arguments)
+	{
+		String message = this.getMessage(key);
+		if(arguments != null)
+		{
+			final MessageFormat format = new MessageFormat(message, this.getLocale());
+			message = format.format(arguments);
+		}
+		return message;
+	}
+	
+	// simple expression
+	private Object getSimpleExpressionValue(final String name)
+	{
+		return this.jasperScriptlet.getSimpleExpression(name).evaluate(this);
+	}
+	
+	// complex expression
+	private Object getComplexExpressionValue(final String name)
+	{
+		final List<Object> values = new ArrayList<>();
+		final DRIDesignComplexExpression complexExpression = this.jasperScriptlet.getComplexExpression(name);
+		for(final DRIDesignExpression valueExpression : complexExpression.getExpressions())
+		{
+			values.add(this.getValue(valueExpression.getName()));
+		}
+		return complexExpression.evaluate(values, this);
+	}
+	
+	// system expression
+	private Object getSystemExpressionValue(final String name)
+	{
+		return this.jasperScriptlet.getSystemValue(name);
+	}
+	
+	@Override
+	public ReportParameters getMasterParameters()
+	{
+		return (ReportParameters)this.getParameterValue(MASTER_REPORT_PARAMETERS);
+	}
+	
+	@Override
+	public Integer getSubreportWidth()
+	{
+		return this.jasperScriptlet.getSubreportWidth();
+	}
+	
+	@Override
+	public String toString()
+	{
+		final StringBuilder result = new StringBuilder();
+		
+		result.append("FIELDS:\n");
+		Collection<String> names = this.jasperScriptlet.getFields();
+		for(final String name : names)
+		{
+			result.append(name + " = " + this.getFieldValue(name));
+			result.append("\n");
+		}
+		
+		result.append("VARIABLES:\n");
+		names = this.jasperScriptlet.getVariables();
+		for(final String name : names)
+		{
+			result.append(name + " = " + this.getVariableValue(name));
+			result.append("\n");
+		}
+		
+		result.append("PARAMETERS:\n");
+		names = this.jasperScriptlet.getParameters();
+		for(final String name : names)
+		{
+			result.append(name + " = " + this.getParameterValue(name));
+			result.append("\n");
+		}
+		
+		return result.toString();
+	}
 }

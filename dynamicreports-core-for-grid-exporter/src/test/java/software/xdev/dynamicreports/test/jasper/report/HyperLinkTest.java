@@ -22,19 +22,16 @@ import static software.xdev.dynamicreports.report.builder.DynamicReports.hyperLi
 
 import org.junit.jupiter.api.Assertions;
 
+import net.sf.jasperreports.engine.JRPrintText;
+import net.sf.jasperreports.engine.type.HyperlinkTargetEnum;
+import net.sf.jasperreports.engine.type.HyperlinkTypeEnum;
 import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
 import software.xdev.dynamicreports.report.builder.HyperLinkBuilder;
 import software.xdev.dynamicreports.report.constant.HyperLinkTarget;
 import software.xdev.dynamicreports.report.constant.HyperLinkType;
 import software.xdev.dynamicreports.test.jasper.AbstractJasperValueTest;
-import net.sf.jasperreports.engine.JRPrintText;
-import net.sf.jasperreports.engine.type.HyperlinkTargetEnum;
-import net.sf.jasperreports.engine.type.HyperlinkTypeEnum;
 
 
-/**
- * @author Ricardo Mariaca
- */
 public class HyperLinkTest extends AbstractJasperValueTest
 {
 	

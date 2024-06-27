@@ -17,19 +17,8 @@
  */
 package software.xdev.dynamicreports.report.constant;
 
-/**
- * <p>BooleanComponentType class.</p>
- *
- * @author Ricardo Mariaca
- */
 public enum BooleanComponentType
 {
-	/**
-	 * Shows a text value (true/false)
-	 */
 	TEXT_TRUE_FALSE,
-	/**
-	 * Shows a text value (yes/no)
-	 */
 	TEXT_YES_NO
 }

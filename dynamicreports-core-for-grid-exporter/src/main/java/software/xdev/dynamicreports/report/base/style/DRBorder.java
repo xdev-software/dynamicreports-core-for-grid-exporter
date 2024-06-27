@@ -17,102 +17,74 @@
  */
 package software.xdev.dynamicreports.report.base.style;
 
-import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.definition.style.DRIBorder;
 
-/**
- * <p>DRBorder class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class DRBorder implements DRIBorder {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    private DRPen topPen;
-    private DRPen leftPen;
-    private DRPen bottomPen;
-    private DRPen rightPen;
+public class DRBorder implements DRIBorder
+{
 
-    /**
-     * <p>Constructor for DRBorder.</p>
-     */
-    public DRBorder() {
-        topPen = new DRPen();
-        leftPen = new DRPen();
-        bottomPen = new DRPen();
-        rightPen = new DRPen();
-    }
-
-    /**
-     * <p>Constructor for DRBorder.</p>
-     *
-     * @param pen a {@link software.xdev.dynamicreports.report.base.style.DRPen} object.
-     */
-    public DRBorder(DRPen pen) {
-        topPen = pen;
-        leftPen = pen;
-        bottomPen = pen;
-        rightPen = pen;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRPen getTopPen() {
-        return topPen;
-    }
-
-    /**
-     * <p>Setter for the field <code>topPen</code>.</p>
-     *
-     * @param topPen a {@link software.xdev.dynamicreports.report.base.style.DRPen} object.
-     */
-    public void setTopPen(DRPen topPen) {
-        this.topPen = topPen;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRPen getLeftPen() {
-        return leftPen;
-    }
-
-    /**
-     * <p>Setter for the field <code>leftPen</code>.</p>
-     *
-     * @param leftPen a {@link software.xdev.dynamicreports.report.base.style.DRPen} object.
-     */
-    public void setLeftPen(DRPen leftPen) {
-        this.leftPen = leftPen;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRPen getBottomPen() {
-        return bottomPen;
-    }
-
-    /**
-     * <p>Setter for the field <code>bottomPen</code>.</p>
-     *
-     * @param bottomPen a {@link software.xdev.dynamicreports.report.base.style.DRPen} object.
-     */
-    public void setBottomPen(DRPen bottomPen) {
-        this.bottomPen = bottomPen;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRPen getRightPen() {
-        return rightPen;
-    }
-
-    /**
-     * <p>Setter for the field <code>rightPen</code>.</p>
-     *
-     * @param rightPen a {@link software.xdev.dynamicreports.report.base.style.DRPen} object.
-     */
-    public void setRightPen(DRPen rightPen) {
-        this.rightPen = rightPen;
-    }
+	private DRPen topPen;
+	private DRPen leftPen;
+	private DRPen bottomPen;
+	private DRPen rightPen;
+	
+	public DRBorder()
+	{
+		this.topPen = new DRPen();
+		this.leftPen = new DRPen();
+		this.bottomPen = new DRPen();
+		this.rightPen = new DRPen();
+	}
+	
+	public DRBorder(final DRPen pen)
+	{
+		this.topPen = pen;
+		this.leftPen = pen;
+		this.bottomPen = pen;
+		this.rightPen = pen;
+	}
+	
+	@Override
+	public DRPen getTopPen()
+	{
+		return this.topPen;
+	}
+	
+	public void setTopPen(final DRPen topPen)
+	{
+		this.topPen = topPen;
+	}
+	
+	@Override
+	public DRPen getLeftPen()
+	{
+		return this.leftPen;
+	}
+	
+	public void setLeftPen(final DRPen leftPen)
+	{
+		this.leftPen = leftPen;
+	}
+	
+	@Override
+	public DRPen getBottomPen()
+	{
+		return this.bottomPen;
+	}
+	
+	public void setBottomPen(final DRPen bottomPen)
+	{
+		this.bottomPen = bottomPen;
+	}
+	
+	@Override
+	public DRPen getRightPen()
+	{
+		return this.rightPen;
+	}
+	
+	public void setRightPen(final DRPen rightPen)
+	{
+		this.rightPen = rightPen;
+	}
 }

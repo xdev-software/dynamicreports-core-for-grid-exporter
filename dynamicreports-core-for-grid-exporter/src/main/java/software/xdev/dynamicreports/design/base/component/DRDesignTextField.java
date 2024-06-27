@@ -21,189 +21,125 @@ import software.xdev.dynamicreports.design.base.DRDesignGroup;
 import software.xdev.dynamicreports.design.constant.EvaluationTime;
 import software.xdev.dynamicreports.design.definition.component.DRIDesignTextField;
 import software.xdev.dynamicreports.design.definition.expression.DRIDesignExpression;
-import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.constant.HorizontalTextAlignment;
 import software.xdev.dynamicreports.report.constant.Markup;
 import software.xdev.dynamicreports.report.constant.TextAdjust;
 
-/**
- * <p>DRDesignTextField class.</p>
- *
- * @author Ricardo Mariaca, Jan Moxter
- * 
- */
-public class DRDesignTextField extends DRDesignHyperlinkComponent implements DRIDesignTextField {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    private String pattern;
-    private DRIDesignExpression patternExpression;
-    private HorizontalTextAlignment horizontalTextAlignment;
-    private DRIDesignExpression valueExpression;
-    private boolean printRepeatedValues;
-    private EvaluationTime evaluationTime;
-    private DRDesignGroup evaluationGroup;
-    private Markup markup;
-    private boolean stretchWithOverflow;
-    private TextAdjust textAdjust;
+public class DRDesignTextField extends DRDesignHyperlinkComponent implements DRIDesignTextField
+{
 
-
-    /**
-     * <p>Constructor for DRDesignTextField.</p>
-     */
-    public DRDesignTextField() {
-        super("textField");
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public String getPattern() {
-        return pattern;
-    }
-
-    /**
-     * <p>Setter for the field <code>pattern</code>.</p>
-     *
-     * @param pattern a {@link java.lang.String} object.
-     */
-    public void setPattern(final String pattern) {
-        this.pattern = pattern;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRIDesignExpression getPatternExpression() {
-        return patternExpression;
-    }
-
-    /**
-     * <p>Setter for the field <code>patternExpression</code>.</p>
-     *
-     * @param patternExpression a {@link software.xdev.dynamicreports.design.definition.expression.DRIDesignExpression} object.
-     */
-    public void setPatternExpression(final DRIDesignExpression patternExpression) {
-        this.patternExpression = patternExpression;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public HorizontalTextAlignment getHorizontalTextAlignment() {
-        return horizontalTextAlignment;
-    }
-
-    /**
-     * <p>Setter for the field <code>horizontalTextAlignment</code>.</p>
-     *
-     * @param horizontalTextAlignment a {@link software.xdev.dynamicreports.report.constant.HorizontalTextAlignment} object.
-     */
-    public void setHorizontalTextAlignment(final HorizontalTextAlignment horizontalTextAlignment) {
-        this.horizontalTextAlignment = horizontalTextAlignment;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRIDesignExpression getValueExpression() {
-        return valueExpression;
-    }
-
-    /**
-     * <p>Setter for the field <code>valueExpression</code>.</p>
-     *
-     * @param valueExpression a {@link software.xdev.dynamicreports.design.definition.expression.DRIDesignExpression} object.
-     */
-    public void setValueExpression(final DRIDesignExpression valueExpression) {
-        this.valueExpression = valueExpression;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public boolean isPrintRepeatedValues() {
-        return printRepeatedValues;
-    }
-
-    /**
-     * <p>Setter for the field <code>printRepeatedValues</code>.</p>
-     *
-     * @param printRepeatedValues a boolean.
-     */
-    public void setPrintRepeatedValues(final boolean printRepeatedValues) {
-        this.printRepeatedValues = printRepeatedValues;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public EvaluationTime getEvaluationTime() {
-        return evaluationTime;
-    }
-
-    /**
-     * <p>Setter for the field <code>evaluationTime</code>.</p>
-     *
-     * @param evaluationTime a {@link software.xdev.dynamicreports.design.constant.EvaluationTime} object.
-     */
-    public void setEvaluationTime(final EvaluationTime evaluationTime) {
-        this.evaluationTime = evaluationTime;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRDesignGroup getEvaluationGroup() {
-        return evaluationGroup;
-    }
-
-    /**
-     * <p>Setter for the field <code>evaluationGroup</code>.</p>
-     *
-     * @param evaluationGroup a {@link software.xdev.dynamicreports.design.base.DRDesignGroup} object.
-     */
-    public void setEvaluationGroup(final DRDesignGroup evaluationGroup) {
-        this.evaluationGroup = evaluationGroup;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Markup getMarkup() {
-        return markup;
-    }
-
-    /**
-     * <p>Setter for the field <code>markup</code>.</p>
-     *
-     * @param markup a {@link software.xdev.dynamicreports.report.constant.Markup} object.
-     */
-    public void setMarkup(final Markup markup) {
-        this.markup = markup;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    @Deprecated
-    public boolean isStretchWithOverflow() {
-        return stretchWithOverflow;
-    }
-
-    /**
-     * <p>Setter for the field <code>stretchWithOverflow</code>.</p>
-     *
-     * @param stretchWithOverflow a boolean.
-     * @deprecated Replaced by {@link #setTextAdjust(TextAdjust)}.
-     */
-    @Deprecated
-    public void setStretchWithOverflow(final boolean stretchWithOverflow) {
-        this.stretchWithOverflow = stretchWithOverflow;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public TextAdjust getTextAdjust() {
-        return textAdjust;
-    }
-
-    /**
-     * <p>Setter for the field <code>textAdjust</code>.</p>
-     *
-     * @param textAdjust a {@link software.xdev.dynamicreports.report.constant.TextAdjust} object.
-     */
-    public void setTextAdjust(final TextAdjust textAdjust) {
-        this.textAdjust = textAdjust;
-    }
+	private String pattern;
+	private DRIDesignExpression patternExpression;
+	private HorizontalTextAlignment horizontalTextAlignment;
+	private DRIDesignExpression valueExpression;
+	private boolean printRepeatedValues;
+	private EvaluationTime evaluationTime;
+	private DRDesignGroup evaluationGroup;
+	private Markup markup;
+	private TextAdjust textAdjust;
+	
+	public DRDesignTextField()
+	{
+		super("textField");
+	}
+	
+	@Override
+	public String getPattern()
+	{
+		return this.pattern;
+	}
+	
+	public void setPattern(final String pattern)
+	{
+		this.pattern = pattern;
+	}
+	
+	@Override
+	public DRIDesignExpression getPatternExpression()
+	{
+		return this.patternExpression;
+	}
+	
+	public void setPatternExpression(final DRIDesignExpression patternExpression)
+	{
+		this.patternExpression = patternExpression;
+	}
+	
+	@Override
+	public HorizontalTextAlignment getHorizontalTextAlignment()
+	{
+		return this.horizontalTextAlignment;
+	}
+	
+	public void setHorizontalTextAlignment(final HorizontalTextAlignment horizontalTextAlignment)
+	{
+		this.horizontalTextAlignment = horizontalTextAlignment;
+	}
+	
+	@Override
+	public DRIDesignExpression getValueExpression()
+	{
+		return this.valueExpression;
+	}
+	
+	public void setValueExpression(final DRIDesignExpression valueExpression)
+	{
+		this.valueExpression = valueExpression;
+	}
+	
+	@Override
+	public boolean isPrintRepeatedValues()
+	{
+		return this.printRepeatedValues;
+	}
+	
+	public void setPrintRepeatedValues(final boolean printRepeatedValues)
+	{
+		this.printRepeatedValues = printRepeatedValues;
+	}
+	
+	@Override
+	public EvaluationTime getEvaluationTime()
+	{
+		return this.evaluationTime;
+	}
+	
+	public void setEvaluationTime(final EvaluationTime evaluationTime)
+	{
+		this.evaluationTime = evaluationTime;
+	}
+	
+	@Override
+	public DRDesignGroup getEvaluationGroup()
+	{
+		return this.evaluationGroup;
+	}
+	
+	public void setEvaluationGroup(final DRDesignGroup evaluationGroup)
+	{
+		this.evaluationGroup = evaluationGroup;
+	}
+	
+	@Override
+	public Markup getMarkup()
+	{
+		return this.markup;
+	}
+	
+	public void setMarkup(final Markup markup)
+	{
+		this.markup = markup;
+	}
+	
+	@Override
+	public TextAdjust getTextAdjust()
+	{
+		return this.textAdjust;
+	}
+	
+	public void setTextAdjust(final TextAdjust textAdjust)
+	{
+		this.textAdjust = textAdjust;
+	}
 }

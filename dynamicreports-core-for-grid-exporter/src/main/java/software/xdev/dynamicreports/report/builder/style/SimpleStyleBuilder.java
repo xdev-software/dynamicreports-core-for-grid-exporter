@@ -18,21 +18,13 @@
 package software.xdev.dynamicreports.report.builder.style;
 
 import software.xdev.dynamicreports.report.base.style.DRSimpleStyle;
-import software.xdev.dynamicreports.report.constant.Constants;
 
-/**
- * <p>SimpleStyleBuilder class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class SimpleStyleBuilder extends BaseStyleBuilder<SimpleStyleBuilder, DRSimpleStyle> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    /**
-     * <p>Constructor for SimpleStyleBuilder.</p>
-     */
-    protected SimpleStyleBuilder() {
-        super(new DRSimpleStyle());
-    }
+public class SimpleStyleBuilder extends BaseStyleBuilder<SimpleStyleBuilder, DRSimpleStyle>
+{
+
+	protected SimpleStyleBuilder()
+	{
+		super(new DRSimpleStyle());
+	}
 }

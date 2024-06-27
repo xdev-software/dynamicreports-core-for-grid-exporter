@@ -17,276 +17,172 @@
  */
 package software.xdev.dynamicreports.report.builder;
 
+import java.sql.Connection;
+
+import org.apache.commons.lang3.Validate;
+
+import net.sf.jasperreports.engine.JRDataSource;
 import software.xdev.dynamicreports.report.base.DRDataset;
 import software.xdev.dynamicreports.report.builder.column.TextColumnBuilder;
 import software.xdev.dynamicreports.report.builder.expression.Expressions;
-import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.constant.QueryLanguage;
 import software.xdev.dynamicreports.report.definition.datatype.DRIDataType;
 import software.xdev.dynamicreports.report.definition.expression.DRIExpression;
-import net.sf.jasperreports.engine.JRDataSource;
-import org.apache.commons.lang3.Validate;
 
-import java.sql.Connection;
 
-/**
- * <p>DatasetBuilder class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class DatasetBuilder extends AbstractBuilder<DatasetBuilder, DRDataset> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
+public class DatasetBuilder extends AbstractBuilder<DatasetBuilder, DRDataset>
+{
 
-    /**
-     * <p>Constructor for DatasetBuilder.</p>
-     */
-    protected DatasetBuilder() {
-        super(new DRDataset());
-    }
-
-    // field
-
-    /**
-     * <p>fields.</p>
-     *
-     * @param fields a {@link software.xdev.dynamicreports.report.builder.FieldBuilder} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.DatasetBuilder} object.
-     */
-    public DatasetBuilder fields(FieldBuilder<?>... fields) {
-        return addField(fields);
-    }
-
-    /**
-     * <p>addField.</p>
-     *
-     * @param name       a {@link java.lang.String} object.
-     * @param valueClass a {@link java.lang.Class} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.DatasetBuilder} object.
-     */
-    public DatasetBuilder addField(String name, Class<?> valueClass) {
-        return addField(DynamicReports.field(name, valueClass));
-    }
-
-    /**
-     * <p>addField.</p>
-     *
-     * @param name     a {@link java.lang.String} object.
-     * @param dataType a {@link software.xdev.dynamicreports.report.definition.datatype.DRIDataType} object.
-     * @param <U>      a U object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.DatasetBuilder} object.
-     */
-    public <U> DatasetBuilder addField(String name, DRIDataType<? super U, U> dataType) {
-        return addField(DynamicReports.field(name, dataType));
-    }
-
-    /**
-     * <p>addField.</p>
-     *
-     * @param fields a {@link software.xdev.dynamicreports.report.builder.FieldBuilder} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.DatasetBuilder} object.
-     */
-    public DatasetBuilder addField(FieldBuilder<?>... fields) {
-        Validate.notNull(fields, "fields must not be null");
-        Validate.noNullElements(fields, "fields must not contains null field");
-        for (FieldBuilder<?> field : fields) {
-            getObject().addField(field.build());
-        }
-        return this;
-    }
-
-    // variable
-
-    /**
-     * <p>variables.</p>
-     *
-     * @param variables a {@link software.xdev.dynamicreports.report.builder.VariableBuilder} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.DatasetBuilder} object.
-     */
-    public DatasetBuilder variables(VariableBuilder<?>... variables) {
-        return addVariable(variables);
-    }
-
-    /**
-     * <p>addVariable.</p>
-     *
-     * @param variables a {@link software.xdev.dynamicreports.report.builder.VariableBuilder} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.DatasetBuilder} object.
-     */
-    public DatasetBuilder addVariable(VariableBuilder<?>... variables) {
-        Validate.notNull(variables, "variables must not be null");
-        Validate.noNullElements(variables, "variables must not contains null variable");
-        for (VariableBuilder<?> variable : variables) {
-            getObject().addVariable(variable.getVariable());
-        }
-        return this;
-    }
-
-    // sort
-
-    /**
-     * <p>sortBy.</p>
-     *
-     * @param sortColumns a {@link software.xdev.dynamicreports.report.builder.column.TextColumnBuilder} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.DatasetBuilder} object.
-     */
-    public DatasetBuilder sortBy(TextColumnBuilder<?>... sortColumns) {
-        Validate.notNull(sortColumns, "sortColumns must not be null");
-        Validate.noNullElements(sortColumns, "sortColumns must not contains null sortColumn");
-        for (TextColumnBuilder<?> sortColumn : sortColumns) {
-            sortBy(DynamicReports.asc(sortColumn));
-        }
-        return this;
-    }
-
-    /**
-     * <p>sortBy.</p>
-     *
-     * @param sorts a {@link software.xdev.dynamicreports.report.builder.SortBuilder} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.DatasetBuilder} object.
-     */
-    public DatasetBuilder sortBy(SortBuilder... sorts) {
-        return addSort(sorts);
-    }
-
-    /**
-     * <p>addSort.</p>
-     *
-     * @param sorts a {@link software.xdev.dynamicreports.report.builder.SortBuilder} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.DatasetBuilder} object.
-     */
-    public DatasetBuilder addSort(SortBuilder... sorts) {
-        Validate.notNull(sorts, "sorts must not be null");
-        Validate.noNullElements(sorts, "sorts must not contains null sort");
-        for (SortBuilder sort : sorts) {
-            getObject().addSort(sort.build());
-        }
-        return this;
-    }
-
-    // query
-
-    /**
-     * <p>setQuery.</p>
-     *
-     * @param text     a {@link java.lang.String} object.
-     * @param language a {@link java.lang.String} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.DatasetBuilder} object.
-     */
-    public DatasetBuilder setQuery(String text, String language) {
-        Validate.notNull(text, "text must not be null");
-        Validate.notNull(language, "language must not be null");
-        return setQuery(DynamicReports.query(text, language));
-    }
-
-    /**
-     * <p>setQuery.</p>
-     *
-     * @param sql a {@link java.lang.String} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.DatasetBuilder} object.
-     */
-    public DatasetBuilder setQuery(String sql) {
-        Validate.notNull(sql, "sql must not be null");
-        return setQuery(DynamicReports.query(sql, QueryLanguage.SQL));
-    }
-
-    /**
-     * <p>setQuery.</p>
-     *
-     * @param query a {@link software.xdev.dynamicreports.report.builder.QueryBuilder} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.DatasetBuilder} object.
-     */
-    public DatasetBuilder setQuery(QueryBuilder query) {
-        Validate.notNull(query, "query must not be null");
-        getObject().setQuery(query.build());
-        return this;
-    }
-
-    // connection
-
-    /**
-     * <p>setConnection.</p>
-     *
-     * @param connection a {@link java.sql.Connection} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.DatasetBuilder} object.
-     */
-    public DatasetBuilder setConnection(Connection connection) {
-        getObject().setConnectionExpression(Expressions.value(connection));
-        return this;
-    }
-
-    /**
-     * <p>setConnection.</p>
-     *
-     * @param connectionExpression a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.DatasetBuilder} object.
-     */
-    public DatasetBuilder setConnection(DRIExpression<Connection> connectionExpression) {
-        getObject().setConnectionExpression(connectionExpression);
-        return this;
-    }
-
-    // datasource
-
-    /**
-     * <p>setDataSource.</p>
-     *
-     * @param dataSource a {@link net.sf.jasperreports.engine.JRDataSource} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.DatasetBuilder} object.
-     */
-    public DatasetBuilder setDataSource(JRDataSource dataSource) {
-        getObject().setDataSourceExpression(Expressions.dataSource(dataSource));
-        return this;
-    }
-
-    /**
-     * <p>setDataSource.</p>
-     *
-     * @param dataSourceExpression a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.DatasetBuilder} object.
-     */
-    public DatasetBuilder setDataSource(DRIExpression<JRDataSource> dataSourceExpression) {
-        getObject().setDataSourceExpression(dataSourceExpression);
-        return this;
-    }
-
-    // filter
-
-    /**
-     * <p>setFilterExpression.</p>
-     *
-     * @param filterExpression a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.DatasetBuilder} object.
-     */
-    public DatasetBuilder setFilterExpression(DRIExpression<Boolean> filterExpression) {
-        getObject().setFilterExpression(filterExpression);
-        return this;
-    }
-
-    /**
-     * <p>setDataSource.</p>
-     *
-     * @param sql        a {@link java.lang.String} object.
-     * @param connection a {@link java.sql.Connection} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.DatasetBuilder} object.
-     */
-    public DatasetBuilder setDataSource(String sql, Connection connection) {
-        Validate.notNull(sql, "sql must not be null");
-        return setDataSource(DynamicReports.query(sql, QueryLanguage.SQL), connection);
-    }
-
-    /**
-     * <p>setDataSource.</p>
-     *
-     * @param query      a {@link software.xdev.dynamicreports.report.builder.QueryBuilder} object.
-     * @param connection a {@link java.sql.Connection} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.DatasetBuilder} object.
-     */
-    public DatasetBuilder setDataSource(QueryBuilder query, Connection connection) {
-        Validate.notNull(query, "query must not be null");
-        Validate.notNull(connection, "connection must not be null");
-        setQuery(query);
-        setConnection(connection);
-        return this;
-    }
+	protected DatasetBuilder()
+	{
+		super(new DRDataset());
+	}
+	
+	// field
+	
+	public DatasetBuilder fields(final FieldBuilder<?>... fields)
+	{
+		return this.addField(fields);
+	}
+	
+	public DatasetBuilder addField(final String name, final Class<?> valueClass)
+	{
+		return this.addField(DynamicReports.field(name, valueClass));
+	}
+	
+	public <U> DatasetBuilder addField(final String name, final DRIDataType<? super U, U> dataType)
+	{
+		return this.addField(DynamicReports.field(name, dataType));
+	}
+	
+	public DatasetBuilder addField(final FieldBuilder<?>... fields)
+	{
+		Validate.notNull(fields, "fields must not be null");
+		Validate.noNullElements(fields, "fields must not contains null field");
+		for(final FieldBuilder<?> field : fields)
+		{
+			this.getObject().addField(field.build());
+		}
+		return this;
+	}
+	
+	// variable
+	
+	public DatasetBuilder variables(final VariableBuilder<?>... variables)
+	{
+		return this.addVariable(variables);
+	}
+	
+	public DatasetBuilder addVariable(final VariableBuilder<?>... variables)
+	{
+		Validate.notNull(variables, "variables must not be null");
+		Validate.noNullElements(variables, "variables must not contains null variable");
+		for(final VariableBuilder<?> variable : variables)
+		{
+			this.getObject().addVariable(variable.getVariable());
+		}
+		return this;
+	}
+	
+	// sort
+	
+	public DatasetBuilder sortBy(final TextColumnBuilder<?>... sortColumns)
+	{
+		Validate.notNull(sortColumns, "sortColumns must not be null");
+		Validate.noNullElements(sortColumns, "sortColumns must not contains null sortColumn");
+		for(final TextColumnBuilder<?> sortColumn : sortColumns)
+		{
+			this.sortBy(DynamicReports.asc(sortColumn));
+		}
+		return this;
+	}
+	
+	public DatasetBuilder sortBy(final SortBuilder... sorts)
+	{
+		return this.addSort(sorts);
+	}
+	
+	public DatasetBuilder addSort(final SortBuilder... sorts)
+	{
+		Validate.notNull(sorts, "sorts must not be null");
+		Validate.noNullElements(sorts, "sorts must not contains null sort");
+		for(final SortBuilder sort : sorts)
+		{
+			this.getObject().addSort(sort.build());
+		}
+		return this;
+	}
+	
+	// query
+	
+	public DatasetBuilder setQuery(final String text, final String language)
+	{
+		Validate.notNull(text, "text must not be null");
+		Validate.notNull(language, "language must not be null");
+		return this.setQuery(DynamicReports.query(text, language));
+	}
+	
+	public DatasetBuilder setQuery(final String sql)
+	{
+		Validate.notNull(sql, "sql must not be null");
+		return this.setQuery(DynamicReports.query(sql, QueryLanguage.SQL));
+	}
+	
+	public DatasetBuilder setQuery(final QueryBuilder query)
+	{
+		Validate.notNull(query, "query must not be null");
+		this.getObject().setQuery(query.build());
+		return this;
+	}
+	
+	// connection
+	
+	public DatasetBuilder setConnection(final Connection connection)
+	{
+		this.getObject().setConnectionExpression(Expressions.value(connection));
+		return this;
+	}
+	
+	public DatasetBuilder setConnection(final DRIExpression<Connection> connectionExpression)
+	{
+		this.getObject().setConnectionExpression(connectionExpression);
+		return this;
+	}
+	
+	// datasource
+	
+	public DatasetBuilder setDataSource(final JRDataSource dataSource)
+	{
+		this.getObject().setDataSourceExpression(Expressions.dataSource(dataSource));
+		return this;
+	}
+	
+	public DatasetBuilder setDataSource(final DRIExpression<JRDataSource> dataSourceExpression)
+	{
+		this.getObject().setDataSourceExpression(dataSourceExpression);
+		return this;
+	}
+	
+	// filter
+	
+	public DatasetBuilder setFilterExpression(final DRIExpression<Boolean> filterExpression)
+	{
+		this.getObject().setFilterExpression(filterExpression);
+		return this;
+	}
+	
+	public DatasetBuilder setDataSource(final String sql, final Connection connection)
+	{
+		Validate.notNull(sql, "sql must not be null");
+		return this.setDataSource(DynamicReports.query(sql, QueryLanguage.SQL), connection);
+	}
+	
+	public DatasetBuilder setDataSource(final QueryBuilder query, final Connection connection)
+	{
+		Validate.notNull(query, "query must not be null");
+		Validate.notNull(connection, "connection must not be null");
+		this.setQuery(query);
+		this.setConnection(connection);
+		return this;
+	}
 }

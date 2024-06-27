@@ -17,12 +17,7 @@
  */
 package software.xdev.dynamicreports.report.constant;
 
-/**
- * <p>GroupFooterPosition class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public enum GroupFooterPosition {
-    NORMAL, STACK_AT_BOTTOM, FORCE_AT_BOTTOM, COLLATE_AT_BOTTOM
+public enum GroupFooterPosition
+{
+	NORMAL, STACK_AT_BOTTOM, FORCE_AT_BOTTOM, COLLATE_AT_BOTTOM
 }

@@ -17,38 +17,17 @@
  */
 package software.xdev.dynamicreports.design.definition.expression;
 
-import software.xdev.dynamicreports.report.definition.ReportParameters;
-
 import java.util.List;
 
-/**
- * <p>DRIDesignComplexExpression interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface DRIDesignComplexExpression extends DRIDesignExpression {
+import software.xdev.dynamicreports.report.definition.ReportParameters;
 
-    /**
-     * <p>getExpressions.</p>
-     *
-     * @return a {@link java.util.List} object.
-     */
-    public List<DRIDesignExpression> getExpressions();
 
-    /**
-     * <p>evaluate.</p>
-     *
-     * @param values           a {@link java.util.List} object.
-     * @param reportParameters a {@link software.xdev.dynamicreports.report.definition.ReportParameters} object.
-     * @return a {@link java.lang.Object} object.
-     */
-    public Object evaluate(List<?> values, ReportParameters reportParameters);
-
-    /**
-     * <p>getParameterName.</p>
-     *
-     * @return a {@link java.lang.String} object.
-     */
-    public String getParameterName();
+public interface DRIDesignComplexExpression extends DRIDesignExpression
+{
+	
+	public List<DRIDesignExpression> getExpressions();
+	
+	public Object evaluate(List<?> values, ReportParameters reportParameters);
+	
+	public String getParameterName();
 }

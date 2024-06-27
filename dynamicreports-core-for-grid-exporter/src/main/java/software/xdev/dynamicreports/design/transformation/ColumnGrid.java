@@ -17,105 +17,77 @@
  */
 package software.xdev.dynamicreports.design.transformation;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import software.xdev.dynamicreports.design.base.component.DRDesignComponent;
 import software.xdev.dynamicreports.design.base.component.DRDesignList;
 import software.xdev.dynamicreports.report.constant.HorizontalCellComponentAlignment;
 import software.xdev.dynamicreports.report.constant.VerticalCellComponentAlignment;
 import software.xdev.dynamicreports.report.definition.column.DRIColumn;
 
-import java.util.HashMap;
-import java.util.Map;
 
-/**
- * @author Ricardo Mariaca
- */
-class ColumnGrid {
-    private DRDesignList list;
-    private Map<DRIColumn<?>, DRDesignList> columnsLists;
-    private boolean isEmpty;
-
-    /**
-     * <p>Constructor for ColumnGrid.</p>
-     */
-    public ColumnGrid() {
-        columnsLists = new HashMap<DRIColumn<?>, DRDesignList>();
-        isEmpty = true;
-    }
-
-    /**
-     * <p>addList.</p>
-     *
-     * @param column a {@link software.xdev.dynamicreports.report.definition.column.DRIColumn} object.
-     * @param list   a {@link software.xdev.dynamicreports.design.base.component.DRDesignList} object.
-     */
-    public void addList(DRIColumn<?> column, DRDesignList list) {
-        columnsLists.put(column, list);
-    }
-
-    /**
-     * <p>addComponent.</p>
-     *
-     * @param column    a {@link software.xdev.dynamicreports.report.definition.column.DRIColumn} object.
-     * @param component a {@link software.xdev.dynamicreports.design.base.component.DRDesignComponent} object.
-     */
-    public void addComponent(DRIColumn<?> column, DRDesignComponent component) {
-        if (columnsLists.containsKey(column)) {
-            columnsLists.get(column).addComponent(component);
-        }
-    }
-
-    /**
-     * <p>addComponent.</p>
-     *
-     * @param column              a {@link software.xdev.dynamicreports.report.definition.column.DRIColumn} object.
-     * @param horizontalAlignment a {@link software.xdev.dynamicreports.report.constant.HorizontalCellComponentAlignment} object.
-     * @param verticalAlignment   a {@link software.xdev.dynamicreports.report.constant.VerticalCellComponentAlignment} object.
-     * @param component           a {@link software.xdev.dynamicreports.design.base.component.DRDesignComponent} object.
-     */
-    public void addComponent(DRIColumn<?> column, HorizontalCellComponentAlignment horizontalAlignment, VerticalCellComponentAlignment verticalAlignment, DRDesignComponent component) {
-        if (columnsLists.containsKey(column)) {
-            columnsLists.get(column).addComponent(horizontalAlignment, verticalAlignment, component);
-        }
-    }
-
-    /**
-     * <p>Getter for the field <code>list</code>.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.design.base.component.DRDesignList} object.
-     */
-    public DRDesignList getList() {
-        return list;
-    }
-
-    /**
-     * <p>Setter for the field <code>list</code>.</p>
-     *
-     * @param list a {@link software.xdev.dynamicreports.design.base.component.DRDesignList} object.
-     */
-    public void setList(DRDesignList list) {
-        this.list = list;
-    }
-
-    /**
-     * <p>isEmpty.</p>
-     *
-     * @return a boolean.
-     */
-    public boolean isEmpty() {
-        for (DRDesignList list : columnsLists.values()) {
-            if (!list.isEmpty()) {
-                return false;
-            }
-        }
-        return isEmpty;
-    }
-
-    /**
-     * <p>setEmpty.</p>
-     *
-     * @param isEmpty a boolean.
-     */
-    public void setEmpty(boolean isEmpty) {
-        this.isEmpty = isEmpty;
-    }
+class ColumnGrid
+{
+	private DRDesignList list;
+	private final Map<DRIColumn<?>, DRDesignList> columnsLists;
+	private boolean isEmpty;
+	
+	public ColumnGrid()
+	{
+		this.columnsLists = new HashMap<>();
+		this.isEmpty = true;
+	}
+	
+	public void addList(final DRIColumn<?> column, final DRDesignList list)
+	{
+		this.columnsLists.put(column, list);
+	}
+	
+	public void addComponent(final DRIColumn<?> column, final DRDesignComponent component)
+	{
+		if(this.columnsLists.containsKey(column))
+		{
+			this.columnsLists.get(column).addComponent(component);
+		}
+	}
+	
+	public void addComponent(
+		final DRIColumn<?> column,
+		final HorizontalCellComponentAlignment horizontalAlignment,
+		final VerticalCellComponentAlignment verticalAlignment,
+		final DRDesignComponent component)
+	{
+		if(this.columnsLists.containsKey(column))
+		{
+			this.columnsLists.get(column).addComponent(horizontalAlignment, verticalAlignment, component);
+		}
+	}
+	
+	public DRDesignList getList()
+	{
+		return this.list;
+	}
+	
+	public void setList(final DRDesignList list)
+	{
+		this.list = list;
+	}
+	
+	public boolean isEmpty()
+	{
+		for(final DRDesignList list : this.columnsLists.values())
+		{
+			if(!list.isEmpty())
+			{
+				return false;
+			}
+		}
+		return this.isEmpty;
+	}
+	
+	public void setEmpty(final boolean isEmpty)
+	{
+		this.isEmpty = isEmpty;
+	}
 }

@@ -17,23 +17,13 @@
  */
 package software.xdev.dynamicreports.design.definition;
 
-import software.xdev.dynamicreports.design.definition.component.DRIDesignTextField;
-
 import java.io.Serializable;
 
-/**
- * <p>DRIDesignTableOfContentsHeading interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface DRIDesignTableOfContentsHeading extends Serializable {
+import software.xdev.dynamicreports.design.definition.component.DRIDesignTextField;
 
-    /**
-     * <p>getReferenceField.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.design.definition.component.DRIDesignTextField} object.
-     */
-    public DRIDesignTextField getReferenceField();
 
+public interface DRIDesignTableOfContentsHeading extends Serializable
+{
+	
+	public DRIDesignTextField getReferenceField();
 }

@@ -41,9 +41,6 @@ import software.xdev.dynamicreports.report.exception.DRException;
 import software.xdev.dynamicreports.test.design.DesignReportBuilder;
 
 
-/**
- * @author Ricardo Mariaca
- */
 class BandBackgroundTest
 {
 	
@@ -90,8 +87,8 @@ class BandBackgroundTest
 			.lastPageFooter(cmp.verticalGap(10))
 			.summary(cmp.verticalGap(10))
 			.background(cmp.verticalGap(10));
-        
-        this.testBackgroundComponents(rb, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13);
+		
+		this.testBackgroundComponents(rb, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13);
 		
 		rb.setTitleBackgroundComponent(cmp.roundRectangle(14))
 			.setPageHeaderBackgroundComponent(cmp.roundRectangle(15))
@@ -106,8 +103,8 @@ class BandBackgroundTest
 			.setLastPageFooterBackgroundComponent(cmp.roundRectangle(24))
 			.setSummaryBackgroundComponent(cmp.roundRectangle(25))
 			.setBackgroundBackgroundComponent(cmp.roundRectangle(26));
-        
-        this.testBackgroundComponents(rb, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26);
+		
+		this.testBackgroundComponents(rb, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26);
 	}
 	
 	private void testBackgroundComponents(final ReportBuilder<?> rb, final Integer... radius)

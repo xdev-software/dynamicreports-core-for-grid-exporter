@@ -19,108 +19,67 @@ package software.xdev.dynamicreports.report.builder.grid;
 
 import software.xdev.dynamicreports.report.base.grid.DRColumnGridListCell;
 import software.xdev.dynamicreports.report.builder.AbstractBuilder;
-import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.constant.HorizontalCellComponentAlignment;
 import software.xdev.dynamicreports.report.constant.VerticalCellComponentAlignment;
 
-/**
- * <p>HorizontalColumnGridListCellBuilder class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class HorizontalColumnGridListCellBuilder extends AbstractBuilder<HorizontalColumnGridListCellBuilder, DRColumnGridListCell> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    /**
-     * <p>Constructor for HorizontalColumnGridListCellBuilder.</p>
-     *
-     * @param component a {@link software.xdev.dynamicreports.report.builder.grid.ColumnGridComponentBuilder} object.
-     */
-    protected HorizontalColumnGridListCellBuilder(ColumnGridComponentBuilder component) {
-        super(new DRColumnGridListCell(component.build()));
-    }
+public class HorizontalColumnGridListCellBuilder
+	extends AbstractBuilder<HorizontalColumnGridListCellBuilder, DRColumnGridListCell>
+{
 
-    // width
-
-    /**
-     * <p>widthFixed.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.builder.grid.HorizontalColumnGridListCellBuilder} object.
-     */
-    public HorizontalColumnGridListCellBuilder widthFixed() {
-        getObject().setHorizontalAlignment(HorizontalCellComponentAlignment.LEFT);
-        return this;
-    }
-
-    /**
-     * <p>widthFloat.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.builder.grid.HorizontalColumnGridListCellBuilder} object.
-     */
-    public HorizontalColumnGridListCellBuilder widthFloat() {
-        getObject().setHorizontalAlignment(HorizontalCellComponentAlignment.FLOAT);
-        return this;
-    }
-
-    /**
-     * <p>widthExpand.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.builder.grid.HorizontalColumnGridListCellBuilder} object.
-     */
-    public HorizontalColumnGridListCellBuilder widthExpand() {
-        getObject().setHorizontalAlignment(HorizontalCellComponentAlignment.EXPAND);
-        return this;
-    }
-
-    // height
-
-    /**
-     * <p>heightFixedOnTop.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.builder.grid.HorizontalColumnGridListCellBuilder} object.
-     */
-    public HorizontalColumnGridListCellBuilder heightFixedOnTop() {
-        getObject().setVerticalAlignment(VerticalCellComponentAlignment.TOP);
-        return this;
-    }
-
-    /**
-     * <p>heightFixedOnMiddle.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.builder.grid.HorizontalColumnGridListCellBuilder} object.
-     */
-    public HorizontalColumnGridListCellBuilder heightFixedOnMiddle() {
-        getObject().setVerticalAlignment(VerticalCellComponentAlignment.MIDDLE);
-        return this;
-    }
-
-    /**
-     * <p>heightFixedOnBottom.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.builder.grid.HorizontalColumnGridListCellBuilder} object.
-     */
-    public HorizontalColumnGridListCellBuilder heightFixedOnBottom() {
-        getObject().setVerticalAlignment(VerticalCellComponentAlignment.BOTTOM);
-        return this;
-    }
-
-    /**
-     * <p>heightExpand.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.builder.grid.HorizontalColumnGridListCellBuilder} object.
-     */
-    public HorizontalColumnGridListCellBuilder heightExpand() {
-        getObject().setVerticalAlignment(VerticalCellComponentAlignment.EXPAND);
-        return this;
-    }
-
-    /**
-     * <p>getColumnGridListCell.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.base.grid.DRColumnGridListCell} object.
-     */
-    public DRColumnGridListCell getColumnGridListCell() {
-        return build();
-    }
+	protected HorizontalColumnGridListCellBuilder(final ColumnGridComponentBuilder component)
+	{
+		super(new DRColumnGridListCell(component.build()));
+	}
+	
+	// width
+	
+	public HorizontalColumnGridListCellBuilder widthFixed()
+	{
+		this.getObject().setHorizontalAlignment(HorizontalCellComponentAlignment.LEFT);
+		return this;
+	}
+	
+	public HorizontalColumnGridListCellBuilder widthFloat()
+	{
+		this.getObject().setHorizontalAlignment(HorizontalCellComponentAlignment.FLOAT);
+		return this;
+	}
+	
+	public HorizontalColumnGridListCellBuilder widthExpand()
+	{
+		this.getObject().setHorizontalAlignment(HorizontalCellComponentAlignment.EXPAND);
+		return this;
+	}
+	
+	// height
+	
+	public HorizontalColumnGridListCellBuilder heightFixedOnTop()
+	{
+		this.getObject().setVerticalAlignment(VerticalCellComponentAlignment.TOP);
+		return this;
+	}
+	
+	public HorizontalColumnGridListCellBuilder heightFixedOnMiddle()
+	{
+		this.getObject().setVerticalAlignment(VerticalCellComponentAlignment.MIDDLE);
+		return this;
+	}
+	
+	public HorizontalColumnGridListCellBuilder heightFixedOnBottom()
+	{
+		this.getObject().setVerticalAlignment(VerticalCellComponentAlignment.BOTTOM);
+		return this;
+	}
+	
+	public HorizontalColumnGridListCellBuilder heightExpand()
+	{
+		this.getObject().setVerticalAlignment(VerticalCellComponentAlignment.EXPAND);
+		return this;
+	}
+	
+	public DRColumnGridListCell getColumnGridListCell()
+	{
+		return this.build();
+	}
 }

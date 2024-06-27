@@ -19,44 +19,32 @@ package software.xdev.dynamicreports.design.base.expression;
 
 import software.xdev.dynamicreports.design.definition.expression.DRIDesignSimpleExpression;
 import software.xdev.dynamicreports.report.ReportUtils;
-import software.xdev.dynamicreports.report.constant.Constants;
 
-/**
- * <p>Abstract AbstractDesignSimpleExpression class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public abstract class AbstractDesignSimpleExpression implements DRIDesignSimpleExpression {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    private String name;
+public abstract class AbstractDesignSimpleExpression implements DRIDesignSimpleExpression
+{
 
-    /**
-     * <p>Constructor for AbstractDesignSimpleExpression.</p>
-     */
-    protected AbstractDesignSimpleExpression() {
-        this(ReportUtils.generateUniqueName("simpleExpression"));
-    }
-
-    /**
-     * <p>Constructor for AbstractDesignSimpleExpression.</p>
-     *
-     * @param name a {@link java.lang.String} object.
-     */
-    protected AbstractDesignSimpleExpression(String name) {
-        this.name = name;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public String getName() {
-        return name;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public String getParameterName() {
-        return null;
-    }
+	private final String name;
+	
+	protected AbstractDesignSimpleExpression()
+	{
+		this(ReportUtils.generateUniqueName("simpleExpression"));
+	}
+	
+	protected AbstractDesignSimpleExpression(final String name)
+	{
+		this.name = name;
+	}
+	
+	@Override
+	public String getName()
+	{
+		return this.name;
+	}
+	
+	@Override
+	public String getParameterName()
+	{
+		return null;
+	}
 }

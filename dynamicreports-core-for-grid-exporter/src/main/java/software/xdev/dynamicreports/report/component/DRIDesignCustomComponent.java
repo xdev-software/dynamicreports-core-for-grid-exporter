@@ -19,12 +19,8 @@ package software.xdev.dynamicreports.report.component;
 
 import software.xdev.dynamicreports.design.definition.component.DRIDesignComponent;
 
-/**
- * <p>DRIDesignCustomComponent interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface DRIDesignCustomComponent extends DRIDesignComponent {
+
+public interface DRIDesignCustomComponent extends DRIDesignComponent
+{
 
 }

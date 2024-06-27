@@ -18,22 +18,14 @@
 package software.xdev.dynamicreports.report.builder.expression;
 
 import software.xdev.dynamicreports.report.base.expression.AbstractSystemExpression;
-import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.constant.SystemExpression;
 
-/**
- * <p>PageNumberExpression class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public final class PageNumberExpression extends AbstractSystemExpression<Integer> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    /**
-     * <p>Constructor for PageNumberExpression.</p>
-     */
-    protected PageNumberExpression() {
-        super(SystemExpression.PAGE_NUMBER.name());
-    }
+public final class PageNumberExpression extends AbstractSystemExpression<Integer>
+{
+
+	protected PageNumberExpression()
+	{
+		super(SystemExpression.PAGE_NUMBER.name());
+	}
 }

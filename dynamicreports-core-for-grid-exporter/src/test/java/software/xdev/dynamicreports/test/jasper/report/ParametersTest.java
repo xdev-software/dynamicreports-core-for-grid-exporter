@@ -17,79 +17,83 @@
  */
 package software.xdev.dynamicreports.test.jasper.report;
 
-import org.junit.jupiter.api.Assertions;
-import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
-import software.xdev.dynamicreports.report.base.expression.AbstractSimpleExpression;
-import software.xdev.dynamicreports.report.definition.ReportParameters;
-import software.xdev.dynamicreports.report.exception.DRException;
-import software.xdev.dynamicreports.test.jasper.AbstractJasperValueTest;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.JasperReport;
+import static software.xdev.dynamicreports.report.builder.DynamicReports.cmp;
 
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-import static software.xdev.dynamicreports.report.builder.DynamicReports.cmp;
+import org.junit.jupiter.api.Assertions;
 
-/**
- * @author Ricardo Mariaca
- */
-public class ParametersTest extends AbstractJasperValueTest implements Serializable {
-    private static final long serialVersionUID = 1L;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
+import software.xdev.dynamicreports.report.base.expression.AbstractSimpleExpression;
+import software.xdev.dynamicreports.report.definition.ReportParameters;
+import software.xdev.dynamicreports.report.exception.DRException;
+import software.xdev.dynamicreports.test.jasper.AbstractJasperValueTest;
 
-    @Override
-    protected void configureReport(JasperReportBuilder rb) {
-        rb.title(cmp.text(new TitleExpression())).addParameter("title", String.class);
-    }
 
-    @Override
-    public void test() {
-        super.test();
+public class ParametersTest extends AbstractJasperValueTest implements Serializable
+{
 
-        numberOfPagesTest(1);
+	@Override
+	protected void configureReport(final JasperReportBuilder rb)
+	{
+		rb.title(cmp.text(new TitleExpression())).addParameter("title", String.class);
+	}
+	
+	@Override
+	public void test()
+	{
+		super.test();
+		
+		this.numberOfPagesTest(1);
+		
+		this.elementValueTest("title.textField1", "");
+		
+		try
+		{
+			JasperReport jasperReport = this.getJasperReport();
+			JasperPrint jasperPrint = this.getJasperPrint();
+			this.getReportBuilder().setParameter("title", "1");
+			this.build();
+			this.elementValueTest("title.textField1", "1");
+			Assertions.assertSame(jasperReport, this.getJasperReport());
+			Assertions.assertNotSame(jasperPrint, this.getJasperPrint());
+			
+			jasperReport = this.getJasperReport();
+			jasperPrint = this.getJasperPrint();
+			this.getReportBuilder().setParameter("title", "2");
+			this.build();
+			this.elementValueTest("title.textField1", "2");
+			Assertions.assertSame(jasperReport, this.getJasperReport());
+			Assertions.assertNotSame(jasperPrint, this.getJasperPrint());
+			
+			jasperReport = this.getJasperReport();
+			jasperPrint = this.getJasperPrint();
+			final Map<String, Object> parameters = new HashMap<>();
+			parameters.put("title", "3");
+			this.getReportBuilder().setParameters(parameters);
+			this.build();
+			this.elementValueTest("title.textField1", "3");
+			Assertions.assertSame(jasperReport, this.getJasperReport());
+			Assertions.assertNotSame(jasperPrint, this.getJasperPrint());
+		}
+		catch(final DRException e)
+		{
+			e.printStackTrace();
+			Assertions.fail(e.getMessage());
+		}
+	}
+	
+	static class TitleExpression extends AbstractSimpleExpression<String>
+	{
 
-        elementValueTest("title.textField1", "");
-
-        try {
-            JasperReport jasperReport = getJasperReport();
-            JasperPrint jasperPrint = getJasperPrint();
-            getReportBuilder().setParameter("title", "1");
-            build();
-            elementValueTest("title.textField1", "1");
-            Assertions.assertSame(jasperReport, getJasperReport());
-            Assertions.assertNotSame(jasperPrint, getJasperPrint());
-
-            jasperReport = getJasperReport();
-            jasperPrint = getJasperPrint();
-            getReportBuilder().setParameter("title", "2");
-            build();
-            elementValueTest("title.textField1", "2");
-            Assertions.assertSame(jasperReport, getJasperReport());
-            Assertions.assertNotSame(jasperPrint, getJasperPrint());
-
-            jasperReport = getJasperReport();
-            jasperPrint = getJasperPrint();
-            Map<String, Object> parameters = new HashMap<String, Object>();
-            parameters.put("title", "3");
-            getReportBuilder().setParameters(parameters);
-            build();
-            elementValueTest("title.textField1", "3");
-            Assertions.assertSame(jasperReport, getJasperReport());
-            Assertions.assertNotSame(jasperPrint, getJasperPrint());
-        } catch (DRException e) {
-            e.printStackTrace();
-            Assertions.fail(e.getMessage());
-        }
-    }
-
-    private class TitleExpression extends AbstractSimpleExpression<String> {
-        private static final long serialVersionUID = 1L;
-
-        @Override
-        public String evaluate(ReportParameters reportParameters) {
-            return reportParameters.getValue("title");
-        }
-
-    }
+		@Override
+		public String evaluate(final ReportParameters reportParameters)
+		{
+			return reportParameters.getValue("title");
+		}
+	}
 }

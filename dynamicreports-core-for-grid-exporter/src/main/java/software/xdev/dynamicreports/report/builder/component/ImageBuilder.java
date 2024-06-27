@@ -17,152 +17,81 @@
  */
 package software.xdev.dynamicreports.report.builder.component;
 
-import software.xdev.dynamicreports.report.base.component.DRImage;
-import software.xdev.dynamicreports.report.builder.expression.Expressions;
-import software.xdev.dynamicreports.report.constant.Constants;
-import software.xdev.dynamicreports.report.constant.HorizontalAlignment;
-import software.xdev.dynamicreports.report.constant.HorizontalImageAlignment;
-import software.xdev.dynamicreports.report.constant.ImageScale;
-import software.xdev.dynamicreports.report.definition.expression.DRIExpression;
-
 import java.awt.Image;
 import java.io.InputStream;
 import java.net.URL;
 
-/**
- * <p>ImageBuilder class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
+import software.xdev.dynamicreports.report.base.component.DRImage;
+import software.xdev.dynamicreports.report.builder.expression.Expressions;
+import software.xdev.dynamicreports.report.constant.HorizontalImageAlignment;
+import software.xdev.dynamicreports.report.constant.ImageScale;
+import software.xdev.dynamicreports.report.definition.expression.DRIExpression;
+
+
 @SuppressWarnings("deprecation")
-public class ImageBuilder extends HyperLinkComponentBuilder<ImageBuilder, DRImage> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
+public class ImageBuilder extends HyperLinkComponentBuilder<ImageBuilder, DRImage>
+{
 
-    /**
-     * <p>Constructor for ImageBuilder.</p>
-     */
-    protected ImageBuilder() {
-        super(new DRImage());
-    }
-
-    /**
-     * <p>setImage.</p>
-     *
-     * @param imageExpression a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.ImageBuilder} object.
-     */
-    public ImageBuilder setImage(DRIExpression<?> imageExpression) {
-        getObject().setImageExpression(imageExpression);
-        return this;
-    }
-
-    /**
-     * <p>setImage.</p>
-     *
-     * @param imagePath a {@link java.lang.String} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.ImageBuilder} object.
-     */
-    public ImageBuilder setImage(String imagePath) {
-        getObject().setImageExpression(Expressions.text(imagePath));
-        getObject().setUsingCache(true);
-        return this;
-    }
-
-    /**
-     * <p>setImage.</p>
-     *
-     * @param image a {@link java.awt.Image} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.ImageBuilder} object.
-     */
-    public ImageBuilder setImage(Image image) {
-        getObject().setImageExpression(Expressions.image(image));
-        getObject().setUsingCache(true);
-        return this;
-    }
-
-    /**
-     * <p>setImage.</p>
-     *
-     * @param imageInputStream a {@link java.io.InputStream} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.ImageBuilder} object.
-     */
-    public ImageBuilder setImage(InputStream imageInputStream) {
-        getObject().setImageExpression(Expressions.inputStream(imageInputStream));
-        getObject().setUsingCache(true);
-        return this;
-    }
-
-    /**
-     * <p>setImage.</p>
-     *
-     * @param imageUrl a {@link java.net.URL} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.ImageBuilder} object.
-     */
-    public ImageBuilder setImage(URL imageUrl) {
-        getObject().setImageExpression(Expressions.url(imageUrl));
-        getObject().setUsingCache(true);
-        return this;
-    }
-
-    /**
-     * <p>setImageScale.</p>
-     *
-     * @param imageScale a {@link software.xdev.dynamicreports.report.constant.ImageScale} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.ImageBuilder} object.
-     */
-    public ImageBuilder setImageScale(ImageScale imageScale) {
-        getObject().setImageScale(imageScale);
-        return this;
-    }
-
-    /**
-     * <p>setUsingCache.</p>
-     *
-     * @param usingCache a {@link java.lang.Boolean} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.ImageBuilder} object.
-     */
-    public ImageBuilder setUsingCache(Boolean usingCache) {
-        getObject().setUsingCache(usingCache);
-        return this;
-    }
-
-    /**
-     * <p>setLazy.</p>
-     *
-     * @param lazy a {@link java.lang.Boolean} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.ImageBuilder} object.
-     */
-    public ImageBuilder setLazy(Boolean lazy) {
-        getObject().setLazy(lazy);
-        return this;
-    }
-
-    /**
-     * <p>setHorizontalAlignment.</p>
-     *
-     * @param horizontalAlignment a {@link software.xdev.dynamicreports.report.constant.HorizontalAlignment} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.ImageBuilder} object.
-     * @deprecated use setHorizontalImageAlignment instead
-     */
-    @Deprecated
-    public ImageBuilder setHorizontalAlignment(HorizontalAlignment horizontalAlignment) {
-        if (horizontalAlignment != null) {
-            getObject().setHorizontalImageAlignment(HorizontalImageAlignment.valueOf(horizontalAlignment.name()));
-        } else {
-            getObject().setHorizontalImageAlignment(null);
-        }
-        return this;
-    }
-
-    /**
-     * <p>setHorizontalImageAlignment.</p>
-     *
-     * @param horizontalImageAlignment a {@link software.xdev.dynamicreports.report.constant.HorizontalImageAlignment} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.ImageBuilder} object.
-     */
-    public ImageBuilder setHorizontalImageAlignment(HorizontalImageAlignment horizontalImageAlignment) {
-        getObject().setHorizontalImageAlignment(horizontalImageAlignment);
-        return this;
-    }
+	protected ImageBuilder()
+	{
+		super(new DRImage());
+	}
+	
+	public ImageBuilder setImage(final DRIExpression<?> imageExpression)
+	{
+		this.getObject().setImageExpression(imageExpression);
+		return this;
+	}
+	
+	public ImageBuilder setImage(final String imagePath)
+	{
+		this.getObject().setImageExpression(Expressions.text(imagePath));
+		this.getObject().setUsingCache(true);
+		return this;
+	}
+	
+	public ImageBuilder setImage(final Image image)
+	{
+		this.getObject().setImageExpression(Expressions.image(image));
+		this.getObject().setUsingCache(true);
+		return this;
+	}
+	
+	public ImageBuilder setImage(final InputStream imageInputStream)
+	{
+		this.getObject().setImageExpression(Expressions.inputStream(imageInputStream));
+		this.getObject().setUsingCache(true);
+		return this;
+	}
+	
+	public ImageBuilder setImage(final URL imageUrl)
+	{
+		this.getObject().setImageExpression(Expressions.url(imageUrl));
+		this.getObject().setUsingCache(true);
+		return this;
+	}
+	
+	public ImageBuilder setImageScale(final ImageScale imageScale)
+	{
+		this.getObject().setImageScale(imageScale);
+		return this;
+	}
+	
+	public ImageBuilder setUsingCache(final Boolean usingCache)
+	{
+		this.getObject().setUsingCache(usingCache);
+		return this;
+	}
+	
+	public ImageBuilder setLazy(final Boolean lazy)
+	{
+		this.getObject().setLazy(lazy);
+		return this;
+	}
+	
+	public ImageBuilder setHorizontalImageAlignment(final HorizontalImageAlignment horizontalImageAlignment)
+	{
+		this.getObject().setHorizontalImageAlignment(horizontalImageAlignment);
+		return this;
+	}
 }

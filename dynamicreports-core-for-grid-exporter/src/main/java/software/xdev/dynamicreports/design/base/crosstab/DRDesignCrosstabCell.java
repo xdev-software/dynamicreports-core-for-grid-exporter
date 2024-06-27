@@ -18,79 +18,57 @@
 package software.xdev.dynamicreports.design.base.crosstab;
 
 import software.xdev.dynamicreports.design.definition.crosstab.DRIDesignCrosstabCell;
-import software.xdev.dynamicreports.report.constant.Constants;
 
-/**
- * <p>DRDesignCrosstabCell class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class DRDesignCrosstabCell implements DRIDesignCrosstabCell {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    private String name;
-    private String rowTotalGroup;
-    private String columnTotalGroup;
-    private DRDesignCrosstabCellContent content;
+public class DRDesignCrosstabCell implements DRIDesignCrosstabCell
+{
 
-    /** {@inheritDoc} */
-    @Override
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * <p>Setter for the field <code>name</code>.</p>
-     *
-     * @param name a {@link java.lang.String} object.
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public String getRowTotalGroup() {
-        return rowTotalGroup;
-    }
-
-    /**
-     * <p>Setter for the field <code>rowTotalGroup</code>.</p>
-     *
-     * @param rowTotalGroup a {@link java.lang.String} object.
-     */
-    public void setRowTotalGroup(String rowTotalGroup) {
-        this.rowTotalGroup = rowTotalGroup;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public String getColumnTotalGroup() {
-        return columnTotalGroup;
-    }
-
-    /**
-     * <p>Setter for the field <code>columnTotalGroup</code>.</p>
-     *
-     * @param columnTotalGroup a {@link java.lang.String} object.
-     */
-    public void setColumnTotalGroup(String columnTotalGroup) {
-        this.columnTotalGroup = columnTotalGroup;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRDesignCrosstabCellContent getContent() {
-        return content;
-    }
-
-    /**
-     * <p>Setter for the field <code>content</code>.</p>
-     *
-     * @param content a {@link software.xdev.dynamicreports.design.base.crosstab.DRDesignCrosstabCellContent} object.
-     */
-    public void setContent(DRDesignCrosstabCellContent content) {
-        this.content = content;
-    }
+	private String name;
+	private String rowTotalGroup;
+	private String columnTotalGroup;
+	private DRDesignCrosstabCellContent content;
+	
+	@Override
+	public String getName()
+	{
+		return this.name;
+	}
+	
+	public void setName(final String name)
+	{
+		this.name = name;
+	}
+	
+	@Override
+	public String getRowTotalGroup()
+	{
+		return this.rowTotalGroup;
+	}
+	
+	public void setRowTotalGroup(final String rowTotalGroup)
+	{
+		this.rowTotalGroup = rowTotalGroup;
+	}
+	
+	@Override
+	public String getColumnTotalGroup()
+	{
+		return this.columnTotalGroup;
+	}
+	
+	public void setColumnTotalGroup(final String columnTotalGroup)
+	{
+		this.columnTotalGroup = columnTotalGroup;
+	}
+	
+	@Override
+	public DRDesignCrosstabCellContent getContent()
+	{
+		return this.content;
+	}
+	
+	public void setContent(final DRDesignCrosstabCellContent content)
+	{
+		this.content = content;
+	}
 }

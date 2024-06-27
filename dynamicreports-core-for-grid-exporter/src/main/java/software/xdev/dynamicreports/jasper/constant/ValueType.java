@@ -17,12 +17,7 @@
  */
 package software.xdev.dynamicreports.jasper.constant;
 
-/**
- * <p>ValueType class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public enum ValueType {
-    FIELD, VARIABLE, PARAMETER, SIMPLE_EXPRESSION, COMPLEX_EXPRESSION, SYSTEM_EXPRESSION
+public enum ValueType
+{
+	FIELD, VARIABLE, PARAMETER, SIMPLE_EXPRESSION, COMPLEX_EXPRESSION, SYSTEM_EXPRESSION
 }

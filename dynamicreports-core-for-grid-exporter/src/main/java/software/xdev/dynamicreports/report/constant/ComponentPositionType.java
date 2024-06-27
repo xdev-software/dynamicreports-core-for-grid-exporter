@@ -17,12 +17,7 @@
  */
 package software.xdev.dynamicreports.report.constant;
 
-/**
- * <p>ComponentPositionType class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public enum ComponentPositionType {
-    FLOAT, FIX_RELATIVE_TO_TOP, FIX_RELATIVE_TO_BOTTOM;
+public enum ComponentPositionType
+{
+	FLOAT, FIX_RELATIVE_TO_TOP, FIX_RELATIVE_TO_BOTTOM
 }

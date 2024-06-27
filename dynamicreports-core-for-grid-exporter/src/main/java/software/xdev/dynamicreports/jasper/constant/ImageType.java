@@ -17,12 +17,7 @@
  */
 package software.xdev.dynamicreports.jasper.constant;
 
-/**
- * <p>ImageType class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public enum ImageType {
-    GIF, PNG, JPG
+public enum ImageType
+{
+	GIF, PNG, JPG
 }

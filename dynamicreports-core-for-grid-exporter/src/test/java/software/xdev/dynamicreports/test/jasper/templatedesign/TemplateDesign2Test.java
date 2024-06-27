@@ -17,74 +17,82 @@
  */
 package software.xdev.dynamicreports.test.jasper.templatedesign;
 
+import static software.xdev.dynamicreports.report.builder.DynamicReports.cmp;
+import static software.xdev.dynamicreports.report.builder.DynamicReports.col;
+import static software.xdev.dynamicreports.report.builder.DynamicReports.report;
+
+import java.io.InputStream;
+import java.io.Serializable;
+
+import net.sf.jasperreports.engine.JRDataSource;
 import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
 import software.xdev.dynamicreports.report.builder.column.TextColumnBuilder;
 import software.xdev.dynamicreports.report.builder.component.SubreportBuilder;
 import software.xdev.dynamicreports.report.datasource.DRDataSource;
 import software.xdev.dynamicreports.report.exception.DRException;
 import software.xdev.dynamicreports.test.jasper.AbstractJasperValueTest;
-import net.sf.jasperreports.engine.JRDataSource;
 
-import java.io.InputStream;
-import java.io.Serializable;
 
-import static software.xdev.dynamicreports.report.builder.DynamicReports.cmp;
-import static software.xdev.dynamicreports.report.builder.DynamicReports.col;
-import static software.xdev.dynamicreports.report.builder.DynamicReports.report;
+public class TemplateDesign2Test extends AbstractJasperValueTest implements Serializable
+{
 
-/**
- * @author Ricardo Mariaca
- */
-public class TemplateDesign2Test extends AbstractJasperValueTest implements Serializable {
-    private static final long serialVersionUID = 1L;
-
-    private TextColumnBuilder<String> column1;
-    private TextColumnBuilder<String> column2;
-
-    @Override
-    protected void configureReport(JasperReportBuilder rb) throws DRException {
-        SubreportBuilder titleSubreport = cmp.subreport(titleSubreport()).setDataSource(titleSubreportDataSource());
-
-        InputStream is = TemplateDesign2Test.class.getResourceAsStream("templatedesign2.jrxml");
-        rb.setTemplateDesign(is).title(titleSubreport).columns(column1 = col.column("Column1", "field1", String.class));
-    }
-
-    @Override
-    public void test() {
-        super.test();
-
-        numberOfPagesTest(1);
-
-        columnTitleValueTest(column1, "Column1");
-        columnDetailValueTest(column1, "row0", "row1");
-        columnTitleValueTest(column2, "Column2");
-        columnDetailValueTest(column2, "value1", "value2", "value3");
-        elementValueTest("title.textField1", "subreport");
-        elementValueTest("templateDesign.pageHeader", "pageHeader");
-        elementValueTest("templateDesign.pageFooter", "pageFooter");
-    }
-
-    @Override
-    protected JRDataSource createDataSource() {
-        DRDataSource dataSource = new DRDataSource("field1", "field2");
-        for (int i = 0; i < 2; i++) {
-            dataSource.add("row" + i, i);
-        }
-        return dataSource;
-    }
-
-    private JasperReportBuilder titleSubreport() throws DRException {
-        InputStream is = TemplateDesign2Test.class.getResourceAsStream("templatedesign3.jrxml");
-        JasperReportBuilder report = report();
-        report.setTemplateDesign(is).title(cmp.text("subreport")).columns(column2 = col.column("Column2", "field2", String.class));
-        return report;
-    }
-
-    private JRDataSource titleSubreportDataSource() {
-        DRDataSource dataSource = new DRDataSource("field2");
-        dataSource.add("value1");
-        dataSource.add("value2");
-        dataSource.add("value3");
-        return dataSource;
-    }
+	private TextColumnBuilder<String> column1;
+	private TextColumnBuilder<String> column2;
+	
+	@Override
+	protected void configureReport(final JasperReportBuilder rb) throws DRException
+	{
+		final SubreportBuilder titleSubreport =
+			cmp.subreport(this.titleSubreport()).setDataSource(this.titleSubreportDataSource());
+		
+		final InputStream is = TemplateDesign2Test.class.getResourceAsStream("templatedesign2.jrxml");
+		rb.setTemplateDesign(is).title(titleSubreport).columns(this.column1 = col.column("Column1", "field1",
+			String.class));
+	}
+	
+	@Override
+	public void test()
+	{
+		super.test();
+		
+		this.numberOfPagesTest(1);
+		
+		this.columnTitleValueTest(this.column1, "Column1");
+		this.columnDetailValueTest(this.column1, "row0", "row1");
+		this.columnTitleValueTest(this.column2, "Column2");
+		this.columnDetailValueTest(this.column2, "value1", "value2", "value3");
+		this.elementValueTest("title.textField1", "subreport");
+		this.elementValueTest("templateDesign.pageHeader", "pageHeader");
+		this.elementValueTest("templateDesign.pageFooter", "pageFooter");
+	}
+	
+	@Override
+	protected JRDataSource createDataSource()
+	{
+		final DRDataSource dataSource = new DRDataSource("field1", "field2");
+		for(int i = 0; i < 2; i++)
+		{
+			dataSource.add("row" + i, i);
+		}
+		return dataSource;
+	}
+	
+	private JasperReportBuilder titleSubreport() throws DRException
+	{
+		final InputStream is = TemplateDesign2Test.class.getResourceAsStream("templatedesign3.jrxml");
+		final JasperReportBuilder report = report();
+		report.setTemplateDesign(is)
+			.title(cmp.text("subreport"))
+			.columns(this.column2 = col.column("Column2", "field2", String.class));
+		return report;
+	}
+	
+	private JRDataSource titleSubreportDataSource()
+	{
+		final DRDataSource dataSource = new DRDataSource("field2");
+		dataSource.add("value1");
+		dataSource.add("value2");
+		dataSource.add("value3");
+		return dataSource;
+	}
 }

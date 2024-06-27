@@ -17,24 +17,10 @@
  */
 package software.xdev.dynamicreports.report.constant;
 
-/**
- * <p>WhenNoDataType class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public enum WhenNoDataType {
-    /**
-     * Specifies that in case of empty datasources, there will be an empty report.
-     */
-    NO_PAGES, /**
-     * Specifies that in case of empty datasources, there will be a report with just one blank page.
-     */
-    BLANK_PAGE, /**
-     * Specifies that in case of empty datasources, all sections except detail will displayed.
-     */
-    ALL_SECTIONS_NO_DETAIL, /**
-     * Specifies that in case of empty datasources, the NoData section will be displayed.
-     */
-    NO_DATA_SECTION
+public enum WhenNoDataType
+{
+	NO_PAGES,
+	BLANK_PAGE,
+	ALL_SECTIONS_NO_DETAIL,
+	NO_DATA_SECTION
 }

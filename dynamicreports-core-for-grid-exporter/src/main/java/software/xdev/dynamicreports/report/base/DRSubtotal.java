@@ -17,188 +17,148 @@
  */
 package software.xdev.dynamicreports.report.base;
 
+import org.apache.commons.lang3.Validate;
+
 import software.xdev.dynamicreports.report.base.column.DRColumn;
 import software.xdev.dynamicreports.report.base.component.DRTextField;
 import software.xdev.dynamicreports.report.constant.ComponentDimensionType;
-import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.constant.Position;
 import software.xdev.dynamicreports.report.constant.SubtotalPosition;
 import software.xdev.dynamicreports.report.definition.DRISubtotal;
 import software.xdev.dynamicreports.report.definition.expression.DRIExpression;
 import software.xdev.dynamicreports.report.definition.style.DRIReportStyle;
-import org.apache.commons.lang3.Validate;
 
-/**
- * <p>DRSubtotal class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class DRSubtotal<T> implements DRISubtotal<T> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    private DRColumn<?> showInColumn;
-    private DRTextField<T> valueField;
-    private SubtotalPosition position;
-    private DRGroup group;
+public class DRSubtotal<T> implements DRISubtotal<T>
+{
 
-    private DRIExpression<?> labelExpression;
-    private DRIReportStyle labelStyle;
-    private Position labelPosition;
-    private Integer labelWidth;
-    private ComponentDimensionType labelWidthType;
-
-    /**
-     * <p>Constructor for DRSubtotal.</p>
-     *
-     * @param showInColumn a {@link software.xdev.dynamicreports.report.base.column.DRColumn} object.
-     */
-    public DRSubtotal(DRColumn<?> showInColumn) {
-        setShowInColumn(showInColumn);
-        init();
-    }
-
-    private void init() {
-        valueField = new DRTextField<T>();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRColumn<?> getShowInColumn() {
-        return showInColumn;
-    }
-
-    /**
-     * <p>Setter for the field <code>showInColumn</code>.</p>
-     *
-     * @param showInColumn a {@link software.xdev.dynamicreports.report.base.column.DRColumn} object.
-     */
-    public void setShowInColumn(DRColumn<?> showInColumn) {
-        Validate.notNull(showInColumn, "showInColumn must not be null");
-        this.showInColumn = showInColumn;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRTextField<T> getValueField() {
-        return valueField;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRIExpression<?> getLabelExpression() {
-        return labelExpression;
-    }
-
-    /**
-     * <p>Setter for the field <code>labelExpression</code>.</p>
-     *
-     * @param labelExpression a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     */
-    public void setLabelExpression(DRIExpression<?> labelExpression) {
-        this.labelExpression = labelExpression;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRIReportStyle getLabelStyle() {
-        return labelStyle;
-    }
-
-    /**
-     * <p>Setter for the field <code>labelStyle</code>.</p>
-     *
-     * @param labelStyle a {@link software.xdev.dynamicreports.report.definition.style.DRIReportStyle} object.
-     */
-    public void setLabelStyle(DRIReportStyle labelStyle) {
-        this.labelStyle = labelStyle;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Position getLabelPosition() {
-        return labelPosition;
-    }
-
-    /**
-     * <p>Setter for the field <code>labelPosition</code>.</p>
-     *
-     * @param labelPosition a {@link software.xdev.dynamicreports.report.constant.Position} object.
-     */
-    public void setLabelPosition(Position labelPosition) {
-        this.labelPosition = labelPosition;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Integer getLabelWidth() {
-        return labelWidth;
-    }
-
-    /**
-     * <p>Setter for the field <code>labelWidth</code>.</p>
-     *
-     * @param labelWidth a {@link java.lang.Integer} object.
-     */
-    public void setLabelWidth(Integer labelWidth) {
-        this.labelWidth = labelWidth;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public ComponentDimensionType getLabelWidthType() {
-        return labelWidthType;
-    }
-
-    /**
-     * <p>Setter for the field <code>labelWidthType</code>.</p>
-     *
-     * @param labelWidthType a {@link software.xdev.dynamicreports.report.constant.ComponentDimensionType} object.
-     */
-    public void setLabelWidthType(ComponentDimensionType labelWidthType) {
-        this.labelWidthType = labelWidthType;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public SubtotalPosition getPosition() {
-        return position;
-    }
-
-    /**
-     * <p>Setter for the field <code>position</code>.</p>
-     *
-     * @param position a {@link software.xdev.dynamicreports.report.constant.SubtotalPosition} object.
-     */
-    public void setPosition(SubtotalPosition position) {
-        Validate.notNull(position, "position must not be null");
-        this.position = position;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRGroup getGroup() {
-        return group;
-    }
-
-    /**
-     * <p>Setter for the field <code>group</code>.</p>
-     *
-     * @param group a {@link software.xdev.dynamicreports.report.base.DRGroup} object.
-     */
-    public void setGroup(DRGroup group) {
-        this.group = group;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public String getName() {
-        return valueField.getValueExpression().getName();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Class<? super T> getValueClass() {
-        return valueField.getValueExpression().getValueClass();
-    }
+	private DRColumn<?> showInColumn;
+	private DRTextField<T> valueField;
+	private SubtotalPosition position;
+	private DRGroup group;
+	
+	private DRIExpression<?> labelExpression;
+	private DRIReportStyle labelStyle;
+	private Position labelPosition;
+	private Integer labelWidth;
+	private ComponentDimensionType labelWidthType;
+	
+	public DRSubtotal(final DRColumn<?> showInColumn)
+	{
+		this.setShowInColumn(showInColumn);
+		this.init();
+	}
+	
+	private void init()
+	{
+		this.valueField = new DRTextField<>();
+	}
+	
+	@Override
+	public DRColumn<?> getShowInColumn()
+	{
+		return this.showInColumn;
+	}
+	
+	public void setShowInColumn(final DRColumn<?> showInColumn)
+	{
+		Validate.notNull(showInColumn, "showInColumn must not be null");
+		this.showInColumn = showInColumn;
+	}
+	
+	@Override
+	public DRTextField<T> getValueField()
+	{
+		return this.valueField;
+	}
+	
+	@Override
+	public DRIExpression<?> getLabelExpression()
+	{
+		return this.labelExpression;
+	}
+	
+	public void setLabelExpression(final DRIExpression<?> labelExpression)
+	{
+		this.labelExpression = labelExpression;
+	}
+	
+	@Override
+	public DRIReportStyle getLabelStyle()
+	{
+		return this.labelStyle;
+	}
+	
+	public void setLabelStyle(final DRIReportStyle labelStyle)
+	{
+		this.labelStyle = labelStyle;
+	}
+	
+	@Override
+	public Position getLabelPosition()
+	{
+		return this.labelPosition;
+	}
+	
+	public void setLabelPosition(final Position labelPosition)
+	{
+		this.labelPosition = labelPosition;
+	}
+	
+	@Override
+	public Integer getLabelWidth()
+	{
+		return this.labelWidth;
+	}
+	
+	public void setLabelWidth(final Integer labelWidth)
+	{
+		this.labelWidth = labelWidth;
+	}
+	
+	@Override
+	public ComponentDimensionType getLabelWidthType()
+	{
+		return this.labelWidthType;
+	}
+	
+	public void setLabelWidthType(final ComponentDimensionType labelWidthType)
+	{
+		this.labelWidthType = labelWidthType;
+	}
+	
+	@Override
+	public SubtotalPosition getPosition()
+	{
+		return this.position;
+	}
+	
+	public void setPosition(final SubtotalPosition position)
+	{
+		Validate.notNull(position, "position must not be null");
+		this.position = position;
+	}
+	
+	@Override
+	public DRGroup getGroup()
+	{
+		return this.group;
+	}
+	
+	public void setGroup(final DRGroup group)
+	{
+		this.group = group;
+	}
+	
+	@Override
+	public String getName()
+	{
+		return this.valueField.getValueExpression().getName();
+	}
+	
+	@Override
+	public Class<? super T> getValueClass()
+	{
+		return this.valueField.getValueExpression().getValueClass();
+	}
 }

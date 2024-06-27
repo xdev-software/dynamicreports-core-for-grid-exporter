@@ -17,36 +17,17 @@
  */
 package software.xdev.dynamicreports.report.definition.grid;
 
-import software.xdev.dynamicreports.report.constant.ListType;
-
 import java.util.List;
 
-/**
- * <p>DRIColumnGridList interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface DRIColumnGridList extends DRIColumnGridComponent {
+import software.xdev.dynamicreports.report.constant.ListType;
 
-    /**
-     * <p>getListCells.</p>
-     *
-     * @return a {@link java.util.List} object.
-     */
-    public List<? extends DRIColumnGridListCell> getListCells();
 
-    /**
-     * <p>getType.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.constant.ListType} object.
-     */
-    public ListType getType();
-
-    /**
-     * <p>getGap.</p>
-     *
-     * @return a int.
-     */
-    public int getGap();
+public interface DRIColumnGridList extends DRIColumnGridComponent
+{
+	
+	public List<? extends DRIColumnGridListCell> getListCells();
+	
+	public ListType getType();
+	
+	public int getGap();
 }

@@ -17,105 +17,100 @@
  */
 package software.xdev.dynamicreports.jasper.base;
 
-import software.xdev.dynamicreports.report.definition.DRIScriptlet;
 import net.sf.jasperreports.engine.JRAbstractScriptlet;
 import net.sf.jasperreports.engine.JRScriptletException;
+import software.xdev.dynamicreports.report.definition.DRIScriptlet;
 
-/**
- * <p>CustomScriptlet class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class CustomScriptlet extends JRAbstractScriptlet {
-    private DRIScriptlet scriptlet;
-    private JasperReportParameters reportParameters;
 
-    /**
-     * <p>Constructor for CustomScriptlet.</p>
-     *
-     * @param scriptlet a {@link software.xdev.dynamicreports.report.definition.DRIScriptlet} object.
-     */
-    public CustomScriptlet(DRIScriptlet scriptlet) {
-        this.scriptlet = scriptlet;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void afterColumnInit() throws JRScriptletException {
-        scriptlet.afterColumnInit(getReportParameters());
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void afterDetailEval() throws JRScriptletException {
-        scriptlet.afterDetailEval(getReportParameters());
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void afterGroupInit(String groupName) throws JRScriptletException {
-        scriptlet.afterGroupInit(groupName, getReportParameters());
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void afterPageInit() throws JRScriptletException {
-        scriptlet.afterPageInit(getReportParameters());
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void afterReportInit() throws JRScriptletException {
-        scriptlet.afterReportInit(getReportParameters());
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void beforeColumnInit() throws JRScriptletException {
-        scriptlet.beforeColumnInit(getReportParameters());
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void beforeDetailEval() throws JRScriptletException {
-        scriptlet.beforeDetailEval(getReportParameters());
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void beforeGroupInit(String groupName) throws JRScriptletException {
-        scriptlet.beforeGroupInit(groupName, getReportParameters());
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void beforePageInit() throws JRScriptletException {
-        scriptlet.beforePageInit(getReportParameters());
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void beforeReportInit() throws JRScriptletException {
-        scriptlet.beforeReportInit(getReportParameters());
-    }
-
-    private JasperReportParameters getReportParameters() {
-        if (reportParameters == null) {
-            try {
-                reportParameters = ((JasperScriptlet) getParameterValue(JasperScriptlet.SCRIPTLET_NAME)).getReportParameters();
-            } catch (JRScriptletException e) {
-            }
-        }
-        return reportParameters;
-    }
-
-    /**
-     * <p>Getter for the field <code>scriptlet</code>.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.definition.DRIScriptlet} object.
-     */
-    protected DRIScriptlet getScriptlet() {
-        return scriptlet;
-    }
+public class CustomScriptlet extends JRAbstractScriptlet
+{
+	private final DRIScriptlet scriptlet;
+	private JasperReportParameters reportParameters;
+	
+	public CustomScriptlet(final DRIScriptlet scriptlet)
+	{
+		this.scriptlet = scriptlet;
+	}
+	
+	@Override
+	public void afterColumnInit() throws JRScriptletException
+	{
+		this.scriptlet.afterColumnInit(this.getReportParameters());
+	}
+	
+	@Override
+	public void afterDetailEval() throws JRScriptletException
+	{
+		this.scriptlet.afterDetailEval(this.getReportParameters());
+	}
+	
+	@Override
+	public void afterGroupInit(final String groupName) throws JRScriptletException
+	{
+		this.scriptlet.afterGroupInit(groupName, this.getReportParameters());
+	}
+	
+	@Override
+	public void afterPageInit() throws JRScriptletException
+	{
+		this.scriptlet.afterPageInit(this.getReportParameters());
+	}
+	
+	@Override
+	public void afterReportInit() throws JRScriptletException
+	{
+		this.scriptlet.afterReportInit(this.getReportParameters());
+	}
+	
+	@Override
+	public void beforeColumnInit() throws JRScriptletException
+	{
+		this.scriptlet.beforeColumnInit(this.getReportParameters());
+	}
+	
+	@Override
+	public void beforeDetailEval() throws JRScriptletException
+	{
+		this.scriptlet.beforeDetailEval(this.getReportParameters());
+	}
+	
+	@Override
+	public void beforeGroupInit(final String groupName) throws JRScriptletException
+	{
+		this.scriptlet.beforeGroupInit(groupName, this.getReportParameters());
+	}
+	
+	@Override
+	public void beforePageInit() throws JRScriptletException
+	{
+		this.scriptlet.beforePageInit(this.getReportParameters());
+	}
+	
+	@Override
+	public void beforeReportInit() throws JRScriptletException
+	{
+		this.scriptlet.beforeReportInit(this.getReportParameters());
+	}
+	
+	private JasperReportParameters getReportParameters()
+	{
+		if(this.reportParameters == null)
+		{
+			try
+			{
+				this.reportParameters =
+					((JasperScriptlet)this.getParameterValue(JasperScriptlet.SCRIPTLET_NAME)).getReportParameters();
+			}
+			catch(final JRScriptletException e)
+			{
+				// Undocumented upstream
+			}
+		}
+		return this.reportParameters;
+	}
+	
+	protected DRIScriptlet getScriptlet()
+	{
+		return this.scriptlet;
+	}
 }

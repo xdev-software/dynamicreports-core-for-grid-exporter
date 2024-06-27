@@ -19,29 +19,14 @@ package software.xdev.dynamicreports.report.definition;
 
 import java.io.Serializable;
 
-/**
- * <p>DRIParameter interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface DRIParameter<T> extends DRIValue<T>, Serializable {
 
-    /** {@inheritDoc} */
-    @Override
-    public String getName();
-
-    /**
-     * <p>getValueClass.</p>
-     *
-     * @return a {@link java.lang.Class} object.
-     */
-    public Class<T> getValueClass();
-
-    /**
-     * <p>getValue.</p>
-     *
-     * @return a T object.
-     */
-    public T getValue();
+public interface DRIParameter<T> extends DRIValue<T>, Serializable
+{
+	
+	@Override
+	public String getName();
+	
+	public Class<T> getValueClass();
+	
+	public T getValue();
 }

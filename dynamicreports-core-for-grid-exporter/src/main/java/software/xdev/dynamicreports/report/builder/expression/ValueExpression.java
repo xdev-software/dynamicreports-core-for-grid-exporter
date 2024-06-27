@@ -17,57 +17,42 @@
  */
 package software.xdev.dynamicreports.report.builder.expression;
 
-import software.xdev.dynamicreports.report.base.expression.AbstractSimpleExpression;
-import software.xdev.dynamicreports.report.constant.Constants;
-import software.xdev.dynamicreports.report.definition.ReportParameters;
 import org.apache.commons.lang3.Validate;
 
-/**
- * <p>ValueExpression class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class ValueExpression<T> extends AbstractSimpleExpression<T> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
+import software.xdev.dynamicreports.report.base.expression.AbstractSimpleExpression;
+import software.xdev.dynamicreports.report.definition.ReportParameters;
 
-    private T value;
-    private Class<? super T> valueClass;
 
-    @SuppressWarnings("unchecked")
-    /**
-     * <p>Constructor for ValueExpression.</p>
-     *
-     * @param value a T object.
-     */
-    public ValueExpression(T value) {
-        Validate.notNull(value, "value must not be null");
-        this.value = value;
-        this.valueClass = (Class<? super T>) value.getClass();
-    }
+public class ValueExpression<T> extends AbstractSimpleExpression<T>
+{
 
-    /**
-     * <p>Constructor for ValueExpression.</p>
-     *
-     * @param value      a T object.
-     * @param valueClass a {@link java.lang.Class} object.
-     * @param valueClass a {@link java.lang.Class} object.
-     */
-    public ValueExpression(T value, Class<? super T> valueClass) {
-        Validate.notNull(valueClass, "valueClass must not be null");
-        this.value = value;
-        this.valueClass = valueClass;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public T evaluate(ReportParameters reportParameters) {
-        return value;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Class<? super T> getValueClass() {
-        return valueClass;
-    }
+	private final T value;
+	private final Class<? super T> valueClass;
+	
+	@SuppressWarnings("unchecked")
+	public ValueExpression(final T value)
+	{
+		Validate.notNull(value, "value must not be null");
+		this.value = value;
+		this.valueClass = (Class<? super T>)value.getClass();
+	}
+	
+	public ValueExpression(final T value, final Class<? super T> valueClass)
+	{
+		Validate.notNull(valueClass, "valueClass must not be null");
+		this.value = value;
+		this.valueClass = valueClass;
+	}
+	
+	@Override
+	public T evaluate(final ReportParameters reportParameters)
+	{
+		return this.value;
+	}
+	
+	@Override
+	public Class<? super T> getValueClass()
+	{
+		return this.valueClass;
+	}
 }

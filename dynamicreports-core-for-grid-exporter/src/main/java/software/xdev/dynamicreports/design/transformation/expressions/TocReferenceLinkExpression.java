@@ -17,48 +17,41 @@
  */
 package software.xdev.dynamicreports.design.transformation.expressions;
 
+import java.util.List;
+
 import software.xdev.dynamicreports.report.builder.expression.AbstractComplexExpression;
-import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.definition.ReportParameters;
 import software.xdev.dynamicreports.report.definition.expression.DRIExpression;
 
-import java.util.List;
 
-/**
- * <p>TocReferenceLinkExpression class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class TocReferenceLinkExpression extends AbstractComplexExpression<String> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
+public class TocReferenceLinkExpression extends AbstractComplexExpression<String>
+{
 
-    private String expressionName;
-    private boolean customId;
-
-    /**
-     * <p>Constructor for TocReferenceLinkExpression.</p>
-     *
-     * @param expressionName       a {@link java.lang.String} object.
-     * @param anchorNameExpression a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     */
-    public TocReferenceLinkExpression(String expressionName, DRIExpression<String> anchorNameExpression) {
-        this.expressionName = expressionName;
-        customId = anchorNameExpression != null;
-        if (anchorNameExpression != null) {
-            addExpression(anchorNameExpression);
-        }
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public String evaluate(List<?> values, ReportParameters reportParameters) {
-        String id;
-        if (customId) {
-            id = (String) values.get(0);
-        } else {
-            id = expressionName + "_" + reportParameters.getReportRowNumber();
-        }
-        return id;
-    }
+	private final String expressionName;
+	private final boolean customId;
+	
+	public TocReferenceLinkExpression(final String expressionName, final DRIExpression<String> anchorNameExpression)
+	{
+		this.expressionName = expressionName;
+		this.customId = anchorNameExpression != null;
+		if(anchorNameExpression != null)
+		{
+			this.addExpression(anchorNameExpression);
+		}
+	}
+	
+	@Override
+	public String evaluate(final List<?> values, final ReportParameters reportParameters)
+	{
+		final String id;
+		if(this.customId)
+		{
+			id = (String)values.get(0);
+		}
+		else
+		{
+			id = this.expressionName + "_" + reportParameters.getReportRowNumber();
+		}
+		return id;
+	}
 }

@@ -17,6 +17,11 @@
  */
 package software.xdev.dynamicreports.report.builder.expression;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.commons.lang3.Validate;
+
 import software.xdev.dynamicreports.report.ReportUtils;
 import software.xdev.dynamicreports.report.base.DRField;
 import software.xdev.dynamicreports.report.builder.FieldBuilder;
@@ -24,126 +29,85 @@ import software.xdev.dynamicreports.report.builder.VariableBuilder;
 import software.xdev.dynamicreports.report.builder.column.TextColumnBuilder;
 import software.xdev.dynamicreports.report.builder.crosstab.AbstractCrosstabGroupBuilder;
 import software.xdev.dynamicreports.report.builder.crosstab.CrosstabMeasureBuilder;
-import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.definition.ReportParameters;
 import software.xdev.dynamicreports.report.definition.expression.DRIComplexExpression;
 import software.xdev.dynamicreports.report.definition.expression.DRIExpression;
-import org.apache.commons.lang3.Validate;
 
-import java.util.ArrayList;
-import java.util.List;
 
-/**
- * <p>Abstract AbstractComplexExpression class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public abstract class AbstractComplexExpression<T> implements DRIComplexExpression<T> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
+public abstract class AbstractComplexExpression<T> implements DRIComplexExpression<T>
+{
 
-    private String name;
-    private List<DRIExpression<?>> expressions;
-
-    /**
-     * <p>Constructor for AbstractComplexExpression.</p>
-     */
-    protected AbstractComplexExpression() {
-        this.name = ReportUtils.generateUniqueName("complexExpression");
-        this.expressions = new ArrayList<DRIExpression<?>>();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * <p>addExpression.</p>
-     *
-     * @param field a {@link software.xdev.dynamicreports.report.builder.FieldBuilder} object.
-     */
-    protected void addExpression(FieldBuilder<?> field) {
-        Validate.notNull(field, "field must not be null");
-        this.expressions.add(field.getField());
-    }
-
-    /**
-     * <p>addExpression.</p>
-     *
-     * @param fieldName  a {@link java.lang.String} object.
-     * @param valueClass a {@link java.lang.Class} object.
-     */
-    protected void addExpression(String fieldName, Class<?> valueClass) {
-        @SuppressWarnings( {"unchecked", "rawtypes"}) DRField<?> field = new DRField(fieldName, valueClass);
-        this.expressions.add(field);
-    }
-
-    /**
-     * <p>addExpression.</p>
-     *
-     * @param column a {@link software.xdev.dynamicreports.report.builder.column.TextColumnBuilder} object.
-     */
-    protected void addExpression(TextColumnBuilder<?> column) {
-        Validate.notNull(column, "column must not be null");
-        this.expressions.add(column.build());
-    }
-
-    /**
-     * <p>addExpression.</p>
-     *
-     * @param variable a {@link software.xdev.dynamicreports.report.builder.VariableBuilder} object.
-     */
-    protected void addExpression(VariableBuilder<?> variable) {
-        Validate.notNull(variable, "variable must not be null");
-        this.expressions.add(variable.getVariable());
-    }
-
-    /**
-     * <p>addExpression.</p>
-     *
-     * @param expression a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     */
-    protected void addExpression(DRIExpression<?> expression) {
-        Validate.notNull(expression, "expression must not be null");
-        this.expressions.add(expression);
-    }
-
-    /**
-     * <p>addExpression.</p>
-     *
-     * @param crosstabGroup a {@link software.xdev.dynamicreports.report.builder.crosstab.AbstractCrosstabGroupBuilder} object.
-     */
-    protected void addExpression(AbstractCrosstabGroupBuilder<?, ?, ?> crosstabGroup) {
-        Validate.notNull(crosstabGroup, "crosstabGroup must not be null");
-        this.expressions.add(Expressions.crosstabValue(crosstabGroup));
-    }
-
-    /**
-     * <p>addExpression.</p>
-     *
-     * @param crosstabMeasure a {@link software.xdev.dynamicreports.report.builder.crosstab.CrosstabMeasureBuilder} object.
-     */
-    protected void addExpression(CrosstabMeasureBuilder<?> crosstabMeasure) {
-        Validate.notNull(crosstabMeasure, "crosstabMeasure must not be null");
-        this.expressions.add(Expressions.crosstabValue(crosstabMeasure));
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public List<DRIExpression<?>> getExpressions() {
-        return expressions;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    @SuppressWarnings("unchecked")
-    public Class<? super T> getValueClass() {
-        return (Class<? super T>) ReportUtils.getGenericClass(this, 0);
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public abstract T evaluate(List<?> values, ReportParameters reportParameters);
+	private final String name;
+	private final List<DRIExpression<?>> expressions;
+	
+	protected AbstractComplexExpression()
+	{
+		this.name = ReportUtils.generateUniqueName("complexExpression");
+		this.expressions = new ArrayList<>();
+	}
+	
+	@Override
+	public String getName()
+	{
+		return this.name;
+	}
+	
+	protected void addExpression(final FieldBuilder<?> field)
+	{
+		Validate.notNull(field, "field must not be null");
+		this.expressions.add(field.getField());
+	}
+	
+	protected void addExpression(final String fieldName, final Class<?> valueClass)
+	{
+		@SuppressWarnings({"unchecked", "rawtypes"})
+		final DRField<?> field = new DRField(fieldName, valueClass);
+		this.expressions.add(field);
+	}
+	
+	protected void addExpression(final TextColumnBuilder<?> column)
+	{
+		Validate.notNull(column, "column must not be null");
+		this.expressions.add(column.build());
+	}
+	
+	protected void addExpression(final VariableBuilder<?> variable)
+	{
+		Validate.notNull(variable, "variable must not be null");
+		this.expressions.add(variable.getVariable());
+	}
+	
+	protected void addExpression(final DRIExpression<?> expression)
+	{
+		Validate.notNull(expression, "expression must not be null");
+		this.expressions.add(expression);
+	}
+	
+	protected void addExpression(final AbstractCrosstabGroupBuilder<?, ?, ?> crosstabGroup)
+	{
+		Validate.notNull(crosstabGroup, "crosstabGroup must not be null");
+		this.expressions.add(Expressions.crosstabValue(crosstabGroup));
+	}
+	
+	protected void addExpression(final CrosstabMeasureBuilder<?> crosstabMeasure)
+	{
+		Validate.notNull(crosstabMeasure, "crosstabMeasure must not be null");
+		this.expressions.add(Expressions.crosstabValue(crosstabMeasure));
+	}
+	
+	@Override
+	public List<DRIExpression<?>> getExpressions()
+	{
+		return this.expressions;
+	}
+	
+	@Override
+	@SuppressWarnings("unchecked")
+	public Class<? super T> getValueClass()
+	{
+		return (Class<? super T>)ReportUtils.getGenericClass(this, 0);
+	}
+	
+	@Override
+	public abstract T evaluate(List<?> values, ReportParameters reportParameters);
 }

@@ -22,114 +22,66 @@ import software.xdev.dynamicreports.report.base.component.DRComponent;
 import software.xdev.dynamicreports.report.base.component.DRDimensionComponent;
 import software.xdev.dynamicreports.report.builder.component.ComponentBuilder;
 import software.xdev.dynamicreports.report.constant.ComponentDimensionType;
-import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.definition.component.DRIDimensionComponent;
 import software.xdev.dynamicreports.report.exception.DRReportException;
 
-/**
- * It is used to display custom components (e.g. images or complex content) in columns.
- *
- * @author Ricardo Mariaca
- * 
- */
-public class ComponentColumnBuilder extends ColumnBuilder<ComponentColumnBuilder, DRColumn<DRComponent>> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    /**
-     * <p>Constructor for ComponentColumnBuilder.</p>
-     *
-     * @param component a {@link software.xdev.dynamicreports.report.builder.component.ComponentBuilder} object.
-     */
-    protected ComponentColumnBuilder(ComponentBuilder<?, ?> component) {
-        super(new DRColumn<DRComponent>(component.getComponent()));
-    }
-
-    /**
-     * Sets the preferred width of a column.
-     *
-     * @param width the column preferred width >= 0
-     * @return a column builder
-     * @throws java.lang.IllegalArgumentException if <code>width</code> is < 0
-     * @see software.xdev.dynamicreports.report.builder.Units
-     */
-    public ComponentColumnBuilder setWidth(Integer width) {
-        getDimensionComponent().setWidth(width);
-        return this;
-    }
-
-    /**
-     * Sets the fixed width of a column.
-     *
-     * @param width the column fixed width >= 0
-     * @return a column builder
-     * @throws java.lang.IllegalArgumentException if <code>width</code> is < 0
-     * @see software.xdev.dynamicreports.report.builder.Units
-     */
-    public ComponentColumnBuilder setFixedWidth(Integer width) {
-        getDimensionComponent().setWidth(width);
-        getDimensionComponent().setWidthType(ComponentDimensionType.FIXED);
-        return this;
-    }
-
-    /**
-     * Sets the minimum width of a column.
-     *
-     * @param width the column minimum width >= 0
-     * @return a column builder
-     * @throws java.lang.IllegalArgumentException if <code>width</code> is < 0
-     * @see software.xdev.dynamicreports.report.builder.Units
-     */
-    public ComponentColumnBuilder setMinWidth(Integer width) {
-        getDimensionComponent().setWidth(width);
-        getDimensionComponent().setWidthType(ComponentDimensionType.EXPAND);
-        return this;
-    }
-
-    /**
-     * Sets the preferred height of a column.
-     *
-     * @param height the column preferred height >= 0
-     * @return a column builder
-     * @throws java.lang.IllegalArgumentException if <code>height</code> is < 0
-     * @see software.xdev.dynamicreports.report.builder.Units
-     */
-    public ComponentColumnBuilder setHeight(Integer height) {
-        getDimensionComponent().setHeight(height);
-        return this;
-    }
-
-    /**
-     * Sets the fixed height of a column.
-     *
-     * @param height the column fixed height >= 0
-     * @return a column builder
-     * @throws java.lang.IllegalArgumentException if <code>height</code> is < 0
-     * @see software.xdev.dynamicreports.report.builder.Units
-     */
-    public ComponentColumnBuilder setFixedHeight(Integer height) {
-        getDimensionComponent().setHeight(height);
-        getDimensionComponent().setHeightType(ComponentDimensionType.FIXED);
-        return this;
-    }
-
-    /**
-     * Sets the minimum height of a column.
-     *
-     * @param height the column minimum height >= 0
-     * @return a column builder
-     * @throws java.lang.IllegalArgumentException if <code>height</code> is < 0
-     * @see software.xdev.dynamicreports.report.builder.Units
-     */
-    public ComponentColumnBuilder setMinHeight(Integer height) {
-        getDimensionComponent().setHeight(height);
-        getDimensionComponent().setHeightType(ComponentDimensionType.EXPAND);
-        return this;
-    }
-
-    private DRDimensionComponent getDimensionComponent() {
-        if (!(getObject().getComponent() instanceof DRIDimensionComponent)) {
-            throw new DRReportException("Column component" + getObject().getComponent().getClass().getName() + "is not a dimension component.");
-        }
-        return (DRDimensionComponent) getObject().getComponent();
-    }
+public class ComponentColumnBuilder extends ColumnBuilder<ComponentColumnBuilder, DRColumn<DRComponent>>
+{
+	protected ComponentColumnBuilder(final ComponentBuilder<?, ?> component)
+	{
+		super(new DRColumn<>(component.getComponent()));
+	}
+	
+	public ComponentColumnBuilder setWidth(final Integer width)
+	{
+		this.getDimensionComponent().setWidth(width);
+		return this;
+	}
+	
+	public ComponentColumnBuilder setFixedWidth(final Integer width)
+	{
+		this.getDimensionComponent().setWidth(width);
+		this.getDimensionComponent().setWidthType(ComponentDimensionType.FIXED);
+		return this;
+	}
+	
+	public ComponentColumnBuilder setMinWidth(final Integer width)
+	{
+		this.getDimensionComponent().setWidth(width);
+		this.getDimensionComponent().setWidthType(ComponentDimensionType.EXPAND);
+		return this;
+	}
+	
+	public ComponentColumnBuilder setHeight(final Integer height)
+	{
+		this.getDimensionComponent().setHeight(height);
+		return this;
+	}
+	
+	public ComponentColumnBuilder setFixedHeight(final Integer height)
+	{
+		this.getDimensionComponent().setHeight(height);
+		this.getDimensionComponent().setHeightType(ComponentDimensionType.FIXED);
+		return this;
+	}
+	
+	public ComponentColumnBuilder setMinHeight(final Integer height)
+	{
+		this.getDimensionComponent().setHeight(height);
+		this.getDimensionComponent().setHeightType(ComponentDimensionType.EXPAND);
+		return this;
+	}
+	
+	private DRDimensionComponent getDimensionComponent()
+	{
+		if(!(this.getObject().getComponent() instanceof DRIDimensionComponent))
+		{
+			throw new DRReportException(
+				"Column component" + this.getObject().getComponent().getClass().getName()
+					+ "is not a dimension component"
+					+ ".");
+		}
+		return (DRDimensionComponent)this.getObject().getComponent();
+	}
 }

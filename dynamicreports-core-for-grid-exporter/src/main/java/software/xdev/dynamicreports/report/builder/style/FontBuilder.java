@@ -19,190 +19,106 @@ package software.xdev.dynamicreports.report.builder.style;
 
 import software.xdev.dynamicreports.report.base.style.DRFont;
 import software.xdev.dynamicreports.report.builder.AbstractBuilder;
-import software.xdev.dynamicreports.report.constant.Constants;
 
-/**
- * <p>FontBuilder class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class FontBuilder extends AbstractBuilder<FontBuilder, DRFont> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    /**
-     * <p>Constructor for FontBuilder.</p>
-     */
-    protected FontBuilder() {
-        super(new DRFont());
-    }
+public class FontBuilder extends AbstractBuilder<FontBuilder, DRFont>
+{
 
-    /**
-     * <p>Constructor for FontBuilder.</p>
-     *
-     * @param fontName a {@link java.lang.String} object.
-     * @param bold     a {@link java.lang.Boolean} object.
-     * @param italic   a {@link java.lang.Boolean} object.
-     * @param fontSize a {@link java.lang.Integer} object.
-     */
-    protected FontBuilder(String fontName, Boolean bold, Boolean italic, Integer fontSize) {
-        super(new DRFont(fontName, bold, italic, fontSize));
-    }
-
-    /**
-     * <p>setFontName.</p>
-     *
-     * @param fontName a {@link java.lang.String} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.style.FontBuilder} object.
-     */
-    public FontBuilder setFontName(String fontName) {
-        getObject().setFontName(fontName);
-        return this;
-    }
-
-    /**
-     * <p>setFontSize.</p>
-     *
-     * @param fontSize a {@link java.lang.Integer} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.style.FontBuilder} object.
-     */
-    public FontBuilder setFontSize(Integer fontSize) {
-        getObject().setFontSize(fontSize);
-        return this;
-    }
-
-    /**
-     * <p>bold.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.builder.style.FontBuilder} object.
-     */
-    public FontBuilder bold() {
-        return setBold(true);
-    }
-
-    /**
-     * <p>setBold.</p>
-     *
-     * @param bold a {@link java.lang.Boolean} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.style.FontBuilder} object.
-     */
-    public FontBuilder setBold(Boolean bold) {
-        getObject().setBold(bold);
-        return this;
-    }
-
-    /**
-     * <p>italic.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.builder.style.FontBuilder} object.
-     */
-    public FontBuilder italic() {
-        return setItalic(true);
-    }
-
-    /**
-     * <p>setItalic.</p>
-     *
-     * @param italic a {@link java.lang.Boolean} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.style.FontBuilder} object.
-     */
-    public FontBuilder setItalic(Boolean italic) {
-        getObject().setItalic(italic);
-        return this;
-    }
-
-    /**
-     * <p>boldItalic.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.builder.style.FontBuilder} object.
-     */
-    public FontBuilder boldItalic() {
-        setBold(true);
-        return setItalic(true);
-    }
-
-    @Deprecated
-    /**
-     * You should configure the fonts.xml file
-     *
-     * @param pdfEmbedded a {@link java.lang.Boolean} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.style.FontBuilder} object.
-     */
-    public FontBuilder setPdfEmbedded(Boolean pdfEmbedded) {
-        getObject().setPdfEmbedded(pdfEmbedded);
-        return this;
-    }
-
-    @Deprecated
-    /**
-     * You should configure the fonts.xml file
-     *
-     * @param pdfEncoding a {@link java.lang.String} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.style.FontBuilder} object.
-     */
-    public FontBuilder setPdfEncoding(String pdfEncoding) {
-        getObject().setPdfEncoding(pdfEncoding);
-        return this;
-    }
-
-    @Deprecated
-    /**
-     * You should configure the fonts.xml file
-     *
-     * @param pdfFontName a {@link java.lang.String} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.style.FontBuilder} object.
-     */
-    public FontBuilder setPdfFontName(String pdfFontName) {
-        getObject().setPdfFontName(pdfFontName);
-        return this;
-    }
-
-    /**
-     * <p>strikeThrough.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.builder.style.FontBuilder} object.
-     */
-    public FontBuilder strikeThrough() {
-        return setStrikeThrough(true);
-    }
-
-    /**
-     * <p>setStrikeThrough.</p>
-     *
-     * @param strikeThrough a {@link java.lang.Boolean} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.style.FontBuilder} object.
-     */
-    public FontBuilder setStrikeThrough(Boolean strikeThrough) {
-        getObject().setStrikeThrough(strikeThrough);
-        return this;
-    }
-
-    /**
-     * <p>underline.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.builder.style.FontBuilder} object.
-     */
-    public FontBuilder underline() {
-        return setUnderline(true);
-    }
-
-    /**
-     * <p>setUnderline.</p>
-     *
-     * @param underline a {@link java.lang.Boolean} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.style.FontBuilder} object.
-     */
-    public FontBuilder setUnderline(Boolean underline) {
-        getObject().setUnderline(underline);
-        return this;
-    }
-
-    /**
-     * <p>getFont.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.base.style.DRFont} object.
-     */
-    public DRFont getFont() {
-        return build();
-    }
+	protected FontBuilder()
+	{
+		super(new DRFont());
+	}
+	
+	protected FontBuilder(final String fontName, final Boolean bold, final Boolean italic, final Integer fontSize)
+	{
+		super(new DRFont(fontName, bold, italic, fontSize));
+	}
+	
+	public FontBuilder setFontName(final String fontName)
+	{
+		this.getObject().setFontName(fontName);
+		return this;
+	}
+	
+	public FontBuilder setFontSize(final Integer fontSize)
+	{
+		this.getObject().setFontSize(fontSize);
+		return this;
+	}
+	
+	public FontBuilder bold()
+	{
+		return this.setBold(true);
+	}
+	
+	public FontBuilder setBold(final Boolean bold)
+	{
+		this.getObject().setBold(bold);
+		return this;
+	}
+	
+	public FontBuilder italic()
+	{
+		return this.setItalic(true);
+	}
+	
+	public FontBuilder setItalic(final Boolean italic)
+	{
+		this.getObject().setItalic(italic);
+		return this;
+	}
+	
+	public FontBuilder boldItalic()
+	{
+		this.setBold(true);
+		return this.setItalic(true);
+	}
+	
+	@Deprecated
+	public FontBuilder setPdfEmbedded(final Boolean pdfEmbedded)
+	{
+		this.getObject().setPdfEmbedded(pdfEmbedded);
+		return this;
+	}
+	
+	@Deprecated
+	public FontBuilder setPdfEncoding(final String pdfEncoding)
+	{
+		this.getObject().setPdfEncoding(pdfEncoding);
+		return this;
+	}
+	
+	@Deprecated
+	public FontBuilder setPdfFontName(final String pdfFontName)
+	{
+		this.getObject().setPdfFontName(pdfFontName);
+		return this;
+	}
+	
+	public FontBuilder strikeThrough()
+	{
+		return this.setStrikeThrough(true);
+	}
+	
+	public FontBuilder setStrikeThrough(final Boolean strikeThrough)
+	{
+		this.getObject().setStrikeThrough(strikeThrough);
+		return this;
+	}
+	
+	public FontBuilder underline()
+	{
+		return this.setUnderline(true);
+	}
+	
+	public FontBuilder setUnderline(final Boolean underline)
+	{
+		this.getObject().setUnderline(underline);
+		return this;
+	}
+	
+	public DRFont getFont()
+	{
+		return this.build();
+	}
 }

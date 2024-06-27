@@ -17,12 +17,7 @@
  */
 package software.xdev.dynamicreports.report.constant;
 
-/**
- * <p>CrosstabPercentageType class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public enum CrosstabPercentageType {
-    NONE, GRAND_TOTAL
+public enum CrosstabPercentageType
+{
+	NONE, GRAND_TOTAL
 }

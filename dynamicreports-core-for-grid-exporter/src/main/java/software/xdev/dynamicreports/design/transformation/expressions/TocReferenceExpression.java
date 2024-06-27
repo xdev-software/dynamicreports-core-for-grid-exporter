@@ -17,70 +17,68 @@
  */
 package software.xdev.dynamicreports.design.transformation.expressions;
 
+import java.util.List;
+
 import software.xdev.dynamicreports.report.builder.expression.AbstractComplexExpression;
-import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.definition.DRICustomValues;
 import software.xdev.dynamicreports.report.definition.ReportParameters;
 import software.xdev.dynamicreports.report.definition.expression.DRIExpression;
 
-import java.util.List;
 
-/**
- * <p>TocReferenceExpression class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class TocReferenceExpression extends AbstractComplexExpression<String> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
+public class TocReferenceExpression extends AbstractComplexExpression<String>
+{
 
-    private int level;
-    private String expressionName;
-    private boolean customId;
-    private boolean isCustomValue;
-
-    /**
-     * <p>Constructor for TocReferenceExpression.</p>
-     *
-     * @param level                 a int.
-     * @param expressionName        a {@link java.lang.String} object.
-     * @param labelExpression       a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     * @param anchorNameExpression  a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     * @param customValueExpression a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     */
-    public TocReferenceExpression(int level, String expressionName, DRIExpression<?> labelExpression, DRIExpression<String> anchorNameExpression, DRIExpression<?> customValueExpression) {
-        this.level = level;
-        this.expressionName = expressionName;
-        customId = anchorNameExpression != null;
-        addExpression(labelExpression);
-        if (anchorNameExpression != null) {
-            addExpression(anchorNameExpression);
-        }
-        isCustomValue = customValueExpression != null;
-        if (customValueExpression != null) {
-            addExpression(customValueExpression);
-        }
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public String evaluate(List<?> values, ReportParameters reportParameters) {
-        String id;
-        Object customValue = null;
-        if (customId) {
-            id = (String) values.get(1);
-            if (isCustomValue) {
-                customValue = values.get(2);
-            }
-        } else {
-            id = expressionName + "_" + reportParameters.getReportRowNumber();
-            if (isCustomValue) {
-                customValue = values.get(1);
-            }
-        }
-        DRICustomValues customValues = (DRICustomValues) reportParameters.getParameterValue(DRICustomValues.NAME);
-        String text = String.valueOf(values.get(0));
-        customValues.addTocHeading(level, id, text, customValue);
-        return null;
-    }
+	private final int level;
+	private final String expressionName;
+	private final boolean customId;
+	private final boolean isCustomValue;
+	
+	public TocReferenceExpression(
+		final int level,
+		final String expressionName,
+		final DRIExpression<?> labelExpression,
+		final DRIExpression<String> anchorNameExpression,
+		final DRIExpression<?> customValueExpression)
+	{
+		this.level = level;
+		this.expressionName = expressionName;
+		this.customId = anchorNameExpression != null;
+		this.addExpression(labelExpression);
+		if(anchorNameExpression != null)
+		{
+			this.addExpression(anchorNameExpression);
+		}
+		this.isCustomValue = customValueExpression != null;
+		if(customValueExpression != null)
+		{
+			this.addExpression(customValueExpression);
+		}
+	}
+	
+	@Override
+	public String evaluate(final List<?> values, final ReportParameters reportParameters)
+	{
+		final String id;
+		Object customValue = null;
+		if(this.customId)
+		{
+			id = (String)values.get(1);
+			if(this.isCustomValue)
+			{
+				customValue = values.get(2);
+			}
+		}
+		else
+		{
+			id = this.expressionName + "_" + reportParameters.getReportRowNumber();
+			if(this.isCustomValue)
+			{
+				customValue = values.get(1);
+			}
+		}
+		final DRICustomValues customValues = (DRICustomValues)reportParameters.getParameterValue(DRICustomValues.NAME);
+		final String text = String.valueOf(values.get(0));
+		customValues.addTocHeading(this.level, id, text, customValue);
+		return null;
+	}
 }

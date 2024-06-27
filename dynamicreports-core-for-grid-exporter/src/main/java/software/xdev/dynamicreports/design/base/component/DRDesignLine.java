@@ -19,55 +19,39 @@ package software.xdev.dynamicreports.design.base.component;
 
 import software.xdev.dynamicreports.design.base.style.DRDesignPen;
 import software.xdev.dynamicreports.design.definition.component.DRIDesignLine;
-import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.constant.LineDirection;
 
-/**
- * <p>DRDesignLine class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class DRDesignLine extends DRDesignComponent implements DRIDesignLine {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    private LineDirection direction;
-    private DRDesignPen pen;
+public class DRDesignLine extends DRDesignComponent implements DRIDesignLine
+{
 
-    /**
-     * <p>Constructor for DRDesignLine.</p>
-     */
-    public DRDesignLine() {
-        super("line");
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public LineDirection getDirection() {
-        return direction;
-    }
-
-    /**
-     * <p>Setter for the field <code>direction</code>.</p>
-     *
-     * @param direction a {@link software.xdev.dynamicreports.report.constant.LineDirection} object.
-     */
-    public void setDirection(LineDirection direction) {
-        this.direction = direction;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRDesignPen getPen() {
-        return pen;
-    }
-
-    /**
-     * <p>Setter for the field <code>pen</code>.</p>
-     *
-     * @param pen a {@link software.xdev.dynamicreports.design.base.style.DRDesignPen} object.
-     */
-    public void setPen(DRDesignPen pen) {
-        this.pen = pen;
-    }
+	private LineDirection direction;
+	private DRDesignPen pen;
+	
+	public DRDesignLine()
+	{
+		super("line");
+	}
+	
+	@Override
+	public LineDirection getDirection()
+	{
+		return this.direction;
+	}
+	
+	public void setDirection(final LineDirection direction)
+	{
+		this.direction = direction;
+	}
+	
+	@Override
+	public DRDesignPen getPen()
+	{
+		return this.pen;
+	}
+	
+	public void setPen(final DRDesignPen pen)
+	{
+		this.pen = pen;
+	}
 }

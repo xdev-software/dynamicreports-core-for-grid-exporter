@@ -18,44 +18,34 @@
 package software.xdev.dynamicreports.design.base.expression;
 
 import software.xdev.dynamicreports.design.definition.expression.DRIDesignJasperExpression;
-import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.definition.expression.DRIJasperExpression;
 
-/**
- * <p>DRDesignJasperExpression class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class DRDesignJasperExpression implements DRIDesignJasperExpression {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    private DRIJasperExpression<?> jasperExpression;
+public class DRDesignJasperExpression implements DRIDesignJasperExpression
+{
 
-    /**
-     * <p>Constructor for DRDesignJasperExpression.</p>
-     *
-     * @param jasperExpression a {@link software.xdev.dynamicreports.report.definition.expression.DRIJasperExpression} object.
-     */
-    public DRDesignJasperExpression(DRIJasperExpression<?> jasperExpression) {
-        this.jasperExpression = jasperExpression;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public String getExpression() {
-        return jasperExpression.getExpression();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Class<?> getValueClass() {
-        return jasperExpression.getValueClass();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public String getName() {
-        return jasperExpression.getName();
-    }
+	private final DRIJasperExpression<?> jasperExpression;
+	
+	public DRDesignJasperExpression(final DRIJasperExpression<?> jasperExpression)
+	{
+		this.jasperExpression = jasperExpression;
+	}
+	
+	@Override
+	public String getExpression()
+	{
+		return this.jasperExpression.getExpression();
+	}
+	
+	@Override
+	public Class<?> getValueClass()
+	{
+		return this.jasperExpression.getValueClass();
+	}
+	
+	@Override
+	public String getName()
+	{
+		return this.jasperExpression.getName();
+	}
 }

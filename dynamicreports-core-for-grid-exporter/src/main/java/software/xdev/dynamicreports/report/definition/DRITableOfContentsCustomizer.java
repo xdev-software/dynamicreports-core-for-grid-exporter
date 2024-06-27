@@ -17,58 +17,26 @@
  */
 package software.xdev.dynamicreports.report.definition;
 
+import java.io.Serializable;
+import java.util.List;
+
 import software.xdev.dynamicreports.jasper.base.tableofcontents.JasperTocHeading;
 import software.xdev.dynamicreports.report.builder.ReportBuilder;
 import software.xdev.dynamicreports.report.constant.TableOfContentsPosition;
 
-import java.io.Serializable;
-import java.util.List;
 
-/**
- * <p>DRITableOfContentsCustomizer interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface DRITableOfContentsCustomizer extends Serializable {
-
-    /**
-     * <p>setReport.</p>
-     *
-     * @param report a {@link software.xdev.dynamicreports.report.builder.ReportBuilder} object.
-     */
-    public void setReport(ReportBuilder<?> report);
-
-    /**
-     * <p>setHeadingList.</p>
-     *
-     * @param headingList a {@link java.util.List} object.
-     */
-    public void setHeadingList(List<JasperTocHeading> headingList);
-
-    /**
-     * <p>setHeadings.</p>
-     *
-     * @param headings a int.
-     */
-    public void setHeadings(int headings);
-
-    /**
-     * <p>setLevels.</p>
-     *
-     * @param levels a int.
-     */
-    public void setLevels(int levels);
-
-    /**
-     * <p>customize.</p>
-     */
-    public void customize();
-
-    /**
-     * <p>getPosition.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.constant.TableOfContentsPosition} object.
-     */
-    public TableOfContentsPosition getPosition();
+public interface DRITableOfContentsCustomizer extends Serializable
+{
+	
+	public void setReport(ReportBuilder<?> report);
+	
+	public void setHeadingList(List<JasperTocHeading> headingList);
+	
+	public void setHeadings(int headings);
+	
+	public void setLevels(int levels);
+	
+	public void customize();
+	
+	public TableOfContentsPosition getPosition();
 }

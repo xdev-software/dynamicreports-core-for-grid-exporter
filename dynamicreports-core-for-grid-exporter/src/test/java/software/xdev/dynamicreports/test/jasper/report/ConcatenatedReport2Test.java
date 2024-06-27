@@ -28,16 +28,13 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import net.sf.jasperreports.engine.JRDataSource;
 import software.xdev.dynamicreports.jasper.builder.JasperConcatenatedReportBuilder;
 import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
 import software.xdev.dynamicreports.report.datasource.DRDataSource;
 import software.xdev.dynamicreports.report.exception.DRException;
-import net.sf.jasperreports.engine.JRDataSource;
 
 
-/**
- * @author Ricardo Mariaca
- */
 class ConcatenatedReport2Test
 {
 	JasperConcatenatedReportBuilder concatenatedReport;
@@ -68,21 +65,21 @@ class ConcatenatedReport2Test
 			this.concatenatedReport.toCsv(bos);
 			Assertions.assertEquals(
 				"text1\n1\ntext2\n1\ntext3\n1\n",
-                bos.toString());
+				bos.toString());
 			
 			this.concatenatedReport.continuousPageNumbering();
 			bos = new ByteArrayOutputStream();
 			this.concatenatedReport.toCsv(bos);
 			Assertions.assertEquals(
 				"text1\n1\ntext2\n2\ntext3\n3\n",
-                bos.toString());
+				bos.toString());
 			
 			this.concatenatedReport.setContinuousPageNumbering(false);
 			bos = new ByteArrayOutputStream();
 			this.concatenatedReport.toCsv(bos);
 			Assertions.assertEquals(
 				"text1\n1\ntext2\n1\ntext3\n1\n",
-                bos.toString());
+				bos.toString());
 		}
 		catch(final DRException e)
 		{

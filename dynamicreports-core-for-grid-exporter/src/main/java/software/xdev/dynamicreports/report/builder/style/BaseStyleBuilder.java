@@ -17,11 +17,13 @@
  */
 package software.xdev.dynamicreports.report.builder.style;
 
+import java.awt.Color;
+
+import org.apache.commons.lang3.Validate;
+
 import software.xdev.dynamicreports.report.base.style.DRBaseStyle;
 import software.xdev.dynamicreports.report.base.style.DRTabStop;
 import software.xdev.dynamicreports.report.builder.AbstractBuilder;
-import software.xdev.dynamicreports.report.constant.Constants;
-import software.xdev.dynamicreports.report.constant.HorizontalAlignment;
 import software.xdev.dynamicreports.report.constant.HorizontalImageAlignment;
 import software.xdev.dynamicreports.report.constant.HorizontalTextAlignment;
 import software.xdev.dynamicreports.report.constant.ImageScale;
@@ -32,675 +34,397 @@ import software.xdev.dynamicreports.report.constant.TabStopAlignment;
 import software.xdev.dynamicreports.report.constant.VerticalAlignment;
 import software.xdev.dynamicreports.report.constant.VerticalImageAlignment;
 import software.xdev.dynamicreports.report.constant.VerticalTextAlignment;
-import org.apache.commons.lang3.Validate;
 
-import java.awt.Color;
 
-/**
- * <p>Abstract BaseStyleBuilder class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-@SuppressWarnings( {"unchecked", "deprecation"})
-public abstract class BaseStyleBuilder<T extends BaseStyleBuilder<T, U>, U extends DRBaseStyle> extends AbstractBuilder<T, U> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
+@SuppressWarnings({"unchecked", "deprecation"})
+public abstract class BaseStyleBuilder<T extends BaseStyleBuilder<T, U>, U extends DRBaseStyle>
+	extends AbstractBuilder<T, U>
+{
 
-    /**
-     * <p>Constructor for BaseStyleBuilder.</p>
-     *
-     * @param baseStyle a U object.
-     */
-    protected BaseStyleBuilder(U baseStyle) {
-        super(baseStyle);
-    }
-
-    /**
-     * <p>setBackgroundColor.</p>
-     *
-     * @param backgroundColor a {@link java.awt.Color} object.
-     * @return a T object.
-     */
-    public T setBackgroundColor(Color backgroundColor) {
-        getObject().setBackgroundColor(backgroundColor);
-        return (T) this;
-    }
-
-    /**
-     * <p>setBorder.</p>
-     *
-     * @param border a {@link software.xdev.dynamicreports.report.builder.style.BorderBuilder} object.
-     * @return a T object.
-     */
-    public T setBorder(BorderBuilder border) {
-        if (border != null) {
-            getObject().setBorder(border.build());
-        } else {
-            getObject().setBorder(null);
-        }
-        return (T) this;
-    }
-
-    /**
-     * <p>setBorder.</p>
-     *
-     * @param pen a {@link software.xdev.dynamicreports.report.builder.style.PenBuilder} object.
-     * @return a T object.
-     */
-    public T setBorder(PenBuilder pen) {
-        return setBorder(pen != null ? Styles.border(pen) : null);
-    }
-
-    /**
-     * <p>setTopBorder.</p>
-     *
-     * @param topPen a {@link software.xdev.dynamicreports.report.builder.style.PenBuilder} object.
-     * @return a T object.
-     */
-    public T setTopBorder(PenBuilder topPen) {
-        if (topPen != null) {
-            getObject().getBorder().setTopPen(topPen.build());
-        } else {
-            getObject().getBorder().setTopPen(null);
-        }
-        return (T) this;
-    }
-
-    /**
-     * <p>setLeftBorder.</p>
-     *
-     * @param leftPen a {@link software.xdev.dynamicreports.report.builder.style.PenBuilder} object.
-     * @return a T object.
-     */
-    public T setLeftBorder(PenBuilder leftPen) {
-        if (leftPen != null) {
-            getObject().getBorder().setLeftPen(leftPen.build());
-        } else {
-            getObject().getBorder().setLeftPen(null);
-        }
-        return (T) this;
-    }
-
-    /**
-     * <p>setBottomBorder.</p>
-     *
-     * @param bottomPen a {@link software.xdev.dynamicreports.report.builder.style.PenBuilder} object.
-     * @return a T object.
-     */
-    public T setBottomBorder(PenBuilder bottomPen) {
-        if (bottomPen != null) {
-            getObject().getBorder().setBottomPen(bottomPen.build());
-        } else {
-            getObject().getBorder().setBottomPen(null);
-        }
-        return (T) this;
-    }
-
-    /**
-     * <p>setRightBorder.</p>
-     *
-     * @param rightPen a {@link software.xdev.dynamicreports.report.builder.style.PenBuilder} object.
-     * @return a T object.
-     */
-    public T setRightBorder(PenBuilder rightPen) {
-        if (rightPen != null) {
-            getObject().getBorder().setRightPen(rightPen.build());
-        } else {
-            getObject().getBorder().setRightPen(null);
-        }
-        return (T) this;
-    }
-
-    /**
-     * <p>setFont.</p>
-     *
-     * @param font a {@link software.xdev.dynamicreports.report.builder.style.FontBuilder} object.
-     * @return a T object.
-     */
-    public T setFont(FontBuilder font) {
-        if (font != null) {
-            getObject().setFont(font.build());
-        } else {
-            getObject().setFont(null);
-        }
-        return (T) this;
-    }
-
-    /**
-     * <p>bold.</p>
-     *
-     * @return a T object.
-     */
-    public T bold() {
-        return setBold(true);
-    }
-
-    /**
-     * <p>setBold.</p>
-     *
-     * @param bold a {@link java.lang.Boolean} object.
-     * @return a T object.
-     */
-    public T setBold(Boolean bold) {
-        getObject().getFont().setBold(bold);
-        return (T) this;
-    }
-
-    /**
-     * <p>setFontName.</p>
-     *
-     * @param fontName a {@link java.lang.String} object.
-     * @return a T object.
-     */
-    public T setFontName(String fontName) {
-        getObject().getFont().setFontName(fontName);
-        return (T) this;
-    }
-
-    /**
-     * <p>setFontSize.</p>
-     *
-     * @param fontSize a {@link java.lang.Integer} object.
-     * @return a T object.
-     */
-    public T setFontSize(Integer fontSize) {
-        getObject().getFont().setFontSize(fontSize);
-        return (T) this;
-    }
-
-    /**
-     * <p>italic.</p>
-     *
-     * @return a T object.
-     */
-    public T italic() {
-        return setItalic(true);
-    }
-
-    /**
-     * <p>setItalic.</p>
-     *
-     * @param italic a {@link java.lang.Boolean} object.
-     * @return a T object.
-     */
-    public T setItalic(Boolean italic) {
-        getObject().getFont().setItalic(italic);
-        return (T) this;
-    }
-
-    /**
-     * <p>boldItalic.</p>
-     *
-     * @return a T object.
-     */
-    public T boldItalic() {
-        setBold(true);
-        return setItalic(true);
-    }
-
-    @Deprecated
-    /**
-     * You should configure the fonts.xml file
-     *
-     * @param pdfEmbedded a {@link java.lang.Boolean} object.
-     * @return a T object.
-     */
-    public T setPdfEmbedded(Boolean pdfEmbedded) {
-        getObject().getFont().setPdfEmbedded(pdfEmbedded);
-        return (T) this;
-    }
-
-    @Deprecated
-    /**
-     * You should configure the fonts.xml file
-     *
-     * @param pdfEncoding a {@link java.lang.String} object.
-     * @return a T object.
-     */
-    public T setPdfEncoding(String pdfEncoding) {
-        getObject().getFont().setPdfEncoding(pdfEncoding);
-        return (T) this;
-    }
-
-    @Deprecated
-    /**
-     * You should configure the fonts.xml file
-     *
-     * @param pdfFontName a {@link java.lang.String} object.
-     * @return a T object.
-     */
-    public T setPdfFontName(String pdfFontName) {
-        getObject().getFont().setPdfFontName(pdfFontName);
-        return (T) this;
-    }
-
-    /**
-     * <p>strikeThrough.</p>
-     *
-     * @return a T object.
-     */
-    public T strikeThrough() {
-        return setStrikeThrough(true);
-    }
-
-    /**
-     * <p>setStrikeThrough.</p>
-     *
-     * @param strikeThrough a {@link java.lang.Boolean} object.
-     * @return a T object.
-     */
-    public T setStrikeThrough(Boolean strikeThrough) {
-        getObject().getFont().setStrikeThrough(strikeThrough);
-        return (T) this;
-    }
-
-    /**
-     * <p>underline.</p>
-     *
-     * @return a T object.
-     */
-    public T underline() {
-        return setUnderline(true);
-    }
-
-    /**
-     * <p>setUnderline.</p>
-     *
-     * @param underline a {@link java.lang.Boolean} object.
-     * @return a T object.
-     */
-    public T setUnderline(Boolean underline) {
-        getObject().getFont().setUnderline(underline);
-        return (T) this;
-    }
-
-    /**
-     * <p>setForegroundColor.</p>
-     *
-     * @param foregroudColor a {@link java.awt.Color} object.
-     * @return a T object.
-     */
-    public T setForegroundColor(Color foregroudColor) {
-        getObject().setForegroundColor(foregroudColor);
-        return (T) this;
-    }
-
-    /**
-     * <p>setHorizontalAlignment.</p>
-     *
-     * @param horizontalAlignment a {@link software.xdev.dynamicreports.report.constant.HorizontalAlignment} object.
-     * @return a T object.
-     * @deprecated use setHorizontalTextAlignment instead
-     */
-    @Deprecated
-    public T setHorizontalAlignment(HorizontalAlignment horizontalAlignment) {
-        if (horizontalAlignment != null) {
-            getObject().setHorizontalTextAlignment(HorizontalTextAlignment.valueOf(horizontalAlignment.name()));
-        } else {
-            getObject().setHorizontalTextAlignment(null);
-        }
-        return (T) this;
-    }
-
-    /**
-     * <p>setHorizontalTextAlignment.</p>
-     *
-     * @param horizontalTextAlignment a {@link software.xdev.dynamicreports.report.constant.HorizontalTextAlignment} object.
-     * @return a T object.
-     */
-    public T setHorizontalTextAlignment(HorizontalTextAlignment horizontalTextAlignment) {
-        getObject().setHorizontalTextAlignment(horizontalTextAlignment);
-        return (T) this;
-    }
-
-    /**
-     * <p>setHorizontalImageAlignment.</p>
-     *
-     * @param horizontalImageAlignment a {@link software.xdev.dynamicreports.report.constant.HorizontalImageAlignment} object.
-     * @return a T object.
-     */
-    public T setHorizontalImageAlignment(HorizontalImageAlignment horizontalImageAlignment) {
-        getObject().setHorizontalImageAlignment(horizontalImageAlignment);
-        return (T) this;
-    }
-
-    /**
-     * <p>setImageScale.</p>
-     *
-     * @param imageScale a {@link software.xdev.dynamicreports.report.constant.ImageScale} object.
-     * @return a T object.
-     */
-    public T setImageScale(ImageScale imageScale) {
-        getObject().setImageScale(imageScale);
-        return (T) this;
-    }
-
-    /**
-     * <p>setPadding.</p>
-     *
-     * @param padding a {@link software.xdev.dynamicreports.report.builder.style.PaddingBuilder} object.
-     * @return a T object.
-     */
-    public T setPadding(PaddingBuilder padding) {
-        if (padding != null) {
-            getObject().setPadding(padding.build());
-        } else {
-            getObject().setPadding(null);
-        }
-        return (T) this;
-    }
-
-    /**
-     * <p>setPadding.</p>
-     *
-     * @param padding a {@link java.lang.Integer} object.
-     * @return a T object.
-     */
-    public T setPadding(Integer padding) {
-        return setPadding(Styles.padding(padding));
-    }
-
-    /**
-     * <p>setTopPadding.</p>
-     *
-     * @param top a {@link java.lang.Integer} object.
-     * @return a T object.
-     */
-    public T setTopPadding(Integer top) {
-        getObject().getPadding().setTop(top);
-        return (T) this;
-    }
-
-    /**
-     * <p>setLeftPadding.</p>
-     *
-     * @param left a {@link java.lang.Integer} object.
-     * @return a T object.
-     */
-    public T setLeftPadding(Integer left) {
-        getObject().getPadding().setLeft(left);
-        return (T) this;
-    }
-
-    /**
-     * <p>setBottomPadding.</p>
-     *
-     * @param bottom a {@link java.lang.Integer} object.
-     * @return a T object.
-     */
-    public T setBottomPadding(Integer bottom) {
-        getObject().getPadding().setBottom(bottom);
-        return (T) this;
-    }
-
-    /**
-     * <p>setRightPadding.</p>
-     *
-     * @param right a {@link java.lang.Integer} object.
-     * @return a T object.
-     */
-    public T setRightPadding(Integer right) {
-        getObject().getPadding().setRight(right);
-        return (T) this;
-    }
-
-    /**
-     * <p>setPattern.</p>
-     *
-     * @param pattern a {@link java.lang.String} object.
-     * @return a T object.
-     */
-    public T setPattern(String pattern) {
-        getObject().setPattern(pattern);
-        return (T) this;
-    }
-
-    /**
-     * <p>setRadius.</p>
-     *
-     * @param radius a {@link java.lang.Integer} object.
-     * @return a T object.
-     */
-    public T setRadius(Integer radius) {
-        getObject().setRadius(radius);
-        return (T) this;
-    }
-
-    /**
-     * <p>setRotation.</p>
-     *
-     * @param rotation a {@link software.xdev.dynamicreports.report.constant.Rotation} object.
-     * @return a T object.
-     */
-    public T setRotation(Rotation rotation) {
-        getObject().setRotation(rotation);
-        return (T) this;
-    }
-
-    /**
-     * <p>setAlignment.</p>
-     *
-     * @param horizontalAlignment a {@link software.xdev.dynamicreports.report.constant.HorizontalAlignment} object.
-     * @param verticalAlignment   a {@link software.xdev.dynamicreports.report.constant.VerticalAlignment} object.
-     * @return a T object.
-     * @deprecated use setTextAlignment instead
-     */
-    @Deprecated
-    public T setAlignment(HorizontalAlignment horizontalAlignment, VerticalAlignment verticalAlignment) {
-        if (horizontalAlignment != null) {
-            getObject().setHorizontalTextAlignment(HorizontalTextAlignment.valueOf(horizontalAlignment.name()));
-        } else {
-            getObject().setHorizontalTextAlignment(null);
-        }
-        if (verticalAlignment != null) {
-            getObject().setVerticalTextAlignment(VerticalTextAlignment.valueOf(verticalAlignment.name()));
-        } else {
-            getObject().setVerticalTextAlignment(null);
-        }
-        return (T) this;
-    }
-
-    /**
-     * <p>setTextAlignment.</p>
-     *
-     * @param horizontalTextAlignment a {@link software.xdev.dynamicreports.report.constant.HorizontalTextAlignment} object.
-     * @param verticalTextAlignment   a {@link software.xdev.dynamicreports.report.constant.VerticalTextAlignment} object.
-     * @return a T object.
-     */
-    public T setTextAlignment(HorizontalTextAlignment horizontalTextAlignment, VerticalTextAlignment verticalTextAlignment) {
-        getObject().setHorizontalTextAlignment(horizontalTextAlignment);
-        getObject().setVerticalTextAlignment(verticalTextAlignment);
-        return (T) this;
-    }
-
-    /**
-     * <p>setImageAlignment.</p>
-     *
-     * @param horizontalImageAlignment a {@link software.xdev.dynamicreports.report.constant.HorizontalImageAlignment} object.
-     * @param verticalImageAlignment   a {@link software.xdev.dynamicreports.report.constant.VerticalImageAlignment} object.
-     * @return a T object.
-     */
-    public T setImageAlignment(HorizontalImageAlignment horizontalImageAlignment, VerticalImageAlignment verticalImageAlignment) {
-        getObject().setHorizontalImageAlignment(horizontalImageAlignment);
-        getObject().setVerticalImageAlignment(verticalImageAlignment);
-        return (T) this;
-    }
-
-    /**
-     * <p>setVerticalAlignment.</p>
-     *
-     * @param verticalAlignment a {@link software.xdev.dynamicreports.report.constant.VerticalAlignment} object.
-     * @return a T object.
-     * @deprecated use setVerticalTextAlignment instead
-     */
-    @Deprecated
-    public T setVerticalAlignment(VerticalAlignment verticalAlignment) {
-        if (verticalAlignment != null) {
-            getObject().setVerticalTextAlignment(VerticalTextAlignment.valueOf(verticalAlignment.name()));
-        } else {
-            getObject().setVerticalTextAlignment(null);
-        }
-        return (T) this;
-    }
-
-    /**
-     * <p>setVerticalTextAlignment.</p>
-     *
-     * @param verticalTextAlignment a {@link software.xdev.dynamicreports.report.constant.VerticalTextAlignment} object.
-     * @return a T object.
-     */
-    public T setVerticalTextAlignment(VerticalTextAlignment verticalTextAlignment) {
-        getObject().setVerticalTextAlignment(verticalTextAlignment);
-        return (T) this;
-    }
-
-    /**
-     * <p>setVerticalImageAlignment.</p>
-     *
-     * @param verticalImageAlignment a {@link software.xdev.dynamicreports.report.constant.VerticalImageAlignment} object.
-     * @return a T object.
-     */
-    public T setVerticalImageAlignment(VerticalImageAlignment verticalImageAlignment) {
-        getObject().setVerticalImageAlignment(verticalImageAlignment);
-        return (T) this;
-    }
-
-    /**
-     * <p>setMarkup.</p>
-     *
-     * @param markup a {@link software.xdev.dynamicreports.report.constant.Markup} object.
-     * @return a T object.
-     */
-    public T setMarkup(Markup markup) {
-        getObject().setMarkup(markup);
-        return (T) this;
-    }
-
-    /**
-     * <p>setLineSpacing.</p>
-     *
-     * @param lineSpacing a {@link software.xdev.dynamicreports.report.constant.LineSpacing} object.
-     * @return a T object.
-     */
-    public T setLineSpacing(LineSpacing lineSpacing) {
-        getObject().getParagraph().setLineSpacing(lineSpacing);
-        return (T) this;
-    }
-
-    /**
-     * <p>setLineSpacingSize.</p>
-     *
-     * @param lineSpacingSize a {@link java.lang.Float} object.
-     * @return a T object.
-     */
-    public T setLineSpacingSize(Float lineSpacingSize) {
-        getObject().getParagraph().setLineSpacingSize(lineSpacingSize);
-        return (T) this;
-    }
-
-    /**
-     * <p>setFirstLineIndent.</p>
-     *
-     * @param firstLineIndent a {@link java.lang.Integer} object.
-     * @return a T object.
-     */
-    public T setFirstLineIndent(Integer firstLineIndent) {
-        getObject().getParagraph().setFirstLineIndent(firstLineIndent);
-        return (T) this;
-    }
-
-    /**
-     * <p>setLeftIndent.</p>
-     *
-     * @param leftIndent a {@link java.lang.Integer} object.
-     * @return a T object.
-     */
-    public T setLeftIndent(Integer leftIndent) {
-        getObject().getParagraph().setLeftIndent(leftIndent);
-        return (T) this;
-    }
-
-    /**
-     * <p>setRightIndent.</p>
-     *
-     * @param rightIndent a {@link java.lang.Integer} object.
-     * @return a T object.
-     */
-    public T setRightIndent(Integer rightIndent) {
-        getObject().getParagraph().setRightIndent(rightIndent);
-        return (T) this;
-    }
-
-    /**
-     * <p>setSpacingBefore.</p>
-     *
-     * @param spacingBefore a {@link java.lang.Integer} object.
-     * @return a T object.
-     */
-    public T setSpacingBefore(Integer spacingBefore) {
-        getObject().getParagraph().setSpacingBefore(spacingBefore);
-        return (T) this;
-    }
-
-    /**
-     * <p>setSpacingAfter.</p>
-     *
-     * @param spacingAfter a {@link java.lang.Integer} object.
-     * @return a T object.
-     */
-    public T setSpacingAfter(Integer spacingAfter) {
-        getObject().getParagraph().setSpacingAfter(spacingAfter);
-        return (T) this;
-    }
-
-    /**
-     * <p>setTabStopWidth.</p>
-     *
-     * @param tabStopWidth a {@link java.lang.Integer} object.
-     * @return a T object.
-     */
-    public T setTabStopWidth(Integer tabStopWidth) {
-        getObject().getParagraph().setTabStopWidth(tabStopWidth);
-        return (T) this;
-    }
-
-    /**
-     * <p>addTabStop.</p>
-     *
-     * @param position  a int.
-     * @param alignment a {@link software.xdev.dynamicreports.report.constant.TabStopAlignment} object.
-     * @return a T object.
-     */
-    public T addTabStop(int position, TabStopAlignment alignment) {
-        Validate.notNull(alignment, "alignment must not be null");
-        DRTabStop tabStop = new DRTabStop();
-        tabStop.setPosition(position);
-        tabStop.setAlignment(alignment);
-        getObject().getParagraph().getTabStops().add(tabStop);
-        return (T) this;
-    }
-
-    /**
-     * <p>setLinePen.</p>
-     *
-     * @param linePen a {@link software.xdev.dynamicreports.report.builder.style.PenBuilder} object.
-     * @return a T object.
-     */
-    public T setLinePen(PenBuilder linePen) {
-        if (linePen != null) {
-            getObject().setLinePen(linePen.build());
-        } else {
-            getObject().setLinePen(null);
-        }
-        return (T) this;
-    }
-
-    /**
-     * <p>getStyle.</p>
-     *
-     * @return a U object.
-     */
-    public U getStyle() {
-        return build();
-    }
+	protected BaseStyleBuilder(final U baseStyle)
+	{
+		super(baseStyle);
+	}
+	
+	public T setBackgroundColor(final Color backgroundColor)
+	{
+		this.getObject().setBackgroundColor(backgroundColor);
+		return (T)this;
+	}
+	
+	public T setBorder(final BorderBuilder border)
+	{
+		if(border != null)
+		{
+			this.getObject().setBorder(border.build());
+		}
+		else
+		{
+			this.getObject().setBorder(null);
+		}
+		return (T)this;
+	}
+	
+	public T setBorder(final PenBuilder pen)
+	{
+		return this.setBorder(pen != null ? Styles.border(pen) : null);
+	}
+	
+	public T setTopBorder(final PenBuilder topPen)
+	{
+		if(topPen != null)
+		{
+			this.getObject().getBorder().setTopPen(topPen.build());
+		}
+		else
+		{
+			this.getObject().getBorder().setTopPen(null);
+		}
+		return (T)this;
+	}
+	
+	public T setLeftBorder(final PenBuilder leftPen)
+	{
+		if(leftPen != null)
+		{
+			this.getObject().getBorder().setLeftPen(leftPen.build());
+		}
+		else
+		{
+			this.getObject().getBorder().setLeftPen(null);
+		}
+		return (T)this;
+	}
+	
+	public T setBottomBorder(final PenBuilder bottomPen)
+	{
+		if(bottomPen != null)
+		{
+			this.getObject().getBorder().setBottomPen(bottomPen.build());
+		}
+		else
+		{
+			this.getObject().getBorder().setBottomPen(null);
+		}
+		return (T)this;
+	}
+	
+	public T setRightBorder(final PenBuilder rightPen)
+	{
+		if(rightPen != null)
+		{
+			this.getObject().getBorder().setRightPen(rightPen.build());
+		}
+		else
+		{
+			this.getObject().getBorder().setRightPen(null);
+		}
+		return (T)this;
+	}
+	
+	public T setFont(final FontBuilder font)
+	{
+		if(font != null)
+		{
+			this.getObject().setFont(font.build());
+		}
+		else
+		{
+			this.getObject().setFont(null);
+		}
+		return (T)this;
+	}
+	
+	public T bold()
+	{
+		return this.setBold(true);
+	}
+	
+	public T setBold(final Boolean bold)
+	{
+		this.getObject().getFont().setBold(bold);
+		return (T)this;
+	}
+	
+	public T setFontName(final String fontName)
+	{
+		this.getObject().getFont().setFontName(fontName);
+		return (T)this;
+	}
+	
+	public T setFontSize(final Integer fontSize)
+	{
+		this.getObject().getFont().setFontSize(fontSize);
+		return (T)this;
+	}
+	
+	public T italic()
+	{
+		return this.setItalic(true);
+	}
+	
+	public T setItalic(final Boolean italic)
+	{
+		this.getObject().getFont().setItalic(italic);
+		return (T)this;
+	}
+	
+	public T boldItalic()
+	{
+		this.setBold(true);
+		return this.setItalic(true);
+	}
+	
+	@Deprecated
+	public T setPdfEmbedded(final Boolean pdfEmbedded)
+	{
+		this.getObject().getFont().setPdfEmbedded(pdfEmbedded);
+		return (T)this;
+	}
+	
+	@Deprecated
+	public T setPdfEncoding(final String pdfEncoding)
+	{
+		this.getObject().getFont().setPdfEncoding(pdfEncoding);
+		return (T)this;
+	}
+	
+	@Deprecated
+	public T setPdfFontName(final String pdfFontName)
+	{
+		this.getObject().getFont().setPdfFontName(pdfFontName);
+		return (T)this;
+	}
+	
+	public T strikeThrough()
+	{
+		return this.setStrikeThrough(true);
+	}
+	
+	public T setStrikeThrough(final Boolean strikeThrough)
+	{
+		this.getObject().getFont().setStrikeThrough(strikeThrough);
+		return (T)this;
+	}
+	
+	public T underline()
+	{
+		return this.setUnderline(true);
+	}
+	
+	public T setUnderline(final Boolean underline)
+	{
+		this.getObject().getFont().setUnderline(underline);
+		return (T)this;
+	}
+	
+	public T setForegroundColor(final Color foregroudColor)
+	{
+		this.getObject().setForegroundColor(foregroudColor);
+		return (T)this;
+	}
+	
+	public T setHorizontalTextAlignment(final HorizontalTextAlignment horizontalTextAlignment)
+	{
+		this.getObject().setHorizontalTextAlignment(horizontalTextAlignment);
+		return (T)this;
+	}
+	
+	public T setHorizontalImageAlignment(final HorizontalImageAlignment horizontalImageAlignment)
+	{
+		this.getObject().setHorizontalImageAlignment(horizontalImageAlignment);
+		return (T)this;
+	}
+	
+	public T setImageScale(final ImageScale imageScale)
+	{
+		this.getObject().setImageScale(imageScale);
+		return (T)this;
+	}
+	
+	public T setPadding(final PaddingBuilder padding)
+	{
+		if(padding != null)
+		{
+			this.getObject().setPadding(padding.build());
+		}
+		else
+		{
+			this.getObject().setPadding(null);
+		}
+		return (T)this;
+	}
+	
+	public T setPadding(final Integer padding)
+	{
+		return this.setPadding(Styles.padding(padding));
+	}
+	
+	public T setTopPadding(final Integer top)
+	{
+		this.getObject().getPadding().setTop(top);
+		return (T)this;
+	}
+	
+	public T setLeftPadding(final Integer left)
+	{
+		this.getObject().getPadding().setLeft(left);
+		return (T)this;
+	}
+	
+	public T setBottomPadding(final Integer bottom)
+	{
+		this.getObject().getPadding().setBottom(bottom);
+		return (T)this;
+	}
+	
+	public T setRightPadding(final Integer right)
+	{
+		this.getObject().getPadding().setRight(right);
+		return (T)this;
+	}
+	
+	public T setPattern(final String pattern)
+	{
+		this.getObject().setPattern(pattern);
+		return (T)this;
+	}
+	
+	public T setRadius(final Integer radius)
+	{
+		this.getObject().setRadius(radius);
+		return (T)this;
+	}
+	
+	public T setRotation(final Rotation rotation)
+	{
+		this.getObject().setRotation(rotation);
+		return (T)this;
+	}
+	
+	public T setTextAlignment(
+		final HorizontalTextAlignment horizontalTextAlignment,
+		final VerticalTextAlignment verticalTextAlignment)
+	{
+		this.getObject().setHorizontalTextAlignment(horizontalTextAlignment);
+		this.getObject().setVerticalTextAlignment(verticalTextAlignment);
+		return (T)this;
+	}
+	
+	public T setImageAlignment(
+		final HorizontalImageAlignment horizontalImageAlignment,
+		final VerticalImageAlignment verticalImageAlignment)
+	{
+		this.getObject().setHorizontalImageAlignment(horizontalImageAlignment);
+		this.getObject().setVerticalImageAlignment(verticalImageAlignment);
+		return (T)this;
+	}
+	
+	@Deprecated
+	public T setVerticalAlignment(final VerticalAlignment verticalAlignment)
+	{
+		if(verticalAlignment != null)
+		{
+			this.getObject().setVerticalTextAlignment(VerticalTextAlignment.valueOf(verticalAlignment.name()));
+		}
+		else
+		{
+			this.getObject().setVerticalTextAlignment(null);
+		}
+		return (T)this;
+	}
+	
+	public T setVerticalTextAlignment(final VerticalTextAlignment verticalTextAlignment)
+	{
+		this.getObject().setVerticalTextAlignment(verticalTextAlignment);
+		return (T)this;
+	}
+	
+	public T setVerticalImageAlignment(final VerticalImageAlignment verticalImageAlignment)
+	{
+		this.getObject().setVerticalImageAlignment(verticalImageAlignment);
+		return (T)this;
+	}
+	
+	public T setMarkup(final Markup markup)
+	{
+		this.getObject().setMarkup(markup);
+		return (T)this;
+	}
+	
+	public T setLineSpacing(final LineSpacing lineSpacing)
+	{
+		this.getObject().getParagraph().setLineSpacing(lineSpacing);
+		return (T)this;
+	}
+	
+	public T setLineSpacingSize(final Float lineSpacingSize)
+	{
+		this.getObject().getParagraph().setLineSpacingSize(lineSpacingSize);
+		return (T)this;
+	}
+	
+	public T setFirstLineIndent(final Integer firstLineIndent)
+	{
+		this.getObject().getParagraph().setFirstLineIndent(firstLineIndent);
+		return (T)this;
+	}
+	
+	public T setLeftIndent(final Integer leftIndent)
+	{
+		this.getObject().getParagraph().setLeftIndent(leftIndent);
+		return (T)this;
+	}
+	
+	public T setRightIndent(final Integer rightIndent)
+	{
+		this.getObject().getParagraph().setRightIndent(rightIndent);
+		return (T)this;
+	}
+	
+	public T setSpacingBefore(final Integer spacingBefore)
+	{
+		this.getObject().getParagraph().setSpacingBefore(spacingBefore);
+		return (T)this;
+	}
+	
+	public T setSpacingAfter(final Integer spacingAfter)
+	{
+		this.getObject().getParagraph().setSpacingAfter(spacingAfter);
+		return (T)this;
+	}
+	
+	public T setTabStopWidth(final Integer tabStopWidth)
+	{
+		this.getObject().getParagraph().setTabStopWidth(tabStopWidth);
+		return (T)this;
+	}
+	
+	public T addTabStop(final int position, final TabStopAlignment alignment)
+	{
+		Validate.notNull(alignment, "alignment must not be null");
+		final DRTabStop tabStop = new DRTabStop();
+		tabStop.setPosition(position);
+		tabStop.setAlignment(alignment);
+		this.getObject().getParagraph().getTabStops().add(tabStop);
+		return (T)this;
+	}
+	
+	public T setLinePen(final PenBuilder linePen)
+	{
+		if(linePen != null)
+		{
+			this.getObject().setLinePen(linePen.build());
+		}
+		else
+		{
+			this.getObject().setLinePen(null);
+		}
+		return (T)this;
+	}
+	
+	public U getStyle()
+	{
+		return this.build();
+	}
 }

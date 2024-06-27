@@ -17,123 +17,97 @@
  */
 package software.xdev.dynamicreports.report.base;
 
+import org.apache.commons.lang3.Validate;
+
 import software.xdev.dynamicreports.report.ReportUtils;
 import software.xdev.dynamicreports.report.constant.Calculation;
-import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.constant.Evaluation;
 import software.xdev.dynamicreports.report.definition.DRIVariable;
 import software.xdev.dynamicreports.report.definition.expression.DRIExpression;
-import org.apache.commons.lang3.Validate;
 
-/**
- * <p>DRVariable class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class DRVariable<T> implements DRIVariable<T> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    private String name;
-    private DRIExpression<?> valueExpression;
-    private DRIExpression<?> initialValueExpression;
-    private Calculation calculation;
-    private Evaluation resetType;
-    private DRGroup resetGroup;
+public class DRVariable<T> implements DRIVariable<T>
+{
 
-    /**
-     * <p>Constructor for DRVariable.</p>
-     *
-     * @param valueExpression a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     * @param calculation     a {@link software.xdev.dynamicreports.report.constant.Calculation} object.
-     */
-    public DRVariable(DRIExpression<?> valueExpression, Calculation calculation) {
-        this(ReportUtils.generateUniqueName("variable"), valueExpression, calculation);
-    }
-
-    /**
-     * <p>Constructor for DRVariable.</p>
-     *
-     * @param name            a {@link java.lang.String} object.
-     * @param valueExpression a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     * @param calculation     a {@link software.xdev.dynamicreports.report.constant.Calculation} object.
-     */
-    public DRVariable(String name, DRIExpression<?> valueExpression, Calculation calculation) {
-        Validate.notEmpty(name, "name must not be empty");
-        Validate.notNull(valueExpression, "valueExpression must not be null");
-        Validate.notNull(calculation, "calculation must not be null");
-        this.name = name;
-        this.valueExpression = valueExpression;
-        this.calculation = calculation;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public String getName() {
-        return name;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRIExpression<?> getInitialValueExpression() {
-        return initialValueExpression;
-    }
-
-    /**
-     * <p>Setter for the field <code>initialValueExpression</code>.</p>
-     *
-     * @param initialValueExpression a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     */
-    public void setInitialValueExpression(DRIExpression<?> initialValueExpression) {
-        this.initialValueExpression = initialValueExpression;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Calculation getCalculation() {
-        return calculation;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Evaluation getResetType() {
-        return resetType;
-    }
-
-    /**
-     * <p>Setter for the field <code>resetType</code>.</p>
-     *
-     * @param resetType a {@link software.xdev.dynamicreports.report.constant.Evaluation} object.
-     */
-    public void setResetType(Evaluation resetType) {
-        this.resetType = resetType;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRGroup getResetGroup() {
-        return resetGroup;
-    }
-
-    /**
-     * <p>Setter for the field <code>resetGroup</code>.</p>
-     *
-     * @param resetGroup a {@link software.xdev.dynamicreports.report.base.DRGroup} object.
-     */
-    public void setResetGroup(DRGroup resetGroup) {
-        this.resetGroup = resetGroup;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRIExpression<?> getValueExpression() {
-        return valueExpression;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    @SuppressWarnings("unchecked")
-    public Class<? super T> getValueClass() {
-        return (Class<? super T>) ReportUtils.getVariableValueClass(getCalculation(), valueExpression.getValueClass());
-    }
+	private final String name;
+	private final DRIExpression<?> valueExpression;
+	private DRIExpression<?> initialValueExpression;
+	private final Calculation calculation;
+	private Evaluation resetType;
+	private DRGroup resetGroup;
+	
+	public DRVariable(final DRIExpression<?> valueExpression, final Calculation calculation)
+	{
+		this(ReportUtils.generateUniqueName("variable"), valueExpression, calculation);
+	}
+	
+	public DRVariable(final String name, final DRIExpression<?> valueExpression, final Calculation calculation)
+	{
+		Validate.notEmpty(name, "name must not be empty");
+		Validate.notNull(valueExpression, "valueExpression must not be null");
+		Validate.notNull(calculation, "calculation must not be null");
+		this.name = name;
+		this.valueExpression = valueExpression;
+		this.calculation = calculation;
+	}
+	
+	@Override
+	public String getName()
+	{
+		return this.name;
+	}
+	
+	@Override
+	public DRIExpression<?> getInitialValueExpression()
+	{
+		return this.initialValueExpression;
+	}
+	
+	public void setInitialValueExpression(final DRIExpression<?> initialValueExpression)
+	{
+		this.initialValueExpression = initialValueExpression;
+	}
+	
+	@Override
+	public Calculation getCalculation()
+	{
+		return this.calculation;
+	}
+	
+	@Override
+	public Evaluation getResetType()
+	{
+		return this.resetType;
+	}
+	
+	public void setResetType(final Evaluation resetType)
+	{
+		this.resetType = resetType;
+	}
+	
+	@Override
+	public DRGroup getResetGroup()
+	{
+		return this.resetGroup;
+	}
+	
+	public void setResetGroup(final DRGroup resetGroup)
+	{
+		this.resetGroup = resetGroup;
+	}
+	
+	@Override
+	public DRIExpression<?> getValueExpression()
+	{
+		return this.valueExpression;
+	}
+	
+	@Override
+	@SuppressWarnings("unchecked")
+	public Class<? super T> getValueClass()
+	{
+		return (Class<? super T>)ReportUtils.getVariableValueClass(
+			this.getCalculation(),
+			this.valueExpression.getValueClass());
+	}
 }

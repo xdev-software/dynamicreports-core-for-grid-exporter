@@ -24,246 +24,136 @@ import software.xdev.dynamicreports.report.builder.expression.Expressions;
 import software.xdev.dynamicreports.report.builder.grid.ColumnGridComponentBuilder;
 import software.xdev.dynamicreports.report.builder.style.ReportStyleBuilder;
 import software.xdev.dynamicreports.report.constant.ComponentDimensionType;
-import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.constant.TextAdjust;
 import software.xdev.dynamicreports.report.definition.expression.DRIExpression;
 import software.xdev.dynamicreports.report.definition.expression.DRIPropertyExpression;
 
-/**
- * <p>Abstract ColumnBuilder class.</p>
- *
- * @author Ricardo Mariaca, Jan Moxter
- * 
- */
+
 @SuppressWarnings("unchecked")
-public abstract class ColumnBuilder<T extends ColumnBuilder<T, U>, U extends DRColumn<?>> extends AbstractBuilder<T, U> implements ColumnGridComponentBuilder {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
+public abstract class ColumnBuilder<T extends ColumnBuilder<T, U>, U extends DRColumn<?>> extends AbstractBuilder<T, U>
+	implements ColumnGridComponentBuilder
+{
 
-    /**
-     * <p>Constructor for ColumnBuilder.</p>
-     *
-     * @param column a U object.
-     */
-    protected ColumnBuilder(final U column) {
-        super(column);
-    }
+	protected ColumnBuilder(final U column)
+	{
+		super(column);
+	}
+	
+	public T setTitle(final DRIExpression<?> titleExpression)
+	{
+		this.getObject().setTitleExpression(titleExpression);
+		return (T)this;
+	}
+	
+	public T setTitle(final String title)
+	{
+		this.getObject().setTitleExpression(Expressions.text(title));
+		return (T)this;
+	}
+	
+	public T setTitleStyle(final ReportStyleBuilder titleStyle)
+	{
+		if(titleStyle != null)
+		{
+			this.getObject().setTitleStyle(titleStyle.getStyle());
+		}
+		else
+		{
+			this.getObject().setTitleStyle(null);
+		}
+		return (T)this;
+	}
+	
+	public T setStyle(final ReportStyleBuilder style)
+	{
+		if(style != null)
+		{
+			this.getComponent().setStyle(style.getStyle());
+		}
+		else
+		{
+			this.getComponent().setStyle(null);
+		}
+		return (T)this;
+	}
+	
+	public T setPrintWhenExpression(final DRIExpression<Boolean> printWhenExpression)
+	{
+		this.getComponent().setPrintWhenExpression(printWhenExpression);
+		return (T)this;
+	}
+	
+	public T setTitleRows(final Integer rows)
+	{
+		this.getObject().setTitleRows(rows);
+		return (T)this;
+	}
+	
+	public T setTitleFixedRows(final Integer rows)
+	{
+		this.getObject().setTitleRows(rows);
+		this.getObject().setTitleHeightType(ComponentDimensionType.FIXED);
+		return (T)this;
+	}
+	
+	public T setTitleMinRows(final Integer rows)
+	{
+		this.getObject().setTitleRows(rows);
+		this.getObject().setTitleHeightType(ComponentDimensionType.EXPAND);
+		return (T)this;
+	}
+	
+	public T setTitleHeight(final Integer height)
+	{
+		this.getObject().setTitleHeight(height);
+		return (T)this;
+	}
+	
+	public T setTitleFixedHeight(final Integer height)
+	{
+		this.getObject().setTitleHeight(height);
+		this.getObject().setTitleHeightType(ComponentDimensionType.FIXED);
+		return (T)this;
+	}
 
-    /**
-     * Sets the column title.
-     *
-     * @param titleExpression the title expression
-     * @return a column builder
-     */
-    public T setTitle(final DRIExpression<?> titleExpression) {
-        getObject().setTitleExpression(titleExpression);
-        return (T) this;
-    }
-
-    /**
-     * Sets the column title.
-     *
-     * @param title the title
-     * @return a column builder
-     */
-    public T setTitle(final String title) {
-        getObject().setTitleExpression(Expressions.text(title));
-        return (T) this;
-    }
-
-    /**
-     * Sets the column title style.
-     *
-     * @param titleStyle the title style
-     * @return a column builder
-     */
-    public T setTitleStyle(final ReportStyleBuilder titleStyle) {
-        if (titleStyle != null) {
-            getObject().setTitleStyle(titleStyle.getStyle());
-        } else {
-            getObject().setTitleStyle(null);
-        }
-        return (T) this;
-    }
-
-    /**
-     * Sets the column value style.
-     *
-     * @param style the value style
-     * @return a column builder
-     */
-    public T setStyle(final ReportStyleBuilder style) {
-        if (style != null) {
-            getComponent().setStyle(style.getStyle());
-        } else {
-            getComponent().setStyle(null);
-        }
-        return (T) this;
-    }
-
-    /**
-     * Sets the print when expression. The expression must be a type of Boolean and it decides whether or not a column value will be printed.
-     *
-     * @param printWhenExpression the print expression
-     * @return a column builder
-     */
-    public T setPrintWhenExpression(final DRIExpression<Boolean> printWhenExpression) {
-        getComponent().setPrintWhenExpression(printWhenExpression);
-        return (T) this;
-    }
-
-    /**
-     * This method is used to define the preferred height of a column title. The height is set to the <code>rows</code> multiplied by height of the font
-     *
-     * @param rows the number of preferred rows >= 0
-     * @return a column builder
-     * @throws java.lang.IllegalArgumentException if <code>rows</code> is < 0
-     */
-    public T setTitleRows(final Integer rows) {
-        getObject().setTitleRows(rows);
-        return (T) this;
-    }
-
-    /**
-     * This method is used to define the fixed height of a column title. The height is set to the <code>rows</code> multiplied by height of the font
-     *
-     * @param rows the number of fixed rows >= 0
-     * @return a column builder
-     * @throws java.lang.IllegalArgumentException if <code>rows</code> is < 0
-     */
-    public T setTitleFixedRows(final Integer rows) {
-        getObject().setTitleRows(rows);
-        getObject().setTitleHeightType(ComponentDimensionType.FIXED);
-        return (T) this;
-    }
-
-    /**
-     * This method is used to define the minimum height of a column title. The height is set to the <code>rows</code> multiplied by height of the font
-     *
-     * @param rows the number of minimum rows >= 0
-     * @return a column builder
-     * @throws java.lang.IllegalArgumentException if <code>rows</code> is < 0
-     */
-    public T setTitleMinRows(final Integer rows) {
-        getObject().setTitleRows(rows);
-        getObject().setTitleHeightType(ComponentDimensionType.EXPAND);
-        return (T) this;
-    }
-
-    /**
-     * Sets the preferred height of a column title.
-     *
-     * @param height the column title preferred height >= 0
-     * @return a column builder
-     * @throws java.lang.IllegalArgumentException if <code>height</code> is < 0
-     * @see software.xdev.dynamicreports.report.builder.Units
-     */
-    public T setTitleHeight(final Integer height) {
-        getObject().setTitleHeight(height);
-        return (T) this;
-    }
-
-    /**
-     * Sets the fixed height of a column title.
-     *
-     * @param height the column title fixed height >= 0
-     * @return a column builder
-     * @throws java.lang.IllegalArgumentException if <code>height</code> is < 0
-     * @see software.xdev.dynamicreports.report.builder.Units
-     */
-    public T setTitleFixedHeight(final Integer height) {
-        getObject().setTitleHeight(height);
-        getObject().setTitleHeightType(ComponentDimensionType.FIXED);
-        return (T) this;
-    }
-
-    /**
-     * Sets the minimum height of a column title.
-     *
-     * @param height the column title minimum height >= 0
-     * @return a column builder
-     * @throws java.lang.IllegalArgumentException if <code>height</code> is < 0
-     * @see software.xdev.dynamicreports.report.builder.Units
-     */
-    public T setTitleMinHeight(final Integer height) {
-        getObject().setTitleHeight(height);
-        getObject().setTitleHeightType(ComponentDimensionType.EXPAND);
-        return (T) this;
-    }
-
-    /**
-     * <p>setTitleStretchWithOverflow.</p>
-     *
-     * @param stretchWithOverflow a {@link java.lang.Boolean} object.
-     * @return a T object.
-     * @deprecated replaced by {@link #setTitleTextAdjust(TextAdjust)}
-     */
-    @Deprecated
-    public T setTitleStretchWithOverflow(final Boolean stretchWithOverflow) {
-        getObject().setTitleStretchWithOverflow(stretchWithOverflow);
-        return (T) this;
-    }
-
-    /**
-     * <p>setTitleTextAdjust.</p>
-     *
-     * @param textAdjust a {@link software.xdev.dynamicreports.report.constant.TextAdjust} object.
-     * @return a T object.
-     */
-    public T setTitleTextAdjust(final TextAdjust textAdjust) {
-        getObject().setTitleTextAdjust(textAdjust);
-        return (T) this;
-    }
-
-    /**
-     * Adds a jasper property to the column title.
-     *
-     * @param propertyExpression the property expression
-     * @return a column builder
-     */
-    public T addTitleProperty(final DRIPropertyExpression propertyExpression) {
-        getObject().addTitlePropertyExpression(propertyExpression);
-        return (T) this;
-    }
-
-    /**
-     * Adds a jasper property to the column title.
-     *
-     * @param name            the property name
-     * @param valueExpression the property value expression
-     * @return a column builder
-     */
-    public T addTitleProperty(final String name, final DRIExpression<String> valueExpression) {
-        getObject().addTitlePropertyExpression(Expressions.property(name, valueExpression));
-        return (T) this;
-    }
-
-    /**
-     * Adds a jasper property to the column title.
-     *
-     * @param name  the property name
-     * @param value the property value
-     * @return a column builder
-     */
-    public T addTitleProperty(final String name, final String value) {
-        getObject().addTitlePropertyExpression(Expressions.property(name, value));
-        return (T) this;
-    }
-
-    /**
-     * <p>getComponent.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.base.component.DRComponent} object.
-     */
-    protected DRComponent getComponent() {
-        return (DRComponent) getObject().getComponent();
-    }
-
-    /**
-     * <p>getColumn.</p>
-     *
-     * @return a U object.
-     */
-    public U getColumn() {
-        return build();
-    }
+	public T setTitleMinHeight(final Integer height)
+	{
+		this.getObject().setTitleHeight(height);
+		this.getObject().setTitleHeightType(ComponentDimensionType.EXPAND);
+		return (T)this;
+	}
+	
+	public T setTitleTextAdjust(final TextAdjust textAdjust)
+	{
+		this.getObject().setTitleTextAdjust(textAdjust);
+		return (T)this;
+	}
+	
+	public T addTitleProperty(final DRIPropertyExpression propertyExpression)
+	{
+		this.getObject().addTitlePropertyExpression(propertyExpression);
+		return (T)this;
+	}
+	
+	public T addTitleProperty(final String name, final DRIExpression<String> valueExpression)
+	{
+		this.getObject().addTitlePropertyExpression(Expressions.property(name, valueExpression));
+		return (T)this;
+	}
+	
+	public T addTitleProperty(final String name, final String value)
+	{
+		this.getObject().addTitlePropertyExpression(Expressions.property(name, value));
+		return (T)this;
+	}
+	
+	protected DRComponent getComponent()
+	{
+		return (DRComponent)this.getObject().getComponent();
+	}
+	
+	public U getColumn()
+	{
+		return this.build();
+	}
 }

@@ -17,37 +17,30 @@
  */
 package software.xdev.dynamicreports.jasper.base.reporthandler;
 
-import net.sf.jasperreports.engine.JasperPrint;
-
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * <p>JasperPrintListHandler class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class JasperPrintListHandler extends AbstractPrintListHandler {
-    private List<JasperPrint> printList;
+import net.sf.jasperreports.engine.JasperPrint;
 
-    /**
-     * <p>Constructor for JasperPrintListHandler.</p>
-     */
-    public JasperPrintListHandler() {
-        printList = new ArrayList<JasperPrint>();
-    }
 
-    /** {@inheritDoc} */
-    @Override
-    protected void add(JasperPrint jasperPrint) {
-        printList.add(jasperPrint);
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public List<JasperPrint> getPrintList() {
-        return printList;
-    }
-
+public class JasperPrintListHandler extends AbstractPrintListHandler
+{
+	private final List<JasperPrint> printList;
+	
+	public JasperPrintListHandler()
+	{
+		this.printList = new ArrayList<>();
+	}
+	
+	@Override
+	protected void add(final JasperPrint jasperPrint)
+	{
+		this.printList.add(jasperPrint);
+	}
+	
+	@Override
+	public List<JasperPrint> getPrintList()
+	{
+		return this.printList;
+	}
 }

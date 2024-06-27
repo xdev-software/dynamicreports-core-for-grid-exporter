@@ -17,70 +17,49 @@
  */
 package software.xdev.dynamicreports.report.base.component;
 
-import software.xdev.dynamicreports.report.constant.Constants;
+import java.util.ArrayList;
+import java.util.List;
+
 import software.xdev.dynamicreports.report.constant.SplitType;
 import software.xdev.dynamicreports.report.definition.component.DRIComponent;
 import software.xdev.dynamicreports.report.definition.component.DRIMultiPageList;
 
-import java.util.ArrayList;
-import java.util.List;
 
-/**
- * <p>DRMultiPageList class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class DRMultiPageList extends DRDimensionComponent implements DRIMultiPageList {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
+public class DRMultiPageList extends DRDimensionComponent implements DRIMultiPageList
+{
 
-    private List<DRIComponent> components;
-    private SplitType splitType;
-
-    /**
-     * <p>Constructor for DRMultiPageList.</p>
-     */
-    public DRMultiPageList() {
-        components = new ArrayList<DRIComponent>();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public List<DRIComponent> getComponents() {
-        return components;
-    }
-
-    /**
-     * <p>Setter for the field <code>components</code>.</p>
-     *
-     * @param components a {@link java.util.List} object.
-     */
-    public void setComponents(List<DRIComponent> components) {
-        this.components = components;
-    }
-
-    /**
-     * <p>addComponent.</p>
-     *
-     * @param component a {@link software.xdev.dynamicreports.report.definition.component.DRIComponent} object.
-     */
-    public void addComponent(DRIComponent component) {
-        components.add(component);
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public SplitType getSplitType() {
-        return splitType;
-    }
-
-    /**
-     * <p>Setter for the field <code>splitType</code>.</p>
-     *
-     * @param splitType a {@link software.xdev.dynamicreports.report.constant.SplitType} object.
-     */
-    public void setSplitType(SplitType splitType) {
-        this.splitType = splitType;
-    }
-
+	private List<DRIComponent> components;
+	private SplitType splitType;
+	
+	public DRMultiPageList()
+	{
+		this.components = new ArrayList<>();
+	}
+	
+	@Override
+	public List<DRIComponent> getComponents()
+	{
+		return this.components;
+	}
+	
+	public void setComponents(final List<DRIComponent> components)
+	{
+		this.components = components;
+	}
+	
+	public void addComponent(final DRIComponent component)
+	{
+		this.components.add(component);
+	}
+	
+	@Override
+	public SplitType getSplitType()
+	{
+		return this.splitType;
+	}
+	
+	public void setSplitType(final SplitType splitType)
+	{
+		this.splitType = splitType;
+	}
 }

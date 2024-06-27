@@ -17,12 +17,7 @@
  */
 package software.xdev.dynamicreports.design.constant;
 
-/**
- * <p>ComponentGroupType class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public enum ComponentGroupType {
-    FRAME, NONE
+public enum ComponentGroupType
+{
+	FRAME, NONE
 }

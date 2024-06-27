@@ -17,50 +17,58 @@
  */
 package software.xdev.dynamicreports.test.jasper.tableofcontents;
 
-import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
-import software.xdev.dynamicreports.report.builder.column.TextColumnBuilder;
-import software.xdev.dynamicreports.report.datasource.DRDataSource;
-import software.xdev.dynamicreports.test.jasper.AbstractJasperValueTest;
-import net.sf.jasperreports.engine.JRDataSource;
-
-import java.util.Locale;
-
 import static software.xdev.dynamicreports.report.builder.DynamicReports.cmp;
 import static software.xdev.dynamicreports.report.builder.DynamicReports.col;
 import static software.xdev.dynamicreports.report.builder.DynamicReports.grp;
 import static software.xdev.dynamicreports.report.builder.DynamicReports.type;
 
-/**
- * @author Ricardo Mariaca
- */
-public class TableOfContents9Test extends AbstractJasperValueTest {
+import java.util.Locale;
 
-    @Override
-    protected void configureReport(JasperReportBuilder rb) {
-        TextColumnBuilder<String> column1 = col.column("Column1", "field1", type.stringType());
+import net.sf.jasperreports.engine.JRDataSource;
+import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
+import software.xdev.dynamicreports.report.builder.column.TextColumnBuilder;
+import software.xdev.dynamicreports.report.datasource.DRDataSource;
+import software.xdev.dynamicreports.test.jasper.AbstractJasperValueTest;
 
-        rb.tableOfContents().setLocale(new Locale("es")).columns(column1, col.column("Column2", "field2", type.stringType())).groupBy(grp.group(column1)).pageFooter(cmp.pageXofY());
-    }
 
-    @Override
-    public void test() {
-        super.test();
-
-        numberOfPagesTest(2);
-
-        elementValueTest("title.textField1", "Tabla de contenidos");
-        elementValueTest("pageFooter.textField2", " de 1");
-    }
-
-    @Override
-    protected JRDataSource createDataSource() {
-        DRDataSource dataSource = new DRDataSource("field1", "field2");
-        for (int i = 0; i < 10; i++) {
-            dataSource.add("value1", "text");
-        }
-        for (int i = 0; i < 10; i++) {
-            dataSource.add("value2", "text");
-        }
-        return dataSource;
-    }
+public class TableOfContents9Test extends AbstractJasperValueTest
+{
+	
+	@Override
+	protected void configureReport(final JasperReportBuilder rb)
+	{
+		final TextColumnBuilder<String> column1 = col.column("Column1", "field1", type.stringType());
+		
+		rb.tableOfContents()
+			.setLocale(new Locale("es"))
+			.columns(column1, col.column("Column2", "field2", type.stringType()))
+			.groupBy(grp.group(column1))
+			.pageFooter(cmp.pageXofY());
+	}
+	
+	@Override
+	public void test()
+	{
+		super.test();
+		
+		this.numberOfPagesTest(2);
+		
+		this.elementValueTest("title.textField1", "Tabla de contenidos");
+		this.elementValueTest("pageFooter.textField2", " de 1");
+	}
+	
+	@Override
+	protected JRDataSource createDataSource()
+	{
+		final DRDataSource dataSource = new DRDataSource("field1", "field2");
+		for(int i = 0; i < 10; i++)
+		{
+			dataSource.add("value1", "text");
+		}
+		for(int i = 0; i < 10; i++)
+		{
+			dataSource.add("value2", "text");
+		}
+		return dataSource;
+	}
 }

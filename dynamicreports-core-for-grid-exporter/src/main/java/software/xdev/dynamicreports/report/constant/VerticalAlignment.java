@@ -17,14 +17,8 @@
  */
 package software.xdev.dynamicreports.report.constant;
 
-/**
- * <p>VerticalAlignment class.</p>
- *
- * @author Ricardo Mariaca
- * 
- * @deprecated use VerticalTextAligment for texts or VerticalImageAligment for images instead
- */
 @Deprecated
-public enum VerticalAlignment {
-    TOP, MIDDLE, BOTTOM, JUSTIFIED
+public enum VerticalAlignment
+{
+	TOP, MIDDLE, BOTTOM, JUSTIFIED
 }

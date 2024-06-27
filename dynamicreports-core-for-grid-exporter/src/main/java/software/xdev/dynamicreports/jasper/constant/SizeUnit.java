@@ -17,12 +17,7 @@
  */
 package software.xdev.dynamicreports.jasper.constant;
 
-/**
- * <p>SizeUnit class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public enum SizeUnit {
-    PIXEL, POINT
+public enum SizeUnit
+{
+	PIXEL, POINT
 }

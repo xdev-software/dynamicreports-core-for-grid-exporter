@@ -27,83 +27,25 @@ import software.xdev.dynamicreports.report.definition.expression.DRIPropertyExpr
 import software.xdev.dynamicreports.report.definition.grid.DRIColumnGridComponent;
 import software.xdev.dynamicreports.report.definition.style.DRIReportStyle;
 
-/**
- * <p>DRIColumn interface.</p>
- *
- * @author Ricardo Mariaca, Jan Moxter
- * 
- */
-public interface DRIColumn<T extends DRIComponent> extends DRIColumnGridComponent {
 
-    /**
-     * <p>getComponent.</p>
-     *
-     * @return a T object.
-     */
-    T getComponent();
-
-    /**
-     * <p>getTitleExpression.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     */
-    DRIExpression<?> getTitleExpression();
-
-    /**
-     * <p>getTitleStyle.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.definition.style.DRIReportStyle} object.
-     */
-    DRIReportStyle getTitleStyle();
-
-    /**
-     * <p>getTitleHeight.</p>
-     *
-     * @return a {@link java.lang.Integer} object.
-     */
-    Integer getTitleHeight();
-
-    /**
-     * <p>getTitleHeightType.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.constant.ComponentDimensionType} object.
-     */
-    ComponentDimensionType getTitleHeightType();
-
-    /**
-     * <p>getTitleRows.</p>
-     *
-     * @return a {@link java.lang.Integer} object.
-     */
-    Integer getTitleRows();
-
-    /**
-     * <p>getTitleStretchWithOverflow.</p>
-     *
-     * @return a {@link java.lang.Boolean} object.
-     * @deprecated replaced by {@link #getTitleTextAdjust()}
-     */
-    @Deprecated
-    Boolean getTitleStretchWithOverflow();
-
-    /**
-     * <p>getTitlePropertyExpressions.</p>
-     *
-     * @return a {@link java.util.List} object.
-     */
-    List<DRIPropertyExpression> getTitlePropertyExpressions();
-
-    /**
-     * <p>getName.</p>
-     *
-     * @return a {@link java.lang.String} object.
-     */
-    String getName();
-
-    /**
-     * <p>getTitleTextAdjust.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.constant.TextAdjust} object.
-     */
-    TextAdjust getTitleTextAdjust();
+public interface DRIColumn<T extends DRIComponent> extends DRIColumnGridComponent
+{
+	
+	T getComponent();
+	
+	DRIExpression<?> getTitleExpression();
+	
+	DRIReportStyle getTitleStyle();
+	
+	Integer getTitleHeight();
+	
+	ComponentDimensionType getTitleHeightType();
+	
+	Integer getTitleRows();
+	
+	List<DRIPropertyExpression> getTitlePropertyExpressions();
+	
+	String getName();
+	
+	TextAdjust getTitleTextAdjust();
 }

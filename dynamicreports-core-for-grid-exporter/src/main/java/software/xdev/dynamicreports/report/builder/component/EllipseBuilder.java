@@ -19,36 +19,26 @@ package software.xdev.dynamicreports.report.builder.component;
 
 import software.xdev.dynamicreports.report.base.component.DREllipse;
 import software.xdev.dynamicreports.report.builder.style.PenBuilder;
-import software.xdev.dynamicreports.report.constant.Constants;
 
-/**
- * <p>EllipseBuilder class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class EllipseBuilder extends DimensionComponentBuilder<EllipseBuilder, DREllipse> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    /**
-     * <p>Constructor for EllipseBuilder.</p>
-     */
-    protected EllipseBuilder() {
-        super(new DREllipse());
-    }
+public class EllipseBuilder extends DimensionComponentBuilder<EllipseBuilder, DREllipse>
+{
 
-    /**
-     * <p>setPen.</p>
-     *
-     * @param pen a {@link software.xdev.dynamicreports.report.builder.style.PenBuilder} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.EllipseBuilder} object.
-     */
-    public EllipseBuilder setPen(PenBuilder pen) {
-        if (pen != null) {
-            getObject().setPen(pen.build());
-        } else {
-            getObject().setPen(null);
-        }
-        return this;
-    }
+	protected EllipseBuilder()
+	{
+		super(new DREllipse());
+	}
+	
+	public EllipseBuilder setPen(final PenBuilder pen)
+	{
+		if(pen != null)
+		{
+			this.getObject().setPen(pen.build());
+		}
+		else
+		{
+			this.getObject().setPen(null);
+		}
+		return this;
+	}
 }

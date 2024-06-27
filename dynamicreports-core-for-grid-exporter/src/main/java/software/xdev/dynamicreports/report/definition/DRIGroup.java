@@ -17,173 +17,59 @@
  */
 package software.xdev.dynamicreports.report.definition;
 
+import java.io.Serializable;
+
 import software.xdev.dynamicreports.report.constant.GroupFooterPosition;
 import software.xdev.dynamicreports.report.constant.GroupHeaderLayout;
 import software.xdev.dynamicreports.report.definition.component.DRITextField;
 import software.xdev.dynamicreports.report.definition.expression.DRIExpression;
 import software.xdev.dynamicreports.report.definition.style.DRIReportStyle;
 
-import java.io.Serializable;
 
-/**
- * <p>DRIGroup interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface DRIGroup extends Serializable {
-
-    /**
-     * <p>getName.</p>
-     *
-     * @return a {@link java.lang.String} object.
-     */
-    public String getName();
-
-    /**
-     * <p>getValueField.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.definition.component.DRITextField} object.
-     */
-    public DRITextField<?> getValueField();
-
-    /**
-     * <p>getTitleExpression.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     */
-    public DRIExpression<?> getTitleExpression();
-
-    /**
-     * <p>getTitleStyle.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.definition.style.DRIReportStyle} object.
-     */
-    public DRIReportStyle getTitleStyle();
-
-    /**
-     * <p>getTitleWidth.</p>
-     *
-     * @return a {@link java.lang.Integer} object.
-     */
-    public Integer getTitleWidth();
-
-    /**
-     * <p>getHeaderLayout.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.constant.GroupHeaderLayout} object.
-     */
-    public GroupHeaderLayout getHeaderLayout();
-
-    /**
-     * <p>getHideColumn.</p>
-     *
-     * @return a {@link java.lang.Boolean} object.
-     */
-    public Boolean getHideColumn();
-
-    /**
-     * <p>getGroupByDataType.</p>
-     *
-     * @return a {@link java.lang.Boolean} object.
-     */
-    public Boolean getGroupByDataType();
-
-    /**
-     * <p>getShowColumnHeaderAndFooter.</p>
-     *
-     * @return a {@link java.lang.Boolean} object.
-     */
-    public Boolean getShowColumnHeaderAndFooter();
-
-    /**
-     * <p>getAddToTableOfContents.</p>
-     *
-     * @return a {@link java.lang.Boolean} object.
-     */
-    public Boolean getAddToTableOfContents();
-
-    /**
-     * <p>getPrintSubtotalsWhenExpression.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     */
-    public DRIExpression<Boolean> getPrintSubtotalsWhenExpression();
-
-    /**
-     * <p>getPadding.</p>
-     *
-     * @return a {@link java.lang.Integer} object.
-     */
-    public Integer getPadding();
-
-    /**
-     * <p>getStartInNewPage.</p>
-     *
-     * @return a {@link java.lang.Boolean} object.
-     */
-    public Boolean getStartInNewPage();
-
-    /**
-     * <p>getStartInNewColumn.</p>
-     *
-     * @return a {@link java.lang.Boolean} object.
-     */
-    public Boolean getStartInNewColumn();
-
-    /**
-     * <p>getReprintHeaderOnEachPage.</p>
-     *
-     * @return a {@link java.lang.Boolean} object.
-     */
-    public Boolean getReprintHeaderOnEachPage();
-
-    /**
-     * <p>getResetPageNumber.</p>
-     *
-     * @return a {@link java.lang.Boolean} object.
-     */
-    public Boolean getResetPageNumber();
-
-    /**
-     * <p>getMinHeightToStartNewPage.</p>
-     *
-     * @return a {@link java.lang.Integer} object.
-     */
-    public Integer getMinHeightToStartNewPage();
-
-    /**
-     * <p>getFooterPosition.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.constant.GroupFooterPosition} object.
-     */
-    public GroupFooterPosition getFooterPosition();
-
-    /**
-     * <p>getKeepTogether.</p>
-     *
-     * @return a {@link java.lang.Boolean} object.
-     */
-    public Boolean getKeepTogether();
-
-    /**
-     * <p>getHeaderWithSubtotal.</p>
-     *
-     * @return a {@link java.lang.Boolean} object.
-     */
-    public Boolean getHeaderWithSubtotal();
-
-    /**
-     * <p>getHeaderBand.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.definition.DRIBand} object.
-     */
-    public DRIBand getHeaderBand();
-
-    /**
-     * <p>getFooterBand.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.definition.DRIBand} object.
-     */
-    public DRIBand getFooterBand();
+public interface DRIGroup extends Serializable
+{
+	
+	public String getName();
+	
+	public DRITextField<?> getValueField();
+	
+	public DRIExpression<?> getTitleExpression();
+	
+	public DRIReportStyle getTitleStyle();
+	
+	public Integer getTitleWidth();
+	
+	public GroupHeaderLayout getHeaderLayout();
+	
+	public Boolean getHideColumn();
+	
+	public Boolean getGroupByDataType();
+	
+	public Boolean getShowColumnHeaderAndFooter();
+	
+	public Boolean getAddToTableOfContents();
+	
+	public DRIExpression<Boolean> getPrintSubtotalsWhenExpression();
+	
+	public Integer getPadding();
+	
+	public Boolean getStartInNewPage();
+	
+	public Boolean getStartInNewColumn();
+	
+	public Boolean getReprintHeaderOnEachPage();
+	
+	public Boolean getResetPageNumber();
+	
+	public Integer getMinHeightToStartNewPage();
+	
+	public GroupFooterPosition getFooterPosition();
+	
+	public Boolean getKeepTogether();
+	
+	public Boolean getHeaderWithSubtotal();
+	
+	public DRIBand getHeaderBand();
+	
+	public DRIBand getFooterBand();
 }

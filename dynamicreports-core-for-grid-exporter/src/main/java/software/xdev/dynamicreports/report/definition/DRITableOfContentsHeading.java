@@ -17,37 +17,17 @@
  */
 package software.xdev.dynamicreports.report.definition;
 
-import software.xdev.dynamicreports.report.definition.expression.DRIExpression;
-
 import java.io.Serializable;
 
-/**
- * <p>DRITableOfContentsHeading interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface DRITableOfContentsHeading extends Serializable {
+import software.xdev.dynamicreports.report.definition.expression.DRIExpression;
 
-    /**
-     * <p>getParentHeading.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.definition.DRITableOfContentsHeading} object.
-     */
-    public DRITableOfContentsHeading getParentHeading();
 
-    /**
-     * <p>getLabelExpression.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     */
-    public DRIExpression<String> getLabelExpression();
-
-    /**
-     * <p>getCustomValueExpression.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     */
-    public DRIExpression<?> getCustomValueExpression();
-
+public interface DRITableOfContentsHeading extends Serializable
+{
+	
+	public DRITableOfContentsHeading getParentHeading();
+	
+	public DRIExpression<String> getLabelExpression();
+	
+	public DRIExpression<?> getCustomValueExpression();
 }

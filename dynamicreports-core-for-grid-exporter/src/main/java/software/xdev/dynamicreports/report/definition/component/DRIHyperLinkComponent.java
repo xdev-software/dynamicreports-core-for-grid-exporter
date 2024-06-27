@@ -20,32 +20,13 @@ package software.xdev.dynamicreports.report.definition.component;
 import software.xdev.dynamicreports.report.definition.DRIHyperLink;
 import software.xdev.dynamicreports.report.definition.expression.DRIExpression;
 
-/**
- * <p>DRIHyperLinkComponent interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface DRIHyperLinkComponent extends DRIDimensionComponent {
 
-    /**
-     * <p>getAnchorNameExpression.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     */
-    public DRIExpression<String> getAnchorNameExpression();
-
-    /**
-     * <p>getBookmarkLevel.</p>
-     *
-     * @return a {@link java.lang.Integer} object.
-     */
-    public Integer getBookmarkLevel();
-
-    /**
-     * <p>getHyperLink.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.definition.DRIHyperLink} object.
-     */
-    public DRIHyperLink getHyperLink();
+public interface DRIHyperLinkComponent extends DRIDimensionComponent
+{
+	
+	public DRIExpression<String> getAnchorNameExpression();
+	
+	public Integer getBookmarkLevel();
+	
+	public DRIHyperLink getHyperLink();
 }

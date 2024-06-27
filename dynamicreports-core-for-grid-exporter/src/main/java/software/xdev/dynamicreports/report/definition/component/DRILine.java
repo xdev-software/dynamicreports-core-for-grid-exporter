@@ -20,26 +20,11 @@ package software.xdev.dynamicreports.report.definition.component;
 import software.xdev.dynamicreports.report.constant.LineDirection;
 import software.xdev.dynamicreports.report.definition.style.DRIPen;
 
-/**
- * <p>DRILine interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface DRILine extends DRIDimensionComponent {
 
-    /**
-     * <p>getDirection.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.constant.LineDirection} object.
-     */
-    public LineDirection getDirection();
-
-    /**
-     * <p>getPen.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.definition.style.DRIPen} object.
-     */
-    public DRIPen getPen();
-
+public interface DRILine extends DRIDimensionComponent
+{
+	
+	public LineDirection getDirection();
+	
+	public DRIPen getPen();
 }

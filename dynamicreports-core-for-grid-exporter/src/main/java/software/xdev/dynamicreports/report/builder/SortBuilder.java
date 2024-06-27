@@ -17,73 +17,47 @@
  */
 package software.xdev.dynamicreports.report.builder;
 
-import software.xdev.dynamicreports.report.base.DRSort;
-import software.xdev.dynamicreports.report.builder.column.TextColumnBuilder;
-import software.xdev.dynamicreports.report.constant.Constants;
-import software.xdev.dynamicreports.report.constant.OrderType;
-import software.xdev.dynamicreports.report.definition.expression.DRIExpression;
 import org.apache.commons.lang3.Validate;
 
-/**
- * <p>SortBuilder class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class SortBuilder extends AbstractBuilder<SortBuilder, DRSort> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
+import software.xdev.dynamicreports.report.base.DRSort;
+import software.xdev.dynamicreports.report.builder.column.TextColumnBuilder;
+import software.xdev.dynamicreports.report.constant.OrderType;
+import software.xdev.dynamicreports.report.definition.expression.DRIExpression;
 
-    /**
-     * <p>Constructor for SortBuilder.</p>
-     *
-     * @param column a {@link software.xdev.dynamicreports.report.builder.column.TextColumnBuilder} object.
-     */
-    protected SortBuilder(TextColumnBuilder<?> column) {
-        super(new DRSort());
-        Validate.notNull(column, "column must not be null");
-        getObject().setExpression(column.build());
-    }
 
-    /**
-     * <p>Constructor for SortBuilder.</p>
-     *
-     * @param field a {@link software.xdev.dynamicreports.report.builder.FieldBuilder} object.
-     */
-    protected SortBuilder(FieldBuilder<?> field) {
-        super(new DRSort());
-        Validate.notNull(field, "field must not be null");
-        getObject().setExpression(field.build());
-    }
+public class SortBuilder extends AbstractBuilder<SortBuilder, DRSort>
+{
 
-    /**
-     * <p>Constructor for SortBuilder.</p>
-     *
-     * @param variable a {@link software.xdev.dynamicreports.report.builder.VariableBuilder} object.
-     */
-    protected SortBuilder(VariableBuilder<?> variable) {
-        super(new DRSort());
-        Validate.notNull(variable, "variable must not be null");
-        getObject().setExpression(variable.build());
-    }
-
-    /**
-     * <p>Constructor for SortBuilder.</p>
-     *
-     * @param expression a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     */
-    protected SortBuilder(DRIExpression<?> expression) {
-        super(new DRSort());
-        getObject().setExpression(expression);
-    }
-
-    /**
-     * <p>setOrderType.</p>
-     *
-     * @param orderType a {@link software.xdev.dynamicreports.report.constant.OrderType} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.SortBuilder} object.
-     */
-    public SortBuilder setOrderType(OrderType orderType) {
-        getObject().setOrderType(orderType);
-        return this;
-    }
+	protected SortBuilder(final TextColumnBuilder<?> column)
+	{
+		super(new DRSort());
+		Validate.notNull(column, "column must not be null");
+		this.getObject().setExpression(column.build());
+	}
+	
+	protected SortBuilder(final FieldBuilder<?> field)
+	{
+		super(new DRSort());
+		Validate.notNull(field, "field must not be null");
+		this.getObject().setExpression(field.build());
+	}
+	
+	protected SortBuilder(final VariableBuilder<?> variable)
+	{
+		super(new DRSort());
+		Validate.notNull(variable, "variable must not be null");
+		this.getObject().setExpression(variable.build());
+	}
+	
+	protected SortBuilder(final DRIExpression<?> expression)
+	{
+		super(new DRSort());
+		this.getObject().setExpression(expression);
+	}
+	
+	public SortBuilder setOrderType(final OrderType orderType)
+	{
+		this.getObject().setOrderType(orderType);
+		return this;
+	}
 }

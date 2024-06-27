@@ -17,64 +17,25 @@
  */
 package software.xdev.dynamicreports.design.definition;
 
-import software.xdev.dynamicreports.report.constant.PageOrientation;
-
 import java.io.Serializable;
 
-/**
- * <p>DRIDesignPage interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface DRIDesignPage extends Serializable {
+import software.xdev.dynamicreports.report.constant.PageOrientation;
 
-    /**
-     * <p>getWidth.</p>
-     *
-     * @return a int.
-     */
-    public int getWidth();
 
-    /**
-     * <p>getHeight.</p>
-     *
-     * @return a int.
-     */
-    public int getHeight();
-
-    /**
-     * <p>getOrientation.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.constant.PageOrientation} object.
-     */
-    public PageOrientation getOrientation();
-
-    /**
-     * <p>getMargin.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.design.definition.DRIDesignMargin} object.
-     */
-    public DRIDesignMargin getMargin();
-
-    /**
-     * <p>getColumnsPerPage.</p>
-     *
-     * @return a int.
-     */
-    public int getColumnsPerPage();
-
-    /**
-     * <p>getColumnSpace.</p>
-     *
-     * @return a int.
-     */
-    public int getColumnSpace();
-
-    /**
-     * <p>getColumnWidth.</p>
-     *
-     * @return a int.
-     */
-    public int getColumnWidth();
+public interface DRIDesignPage extends Serializable
+{
+	
+	public int getWidth();
+	
+	public int getHeight();
+	
+	public PageOrientation getOrientation();
+	
+	public DRIDesignMargin getMargin();
+	
+	public int getColumnsPerPage();
+	
+	public int getColumnSpace();
+	
+	public int getColumnWidth();
 }

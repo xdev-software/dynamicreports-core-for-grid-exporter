@@ -17,85 +17,52 @@
  */
 package software.xdev.dynamicreports.report.builder.group;
 
-import software.xdev.dynamicreports.report.builder.FieldBuilder;
-import software.xdev.dynamicreports.report.builder.expression.Expressions;
-import software.xdev.dynamicreports.report.constant.Constants;
-import software.xdev.dynamicreports.report.constant.GroupHeaderLayout;
-import software.xdev.dynamicreports.report.definition.expression.DRIExpression;
 import org.apache.commons.lang3.Validate;
 
-/**
- * <p>CustomGroupBuilder class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class CustomGroupBuilder extends GroupBuilder<CustomGroupBuilder> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
+import software.xdev.dynamicreports.report.builder.FieldBuilder;
+import software.xdev.dynamicreports.report.builder.expression.Expressions;
+import software.xdev.dynamicreports.report.constant.GroupHeaderLayout;
+import software.xdev.dynamicreports.report.definition.expression.DRIExpression;
 
-    /**
-     * <p>Constructor for CustomGroupBuilder.</p>
-     *
-     * @param field a {@link software.xdev.dynamicreports.report.builder.FieldBuilder} object.
-     */
-    protected CustomGroupBuilder(FieldBuilder<?> field) {
-        Validate.notNull(field, "field must not be null");
-        setValueExpression(field.build());
-    }
 
-    /**
-     * <p>Constructor for CustomGroupBuilder.</p>
-     *
-     * @param name  a {@link java.lang.String} object.
-     * @param field a {@link software.xdev.dynamicreports.report.builder.FieldBuilder} object.
-     */
-    protected CustomGroupBuilder(String name, FieldBuilder<?> field) {
-        super(name);
-        Validate.notNull(field, "field must not be null");
-        setValueExpression(field.build());
-    }
+public class CustomGroupBuilder extends GroupBuilder<CustomGroupBuilder>
+{
 
-    /**
-     * <p>Constructor for CustomGroupBuilder.</p>
-     *
-     * @param valueExpression a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     */
-    protected CustomGroupBuilder(DRIExpression<?> valueExpression) {
-        setValueExpression(valueExpression);
-    }
-
-    /**
-     * <p>Constructor for CustomGroupBuilder.</p>
-     *
-     * @param name            a {@link java.lang.String} object.
-     * @param valueExpression a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     */
-    protected CustomGroupBuilder(String name, DRIExpression<?> valueExpression) {
-        super(name);
-        setValueExpression(valueExpression);
-    }
-
-    /**
-     * <p>setTitle.</p>
-     *
-     * @param titleExpression a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.group.CustomGroupBuilder} object.
-     */
-    public CustomGroupBuilder setTitle(DRIExpression<?> titleExpression) {
-        getObject().setTitleExpression(titleExpression);
-        getObject().setHeaderLayout(GroupHeaderLayout.TITLE_AND_VALUE);
-        return this;
-    }
-
-    /**
-     * <p>setTitle.</p>
-     *
-     * @param title a {@link java.lang.String} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.group.CustomGroupBuilder} object.
-     */
-    public CustomGroupBuilder setTitle(String title) {
-        getObject().setTitleExpression(Expressions.text(title));
-        getObject().setHeaderLayout(GroupHeaderLayout.TITLE_AND_VALUE);
-        return this;
-    }
+	protected CustomGroupBuilder(final FieldBuilder<?> field)
+	{
+		Validate.notNull(field, "field must not be null");
+		this.setValueExpression(field.build());
+	}
+	
+	protected CustomGroupBuilder(final String name, final FieldBuilder<?> field)
+	{
+		super(name);
+		Validate.notNull(field, "field must not be null");
+		this.setValueExpression(field.build());
+	}
+	
+	protected CustomGroupBuilder(final DRIExpression<?> valueExpression)
+	{
+		this.setValueExpression(valueExpression);
+	}
+	
+	protected CustomGroupBuilder(final String name, final DRIExpression<?> valueExpression)
+	{
+		super(name);
+		this.setValueExpression(valueExpression);
+	}
+	
+	public CustomGroupBuilder setTitle(final DRIExpression<?> titleExpression)
+	{
+		this.getObject().setTitleExpression(titleExpression);
+		this.getObject().setHeaderLayout(GroupHeaderLayout.TITLE_AND_VALUE);
+		return this;
+	}
+	
+	public CustomGroupBuilder setTitle(final String title)
+	{
+		this.getObject().setTitleExpression(Expressions.text(title));
+		this.getObject().setHeaderLayout(GroupHeaderLayout.TITLE_AND_VALUE);
+		return this;
+	}
 }

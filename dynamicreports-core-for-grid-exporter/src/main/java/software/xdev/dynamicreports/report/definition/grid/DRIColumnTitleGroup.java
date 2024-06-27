@@ -25,97 +25,32 @@ import software.xdev.dynamicreports.report.definition.expression.DRIExpression;
 import software.xdev.dynamicreports.report.definition.expression.DRIPropertyExpression;
 import software.xdev.dynamicreports.report.definition.style.DRIReportStyle;
 
-/**
- * <p>DRIColumnTitleGroup interface.</p>
- *
- * @author Ricardo Mariaca, Jan Moxter
- * 
- */
-public interface DRIColumnTitleGroup extends DRIColumnGridComponent {
 
-    /**
-     * <p>getList.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.definition.grid.DRIColumnGridList} object.
-     */
-    DRIColumnGridList getList();
-
-    /**
-     * <p>getTitleExpression.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     */
-    DRIExpression<?> getTitleExpression();
-
-    /**
-     * <p>getTitleStyle.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.definition.style.DRIReportStyle} object.
-     */
-    DRIReportStyle getTitleStyle();
-
-    /**
-     * <p>getTitleWidth.</p>
-     *
-     * @return a {@link java.lang.Integer} object.
-     */
-    Integer getTitleWidth();
-
-    /**
-     * <p>getTitleWidthType.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.constant.ComponentDimensionType} object.
-     */
-    ComponentDimensionType getTitleWidthType();
-
-    /**
-     * <p>getTitleColumns.</p>
-     *
-     * @return a {@link java.lang.Integer} object.
-     */
-    Integer getTitleColumns();
-
-    /**
-     * <p>getTitleHeight.</p>
-     *
-     * @return a {@link java.lang.Integer} object.
-     */
-    Integer getTitleHeight();
-
-    /**
-     * <p>getTitleHeightType.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.constant.ComponentDimensionType} object.
-     */
-    ComponentDimensionType getTitleHeightType();
-
-    /**
-     * <p>getTitleRows.</p>
-     *
-     * @return a {@link java.lang.Integer} object.
-     */
-    Integer getTitleRows();
-
-    /**
-     * <p>getTitleStretchWithOverflow.</p>
-     *
-     * @return a {@link java.lang.Boolean} object.
-     * @deprecated replaced by {@link #getTitleTextAdjust()}
-     */
-    @Deprecated
-    Boolean getTitleStretchWithOverflow();
-
-    /**
-     * <p>getTitleTextAdjust.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.constant.TextAdjust} object.
-     */
-    TextAdjust getTitleTextAdjust();
-
-    /**
-     * <p>getTitlePropertyExpressions.</p>
-     *
-     * @return a {@link java.util.List} object.
-     */
-    List<DRIPropertyExpression> getTitlePropertyExpressions();
+public interface DRIColumnTitleGroup extends DRIColumnGridComponent
+{
+	
+	DRIColumnGridList getList();
+	
+	DRIExpression<?> getTitleExpression();
+	
+	DRIReportStyle getTitleStyle();
+	
+	Integer getTitleWidth();
+	
+	ComponentDimensionType getTitleWidthType();
+	
+	Integer getTitleColumns();
+	
+	Integer getTitleHeight();
+	
+	ComponentDimensionType getTitleHeightType();
+	
+	Integer getTitleRows();
+	
+	@Deprecated
+	Boolean getTitleStretchWithOverflow();
+	
+	TextAdjust getTitleTextAdjust();
+	
+	List<DRIPropertyExpression> getTitlePropertyExpressions();
 }

@@ -17,53 +17,23 @@
  */
 package software.xdev.dynamicreports.design.definition.component;
 
+import java.util.List;
+
 import software.xdev.dynamicreports.design.constant.EvaluationTime;
 import software.xdev.dynamicreports.design.definition.DRIDesignGroup;
 import software.xdev.dynamicreports.design.definition.expression.DRIDesignParameterExpression;
 
-import java.util.List;
 
-/**
- * <p>DRIDesignGenericElement interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface DRIDesignGenericElement extends DRIDesignComponent {
-
-    /**
-     * <p>getGenericElementNamespace.</p>
-     *
-     * @return a {@link java.lang.String} object.
-     */
-    public String getGenericElementNamespace();
-
-    /**
-     * <p>getGenericElementName.</p>
-     *
-     * @return a {@link java.lang.String} object.
-     */
-    public String getGenericElementName();
-
-    /**
-     * <p>getEvaluationTime.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.design.constant.EvaluationTime} object.
-     */
-    public EvaluationTime getEvaluationTime();
-
-    /**
-     * <p>getEvaluationGroup.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.design.definition.DRIDesignGroup} object.
-     */
-    public DRIDesignGroup getEvaluationGroup();
-
-    /**
-     * <p>getParameterExpressions.</p>
-     *
-     * @return a {@link java.util.List} object.
-     */
-    public List<DRIDesignParameterExpression> getParameterExpressions();
-
+public interface DRIDesignGenericElement extends DRIDesignComponent
+{
+	
+	public String getGenericElementNamespace();
+	
+	public String getGenericElementName();
+	
+	public EvaluationTime getEvaluationTime();
+	
+	public DRIDesignGroup getEvaluationGroup();
+	
+	public List<DRIDesignParameterExpression> getParameterExpressions();
 }

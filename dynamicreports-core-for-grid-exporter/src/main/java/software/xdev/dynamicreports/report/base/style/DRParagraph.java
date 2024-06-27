@@ -17,172 +17,128 @@
  */
 package software.xdev.dynamicreports.report.base.style;
 
-import software.xdev.dynamicreports.report.constant.Constants;
+import java.util.ArrayList;
+import java.util.List;
+
 import software.xdev.dynamicreports.report.constant.LineSpacing;
 import software.xdev.dynamicreports.report.definition.style.DRIParagraph;
 import software.xdev.dynamicreports.report.definition.style.DRITabStop;
 
-import java.util.ArrayList;
-import java.util.List;
 
-/**
- * <p>DRParagraph class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class DRParagraph implements DRIParagraph {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
+public class DRParagraph implements DRIParagraph
+{
 
-    private LineSpacing lineSpacing;
-    private Float lineSpacingSize;
-    private Integer firstLineIndent;
-    private Integer leftIndent;
-    private Integer rightIndent;
-    private Integer spacingBefore;
-    private Integer spacingAfter;
-    private Integer tabStopWidth;
-    private List<DRITabStop> tabStops;
-
-    /**
-     * <p>Constructor for DRParagraph.</p>
-     */
-    public DRParagraph() {
-        tabStops = new ArrayList<DRITabStop>();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public LineSpacing getLineSpacing() {
-        return lineSpacing;
-    }
-
-    /**
-     * <p>Setter for the field <code>lineSpacing</code>.</p>
-     *
-     * @param lineSpacing a {@link software.xdev.dynamicreports.report.constant.LineSpacing} object.
-     */
-    public void setLineSpacing(LineSpacing lineSpacing) {
-        this.lineSpacing = lineSpacing;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Float getLineSpacingSize() {
-        return lineSpacingSize;
-    }
-
-    /**
-     * <p>Setter for the field <code>lineSpacingSize</code>.</p>
-     *
-     * @param lineSpacingSize a {@link java.lang.Float} object.
-     */
-    public void setLineSpacingSize(Float lineSpacingSize) {
-        this.lineSpacingSize = lineSpacingSize;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Integer getFirstLineIndent() {
-        return firstLineIndent;
-    }
-
-    /**
-     * <p>Setter for the field <code>firstLineIndent</code>.</p>
-     *
-     * @param firstLineIndent a {@link java.lang.Integer} object.
-     */
-    public void setFirstLineIndent(Integer firstLineIndent) {
-        this.firstLineIndent = firstLineIndent;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Integer getLeftIndent() {
-        return leftIndent;
-    }
-
-    /**
-     * <p>Setter for the field <code>leftIndent</code>.</p>
-     *
-     * @param leftIndent a {@link java.lang.Integer} object.
-     */
-    public void setLeftIndent(Integer leftIndent) {
-        this.leftIndent = leftIndent;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Integer getRightIndent() {
-        return rightIndent;
-    }
-
-    /**
-     * <p>Setter for the field <code>rightIndent</code>.</p>
-     *
-     * @param rightIndent a {@link java.lang.Integer} object.
-     */
-    public void setRightIndent(Integer rightIndent) {
-        this.rightIndent = rightIndent;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Integer getSpacingBefore() {
-        return spacingBefore;
-    }
-
-    /**
-     * <p>Setter for the field <code>spacingBefore</code>.</p>
-     *
-     * @param spacingBefore a {@link java.lang.Integer} object.
-     */
-    public void setSpacingBefore(Integer spacingBefore) {
-        this.spacingBefore = spacingBefore;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Integer getSpacingAfter() {
-        return spacingAfter;
-    }
-
-    /**
-     * <p>Setter for the field <code>spacingAfter</code>.</p>
-     *
-     * @param spacingAfter a {@link java.lang.Integer} object.
-     */
-    public void setSpacingAfter(Integer spacingAfter) {
-        this.spacingAfter = spacingAfter;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Integer getTabStopWidth() {
-        return tabStopWidth;
-    }
-
-    /**
-     * <p>Setter for the field <code>tabStopWidth</code>.</p>
-     *
-     * @param tabStopWidth a {@link java.lang.Integer} object.
-     */
-    public void setTabStopWidth(Integer tabStopWidth) {
-        this.tabStopWidth = tabStopWidth;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public List<DRITabStop> getTabStops() {
-        return tabStops;
-    }
-
-    /**
-     * <p>Setter for the field <code>tabStops</code>.</p>
-     *
-     * @param tabStops a {@link java.util.List} object.
-     */
-    public void setTabStops(List<DRITabStop> tabStops) {
-        this.tabStops = tabStops;
-    }
+	private LineSpacing lineSpacing;
+	private Float lineSpacingSize;
+	private Integer firstLineIndent;
+	private Integer leftIndent;
+	private Integer rightIndent;
+	private Integer spacingBefore;
+	private Integer spacingAfter;
+	private Integer tabStopWidth;
+	private List<DRITabStop> tabStops;
+	
+	public DRParagraph()
+	{
+		this.tabStops = new ArrayList<>();
+	}
+	
+	@Override
+	public LineSpacing getLineSpacing()
+	{
+		return this.lineSpacing;
+	}
+	
+	public void setLineSpacing(final LineSpacing lineSpacing)
+	{
+		this.lineSpacing = lineSpacing;
+	}
+	
+	@Override
+	public Float getLineSpacingSize()
+	{
+		return this.lineSpacingSize;
+	}
+	
+	public void setLineSpacingSize(final Float lineSpacingSize)
+	{
+		this.lineSpacingSize = lineSpacingSize;
+	}
+	
+	@Override
+	public Integer getFirstLineIndent()
+	{
+		return this.firstLineIndent;
+	}
+	
+	public void setFirstLineIndent(final Integer firstLineIndent)
+	{
+		this.firstLineIndent = firstLineIndent;
+	}
+	
+	@Override
+	public Integer getLeftIndent()
+	{
+		return this.leftIndent;
+	}
+	
+	public void setLeftIndent(final Integer leftIndent)
+	{
+		this.leftIndent = leftIndent;
+	}
+	
+	@Override
+	public Integer getRightIndent()
+	{
+		return this.rightIndent;
+	}
+	
+	public void setRightIndent(final Integer rightIndent)
+	{
+		this.rightIndent = rightIndent;
+	}
+	
+	@Override
+	public Integer getSpacingBefore()
+	{
+		return this.spacingBefore;
+	}
+	
+	public void setSpacingBefore(final Integer spacingBefore)
+	{
+		this.spacingBefore = spacingBefore;
+	}
+	
+	@Override
+	public Integer getSpacingAfter()
+	{
+		return this.spacingAfter;
+	}
+	
+	public void setSpacingAfter(final Integer spacingAfter)
+	{
+		this.spacingAfter = spacingAfter;
+	}
+	
+	@Override
+	public Integer getTabStopWidth()
+	{
+		return this.tabStopWidth;
+	}
+	
+	public void setTabStopWidth(final Integer tabStopWidth)
+	{
+		this.tabStopWidth = tabStopWidth;
+	}
+	
+	@Override
+	public List<DRITabStop> getTabStops()
+	{
+		return this.tabStops;
+	}
+	
+	public void setTabStops(final List<DRITabStop> tabStops)
+	{
+		this.tabStops = tabStops;
+	}
 }

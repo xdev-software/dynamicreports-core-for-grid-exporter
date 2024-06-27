@@ -17,30 +17,16 @@
  */
 package software.xdev.dynamicreports.report.definition;
 
+import java.io.Serializable;
+
 import software.xdev.dynamicreports.report.constant.OrderType;
 import software.xdev.dynamicreports.report.definition.expression.DRIExpression;
 
-import java.io.Serializable;
 
-/**
- * <p>DRISort interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface DRISort extends Serializable {
-
-    /**
-     * <p>getExpression.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     */
-    public DRIExpression<?> getExpression();
-
-    /**
-     * <p>getOrderType.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.constant.OrderType} object.
-     */
-    public OrderType getOrderType();
+public interface DRISort extends Serializable
+{
+	
+	public DRIExpression<?> getExpression();
+	
+	public OrderType getOrderType();
 }

@@ -17,66 +17,51 @@
  */
 package software.xdev.dynamicreports.report.base;
 
-import software.xdev.dynamicreports.report.constant.Constants;
-import software.xdev.dynamicreports.report.definition.DRIParameter;
 import org.apache.commons.lang3.Validate;
 
-/**
- * <p>DRParameter class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class DRParameter<T> implements DRIParameter<T> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
+import software.xdev.dynamicreports.report.definition.DRIParameter;
 
-    private String name;
-    private Class<T> valueClass;
-    private T value;
 
-    @SuppressWarnings("unchecked")
-    /**
-     * <p>Constructor for DRParameter.</p>
-     *
-     * @param name a {@link java.lang.String} object.
-     * @param value a T object.
-     */
-    public DRParameter(String name, T value) {
-        Validate.notEmpty(name, "name must not be empty");
-        Validate.notNull(value, "value must not be null");
-        this.name = name;
-        this.valueClass = (Class<T>) value.getClass();
-        this.value = value;
-    }
+public class DRParameter<T> implements DRIParameter<T>
+{
 
-    /**
-     * <p>Constructor for DRParameter.</p>
-     *
-     * @param name       a {@link java.lang.String} object.
-     * @param valueClass a {@link java.lang.Class} object.
-     */
-    public DRParameter(String name, Class<T> valueClass) {
-        Validate.notEmpty(name, "name must not be empty");
-        Validate.notNull(valueClass, "valueClass must not be null");
-        this.name = name;
-        this.valueClass = valueClass;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public String getName() {
-        return name;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Class<T> getValueClass() {
-        return valueClass;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public T getValue() {
-        return value;
-    }
+	private final String name;
+	private final Class<T> valueClass;
+	private T value;
+	
+	@SuppressWarnings("unchecked")
+	public DRParameter(final String name, final T value)
+	{
+		Validate.notEmpty(name, "name must not be empty");
+		Validate.notNull(value, "value must not be null");
+		this.name = name;
+		this.valueClass = (Class<T>)value.getClass();
+		this.value = value;
+	}
+	
+	public DRParameter(final String name, final Class<T> valueClass)
+	{
+		Validate.notEmpty(name, "name must not be empty");
+		Validate.notNull(valueClass, "valueClass must not be null");
+		this.name = name;
+		this.valueClass = valueClass;
+	}
+	
+	@Override
+	public String getName()
+	{
+		return this.name;
+	}
+	
+	@Override
+	public Class<T> getValueClass()
+	{
+		return this.valueClass;
+	}
+	
+	@Override
+	public T getValue()
+	{
+		return this.value;
+	}
 }

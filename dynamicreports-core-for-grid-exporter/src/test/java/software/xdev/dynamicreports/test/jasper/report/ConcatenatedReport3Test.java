@@ -27,17 +27,14 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import net.sf.jasperreports.engine.fill.JRSwapFileVirtualizer;
+import net.sf.jasperreports.engine.util.JRSwapFile;
 import software.xdev.dynamicreports.jasper.base.reporthandler.JasperPrintListFileHandler;
 import software.xdev.dynamicreports.jasper.builder.JasperConcatenatedReportBuilder;
 import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
 import software.xdev.dynamicreports.report.exception.DRException;
-import net.sf.jasperreports.engine.fill.JRSwapFileVirtualizer;
-import net.sf.jasperreports.engine.util.JRSwapFile;
 
 
-/**
- * @author Ricardo Mariaca
- */
 class ConcatenatedReport3Test
 {
 	JasperConcatenatedReportBuilder concatenatedReport;

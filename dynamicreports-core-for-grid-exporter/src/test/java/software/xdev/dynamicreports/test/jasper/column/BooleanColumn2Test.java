@@ -25,21 +25,17 @@ import java.util.Locale;
 
 import org.junit.jupiter.api.Assertions;
 
+import net.sf.jasperreports.engine.JRDataSource;
+import net.sf.jasperreports.engine.JRPrintImage;
 import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
 import software.xdev.dynamicreports.report.constant.BooleanComponentType;
 import software.xdev.dynamicreports.report.datasource.DRDataSource;
 import software.xdev.dynamicreports.test.jasper.AbstractJasperValueTest;
-import net.sf.jasperreports.engine.JRDataSource;
-import net.sf.jasperreports.engine.JRPrintImage;
 
 
-/**
- * @author Ricardo Mariaca
- */
 public class BooleanColumn2Test extends AbstractJasperValueTest implements Serializable
 {
-	private static final long serialVersionUID = 1L;
-	
+
 	@Override
 	protected void configureReport(final JasperReportBuilder rb)
 	{
@@ -56,15 +52,15 @@ public class BooleanColumn2Test extends AbstractJasperValueTest implements Seria
 	public void test()
 	{
 		super.test();
-        
-        this.numberOfPagesTest(1);
-        
-        this.elementCountTest("detail.column_field11", 3);
-        this.elementValueTest("detail.column_field11", "True", "False", "");
-        
-        this.elementCountTest("detail.column_field12", 3);
-        this.elementValueTest("detail.column_field12", "True", "False", "False");
-        
+		
+		this.numberOfPagesTest(1);
+		
+		this.elementCountTest("detail.column_field11", 3);
+		this.elementValueTest("detail.column_field11", "True", "False", "");
+		
+		this.elementCountTest("detail.column_field12", 3);
+		this.elementValueTest("detail.column_field12", "True", "False", "False");
+		
 		Assertions.assertNull((((JRPrintImage)this.getElementAt("detail.column_field13", 2)).getRenderer()));
 	}
 	

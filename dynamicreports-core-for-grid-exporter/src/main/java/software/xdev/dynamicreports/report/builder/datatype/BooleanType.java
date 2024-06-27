@@ -20,35 +20,29 @@ package software.xdev.dynamicreports.report.builder.datatype;
 import java.util.Locale;
 
 import software.xdev.dynamicreports.report.base.datatype.AbstractDataType;
-import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.constant.HorizontalTextAlignment;
 import software.xdev.dynamicreports.report.defaults.Defaults;
 import software.xdev.dynamicreports.report.exception.DRException;
 
-/**
- * <p>BooleanType class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class BooleanType extends AbstractDataType<Boolean, Boolean> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    /** {@inheritDoc} */
-    @Override
-    public String getPattern() {
-        return Defaults.getDefaults().getBooleanType().getPattern();
-    }
+public class BooleanType extends AbstractDataType<Boolean, Boolean>
+{
 
-    /** {@inheritDoc} */
-    @Override
-    public HorizontalTextAlignment getHorizontalTextAlignment() {
-        return Defaults.getDefaults().getBooleanType().getHorizontalTextAlignment();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Boolean stringToValue(final String value, final Locale locale) throws DRException {
-        return Boolean.parseBoolean(value);
-    }
+	@Override
+	public String getPattern()
+	{
+		return Defaults.getDefaults().getBooleanType().getPattern();
+	}
+	
+	@Override
+	public HorizontalTextAlignment getHorizontalTextAlignment()
+	{
+		return Defaults.getDefaults().getBooleanType().getHorizontalTextAlignment();
+	}
+	
+	@Override
+	public Boolean stringToValue(final String value, final Locale locale) throws DRException
+	{
+		return Boolean.parseBoolean(value);
+	}
 }

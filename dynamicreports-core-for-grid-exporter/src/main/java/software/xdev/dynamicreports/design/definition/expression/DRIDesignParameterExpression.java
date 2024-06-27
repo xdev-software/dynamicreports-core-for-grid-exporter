@@ -19,25 +19,11 @@ package software.xdev.dynamicreports.design.definition.expression;
 
 import java.io.Serializable;
 
-/**
- * <p>DRIDesignParameterExpression interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface DRIDesignParameterExpression extends Serializable {
 
-    /**
-     * <p>getName.</p>
-     *
-     * @return a {@link java.lang.String} object.
-     */
-    public String getName();
-
-    /**
-     * <p>getValueExpression.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.design.definition.expression.DRIDesignExpression} object.
-     */
-    public DRIDesignExpression getValueExpression();
+public interface DRIDesignParameterExpression extends Serializable
+{
+	
+	public String getName();
+	
+	public DRIDesignExpression getValueExpression();
 }

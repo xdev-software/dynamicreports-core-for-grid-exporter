@@ -17,12 +17,7 @@
  */
 package software.xdev.dynamicreports.report.constant;
 
-/**
- * <p>VerticalImageAlignment class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public enum VerticalImageAlignment {
-    TOP, MIDDLE, BOTTOM
+public enum VerticalImageAlignment
+{
+	TOP, MIDDLE, BOTTOM
 }

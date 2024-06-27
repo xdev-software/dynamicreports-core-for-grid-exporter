@@ -18,43 +18,25 @@
 package software.xdev.dynamicreports.jasper.builder.export;
 
 import software.xdev.dynamicreports.jasper.base.export.JasperOdtExporter;
-import software.xdev.dynamicreports.report.constant.Constants;
 
-/**
- * <p>JasperOdtExporterBuilder class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class JasperOdtExporterBuilder extends AbstractJasperExporterBuilder<JasperOdtExporterBuilder, JasperOdtExporter> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    /**
-     * <p>Constructor for JasperOdtExporterBuilder.</p>
-     */
-    protected JasperOdtExporterBuilder() {
-        super(new JasperOdtExporter());
-    }
+public class JasperOdtExporterBuilder extends AbstractJasperExporterBuilder<JasperOdtExporterBuilder, JasperOdtExporter>
+{
 
-    /**
-     * <p>setFlexibleRowHeight.</p>
-     *
-     * @param flexibleRowHeight a {@link java.lang.Boolean} object.
-     * @return a {@link software.xdev.dynamicreports.jasper.builder.export.JasperOdtExporterBuilder} object.
-     */
-    public JasperOdtExporterBuilder setFlexibleRowHeight(Boolean flexibleRowHeight) {
-        this.getObject().setFlexibleRowHeight(flexibleRowHeight);
-        return this;
-    }
-
-    /**
-     * <p>setIgnoreHyperLink.</p>
-     *
-     * @param ignoreHyperLink a {@link java.lang.Boolean} object.
-     * @return a {@link software.xdev.dynamicreports.jasper.builder.export.JasperOdtExporterBuilder} object.
-     */
-    public JasperOdtExporterBuilder setIgnoreHyperLink(Boolean ignoreHyperLink) {
-        this.getObject().setIgnoreHyperLink(ignoreHyperLink);
-        return this;
-    }
+	protected JasperOdtExporterBuilder()
+	{
+		super(new JasperOdtExporter());
+	}
+	
+	public JasperOdtExporterBuilder setFlexibleRowHeight(final Boolean flexibleRowHeight)
+	{
+		this.getObject().setFlexibleRowHeight(flexibleRowHeight);
+		return this;
+	}
+	
+	public JasperOdtExporterBuilder setIgnoreHyperLink(final Boolean ignoreHyperLink)
+	{
+		this.getObject().setIgnoreHyperLink(ignoreHyperLink);
+		return this;
+	}
 }

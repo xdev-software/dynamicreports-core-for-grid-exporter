@@ -17,30 +17,31 @@
  */
 package software.xdev.dynamicreports.test.jasper.report;
 
+import static software.xdev.dynamicreports.report.builder.DynamicReports.cmp;
+
 import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
 import software.xdev.dynamicreports.report.constant.PageOrientation;
 import software.xdev.dynamicreports.report.constant.PageType;
 import software.xdev.dynamicreports.test.jasper.AbstractJasperPositionTest;
 
-import static software.xdev.dynamicreports.report.builder.DynamicReports.cmp;
 
-/**
- * @author Ricardo Mariaca
- */
-public class ReportBackground3Test extends AbstractJasperPositionTest {
-
-    @Override
-    protected void configureReport(JasperReportBuilder rb) {
-        rb.setPageFormat(PageType.A4, PageOrientation.LANDSCAPE).setBackgroundBackgroundComponent(cmp.rectangle());
-    }
-
-    @Override
-    public void test() {
-        super.test();
-
-        numberOfPagesTest(1);
-
-        elementPositionTest("background.list1", 0, 10, 10, 822, 575);
-        elementPositionTest("background.list1.background", 0, 0, 0, 822, 575);
-    }
+public class ReportBackground3Test extends AbstractJasperPositionTest
+{
+	
+	@Override
+	protected void configureReport(final JasperReportBuilder rb)
+	{
+		rb.setPageFormat(PageType.A4, PageOrientation.LANDSCAPE).setBackgroundBackgroundComponent(cmp.rectangle());
+	}
+	
+	@Override
+	public void test()
+	{
+		super.test();
+		
+		this.numberOfPagesTest(1);
+		
+		this.elementPositionTest("background.list1", 0, 10, 10, 822, 575);
+		this.elementPositionTest("background.list1.background", 0, 0, 0, 822, 575);
+	}
 }

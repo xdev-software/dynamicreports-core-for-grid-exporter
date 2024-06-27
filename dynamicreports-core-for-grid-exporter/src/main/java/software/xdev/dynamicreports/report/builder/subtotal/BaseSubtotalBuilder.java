@@ -17,6 +17,8 @@
  */
 package software.xdev.dynamicreports.report.builder.subtotal;
 
+import org.apache.commons.lang3.Validate;
+
 import software.xdev.dynamicreports.report.base.DRSubtotal;
 import software.xdev.dynamicreports.report.builder.AbstractBuilder;
 import software.xdev.dynamicreports.report.builder.HyperLinkBuilder;
@@ -25,373 +27,231 @@ import software.xdev.dynamicreports.report.builder.expression.Expressions;
 import software.xdev.dynamicreports.report.builder.group.GroupBuilder;
 import software.xdev.dynamicreports.report.builder.style.ReportStyleBuilder;
 import software.xdev.dynamicreports.report.constant.ComponentDimensionType;
-import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.constant.Position;
 import software.xdev.dynamicreports.report.constant.SubtotalPosition;
 import software.xdev.dynamicreports.report.definition.datatype.DRIDataType;
 import software.xdev.dynamicreports.report.definition.expression.DRIExpression;
 import software.xdev.dynamicreports.report.definition.expression.DRIValueFormatter;
-import org.apache.commons.lang3.Validate;
 
-/**
- * <p>Abstract BaseSubtotalBuilder class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
+
 @SuppressWarnings("unchecked")
-public abstract class BaseSubtotalBuilder<T extends BaseSubtotalBuilder<T, U>, U> extends AbstractBuilder<T, DRSubtotal<U>> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
+public abstract class BaseSubtotalBuilder<T extends BaseSubtotalBuilder<T, U>, U>
+	extends AbstractBuilder<T, DRSubtotal<U>>
+{
 
-    private DRIExpression<U> valueExpression;
-
-    /**
-     * <p>Constructor for BaseSubtotalBuilder.</p>
-     *
-     * @param showInColumn a {@link software.xdev.dynamicreports.report.builder.column.ColumnBuilder} object.
-     */
-    protected BaseSubtotalBuilder(ColumnBuilder<?, ?> showInColumn) {
-        super(new DRSubtotal<U>(showInColumn.build()));
-    }
-
-    /**
-     * <p>Setter for the field <code>valueExpression</code>.</p>
-     *
-     * @param valueExpression a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     */
-    protected void setValueExpression(DRIExpression<U> valueExpression) {
-        this.valueExpression = valueExpression;
-    }
-
-    /**
-     * <p>setShowInColumn.</p>
-     *
-     * @param showInColumn a {@link software.xdev.dynamicreports.report.builder.column.ColumnBuilder} object.
-     * @return a T object.
-     */
-    public T setShowInColumn(ColumnBuilder<?, ?> showInColumn) {
-        Validate.notNull(showInColumn, "showInColumn must not be null");
-        getObject().setShowInColumn(showInColumn.build());
-        return (T) this;
-    }
-
-    /**
-     * <p>setLabel.</p>
-     *
-     * @param labelExpression a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     * @return a T object.
-     */
-    public T setLabel(DRIExpression<?> labelExpression) {
-        getObject().setLabelExpression(labelExpression);
-        return (T) this;
-    }
-
-    /**
-     * <p>setLabel.</p>
-     *
-     * @param label a {@link java.lang.String} object.
-     * @return a T object.
-     */
-    public T setLabel(String label) {
-        getObject().setLabelExpression(Expressions.text(label));
-        return (T) this;
-    }
-
-    /**
-     * <p>setLabelStyle.</p>
-     *
-     * @param labelStyle a {@link software.xdev.dynamicreports.report.builder.style.ReportStyleBuilder} object.
-     * @return a T object.
-     */
-    public T setLabelStyle(ReportStyleBuilder labelStyle) {
-        if (labelStyle != null) {
-            getObject().setLabelStyle(labelStyle.getStyle());
-        } else {
-            getObject().setLabelStyle(null);
-        }
-        return (T) this;
-    }
-
-    /**
-     * <p>setLabelPosition.</p>
-     *
-     * @param labelPosition a {@link software.xdev.dynamicreports.report.constant.Position} object.
-     * @return a T object.
-     */
-    public T setLabelPosition(Position labelPosition) {
-        getObject().setLabelPosition(labelPosition);
-        return (T) this;
-    }
-
-    /**
-     * Sets the label component preferred width.
-     *
-     * @param width the label component preferred width >= 0
-     * @return a T object.
-     * @throws java.lang.IllegalArgumentException if <code>width</code> is < 0
-     * @see software.xdev.dynamicreports.report.builder.Units
-     */
-    public T setLabelWidth(Integer width) {
-        getObject().setLabelWidth(width);
-        return (T) this;
-    }
-
-    /**
-     * Sets the label component fixed width.
-     *
-     * @param width the label component fixed width >= 0
-     * @return a T object.
-     * @throws java.lang.IllegalArgumentException if <code>width</code> is < 0
-     * @see software.xdev.dynamicreports.report.builder.Units
-     */
-    public T setLabelFixedWidth(Integer width) {
-        getObject().setLabelWidth(width);
-        getObject().setLabelWidthType(ComponentDimensionType.FIXED);
-        return (T) this;
-    }
-
-    /**
-     * Sets the label component minimum width.
-     *
-     * @param width the label component minimum width >= 0
-     * @return a T object.
-     * @throws java.lang.IllegalArgumentException if <code>width</code> is < 0
-     * @see software.xdev.dynamicreports.report.builder.Units
-     */
-    public T setLabelMinWidth(Integer width) {
-        getObject().setLabelWidth(width);
-        getObject().setLabelWidthType(ComponentDimensionType.EXPAND);
-        return (T) this;
-    }
-
-    /**
-     * <p>setPattern.</p>
-     *
-     * @param pattern a {@link java.lang.String} object.
-     * @return a T object.
-     */
-    public T setPattern(String pattern) {
-        getObject().getValueField().setPattern(pattern);
-        return (T) this;
-    }
-
-    /**
-     * <p>setPattern.</p>
-     *
-     * @param patternExpression a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     * @return a T object.
-     */
-    public T setPattern(DRIExpression<String> patternExpression) {
-        getObject().getValueField().setPatternExpression(patternExpression);
-        return (T) this;
-    }
-
-    /**
-     * <p>setValueFormatter.</p>
-     *
-     * @param valueFormatter a {@link software.xdev.dynamicreports.report.definition.expression.DRIValueFormatter} object.
-     * @return a T object.
-     */
-    public T setValueFormatter(DRIValueFormatter<?, ? super U> valueFormatter) {
-        getObject().getValueField().setValueFormatter(valueFormatter);
-        return (T) this;
-    }
-
-    /**
-     * <p>setDataType.</p>
-     *
-     * @param dataType a {@link software.xdev.dynamicreports.report.definition.datatype.DRIDataType} object.
-     * @return a T object.
-     */
-    @SuppressWarnings("rawtypes")
-    public T setDataType(DRIDataType dataType) {
-        getObject().getValueField().setDataType(dataType);
-        return (T) this;
-    }
-
-    /**
-     * <p>setAnchorName.</p>
-     *
-     * @param anchorName a {@link java.lang.String} object.
-     * @return a T object.
-     */
-    public T setAnchorName(String anchorName) {
-        getObject().getValueField().setAnchorNameExpression(Expressions.text(anchorName));
-        return (T) this;
-    }
-
-    /**
-     * <p>setAnchorName.</p>
-     *
-     * @param anchorNameExpression a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     * @return a T object.
-     */
-    public T setAnchorName(DRIExpression<String> anchorNameExpression) {
-        getObject().getValueField().setAnchorNameExpression(anchorNameExpression);
-        return (T) this;
-    }
-
-    /**
-     * <p>setBookmarkLevel.</p>
-     *
-     * @param bookmarkLevel a {@link java.lang.Integer} object.
-     * @return a T object.
-     */
-    public T setBookmarkLevel(Integer bookmarkLevel) {
-        getObject().getValueField().setBookmarkLevel(bookmarkLevel);
-        return (T) this;
-    }
-
-    /**
-     * <p>setHyperLink.</p>
-     *
-     * @param hyperLink a {@link software.xdev.dynamicreports.report.builder.HyperLinkBuilder} object.
-     * @return a T object.
-     */
-    public T setHyperLink(HyperLinkBuilder hyperLink) {
-        if (hyperLink != null) {
-            getObject().getValueField().setHyperLink(hyperLink.getHyperLink());
-        } else {
-            getObject().getValueField().setHyperLink(null);
-        }
-        return (T) this;
-    }
-
-    /**
-     * <p>setRows.</p>
-     *
-     * @param rows a {@link java.lang.Integer} object.
-     * @return a T object.
-     */
-    public T setRows(Integer rows) {
-        getObject().getValueField().setRows(rows);
-        return (T) this;
-    }
-
-    /**
-     * <p>setFixedRows.</p>
-     *
-     * @param rows a {@link java.lang.Integer} object.
-     * @return a T object.
-     */
-    public T setFixedRows(Integer rows) {
-        getObject().getValueField().setRows(rows);
-        getObject().getValueField().setHeightType(ComponentDimensionType.FIXED);
-        return (T) this;
-    }
-
-    /**
-     * <p>setMinRows.</p>
-     *
-     * @param rows a {@link java.lang.Integer} object.
-     * @return a T object.
-     */
-    public T setMinRows(Integer rows) {
-        getObject().getValueField().setRows(rows);
-        getObject().getValueField().setHeightType(ComponentDimensionType.EXPAND);
-        return (T) this;
-    }
-
-    /**
-     * <p>setHeight.</p>
-     *
-     * @param height a {@link java.lang.Integer} object.
-     * @return a T object.
-     */
-    public T setHeight(Integer height) {
-        getObject().getValueField().setHeight(height);
-        return (T) this;
-    }
-
-    /**
-     * <p>setFixedHeight.</p>
-     *
-     * @param height a {@link java.lang.Integer} object.
-     * @return a T object.
-     */
-    public T setFixedHeight(Integer height) {
-        getObject().getValueField().setHeight(height);
-        getObject().getValueField().setHeightType(ComponentDimensionType.FIXED);
-        return (T) this;
-    }
-
-    /**
-     * <p>setMinHeight.</p>
-     *
-     * @param height a {@link java.lang.Integer} object.
-     * @return a T object.
-     */
-    public T setMinHeight(Integer height) {
-        getObject().getValueField().setHeight(height);
-        getObject().getValueField().setHeightType(ComponentDimensionType.EXPAND);
-        return (T) this;
-    }
-
-    /**
-     * <p>setStyle.</p>
-     *
-     * @param style a {@link software.xdev.dynamicreports.report.builder.style.ReportStyleBuilder} object.
-     * @return a T object.
-     */
-    public T setStyle(ReportStyleBuilder style) {
-        if (style != null) {
-            getObject().getValueField().setStyle(style.getStyle());
-        } else {
-            getObject().getValueField().setStyle(null);
-        }
-        return (T) this;
-    }
-
-    /**
-     * <p>setPrintWhenExpression.</p>
-     *
-     * @param printWhenExpression a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     * @return a T object.
-     */
-    public T setPrintWhenExpression(DRIExpression<Boolean> printWhenExpression) {
-        getObject().getValueField().setPrintWhenExpression(printWhenExpression);
-        return (T) this;
-    }
-
-    /**
-     * <p>setGroup.</p>
-     *
-     * @param group a {@link software.xdev.dynamicreports.report.builder.group.GroupBuilder} object.
-     * @return a T object.
-     */
-    public T setGroup(GroupBuilder<?> group) {
-        if (group != null) {
-            getObject().setGroup(group.getGroup());
-        } else {
-            getObject().setGroup(null);
-        }
-        return (T) this;
-    }
-
-    /**
-     * <p>setPosition.</p>
-     *
-     * @param position a {@link software.xdev.dynamicreports.report.constant.SubtotalPosition} object.
-     * @return a T object.
-     */
-    public T setPosition(SubtotalPosition position) {
-        getObject().setPosition(position);
-        return (T) this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    protected void configure() {
-        super.configure();
-        getObject().getValueField().setValueExpression(valueExpression);
-    }
-
-    /**
-     * <p>getSubtotal.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.base.DRSubtotal} object.
-     */
-    public DRSubtotal<U> getSubtotal() {
-        return build();
-    }
+	private DRIExpression<U> valueExpression;
+	
+	protected BaseSubtotalBuilder(final ColumnBuilder<?, ?> showInColumn)
+	{
+		super(new DRSubtotal<>(showInColumn.build()));
+	}
+	
+	protected void setValueExpression(final DRIExpression<U> valueExpression)
+	{
+		this.valueExpression = valueExpression;
+	}
+	
+	public T setShowInColumn(final ColumnBuilder<?, ?> showInColumn)
+	{
+		Validate.notNull(showInColumn, "showInColumn must not be null");
+		this.getObject().setShowInColumn(showInColumn.build());
+		return (T)this;
+	}
+	
+	public T setLabel(final DRIExpression<?> labelExpression)
+	{
+		this.getObject().setLabelExpression(labelExpression);
+		return (T)this;
+	}
+	
+	public T setLabel(final String label)
+	{
+		this.getObject().setLabelExpression(Expressions.text(label));
+		return (T)this;
+	}
+	
+	public T setLabelStyle(final ReportStyleBuilder labelStyle)
+	{
+		if(labelStyle != null)
+		{
+			this.getObject().setLabelStyle(labelStyle.getStyle());
+		}
+		else
+		{
+			this.getObject().setLabelStyle(null);
+		}
+		return (T)this;
+	}
+	
+	public T setLabelPosition(final Position labelPosition)
+	{
+		this.getObject().setLabelPosition(labelPosition);
+		return (T)this;
+	}
+	
+	public T setLabelWidth(final Integer width)
+	{
+		this.getObject().setLabelWidth(width);
+		return (T)this;
+	}
+	
+	public T setLabelFixedWidth(final Integer width)
+	{
+		this.getObject().setLabelWidth(width);
+		this.getObject().setLabelWidthType(ComponentDimensionType.FIXED);
+		return (T)this;
+	}
+	
+	public T setLabelMinWidth(final Integer width)
+	{
+		this.getObject().setLabelWidth(width);
+		this.getObject().setLabelWidthType(ComponentDimensionType.EXPAND);
+		return (T)this;
+	}
+	
+	public T setPattern(final String pattern)
+	{
+		this.getObject().getValueField().setPattern(pattern);
+		return (T)this;
+	}
+	
+	public T setPattern(final DRIExpression<String> patternExpression)
+	{
+		this.getObject().getValueField().setPatternExpression(patternExpression);
+		return (T)this;
+	}
+	
+	public T setValueFormatter(final DRIValueFormatter<?, ? super U> valueFormatter)
+	{
+		this.getObject().getValueField().setValueFormatter(valueFormatter);
+		return (T)this;
+	}
+	
+	@SuppressWarnings("rawtypes")
+	public T setDataType(final DRIDataType dataType)
+	{
+		this.getObject().getValueField().setDataType(dataType);
+		return (T)this;
+	}
+	
+	public T setAnchorName(final String anchorName)
+	{
+		this.getObject().getValueField().setAnchorNameExpression(Expressions.text(anchorName));
+		return (T)this;
+	}
+	
+	public T setAnchorName(final DRIExpression<String> anchorNameExpression)
+	{
+		this.getObject().getValueField().setAnchorNameExpression(anchorNameExpression);
+		return (T)this;
+	}
+	
+	public T setBookmarkLevel(final Integer bookmarkLevel)
+	{
+		this.getObject().getValueField().setBookmarkLevel(bookmarkLevel);
+		return (T)this;
+	}
+	
+	public T setHyperLink(final HyperLinkBuilder hyperLink)
+	{
+		if(hyperLink != null)
+		{
+			this.getObject().getValueField().setHyperLink(hyperLink.getHyperLink());
+		}
+		else
+		{
+			this.getObject().getValueField().setHyperLink(null);
+		}
+		return (T)this;
+	}
+	
+	public T setRows(final Integer rows)
+	{
+		this.getObject().getValueField().setRows(rows);
+		return (T)this;
+	}
+	
+	public T setFixedRows(final Integer rows)
+	{
+		this.getObject().getValueField().setRows(rows);
+		this.getObject().getValueField().setHeightType(ComponentDimensionType.FIXED);
+		return (T)this;
+	}
+	
+	public T setMinRows(final Integer rows)
+	{
+		this.getObject().getValueField().setRows(rows);
+		this.getObject().getValueField().setHeightType(ComponentDimensionType.EXPAND);
+		return (T)this;
+	}
+	
+	public T setHeight(final Integer height)
+	{
+		this.getObject().getValueField().setHeight(height);
+		return (T)this;
+	}
+	
+	public T setFixedHeight(final Integer height)
+	{
+		this.getObject().getValueField().setHeight(height);
+		this.getObject().getValueField().setHeightType(ComponentDimensionType.FIXED);
+		return (T)this;
+	}
+	
+	public T setMinHeight(final Integer height)
+	{
+		this.getObject().getValueField().setHeight(height);
+		this.getObject().getValueField().setHeightType(ComponentDimensionType.EXPAND);
+		return (T)this;
+	}
+	
+	public T setStyle(final ReportStyleBuilder style)
+	{
+		if(style != null)
+		{
+			this.getObject().getValueField().setStyle(style.getStyle());
+		}
+		else
+		{
+			this.getObject().getValueField().setStyle(null);
+		}
+		return (T)this;
+	}
+	
+	public T setPrintWhenExpression(final DRIExpression<Boolean> printWhenExpression)
+	{
+		this.getObject().getValueField().setPrintWhenExpression(printWhenExpression);
+		return (T)this;
+	}
+	
+	public T setGroup(final GroupBuilder<?> group)
+	{
+		if(group != null)
+		{
+			this.getObject().setGroup(group.getGroup());
+		}
+		else
+		{
+			this.getObject().setGroup(null);
+		}
+		return (T)this;
+	}
+	
+	public T setPosition(final SubtotalPosition position)
+	{
+		this.getObject().setPosition(position);
+		return (T)this;
+	}
+	
+	@Override
+	protected void configure()
+	{
+		super.configure();
+		this.getObject().getValueField().setValueExpression(this.valueExpression);
+	}
+	
+	public DRSubtotal<U> getSubtotal()
+	{
+		return this.build();
+	}
 }

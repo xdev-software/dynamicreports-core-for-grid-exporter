@@ -17,23 +17,13 @@
  */
 package software.xdev.dynamicreports.report.constant;
 
-/**
- * <p>FontName class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class FontName {
-    /**
-     * Constant <code>ARIAL="Arial"</code>
-     */
-    public static final String ARIAL = "Arial";
-    /**
-     * Constant <code>TIMES_NEW_ROMAN="Times New Roman"</code>
-     */
-    public static final String TIMES_NEW_ROMAN = "Times New Roman";
-    /**
-     * Constant <code>COURIER_NEW="Courier New"</code>
-     */
-    public static final String COURIER_NEW = "Courier New";
+public final class FontName
+{
+	private FontName()
+	{
+	}
+	
+	public static final String ARIAL = "Arial";
+	public static final String TIMES_NEW_ROMAN = "Times New Roman";
+	public static final String COURIER_NEW = "Courier New";
 }

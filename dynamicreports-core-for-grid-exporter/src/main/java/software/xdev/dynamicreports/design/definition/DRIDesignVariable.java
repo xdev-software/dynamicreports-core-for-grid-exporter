@@ -21,46 +21,17 @@ import software.xdev.dynamicreports.design.constant.ResetType;
 import software.xdev.dynamicreports.design.definition.expression.DRIDesignExpression;
 import software.xdev.dynamicreports.report.constant.Calculation;
 
-/**
- * <p>DRIDesignVariable interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface DRIDesignVariable extends DRIDesignExpression {
 
-    /**
-     * <p>getValueExpression.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.design.definition.expression.DRIDesignExpression} object.
-     */
-    public DRIDesignExpression getValueExpression();
-
-    /**
-     * <p>getInitialValueExpression.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.design.definition.expression.DRIDesignExpression} object.
-     */
-    public DRIDesignExpression getInitialValueExpression();
-
-    /**
-     * <p>getCalculation.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.constant.Calculation} object.
-     */
-    public Calculation getCalculation();
-
-    /**
-     * <p>getResetType.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.design.constant.ResetType} object.
-     */
-    public ResetType getResetType();
-
-    /**
-     * <p>getResetGroup.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.design.definition.DRIDesignGroup} object.
-     */
-    public DRIDesignGroup getResetGroup();
+public interface DRIDesignVariable extends DRIDesignExpression
+{
+	
+	public DRIDesignExpression getValueExpression();
+	
+	public DRIDesignExpression getInitialValueExpression();
+	
+	public Calculation getCalculation();
+	
+	public ResetType getResetType();
+	
+	public DRIDesignGroup getResetGroup();
 }

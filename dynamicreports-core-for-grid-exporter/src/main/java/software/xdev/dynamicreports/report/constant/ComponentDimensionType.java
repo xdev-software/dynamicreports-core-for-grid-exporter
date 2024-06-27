@@ -17,12 +17,7 @@
  */
 package software.xdev.dynamicreports.report.constant;
 
-/**
- * <p>ComponentDimensionType class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public enum ComponentDimensionType {
-    FIXED, FLOAT, EXPAND
+public enum ComponentDimensionType
+{
+	FIXED, FLOAT, EXPAND
 }

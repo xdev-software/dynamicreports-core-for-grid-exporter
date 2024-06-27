@@ -17,99 +17,85 @@
  */
 package software.xdev.dynamicreports.design.base.style;
 
+import java.util.Objects;
+
 import software.xdev.dynamicreports.design.definition.style.DRIDesignBorder;
-import software.xdev.dynamicreports.report.constant.Constants;
-import org.apache.commons.lang3.builder.EqualsBuilder;
 
-/**
- * <p>DRDesignBorder class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class DRDesignBorder implements DRIDesignBorder {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    private DRDesignPen topPen;
-    private DRDesignPen leftPen;
-    private DRDesignPen bottomPen;
-    private DRDesignPen rightPen;
+public class DRDesignBorder implements DRIDesignBorder
+{
 
-    /** {@inheritDoc} */
-    @Override
-    public DRDesignPen getTopPen() {
-        return topPen;
-    }
-
-    /**
-     * <p>Setter for the field <code>topPen</code>.</p>
-     *
-     * @param topPen a {@link software.xdev.dynamicreports.design.base.style.DRDesignPen} object.
-     */
-    public void setTopPen(DRDesignPen topPen) {
-        this.topPen = topPen;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRDesignPen getLeftPen() {
-        return leftPen;
-    }
-
-    /**
-     * <p>Setter for the field <code>leftPen</code>.</p>
-     *
-     * @param leftPen a {@link software.xdev.dynamicreports.design.base.style.DRDesignPen} object.
-     */
-    public void setLeftPen(DRDesignPen leftPen) {
-        this.leftPen = leftPen;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRDesignPen getBottomPen() {
-        return bottomPen;
-    }
-
-    /**
-     * <p>Setter for the field <code>bottomPen</code>.</p>
-     *
-     * @param bottomPen a {@link software.xdev.dynamicreports.design.base.style.DRDesignPen} object.
-     */
-    public void setBottomPen(DRDesignPen bottomPen) {
-        this.bottomPen = bottomPen;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRDesignPen getRightPen() {
-        return rightPen;
-    }
-
-    /**
-     * <p>Setter for the field <code>rightPen</code>.</p>
-     *
-     * @param rightPen a {@link software.xdev.dynamicreports.design.base.style.DRDesignPen} object.
-     */
-    public void setRightPen(DRDesignPen rightPen) {
-        this.rightPen = rightPen;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (obj == this) {
-            return true;
-        }
-        if (obj.getClass() != getClass()) {
-            return false;
-        }
-
-        DRDesignBorder o = (DRDesignBorder) obj;
-        EqualsBuilder equalsBuilder = new EqualsBuilder().append(topPen, o.topPen).append(leftPen, o.leftPen).append(bottomPen, o.bottomPen).append(rightPen, o.rightPen);
-        return equalsBuilder.isEquals();
-    }
+	private DRDesignPen topPen;
+	private DRDesignPen leftPen;
+	private DRDesignPen bottomPen;
+	private DRDesignPen rightPen;
+	
+	@Override
+	public DRDesignPen getTopPen()
+	{
+		return this.topPen;
+	}
+	
+	public void setTopPen(final DRDesignPen topPen)
+	{
+		this.topPen = topPen;
+	}
+	
+	@Override
+	public DRDesignPen getLeftPen()
+	{
+		return this.leftPen;
+	}
+	
+	public void setLeftPen(final DRDesignPen leftPen)
+	{
+		this.leftPen = leftPen;
+	}
+	
+	@Override
+	public DRDesignPen getBottomPen()
+	{
+		return this.bottomPen;
+	}
+	
+	public void setBottomPen(final DRDesignPen bottomPen)
+	{
+		this.bottomPen = bottomPen;
+	}
+	
+	@Override
+	public DRDesignPen getRightPen()
+	{
+		return this.rightPen;
+	}
+	
+	public void setRightPen(final DRDesignPen rightPen)
+	{
+		this.rightPen = rightPen;
+	}
+	
+	@Override
+	public boolean equals(final Object o)
+	{
+		if(this == o)
+		{
+			return true;
+		}
+		if(o == null || this.getClass() != o.getClass())
+		{
+			return false;
+		}
+		final DRDesignBorder that = (DRDesignBorder)o;
+		return Objects.equals(this.getTopPen(), that.getTopPen()) && Objects.equals(
+			this.getLeftPen(),
+			that.getLeftPen()) && Objects.equals(this.getBottomPen(), that.getBottomPen()) && Objects.equals(
+			this.getRightPen(),
+			that.getRightPen());
+	}
+	
+	@Override
+	public int hashCode()
+	{
+		return Objects.hash(this.getTopPen(), this.getLeftPen(), this.getBottomPen(), this.getRightPen());
+	}
 }

@@ -26,6 +26,8 @@ import java.awt.Color;
 import java.io.Serializable;
 import java.util.Date;
 
+import net.sf.jasperreports.engine.JRDataSource;
+import net.sf.jasperreports.engine.type.HorizontalTextAlignEnum;
 import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
 import software.xdev.dynamicreports.report.builder.column.TextColumnBuilder;
 import software.xdev.dynamicreports.report.builder.group.ColumnGroupBuilder;
@@ -33,51 +35,48 @@ import software.xdev.dynamicreports.report.builder.style.StyleBuilder;
 import software.xdev.dynamicreports.report.constant.HorizontalTextAlignment;
 import software.xdev.dynamicreports.report.datasource.DRDataSource;
 import software.xdev.dynamicreports.test.jasper.AbstractJasperStyleTest;
-import net.sf.jasperreports.engine.JRDataSource;
-import net.sf.jasperreports.engine.type.HorizontalTextAlignEnum;
 
-/**
- * Style tests.
- * 
- * @author Ricardo Mariaca
- */
-public class Style4Test extends AbstractJasperStyleTest implements Serializable {
-  private static final long serialVersionUID = 1L;
 
-  private TextColumnBuilder<Date> column1;
-  private ColumnGroupBuilder group1;
+public class Style4Test extends AbstractJasperStyleTest implements Serializable
+{
 
-  @Override
-  protected void configureReport(JasperReportBuilder rb) {
-    StyleBuilder groupStyle =
-        stl.style().bold().setHorizontalTextAlignment(HorizontalTextAlignment.LEFT);
-
-    column1 = col.column("field1", type.dateYearType());
-
-    group1 = grp.group(column1).setHideColumn(false).groupByDataType().setStyle(groupStyle);
-
-    rb.columns(column1).groupBy(group1);
-  }
-
-  @Override
-  public void test() {
-    super.test();
-
-    numberOfPagesTest(1);
-
-    // column1
-    columnDetailStyleTest(column1, 0, Color.BLACK, null, TEST_FONT_NAME, 10f, null, null);
-    columnDetailAlignmentTest(column1, 0, HorizontalTextAlignEnum.RIGHT);
-
-    // group1
-    groupHeaderStyleTest(group1, 0, null, null, TEST_FONT_NAME, 10f, true, null);
-    groupHeaderAlignmentTest(group1, 0, HorizontalTextAlignEnum.LEFT);
-  }
-
-  @Override
-  protected JRDataSource createDataSource() {
-    DRDataSource dataSource = new DRDataSource("field1");
-    dataSource.add(new Date());
-    return dataSource;
-  }
+	private TextColumnBuilder<Date> column1;
+	private ColumnGroupBuilder group1;
+	
+	@Override
+	protected void configureReport(final JasperReportBuilder rb)
+	{
+		final StyleBuilder groupStyle =
+			stl.style().bold().setHorizontalTextAlignment(HorizontalTextAlignment.LEFT);
+		
+		this.column1 = col.column("field1", type.dateYearType());
+		
+		this.group1 = grp.group(this.column1).setHideColumn(false).groupByDataType().setStyle(groupStyle);
+		
+		rb.columns(this.column1).groupBy(this.group1);
+	}
+	
+	@Override
+	public void test()
+	{
+		super.test();
+		
+		this.numberOfPagesTest(1);
+		
+		// column1
+		this.columnDetailStyleTest(this.column1, 0, Color.BLACK, null, TEST_FONT_NAME, 10f, null, null);
+		this.columnDetailAlignmentTest(this.column1, 0, HorizontalTextAlignEnum.RIGHT);
+		
+		// group1
+		this.groupHeaderStyleTest(this.group1, 0, null, null, TEST_FONT_NAME, 10f, true, null);
+		this.groupHeaderAlignmentTest(this.group1, 0, HorizontalTextAlignEnum.LEFT);
+	}
+	
+	@Override
+	protected JRDataSource createDataSource()
+	{
+		final DRDataSource dataSource = new DRDataSource("field1");
+		dataSource.add(new Date());
+		return dataSource;
+	}
 }

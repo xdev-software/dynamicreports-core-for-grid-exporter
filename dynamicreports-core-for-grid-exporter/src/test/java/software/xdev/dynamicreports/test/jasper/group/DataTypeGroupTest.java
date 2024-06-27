@@ -17,60 +17,65 @@
  */
 package software.xdev.dynamicreports.test.jasper.group;
 
+import static software.xdev.dynamicreports.report.builder.DynamicReports.col;
+import static software.xdev.dynamicreports.report.builder.DynamicReports.grp;
+import static software.xdev.dynamicreports.report.builder.DynamicReports.type;
+
+import java.util.Date;
+import java.util.Locale;
+
+import net.sf.jasperreports.engine.JRDataSource;
 import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
 import software.xdev.dynamicreports.report.builder.column.TextColumnBuilder;
 import software.xdev.dynamicreports.report.builder.group.ColumnGroupBuilder;
 import software.xdev.dynamicreports.report.datasource.DRDataSource;
 import software.xdev.dynamicreports.test.jasper.AbstractJasperValueTest;
-import net.sf.jasperreports.engine.JRDataSource;
 
-import java.util.Date;
-import java.util.Locale;
 
-import static software.xdev.dynamicreports.report.builder.DynamicReports.col;
-import static software.xdev.dynamicreports.report.builder.DynamicReports.grp;
-import static software.xdev.dynamicreports.report.builder.DynamicReports.type;
-
-/**
- * @author Ricardo Mariaca
- */
-public class DataTypeGroupTest extends AbstractJasperValueTest {
-    private TextColumnBuilder<Date> column1;
-    private TextColumnBuilder<Date> column2;
-    private ColumnGroupBuilder group1;
-
-    @Override
-    protected void configureReport(JasperReportBuilder rb) {
-        rb.setLocale(Locale.ENGLISH)
-          .columns(column1 = col.column("Column1", "field1", type.dateMonthType()), column2 = col.column("Column2", "field1", type.dateType()))
-          .groupBy(group1 = grp.group(column1).groupByDataType());
-    }
-
-    @Override
-    public void test() {
-        super.test();
-
-        numberOfPagesTest(1);
-
-        // column2
-        columnTitleCountTest(column2, 1);
-        columnTitleValueTest(column2, "Column2");
-        columnDetailCountTest(column2, 2);
-        columnDetailValueTest(column2, "01/01/2010", "02/01/2010");
-
-        // group1
-        groupHeaderTitleCountTest(group1, 0);
-        groupHeaderCountTest(group1, 2);
-        groupHeaderValueTest(group1, "January", "February");
-    }
-
-    @Override
-    protected JRDataSource createDataSource() {
-        DRDataSource dataSource = new DRDataSource("field1");
-        for (int i = 0; i < 1; i++) {
-            dataSource.add(toDate(2010, 1, 1));
-            dataSource.add(toDate(2010, 2, 1));
-        }
-        return dataSource;
-    }
+public class DataTypeGroupTest extends AbstractJasperValueTest
+{
+	private TextColumnBuilder<Date> column1;
+	private TextColumnBuilder<Date> column2;
+	private ColumnGroupBuilder group1;
+	
+	@Override
+	protected void configureReport(final JasperReportBuilder rb)
+	{
+		rb.setLocale(Locale.ENGLISH)
+			.columns(
+				this.column1 = col.column("Column1", "field1", type.dateMonthType()),
+				this.column2 = col.column("Column2", "field1", type.dateType()))
+			.groupBy(this.group1 = grp.group(this.column1).groupByDataType());
+	}
+	
+	@Override
+	public void test()
+	{
+		super.test();
+		
+		this.numberOfPagesTest(1);
+		
+		// column2
+		this.columnTitleCountTest(this.column2, 1);
+		this.columnTitleValueTest(this.column2, "Column2");
+		this.columnDetailCountTest(this.column2, 2);
+		this.columnDetailValueTest(this.column2, "01/01/2010", "02/01/2010");
+		
+		// group1
+		this.groupHeaderTitleCountTest(this.group1, 0);
+		this.groupHeaderCountTest(this.group1, 2);
+		this.groupHeaderValueTest(this.group1, "January", "February");
+	}
+	
+	@Override
+	protected JRDataSource createDataSource()
+	{
+		final DRDataSource dataSource = new DRDataSource("field1");
+		for(int i = 0; i < 1; i++)
+		{
+			dataSource.add(this.toDate(2010, 1, 1));
+			dataSource.add(this.toDate(2010, 2, 1));
+		}
+		return dataSource;
+	}
 }

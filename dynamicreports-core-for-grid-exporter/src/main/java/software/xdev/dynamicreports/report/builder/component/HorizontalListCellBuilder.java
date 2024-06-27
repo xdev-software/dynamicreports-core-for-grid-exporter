@@ -19,108 +19,66 @@ package software.xdev.dynamicreports.report.builder.component;
 
 import software.xdev.dynamicreports.report.base.component.DRListCell;
 import software.xdev.dynamicreports.report.builder.AbstractBuilder;
-import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.constant.HorizontalCellComponentAlignment;
 import software.xdev.dynamicreports.report.constant.VerticalCellComponentAlignment;
 
-/**
- * <p>HorizontalListCellBuilder class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class HorizontalListCellBuilder extends AbstractBuilder<HorizontalListCellBuilder, DRListCell> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    /**
-     * <p>Constructor for HorizontalListCellBuilder.</p>
-     *
-     * @param component a {@link software.xdev.dynamicreports.report.builder.component.ComponentBuilder} object.
-     */
-    protected HorizontalListCellBuilder(ComponentBuilder<?, ?> component) {
-        super(new DRListCell(component.build()));
-    }
+public class HorizontalListCellBuilder extends AbstractBuilder<HorizontalListCellBuilder, DRListCell>
+{
 
-    // width
-
-    /**
-     * <p>widthFixed.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.HorizontalListCellBuilder} object.
-     */
-    public HorizontalListCellBuilder widthFixed() {
-        getObject().setHorizontalAlignment(HorizontalCellComponentAlignment.LEFT);
-        return this;
-    }
-
-    /**
-     * <p>widthFloat.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.HorizontalListCellBuilder} object.
-     */
-    public HorizontalListCellBuilder widthFloat() {
-        getObject().setHorizontalAlignment(HorizontalCellComponentAlignment.FLOAT);
-        return this;
-    }
-
-    /**
-     * <p>widthExpand.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.HorizontalListCellBuilder} object.
-     */
-    public HorizontalListCellBuilder widthExpand() {
-        getObject().setHorizontalAlignment(HorizontalCellComponentAlignment.EXPAND);
-        return this;
-    }
-
-    // height
-
-    /**
-     * <p>heightFixedOnTop.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.HorizontalListCellBuilder} object.
-     */
-    public HorizontalListCellBuilder heightFixedOnTop() {
-        getObject().setVerticalAlignment(VerticalCellComponentAlignment.TOP);
-        return this;
-    }
-
-    /**
-     * <p>heightFixedOnMiddle.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.HorizontalListCellBuilder} object.
-     */
-    public HorizontalListCellBuilder heightFixedOnMiddle() {
-        getObject().setVerticalAlignment(VerticalCellComponentAlignment.MIDDLE);
-        return this;
-    }
-
-    /**
-     * <p>heightFixedOnBottom.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.HorizontalListCellBuilder} object.
-     */
-    public HorizontalListCellBuilder heightFixedOnBottom() {
-        getObject().setVerticalAlignment(VerticalCellComponentAlignment.BOTTOM);
-        return this;
-    }
-
-    /**
-     * <p>heightExpand.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.HorizontalListCellBuilder} object.
-     */
-    public HorizontalListCellBuilder heightExpand() {
-        getObject().setVerticalAlignment(VerticalCellComponentAlignment.EXPAND);
-        return this;
-    }
-
-    /**
-     * <p>getListCell.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.base.component.DRListCell} object.
-     */
-    public DRListCell getListCell() {
-        return build();
-    }
+	protected HorizontalListCellBuilder(final ComponentBuilder<?, ?> component)
+	{
+		super(new DRListCell(component.build()));
+	}
+	
+	// width
+	
+	public HorizontalListCellBuilder widthFixed()
+	{
+		this.getObject().setHorizontalAlignment(HorizontalCellComponentAlignment.LEFT);
+		return this;
+	}
+	
+	public HorizontalListCellBuilder widthFloat()
+	{
+		this.getObject().setHorizontalAlignment(HorizontalCellComponentAlignment.FLOAT);
+		return this;
+	}
+	
+	public HorizontalListCellBuilder widthExpand()
+	{
+		this.getObject().setHorizontalAlignment(HorizontalCellComponentAlignment.EXPAND);
+		return this;
+	}
+	
+	// height
+	
+	public HorizontalListCellBuilder heightFixedOnTop()
+	{
+		this.getObject().setVerticalAlignment(VerticalCellComponentAlignment.TOP);
+		return this;
+	}
+	
+	public HorizontalListCellBuilder heightFixedOnMiddle()
+	{
+		this.getObject().setVerticalAlignment(VerticalCellComponentAlignment.MIDDLE);
+		return this;
+	}
+	
+	public HorizontalListCellBuilder heightFixedOnBottom()
+	{
+		this.getObject().setVerticalAlignment(VerticalCellComponentAlignment.BOTTOM);
+		return this;
+	}
+	
+	public HorizontalListCellBuilder heightExpand()
+	{
+		this.getObject().setVerticalAlignment(VerticalCellComponentAlignment.EXPAND);
+		return this;
+	}
+	
+	public DRListCell getListCell()
+	{
+		return this.build();
+	}
 }

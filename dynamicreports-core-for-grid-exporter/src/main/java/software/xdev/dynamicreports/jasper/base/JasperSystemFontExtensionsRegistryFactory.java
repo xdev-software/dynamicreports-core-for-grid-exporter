@@ -17,7 +17,10 @@
  */
 package software.xdev.dynamicreports.jasper.base;
 
-import software.xdev.dynamicreports.report.defaults.Defaults;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 import net.sf.jasperreports.engine.JRPropertiesMap;
 import net.sf.jasperreports.engine.JRPropertiesUtil;
 import net.sf.jasperreports.engine.JRPropertiesUtil.PropertySuffix;
@@ -25,41 +28,33 @@ import net.sf.jasperreports.engine.fonts.FontExtensionsRegistry;
 import net.sf.jasperreports.extensions.DefaultExtensionsRegistry;
 import net.sf.jasperreports.extensions.ExtensionsRegistry;
 import net.sf.jasperreports.extensions.ExtensionsRegistryFactory;
+import software.xdev.dynamicreports.report.defaults.Defaults;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
 
-/**
- * <p>JasperSystemFontExtensionsRegistryFactory class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class JasperSystemFontExtensionsRegistryFactory implements ExtensionsRegistryFactory {
-    /**
-     * Constant <code>SYSTEM_FONT_FAMILIES_PROPERTY_PREFIX="DefaultExtensionsRegistry.PROPERTY_REGI"{trunked}</code>
-     */
-    public static final String SYSTEM_FONT_FAMILIES_PROPERTY_PREFIX = DefaultExtensionsRegistry.PROPERTY_REGISTRY_PREFIX + "system.font.families.";
-    /**
-     * Constant <code>PROPERTY_SYSTEM_FONT_FAMILIES_REGISTRY_FACTORY="DefaultExtensionsRegistry.PROPERTY_REGI"{trunked}</code>
-     */
-    public static final String PROPERTY_SYSTEM_FONT_FAMILIES_REGISTRY_FACTORY = DefaultExtensionsRegistry.PROPERTY_REGISTRY_FACTORY_PREFIX + "system.font.families";
+public class JasperSystemFontExtensionsRegistryFactory implements ExtensionsRegistryFactory
+{
+	public static final String SYSTEM_FONT_FAMILIES_PROPERTY_PREFIX =
+		DefaultExtensionsRegistry.PROPERTY_REGISTRY_PREFIX + "system.font.families.";
 
-    /** {@inheritDoc} */
-    @Override
-    public ExtensionsRegistry createRegistry(String registryId, JRPropertiesMap properties) {
-        List<PropertySuffix> fontFamiliesProperties = JRPropertiesUtil.getProperties(properties, SYSTEM_FONT_FAMILIES_PROPERTY_PREFIX);
-        List<String> fontFamiliesLocations = new ArrayList<String>();
-        if (Defaults.getDefaults().isLoadSystemFonts()) {
-            for (Iterator<PropertySuffix> it = fontFamiliesProperties.iterator(); it.hasNext(); ) {
-                PropertySuffix fontFamiliesProp = it.next();
-                String fontFamiliesLocation = fontFamiliesProp.getValue();
-                fontFamiliesLocations.add(fontFamiliesLocation);
-            }
-        }
-
-        return new FontExtensionsRegistry(fontFamiliesLocations);
-    }
-
+	public static final String PROPERTY_SYSTEM_FONT_FAMILIES_REGISTRY_FACTORY =
+		DefaultExtensionsRegistry.PROPERTY_REGISTRY_FACTORY_PREFIX + "system.font.families";
+	
+	@Override
+	public ExtensionsRegistry createRegistry(final String registryId, final JRPropertiesMap properties)
+	{
+		final List<PropertySuffix> fontFamiliesProperties =
+			JRPropertiesUtil.getProperties(properties, SYSTEM_FONT_FAMILIES_PROPERTY_PREFIX);
+		final List<String> fontFamiliesLocations = new ArrayList<>();
+		if(Defaults.getDefaults().isLoadSystemFonts())
+		{
+			for(final Iterator<PropertySuffix> it = fontFamiliesProperties.iterator(); it.hasNext();)
+			{
+				final PropertySuffix fontFamiliesProp = it.next();
+				final String fontFamiliesLocation = fontFamiliesProp.getValue();
+				fontFamiliesLocations.add(fontFamiliesLocation);
+			}
+		}
+		
+		return new FontExtensionsRegistry(fontFamiliesLocations);
+	}
 }

@@ -17,6 +17,15 @@
  */
 package software.xdev.dynamicreports.test.jasper.crosstab;
 
+import static software.xdev.dynamicreports.report.builder.DynamicReports.ctab;
+import static software.xdev.dynamicreports.report.builder.DynamicReports.field;
+
+import java.io.Serializable;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
+
+import net.sf.jasperreports.engine.JRDataSource;
 import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
 import software.xdev.dynamicreports.report.base.expression.AbstractSimpleExpression;
 import software.xdev.dynamicreports.report.builder.crosstab.CrosstabBuilder;
@@ -29,155 +38,144 @@ import software.xdev.dynamicreports.report.constant.PageType;
 import software.xdev.dynamicreports.report.datasource.DRDataSource;
 import software.xdev.dynamicreports.report.definition.ReportParameters;
 import software.xdev.dynamicreports.test.jasper.AbstractJasperCrosstabValueTest;
-import net.sf.jasperreports.engine.JRDataSource;
 
-import java.io.Serializable;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
 
-import static software.xdev.dynamicreports.report.builder.DynamicReports.ctab;
-import static software.xdev.dynamicreports.report.builder.DynamicReports.field;
+public class GroupExpressionCrosstabTest extends AbstractJasperCrosstabValueTest implements Serializable
+{
 
-/**
- * @author Ricardo Mariaca
- */
-public class GroupExpressionCrosstabTest extends AbstractJasperCrosstabValueTest implements Serializable {
-    private static final long serialVersionUID = 1L;
+	private CrosstabRowGroupBuilder<String> rowGroup;
+	private CrosstabColumnGroupBuilder<Integer> columnGroup1;
+	private CrosstabColumnGroupBuilder<String> columnGroup2;
+	private CrosstabMeasureBuilder<Integer> measure1;
+	
+	@Override
+	protected void configureReport(final JasperReportBuilder rb)
+	{
+		this.measure1 = ctab.measure("field3", Integer.class, Calculation.SUM);
+		
+		final CrosstabBuilder crosstab = ctab.crosstab()
+			.setCellWidth(50)
+			.rowGroups(this.rowGroup = ctab.rowGroup("field1", String.class))
+			.columnGroups(
+				this.columnGroup1 = ctab.columnGroup(new GroupExpression1()),
+				this.columnGroup2 = ctab.columnGroup(new GroupExpression2()))
+			.measures(this.measure1);
+		
+		rb.setLocale(Locale.ENGLISH)
+			.setPageFormat(PageType.A4, PageOrientation.LANDSCAPE)
+			.fields(field("field2", Date.class))
+			.summary(crosstab);
+	}
+	
+	@Override
+	public void test()
+	{
+		super.test();
+		
+		this.numberOfPagesTest(1);
+		
+		this.setCrosstabBand("summary");
+		
+		// column group 1
+		this.crosstabGroupHeaderCountTest(this.columnGroup1, 2);
+		this.crosstabGroupHeaderValueTest(this.columnGroup1, "2010", "2011");
+		this.crosstabGroupTotalHeaderCountTest(this.columnGroup1, 1);
+		this.crosstabGroupTotalHeaderValueTest(this.columnGroup1, "Total");
+		
+		// column group 2
+		this.crosstabGroupHeaderCountTest(this.columnGroup2, 5);
+		this.crosstabGroupHeaderValueTest(this.columnGroup2, "Q1", "Q2", "Q3", "Q4", "Q1");
+		this.crosstabGroupTotalHeaderCountTest(this.columnGroup2, 2);
+		this.crosstabGroupTotalHeaderValueTest(this.columnGroup2, "Total", "Total");
+		
+		// row group
+		this.crosstabGroupHeaderCountTest(this.rowGroup, 2);
+		this.crosstabGroupHeaderValueTest(this.rowGroup, "a", "b");
+		this.crosstabGroupTotalHeaderCountTest(this.rowGroup, 1);
+		this.crosstabGroupTotalHeaderValueTest(this.rowGroup, "Total");
+		
+		// measure1
+		this.crosstabCellCountTest(this.measure1, null, null, 10);
+		this.crosstabCellValueTest(this.measure1, null, null, "6", "15", "24", "33", "27", "39", "30", "21", "12", "3");
+		this.crosstabCellCountTest(this.measure1, null, this.columnGroup1, 2);
+		this.crosstabCellValueTest(this.measure1, null, this.columnGroup1, "105", "105");
+		this.crosstabCellCountTest(this.measure1, null, this.columnGroup2, 4);
+		this.crosstabCellValueTest(this.measure1, null, this.columnGroup2, "78", "27", "102", "3");
+		this.crosstabCellCountTest(this.measure1, this.rowGroup, null, 5);
+		this.crosstabCellValueTest(this.measure1, this.rowGroup, null, "45", "45", "45", "45", "30");
+		this.crosstabCellCountTest(this.measure1, this.rowGroup, this.columnGroup1, 1);
+		this.crosstabCellValueTest(this.measure1, this.rowGroup, this.columnGroup1, "210");
+		this.crosstabCellCountTest(this.measure1, this.rowGroup, this.columnGroup2, 2);
+		this.crosstabCellValueTest(this.measure1, this.rowGroup, this.columnGroup2, "180", "30");
+	}
+	
+	@Override
+	protected JRDataSource createDataSource()
+	{
+		final DRDataSource dataSource = new DRDataSource("field1", "field2", "field3");
+		dataSource.add("a", this.toDate(2010, 1, 1), 1);
+		dataSource.add("a", this.toDate(2010, 2, 1), 2);
+		dataSource.add("a", this.toDate(2010, 3, 1), 3);
+		dataSource.add("a", this.toDate(2010, 4, 1), 4);
+		dataSource.add("a", this.toDate(2010, 5, 1), 5);
+		dataSource.add("a", this.toDate(2010, 6, 1), 6);
+		dataSource.add("a", this.toDate(2010, 7, 1), 7);
+		dataSource.add("a", this.toDate(2010, 8, 1), 8);
+		dataSource.add("a", this.toDate(2010, 9, 1), 9);
+		dataSource.add("a", this.toDate(2010, 10, 1), 10);
+		dataSource.add("a", this.toDate(2010, 11, 1), 11);
+		dataSource.add("a", this.toDate(2010, 12, 1), 12);
+		dataSource.add("a", this.toDate(2011, 1, 1), 13);
+		dataSource.add("a", this.toDate(2011, 2, 1), 14);
+		
+		dataSource.add("b", this.toDate(2010, 1, 1), 14);
+		dataSource.add("b", this.toDate(2010, 2, 1), 13);
+		dataSource.add("b", this.toDate(2010, 3, 1), 12);
+		dataSource.add("b", this.toDate(2010, 4, 1), 11);
+		dataSource.add("b", this.toDate(2010, 5, 1), 10);
+		dataSource.add("b", this.toDate(2010, 6, 1), 9);
+		dataSource.add("b", this.toDate(2010, 7, 1), 8);
+		dataSource.add("b", this.toDate(2010, 8, 1), 7);
+		dataSource.add("b", this.toDate(2010, 9, 1), 6);
+		dataSource.add("b", this.toDate(2010, 10, 1), 5);
+		dataSource.add("b", this.toDate(2010, 11, 1), 4);
+		dataSource.add("b", this.toDate(2010, 12, 1), 3);
+		dataSource.add("b", this.toDate(2011, 1, 1), 2);
+		dataSource.add("b", this.toDate(2011, 2, 1), 1);
+		return dataSource;
+	}
+	
+	static class GroupExpression1 extends AbstractSimpleExpression<Integer>
+	{
 
-    private CrosstabRowGroupBuilder<String> rowGroup;
-    private CrosstabColumnGroupBuilder<Integer> columnGroup1;
-    private CrosstabColumnGroupBuilder<String> columnGroup2;
-    private CrosstabMeasureBuilder<Integer> measure1;
+		@Override
+		public Integer evaluate(final ReportParameters reportParameters)
+		{
+			final Date date = reportParameters.getValue("field2");
+			final Calendar c = Calendar.getInstance();
+			c.setTime(date);
+			return c.get(Calendar.YEAR);
+		}
+	}
+	
+	
+	static class GroupExpression2 extends AbstractSimpleExpression<String>
+	{
 
-    @Override
-    protected void configureReport(JasperReportBuilder rb) {
-        measure1 = ctab.measure("field3", Integer.class, Calculation.SUM);
-
-        CrosstabBuilder crosstab = ctab.crosstab()
-                                       .setCellWidth(50)
-                                       .rowGroups(rowGroup = ctab.rowGroup("field1", String.class))
-                                       .columnGroups(columnGroup1 = ctab.columnGroup(new GroupExpression1()), columnGroup2 = ctab.columnGroup(new GroupExpression2()))
-                                       .measures(measure1);
-
-        rb.setLocale(Locale.ENGLISH).setPageFormat(PageType.A4, PageOrientation.LANDSCAPE).fields(field("field2", Date.class)).summary(crosstab);
-    }
-
-    @Override
-    public void test() {
-        super.test();
-
-        numberOfPagesTest(1);
-
-        setCrosstabBand("summary");
-
-        // column group 1
-        crosstabGroupHeaderCountTest(columnGroup1, 2);
-        crosstabGroupHeaderValueTest(columnGroup1, "2010", "2011");
-        crosstabGroupTotalHeaderCountTest(columnGroup1, 1);
-        crosstabGroupTotalHeaderValueTest(columnGroup1, "Total");
-
-        // column group 2
-        crosstabGroupHeaderCountTest(columnGroup2, 5);
-        crosstabGroupHeaderValueTest(columnGroup2, "Q1", "Q2", "Q3", "Q4", "Q1");
-        crosstabGroupTotalHeaderCountTest(columnGroup2, 2);
-        crosstabGroupTotalHeaderValueTest(columnGroup2, "Total", "Total");
-
-        // row group
-        crosstabGroupHeaderCountTest(rowGroup, 2);
-        crosstabGroupHeaderValueTest(rowGroup, "a", "b");
-        crosstabGroupTotalHeaderCountTest(rowGroup, 1);
-        crosstabGroupTotalHeaderValueTest(rowGroup, "Total");
-
-        // measure1
-        crosstabCellCountTest(measure1, null, null, 10);
-        crosstabCellValueTest(measure1, null, null, "6", "15", "24", "33", "27", "39", "30", "21", "12", "3");
-        crosstabCellCountTest(measure1, null, columnGroup1, 2);
-        crosstabCellValueTest(measure1, null, columnGroup1, "105", "105");
-        crosstabCellCountTest(measure1, null, columnGroup2, 4);
-        crosstabCellValueTest(measure1, null, columnGroup2, "78", "27", "102", "3");
-        crosstabCellCountTest(measure1, rowGroup, null, 5);
-        crosstabCellValueTest(measure1, rowGroup, null, "45", "45", "45", "45", "30");
-        crosstabCellCountTest(measure1, rowGroup, columnGroup1, 1);
-        crosstabCellValueTest(measure1, rowGroup, columnGroup1, "210");
-        crosstabCellCountTest(measure1, rowGroup, columnGroup2, 2);
-        crosstabCellValueTest(measure1, rowGroup, columnGroup2, "180", "30");
-    }
-
-    @Override
-    protected JRDataSource createDataSource() {
-        DRDataSource dataSource = new DRDataSource("field1", "field2", "field3");
-        dataSource.add("a", toDate(2010, 1, 1), 1);
-        dataSource.add("a", toDate(2010, 2, 1), 2);
-        dataSource.add("a", toDate(2010, 3, 1), 3);
-        dataSource.add("a", toDate(2010, 4, 1), 4);
-        dataSource.add("a", toDate(2010, 5, 1), 5);
-        dataSource.add("a", toDate(2010, 6, 1), 6);
-        dataSource.add("a", toDate(2010, 7, 1), 7);
-        dataSource.add("a", toDate(2010, 8, 1), 8);
-        dataSource.add("a", toDate(2010, 9, 1), 9);
-        dataSource.add("a", toDate(2010, 10, 1), 10);
-        dataSource.add("a", toDate(2010, 11, 1), 11);
-        dataSource.add("a", toDate(2010, 12, 1), 12);
-        dataSource.add("a", toDate(2011, 1, 1), 13);
-        dataSource.add("a", toDate(2011, 2, 1), 14);
-
-        dataSource.add("b", toDate(2010, 1, 1), 14);
-        dataSource.add("b", toDate(2010, 2, 1), 13);
-        dataSource.add("b", toDate(2010, 3, 1), 12);
-        dataSource.add("b", toDate(2010, 4, 1), 11);
-        dataSource.add("b", toDate(2010, 5, 1), 10);
-        dataSource.add("b", toDate(2010, 6, 1), 9);
-        dataSource.add("b", toDate(2010, 7, 1), 8);
-        dataSource.add("b", toDate(2010, 8, 1), 7);
-        dataSource.add("b", toDate(2010, 9, 1), 6);
-        dataSource.add("b", toDate(2010, 10, 1), 5);
-        dataSource.add("b", toDate(2010, 11, 1), 4);
-        dataSource.add("b", toDate(2010, 12, 1), 3);
-        dataSource.add("b", toDate(2011, 1, 1), 2);
-        dataSource.add("b", toDate(2011, 2, 1), 1);
-        return dataSource;
-    }
-
-    private class GroupExpression1 extends AbstractSimpleExpression<Integer> {
-        private static final long serialVersionUID = 1L;
-
-        @Override
-        public Integer evaluate(ReportParameters reportParameters) {
-            Date date = reportParameters.getValue("field2");
-            Calendar c = Calendar.getInstance();
-            c.setTime(date);
-            return c.get(Calendar.YEAR);
-        }
-    }
-
-    private class GroupExpression2 extends AbstractSimpleExpression<String> {
-        private static final long serialVersionUID = 1L;
-
-        @Override
-        public String evaluate(ReportParameters reportParameters) {
-            Date date = reportParameters.getValue("field2");
-            Calendar c = Calendar.getInstance();
-            c.setTime(date);
-            switch (c.get(Calendar.MONTH)) {
-                case 0:
-                case 1:
-                case 2:
-                    return "Q1";
-                case 3:
-                case 4:
-                case 5:
-                    return "Q2";
-                case 6:
-                case 7:
-                case 8:
-                    return "Q3";
-                case 9:
-                case 10:
-                case 11:
-                    return "Q4";
-            }
-            return null;
-        }
-    }
+		@Override
+		public String evaluate(final ReportParameters reportParameters)
+		{
+			final Date date = reportParameters.getValue("field2");
+			final Calendar c = Calendar.getInstance();
+			c.setTime(date);
+			return switch(c.get(Calendar.MONTH))
+			{
+				case 0, 1, 2 -> "Q1";
+				case 3, 4, 5 -> "Q2";
+				case 6, 7, 8 -> "Q3";
+				case 9, 10, 11 -> "Q4";
+				default -> null;
+			};
+		}
+	}
 }

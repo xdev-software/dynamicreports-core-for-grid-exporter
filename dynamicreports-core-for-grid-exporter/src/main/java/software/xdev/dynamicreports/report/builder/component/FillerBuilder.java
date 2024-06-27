@@ -18,21 +18,13 @@
 package software.xdev.dynamicreports.report.builder.component;
 
 import software.xdev.dynamicreports.report.base.component.DRFiller;
-import software.xdev.dynamicreports.report.constant.Constants;
 
-/**
- * <p>FillerBuilder class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class FillerBuilder extends DimensionComponentBuilder<FillerBuilder, DRFiller> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    /**
-     * <p>Constructor for FillerBuilder.</p>
-     */
-    protected FillerBuilder() {
-        super(new DRFiller());
-    }
+public class FillerBuilder extends DimensionComponentBuilder<FillerBuilder, DRFiller>
+{
+
+	protected FillerBuilder()
+	{
+		super(new DRFiller());
+	}
 }

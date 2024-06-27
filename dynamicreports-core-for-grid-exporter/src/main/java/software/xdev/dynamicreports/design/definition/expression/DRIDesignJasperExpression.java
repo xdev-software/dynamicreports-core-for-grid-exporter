@@ -17,18 +17,8 @@
  */
 package software.xdev.dynamicreports.design.definition.expression;
 
-/**
- * <p>DRIDesignJasperExpression interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface DRIDesignJasperExpression extends DRIDesignExpression {
-
-    /**
-     * <p>getExpression.</p>
-     *
-     * @return a {@link java.lang.String} object.
-     */
-    public String getExpression();
+public interface DRIDesignJasperExpression extends DRIDesignExpression
+{
+	
+	public String getExpression();
 }

@@ -18,21 +18,13 @@
 package software.xdev.dynamicreports.design.base.component;
 
 import software.xdev.dynamicreports.design.definition.component.DRIDesignFiller;
-import software.xdev.dynamicreports.report.constant.Constants;
 
-/**
- * <p>DRDesignFiller class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class DRDesignFiller extends DRDesignComponent implements DRIDesignFiller {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    /**
-     * <p>Constructor for DRDesignFiller.</p>
-     */
-    public DRDesignFiller() {
-        super("filler");
-    }
+public class DRDesignFiller extends DRDesignComponent implements DRIDesignFiller
+{
+
+	public DRDesignFiller()
+	{
+		super("filler");
+	}
 }

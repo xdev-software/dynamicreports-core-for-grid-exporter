@@ -17,77 +17,59 @@
  */
 package software.xdev.dynamicreports.report.base;
 
-import software.xdev.dynamicreports.report.constant.Constants;
-import software.xdev.dynamicreports.report.definition.DRIField;
-import software.xdev.dynamicreports.report.definition.datatype.DRIDataType;
 import org.apache.commons.lang3.Validate;
 
-/**
- * <p>DRField class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class DRField<T> implements DRIField<T> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
+import software.xdev.dynamicreports.report.definition.DRIField;
+import software.xdev.dynamicreports.report.definition.datatype.DRIDataType;
 
-    private String name;
-    private Class<? super T> valueClass;
-    private DRIDataType<? super T, T> dataType;
-    private String description;
 
-    /**
-     * <p>Constructor for DRField.</p>
-     *
-     * @param name       a {@link java.lang.String} object.
-     * @param valueClass a {@link java.lang.Class} object.
-     */
-    public DRField(String name, Class<? super T> valueClass) {
-        Validate.notEmpty(name, "name must not be empty");
-        Validate.notNull(valueClass, "valueClass must not be null");
-        this.name = name;
-        this.valueClass = valueClass;
-    }
+public class DRField<T> implements DRIField<T>
+{
 
-    /** {@inheritDoc} */
-    @Override
-    public DRIDataType<? super T, T> getDataType() {
-        return dataType;
-    }
-
-    /**
-     * <p>Setter for the field <code>dataType</code>.</p>
-     *
-     * @param dataType a {@link software.xdev.dynamicreports.report.definition.datatype.DRIDataType} object.
-     */
-    public void setDataType(DRIDataType<? super T, T> dataType) {
-        this.dataType = dataType;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public String getName() {
-        return name;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Class<? super T> getValueClass() {
-        return valueClass;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public String getDescription() {
-        return description;
-    }
-
-    /**
-     * <p>Setter for the field <code>description</code>.</p>
-     *
-     * @param description a {@link java.lang.String} object.
-     */
-    public void setDescription(String description) {
-        this.description = description;
-    }
+	private final String name;
+	private final Class<? super T> valueClass;
+	private DRIDataType<? super T, T> dataType;
+	private String description;
+	
+	public DRField(final String name, final Class<? super T> valueClass)
+	{
+		Validate.notEmpty(name, "name must not be empty");
+		Validate.notNull(valueClass, "valueClass must not be null");
+		this.name = name;
+		this.valueClass = valueClass;
+	}
+	
+	@Override
+	public DRIDataType<? super T, T> getDataType()
+	{
+		return this.dataType;
+	}
+	
+	public void setDataType(final DRIDataType<? super T, T> dataType)
+	{
+		this.dataType = dataType;
+	}
+	
+	@Override
+	public String getName()
+	{
+		return this.name;
+	}
+	
+	@Override
+	public Class<? super T> getValueClass()
+	{
+		return this.valueClass;
+	}
+	
+	@Override
+	public String getDescription()
+	{
+		return this.description;
+	}
+	
+	public void setDescription(final String description)
+	{
+		this.description = description;
+	}
 }

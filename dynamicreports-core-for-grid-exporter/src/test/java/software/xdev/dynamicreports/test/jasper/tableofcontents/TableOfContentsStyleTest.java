@@ -24,6 +24,7 @@ import static software.xdev.dynamicreports.report.builder.DynamicReports.type;
 
 import java.awt.Color;
 
+import net.sf.jasperreports.engine.JRDataSource;
 import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
 import software.xdev.dynamicreports.report.builder.column.TextColumnBuilder;
 import software.xdev.dynamicreports.report.builder.style.StyleBuilder;
@@ -31,66 +32,70 @@ import software.xdev.dynamicreports.report.builder.tableofcontents.TableOfConten
 import software.xdev.dynamicreports.report.constant.HorizontalTextAlignment;
 import software.xdev.dynamicreports.report.datasource.DRDataSource;
 import software.xdev.dynamicreports.test.jasper.AbstractJasperStyleTest;
-import net.sf.jasperreports.engine.JRDataSource;
 
-/**
- * Table of contents style tests.
- * 
- * @author Ricardo Mariaca
- */
-public class TableOfContentsStyleTest extends AbstractJasperStyleTest {
 
-  @Override
-  protected void configureReport(JasperReportBuilder rb) {
-    TextColumnBuilder<String> column1 = col.column("Column1", "field1", type.stringType());
-    TextColumnBuilder<String> column2 = col.column("Column2", "field2", type.stringType());
-
-    StyleBuilder titleTocStyle = stl.style().setForegroundColor(Color.BLUE).setFontSize(18).bold()
-        .setHorizontalTextAlignment(HorizontalTextAlignment.CENTER);
-    StyleBuilder headingTocStyle = stl.style().setFontSize(12).bold();
-    StyleBuilder headingToc1Style = stl.style().italic();
-
-    TableOfContentsCustomizerBuilder tableOfContentsCustomizer =
-        tableOfContentsCustomizer().setTitleStyle(titleTocStyle).setHeadingStyle(headingTocStyle)
-            .setHeadingStyle(1, headingToc1Style);
-
-    rb.setTableOfContents(tableOfContentsCustomizer)
-        .columns(column1, column2, col.column("Column3", "field3", type.stringType()))
-        .groupBy(column1, column2);
-  }
-
-  @Override
-  public void test() {
-    super.test();
-
-    numberOfPagesTest(3);
-
-    styleTest("title.textField1", 0, Color.BLUE, null, TEST_FONT_NAME, 18f, true, null);
-
-    for (int i = 0; i < 3; i++) {
-      styleTest("detail.textField1", i, null, null, TEST_FONT_NAME, 12f, true, null);
-      styleTest("detail.textField2", i, null, null, TEST_FONT_NAME, 12f, true, null);
-      styleTest("detail.textField3", i, null, null, TEST_FONT_NAME, 12f, true, null);
-    }
-
-    for (int i = 0; i < 9; i++) {
-      styleTest("detail.textField4", i, null, null, TEST_FONT_NAME, 10f, null, true);
-      styleTest("detail.textField5", i, null, null, TEST_FONT_NAME, 10f, null, true);
-      styleTest("detail.textField6", i, null, null, TEST_FONT_NAME, 10f, null, true);
-    }
-  }
-
-  @Override
-  protected JRDataSource createDataSource() {
-    String[] values = new String[] {"value1", "value2", "value3"};
-    DRDataSource dataSource = new DRDataSource("field1", "field2", "field3");
-    for (String field1 : values) {
-      for (String field2 : values) {
-        for (int i = 0; i < 8; i++) {
-          dataSource.add(field1, field2, "text");
-        }
-      }
-    }
-    return dataSource;
-  }
+public class TableOfContentsStyleTest extends AbstractJasperStyleTest
+{
+	
+	@Override
+	protected void configureReport(final JasperReportBuilder rb)
+	{
+		final TextColumnBuilder<String> column1 = col.column("Column1", "field1", type.stringType());
+		final TextColumnBuilder<String> column2 = col.column("Column2", "field2", type.stringType());
+		
+		final StyleBuilder titleTocStyle = stl.style().setForegroundColor(Color.BLUE).setFontSize(18).bold()
+			.setHorizontalTextAlignment(HorizontalTextAlignment.CENTER);
+		final StyleBuilder headingTocStyle = stl.style().setFontSize(12).bold();
+		final StyleBuilder headingToc1Style = stl.style().italic();
+		
+		final TableOfContentsCustomizerBuilder tableOfContentsCustomizer =
+			tableOfContentsCustomizer().setTitleStyle(titleTocStyle).setHeadingStyle(headingTocStyle)
+				.setHeadingStyle(1, headingToc1Style);
+		
+		rb.setTableOfContents(tableOfContentsCustomizer)
+			.columns(column1, column2, col.column("Column3", "field3", type.stringType()))
+			.groupBy(column1, column2);
+	}
+	
+	@Override
+	public void test()
+	{
+		super.test();
+		
+		this.numberOfPagesTest(3);
+		
+		this.styleTest("title.textField1", 0, Color.BLUE, null, TEST_FONT_NAME, 18f, true, null);
+		
+		for(int i = 0; i < 3; i++)
+		{
+			this.styleTest("detail.textField1", i, null, null, TEST_FONT_NAME, 12f, true, null);
+			this.styleTest("detail.textField2", i, null, null, TEST_FONT_NAME, 12f, true, null);
+			this.styleTest("detail.textField3", i, null, null, TEST_FONT_NAME, 12f, true, null);
+		}
+		
+		for(int i = 0; i < 9; i++)
+		{
+			this.styleTest("detail.textField4", i, null, null, TEST_FONT_NAME, 10f, null, true);
+			this.styleTest("detail.textField5", i, null, null, TEST_FONT_NAME, 10f, null, true);
+			this.styleTest("detail.textField6", i, null, null, TEST_FONT_NAME, 10f, null, true);
+		}
+	}
+	
+	@Override
+	protected JRDataSource createDataSource()
+	{
+		final String[] values = new String[]{"value1", "value2", "value3"};
+		final DRDataSource dataSource = new DRDataSource("field1", "field2", "field3");
+		for(final String field1 : values)
+		{
+			for(final String field2 : values)
+			{
+				for(int i = 0; i < 8; i++)
+				{
+					dataSource.add(field1, field2, "text");
+				}
+			}
+		}
+		return dataSource;
+	}
 }

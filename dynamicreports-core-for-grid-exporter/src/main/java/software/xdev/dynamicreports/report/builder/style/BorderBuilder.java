@@ -19,99 +19,75 @@ package software.xdev.dynamicreports.report.builder.style;
 
 import software.xdev.dynamicreports.report.base.style.DRBorder;
 import software.xdev.dynamicreports.report.builder.AbstractBuilder;
-import software.xdev.dynamicreports.report.constant.Constants;
 
-/**
- * <p>BorderBuilder class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class BorderBuilder extends AbstractBuilder<BorderBuilder, DRBorder> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    /**
-     * <p>Constructor for BorderBuilder.</p>
-     */
-    protected BorderBuilder() {
-        super(new DRBorder());
-    }
+public class BorderBuilder extends AbstractBuilder<BorderBuilder, DRBorder>
+{
 
-    /**
-     * <p>Constructor for BorderBuilder.</p>
-     *
-     * @param pen a {@link software.xdev.dynamicreports.report.builder.style.PenBuilder} object.
-     */
-    protected BorderBuilder(PenBuilder pen) {
-        super(new DRBorder(pen.build()));
-    }
-
-    /**
-     * <p>setTopPen.</p>
-     *
-     * @param topPen a {@link software.xdev.dynamicreports.report.builder.style.PenBuilder} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.style.BorderBuilder} object.
-     */
-    public BorderBuilder setTopPen(PenBuilder topPen) {
-        if (topPen != null) {
-            getObject().setTopPen(topPen.build());
-        } else {
-            getObject().setTopPen(null);
-        }
-        return this;
-    }
-
-    /**
-     * <p>setLeftPen.</p>
-     *
-     * @param leftPen a {@link software.xdev.dynamicreports.report.builder.style.PenBuilder} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.style.BorderBuilder} object.
-     */
-    public BorderBuilder setLeftPen(PenBuilder leftPen) {
-        if (leftPen != null) {
-            getObject().setLeftPen(leftPen.build());
-        } else {
-            getObject().setLeftPen(null);
-        }
-        return this;
-    }
-
-    /**
-     * <p>setBottomPen.</p>
-     *
-     * @param bottomPen a {@link software.xdev.dynamicreports.report.builder.style.PenBuilder} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.style.BorderBuilder} object.
-     */
-    public BorderBuilder setBottomPen(PenBuilder bottomPen) {
-        if (bottomPen != null) {
-            getObject().setBottomPen(bottomPen.build());
-        } else {
-            getObject().setBottomPen(null);
-        }
-        return this;
-    }
-
-    /**
-     * <p>setRightPen.</p>
-     *
-     * @param rightPen a {@link software.xdev.dynamicreports.report.builder.style.PenBuilder} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.style.BorderBuilder} object.
-     */
-    public BorderBuilder setRightPen(PenBuilder rightPen) {
-        if (rightPen != null) {
-            getObject().setRightPen(rightPen.build());
-        } else {
-            getObject().setRightPen(null);
-        }
-        return this;
-    }
-
-    /**
-     * <p>getBorder.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.base.style.DRBorder} object.
-     */
-    public DRBorder getBorder() {
-        return build();
-    }
+	protected BorderBuilder()
+	{
+		super(new DRBorder());
+	}
+	
+	protected BorderBuilder(final PenBuilder pen)
+	{
+		super(new DRBorder(pen.build()));
+	}
+	
+	public BorderBuilder setTopPen(final PenBuilder topPen)
+	{
+		if(topPen != null)
+		{
+			this.getObject().setTopPen(topPen.build());
+		}
+		else
+		{
+			this.getObject().setTopPen(null);
+		}
+		return this;
+	}
+	
+	public BorderBuilder setLeftPen(final PenBuilder leftPen)
+	{
+		if(leftPen != null)
+		{
+			this.getObject().setLeftPen(leftPen.build());
+		}
+		else
+		{
+			this.getObject().setLeftPen(null);
+		}
+		return this;
+	}
+	
+	public BorderBuilder setBottomPen(final PenBuilder bottomPen)
+	{
+		if(bottomPen != null)
+		{
+			this.getObject().setBottomPen(bottomPen.build());
+		}
+		else
+		{
+			this.getObject().setBottomPen(null);
+		}
+		return this;
+	}
+	
+	public BorderBuilder setRightPen(final PenBuilder rightPen)
+	{
+		if(rightPen != null)
+		{
+			this.getObject().setRightPen(rightPen.build());
+		}
+		else
+		{
+			this.getObject().setRightPen(null);
+		}
+		return this;
+	}
+	
+	public DRBorder getBorder()
+	{
+		return this.build();
+	}
 }

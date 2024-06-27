@@ -19,51 +19,33 @@ package software.xdev.dynamicreports.report.builder.component;
 
 import software.xdev.dynamicreports.report.base.component.DRXyListCell;
 import software.xdev.dynamicreports.report.builder.AbstractBuilder;
-import software.xdev.dynamicreports.report.constant.Constants;
 
-/**
- * <p>XyListCellBuilder class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class XyListCellBuilder extends AbstractBuilder<XyListCellBuilder, DRXyListCell> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    /**
-     * <p>Constructor for XyListCellBuilder.</p>
-     *
-     * @param x         a {@link java.lang.Integer} object.
-     * @param y         a {@link java.lang.Integer} object.
-     * @param component a {@link software.xdev.dynamicreports.report.builder.component.ComponentBuilder} object.
-     */
-    protected XyListCellBuilder(Integer x, Integer y, ComponentBuilder<?, ?> component) {
-        super(new DRXyListCell(x, y, component.build()));
-    }
+public class XyListCellBuilder extends AbstractBuilder<XyListCellBuilder, DRXyListCell>
+{
 
-    /**
-     * <p>Constructor for XyListCellBuilder.</p>
-     *
-     * @param x         a {@link java.lang.Integer} object.
-     * @param y         a {@link java.lang.Integer} object.
-     * @param width     a {@link java.lang.Integer} object.
-     * @param height    a {@link java.lang.Integer} object.
-     * @param component a {@link software.xdev.dynamicreports.report.builder.component.ComponentBuilder} object.
-     */
-    protected XyListCellBuilder(Integer x, Integer y, Integer width, Integer height, ComponentBuilder<?, ?> component) {
-        super(new DRXyListCell(x, y, component.build()));
-        if (component instanceof DimensionComponentBuilder) {
-            ((DimensionComponentBuilder<?, ?>) component).setWidth(width);
-            ((DimensionComponentBuilder<?, ?>) component).setHeight(height);
-        }
-    }
-
-    /**
-     * <p>getXyListCell.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.base.component.DRXyListCell} object.
-     */
-    public DRXyListCell getXyListCell() {
-        return build();
-    }
+	protected XyListCellBuilder(final Integer x, final Integer y, final ComponentBuilder<?, ?> component)
+	{
+		super(new DRXyListCell(x, y, component.build()));
+	}
+	
+	protected XyListCellBuilder(
+		final Integer x,
+		final Integer y,
+		final Integer width,
+		final Integer height,
+		final ComponentBuilder<?, ?> component)
+	{
+		super(new DRXyListCell(x, y, component.build()));
+		if(component instanceof DimensionComponentBuilder)
+		{
+			((DimensionComponentBuilder<?, ?>)component).setWidth(width);
+			((DimensionComponentBuilder<?, ?>)component).setHeight(height);
+		}
+	}
+	
+	public DRXyListCell getXyListCell()
+	{
+		return this.build();
+	}
 }

@@ -17,36 +17,27 @@
  */
 package software.xdev.dynamicreports.report.builder.condition;
 
-import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.definition.DRIValue;
 
-/**
- * <p>UnEqualValueExpression class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class UnEqualValueExpression<T extends Number> extends AbstractValuesExpression<T> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    /**
-     * <p>Constructor for UnEqualValueExpression.</p>
-     *
-     * @param value   a {@link software.xdev.dynamicreports.report.definition.DRIValue} object.
-     * @param numbers a {@link java.lang.Number} object.
-     */
-    public UnEqualValueExpression(DRIValue<T> value, Number... numbers) {
-        super(value, numbers);
-    }
+public class UnEqualValueExpression<T extends Number> extends AbstractValuesExpression<T>
+{
 
-    /** {@inheritDoc} */
-    @Override
-    protected Boolean compare(Number actualValue, Number[] numbers) {
-        for (Number number : numbers) {
-            if (actualValue.doubleValue() == number.doubleValue()) {
-                return false;
-            }
-        }
-        return true;
-    }
+	public UnEqualValueExpression(final DRIValue<T> value, final Number... numbers)
+	{
+		super(value, numbers);
+	}
+	
+	@Override
+	protected Boolean compare(final Number actualValue, final Number[] numbers)
+	{
+		for(final Number number : numbers)
+		{
+			if(actualValue.doubleValue() == number.doubleValue())
+			{
+				return false;
+			}
+		}
+		return true;
+	}
 }

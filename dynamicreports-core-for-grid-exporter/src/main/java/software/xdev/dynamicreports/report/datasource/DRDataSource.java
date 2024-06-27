@@ -17,11 +17,6 @@
  */
 package software.xdev.dynamicreports.report.datasource;
 
-import software.xdev.dynamicreports.report.constant.Constants;
-import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JRField;
-import net.sf.jasperreports.engine.JRRewindableDataSource;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,65 +24,59 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-/**
- * <p>DRDataSource class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class DRDataSource implements JRRewindableDataSource, Serializable {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JRField;
+import net.sf.jasperreports.engine.JRRewindableDataSource;
 
-    private String[] columns;
-    private List<Map<String, Object>> values;
-    private Iterator<Map<String, Object>> iterator;
-    private Map<String, Object> currentRecord;
 
-    /**
-     * <p>Constructor for DRDataSource.</p>
-     *
-     * @param columns a {@link java.lang.String} object.
-     */
-    public DRDataSource(String... columns) {
-        this.columns = columns;
-        this.values = new ArrayList<Map<String, Object>>();
-    }
+public class DRDataSource implements JRRewindableDataSource, Serializable
+{
 
-    /**
-     * <p>add.</p>
-     *
-     * @param values a {@link java.lang.Object} object.
-     */
-    public void add(Object... values) {
-        Map<String, Object> row = new HashMap<String, Object>();
-        for (int i = 0; i < values.length; i++) {
-            row.put(columns[i], values[i]);
-        }
-        this.values.add(row);
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Object getFieldValue(JRField field) throws JRException {
-        return currentRecord.get(field.getName());
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public boolean next() throws JRException {
-        if (iterator == null) {
-            this.iterator = values.iterator();
-        }
-        boolean hasNext = iterator.hasNext();
-        if (hasNext) {
-            currentRecord = iterator.next();
-        }
-        return hasNext;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void moveFirst() throws JRException {
-        iterator = null;
-    }
+	private final String[] columns;
+	private final List<Map<String, Object>> values;
+	private Iterator<Map<String, Object>> iterator;
+	private Map<String, Object> currentRecord;
+	
+	public DRDataSource(final String... columns)
+	{
+		this.columns = columns;
+		this.values = new ArrayList<>();
+	}
+	
+	public void add(final Object... values)
+	{
+		final Map<String, Object> row = new HashMap<>();
+		for(int i = 0; i < values.length; i++)
+		{
+			row.put(this.columns[i], values[i]);
+		}
+		this.values.add(row);
+	}
+	
+	@Override
+	public Object getFieldValue(final JRField field) throws JRException
+	{
+		return this.currentRecord.get(field.getName());
+	}
+	
+	@Override
+	public boolean next() throws JRException
+	{
+		if(this.iterator == null)
+		{
+			this.iterator = this.values.iterator();
+		}
+		final boolean hasNext = this.iterator.hasNext();
+		if(hasNext)
+		{
+			this.currentRecord = this.iterator.next();
+		}
+		return hasNext;
+	}
+	
+	@Override
+	public void moveFirst() throws JRException
+	{
+		this.iterator = null;
+	}
 }

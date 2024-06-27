@@ -17,37 +17,17 @@
  */
 package software.xdev.dynamicreports.report.definition.component;
 
-import software.xdev.dynamicreports.report.definition.expression.DRIParameterExpression;
-
 import java.util.List;
 
-/**
- * <p>DRIGenericElement interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface DRIGenericElement extends DRIDimensionComponent {
+import software.xdev.dynamicreports.report.definition.expression.DRIParameterExpression;
 
-    /**
-     * <p>getGenericElementNamespace.</p>
-     *
-     * @return a {@link java.lang.String} object.
-     */
-    public String getGenericElementNamespace();
 
-    /**
-     * <p>getGenericElementName.</p>
-     *
-     * @return a {@link java.lang.String} object.
-     */
-    public String getGenericElementName();
-
-    /**
-     * <p>getParameterExpressions.</p>
-     *
-     * @return a {@link java.util.List} object.
-     */
-    public List<DRIParameterExpression> getParameterExpressions();
-
+public interface DRIGenericElement extends DRIDimensionComponent
+{
+	
+	public String getGenericElementNamespace();
+	
+	public String getGenericElementName();
+	
+	public List<DRIParameterExpression> getParameterExpressions();
 }

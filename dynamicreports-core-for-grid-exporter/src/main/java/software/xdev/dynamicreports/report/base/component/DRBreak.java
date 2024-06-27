@@ -18,32 +18,22 @@
 package software.xdev.dynamicreports.report.base.component;
 
 import software.xdev.dynamicreports.report.constant.BreakType;
-import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.definition.component.DRIBreak;
 
-/**
- * <p>DRBreak class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class DRBreak extends DRComponent implements DRIBreak {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    private BreakType breakType;
+public class DRBreak extends DRComponent implements DRIBreak
+{
 
-    /** {@inheritDoc} */
-    @Override
-    public BreakType getType() {
-        return breakType;
-    }
-
-    /**
-     * <p>setType.</p>
-     *
-     * @param breakType a {@link software.xdev.dynamicreports.report.constant.BreakType} object.
-     */
-    public void setType(BreakType breakType) {
-        this.breakType = breakType;
-    }
+	private BreakType breakType;
+	
+	@Override
+	public BreakType getType()
+	{
+		return this.breakType;
+	}
+	
+	public void setType(final BreakType breakType)
+	{
+		this.breakType = breakType;
+	}
 }

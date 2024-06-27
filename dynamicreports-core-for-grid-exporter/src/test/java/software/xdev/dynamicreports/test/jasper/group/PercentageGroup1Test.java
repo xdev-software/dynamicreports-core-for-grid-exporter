@@ -17,58 +17,65 @@
  */
 package software.xdev.dynamicreports.test.jasper.group;
 
+import static software.xdev.dynamicreports.report.builder.DynamicReports.col;
+
+import java.util.Locale;
+
+import net.sf.jasperreports.engine.JRDataSource;
 import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
 import software.xdev.dynamicreports.report.builder.column.PercentageColumnBuilder;
 import software.xdev.dynamicreports.report.builder.column.TextColumnBuilder;
 import software.xdev.dynamicreports.report.constant.PercentageTotalType;
 import software.xdev.dynamicreports.report.datasource.DRDataSource;
 import software.xdev.dynamicreports.test.jasper.AbstractJasperValueTest;
-import net.sf.jasperreports.engine.JRDataSource;
 
-import java.util.Locale;
 
-import static software.xdev.dynamicreports.report.builder.DynamicReports.col;
-
-/**
- * @author Ricardo Mariaca
- */
-public class PercentageGroup1Test extends AbstractJasperValueTest {
-    private PercentageColumnBuilder percentage1;
-    private PercentageColumnBuilder percentage2;
-
-    @Override
-    protected void configureReport(JasperReportBuilder rb) {
-        TextColumnBuilder<String> column1;
-        TextColumnBuilder<Integer> column2;
-
-        rb.setLocale(Locale.ENGLISH)
-          .columns(column1 = col.column("Column1", "field1", String.class), column2 = col.column("Column2", "field2", Integer.class), percentage1 = col.percentageColumn(column2),
-                   percentage2 = col.percentageColumn(column2).setTotalType(PercentageTotalType.REPORT))
-          .groupBy(column1);
-    }
-
-    @Override
-    public void test() {
-        super.test();
-
-        numberOfPagesTest(1);
-        // percentage1
-        columnDetailCountTest(percentage1, 6);
-        columnDetailValueTest(percentage1, "16.67%", "33.33%", "50.00%", "26.67%", "33.33%", "40.00%");
-        // percentage2
-        columnDetailCountTest(percentage2, 6);
-        columnDetailValueTest(percentage2, "4.76%", "9.52%", "14.29%", "19.05%", "23.81%", "28.57%");
-    }
-
-    @Override
-    protected JRDataSource createDataSource() {
-        DRDataSource dataSource = new DRDataSource("field1", "field2");
-        for (int i = 1; i <= 3; i++) {
-            dataSource.add("group1", i);
-        }
-        for (int i = 4; i <= 6; i++) {
-            dataSource.add("group2", i);
-        }
-        return dataSource;
-    }
+public class PercentageGroup1Test extends AbstractJasperValueTest
+{
+	private PercentageColumnBuilder percentage1;
+	private PercentageColumnBuilder percentage2;
+	
+	@Override
+	protected void configureReport(final JasperReportBuilder rb)
+	{
+		final TextColumnBuilder<String> column1;
+		final TextColumnBuilder<Integer> column2;
+		
+		rb.setLocale(Locale.ENGLISH)
+			.columns(
+				column1 = col.column("Column1", "field1", String.class),
+				column2 = col.column("Column2", "field2", Integer.class),
+				this.percentage1 = col.percentageColumn(column2),
+				this.percentage2 = col.percentageColumn(column2).setTotalType(PercentageTotalType.REPORT))
+			.groupBy(column1);
+	}
+	
+	@Override
+	public void test()
+	{
+		super.test();
+		
+		this.numberOfPagesTest(1);
+		// percentage1
+		this.columnDetailCountTest(this.percentage1, 6);
+		this.columnDetailValueTest(this.percentage1, "16.67%", "33.33%", "50.00%", "26.67%", "33.33%", "40.00%");
+		// percentage2
+		this.columnDetailCountTest(this.percentage2, 6);
+		this.columnDetailValueTest(this.percentage2, "4.76%", "9.52%", "14.29%", "19.05%", "23.81%", "28.57%");
+	}
+	
+	@Override
+	protected JRDataSource createDataSource()
+	{
+		final DRDataSource dataSource = new DRDataSource("field1", "field2");
+		for(int i = 1; i <= 3; i++)
+		{
+			dataSource.add("group1", i);
+		}
+		for(int i = 4; i <= 6; i++)
+		{
+			dataSource.add("group2", i);
+		}
+		return dataSource;
+	}
 }

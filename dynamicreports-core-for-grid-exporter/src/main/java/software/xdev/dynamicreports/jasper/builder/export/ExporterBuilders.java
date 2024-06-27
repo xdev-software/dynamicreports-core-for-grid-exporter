@@ -22,471 +22,226 @@ import java.io.OutputStream;
 import java.io.Writer;
 
 
-/**
- * A set of methods of creating exporters
- *
- * @author Ricardo Mariaca
- */
 public class ExporterBuilders
 {
-    
-    // csv
-    
-    /**
-     * <p>csvExporter.</p>
-     *
-     * @param outputWriter a {@link java.io.Writer} object.
-     * @return a {@link software.xdev.dynamicreports.jasper.builder.export.JasperCsvExporterBuilder} object.
-     */
-    public JasperCsvExporterBuilder csvExporter(final Writer outputWriter)
-    {
-        return Exporters.csvExporter(outputWriter);
-    }
-    
-    /**
-     * <p>csvExporter.</p>
-     *
-     * @param outputStream a {@link java.io.OutputStream} object.
-     * @return a {@link software.xdev.dynamicreports.jasper.builder.export.JasperCsvExporterBuilder} object.
-     */
-    public JasperCsvExporterBuilder csvExporter(final OutputStream outputStream)
-    {
-        return Exporters.csvExporter(outputStream);
-    }
-    
-    /**
-     * <p>csvExporter.</p>
-     *
-     * @param outputFile a {@link java.io.File} object.
-     * @return a {@link software.xdev.dynamicreports.jasper.builder.export.JasperCsvExporterBuilder} object.
-     */
-    public JasperCsvExporterBuilder csvExporter(final File outputFile)
-    {
-        return Exporters.csvExporter(outputFile);
-    }
-    
-    /**
-     * <p>csvExporter.</p>
-     *
-     * @param outputFileName a {@link java.lang.String} object.
-     * @return a {@link software.xdev.dynamicreports.jasper.builder.export.JasperCsvExporterBuilder} object.
-     */
-    public JasperCsvExporterBuilder csvExporter(final String outputFileName)
-    {
-        return Exporters.csvExporter(outputFileName);
-    }
-    
-    // docx
-    
-    /**
-     * <p>docxExporter.</p>
-     *
-     * @param outputWriter a {@link java.io.Writer} object.
-     * @return a {@link software.xdev.dynamicreports.jasper.builder.export.JasperDocxExporterBuilder} object.
-     */
-    public JasperDocxExporterBuilder docxExporter(final Writer outputWriter)
-    {
-        return Exporters.docxExporter(outputWriter);
-    }
-    
-    /**
-     * <p>docxExporter.</p>
-     *
-     * @param outputStream a {@link java.io.OutputStream} object.
-     * @return a {@link software.xdev.dynamicreports.jasper.builder.export.JasperDocxExporterBuilder} object.
-     */
-    public JasperDocxExporterBuilder docxExporter(final OutputStream outputStream)
-    {
-        return Exporters.docxExporter(outputStream);
-    }
-    
-    /**
-     * <p>docxExporter.</p>
-     *
-     * @param outputFile a {@link java.io.File} object.
-     * @return a {@link software.xdev.dynamicreports.jasper.builder.export.JasperDocxExporterBuilder} object.
-     */
-    public JasperDocxExporterBuilder docxExporter(final File outputFile)
-    {
-        return Exporters.docxExporter(outputFile);
-    }
-    
-    /**
-     * <p>docxExporter.</p>
-     *
-     * @param outputFileName a {@link java.lang.String} object.
-     * @return a {@link software.xdev.dynamicreports.jasper.builder.export.JasperDocxExporterBuilder} object.
-     */
-    public JasperDocxExporterBuilder docxExporter(final String outputFileName)
-    {
-        return Exporters.docxExporter(outputFileName);
-    }
-    
-    // html
-    
-    /**
-     * <p>htmlExporter.</p>
-     *
-     * @param outputWriter a {@link java.io.Writer} object.
-     * @return a {@link software.xdev.dynamicreports.jasper.builder.export.JasperHtmlExporterBuilder} object.
-     */
-    public JasperHtmlExporterBuilder htmlExporter(final Writer outputWriter)
-    {
-        return Exporters.htmlExporter(outputWriter);
-    }
-    
-    /**
-     * <p>htmlExporter.</p>
-     *
-     * @param outputStream a {@link java.io.OutputStream} object.
-     * @return a {@link software.xdev.dynamicreports.jasper.builder.export.JasperHtmlExporterBuilder} object.
-     */
-    public JasperHtmlExporterBuilder htmlExporter(final OutputStream outputStream)
-    {
-        return Exporters.htmlExporter(outputStream);
-    }
-    
-    /**
-     * <p>htmlExporter.</p>
-     *
-     * @param outputFile a {@link java.io.File} object.
-     * @return a {@link software.xdev.dynamicreports.jasper.builder.export.JasperHtmlExporterBuilder} object.
-     */
-    public JasperHtmlExporterBuilder htmlExporter(final File outputFile)
-    {
-        return Exporters.htmlExporter(outputFile);
-    }
-    
-    /**
-     * <p>htmlExporter.</p>
-     *
-     * @param outputFileName a {@link java.lang.String} object.
-     * @return a {@link software.xdev.dynamicreports.jasper.builder.export.JasperHtmlExporterBuilder} object.
-     */
-    public JasperHtmlExporterBuilder htmlExporter(final String outputFileName)
-    {
-        return Exporters.htmlExporter(outputFileName);
-    }
-    
-    // ods
-    
-    /**
-     * <p>odsExporter.</p>
-     *
-     * @param outputWriter a {@link java.io.Writer} object.
-     * @return a {@link software.xdev.dynamicreports.jasper.builder.export.JasperOdsExporterBuilder} object.
-     */
-    public JasperOdsExporterBuilder odsExporter(final Writer outputWriter)
-    {
-        return Exporters.odsExporter(outputWriter);
-    }
-    
-    /**
-     * <p>odsExporter.</p>
-     *
-     * @param outputStream a {@link java.io.OutputStream} object.
-     * @return a {@link software.xdev.dynamicreports.jasper.builder.export.JasperOdsExporterBuilder} object.
-     */
-    public JasperOdsExporterBuilder odsExporter(final OutputStream outputStream)
-    {
-        return Exporters.odsExporter(outputStream);
-    }
-    
-    /**
-     * <p>odsExporter.</p>
-     *
-     * @param outputFile a {@link java.io.File} object.
-     * @return a {@link software.xdev.dynamicreports.jasper.builder.export.JasperOdsExporterBuilder} object.
-     */
-    public JasperOdsExporterBuilder odsExporter(final File outputFile)
-    {
-        return Exporters.odsExporter(outputFile);
-    }
-    
-    /**
-     * <p>odsExporter.</p>
-     *
-     * @param outputFileName a {@link java.lang.String} object.
-     * @return a {@link software.xdev.dynamicreports.jasper.builder.export.JasperOdsExporterBuilder} object.
-     */
-    public JasperOdsExporterBuilder odsExporter(final String outputFileName)
-    {
-        return Exporters.odsExporter(outputFileName);
-    }
-    
-    // odt
-    
-    /**
-     * <p>odtExporter.</p>
-     *
-     * @param outputWriter a {@link java.io.Writer} object.
-     * @return a {@link software.xdev.dynamicreports.jasper.builder.export.JasperOdtExporterBuilder} object.
-     */
-    public JasperOdtExporterBuilder odtExporter(final Writer outputWriter)
-    {
-        return Exporters.odtExporter(outputWriter);
-    }
-    
-    /**
-     * <p>odtExporter.</p>
-     *
-     * @param outputStream a {@link java.io.OutputStream} object.
-     * @return a {@link software.xdev.dynamicreports.jasper.builder.export.JasperOdtExporterBuilder} object.
-     */
-    public JasperOdtExporterBuilder odtExporter(final OutputStream outputStream)
-    {
-        return Exporters.odtExporter(outputStream);
-    }
-    
-    /**
-     * <p>odtExporter.</p>
-     *
-     * @param outputFile a {@link java.io.File} object.
-     * @return a {@link software.xdev.dynamicreports.jasper.builder.export.JasperOdtExporterBuilder} object.
-     */
-    public JasperOdtExporterBuilder odtExporter(final File outputFile)
-    {
-        return Exporters.odtExporter(outputFile);
-    }
-    
-    /**
-     * <p>odtExporter.</p>
-     *
-     * @param outputFileName a {@link java.lang.String} object.
-     * @return a {@link software.xdev.dynamicreports.jasper.builder.export.JasperOdtExporterBuilder} object.
-     */
-    public JasperOdtExporterBuilder odtExporter(final String outputFileName)
-    {
-        return Exporters.odtExporter(outputFileName);
-    }
-    
-    // pdf
-    
-    /**
-     * <p>pdfExporter.</p>
-     *
-     * @param outputWriter a {@link java.io.Writer} object.
-     * @return a {@link software.xdev.dynamicreports.jasper.builder.export.JasperPdfExporterBuilder} object.
-     */
-    public JasperPdfExporterBuilder pdfExporter(final Writer outputWriter)
-    {
-        return Exporters.pdfExporter(outputWriter);
-    }
-    
-    /**
-     * <p>pdfExporter.</p>
-     *
-     * @param outputStream a {@link java.io.OutputStream} object.
-     * @return a {@link software.xdev.dynamicreports.jasper.builder.export.JasperPdfExporterBuilder} object.
-     */
-    public JasperPdfExporterBuilder pdfExporter(final OutputStream outputStream)
-    {
-        return Exporters.pdfExporter(outputStream);
-    }
-    
-    /**
-     * <p>pdfExporter.</p>
-     *
-     * @param outputFile a {@link java.io.File} object.
-     * @return a {@link software.xdev.dynamicreports.jasper.builder.export.JasperPdfExporterBuilder} object.
-     */
-    public JasperPdfExporterBuilder pdfExporter(final File outputFile)
-    {
-        return Exporters.pdfExporter(outputFile);
-    }
-    
-    /**
-     * <p>pdfExporter.</p>
-     *
-     * @param outputFileName a {@link java.lang.String} object.
-     * @return a {@link software.xdev.dynamicreports.jasper.builder.export.JasperPdfExporterBuilder} object.
-     */
-    public JasperPdfExporterBuilder pdfExporter(final String outputFileName)
-    {
-        return Exporters.pdfExporter(outputFileName);
-    }
-    
-    // rtf
-    
-    /**
-     * <p>rtfExporter.</p>
-     *
-     * @param outputWriter a {@link java.io.Writer} object.
-     * @return a {@link software.xdev.dynamicreports.jasper.builder.export.JasperRtfExporterBuilder} object.
-     */
-    public JasperRtfExporterBuilder rtfExporter(final Writer outputWriter)
-    {
-        return Exporters.rtfExporter(outputWriter);
-    }
-    
-    /**
-     * <p>rtfExporter.</p>
-     *
-     * @param outputStream a {@link java.io.OutputStream} object.
-     * @return a {@link software.xdev.dynamicreports.jasper.builder.export.JasperRtfExporterBuilder} object.
-     */
-    public JasperRtfExporterBuilder rtfExporter(final OutputStream outputStream)
-    {
-        return Exporters.rtfExporter(outputStream);
-    }
-    
-    /**
-     * <p>rtfExporter.</p>
-     *
-     * @param outputFile a {@link java.io.File} object.
-     * @return a {@link software.xdev.dynamicreports.jasper.builder.export.JasperRtfExporterBuilder} object.
-     */
-    public JasperRtfExporterBuilder rtfExporter(final File outputFile)
-    {
-        return Exporters.rtfExporter(outputFile);
-    }
-    
-    /**
-     * <p>rtfExporter.</p>
-     *
-     * @param outputFileName a {@link java.lang.String} object.
-     * @return a {@link software.xdev.dynamicreports.jasper.builder.export.JasperRtfExporterBuilder} object.
-     */
-    public JasperRtfExporterBuilder rtfExporter(final String outputFileName)
-    {
-        return Exporters.rtfExporter(outputFileName);
-    }
-    
-    // text
-    
-    /**
-     * <p>textExporter.</p>
-     *
-     * @param outputWriter a {@link java.io.Writer} object.
-     * @return a {@link software.xdev.dynamicreports.jasper.builder.export.JasperTextExporterBuilder} object.
-     */
-    public JasperTextExporterBuilder textExporter(final Writer outputWriter)
-    {
-        return Exporters.textExporter(outputWriter);
-    }
-    
-    /**
-     * <p>textExporter.</p>
-     *
-     * @param outputStream a {@link java.io.OutputStream} object.
-     * @return a {@link software.xdev.dynamicreports.jasper.builder.export.JasperTextExporterBuilder} object.
-     */
-    public JasperTextExporterBuilder textExporter(final OutputStream outputStream)
-    {
-        return Exporters.textExporter(outputStream);
-    }
-    
-    /**
-     * <p>textExporter.</p>
-     *
-     * @param outputFile a {@link java.io.File} object.
-     * @return a {@link software.xdev.dynamicreports.jasper.builder.export.JasperTextExporterBuilder} object.
-     */
-    public JasperTextExporterBuilder textExporter(final File outputFile)
-    {
-        return Exporters.textExporter(outputFile);
-    }
-    
-    /**
-     * <p>textExporter.</p>
-     *
-     * @param outputFileName a {@link java.lang.String} object.
-     * @return a {@link software.xdev.dynamicreports.jasper.builder.export.JasperTextExporterBuilder} object.
-     */
-    public JasperTextExporterBuilder textExporter(final String outputFileName)
-    {
-        return Exporters.textExporter(outputFileName);
-    }
-    
-    // xlsx
-    
-    /**
-     * <p>xlsxExporter.</p>
-     *
-     * @param outputWriter a {@link java.io.Writer} object.
-     * @return a {@link software.xdev.dynamicreports.jasper.builder.export.JasperXlsxExporterBuilder} object.
-     */
-    public JasperXlsxExporterBuilder xlsxExporter(final Writer outputWriter)
-    {
-        return Exporters.xlsxExporter(outputWriter);
-    }
-    
-    /**
-     * <p>xlsxExporter.</p>
-     *
-     * @param outputStream a {@link java.io.OutputStream} object.
-     * @return a {@link software.xdev.dynamicreports.jasper.builder.export.JasperXlsxExporterBuilder} object.
-     */
-    public JasperXlsxExporterBuilder xlsxExporter(final OutputStream outputStream)
-    {
-        return Exporters.xlsxExporter(outputStream);
-    }
-    
-    /**
-     * <p>xlsxExporter.</p>
-     *
-     * @param outputFile a {@link java.io.File} object.
-     * @return a {@link software.xdev.dynamicreports.jasper.builder.export.JasperXlsxExporterBuilder} object.
-     */
-    public JasperXlsxExporterBuilder xlsxExporter(final File outputFile)
-    {
-        return Exporters.xlsxExporter(outputFile);
-    }
-    
-    /**
-     * <p>xlsxExporter.</p>
-     *
-     * @param outputFileName a {@link java.lang.String} object.
-     * @return a {@link software.xdev.dynamicreports.jasper.builder.export.JasperXlsxExporterBuilder} object.
-     */
-    public JasperXlsxExporterBuilder xlsxExporter(final String outputFileName)
-    {
-        return Exporters.xlsxExporter(outputFileName);
-    }
-    
-    // pptx
-    
-    /**
-     * <p>pptxExporter.</p>
-     *
-     * @param outputWriter a {@link java.io.Writer} object.
-     * @return a {@link software.xdev.dynamicreports.jasper.builder.export.JasperPptxExporterBuilder} object.
-     */
-    public JasperPptxExporterBuilder pptxExporter(final Writer outputWriter)
-    {
-        return Exporters.pptxExporter(outputWriter);
-    }
-    
-    /**
-     * <p>pptxExporter.</p>
-     *
-     * @param outputStream a {@link java.io.OutputStream} object.
-     * @return a {@link software.xdev.dynamicreports.jasper.builder.export.JasperPptxExporterBuilder} object.
-     */
-    public JasperPptxExporterBuilder pptxExporter(final OutputStream outputStream)
-    {
-        return Exporters.pptxExporter(outputStream);
-    }
-    
-    /**
-     * <p>pptxExporter.</p>
-     *
-     * @param outputFile a {@link java.io.File} object.
-     * @return a {@link software.xdev.dynamicreports.jasper.builder.export.JasperPptxExporterBuilder} object.
-     */
-    public JasperPptxExporterBuilder pptxExporter(final File outputFile)
-    {
-        return Exporters.pptxExporter(outputFile);
-    }
-    
-    /**
-     * <p>pptxExporter.</p>
-     *
-     * @param outputFileName a {@link java.lang.String} object.
-     * @return a {@link software.xdev.dynamicreports.jasper.builder.export.JasperPptxExporterBuilder} object.
-     */
-    public JasperPptxExporterBuilder pptxExporter(final String outputFileName)
-    {
-        return Exporters.pptxExporter(outputFileName);
-    }
+	
+	// csv
+	
+	public JasperCsvExporterBuilder csvExporter(final Writer outputWriter)
+	{
+		return Exporters.csvExporter(outputWriter);
+	}
+	
+	public JasperCsvExporterBuilder csvExporter(final OutputStream outputStream)
+	{
+		return Exporters.csvExporter(outputStream);
+	}
+	
+	public JasperCsvExporterBuilder csvExporter(final File outputFile)
+	{
+		return Exporters.csvExporter(outputFile);
+	}
+	
+	public JasperCsvExporterBuilder csvExporter(final String outputFileName)
+	{
+		return Exporters.csvExporter(outputFileName);
+	}
+	
+	// docx
+	
+	public JasperDocxExporterBuilder docxExporter(final Writer outputWriter)
+	{
+		return Exporters.docxExporter(outputWriter);
+	}
+	
+	public JasperDocxExporterBuilder docxExporter(final OutputStream outputStream)
+	{
+		return Exporters.docxExporter(outputStream);
+	}
+	
+	public JasperDocxExporterBuilder docxExporter(final File outputFile)
+	{
+		return Exporters.docxExporter(outputFile);
+	}
+	
+	public JasperDocxExporterBuilder docxExporter(final String outputFileName)
+	{
+		return Exporters.docxExporter(outputFileName);
+	}
+	
+	// html
+	
+	public JasperHtmlExporterBuilder htmlExporter(final Writer outputWriter)
+	{
+		return Exporters.htmlExporter(outputWriter);
+	}
+	
+	public JasperHtmlExporterBuilder htmlExporter(final OutputStream outputStream)
+	{
+		return Exporters.htmlExporter(outputStream);
+	}
+	
+	public JasperHtmlExporterBuilder htmlExporter(final File outputFile)
+	{
+		return Exporters.htmlExporter(outputFile);
+	}
+	
+	public JasperHtmlExporterBuilder htmlExporter(final String outputFileName)
+	{
+		return Exporters.htmlExporter(outputFileName);
+	}
+	
+	// ods
+	
+	public JasperOdsExporterBuilder odsExporter(final Writer outputWriter)
+	{
+		return Exporters.odsExporter(outputWriter);
+	}
+	
+	public JasperOdsExporterBuilder odsExporter(final OutputStream outputStream)
+	{
+		return Exporters.odsExporter(outputStream);
+	}
+	
+	public JasperOdsExporterBuilder odsExporter(final File outputFile)
+	{
+		return Exporters.odsExporter(outputFile);
+	}
+	
+	public JasperOdsExporterBuilder odsExporter(final String outputFileName)
+	{
+		return Exporters.odsExporter(outputFileName);
+	}
+	
+	// odt
+	
+	public JasperOdtExporterBuilder odtExporter(final Writer outputWriter)
+	{
+		return Exporters.odtExporter(outputWriter);
+	}
+	
+	public JasperOdtExporterBuilder odtExporter(final OutputStream outputStream)
+	{
+		return Exporters.odtExporter(outputStream);
+	}
+	
+	public JasperOdtExporterBuilder odtExporter(final File outputFile)
+	{
+		return Exporters.odtExporter(outputFile);
+	}
+	
+	public JasperOdtExporterBuilder odtExporter(final String outputFileName)
+	{
+		return Exporters.odtExporter(outputFileName);
+	}
+	
+	// pdf
+	
+	public JasperPdfExporterBuilder pdfExporter(final Writer outputWriter)
+	{
+		return Exporters.pdfExporter(outputWriter);
+	}
+	
+	public JasperPdfExporterBuilder pdfExporter(final OutputStream outputStream)
+	{
+		return Exporters.pdfExporter(outputStream);
+	}
+	
+	public JasperPdfExporterBuilder pdfExporter(final File outputFile)
+	{
+		return Exporters.pdfExporter(outputFile);
+	}
+	
+	public JasperPdfExporterBuilder pdfExporter(final String outputFileName)
+	{
+		return Exporters.pdfExporter(outputFileName);
+	}
+	
+	// rtf
+	
+	public JasperRtfExporterBuilder rtfExporter(final Writer outputWriter)
+	{
+		return Exporters.rtfExporter(outputWriter);
+	}
+	
+	public JasperRtfExporterBuilder rtfExporter(final OutputStream outputStream)
+	{
+		return Exporters.rtfExporter(outputStream);
+	}
+	
+	public JasperRtfExporterBuilder rtfExporter(final File outputFile)
+	{
+		return Exporters.rtfExporter(outputFile);
+	}
+	
+	public JasperRtfExporterBuilder rtfExporter(final String outputFileName)
+	{
+		return Exporters.rtfExporter(outputFileName);
+	}
+	
+	// text
+	
+	public JasperTextExporterBuilder textExporter(final Writer outputWriter)
+	{
+		return Exporters.textExporter(outputWriter);
+	}
+	
+	public JasperTextExporterBuilder textExporter(final OutputStream outputStream)
+	{
+		return Exporters.textExporter(outputStream);
+	}
+	
+	public JasperTextExporterBuilder textExporter(final File outputFile)
+	{
+		return Exporters.textExporter(outputFile);
+	}
+	
+	public JasperTextExporterBuilder textExporter(final String outputFileName)
+	{
+		return Exporters.textExporter(outputFileName);
+	}
+	
+	// xlsx
+	
+	public JasperXlsxExporterBuilder xlsxExporter(final Writer outputWriter)
+	{
+		return Exporters.xlsxExporter(outputWriter);
+	}
+	
+	public JasperXlsxExporterBuilder xlsxExporter(final OutputStream outputStream)
+	{
+		return Exporters.xlsxExporter(outputStream);
+	}
+	
+	public JasperXlsxExporterBuilder xlsxExporter(final File outputFile)
+	{
+		return Exporters.xlsxExporter(outputFile);
+	}
+	
+	public JasperXlsxExporterBuilder xlsxExporter(final String outputFileName)
+	{
+		return Exporters.xlsxExporter(outputFileName);
+	}
+	
+	// pptx
+	
+	public JasperPptxExporterBuilder pptxExporter(final Writer outputWriter)
+	{
+		return Exporters.pptxExporter(outputWriter);
+	}
+	
+	public JasperPptxExporterBuilder pptxExporter(final OutputStream outputStream)
+	{
+		return Exporters.pptxExporter(outputStream);
+	}
+	
+	public JasperPptxExporterBuilder pptxExporter(final File outputFile)
+	{
+		return Exporters.pptxExporter(outputFile);
+	}
+	
+	public JasperPptxExporterBuilder pptxExporter(final String outputFileName)
+	{
+		return Exporters.pptxExporter(outputFileName);
+	}
 }

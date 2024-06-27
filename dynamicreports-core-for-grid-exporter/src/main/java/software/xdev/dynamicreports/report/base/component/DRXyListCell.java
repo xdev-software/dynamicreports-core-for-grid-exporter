@@ -17,72 +17,53 @@
  */
 package software.xdev.dynamicreports.report.base.component;
 
-import software.xdev.dynamicreports.report.constant.Constants;
-import software.xdev.dynamicreports.report.definition.component.DRIXyListCell;
 import org.apache.commons.lang3.Validate;
 
-/**
- * <p>DRXyListCell class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class DRXyListCell implements DRIXyListCell {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
+import software.xdev.dynamicreports.report.definition.component.DRIXyListCell;
 
-    private Integer x;
-    private Integer y;
-    private DRComponent component;
 
-    /**
-     * <p>Constructor for DRXyListCell.</p>
-     *
-     * @param x         a {@link java.lang.Integer} object.
-     * @param y         a {@link java.lang.Integer} object.
-     * @param component a {@link software.xdev.dynamicreports.report.base.component.DRComponent} object.
-     */
-    public DRXyListCell(Integer x, Integer y, DRComponent component) {
-        Validate.notNull(x, "x must not be null");
-        Validate.notNull(y, "y must not be null");
-        Validate.notNull(component, "component must not be null");
-        this.x = x;
-        this.y = y;
-        this.component = component;
-    }
+public class DRXyListCell implements DRIXyListCell
+{
 
-    /** {@inheritDoc} */
-    @Override
-    public Integer getX() {
-        return x;
-    }
-
-    /**
-     * <p>Setter for the field <code>x</code>.</p>
-     *
-     * @param x a {@link java.lang.Integer} object.
-     */
-    public void setX(Integer x) {
-        this.x = x;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Integer getY() {
-        return y;
-    }
-
-    /**
-     * <p>Setter for the field <code>y</code>.</p>
-     *
-     * @param y a {@link java.lang.Integer} object.
-     */
-    public void setY(Integer y) {
-        this.y = y;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRComponent getComponent() {
-        return component;
-    }
+	private Integer x;
+	private Integer y;
+	private final DRComponent component;
+	
+	public DRXyListCell(final Integer x, final Integer y, final DRComponent component)
+	{
+		Validate.notNull(x, "x must not be null");
+		Validate.notNull(y, "y must not be null");
+		Validate.notNull(component, "component must not be null");
+		this.x = x;
+		this.y = y;
+		this.component = component;
+	}
+	
+	@Override
+	public Integer getX()
+	{
+		return this.x;
+	}
+	
+	public void setX(final Integer x)
+	{
+		this.x = x;
+	}
+	
+	@Override
+	public Integer getY()
+	{
+		return this.y;
+	}
+	
+	public void setY(final Integer y)
+	{
+		this.y = y;
+	}
+	
+	@Override
+	public DRComponent getComponent()
+	{
+		return this.component;
+	}
 }

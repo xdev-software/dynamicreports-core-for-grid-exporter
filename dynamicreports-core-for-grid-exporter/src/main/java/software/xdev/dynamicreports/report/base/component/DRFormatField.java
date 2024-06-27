@@ -17,52 +17,39 @@
  */
 package software.xdev.dynamicreports.report.base.component;
 
-import software.xdev.dynamicreports.report.constant.Constants;
+import org.apache.commons.lang3.Validate;
+
 import software.xdev.dynamicreports.report.constant.HorizontalTextAlignment;
 import software.xdev.dynamicreports.report.definition.component.DRIFormatField;
 import software.xdev.dynamicreports.report.definition.expression.DRIExpression;
-import org.apache.commons.lang3.Validate;
 
-/**
- * <p>Abstract DRFormatField class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public abstract class DRFormatField extends DRHyperLinkComponent implements DRIFormatField {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    private DRIExpression<String> formatExpression;
-    private HorizontalTextAlignment horizontalTextAlignment;
+public abstract class DRFormatField extends DRHyperLinkComponent implements DRIFormatField
+{
 
-    /** {@inheritDoc} */
-    @Override
-    public DRIExpression<String> getFormatExpression() {
-        return formatExpression;
-    }
-
-    /**
-     * <p>Setter for the field <code>formatExpression</code>.</p>
-     *
-     * @param formatExpression a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     */
-    public void setFormatExpression(DRIExpression<String> formatExpression) {
-        Validate.notNull(formatExpression, "formatExpression must not be null");
-        this.formatExpression = formatExpression;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public HorizontalTextAlignment getHorizontalTextAlignment() {
-        return horizontalTextAlignment;
-    }
-
-    /**
-     * <p>Setter for the field <code>horizontalTextAlignment</code>.</p>
-     *
-     * @param horizontalTextAlignment a {@link software.xdev.dynamicreports.report.constant.HorizontalTextAlignment} object.
-     */
-    public void setHorizontalTextAlignment(HorizontalTextAlignment horizontalTextAlignment) {
-        this.horizontalTextAlignment = horizontalTextAlignment;
-    }
+	private DRIExpression<String> formatExpression;
+	private HorizontalTextAlignment horizontalTextAlignment;
+	
+	@Override
+	public DRIExpression<String> getFormatExpression()
+	{
+		return this.formatExpression;
+	}
+	
+	public void setFormatExpression(final DRIExpression<String> formatExpression)
+	{
+		Validate.notNull(formatExpression, "formatExpression must not be null");
+		this.formatExpression = formatExpression;
+	}
+	
+	@Override
+	public HorizontalTextAlignment getHorizontalTextAlignment()
+	{
+		return this.horizontalTextAlignment;
+	}
+	
+	public void setHorizontalTextAlignment(final HorizontalTextAlignment horizontalTextAlignment)
+	{
+		this.horizontalTextAlignment = horizontalTextAlignment;
+	}
 }

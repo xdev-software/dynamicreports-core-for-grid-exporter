@@ -19,32 +19,22 @@ package software.xdev.dynamicreports.report.builder.expression;
 
 import software.xdev.dynamicreports.report.base.expression.AbstractSimpleExpression;
 import software.xdev.dynamicreports.report.builder.crosstab.CrosstabMeasureBuilder;
-import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.definition.ReportParameters;
 
-/**
- * <p>OrderByExpression class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class OrderByExpression extends AbstractSimpleExpression<Comparable<?>> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    private CrosstabMeasureBuilder<? extends Comparable<?>> measure;
+public class OrderByExpression extends AbstractSimpleExpression<Comparable<?>>
+{
 
-    /**
-     * <p>Constructor for OrderByExpression.</p>
-     *
-     * @param measure a {@link software.xdev.dynamicreports.report.builder.crosstab.CrosstabMeasureBuilder} object.
-     */
-    public OrderByExpression(CrosstabMeasureBuilder<? extends Comparable<?>> measure) {
-        this.measure = measure;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Comparable<?> evaluate(ReportParameters reportParameters) {
-        return reportParameters.getValue(measure);
-    }
+	private final CrosstabMeasureBuilder<? extends Comparable<?>> measure;
+	
+	public OrderByExpression(final CrosstabMeasureBuilder<? extends Comparable<?>> measure)
+	{
+		this.measure = measure;
+	}
+	
+	@Override
+	public Comparable<?> evaluate(final ReportParameters reportParameters)
+	{
+		return reportParameters.getValue(this.measure);
+	}
 }

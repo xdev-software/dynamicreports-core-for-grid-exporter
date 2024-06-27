@@ -17,12 +17,7 @@
  */
 package software.xdev.dynamicreports.report.constant;
 
-/**
- * <p>SpiderRotation class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public enum SpiderRotation {
-    CLOCKWISE, ANTICLOCKWISE;
+public enum SpiderRotation
+{
+	CLOCKWISE, ANTICLOCKWISE
 }

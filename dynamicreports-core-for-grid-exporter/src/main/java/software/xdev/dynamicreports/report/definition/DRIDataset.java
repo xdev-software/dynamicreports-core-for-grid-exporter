@@ -17,66 +17,27 @@
  */
 package software.xdev.dynamicreports.report.definition;
 
-import software.xdev.dynamicreports.report.definition.expression.DRIExpression;
-
 import java.io.Serializable;
 import java.sql.Connection;
 import java.util.List;
 
-/**
- * <p>DRIDataset interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface DRIDataset extends Serializable {
+import software.xdev.dynamicreports.report.definition.expression.DRIExpression;
 
-    /**
-     * <p>getFields.</p>
-     *
-     * @return a {@link java.util.List} object.
-     */
-    public List<? extends DRIField<?>> getFields();
 
-    /**
-     * <p>getVariables.</p>
-     *
-     * @return a {@link java.util.List} object.
-     */
-    public List<? extends DRIVariable<?>> getVariables();
-
-    /**
-     * <p>getSorts.</p>
-     *
-     * @return a {@link java.util.List} object.
-     */
-    public List<? extends DRISort> getSorts();
-
-    /**
-     * <p>getQuery.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.definition.DRIQuery} object.
-     */
-    public DRIQuery getQuery();
-
-    /**
-     * <p>getConnectionExpression.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     */
-    public DRIExpression<Connection> getConnectionExpression();
-
-    /**
-     * <p>getDataSourceExpression.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     */
-    public DRIExpression<?> getDataSourceExpression();
-
-    /**
-     * <p>getFilterExpression.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     */
-    public DRIExpression<Boolean> getFilterExpression();
+public interface DRIDataset extends Serializable
+{
+	
+	public List<? extends DRIField<?>> getFields();
+	
+	public List<? extends DRIVariable<?>> getVariables();
+	
+	public List<? extends DRISort> getSorts();
+	
+	public DRIQuery getQuery();
+	
+	public DRIExpression<Connection> getConnectionExpression();
+	
+	public DRIExpression<?> getDataSourceExpression();
+	
+	public DRIExpression<Boolean> getFilterExpression();
 }

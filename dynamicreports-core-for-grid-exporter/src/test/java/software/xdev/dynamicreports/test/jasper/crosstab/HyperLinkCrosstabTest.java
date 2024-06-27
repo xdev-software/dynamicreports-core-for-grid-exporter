@@ -26,6 +26,9 @@ import java.util.Locale;
 
 import org.junit.jupiter.api.Assertions;
 
+import net.sf.jasperreports.engine.JRDataSource;
+import net.sf.jasperreports.engine.JRPrintElement;
+import net.sf.jasperreports.engine.JRPrintText;
 import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
 import software.xdev.dynamicreports.report.builder.crosstab.AbstractCrosstabGroupBuilder;
 import software.xdev.dynamicreports.report.builder.crosstab.CrosstabBuilder;
@@ -38,18 +41,11 @@ import software.xdev.dynamicreports.report.datasource.DRDataSource;
 import software.xdev.dynamicreports.report.definition.ReportParameters;
 import software.xdev.dynamicreports.test.jasper.AbstractJasperCrosstabValueTest;
 import software.xdev.dynamicreports.test.jasper.JasperTestUtils;
-import net.sf.jasperreports.engine.JRDataSource;
-import net.sf.jasperreports.engine.JRPrintElement;
-import net.sf.jasperreports.engine.JRPrintText;
 
 
-/**
- * @author Ricardo Mariaca
- */
 public class HyperLinkCrosstabTest extends AbstractJasperCrosstabValueTest implements Serializable
 {
-	private static final long serialVersionUID = 1L;
-	
+
 	private CrosstabRowGroupBuilder<String> rowGroup;
 	private CrosstabColumnGroupBuilder<String> columnGroup;
 	private CrosstabMeasureBuilder<Integer> measure;
@@ -57,15 +53,16 @@ public class HyperLinkCrosstabTest extends AbstractJasperCrosstabValueTest imple
 	@Override
 	protected void configureReport(final JasperReportBuilder rb)
 	{
-        this.rowGroup = ctab.rowGroup("field1", String.class);
-        this.rowGroup.setHeaderHyperLink(hyperLink(new HyperLinkExpression1(this.rowGroup)));
-        this.columnGroup = ctab.columnGroup("field2", String.class);
-        this.columnGroup.setHeaderHyperLink(hyperLink(new HyperLinkExpression1(this.columnGroup)));
-        this.measure = ctab.measure("field3", Integer.class, Calculation.SUM);
-        this.measure.setHyperLink(hyperLink(new HyperLinkExpression2(this.rowGroup, this.columnGroup, this.measure)));
+		this.rowGroup = ctab.rowGroup("field1", String.class);
+		this.rowGroup.setHeaderHyperLink(hyperLink(new HyperLinkExpression1(this.rowGroup)));
+		this.columnGroup = ctab.columnGroup("field2", String.class);
+		this.columnGroup.setHeaderHyperLink(hyperLink(new HyperLinkExpression1(this.columnGroup)));
+		this.measure = ctab.measure("field3", Integer.class, Calculation.SUM);
+		this.measure.setHyperLink(hyperLink(new HyperLinkExpression2(this.rowGroup, this.columnGroup, this.measure)));
 		
-		final CrosstabBuilder crosstab = ctab.crosstab().rowGroups(this.rowGroup).columnGroups(this.columnGroup).measures(
-            this.measure);
+		final CrosstabBuilder crosstab =
+			ctab.crosstab().rowGroups(this.rowGroup).columnGroups(this.columnGroup).measures(
+				this.measure);
 		
 		rb.setLocale(Locale.ENGLISH).summary(crosstab);
 	}
@@ -74,13 +71,13 @@ public class HyperLinkCrosstabTest extends AbstractJasperCrosstabValueTest imple
 	public void test()
 	{
 		super.test();
-        
-        this.numberOfPagesTest(1);
-        
-        this.setCrosstabBand("summary");
+		
+		this.numberOfPagesTest(1);
+		
+		this.setCrosstabBand("summary");
 		
 		List<JRPrintElement> elements =
-            this.findElement(this.getPrefix(1) + JasperTestUtils.getCrosstabGroupHeaderName(this.rowGroup));
+			this.findElement(this.getPrefix(1) + JasperTestUtils.getCrosstabGroupHeaderName(this.rowGroup));
 		Assertions.assertEquals(2, elements.size());
 		JRPrintText element = (JRPrintText)elements.get(0);
 		Assertions.assertEquals("a", element.getHyperlinkReference());
@@ -92,9 +89,9 @@ public class HyperLinkCrosstabTest extends AbstractJasperCrosstabValueTest imple
 		element = (JRPrintText)elements.get(0);
 		Assertions.assertEquals("c", element.getHyperlinkReference());
 		element = (JRPrintText)elements.get(1);
-		Assertions.assertEquals( "d", element.getHyperlinkReference());
-        
-        elements = this.findElement(this.getPrefix(1) + JasperTestUtils.getCrosstabCellName(this.measure, null, null));
+		Assertions.assertEquals("d", element.getHyperlinkReference());
+		
+		elements = this.findElement(this.getPrefix(1) + JasperTestUtils.getCrosstabCellName(this.measure, null, null));
 		Assertions.assertEquals(4, elements.size());
 		element = (JRPrintText)elements.get(0);
 		Assertions.assertEquals("a c 3", element.getHyperlinkReference());
@@ -123,11 +120,10 @@ public class HyperLinkCrosstabTest extends AbstractJasperCrosstabValueTest imple
 	
 	private static class HyperLinkExpression1 extends AbstractComplexExpression<String>
 	{
-		private static final long serialVersionUID = 1L;
-		
+
 		public HyperLinkExpression1(final AbstractCrosstabGroupBuilder<?, ?, ?> group)
 		{
-            this.addExpression(group);
+			this.addExpression(group);
 		}
 		
 		@Override
@@ -140,16 +136,15 @@ public class HyperLinkCrosstabTest extends AbstractJasperCrosstabValueTest imple
 	
 	private class HyperLinkExpression2 extends AbstractComplexExpression<String>
 	{
-		private static final long serialVersionUID = 1L;
-		
+
 		public HyperLinkExpression2(
 			final AbstractCrosstabGroupBuilder<?, ?, ?> group1,
 			final AbstractCrosstabGroupBuilder<?, ?, ?> group2,
 			final CrosstabMeasureBuilder<?> measure)
 		{
-            this.addExpression(group1);
-            this.addExpression(group2);
-            this.addExpression(measure);
+			this.addExpression(group1);
+			this.addExpression(group2);
+			this.addExpression(measure);
 		}
 		
 		@Override

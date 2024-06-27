@@ -17,36 +17,17 @@
  */
 package software.xdev.dynamicreports.report.definition.crosstab;
 
-import software.xdev.dynamicreports.report.definition.style.DRIReportStyle;
-
 import java.io.Serializable;
 
-/**
- * <p>DRICrosstabCellStyle interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface DRICrosstabCellStyle extends Serializable {
+import software.xdev.dynamicreports.report.definition.style.DRIReportStyle;
 
-    /**
-     * <p>getRowGroup.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.definition.crosstab.DRICrosstabRowGroup} object.
-     */
-    public DRICrosstabRowGroup<?> getRowGroup();
 
-    /**
-     * <p>getColumnGroup.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.definition.crosstab.DRICrosstabColumnGroup} object.
-     */
-    public DRICrosstabColumnGroup<?> getColumnGroup();
-
-    /**
-     * <p>getStyle.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.definition.style.DRIReportStyle} object.
-     */
-    public DRIReportStyle getStyle();
+public interface DRICrosstabCellStyle extends Serializable
+{
+	
+	public DRICrosstabRowGroup<?> getRowGroup();
+	
+	public DRICrosstabColumnGroup<?> getColumnGroup();
+	
+	public DRIReportStyle getStyle();
 }

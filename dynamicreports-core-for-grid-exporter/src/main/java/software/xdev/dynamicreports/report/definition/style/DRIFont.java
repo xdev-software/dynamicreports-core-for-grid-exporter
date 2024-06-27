@@ -19,74 +19,25 @@ package software.xdev.dynamicreports.report.definition.style;
 
 import java.io.Serializable;
 
-/**
- * <p>DRIFont interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface DRIFont extends Serializable {
 
-    /**
-     * <p>getFontName.</p>
-     *
-     * @return a {@link java.lang.String} object.
-     */
-    public String getFontName();
-
-    /**
-     * <p>getBold.</p>
-     *
-     * @return a {@link java.lang.Boolean} object.
-     */
-    public Boolean getBold();
-
-    /**
-     * <p>getItalic.</p>
-     *
-     * @return a {@link java.lang.Boolean} object.
-     */
-    public Boolean getItalic();
-
-    /**
-     * <p>getUnderline.</p>
-     *
-     * @return a {@link java.lang.Boolean} object.
-     */
-    public Boolean getUnderline();
-
-    /**
-     * <p>getStrikeThrough.</p>
-     *
-     * @return a {@link java.lang.Boolean} object.
-     */
-    public Boolean getStrikeThrough();
-
-    /**
-     * <p>getFontSize.</p>
-     *
-     * @return a {@link java.lang.Integer} object.
-     */
-    public Integer getFontSize();
-
-    /**
-     * <p>getPdfFontName.</p>
-     *
-     * @return a {@link java.lang.String} object.
-     */
-    public String getPdfFontName();
-
-    /**
-     * <p>getPdfEncoding.</p>
-     *
-     * @return a {@link java.lang.String} object.
-     */
-    public String getPdfEncoding();
-
-    /**
-     * <p>getPdfEmbedded.</p>
-     *
-     * @return a {@link java.lang.Boolean} object.
-     */
-    public Boolean getPdfEmbedded();
+public interface DRIFont extends Serializable
+{
+	
+	public String getFontName();
+	
+	public Boolean getBold();
+	
+	public Boolean getItalic();
+	
+	public Boolean getUnderline();
+	
+	public Boolean getStrikeThrough();
+	
+	public Integer getFontSize();
+	
+	public String getPdfFontName();
+	
+	public String getPdfEncoding();
+	
+	public Boolean getPdfEmbedded();
 }

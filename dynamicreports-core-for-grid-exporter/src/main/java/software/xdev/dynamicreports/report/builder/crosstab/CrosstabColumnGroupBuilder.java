@@ -20,64 +20,37 @@ package software.xdev.dynamicreports.report.builder.crosstab;
 import software.xdev.dynamicreports.report.base.crosstab.DRCrosstabColumnGroup;
 import software.xdev.dynamicreports.report.builder.FieldBuilder;
 import software.xdev.dynamicreports.report.builder.column.ValueColumnBuilder;
-import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.definition.expression.DRIExpression;
 
-/**
- * <p>CrosstabColumnGroupBuilder class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class CrosstabColumnGroupBuilder<T> extends AbstractCrosstabGroupBuilder<CrosstabColumnGroupBuilder<T>, DRCrosstabColumnGroup<T>, T> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    /**
-     * <p>Constructor for CrosstabColumnGroupBuilder.</p>
-     *
-     * @param column a {@link software.xdev.dynamicreports.report.builder.column.ValueColumnBuilder} object.
-     */
-    protected CrosstabColumnGroupBuilder(ValueColumnBuilder<?, T> column) {
-        super(column, new DRCrosstabColumnGroup<T>());
-    }
+public class CrosstabColumnGroupBuilder<T>
+	extends AbstractCrosstabGroupBuilder<CrosstabColumnGroupBuilder<T>, DRCrosstabColumnGroup<T>, T>
+{
 
-    /**
-     * <p>Constructor for CrosstabColumnGroupBuilder.</p>
-     *
-     * @param field a {@link software.xdev.dynamicreports.report.builder.FieldBuilder} object.
-     */
-    protected CrosstabColumnGroupBuilder(FieldBuilder<T> field) {
-        super(field, new DRCrosstabColumnGroup<T>());
-    }
-
-    /**
-     * <p>Constructor for CrosstabColumnGroupBuilder.</p>
-     *
-     * @param expression a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     */
-    protected CrosstabColumnGroupBuilder(DRIExpression<T> expression) {
-        super(expression, new DRCrosstabColumnGroup<T>());
-    }
-
-    /**
-     * <p>setHeaderHeight.</p>
-     *
-     * @param headerHeight a {@link java.lang.Integer} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.crosstab.CrosstabColumnGroupBuilder} object.
-     */
-    public CrosstabColumnGroupBuilder<T> setHeaderHeight(Integer headerHeight) {
-        getObject().setHeaderHeight(headerHeight);
-        return this;
-    }
-
-    /**
-     * <p>setTotalHeaderWidth.</p>
-     *
-     * @param totalHeaderWidth a {@link java.lang.Integer} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.crosstab.CrosstabColumnGroupBuilder} object.
-     */
-    public CrosstabColumnGroupBuilder<T> setTotalHeaderWidth(Integer totalHeaderWidth) {
-        getObject().setTotalHeaderWidth(totalHeaderWidth);
-        return this;
-    }
+	protected CrosstabColumnGroupBuilder(final ValueColumnBuilder<?, T> column)
+	{
+		super(column, new DRCrosstabColumnGroup<>());
+	}
+	
+	protected CrosstabColumnGroupBuilder(final FieldBuilder<T> field)
+	{
+		super(field, new DRCrosstabColumnGroup<>());
+	}
+	
+	protected CrosstabColumnGroupBuilder(final DRIExpression<T> expression)
+	{
+		super(expression, new DRCrosstabColumnGroup<>());
+	}
+	
+	public CrosstabColumnGroupBuilder<T> setHeaderHeight(final Integer headerHeight)
+	{
+		this.getObject().setHeaderHeight(headerHeight);
+		return this;
+	}
+	
+	public CrosstabColumnGroupBuilder<T> setTotalHeaderWidth(final Integer totalHeaderWidth)
+	{
+		this.getObject().setTotalHeaderWidth(totalHeaderWidth);
+		return this;
+	}
 }

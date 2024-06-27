@@ -19,30 +19,20 @@ package software.xdev.dynamicreports.report.builder.style;
 
 import software.xdev.dynamicreports.report.base.style.DRTemplateStyle;
 import software.xdev.dynamicreports.report.builder.AbstractBuilder;
-import software.xdev.dynamicreports.report.constant.Constants;
 
-/**
- * <p>TemplateStyleBuilder class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class TemplateStyleBuilder extends AbstractBuilder<TemplateStyleBuilder, DRTemplateStyle> implements ReportStyleBuilder {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    /**
-     * <p>Constructor for TemplateStyleBuilder.</p>
-     *
-     * @param name a {@link java.lang.String} object.
-     */
-    protected TemplateStyleBuilder(String name) {
-        super(new DRTemplateStyle(name));
-    }
+public class TemplateStyleBuilder extends AbstractBuilder<TemplateStyleBuilder, DRTemplateStyle>
+	implements ReportStyleBuilder
+{
 
-    /** {@inheritDoc} */
-    @Override
-    public DRTemplateStyle getStyle() {
-        return build();
-    }
-
+	protected TemplateStyleBuilder(final String name)
+	{
+		super(new DRTemplateStyle(name));
+	}
+	
+	@Override
+	public DRTemplateStyle getStyle()
+	{
+		return this.build();
+	}
 }

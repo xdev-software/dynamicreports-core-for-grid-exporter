@@ -17,12 +17,7 @@
  */
 package software.xdev.dynamicreports.report.constant;
 
-/**
- * <p>GroupHeaderLayout class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public enum GroupHeaderLayout {
-    EMPTY, VALUE, TITLE_AND_VALUE
+public enum GroupHeaderLayout
+{
+	EMPTY, VALUE, TITLE_AND_VALUE
 }

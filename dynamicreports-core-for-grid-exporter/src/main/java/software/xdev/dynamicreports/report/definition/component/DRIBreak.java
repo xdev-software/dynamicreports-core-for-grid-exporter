@@ -19,19 +19,9 @@ package software.xdev.dynamicreports.report.definition.component;
 
 import software.xdev.dynamicreports.report.constant.BreakType;
 
-/**
- * <p>DRIBreak interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface DRIBreak extends DRIComponent {
 
-    /**
-     * <p>getType.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.constant.BreakType} object.
-     */
-    public BreakType getType();
-
+public interface DRIBreak extends DRIComponent
+{
+	
+	public BreakType getType();
 }

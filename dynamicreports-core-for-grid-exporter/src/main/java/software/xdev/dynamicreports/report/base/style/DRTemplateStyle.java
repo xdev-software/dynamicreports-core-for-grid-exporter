@@ -17,33 +17,22 @@
  */
 package software.xdev.dynamicreports.report.base.style;
 
-import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.definition.style.DRITemplateStyle;
 
-/**
- * <p>DRTemplateStyle class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class DRTemplateStyle implements DRITemplateStyle {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    private String name;
+public class DRTemplateStyle implements DRITemplateStyle
+{
 
-    /**
-     * <p>Constructor for DRTemplateStyle.</p>
-     *
-     * @param name a {@link java.lang.String} object.
-     */
-    public DRTemplateStyle(String name) {
-        this.name = name;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public String getName() {
-        return name;
-    }
-
+	private final String name;
+	
+	public DRTemplateStyle(final String name)
+	{
+		this.name = name;
+	}
+	
+	@Override
+	public String getName()
+	{
+		return this.name;
+	}
 }

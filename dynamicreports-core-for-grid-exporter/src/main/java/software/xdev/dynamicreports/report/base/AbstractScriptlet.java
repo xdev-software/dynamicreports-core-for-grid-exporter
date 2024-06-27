@@ -17,90 +17,81 @@
  */
 package software.xdev.dynamicreports.report.base;
 
+import org.apache.commons.lang3.Validate;
+
 import software.xdev.dynamicreports.report.ReportUtils;
 import software.xdev.dynamicreports.report.definition.DRIScriptlet;
 import software.xdev.dynamicreports.report.definition.ReportParameters;
-import org.apache.commons.lang3.Validate;
 
-/**
- * <p>Abstract AbstractScriptlet class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public abstract class AbstractScriptlet implements DRIScriptlet {
-    private String name;
 
-    /**
-     * <p>Constructor for AbstractScriptlet.</p>
-     */
-    public AbstractScriptlet() {
-        this.name = ReportUtils.generateUniqueName("scriptlet");
-    }
-
-    /**
-     * <p>Constructor for AbstractScriptlet.</p>
-     *
-     * @param name a {@link java.lang.String} object.
-     */
-    public AbstractScriptlet(String name) {
-        Validate.notEmpty(name, "name must not be empty");
-        this.name = name;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public String getName() {
-        return name;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void afterColumnInit(ReportParameters reportParameters) {
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void afterDetailEval(ReportParameters reportParameters) {
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void afterGroupInit(String groupName, ReportParameters reportParameters) {
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void afterPageInit(ReportParameters reportParameters) {
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void afterReportInit(ReportParameters reportParameters) {
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void beforeColumnInit(ReportParameters reportParameters) {
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void beforeDetailEval(ReportParameters reportParameters) {
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void beforeGroupInit(String groupName, ReportParameters reportParameters) {
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void beforePageInit(ReportParameters reportParameters) {
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void beforeReportInit(ReportParameters reportParameters) {
-    }
+public abstract class AbstractScriptlet implements DRIScriptlet
+{
+	private final String name;
+	
+	public AbstractScriptlet()
+	{
+		this.name = ReportUtils.generateUniqueName("scriptlet");
+	}
+	
+	public AbstractScriptlet(final String name)
+	{
+		Validate.notEmpty(name, "name must not be empty");
+		this.name = name;
+	}
+	
+	@Override
+	public String getName()
+	{
+		return this.name;
+	}
+	
+	@Override
+	public void afterColumnInit(final ReportParameters reportParameters)
+	{
+	}
+	
+	@Override
+	public void afterDetailEval(final ReportParameters reportParameters)
+	{
+	}
+	
+	@Override
+	public void afterGroupInit(final String groupName, final ReportParameters reportParameters)
+	{
+	}
+	
+	@Override
+	public void afterPageInit(final ReportParameters reportParameters)
+	{
+	}
+	
+	@Override
+	public void afterReportInit(final ReportParameters reportParameters)
+	{
+	}
+	
+	@Override
+	public void beforeColumnInit(final ReportParameters reportParameters)
+	{
+	}
+	
+	@Override
+	public void beforeDetailEval(final ReportParameters reportParameters)
+	{
+	}
+	
+	@Override
+	public void beforeGroupInit(final String groupName, final ReportParameters reportParameters)
+	{
+	}
+	
+	@Override
+	public void beforePageInit(final ReportParameters reportParameters)
+	{
+	}
+	
+	@Override
+	public void beforeReportInit(final ReportParameters reportParameters)
+	{
+	}
 }

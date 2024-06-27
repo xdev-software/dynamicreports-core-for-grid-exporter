@@ -18,38 +18,28 @@
 package software.xdev.dynamicreports.design.base.expression;
 
 import software.xdev.dynamicreports.design.definition.expression.DRIDesignSystemExpression;
-import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.definition.expression.DRISystemExpression;
 
-/**
- * <p>DRDesignSystemExpression class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class DRDesignSystemExpression implements DRIDesignSystemExpression {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    private DRISystemExpression<?> systemExpression;
+public class DRDesignSystemExpression implements DRIDesignSystemExpression
+{
 
-    /**
-     * <p>Constructor for DRDesignSystemExpression.</p>
-     *
-     * @param systemExpression a {@link software.xdev.dynamicreports.report.definition.expression.DRISystemExpression} object.
-     */
-    public DRDesignSystemExpression(DRISystemExpression<?> systemExpression) {
-        this.systemExpression = systemExpression;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Class<?> getValueClass() {
-        return systemExpression.getValueClass();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public String getName() {
-        return systemExpression.getName();
-    }
+	private final DRISystemExpression<?> systemExpression;
+	
+	public DRDesignSystemExpression(final DRISystemExpression<?> systemExpression)
+	{
+		this.systemExpression = systemExpression;
+	}
+	
+	@Override
+	public Class<?> getValueClass()
+	{
+		return this.systemExpression.getValueClass();
+	}
+	
+	@Override
+	public String getName()
+	{
+		return this.systemExpression.getName();
+	}
 }

@@ -17,48 +17,68 @@
  */
 package software.xdev.dynamicreports.test.jasper.component;
 
-import software.xdev.dynamicreports.report.exception.DRException;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-
 import static software.xdev.dynamicreports.report.builder.DynamicReports.cmp;
 import static software.xdev.dynamicreports.report.builder.DynamicReports.report;
 
-/**
- * @author Ricardo Mariaca
- */
-public class PageNumber6Test {
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
-    @Test
-    public void test() {
-        try {
-            report().summary(cmp.pageXofY().setFormatExpression("{1} {0}")).toJasperPrint();
-            Assertions.fail("Wrong page number");
-        } catch (DRException e) {
-        }
+import software.xdev.dynamicreports.report.exception.DRException;
 
-        try {
-            report().summary(cmp.pageXofY().setFormatExpression("{1} {1}")).toJasperPrint();
-            Assertions.fail("Wrong page number");
-        } catch (DRException e) {
-        }
 
-        try {
-            report().summary(cmp.pageXofY().setFormatExpression("{0} {0}")).toJasperPrint();
-            Assertions.fail("Wrong page number");
-        } catch (DRException e) {
-        }
-
-        try {
-            report().summary(cmp.pageXofY().setFormatExpression("{0}")).toJasperPrint();
-            Assertions.fail("Wrong page number");
-        } catch (DRException e) {
-        }
-
-        try {
-            report().summary(cmp.pageXofY().setFormatExpression("{1}")).toJasperPrint();
-            Assertions.fail("Wrong page number");
-        } catch (DRException e) {
-        }
-    }
+class PageNumber6Test
+{
+	@Test
+	void test()
+	{
+		try
+		{
+			report().summary(cmp.pageXofY().setFormatExpression("{1} {0}")).toJasperPrint();
+			Assertions.fail("Wrong page number");
+		}
+		catch(final DRException e)
+		{
+			// Undocumented upstream
+		}
+		
+		try
+		{
+			report().summary(cmp.pageXofY().setFormatExpression("{1} {1}")).toJasperPrint();
+			Assertions.fail("Wrong page number");
+		}
+		catch(final DRException e)
+		{
+			// Undocumented upstream
+		}
+		
+		try
+		{
+			report().summary(cmp.pageXofY().setFormatExpression("{0} {0}")).toJasperPrint();
+			Assertions.fail("Wrong page number");
+		}
+		catch(final DRException e)
+		{
+			// Undocumented upstream
+		}
+		
+		try
+		{
+			report().summary(cmp.pageXofY().setFormatExpression("{0}")).toJasperPrint();
+			Assertions.fail("Wrong page number");
+		}
+		catch(final DRException e)
+		{
+			// Undocumented upstream
+		}
+		
+		try
+		{
+			report().summary(cmp.pageXofY().setFormatExpression("{1}")).toJasperPrint();
+			Assertions.fail("Wrong page number");
+		}
+		catch(final DRException e)
+		{
+			// Undocumented upstream
+		}
+	}
 }

@@ -35,9 +35,6 @@ import software.xdev.dynamicreports.report.builder.group.GroupBuilder;
 import software.xdev.dynamicreports.report.builder.subtotal.SubtotalBuilder;
 
 
-/**
- * Base class for jasper style tests.
- */
 public abstract class AbstractJasperStyleTest extends AbstractJasperTest
 {
 	
@@ -65,9 +62,19 @@ public abstract class AbstractJasperStyleTest extends AbstractJasperTest
 	}
 	
 	protected void borderTest(
-		final String name, final int index, final Color topColor, final LineStyleEnum topLineStyle,
-		final float top, final Color bottomColor, final LineStyleEnum bottomLineStyle, final float bottom, final Color leftColor,
-		final LineStyleEnum leftLineStyle, final float left, final Color rightColor, final LineStyleEnum rightLineStyle,
+		final String name,
+		final int index,
+		final Color topColor,
+		final LineStyleEnum topLineStyle,
+		final float top,
+		final Color bottomColor,
+		final LineStyleEnum bottomLineStyle,
+		final float bottom,
+		final Color leftColor,
+		final LineStyleEnum leftLineStyle,
+		final float left,
+		final Color rightColor,
+		final LineStyleEnum rightLineStyle,
 		final float right)
 	{
 		final JRStyle style = this.getElementAt(name, index).getStyle();
@@ -211,10 +218,20 @@ public abstract class AbstractJasperStyleTest extends AbstractJasperTest
 	}
 	
 	protected void columnDetailBorderTest(
-		final ColumnBuilder<?, ?> column, final int index, final Color topColor,
-		final LineStyleEnum topLineStyle, final float top, final Color bottomColor, final LineStyleEnum bottomLineStyle,
-		final float bottom, final Color leftColor, final LineStyleEnum leftLineStyle, final float left, final Color rightColor,
-		final LineStyleEnum rightLineStyle, final float right)
+		final ColumnBuilder<?, ?> column,
+		final int index,
+		final Color topColor,
+		final LineStyleEnum topLineStyle,
+		final float top,
+		final Color bottomColor,
+		final LineStyleEnum bottomLineStyle,
+		final float bottom,
+		final Color leftColor,
+		final LineStyleEnum leftLineStyle,
+		final float left,
+		final Color rightColor,
+		final LineStyleEnum rightLineStyle,
+		final float right)
 	{
 		this.borderTest(JasperTestUtils.getColumnDetailName(column), index, topColor, topLineStyle, top,
 			bottomColor, bottomLineStyle, bottom, leftColor, leftLineStyle, left, rightColor,
@@ -223,10 +240,20 @@ public abstract class AbstractJasperStyleTest extends AbstractJasperTest
 	
 	// column title
 	protected void columnTitleBorderTest(
-		final ColumnBuilder<?, ?> column, final int index, final Color topColor,
-		final LineStyleEnum topLineStyle, final float top, final Color bottomColor, final LineStyleEnum bottomLineStyle,
-		final float bottom, final Color leftColor, final LineStyleEnum leftLineStyle, final float left, final Color rightColor,
-		final LineStyleEnum rightLineStyle, final float right)
+		final ColumnBuilder<?, ?> column,
+		final int index,
+		final Color topColor,
+		final LineStyleEnum topLineStyle,
+		final float top,
+		final Color bottomColor,
+		final LineStyleEnum bottomLineStyle,
+		final float bottom,
+		final Color leftColor,
+		final LineStyleEnum leftLineStyle,
+		final float left,
+		final Color rightColor,
+		final LineStyleEnum rightLineStyle,
+		final float right)
 	{
 		this.borderTest(JasperTestUtils.getColumnTitleName(column), index, topColor, topLineStyle, top,
 			bottomColor, bottomLineStyle, bottom, leftColor, leftLineStyle, left, rightColor,
@@ -257,10 +284,20 @@ public abstract class AbstractJasperStyleTest extends AbstractJasperTest
 	
 	// subtotal label
 	protected void subtotalLabelBorderTest(
-		final SubtotalBuilder<?, ?> subtotal, final int index, final Color topColor,
-		final LineStyleEnum topLineStyle, final float top, final Color bottomColor, final LineStyleEnum bottomLineStyle,
-		final float bottom, final Color leftColor, final LineStyleEnum leftLineStyle, final float left, final Color rightColor,
-		final LineStyleEnum rightLineStyle, final float right)
+		final SubtotalBuilder<?, ?> subtotal,
+		final int index,
+		final Color topColor,
+		final LineStyleEnum topLineStyle,
+		final float top,
+		final Color bottomColor,
+		final LineStyleEnum bottomLineStyle,
+		final float bottom,
+		final Color leftColor,
+		final LineStyleEnum leftLineStyle,
+		final float left,
+		final Color rightColor,
+		final LineStyleEnum rightLineStyle,
+		final float right)
 	{
 		this.borderTest(JasperTestUtils.getSubtotalLabelName(subtotal, 1), index, topColor, topLineStyle,
 			top, bottomColor, bottomLineStyle, bottom, leftColor, leftLineStyle, left, rightColor,
@@ -277,10 +314,20 @@ public abstract class AbstractJasperStyleTest extends AbstractJasperTest
 	
 	// subtotal
 	protected void subtotalBorderTest(
-		final SubtotalBuilder<?, ?> subtotal, final int index, final Color topColor,
-		final LineStyleEnum topLineStyle, final float top, final Color bottomColor, final LineStyleEnum bottomLineStyle,
-		final float bottom, final Color leftColor, final LineStyleEnum leftLineStyle, final float left, final Color rightColor,
-		final LineStyleEnum rightLineStyle, final float right)
+		final SubtotalBuilder<?, ?> subtotal,
+		final int index,
+		final Color topColor,
+		final LineStyleEnum topLineStyle,
+		final float top,
+		final Color bottomColor,
+		final LineStyleEnum bottomLineStyle,
+		final float bottom,
+		final Color leftColor,
+		final LineStyleEnum leftLineStyle,
+		final float left,
+		final Color rightColor,
+		final LineStyleEnum rightLineStyle,
+		final float right)
 	{
 		this.borderTest(JasperTestUtils.getSubtotalName(subtotal, 1), index, topColor, topLineStyle, top,
 			bottomColor, bottomLineStyle, bottom, leftColor, leftLineStyle, left, rightColor,

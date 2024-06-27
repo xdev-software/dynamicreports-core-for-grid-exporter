@@ -17,63 +17,45 @@
  */
 package software.xdev.dynamicreports.report.builder.expression;
 
-import software.xdev.dynamicreports.report.constant.Constants;
-import software.xdev.dynamicreports.report.definition.expression.DRIExpression;
-import software.xdev.dynamicreports.report.definition.expression.DRIPropertyExpression;
 import org.apache.commons.lang3.Validate;
 
-/**
- * <p>PropertyExpression class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class PropertyExpression implements DRIPropertyExpression {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
+import software.xdev.dynamicreports.report.definition.expression.DRIExpression;
+import software.xdev.dynamicreports.report.definition.expression.DRIPropertyExpression;
 
-    private String name;
-    private DRIExpression<String> valueExpression;
 
-    /**
-     * <p>Constructor for PropertyExpression.</p>
-     *
-     * @param name            a {@link java.lang.String} object.
-     * @param valueExpression a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     */
-    public PropertyExpression(String name, DRIExpression<String> valueExpression) {
-        Validate.notNull(name, "name must not be null");
-        Validate.notNull(valueExpression, "valueExpression must not be null");
-        this.name = name;
-        this.valueExpression = valueExpression;
-    }
+public class PropertyExpression implements DRIPropertyExpression
+{
 
-    /** {@inheritDoc} */
-    @Override
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * <p>Setter for the field <code>name</code>.</p>
-     *
-     * @param name a {@link java.lang.String} object.
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRIExpression<String> getValueExpression() {
-        return valueExpression;
-    }
-
-    /**
-     * <p>Setter for the field <code>valueExpression</code>.</p>
-     *
-     * @param valueExpression a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     */
-    public void setValueExpression(DRIExpression<String> valueExpression) {
-        this.valueExpression = valueExpression;
-    }
+	private String name;
+	private DRIExpression<String> valueExpression;
+	
+	public PropertyExpression(final String name, final DRIExpression<String> valueExpression)
+	{
+		Validate.notNull(name, "name must not be null");
+		Validate.notNull(valueExpression, "valueExpression must not be null");
+		this.name = name;
+		this.valueExpression = valueExpression;
+	}
+	
+	@Override
+	public String getName()
+	{
+		return this.name;
+	}
+	
+	public void setName(final String name)
+	{
+		this.name = name;
+	}
+	
+	@Override
+	public DRIExpression<String> getValueExpression()
+	{
+		return this.valueExpression;
+	}
+	
+	public void setValueExpression(final DRIExpression<String> valueExpression)
+	{
+		this.valueExpression = valueExpression;
+	}
 }

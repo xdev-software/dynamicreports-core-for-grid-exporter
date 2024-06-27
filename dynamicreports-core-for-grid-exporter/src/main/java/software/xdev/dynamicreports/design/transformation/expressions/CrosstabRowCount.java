@@ -18,23 +18,17 @@
 package software.xdev.dynamicreports.design.transformation.expressions;
 
 import software.xdev.dynamicreports.report.base.expression.AbstractSimpleExpression;
-import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.definition.ReportParameters;
 
-/**
- * <p>CrosstabRowCount class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class CrosstabRowCount extends AbstractSimpleExpression<Boolean> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    /** {@inheritDoc} */
-    @Override
-    public Boolean evaluate(ReportParameters reportParameters) {
-        CrosstabRowCounter counter = reportParameters.getValue(ReportParameters.CROSSTAB_ROW_COUNTER);
-        counter.increment();
-        return false;
-    }
+public class CrosstabRowCount extends AbstractSimpleExpression<Boolean>
+{
+
+	@Override
+	public Boolean evaluate(final ReportParameters reportParameters)
+	{
+		final CrosstabRowCounter counter = reportParameters.getValue(ReportParameters.CROSSTAB_ROW_COUNTER);
+		counter.increment();
+		return false;
+	}
 }

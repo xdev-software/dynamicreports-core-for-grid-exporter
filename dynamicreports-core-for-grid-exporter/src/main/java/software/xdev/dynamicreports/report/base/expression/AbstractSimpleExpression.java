@@ -17,49 +17,38 @@
  */
 package software.xdev.dynamicreports.report.base.expression;
 
-import software.xdev.dynamicreports.report.ReportUtils;
-import software.xdev.dynamicreports.report.constant.Constants;
-import software.xdev.dynamicreports.report.definition.expression.DRISimpleExpression;
 import org.apache.commons.lang3.Validate;
 
-/**
- * <p>Abstract AbstractSimpleExpression class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public abstract class AbstractSimpleExpression<T> implements DRISimpleExpression<T> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
+import software.xdev.dynamicreports.report.ReportUtils;
+import software.xdev.dynamicreports.report.definition.expression.DRISimpleExpression;
 
-    private String name;
 
-    /**
-     * <p>Constructor for AbstractSimpleExpression.</p>
-     */
-    protected AbstractSimpleExpression() {
-        this.name = ReportUtils.generateUniqueName("simpleExpression");
-    }
+public abstract class AbstractSimpleExpression<T> implements DRISimpleExpression<T>
+{
 
-    /**
-     * <p>Constructor for AbstractSimpleExpression.</p>
-     *
-     * @param name a {@link java.lang.String} object.
-     */
-    protected AbstractSimpleExpression(String name) {
-        Validate.notEmpty(name, "name must not be empty");
-        this.name = name;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public String getName() {
-        return name;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    @SuppressWarnings("unchecked")
-    public Class<? super T> getValueClass() {
-        return (Class<T>) ReportUtils.getGenericClass(this, 0);
-    }
+	private final String name;
+	
+	protected AbstractSimpleExpression()
+	{
+		this.name = ReportUtils.generateUniqueName("simpleExpression");
+	}
+	
+	protected AbstractSimpleExpression(final String name)
+	{
+		Validate.notEmpty(name, "name must not be empty");
+		this.name = name;
+	}
+	
+	@Override
+	public String getName()
+	{
+		return this.name;
+	}
+	
+	@Override
+	@SuppressWarnings("unchecked")
+	public Class<? super T> getValueClass()
+	{
+		return (Class<T>)ReportUtils.getGenericClass(this, 0);
+	}
 }

@@ -18,128 +18,94 @@
 package software.xdev.dynamicreports.design.base;
 
 import software.xdev.dynamicreports.design.definition.DRIDesignPage;
-import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.constant.PageOrientation;
 
-/**
- * <p>DRDesignPage class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class DRDesignPage implements DRIDesignPage {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    private int width;
-    private int height;
-    private PageOrientation orientation;
-    private DRDesignMargin margin;
-    private int columnsPerPage;
-    private int columnSpace;
-    private int columnWidth;
+public class DRDesignPage implements DRIDesignPage
+{
 
-    /** {@inheritDoc} */
-    @Override
-    public int getWidth() {
-        return width;
-    }
-
-    /**
-     * <p>Setter for the field <code>width</code>.</p>
-     *
-     * @param width a int.
-     */
-    public void setWidth(int width) {
-        this.width = width;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public int getHeight() {
-        return height;
-    }
-
-    /**
-     * <p>Setter for the field <code>height</code>.</p>
-     *
-     * @param height a int.
-     */
-    public void setHeight(int height) {
-        this.height = height;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public PageOrientation getOrientation() {
-        return orientation;
-    }
-
-    /**
-     * <p>Setter for the field <code>orientation</code>.</p>
-     *
-     * @param orientation a {@link software.xdev.dynamicreports.report.constant.PageOrientation} object.
-     */
-    public void setOrientation(PageOrientation orientation) {
-        this.orientation = orientation;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRDesignMargin getMargin() {
-        return margin;
-    }
-
-    /**
-     * <p>Setter for the field <code>margin</code>.</p>
-     *
-     * @param margin a {@link software.xdev.dynamicreports.design.base.DRDesignMargin} object.
-     */
-    public void setMargin(DRDesignMargin margin) {
-        this.margin = margin;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public int getColumnsPerPage() {
-        return columnsPerPage;
-    }
-
-    /**
-     * <p>Setter for the field <code>columnsPerPage</code>.</p>
-     *
-     * @param columnsPerPage a int.
-     */
-    public void setColumnsPerPage(int columnsPerPage) {
-        this.columnsPerPage = columnsPerPage;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public int getColumnSpace() {
-        return columnSpace;
-    }
-
-    /**
-     * <p>Setter for the field <code>columnSpace</code>.</p>
-     *
-     * @param columnSpace a int.
-     */
-    public void setColumnSpace(int columnSpace) {
-        this.columnSpace = columnSpace;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public int getColumnWidth() {
-        return columnWidth;
-    }
-
-    /**
-     * <p>Setter for the field <code>columnWidth</code>.</p>
-     *
-     * @param columnWidth a int.
-     */
-    public void setColumnWidth(int columnWidth) {
-        this.columnWidth = columnWidth;
-    }
+	private int width;
+	private int height;
+	private PageOrientation orientation;
+	private DRDesignMargin margin;
+	private int columnsPerPage;
+	private int columnSpace;
+	private int columnWidth;
+	
+	@Override
+	public int getWidth()
+	{
+		return this.width;
+	}
+	
+	public void setWidth(final int width)
+	{
+		this.width = width;
+	}
+	
+	@Override
+	public int getHeight()
+	{
+		return this.height;
+	}
+	
+	public void setHeight(final int height)
+	{
+		this.height = height;
+	}
+	
+	@Override
+	public PageOrientation getOrientation()
+	{
+		return this.orientation;
+	}
+	
+	public void setOrientation(final PageOrientation orientation)
+	{
+		this.orientation = orientation;
+	}
+	
+	@Override
+	public DRDesignMargin getMargin()
+	{
+		return this.margin;
+	}
+	
+	public void setMargin(final DRDesignMargin margin)
+	{
+		this.margin = margin;
+	}
+	
+	@Override
+	public int getColumnsPerPage()
+	{
+		return this.columnsPerPage;
+	}
+	
+	public void setColumnsPerPage(final int columnsPerPage)
+	{
+		this.columnsPerPage = columnsPerPage;
+	}
+	
+	@Override
+	public int getColumnSpace()
+	{
+		return this.columnSpace;
+	}
+	
+	public void setColumnSpace(final int columnSpace)
+	{
+		this.columnSpace = columnSpace;
+	}
+	
+	@Override
+	public int getColumnWidth()
+	{
+		return this.columnWidth;
+	}
+	
+	public void setColumnWidth(final int columnWidth)
+	{
+		this.columnWidth = columnWidth;
+	}
 }

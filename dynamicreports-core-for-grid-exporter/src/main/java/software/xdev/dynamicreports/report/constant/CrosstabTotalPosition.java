@@ -17,12 +17,7 @@
  */
 package software.xdev.dynamicreports.report.constant;
 
-/**
- * <p>CrosstabTotalPosition class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public enum CrosstabTotalPosition {
-    START, END
+public enum CrosstabTotalPosition
+{
+	START, END
 }

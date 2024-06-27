@@ -138,6 +138,7 @@ class ReportTemplateTest
 				.setDetailSplitType(SplitType.IMMEDIATE));
 	}
 	
+	@SuppressWarnings("checkstyle:MethodLength")
 	@Test
 	void test()
 	{

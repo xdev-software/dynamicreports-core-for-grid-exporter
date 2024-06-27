@@ -17,20 +17,9 @@
  */
 package software.xdev.dynamicreports.report.constant;
 
-/**
- * <p>PageOrientation class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public enum PageOrientation {
-    /**
-     * Portrait page orientation.
-     */
-    PORTRAIT,
-
-    /**
-     * Landscape page orientation.
-     */
-    LANDSCAPE
+public enum PageOrientation
+{
+	PORTRAIT,
+	
+	LANDSCAPE
 }

@@ -17,41 +17,27 @@
  */
 package software.xdev.dynamicreports.report.builder.expression;
 
-import software.xdev.dynamicreports.report.constant.Constants;
-import software.xdev.dynamicreports.report.definition.expression.DRIExpression;
 import net.sf.jasperreports.engine.JRDataSource;
 import net.sf.jasperreports.engine.data.JRBeanArrayDataSource;
+import software.xdev.dynamicreports.report.definition.expression.DRIExpression;
 
-/**
- * <p>BeanArraySubDatasourceExpression class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class BeanArraySubDatasourceExpression extends AbstractSubDatasourceExpression<Object[]> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    /**
-     * <p>Constructor for BeanArraySubDatasourceExpression.</p>
-     *
-     * @param fieldName a {@link java.lang.String} object.
-     */
-    public BeanArraySubDatasourceExpression(String fieldName) {
-        super(fieldName);
-    }
+public class BeanArraySubDatasourceExpression extends AbstractSubDatasourceExpression<Object[]>
+{
 
-    /**
-     * <p>Constructor for BeanArraySubDatasourceExpression.</p>
-     *
-     * @param expression a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     */
-    public BeanArraySubDatasourceExpression(DRIExpression<? extends Object[]> expression) {
-        super(expression);
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    protected JRDataSource createSubDatasource(Object[] data) {
-        return new JRBeanArrayDataSource(data);
-    }
+	public BeanArraySubDatasourceExpression(final String fieldName)
+	{
+		super(fieldName);
+	}
+	
+	public BeanArraySubDatasourceExpression(final DRIExpression<? extends Object[]> expression)
+	{
+		super(expression);
+	}
+	
+	@Override
+	protected JRDataSource createSubDatasource(final Object[] data)
+	{
+		return new JRBeanArrayDataSource(data);
+	}
 }

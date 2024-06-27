@@ -33,9 +33,6 @@ import software.xdev.dynamicreports.report.definition.ReportParameters;
 import software.xdev.dynamicreports.report.definition.expression.DRISimpleExpression;
 
 
-/**
- * @author Ricardo Mariaca
- */
 class ConditionsTest
 {
 	
@@ -52,47 +49,47 @@ class ConditionsTest
 		// conditionTrue("unequal", cnd.unEqual(value, 5, 20));
 		
 		// smaller
-        this.conditionFalse("smaller", cnd.smaller(value, 5));
-        this.conditionFalse("smaller", cnd.smaller(value, 10));
-        this.conditionTrue("smaller", cnd.smaller(value, 15));
+		this.conditionFalse("smaller", cnd.smaller(value, 5));
+		this.conditionFalse("smaller", cnd.smaller(value, 10));
+		this.conditionTrue("smaller", cnd.smaller(value, 15));
 		
 		// smallerOrEquals
-        this.conditionFalse("smallerOrEquals", cnd.smallerOrEquals(value, 5));
-        this.conditionTrue("smallerOrEquals", cnd.smallerOrEquals(value, 10));
-        this.conditionTrue("smallerOrEquals", cnd.smallerOrEquals(value, 15));
+		this.conditionFalse("smallerOrEquals", cnd.smallerOrEquals(value, 5));
+		this.conditionTrue("smallerOrEquals", cnd.smallerOrEquals(value, 10));
+		this.conditionTrue("smallerOrEquals", cnd.smallerOrEquals(value, 15));
 		
 		// greater
-        this.conditionTrue("greater", cnd.greater(value, 5));
-        this.conditionFalse("greater", cnd.greater(value, 10));
-        this.conditionFalse("greater", cnd.greater(value, 15));
+		this.conditionTrue("greater", cnd.greater(value, 5));
+		this.conditionFalse("greater", cnd.greater(value, 10));
+		this.conditionFalse("greater", cnd.greater(value, 15));
 		
 		// greaterOrEquals
-        this.conditionTrue("greaterOrEquals", cnd.greaterOrEquals(value, 5));
-        this.conditionTrue("greaterOrEquals", cnd.greaterOrEquals(value, 10));
-        this.conditionFalse("greaterOrEquals", cnd.greaterOrEquals(value, 15));
+		this.conditionTrue("greaterOrEquals", cnd.greaterOrEquals(value, 5));
+		this.conditionTrue("greaterOrEquals", cnd.greaterOrEquals(value, 10));
+		this.conditionFalse("greaterOrEquals", cnd.greaterOrEquals(value, 15));
 		
 		// between
-        this.conditionTrue("between", cnd.between(value, 5, 15));
-        this.conditionTrue("between", cnd.between(value, 5, 10));
-        this.conditionTrue("between", cnd.between(value, 10, 20));
-        this.conditionFalse("between", cnd.between(value, 5, 9));
-        this.conditionFalse("between", cnd.between(value, 11, 20));
+		this.conditionTrue("between", cnd.between(value, 5, 15));
+		this.conditionTrue("between", cnd.between(value, 5, 10));
+		this.conditionTrue("between", cnd.between(value, 10, 20));
+		this.conditionFalse("between", cnd.between(value, 5, 9));
+		this.conditionFalse("between", cnd.between(value, 11, 20));
 		
 		// notBetween
-        this.conditionFalse("notBetween", cnd.notBetween(value, 5, 15));
-        this.conditionFalse("notBetween", cnd.notBetween(value, 5, 10));
-        this.conditionFalse("notBetween", cnd.notBetween(value, 10, 20));
-        this.conditionTrue("notBetween", cnd.notBetween(value, 5, 9));
-        this.conditionTrue("notBetween", cnd.notBetween(value, 11, 20));
+		this.conditionFalse("notBetween", cnd.notBetween(value, 5, 15));
+		this.conditionFalse("notBetween", cnd.notBetween(value, 5, 10));
+		this.conditionFalse("notBetween", cnd.notBetween(value, 10, 20));
+		this.conditionTrue("notBetween", cnd.notBetween(value, 5, 9));
+		this.conditionTrue("notBetween", cnd.notBetween(value, 11, 20));
 		
 		// equal object
 		final FieldBuilder<Object> value2 = field("name", Object.class);
-        this.conditionTrue("equal", cnd.equal(value2, Type.A, Type.C, Type.F), Type.C);
-        this.conditionFalse("equal", cnd.equal(value2, Type.B, Type.C), Type.E);
+		this.conditionTrue("equal", cnd.equal(value2, Type.A, Type.C, Type.F), Type.C);
+		this.conditionFalse("equal", cnd.equal(value2, Type.B, Type.C), Type.E);
 		
 		// unequal object
-        this.conditionFalse("unequal", cnd.unEqual(value2, Type.A, Type.C, Type.F), Type.C);
-        this.conditionTrue("unequal", cnd.unEqual(value2, Type.B, Type.C), Type.E);
+		this.conditionFalse("unequal", cnd.unEqual(value2, Type.A, Type.C, Type.F), Type.C);
+		this.conditionTrue("unequal", cnd.unEqual(value2, Type.B, Type.C), Type.E);
 	}
 	
 	private void conditionTrue(final String name, final DRISimpleExpression<Boolean> condition)
@@ -105,12 +102,18 @@ class ConditionsTest
 		Assertions.assertFalse(condition.evaluate(new TestReportParameters(10)), name + " condition");
 	}
 	
-	private void conditionTrue(final String name, final DRISimpleExpression<Boolean> condition, final Object actualValue)
+	private void conditionTrue(
+		final String name,
+		final DRISimpleExpression<Boolean> condition,
+		final Object actualValue)
 	{
 		Assertions.assertTrue(condition.evaluate(new TestReportParameters(actualValue)), name + " condition");
 	}
 	
-	private void conditionFalse(final String name, final DRISimpleExpression<Boolean> condition, final Object actualValue)
+	private void conditionFalse(
+		final String name,
+		final DRISimpleExpression<Boolean> condition,
+		final Object actualValue)
 	{
 		Assertions.assertFalse(condition.evaluate(new TestReportParameters(actualValue)), name + " condition");
 	}

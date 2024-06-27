@@ -17,112 +17,82 @@
  */
 package software.xdev.dynamicreports.report.base.grid;
 
-import software.xdev.dynamicreports.report.constant.Constants;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.commons.lang3.Validate;
+
 import software.xdev.dynamicreports.report.constant.HorizontalCellComponentAlignment;
 import software.xdev.dynamicreports.report.constant.ListType;
 import software.xdev.dynamicreports.report.constant.VerticalCellComponentAlignment;
 import software.xdev.dynamicreports.report.definition.grid.DRIColumnGridComponent;
 import software.xdev.dynamicreports.report.definition.grid.DRIColumnGridList;
-import org.apache.commons.lang3.Validate;
 
-import java.util.ArrayList;
-import java.util.List;
 
-/**
- * <p>DRColumnGridList class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class DRColumnGridList implements DRIColumnGridList {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
+public class DRColumnGridList implements DRIColumnGridList
+{
 
-    private List<DRColumnGridListCell> listCells;
-    private ListType type;
-    private int gap;
-
-    /**
-     * <p>Constructor for DRColumnGridList.</p>
-     */
-    public DRColumnGridList() {
-        this(ListType.HORIZONTAL);
-    }
-
-    /**
-     * <p>Constructor for DRColumnGridList.</p>
-     *
-     * @param type a {@link software.xdev.dynamicreports.report.constant.ListType} object.
-     */
-    public DRColumnGridList(ListType type) {
-        setType(type);
-        this.listCells = new ArrayList<DRColumnGridListCell>();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public List<DRColumnGridListCell> getListCells() {
-        return listCells;
-    }
-
-    /**
-     * <p>addComponent.</p>
-     *
-     * @param component a {@link software.xdev.dynamicreports.report.definition.grid.DRIColumnGridComponent} object.
-     */
-    public void addComponent(DRIColumnGridComponent component) {
-        listCells.add(new DRColumnGridListCell(component));
-    }
-
-    /**
-     * <p>addCell.</p>
-     *
-     * @param cell a {@link software.xdev.dynamicreports.report.base.grid.DRColumnGridListCell} object.
-     */
-    public void addCell(DRColumnGridListCell cell) {
-        Validate.notNull(cell, "cell must not be null");
-        listCells.add(cell);
-    }
-
-    /**
-     * <p>addComponent.</p>
-     *
-     * @param horizontalAlignment a {@link software.xdev.dynamicreports.report.constant.HorizontalCellComponentAlignment} object.
-     * @param verticalAlignment   a {@link software.xdev.dynamicreports.report.constant.VerticalCellComponentAlignment} object.
-     * @param component           a {@link software.xdev.dynamicreports.report.definition.grid.DRIColumnGridComponent} object.
-     */
-    public void addComponent(HorizontalCellComponentAlignment horizontalAlignment, VerticalCellComponentAlignment verticalAlignment, DRIColumnGridComponent component) {
-        listCells.add(new DRColumnGridListCell(horizontalAlignment, verticalAlignment, component));
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public ListType getType() {
-        return type;
-    }
-
-    /**
-     * <p>Setter for the field <code>type</code>.</p>
-     *
-     * @param type a {@link software.xdev.dynamicreports.report.constant.ListType} object.
-     */
-    public void setType(ListType type) {
-        Validate.notNull(type, "type must not be null");
-        this.type = type;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public int getGap() {
-        return gap;
-    }
-
-    /**
-     * <p>Setter for the field <code>gap</code>.</p>
-     *
-     * @param gap a int.
-     */
-    public void setGap(int gap) {
-        Validate.notNull(gap < 0, "gap must be >= 0");
-        this.gap = gap;
-    }
+	private final List<DRColumnGridListCell> listCells;
+	private ListType type;
+	private int gap;
+	
+	public DRColumnGridList()
+	{
+		this(ListType.HORIZONTAL);
+	}
+	
+	public DRColumnGridList(final ListType type)
+	{
+		this.setType(type);
+		this.listCells = new ArrayList<>();
+	}
+	
+	@Override
+	public List<DRColumnGridListCell> getListCells()
+	{
+		return this.listCells;
+	}
+	
+	public void addComponent(final DRIColumnGridComponent component)
+	{
+		this.listCells.add(new DRColumnGridListCell(component));
+	}
+	
+	public void addCell(final DRColumnGridListCell cell)
+	{
+		Validate.notNull(cell, "cell must not be null");
+		this.listCells.add(cell);
+	}
+	
+	public void addComponent(
+		final HorizontalCellComponentAlignment horizontalAlignment,
+		final VerticalCellComponentAlignment verticalAlignment,
+		final DRIColumnGridComponent component)
+	{
+		this.listCells.add(new DRColumnGridListCell(horizontalAlignment, verticalAlignment, component));
+	}
+	
+	@Override
+	public ListType getType()
+	{
+		return this.type;
+	}
+	
+	public void setType(final ListType type)
+	{
+		Validate.notNull(type, "type must not be null");
+		this.type = type;
+	}
+	
+	@Override
+	public int getGap()
+	{
+		return this.gap;
+	}
+	
+	public void setGap(final int gap)
+	{
+		Validate.notNull(gap < 0, "gap must be >= 0");
+		this.gap = gap;
+	}
 }

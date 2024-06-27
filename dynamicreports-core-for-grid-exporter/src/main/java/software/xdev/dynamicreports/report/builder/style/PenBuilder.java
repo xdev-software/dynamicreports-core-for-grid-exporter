@@ -17,78 +17,46 @@
  */
 package software.xdev.dynamicreports.report.builder.style;
 
-import software.xdev.dynamicreports.report.base.style.DRPen;
-import software.xdev.dynamicreports.report.builder.AbstractBuilder;
-import software.xdev.dynamicreports.report.constant.Constants;
-import software.xdev.dynamicreports.report.constant.LineStyle;
-
 import java.awt.Color;
 
-/**
- * <p>PenBuilder class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class PenBuilder extends AbstractBuilder<PenBuilder, DRPen> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
+import software.xdev.dynamicreports.report.base.style.DRPen;
+import software.xdev.dynamicreports.report.builder.AbstractBuilder;
+import software.xdev.dynamicreports.report.constant.LineStyle;
 
-    /**
-     * <p>Constructor for PenBuilder.</p>
-     */
-    protected PenBuilder() {
-        super(new DRPen());
-    }
 
-    /**
-     * <p>Constructor for PenBuilder.</p>
-     *
-     * @param lineWidth a {@link java.lang.Float} object.
-     * @param lineStyle a {@link software.xdev.dynamicreports.report.constant.LineStyle} object.
-     */
-    protected PenBuilder(Float lineWidth, LineStyle lineStyle) {
-        super(new DRPen(lineWidth, lineStyle));
-    }
+public class PenBuilder extends AbstractBuilder<PenBuilder, DRPen>
+{
 
-    /**
-     * <p>setLineWidth.</p>
-     *
-     * @param lineWidth a {@link java.lang.Float} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.style.PenBuilder} object.
-     */
-    public PenBuilder setLineWidth(Float lineWidth) {
-        getObject().setLineWidth(lineWidth);
-        return this;
-    }
-
-    /**
-     * <p>setLineStyle.</p>
-     *
-     * @param lineStyle a {@link software.xdev.dynamicreports.report.constant.LineStyle} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.style.PenBuilder} object.
-     */
-    public PenBuilder setLineStyle(LineStyle lineStyle) {
-        getObject().setLineStyle(lineStyle);
-        return this;
-    }
-
-    /**
-     * <p>setLineColor.</p>
-     *
-     * @param lineColor a {@link java.awt.Color} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.style.PenBuilder} object.
-     */
-    public PenBuilder setLineColor(Color lineColor) {
-        getObject().setLineColor(lineColor);
-        return this;
-    }
-
-    /**
-     * <p>getPen.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.base.style.DRPen} object.
-     */
-    public DRPen getPen() {
-        return build();
-    }
+	protected PenBuilder()
+	{
+		super(new DRPen());
+	}
+	
+	protected PenBuilder(final Float lineWidth, final LineStyle lineStyle)
+	{
+		super(new DRPen(lineWidth, lineStyle));
+	}
+	
+	public PenBuilder setLineWidth(final Float lineWidth)
+	{
+		this.getObject().setLineWidth(lineWidth);
+		return this;
+	}
+	
+	public PenBuilder setLineStyle(final LineStyle lineStyle)
+	{
+		this.getObject().setLineStyle(lineStyle);
+		return this;
+	}
+	
+	public PenBuilder setLineColor(final Color lineColor)
+	{
+		this.getObject().setLineColor(lineColor);
+		return this;
+	}
+	
+	public DRPen getPen()
+	{
+		return this.build();
+	}
 }

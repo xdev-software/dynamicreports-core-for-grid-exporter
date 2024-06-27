@@ -1,3 +1,7 @@
+# 1.2.0
+* Removed all auto-generated JavaDoc comments to de-bloat
+* Changed source to use XDEV CodeStyle
+
 # 1.1.2
 * Updated dependencies
   * Now using ``jasperreports`` 6.21+

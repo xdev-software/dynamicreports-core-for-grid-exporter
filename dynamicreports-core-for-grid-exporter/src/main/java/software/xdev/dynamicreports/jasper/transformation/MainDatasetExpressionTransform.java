@@ -17,6 +17,13 @@
  */
 package software.xdev.dynamicreports.jasper.transformation;
 
+import java.util.Collection;
+
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JRGroup;
+import net.sf.jasperreports.engine.design.JRDesignField;
+import net.sf.jasperreports.engine.design.JRDesignSortField;
+import net.sf.jasperreports.engine.design.JRDesignVariable;
 import software.xdev.dynamicreports.design.definition.DRIDesignField;
 import software.xdev.dynamicreports.design.definition.DRIDesignGroup;
 import software.xdev.dynamicreports.design.definition.DRIDesignSort;
@@ -26,101 +33,86 @@ import software.xdev.dynamicreports.design.definition.expression.DRIDesignJasper
 import software.xdev.dynamicreports.design.definition.expression.DRIDesignSimpleExpression;
 import software.xdev.dynamicreports.design.definition.expression.DRIDesignSystemExpression;
 import software.xdev.dynamicreports.jasper.base.JasperCustomValues;
-import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JRGroup;
-import net.sf.jasperreports.engine.design.JRDesignField;
-import net.sf.jasperreports.engine.design.JRDesignSortField;
-import net.sf.jasperreports.engine.design.JRDesignVariable;
 
-import java.util.Collection;
 
-/**
- * <p>MainDatasetExpressionTransform class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class MainDatasetExpressionTransform extends AbstractExpressionTransform {
-    private JasperTransformAccessor accessor;
-
-    /**
-     * <p>Constructor for MainDatasetExpressionTransform.</p>
-     *
-     * @param accessor a {@link software.xdev.dynamicreports.jasper.transformation.JasperTransformAccessor} object.
-     */
-    public MainDatasetExpressionTransform(JasperTransformAccessor accessor) {
-        this.accessor = accessor;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    protected JasperCustomValues getCustomValues() {
-        return accessor.getCustomValues();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    protected JRGroup getGroup(DRIDesignGroup group) {
-        return accessor.getGroupTransform().getGroup(group);
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    protected Collection<DRIDesignField> getFields() {
-        return accessor.getReport().getFields();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    protected Collection<DRIDesignVariable> getVariables() {
-        return accessor.getReport().getVariables();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    protected Collection<DRIDesignSystemExpression> getSystemExpressions() {
-        return accessor.getReport().getSystemExpressions();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    protected Collection<DRIDesignJasperExpression> getJasperExpressions() {
-        return accessor.getReport().getJasperExpressions();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    protected Collection<DRIDesignSimpleExpression> getSimpleExpressions() {
-        return accessor.getReport().getSimpleExpressions();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    protected Collection<DRIDesignComplexExpression> getComplexExpressions() {
-        return accessor.getReport().getComplexExpressions();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    protected Collection<DRIDesignSort> getSorts() {
-        return accessor.getReport().getSorts();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    protected void addField(JRDesignField field) throws JRException {
-        accessor.getDesign().addField(field);
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    protected void addVariable(JRDesignVariable variable) throws JRException {
-        accessor.getDesign().addVariable(variable);
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    protected void addSort(JRDesignSortField sort) throws JRException {
-        accessor.getDesign().addSortField(sort);
-    }
+public class MainDatasetExpressionTransform extends AbstractExpressionTransform
+{
+	private final JasperTransformAccessor accessor;
+	
+	public MainDatasetExpressionTransform(final JasperTransformAccessor accessor)
+	{
+		this.accessor = accessor;
+	}
+	
+	@Override
+	protected JasperCustomValues getCustomValues()
+	{
+		return this.accessor.getCustomValues();
+	}
+	
+	@Override
+	protected JRGroup getGroup(final DRIDesignGroup group)
+	{
+		return this.accessor.getGroupTransform().getGroup(group);
+	}
+	
+	@Override
+	protected Collection<DRIDesignField> getFields()
+	{
+		return this.accessor.getReport().getFields();
+	}
+	
+	@Override
+	protected Collection<DRIDesignVariable> getVariables()
+	{
+		return this.accessor.getReport().getVariables();
+	}
+	
+	@Override
+	protected Collection<DRIDesignSystemExpression> getSystemExpressions()
+	{
+		return this.accessor.getReport().getSystemExpressions();
+	}
+	
+	@Override
+	protected Collection<DRIDesignJasperExpression> getJasperExpressions()
+	{
+		return this.accessor.getReport().getJasperExpressions();
+	}
+	
+	@Override
+	protected Collection<DRIDesignSimpleExpression> getSimpleExpressions()
+	{
+		return this.accessor.getReport().getSimpleExpressions();
+	}
+	
+	@Override
+	protected Collection<DRIDesignComplexExpression> getComplexExpressions()
+	{
+		return this.accessor.getReport().getComplexExpressions();
+	}
+	
+	@Override
+	protected Collection<DRIDesignSort> getSorts()
+	{
+		return this.accessor.getReport().getSorts();
+	}
+	
+	@Override
+	protected void addField(final JRDesignField field) throws JRException
+	{
+		this.accessor.getDesign().addField(field);
+	}
+	
+	@Override
+	protected void addVariable(final JRDesignVariable variable) throws JRException
+	{
+		this.accessor.getDesign().addVariable(variable);
+	}
+	
+	@Override
+	protected void addSort(final JRDesignSortField sort) throws JRException
+	{
+		this.accessor.getDesign().addSortField(sort);
+	}
 }

@@ -21,102 +21,74 @@ import software.xdev.dynamicreports.design.base.DRDesignGroup;
 import software.xdev.dynamicreports.design.constant.EvaluationTime;
 import software.xdev.dynamicreports.design.definition.component.DRIDesignMap;
 import software.xdev.dynamicreports.design.definition.expression.DRIDesignExpression;
-import software.xdev.dynamicreports.report.constant.Constants;
 
-/**
- * <p>DRDesignMap class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class DRDesignMap extends DRDesignComponent implements DRIDesignMap {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    private EvaluationTime evaluationTime;
-    private DRDesignGroup evaluationGroup;
-    private DRIDesignExpression latitudeExpression;
-    private DRIDesignExpression longitudeExpression;
-    private DRIDesignExpression zoomExpression;
+public class DRDesignMap extends DRDesignComponent implements DRIDesignMap
+{
 
-    /**
-     * <p>Constructor for DRDesignMap.</p>
-     */
-    public DRDesignMap() {
-        super("map");
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public EvaluationTime getEvaluationTime() {
-        return evaluationTime;
-    }
-
-    /**
-     * <p>Setter for the field <code>evaluationTime</code>.</p>
-     *
-     * @param evaluationTime a {@link software.xdev.dynamicreports.design.constant.EvaluationTime} object.
-     */
-    public void setEvaluationTime(EvaluationTime evaluationTime) {
-        this.evaluationTime = evaluationTime;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRDesignGroup getEvaluationGroup() {
-        return evaluationGroup;
-    }
-
-    /**
-     * <p>Setter for the field <code>evaluationGroup</code>.</p>
-     *
-     * @param evaluationGroup a {@link software.xdev.dynamicreports.design.base.DRDesignGroup} object.
-     */
-    public void setEvaluationGroup(DRDesignGroup evaluationGroup) {
-        this.evaluationGroup = evaluationGroup;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRIDesignExpression getLatitudeExpression() {
-        return latitudeExpression;
-    }
-
-    /**
-     * <p>Setter for the field <code>latitudeExpression</code>.</p>
-     *
-     * @param latitudeExpression a {@link software.xdev.dynamicreports.design.definition.expression.DRIDesignExpression} object.
-     */
-    public void setLatitudeExpression(DRIDesignExpression latitudeExpression) {
-        this.latitudeExpression = latitudeExpression;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRIDesignExpression getLongitudeExpression() {
-        return longitudeExpression;
-    }
-
-    /**
-     * <p>Setter for the field <code>longitudeExpression</code>.</p>
-     *
-     * @param longitudeExpression a {@link software.xdev.dynamicreports.design.definition.expression.DRIDesignExpression} object.
-     */
-    public void setLongitudeExpression(DRIDesignExpression longitudeExpression) {
-        this.longitudeExpression = longitudeExpression;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRIDesignExpression getZoomExpression() {
-        return zoomExpression;
-    }
-
-    /**
-     * <p>Setter for the field <code>zoomExpression</code>.</p>
-     *
-     * @param zoomExpression a {@link software.xdev.dynamicreports.design.definition.expression.DRIDesignExpression} object.
-     */
-    public void setZoomExpression(DRIDesignExpression zoomExpression) {
-        this.zoomExpression = zoomExpression;
-    }
+	private EvaluationTime evaluationTime;
+	private DRDesignGroup evaluationGroup;
+	private DRIDesignExpression latitudeExpression;
+	private DRIDesignExpression longitudeExpression;
+	private DRIDesignExpression zoomExpression;
+	
+	public DRDesignMap()
+	{
+		super("map");
+	}
+	
+	@Override
+	public EvaluationTime getEvaluationTime()
+	{
+		return this.evaluationTime;
+	}
+	
+	public void setEvaluationTime(final EvaluationTime evaluationTime)
+	{
+		this.evaluationTime = evaluationTime;
+	}
+	
+	@Override
+	public DRDesignGroup getEvaluationGroup()
+	{
+		return this.evaluationGroup;
+	}
+	
+	public void setEvaluationGroup(final DRDesignGroup evaluationGroup)
+	{
+		this.evaluationGroup = evaluationGroup;
+	}
+	
+	@Override
+	public DRIDesignExpression getLatitudeExpression()
+	{
+		return this.latitudeExpression;
+	}
+	
+	public void setLatitudeExpression(final DRIDesignExpression latitudeExpression)
+	{
+		this.latitudeExpression = latitudeExpression;
+	}
+	
+	@Override
+	public DRIDesignExpression getLongitudeExpression()
+	{
+		return this.longitudeExpression;
+	}
+	
+	public void setLongitudeExpression(final DRIDesignExpression longitudeExpression)
+	{
+		this.longitudeExpression = longitudeExpression;
+	}
+	
+	@Override
+	public DRIDesignExpression getZoomExpression()
+	{
+		return this.zoomExpression;
+	}
+	
+	public void setZoomExpression(final DRIDesignExpression zoomExpression)
+	{
+		this.zoomExpression = zoomExpression;
+	}
 }

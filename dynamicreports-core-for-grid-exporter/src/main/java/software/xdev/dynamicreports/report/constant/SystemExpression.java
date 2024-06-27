@@ -17,12 +17,7 @@
  */
 package software.xdev.dynamicreports.report.constant;
 
-/**
- * <p>SystemExpression class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public enum SystemExpression {
-    PAGE_NUMBER
+public enum SystemExpression
+{
+	PAGE_NUMBER
 }

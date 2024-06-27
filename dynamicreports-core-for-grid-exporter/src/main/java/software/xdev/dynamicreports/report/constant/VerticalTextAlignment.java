@@ -17,12 +17,7 @@
  */
 package software.xdev.dynamicreports.report.constant;
 
-/**
- * <p>VerticalTextAlignment class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public enum VerticalTextAlignment {
-    TOP, MIDDLE, BOTTOM, JUSTIFIED
+public enum VerticalTextAlignment
+{
+	TOP, MIDDLE, BOTTOM, JUSTIFIED
 }

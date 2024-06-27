@@ -17,12 +17,7 @@
  */
 package software.xdev.dynamicreports.report.constant;
 
-/**
- * <p>RectangleAnchor class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public enum RectangleAnchor {
-    CENTER, TOP, TOP_LEFT, TOP_RIGHT, BOTTOM, BOTTOM_LEFT, BOTTOM_RIGHT, LEFT, RIGHT
+public enum RectangleAnchor
+{
+	CENTER, TOP, TOP_LEFT, TOP_RIGHT, BOTTOM, BOTTOM_LEFT, BOTTOM_RIGHT, LEFT, RIGHT
 }

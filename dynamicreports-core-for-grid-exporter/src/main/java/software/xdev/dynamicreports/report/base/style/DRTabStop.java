@@ -17,49 +17,35 @@
  */
 package software.xdev.dynamicreports.report.base.style;
 
-import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.constant.TabStopAlignment;
 import software.xdev.dynamicreports.report.definition.style.DRITabStop;
 
-/**
- * <p>DRTabStop class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class DRTabStop implements DRITabStop {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    private int position;
-    private TabStopAlignment alignment;
+public class DRTabStop implements DRITabStop
+{
 
-    /** {@inheritDoc} */
-    @Override
-    public int getPosition() {
-        return position;
-    }
-
-    /**
-     * <p>Setter for the field <code>position</code>.</p>
-     *
-     * @param position a int.
-     */
-    public void setPosition(int position) {
-        this.position = position;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public TabStopAlignment getAlignment() {
-        return alignment;
-    }
-
-    /**
-     * <p>Setter for the field <code>alignment</code>.</p>
-     *
-     * @param alignment a {@link software.xdev.dynamicreports.report.constant.TabStopAlignment} object.
-     */
-    public void setAlignment(TabStopAlignment alignment) {
-        this.alignment = alignment;
-    }
+	private int position;
+	private TabStopAlignment alignment;
+	
+	@Override
+	public int getPosition()
+	{
+		return this.position;
+	}
+	
+	public void setPosition(final int position)
+	{
+		this.position = position;
+	}
+	
+	@Override
+	public TabStopAlignment getAlignment()
+	{
+		return this.alignment;
+	}
+	
+	public void setAlignment(final TabStopAlignment alignment)
+	{
+		this.alignment = alignment;
+	}
 }

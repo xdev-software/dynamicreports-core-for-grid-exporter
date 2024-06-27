@@ -19,32 +19,19 @@ package software.xdev.dynamicreports.report.builder.component;
 
 import software.xdev.dynamicreports.report.base.component.DRBreak;
 import software.xdev.dynamicreports.report.constant.BreakType;
-import software.xdev.dynamicreports.report.constant.Constants;
 
-/**
- * <p>BreakBuilder class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class BreakBuilder extends ComponentBuilder<BreakBuilder, DRBreak> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    /**
-     * <p>Constructor for BreakBuilder.</p>
-     */
-    protected BreakBuilder() {
-        super(new DRBreak());
-    }
+public class BreakBuilder extends ComponentBuilder<BreakBuilder, DRBreak>
+{
 
-    /**
-     * <p>setType.</p>
-     *
-     * @param breakType a {@link software.xdev.dynamicreports.report.constant.BreakType} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.component.BreakBuilder} object.
-     */
-    public BreakBuilder setType(BreakType breakType) {
-        getObject().setType(breakType);
-        return this;
-    }
+	protected BreakBuilder()
+	{
+		super(new DRBreak());
+	}
+	
+	public BreakBuilder setType(final BreakType breakType)
+	{
+		this.getObject().setType(breakType);
+		return this;
+	}
 }

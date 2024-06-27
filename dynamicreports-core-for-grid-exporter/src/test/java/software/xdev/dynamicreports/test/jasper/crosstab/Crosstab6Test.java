@@ -17,6 +17,9 @@
  */
 package software.xdev.dynamicreports.test.jasper.crosstab;
 
+import static software.xdev.dynamicreports.report.builder.DynamicReports.ctab;
+
+import net.sf.jasperreports.engine.JRDataSource;
 import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
 import software.xdev.dynamicreports.jasper.constant.JasperProperty;
 import software.xdev.dynamicreports.report.builder.crosstab.CrosstabBuilder;
@@ -26,92 +29,90 @@ import software.xdev.dynamicreports.report.builder.crosstab.CrosstabRowGroupBuil
 import software.xdev.dynamicreports.report.constant.Calculation;
 import software.xdev.dynamicreports.report.datasource.DRDataSource;
 import software.xdev.dynamicreports.test.jasper.AbstractJasperCrosstabValueTest;
-import net.sf.jasperreports.engine.JRDataSource;
 
-import static software.xdev.dynamicreports.report.builder.DynamicReports.ctab;
 
-/**
- * @author Ricardo Mariaca
- */
-public class Crosstab6Test extends AbstractJasperCrosstabValueTest {
-    private CrosstabRowGroupBuilder<String> rowGroup;
-    private CrosstabColumnGroupBuilder<String> columnGroup;
-    private CrosstabMeasureBuilder<Integer> measure1;
-
-    @Override
-    protected void configureReport(JasperReportBuilder rb) {
-        measure1 = ctab.measure("field3", Integer.class, Calculation.SUM);
-        measure1.addProperty(JasperProperty.PRINT_KEEP_FULL_TEXT, "true");
-        measure1.setStretchWithOverflow(false);
-
-        CrosstabBuilder crosstab = ctab.crosstab()
-                                       .setCellWidth(18)
-                                       .rowGroups(rowGroup = ctab.rowGroup("field1", String.class)
-                                                                 .addHeaderProperty(JasperProperty.PRINT_KEEP_FULL_TEXT, "true")
-                                                                 .addTotalHeaderProperty(JasperProperty.PRINT_KEEP_FULL_TEXT, "true")
-                                                                 .setHeaderStretchWithOverflow(false)
-                                                                 .setTotalHeaderStretchWithOverflow(false)
-                                                                 .setHeaderWidth(18))
-                                       .columnGroups(columnGroup = ctab.columnGroup("field2", String.class)
-                                                                       .addHeaderProperty(JasperProperty.PRINT_KEEP_FULL_TEXT, "true")
-                                                                       .addTotalHeaderProperty(JasperProperty.PRINT_KEEP_FULL_TEXT, "true")
-                                                                       .setHeaderStretchWithOverflow(false)
-                                                                       .setTotalHeaderStretchWithOverflow(false))
-                                       .measures(measure1);
-
-        rb.summary(crosstab);
-    }
-
-    @Override
-    public void test() {
-        super.test();
-
-        numberOfPagesTest(1);
-
-        setCrosstabBand("summary");
-
-        // column group
-        crosstabGroupHeaderCountTest(columnGroup, 2);
-        crosstabGroupHeaderValueTest(columnGroup, "c ", "d ");
-        crosstabGroupHeaderFullValueTest(columnGroup, "c test test", "d test test");
-        crosstabGroupTotalHeaderCountTest(columnGroup, 1);
-        crosstabGroupTotalHeaderValueTest(columnGroup, "To");
-        crosstabGroupTotalHeaderFullValueTest(columnGroup, "Total");
-
-        // row group
-        crosstabGroupHeaderCountTest(rowGroup, 2);
-        crosstabGroupHeaderValueTest(rowGroup, "a ", "b ");
-        crosstabGroupHeaderFullValueTest(rowGroup, "a test test", "b test test");
-        crosstabGroupTotalHeaderCountTest(rowGroup, 1);
-        crosstabGroupTotalHeaderValueTest(rowGroup, "To");
-        crosstabGroupTotalHeaderFullValueTest(rowGroup, "Total");
-
-        // measure1
-        crosstabCellCountTest(measure1, null, null, 4);
-        crosstabCellValueTest(measure1, null, null, "30", "70", "11", "15");
-        crosstabCellFullValueTest(measure1, null, null, "30", "70", "110", "150");
-        crosstabCellCountTest(measure1, null, columnGroup, 2);
-        crosstabCellValueTest(measure1, null, columnGroup, "10", "26");
-        crosstabCellFullValueTest(measure1, null, columnGroup, "100", "260");
-        crosstabCellCountTest(measure1, rowGroup, null, 2);
-        crosstabCellValueTest(measure1, rowGroup, null, "14", "22");
-        crosstabCellFullValueTest(measure1, rowGroup, null, "140", "220");
-        crosstabCellCountTest(measure1, rowGroup, columnGroup, 1);
-        crosstabCellValueTest(measure1, rowGroup, columnGroup, "36");
-        crosstabCellFullValueTest(measure1, rowGroup, columnGroup, "360");
-    }
-
-    @Override
-    protected JRDataSource createDataSource() {
-        DRDataSource dataSource = new DRDataSource("field1", "field2", "field3");
-        dataSource.add("a test test", "c test test", 10);
-        dataSource.add("a test test", "c test test", 20);
-        dataSource.add("a test test", "d test test", 30);
-        dataSource.add("a test test", "d test test", 40);
-        dataSource.add("b test test", "c test test", 50);
-        dataSource.add("b test test", "c test test", 60);
-        dataSource.add("b test test", "d test test", 70);
-        dataSource.add("b test test", "d test test", 80);
-        return dataSource;
-    }
+public class Crosstab6Test extends AbstractJasperCrosstabValueTest
+{
+	private CrosstabRowGroupBuilder<String> rowGroup;
+	private CrosstabColumnGroupBuilder<String> columnGroup;
+	private CrosstabMeasureBuilder<Integer> measure1;
+	
+	@Override
+	protected void configureReport(final JasperReportBuilder rb)
+	{
+		this.measure1 = ctab.measure("field3", Integer.class, Calculation.SUM);
+		this.measure1.addProperty(JasperProperty.PRINT_KEEP_FULL_TEXT, "true");
+		
+		final CrosstabBuilder crosstab = ctab.crosstab()
+			.setCellWidth(18)
+			.rowGroups(this.rowGroup = ctab.rowGroup("field1", String.class)
+				.addHeaderProperty(JasperProperty.PRINT_KEEP_FULL_TEXT, "true")
+				.addTotalHeaderProperty(JasperProperty.PRINT_KEEP_FULL_TEXT, "true")
+				.setHeaderStretchWithOverflow(false)
+				.setTotalHeaderStretchWithOverflow(false)
+				.setHeaderWidth(18))
+			.columnGroups(this.columnGroup = ctab.columnGroup("field2", String.class)
+				.addHeaderProperty(JasperProperty.PRINT_KEEP_FULL_TEXT, "true")
+				.addTotalHeaderProperty(JasperProperty.PRINT_KEEP_FULL_TEXT, "true")
+				.setHeaderStretchWithOverflow(false)
+				.setTotalHeaderStretchWithOverflow(false))
+			.measures(this.measure1);
+		
+		rb.summary(crosstab);
+	}
+	
+	@Override
+	public void test()
+	{
+		super.test();
+		
+		this.numberOfPagesTest(1);
+		
+		this.setCrosstabBand("summary");
+		
+		// column group
+		this.crosstabGroupHeaderCountTest(this.columnGroup, 2);
+		this.crosstabGroupHeaderValueTest(this.columnGroup, "c ", "d ");
+		this.crosstabGroupHeaderFullValueTest(this.columnGroup, "c test test", "d test test");
+		this.crosstabGroupTotalHeaderCountTest(this.columnGroup, 1);
+		this.crosstabGroupTotalHeaderValueTest(this.columnGroup, "To");
+		this.crosstabGroupTotalHeaderFullValueTest(this.columnGroup, "Total");
+		
+		// row group
+		this.crosstabGroupHeaderCountTest(this.rowGroup, 2);
+		this.crosstabGroupHeaderValueTest(this.rowGroup, "a ", "b ");
+		this.crosstabGroupHeaderFullValueTest(this.rowGroup, "a test test", "b test test");
+		this.crosstabGroupTotalHeaderCountTest(this.rowGroup, 1);
+		this.crosstabGroupTotalHeaderValueTest(this.rowGroup, "To");
+		this.crosstabGroupTotalHeaderFullValueTest(this.rowGroup, "Total");
+		
+		// measure1
+		this.crosstabCellCountTest(this.measure1, null, null, 4);
+		this.crosstabCellValueTest(this.measure1, null, null, "30", "70", "11", "15");
+		this.crosstabCellFullValueTest(this.measure1, null, null, "30", "70", "110", "150");
+		this.crosstabCellCountTest(this.measure1, null, this.columnGroup, 2);
+		this.crosstabCellValueTest(this.measure1, null, this.columnGroup, "10", "26");
+		this.crosstabCellFullValueTest(this.measure1, null, this.columnGroup, "100", "260");
+		this.crosstabCellCountTest(this.measure1, this.rowGroup, null, 2);
+		this.crosstabCellValueTest(this.measure1, this.rowGroup, null, "14", "22");
+		this.crosstabCellFullValueTest(this.measure1, this.rowGroup, null, "140", "220");
+		this.crosstabCellCountTest(this.measure1, this.rowGroup, this.columnGroup, 1);
+		this.crosstabCellValueTest(this.measure1, this.rowGroup, this.columnGroup, "36");
+		this.crosstabCellFullValueTest(this.measure1, this.rowGroup, this.columnGroup, "360");
+	}
+	
+	@Override
+	protected JRDataSource createDataSource()
+	{
+		final DRDataSource dataSource = new DRDataSource("field1", "field2", "field3");
+		dataSource.add("a test test", "c test test", 10);
+		dataSource.add("a test test", "c test test", 20);
+		dataSource.add("a test test", "d test test", 30);
+		dataSource.add("a test test", "d test test", 40);
+		dataSource.add("b test test", "c test test", 50);
+		dataSource.add("b test test", "c test test", 60);
+		dataSource.add("b test test", "d test test", 70);
+		dataSource.add("b test test", "d test test", 80);
+		return dataSource;
+	}
 }

@@ -17,32 +17,15 @@
  */
 package software.xdev.dynamicreports.report.definition.expression;
 
-import software.xdev.dynamicreports.report.definition.ReportParameters;
-
 import java.util.List;
 
-/**
- * A complex implementation of an expression.<br/> The difference between a simple and complex expression is that a complex expression allows registering additional fields or variables that are not
- * defined in the report and are needed for calculating the value.
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface DRIComplexExpression<T> extends DRIExpression<T> {
+import software.xdev.dynamicreports.report.definition.ReportParameters;
 
-    /**
-     * <p>getExpressions.</p>
-     *
-     * @return a {@link java.util.List} object.
-     */
-    public List<DRIExpression<?>> getExpressions();
 
-    /**
-     * Evaluates the expression.
-     *
-     * @param values           the values of the registered expressions
-     * @param reportParameters access to report fields, variables, parameters, expressions, and other report values
-     * @return the result of the expression evaluation
-     */
-    public T evaluate(List<?> values, ReportParameters reportParameters);
+public interface DRIComplexExpression<T> extends DRIExpression<T>
+{
+	
+	public List<DRIExpression<?>> getExpressions();
+	
+	public T evaluate(List<?> values, ReportParameters reportParameters);
 }

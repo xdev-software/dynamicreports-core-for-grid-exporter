@@ -19,74 +19,54 @@ package software.xdev.dynamicreports.report.base;
 
 import software.xdev.dynamicreports.report.base.component.DRComponent;
 import software.xdev.dynamicreports.report.base.component.DRList;
-import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.constant.ListType;
 import software.xdev.dynamicreports.report.constant.SplitType;
 import software.xdev.dynamicreports.report.definition.DRIBand;
 import software.xdev.dynamicreports.report.definition.expression.DRIExpression;
 
-/**
- * <p>DRBand class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class DRBand implements DRIBand {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    private SplitType splitType;
-    private DRList list;
-    private DRIExpression<Boolean> printWhenExpression;
+public class DRBand implements DRIBand
+{
 
-    /**
-     * <p>Constructor for DRBand.</p>
-     */
-    public DRBand() {
-        this.list = new DRList(ListType.VERTICAL);
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public SplitType getSplitType() {
-        return splitType;
-    }
-
-    /**
-     * <p>Setter for the field <code>splitType</code>.</p>
-     *
-     * @param splitType a {@link software.xdev.dynamicreports.report.constant.SplitType} object.
-     */
-    public void setSplitType(SplitType splitType) {
-        this.splitType = splitType;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRList getList() {
-        return list;
-    }
-
-    /**
-     * <p>addComponent.</p>
-     *
-     * @param component a {@link software.xdev.dynamicreports.report.base.component.DRComponent} object.
-     */
-    public void addComponent(DRComponent component) {
-        list.addComponent(component);
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRIExpression<Boolean> getPrintWhenExpression() {
-        return printWhenExpression;
-    }
-
-    /**
-     * <p>Setter for the field <code>printWhenExpression</code>.</p>
-     *
-     * @param printWhenExpression a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     */
-    public void setPrintWhenExpression(DRIExpression<Boolean> printWhenExpression) {
-        this.printWhenExpression = printWhenExpression;
-    }
+	private SplitType splitType;
+	private final DRList list;
+	private DRIExpression<Boolean> printWhenExpression;
+	
+	public DRBand()
+	{
+		this.list = new DRList(ListType.VERTICAL);
+	}
+	
+	@Override
+	public SplitType getSplitType()
+	{
+		return this.splitType;
+	}
+	
+	public void setSplitType(final SplitType splitType)
+	{
+		this.splitType = splitType;
+	}
+	
+	@Override
+	public DRList getList()
+	{
+		return this.list;
+	}
+	
+	public void addComponent(final DRComponent component)
+	{
+		this.list.addComponent(component);
+	}
+	
+	@Override
+	public DRIExpression<Boolean> getPrintWhenExpression()
+	{
+		return this.printWhenExpression;
+	}
+	
+	public void setPrintWhenExpression(final DRIExpression<Boolean> printWhenExpression)
+	{
+		this.printWhenExpression = printWhenExpression;
+	}
 }

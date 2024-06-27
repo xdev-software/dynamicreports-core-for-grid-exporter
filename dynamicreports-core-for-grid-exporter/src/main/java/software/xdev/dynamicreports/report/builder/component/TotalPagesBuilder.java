@@ -19,30 +19,23 @@ package software.xdev.dynamicreports.report.builder.component;
 
 import software.xdev.dynamicreports.report.base.component.DRTotalPages;
 import software.xdev.dynamicreports.report.builder.expression.SystemMessageExpression;
-import software.xdev.dynamicreports.report.constant.Constants;
 
-/**
- * <p>TotalPagesBuilder class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class TotalPagesBuilder extends AbstractFormatFieldBuilder<TotalPagesBuilder, DRTotalPages> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    /**
-     * <p>Constructor for TotalPagesBuilder.</p>
-     */
-    protected TotalPagesBuilder() {
-        super(new DRTotalPages());
-    }
+public class TotalPagesBuilder extends AbstractFormatFieldBuilder<TotalPagesBuilder, DRTotalPages>
+{
 
-    /** {@inheritDoc} */
-    @Override
-    protected void configure() {
-        if (getObject().getFormatExpression() == null) {
-            setFormatExpression(new SystemMessageExpression("total_pages"));
-        }
-        super.configure();
-    }
+	protected TotalPagesBuilder()
+	{
+		super(new DRTotalPages());
+	}
+	
+	@Override
+	protected void configure()
+	{
+		if(this.getObject().getFormatExpression() == null)
+		{
+			this.setFormatExpression(new SystemMessageExpression("total_pages"));
+		}
+		super.configure();
+	}
 }

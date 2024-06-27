@@ -17,12 +17,7 @@
  */
 package software.xdev.dynamicreports.report.constant;
 
-/**
- * <p>QrCodeErrorCorrectionLevel class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public enum QrCodeErrorCorrectionLevel {
-    L, M, Q, H;
+public enum QrCodeErrorCorrectionLevel
+{
+	L, M, Q, H
 }

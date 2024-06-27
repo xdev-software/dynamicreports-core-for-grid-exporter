@@ -22,52 +22,134 @@ import software.xdev.dynamicreports.report.builder.crosstab.CrosstabColumnGroupB
 import software.xdev.dynamicreports.report.builder.crosstab.CrosstabMeasureBuilder;
 import software.xdev.dynamicreports.report.builder.crosstab.CrosstabRowGroupBuilder;
 
-/**
- * @author Ricardo Mariaca
- */
-public abstract class AbstractJasperCrosstabPositionTest extends AbstractJasperPositionTest {
-    private String crosstabBand;
 
-    public void setCrosstabBand(String crosstabBand) {
-        this.crosstabBand = crosstabBand;
-    }
-
-    protected void crosstabWhenNoDataElementPositionTest(String name, int index, int x, int y, int width, int height) {
-        elementPositionTest(getPrefix(1) + "whennodatacell." + name, index, x, y, width, height);
-    }
-
-    protected void crosstabHeaderElementPositionTest(String name, int index, int x, int y, int width, int height) {
-        elementPositionTest(getPrefix(1) + "headercell." + name, index, x, y, width, height);
-    }
-
-    // group header
-    protected void crosstabGroupHeaderPositionTest(AbstractCrosstabGroupBuilder<?, ?, ?> group, int index, int x, int y, int width, int height) {
-        elementPositionTest(getPrefix(1) + JasperTestUtils.getCrosstabGroupHeaderName(group), index, x, y, width, height);
-    }
-
-    // group total header
-    protected void crosstabGroupTotalHeaderPositionTest(AbstractCrosstabGroupBuilder<?, ?, ?> group, int index, int x, int y, int width, int height) {
-        elementPositionTest(getPrefix(1) + JasperTestUtils.getCrosstabGroupTotalHeaderName(group), index, x, y, width, height);
-    }
-
-    // group title header
-    protected void crosstabGroupTitleHeaderPositionTest(AbstractCrosstabGroupBuilder<?, ?, ?> group, CrosstabMeasureBuilder<?> measure, int index, int x, int y, int width, int height) {
-        elementPositionTest(getPrefix(1) + JasperTestUtils.getCrosstabGroupTitleHeaderName(group, measure), index, x, y, width, height);
-    }
-
-    // group title total header
-    protected void crosstabGroupTitleTotalHeaderPositionTest(AbstractCrosstabGroupBuilder<?, ?, ?> group, CrosstabMeasureBuilder<?> measure, int index, int x, int y, int width, int height) {
-        elementPositionTest(getPrefix(1) + JasperTestUtils.getCrosstabGroupTitleTotalHeaderName(group, measure), index, x, y, width, height);
-    }
-
-    // cell
-    protected void crosstabCellPositionTest(CrosstabMeasureBuilder<?> measure, CrosstabRowGroupBuilder<?> rowGroup, CrosstabColumnGroupBuilder<?> columnGroup, int index, int x, int y, int width,
-                                            int height) {
-        elementPositionTest(getPrefix(1) + JasperTestUtils.getCrosstabCellName(measure, rowGroup, columnGroup), index, x, y, width, height);
-    }
-
-    private String getPrefix(int index) {
-        return crosstabBand + ".crosstab" + index + ".";
-    }
-
+public abstract class AbstractJasperCrosstabPositionTest extends AbstractJasperPositionTest
+{
+	private String crosstabBand;
+	
+	public void setCrosstabBand(final String crosstabBand)
+	{
+		this.crosstabBand = crosstabBand;
+	}
+	
+	protected void crosstabWhenNoDataElementPositionTest(
+		final String name,
+		final int index,
+		final int x,
+		final int y,
+		final int width,
+		final int height)
+	{
+		this.elementPositionTest(this.getPrefix(1) + "whennodatacell." + name, index, x, y, width, height);
+	}
+	
+	protected void crosstabHeaderElementPositionTest(
+		final String name,
+		final int index,
+		final int x,
+		final int y,
+		final int width,
+		final int height)
+	{
+		this.elementPositionTest(this.getPrefix(1) + "headercell." + name, index, x, y, width, height);
+	}
+	
+	// group header
+	protected void crosstabGroupHeaderPositionTest(
+		final AbstractCrosstabGroupBuilder<?, ?, ?> group,
+		final int index,
+		final int x,
+		final int y,
+		final int width,
+		final int height)
+	{
+		this.elementPositionTest(
+			this.getPrefix(1) + JasperTestUtils.getCrosstabGroupHeaderName(group),
+			index,
+			x,
+			y,
+			width,
+			height);
+	}
+	
+	// group total header
+	protected void crosstabGroupTotalHeaderPositionTest(
+		final AbstractCrosstabGroupBuilder<?, ?, ?> group,
+		final int index,
+		final int x,
+		final int y,
+		final int width,
+		final int height)
+	{
+		this.elementPositionTest(
+			this.getPrefix(1) + JasperTestUtils.getCrosstabGroupTotalHeaderName(group),
+			index,
+			x,
+			y,
+			width,
+			height);
+	}
+	
+	// group title header
+	protected void crosstabGroupTitleHeaderPositionTest(
+		final AbstractCrosstabGroupBuilder<?, ?, ?> group,
+		final CrosstabMeasureBuilder<?> measure,
+		final int index,
+		final int x,
+		final int y,
+		final int width,
+		final int height)
+	{
+		this.elementPositionTest(
+			this.getPrefix(1) + JasperTestUtils.getCrosstabGroupTitleHeaderName(group, measure),
+			index,
+			x,
+			y,
+			width,
+			height);
+	}
+	
+	// group title total header
+	protected void crosstabGroupTitleTotalHeaderPositionTest(
+		final AbstractCrosstabGroupBuilder<?, ?, ?> group,
+		final CrosstabMeasureBuilder<?> measure,
+		final int index,
+		final int x,
+		final int y,
+		final int width,
+		final int height)
+	{
+		this.elementPositionTest(
+			this.getPrefix(1) + JasperTestUtils.getCrosstabGroupTitleTotalHeaderName(group, measure),
+			index,
+			x,
+			y,
+			width,
+			height);
+	}
+	
+	// cell
+	protected void crosstabCellPositionTest(
+		final CrosstabMeasureBuilder<?> measure,
+		final CrosstabRowGroupBuilder<?> rowGroup,
+		final CrosstabColumnGroupBuilder<?> columnGroup,
+		final int index,
+		final int x,
+		final int y,
+		final int width,
+		final int height)
+	{
+		this.elementPositionTest(
+			this.getPrefix(1) + JasperTestUtils.getCrosstabCellName(measure, rowGroup, columnGroup),
+			index,
+			x,
+			y,
+			width,
+			height);
+	}
+	
+	private String getPrefix(final int index)
+	{
+		return this.crosstabBand + ".crosstab" + index + ".";
+	}
 }

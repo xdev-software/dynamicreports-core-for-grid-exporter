@@ -17,65 +17,47 @@
  */
 package software.xdev.dynamicreports.report.base.component;
 
-import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.definition.component.DRIMap;
 import software.xdev.dynamicreports.report.definition.expression.DRIExpression;
 
-/**
- * <p>DRMap class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class DRMap extends DRDimensionComponent implements DRIMap {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    public DRIExpression<Float> latitudeExpression;
-    public DRIExpression<Float> longitudeExpression;
-    public DRIExpression<Integer> zoomExpression;
+public class DRMap extends DRDimensionComponent implements DRIMap
+{
 
-    /** {@inheritDoc} */
-    @Override
-    public DRIExpression<Float> getLatitudeExpression() {
-        return latitudeExpression;
-    }
-
-    /**
-     * <p>Setter for the field <code>latitudeExpression</code>.</p>
-     *
-     * @param latitudeExpression a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     */
-    public void setLatitudeExpression(DRIExpression<Float> latitudeExpression) {
-        this.latitudeExpression = latitudeExpression;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRIExpression<Float> getLongitudeExpression() {
-        return longitudeExpression;
-    }
-
-    /**
-     * <p>Setter for the field <code>longitudeExpression</code>.</p>
-     *
-     * @param longitudeExpression a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     */
-    public void setLongitudeExpression(DRIExpression<Float> longitudeExpression) {
-        this.longitudeExpression = longitudeExpression;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRIExpression<Integer> getZoomExpression() {
-        return zoomExpression;
-    }
-
-    /**
-     * <p>Setter for the field <code>zoomExpression</code>.</p>
-     *
-     * @param zoomExpression a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     */
-    public void setZoomExpression(DRIExpression<Integer> zoomExpression) {
-        this.zoomExpression = zoomExpression;
-    }
+	private DRIExpression<Float> latitudeExpression;
+	private DRIExpression<Float> longitudeExpression;
+	private DRIExpression<Integer> zoomExpression;
+	
+	@Override
+	public DRIExpression<Float> getLatitudeExpression()
+	{
+		return this.latitudeExpression;
+	}
+	
+	public void setLatitudeExpression(final DRIExpression<Float> latitudeExpression)
+	{
+		this.latitudeExpression = latitudeExpression;
+	}
+	
+	@Override
+	public DRIExpression<Float> getLongitudeExpression()
+	{
+		return this.longitudeExpression;
+	}
+	
+	public void setLongitudeExpression(final DRIExpression<Float> longitudeExpression)
+	{
+		this.longitudeExpression = longitudeExpression;
+	}
+	
+	@Override
+	public DRIExpression<Integer> getZoomExpression()
+	{
+		return this.zoomExpression;
+	}
+	
+	public void setZoomExpression(final DRIExpression<Integer> zoomExpression)
+	{
+		this.zoomExpression = zoomExpression;
+	}
 }

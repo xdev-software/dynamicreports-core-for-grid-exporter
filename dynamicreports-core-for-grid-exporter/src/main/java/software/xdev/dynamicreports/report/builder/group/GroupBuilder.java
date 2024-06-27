@@ -17,517 +17,312 @@
  */
 package software.xdev.dynamicreports.report.builder.group;
 
+import org.apache.commons.lang3.Validate;
+
 import software.xdev.dynamicreports.report.base.DRGroup;
 import software.xdev.dynamicreports.report.base.component.DRTextField;
 import software.xdev.dynamicreports.report.builder.AbstractBuilder;
 import software.xdev.dynamicreports.report.builder.component.ComponentBuilder;
 import software.xdev.dynamicreports.report.builder.style.ReportStyleBuilder;
-import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.constant.GroupFooterPosition;
 import software.xdev.dynamicreports.report.constant.GroupHeaderLayout;
-import software.xdev.dynamicreports.report.constant.HorizontalAlignment;
 import software.xdev.dynamicreports.report.constant.HorizontalTextAlignment;
 import software.xdev.dynamicreports.report.constant.SplitType;
 import software.xdev.dynamicreports.report.definition.expression.DRIExpression;
-import org.apache.commons.lang3.Validate;
 
-/**
- * <p>Abstract GroupBuilder class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-@SuppressWarnings( {"unchecked", "rawtypes", "deprecation"})
-public abstract class GroupBuilder<T extends GroupBuilder<T>> extends AbstractBuilder<T, DRGroup> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    private DRIExpression valueExpression;
+@SuppressWarnings({"unchecked", "rawtypes", "deprecation"})
+public abstract class GroupBuilder<T extends GroupBuilder<T>> extends AbstractBuilder<T, DRGroup>
+{
 
-    /**
-     * <p>Constructor for GroupBuilder.</p>
-     */
-    protected GroupBuilder() {
-        super(new DRGroup(new DRTextField()));
-    }
-
-    /**
-     * <p>Constructor for GroupBuilder.</p>
-     *
-     * @param name a {@link java.lang.String} object.
-     */
-    protected GroupBuilder(String name) {
-        super(new DRGroup(name, new DRTextField()));
-    }
-
-    /**
-     * <p>Setter for the field <code>valueExpression</code>.</p>
-     *
-     * @param valueExpression a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     */
-    protected void setValueExpression(DRIExpression<?> valueExpression) {
-        this.valueExpression = valueExpression;
-    }
-
-    /**
-     * <p>setHeaderLayout.</p>
-     *
-     * @param headerLayout a {@link software.xdev.dynamicreports.report.constant.GroupHeaderLayout} object.
-     * @return a T object.
-     */
-    public T setHeaderLayout(GroupHeaderLayout headerLayout) {
-        getObject().setHeaderLayout(headerLayout);
-        return (T) this;
-    }
-
-    /**
-     * <p>showColumnHeaderAndFooter.</p>
-     *
-     * @return a T object.
-     */
-    public T showColumnHeaderAndFooter() {
-        return setShowColumnHeaderAndFooter(true);
-    }
-
-    /**
-     * <p>setShowColumnHeaderAndFooter.</p>
-     *
-     * @param showColumnHeaderAndFooter a {@link java.lang.Boolean} object.
-     * @return a T object.
-     */
-    public T setShowColumnHeaderAndFooter(Boolean showColumnHeaderAndFooter) {
-        getObject().setShowColumnHeaderAndFooter(showColumnHeaderAndFooter);
-        return (T) this;
-    }
-
-    /**
-     * <p>setAddToTableOfContents.</p>
-     *
-     * @param addToTableOfContents a {@link java.lang.Boolean} object.
-     * @return a T object.
-     */
-    public T setAddToTableOfContents(Boolean addToTableOfContents) {
-        getObject().setAddToTableOfContents(addToTableOfContents);
-        return (T) this;
-    }
-
-    /**
-     * <p>setPrintSubtotalsWhenExpression.</p>
-     *
-     * @param printSubtotalsWhenExpression a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     * @return a T object.
-     */
-    public T setPrintSubtotalsWhenExpression(DRIExpression<Boolean> printSubtotalsWhenExpression) {
-        getObject().setPrintSubtotalsWhenExpression(printSubtotalsWhenExpression);
-        return (T) this;
-    }
-
-    /**
-     * <p>setPadding.</p>
-     *
-     * @param padding a {@link java.lang.Integer} object.
-     * @return a T object.
-     */
-    public T setPadding(Integer padding) {
-        getObject().setPadding(padding);
-        return (T) this;
-    }
-
-    /**
-     * <p>startInNewPage.</p>
-     *
-     * @return a T object.
-     */
-    public T startInNewPage() {
-        return setStartInNewPage(true);
-    }
-
-    /**
-     * <p>setStartInNewPage.</p>
-     *
-     * @param startInNewPage a {@link java.lang.Boolean} object.
-     * @return a T object.
-     */
-    public T setStartInNewPage(Boolean startInNewPage) {
-        getObject().setStartInNewPage(startInNewPage);
-        return (T) this;
-    }
-
-    /**
-     * <p>startInNewColumn.</p>
-     *
-     * @return a T object.
-     */
-    public T startInNewColumn() {
-        return setStartInNewColumn(true);
-    }
-
-    /**
-     * <p>setStartInNewColumn.</p>
-     *
-     * @param startInNewColumn a {@link java.lang.Boolean} object.
-     * @return a T object.
-     */
-    public T setStartInNewColumn(Boolean startInNewColumn) {
-        getObject().setStartInNewColumn(startInNewColumn);
-        return (T) this;
-    }
-
-    /**
-     * <p>reprintHeaderOnEachPage.</p>
-     *
-     * @return a T object.
-     */
-    public T reprintHeaderOnEachPage() {
-        return setReprintHeaderOnEachPage(true);
-    }
-
-    /**
-     * <p>setReprintHeaderOnEachPage.</p>
-     *
-     * @param reprintHeaderOnEachPage a {@link java.lang.Boolean} object.
-     * @return a T object.
-     */
-    public T setReprintHeaderOnEachPage(Boolean reprintHeaderOnEachPage) {
-        getObject().setReprintHeaderOnEachPage(reprintHeaderOnEachPage);
-        return (T) this;
-    }
-
-    /**
-     * <p>resetPageNumber.</p>
-     *
-     * @return a T object.
-     */
-    public T resetPageNumber() {
-        return setResetPageNumber(true);
-    }
-
-    /**
-     * <p>setResetPageNumber.</p>
-     *
-     * @param resetPageNumber a {@link java.lang.Boolean} object.
-     * @return a T object.
-     */
-    public T setResetPageNumber(Boolean resetPageNumber) {
-        getObject().setResetPageNumber(resetPageNumber);
-        return (T) this;
-    }
-
-    /**
-     * <p>setMinHeightToStartNewPage.</p>
-     *
-     * @param minHeightToStartNewPage a {@link java.lang.Integer} object.
-     * @return a T object.
-     */
-    public T setMinHeightToStartNewPage(Integer minHeightToStartNewPage) {
-        getObject().setMinHeightToStartNewPage(minHeightToStartNewPage);
-        return (T) this;
-    }
-
-    /**
-     * <p>setFooterPosition.</p>
-     *
-     * @param footerPosition a {@link software.xdev.dynamicreports.report.constant.GroupFooterPosition} object.
-     * @return a T object.
-     */
-    public T setFooterPosition(GroupFooterPosition footerPosition) {
-        getObject().setFooterPosition(footerPosition);
-        return (T) this;
-    }
-
-    /**
-     * <p>keepTogether.</p>
-     *
-     * @return a T object.
-     */
-    public T keepTogether() {
-        return setKeepTogether(true);
-    }
-
-    /**
-     * <p>setKeepTogether.</p>
-     *
-     * @param keepTogether a {@link java.lang.Boolean} object.
-     * @return a T object.
-     */
-    public T setKeepTogether(Boolean keepTogether) {
-        getObject().setKeepTogether(keepTogether);
-        return (T) this;
-    }
-
-    /**
-     * <p>headerWithSubtotal.</p>
-     *
-     * @return a T object.
-     */
-    public T headerWithSubtotal() {
-        return setHeaderWithSubtotal(true);
-    }
-
-    /**
-     * <p>setHeaderWithSubtotal.</p>
-     *
-     * @param headerWithSubtotal a {@link java.lang.Boolean} object.
-     * @return a T object.
-     */
-    public T setHeaderWithSubtotal(Boolean headerWithSubtotal) {
-        getObject().setHeaderWithSubtotal(headerWithSubtotal);
-        return (T) this;
-    }
-
-    /**
-     * <p>groupByDataType.</p>
-     *
-     * @return a T object.
-     */
-    public T groupByDataType() {
-        return setGroupByDataType(true);
-    }
-
-    /**
-     * <p>setGroupByDataType.</p>
-     *
-     * @param groupByDataType a {@link java.lang.Boolean} object.
-     * @return a T object.
-     */
-    public T setGroupByDataType(Boolean groupByDataType) {
-        getObject().setGroupByDataType(groupByDataType);
-        return (T) this;
-    }
-
-    /**
-     * <p>setStyle.</p>
-     *
-     * @param style a {@link software.xdev.dynamicreports.report.builder.style.ReportStyleBuilder} object.
-     * @return a T object.
-     */
-    public T setStyle(ReportStyleBuilder style) {
-        if (style != null) {
-            getObject().getValueField().setStyle(style.getStyle());
-        } else {
-            getObject().getValueField().setStyle(null);
-        }
-        return (T) this;
-    }
-
-    /**
-     * <p>setHorizontalAlignment.</p>
-     *
-     * @param horizontalAlignment a {@link software.xdev.dynamicreports.report.constant.HorizontalAlignment} object.
-     * @return a T object.
-     * @deprecated use setHorizontalTextAlignment instead
-     */
-    @Deprecated
-    public T setHorizontalAlignment(HorizontalAlignment horizontalAlignment) {
-        if (horizontalAlignment != null) {
-            getObject().getValueField().setHorizontalTextAlignment(HorizontalTextAlignment.valueOf(horizontalAlignment.name()));
-        } else {
-            getObject().getValueField().setHorizontalTextAlignment(null);
-        }
-        return (T) this;
-    }
-
-    /**
-     * <p>setHorizontalTextAlignment.</p>
-     *
-     * @param horizontalTextAlignment a {@link software.xdev.dynamicreports.report.constant.HorizontalTextAlignment} object.
-     * @return a T object.
-     */
-    public T setHorizontalTextAlignment(HorizontalTextAlignment horizontalTextAlignment) {
-        getObject().getValueField().setHorizontalTextAlignment(horizontalTextAlignment);
-        return (T) this;
-    }
-
-    /**
-     * <p>setTitleStyle.</p>
-     *
-     * @param titleStyle a {@link software.xdev.dynamicreports.report.builder.style.ReportStyleBuilder} object.
-     * @return a T object.
-     */
-    public T setTitleStyle(ReportStyleBuilder titleStyle) {
-        if (titleStyle != null) {
-            getObject().setTitleStyle(titleStyle.getStyle());
-        } else {
-            getObject().setTitleStyle(null);
-        }
-        return (T) this;
-    }
-
-    /**
-     * <p>setTitleWidth.</p>
-     *
-     * @param titleWidth a {@link java.lang.Integer} object.
-     * @return a T object.
-     */
-    public T setTitleWidth(Integer titleWidth) {
-        getObject().setTitleWidth(titleWidth);
-        return (T) this;
-    }
-
-    // header
-
-    /**
-     * <p>setHeaderSplitType.</p>
-     *
-     * @param splitType a {@link software.xdev.dynamicreports.report.constant.SplitType} object.
-     * @return a T object.
-     */
-    public T setHeaderSplitType(SplitType splitType) {
-        getObject().getHeaderBand().setSplitType(splitType);
-        return (T) this;
-    }
-
-    /**
-     * <p>setHeaderPrintWhenExpression.</p>
-     *
-     * @param printWhenExpression a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     * @return a T object.
-     */
-    public T setHeaderPrintWhenExpression(DRIExpression<Boolean> printWhenExpression) {
-        getObject().getHeaderBand().setPrintWhenExpression(printWhenExpression);
-        return (T) this;
-    }
-
-    /**
-     * <p>setHeaderStyle.</p>
-     *
-     * @param style a {@link software.xdev.dynamicreports.report.builder.style.ReportStyleBuilder} object.
-     * @return a T object.
-     */
-    public T setHeaderStyle(ReportStyleBuilder style) {
-        if (style != null) {
-            getObject().getHeaderBand().getList().setStyle(style.build());
-        } else {
-            getObject().getHeaderBand().getList().setStyle(null);
-        }
-        return (T) this;
-    }
-
-    /**
-     * <p>setHeaderBackgroundComponent.</p>
-     *
-     * @param backgroundComponent a {@link software.xdev.dynamicreports.report.builder.component.ComponentBuilder} object.
-     * @return a T object.
-     */
-    public T setHeaderBackgroundComponent(ComponentBuilder<?, ?> backgroundComponent) {
-        Validate.notNull(backgroundComponent, "backgroundComponent must not be null");
-        getObject().getHeaderBand().getList().setBackgroundComponent(backgroundComponent.build());
-        return (T) this;
-    }
-
-    /**
-     * <p>addHeaderComponent.</p>
-     *
-     * @param components a {@link software.xdev.dynamicreports.report.builder.component.ComponentBuilder} object.
-     * @return a T object.
-     */
-    public T addHeaderComponent(ComponentBuilder<?, ?>... components) {
-        Validate.notNull(components, "components must not be null");
-        Validate.noNullElements(components, "components must not contains null component");
-        for (ComponentBuilder<?, ?> component : components) {
-            getObject().getHeaderBand().addComponent(component.build());
-        }
-        return (T) this;
-    }
-
-    /**
-     * <p>header.</p>
-     *
-     * @param components a {@link software.xdev.dynamicreports.report.builder.component.ComponentBuilder} object.
-     * @return a T object.
-     */
-    public T header(ComponentBuilder<?, ?>... components) {
-        return addHeaderComponent(components);
-    }
-
-    // footer
-
-    /**
-     * <p>setFooterSplitType.</p>
-     *
-     * @param splitType a {@link software.xdev.dynamicreports.report.constant.SplitType} object.
-     * @return a T object.
-     */
-    public T setFooterSplitType(SplitType splitType) {
-        getObject().getFooterBand().setSplitType(splitType);
-        return (T) this;
-    }
-
-    /**
-     * <p>setFooterPrintWhenExpression.</p>
-     *
-     * @param printWhenExpression a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     * @return a T object.
-     */
-    public T setFooterPrintWhenExpression(DRIExpression<Boolean> printWhenExpression) {
-        getObject().getFooterBand().setPrintWhenExpression(printWhenExpression);
-        return (T) this;
-    }
-
-    /**
-     * <p>setFooterStyle.</p>
-     *
-     * @param style a {@link software.xdev.dynamicreports.report.builder.style.ReportStyleBuilder} object.
-     * @return a T object.
-     */
-    public T setFooterStyle(ReportStyleBuilder style) {
-        if (style != null) {
-            getObject().getFooterBand().getList().setStyle(style.build());
-        } else {
-            getObject().getFooterBand().getList().setStyle(null);
-        }
-        return (T) this;
-    }
-
-    /**
-     * <p>setFooterBackgroundComponent.</p>
-     *
-     * @param backgroundComponent a {@link software.xdev.dynamicreports.report.builder.component.ComponentBuilder} object.
-     * @return a T object.
-     */
-    public T setFooterBackgroundComponent(ComponentBuilder<?, ?> backgroundComponent) {
-        Validate.notNull(backgroundComponent, "backgroundComponent must not be null");
-        getObject().getFooterBand().getList().setBackgroundComponent(backgroundComponent.build());
-        return (T) this;
-    }
-
-    /**
-     * <p>addFooterComponent.</p>
-     *
-     * @param components a {@link software.xdev.dynamicreports.report.builder.component.ComponentBuilder} object.
-     * @return a T object.
-     */
-    public T addFooterComponent(ComponentBuilder<?, ?>... components) {
-        Validate.notNull(components, "components must not be null");
-        Validate.noNullElements(components, "components must not contains null component");
-        for (ComponentBuilder<?, ?> component : components) {
-            getObject().getFooterBand().addComponent(component.build());
-        }
-        return (T) this;
-    }
-
-    /**
-     * <p>footer.</p>
-     *
-     * @param components a {@link software.xdev.dynamicreports.report.builder.component.ComponentBuilder} object.
-     * @return a T object.
-     */
-    public T footer(ComponentBuilder<?, ?>... components) {
-        return addFooterComponent(components);
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    protected void configure() {
-        super.configure();
-        getObject().getValueField().setValueExpression(valueExpression);
-    }
-
-    /**
-     * <p>getGroup.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.base.DRGroup} object.
-     */
-    public DRGroup getGroup() {
-        return build();
-    }
+	private DRIExpression valueExpression;
+	
+	protected GroupBuilder()
+	{
+		super(new DRGroup(new DRTextField()));
+	}
+	
+	protected GroupBuilder(final String name)
+	{
+		super(new DRGroup(name, new DRTextField()));
+	}
+	
+	protected void setValueExpression(final DRIExpression<?> valueExpression)
+	{
+		this.valueExpression = valueExpression;
+	}
+	
+	public T setHeaderLayout(final GroupHeaderLayout headerLayout)
+	{
+		this.getObject().setHeaderLayout(headerLayout);
+		return (T)this;
+	}
+	
+	public T showColumnHeaderAndFooter()
+	{
+		return this.setShowColumnHeaderAndFooter(true);
+	}
+	
+	public T setShowColumnHeaderAndFooter(final Boolean showColumnHeaderAndFooter)
+	{
+		this.getObject().setShowColumnHeaderAndFooter(showColumnHeaderAndFooter);
+		return (T)this;
+	}
+	
+	public T setAddToTableOfContents(final Boolean addToTableOfContents)
+	{
+		this.getObject().setAddToTableOfContents(addToTableOfContents);
+		return (T)this;
+	}
+	
+	public T setPrintSubtotalsWhenExpression(final DRIExpression<Boolean> printSubtotalsWhenExpression)
+	{
+		this.getObject().setPrintSubtotalsWhenExpression(printSubtotalsWhenExpression);
+		return (T)this;
+	}
+	
+	public T setPadding(final Integer padding)
+	{
+		this.getObject().setPadding(padding);
+		return (T)this;
+	}
+	
+	public T startInNewPage()
+	{
+		return this.setStartInNewPage(true);
+	}
+	
+	public T setStartInNewPage(final Boolean startInNewPage)
+	{
+		this.getObject().setStartInNewPage(startInNewPage);
+		return (T)this;
+	}
+	
+	public T startInNewColumn()
+	{
+		return this.setStartInNewColumn(true);
+	}
+	
+	public T setStartInNewColumn(final Boolean startInNewColumn)
+	{
+		this.getObject().setStartInNewColumn(startInNewColumn);
+		return (T)this;
+	}
+	
+	public T reprintHeaderOnEachPage()
+	{
+		return this.setReprintHeaderOnEachPage(true);
+	}
+	
+	public T setReprintHeaderOnEachPage(final Boolean reprintHeaderOnEachPage)
+	{
+		this.getObject().setReprintHeaderOnEachPage(reprintHeaderOnEachPage);
+		return (T)this;
+	}
+	
+	public T resetPageNumber()
+	{
+		return this.setResetPageNumber(true);
+	}
+	
+	public T setResetPageNumber(final Boolean resetPageNumber)
+	{
+		this.getObject().setResetPageNumber(resetPageNumber);
+		return (T)this;
+	}
+	
+	public T setMinHeightToStartNewPage(final Integer minHeightToStartNewPage)
+	{
+		this.getObject().setMinHeightToStartNewPage(minHeightToStartNewPage);
+		return (T)this;
+	}
+	
+	public T setFooterPosition(final GroupFooterPosition footerPosition)
+	{
+		this.getObject().setFooterPosition(footerPosition);
+		return (T)this;
+	}
+	
+	public T keepTogether()
+	{
+		return this.setKeepTogether(true);
+	}
+	
+	public T setKeepTogether(final Boolean keepTogether)
+	{
+		this.getObject().setKeepTogether(keepTogether);
+		return (T)this;
+	}
+	
+	public T headerWithSubtotal()
+	{
+		return this.setHeaderWithSubtotal(true);
+	}
+	
+	public T setHeaderWithSubtotal(final Boolean headerWithSubtotal)
+	{
+		this.getObject().setHeaderWithSubtotal(headerWithSubtotal);
+		return (T)this;
+	}
+	
+	public T groupByDataType()
+	{
+		return this.setGroupByDataType(true);
+	}
+	
+	public T setGroupByDataType(final Boolean groupByDataType)
+	{
+		this.getObject().setGroupByDataType(groupByDataType);
+		return (T)this;
+	}
+	
+	public T setStyle(final ReportStyleBuilder style)
+	{
+		if(style != null)
+		{
+			this.getObject().getValueField().setStyle(style.getStyle());
+		}
+		else
+		{
+			this.getObject().getValueField().setStyle(null);
+		}
+		return (T)this;
+	}
+	
+	public T setHorizontalTextAlignment(final HorizontalTextAlignment horizontalTextAlignment)
+	{
+		this.getObject().getValueField().setHorizontalTextAlignment(horizontalTextAlignment);
+		return (T)this;
+	}
+	
+	public T setTitleStyle(final ReportStyleBuilder titleStyle)
+	{
+		if(titleStyle != null)
+		{
+			this.getObject().setTitleStyle(titleStyle.getStyle());
+		}
+		else
+		{
+			this.getObject().setTitleStyle(null);
+		}
+		return (T)this;
+	}
+	
+	public T setTitleWidth(final Integer titleWidth)
+	{
+		this.getObject().setTitleWidth(titleWidth);
+		return (T)this;
+	}
+	
+	// header
+	
+	public T setHeaderSplitType(final SplitType splitType)
+	{
+		this.getObject().getHeaderBand().setSplitType(splitType);
+		return (T)this;
+	}
+	
+	public T setHeaderPrintWhenExpression(final DRIExpression<Boolean> printWhenExpression)
+	{
+		this.getObject().getHeaderBand().setPrintWhenExpression(printWhenExpression);
+		return (T)this;
+	}
+	
+	public T setHeaderStyle(final ReportStyleBuilder style)
+	{
+		if(style != null)
+		{
+			this.getObject().getHeaderBand().getList().setStyle(style.build());
+		}
+		else
+		{
+			this.getObject().getHeaderBand().getList().setStyle(null);
+		}
+		return (T)this;
+	}
+	
+	public T setHeaderBackgroundComponent(final ComponentBuilder<?, ?> backgroundComponent)
+	{
+		Validate.notNull(backgroundComponent, "backgroundComponent must not be null");
+		this.getObject().getHeaderBand().getList().setBackgroundComponent(backgroundComponent.build());
+		return (T)this;
+	}
+	
+	public T addHeaderComponent(final ComponentBuilder<?, ?>... components)
+	{
+		Validate.notNull(components, "components must not be null");
+		Validate.noNullElements(components, "components must not contains null component");
+		for(final ComponentBuilder<?, ?> component : components)
+		{
+			this.getObject().getHeaderBand().addComponent(component.build());
+		}
+		return (T)this;
+	}
+	
+	public T header(final ComponentBuilder<?, ?>... components)
+	{
+		return this.addHeaderComponent(components);
+	}
+	
+	// footer
+	
+	public T setFooterSplitType(final SplitType splitType)
+	{
+		this.getObject().getFooterBand().setSplitType(splitType);
+		return (T)this;
+	}
+	
+	public T setFooterPrintWhenExpression(final DRIExpression<Boolean> printWhenExpression)
+	{
+		this.getObject().getFooterBand().setPrintWhenExpression(printWhenExpression);
+		return (T)this;
+	}
+	
+	public T setFooterStyle(final ReportStyleBuilder style)
+	{
+		if(style != null)
+		{
+			this.getObject().getFooterBand().getList().setStyle(style.build());
+		}
+		else
+		{
+			this.getObject().getFooterBand().getList().setStyle(null);
+		}
+		return (T)this;
+	}
+	
+	public T setFooterBackgroundComponent(final ComponentBuilder<?, ?> backgroundComponent)
+	{
+		Validate.notNull(backgroundComponent, "backgroundComponent must not be null");
+		this.getObject().getFooterBand().getList().setBackgroundComponent(backgroundComponent.build());
+		return (T)this;
+	}
+	
+	public T addFooterComponent(final ComponentBuilder<?, ?>... components)
+	{
+		Validate.notNull(components, "components must not be null");
+		Validate.noNullElements(components, "components must not contains null component");
+		for(final ComponentBuilder<?, ?> component : components)
+		{
+			this.getObject().getFooterBand().addComponent(component.build());
+		}
+		return (T)this;
+	}
+	
+	public T footer(final ComponentBuilder<?, ?>... components)
+	{
+		return this.addFooterComponent(components);
+	}
+	
+	@Override
+	protected void configure()
+	{
+		super.configure();
+		this.getObject().getValueField().setValueExpression(this.valueExpression);
+	}
+	
+	public DRGroup getGroup()
+	{
+		return this.build();
+	}
 }

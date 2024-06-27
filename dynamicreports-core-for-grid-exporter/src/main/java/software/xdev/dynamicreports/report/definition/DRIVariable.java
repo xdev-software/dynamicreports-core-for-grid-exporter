@@ -21,46 +21,17 @@ import software.xdev.dynamicreports.report.constant.Calculation;
 import software.xdev.dynamicreports.report.constant.Evaluation;
 import software.xdev.dynamicreports.report.definition.expression.DRIExpression;
 
-/**
- * <p>DRIVariable interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface DRIVariable<T> extends DRIExpression<T>, DRIValue<T> {
 
-    /**
-     * <p>getCalculation.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.constant.Calculation} object.
-     */
-    public Calculation getCalculation();
-
-    /**
-     * <p>getResetType.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.constant.Evaluation} object.
-     */
-    public Evaluation getResetType();
-
-    /**
-     * <p>getResetGroup.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.definition.DRIGroup} object.
-     */
-    public DRIGroup getResetGroup();
-
-    /**
-     * <p>getValueExpression.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     */
-    public DRIExpression<?> getValueExpression();
-
-    /**
-     * <p>getInitialValueExpression.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     */
-    public DRIExpression<?> getInitialValueExpression();
+public interface DRIVariable<T> extends DRIExpression<T>, DRIValue<T>
+{
+	
+	public Calculation getCalculation();
+	
+	public Evaluation getResetType();
+	
+	public DRIGroup getResetGroup();
+	
+	public DRIExpression<?> getValueExpression();
+	
+	public DRIExpression<?> getInitialValueExpression();
 }

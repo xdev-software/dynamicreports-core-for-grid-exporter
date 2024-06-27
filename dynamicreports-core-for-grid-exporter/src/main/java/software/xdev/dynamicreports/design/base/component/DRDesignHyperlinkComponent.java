@@ -20,72 +20,50 @@ package software.xdev.dynamicreports.design.base.component;
 import software.xdev.dynamicreports.design.base.DRDesignHyperLink;
 import software.xdev.dynamicreports.design.definition.component.DRIDesignHyperLinkComponent;
 import software.xdev.dynamicreports.design.definition.expression.DRIDesignExpression;
-import software.xdev.dynamicreports.report.constant.Constants;
 
-/**
- * <p>Abstract DRDesignHyperlinkComponent class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public abstract class DRDesignHyperlinkComponent extends DRDesignComponent implements DRIDesignHyperLinkComponent {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    private DRIDesignExpression anchorNameExpression;
-    private Integer bookmarkLevel;
-    private DRDesignHyperLink hyperLink;
+public abstract class DRDesignHyperlinkComponent extends DRDesignComponent implements DRIDesignHyperLinkComponent
+{
 
-    /**
-     * <p>Constructor for DRDesignHyperlinkComponent.</p>
-     *
-     * @param name a {@link java.lang.String} object.
-     */
-    public DRDesignHyperlinkComponent(String name) {
-        super(name);
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRIDesignExpression getAnchorNameExpression() {
-        return anchorNameExpression;
-    }
-
-    /**
-     * <p>Setter for the field <code>anchorNameExpression</code>.</p>
-     *
-     * @param anchorNameExpression a {@link software.xdev.dynamicreports.design.definition.expression.DRIDesignExpression} object.
-     */
-    public void setAnchorNameExpression(DRIDesignExpression anchorNameExpression) {
-        this.anchorNameExpression = anchorNameExpression;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Integer getBookmarkLevel() {
-        return bookmarkLevel;
-    }
-
-    /**
-     * <p>Setter for the field <code>bookmarkLevel</code>.</p>
-     *
-     * @param bookmarkLevel a {@link java.lang.Integer} object.
-     */
-    public void setBookmarkLevel(Integer bookmarkLevel) {
-        this.bookmarkLevel = bookmarkLevel;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRDesignHyperLink getHyperLink() {
-        return hyperLink;
-    }
-
-    /**
-     * <p>Setter for the field <code>hyperLink</code>.</p>
-     *
-     * @param hyperLink a {@link software.xdev.dynamicreports.design.base.DRDesignHyperLink} object.
-     */
-    public void setHyperLink(DRDesignHyperLink hyperLink) {
-        this.hyperLink = hyperLink;
-    }
+	private DRIDesignExpression anchorNameExpression;
+	private Integer bookmarkLevel;
+	private DRDesignHyperLink hyperLink;
+	
+	public DRDesignHyperlinkComponent(final String name)
+	{
+		super(name);
+	}
+	
+	@Override
+	public DRIDesignExpression getAnchorNameExpression()
+	{
+		return this.anchorNameExpression;
+	}
+	
+	public void setAnchorNameExpression(final DRIDesignExpression anchorNameExpression)
+	{
+		this.anchorNameExpression = anchorNameExpression;
+	}
+	
+	@Override
+	public Integer getBookmarkLevel()
+	{
+		return this.bookmarkLevel;
+	}
+	
+	public void setBookmarkLevel(final Integer bookmarkLevel)
+	{
+		this.bookmarkLevel = bookmarkLevel;
+	}
+	
+	@Override
+	public DRDesignHyperLink getHyperLink()
+	{
+		return this.hyperLink;
+	}
+	
+	public void setHyperLink(final DRDesignHyperLink hyperLink)
+	{
+		this.hyperLink = hyperLink;
+	}
 }

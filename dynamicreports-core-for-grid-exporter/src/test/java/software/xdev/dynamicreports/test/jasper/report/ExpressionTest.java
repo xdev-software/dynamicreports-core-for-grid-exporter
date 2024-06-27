@@ -17,75 +17,83 @@
  */
 package software.xdev.dynamicreports.test.jasper.report;
 
+import static software.xdev.dynamicreports.report.builder.DynamicReports.cmp;
+import static software.xdev.dynamicreports.report.builder.DynamicReports.type;
+
+import java.io.Serializable;
+import java.util.Locale;
+
 import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
 import software.xdev.dynamicreports.report.base.expression.AbstractSimpleExpression;
 import software.xdev.dynamicreports.report.definition.ReportParameters;
 import software.xdev.dynamicreports.test.jasper.AbstractJasperValueTest;
 
-import java.io.Serializable;
-import java.util.Locale;
 
-import static software.xdev.dynamicreports.report.builder.DynamicReports.cmp;
-import static software.xdev.dynamicreports.report.builder.DynamicReports.type;
+public class ExpressionTest extends AbstractJasperValueTest implements Serializable
+{
 
-/**
- * @author Ricardo Mariaca
- */
-public class ExpressionTest extends AbstractJasperValueTest implements Serializable {
-    private static final long serialVersionUID = 1L;
-
-    @SuppressWarnings("unchecked")
-    @Override
-    protected void configureReport(JasperReportBuilder rb) {
-        rb.setLocale(Locale.ENGLISH).title(cmp.text(new Expression1()), cmp.text(new Expression2<String>("text2")), cmp.text(new Expression4()).setDataType(type.integerType()));
-    }
-
-    @Override
-    public void test() {
-        super.test();
-
-        numberOfPagesTest(1);
-
-        elementValueTest("title.textField1", "text1");
-        elementValueTest("title.textField2", "text2");
-        elementValueTest("title.textField3", "1,000");
-    }
-
-    @SuppressWarnings("rawtypes")
-    private class Expression1 extends AbstractSimpleExpression {
-        private static final long serialVersionUID = 1L;
-
-        @Override
-        public Object evaluate(ReportParameters reportParameters) {
-            return "text1";
-        }
-    }
-
-    private class Expression2<T> extends AbstractSimpleExpression<T> {
-        private static final long serialVersionUID = 1L;
-
-        private T value;
-
-        private Expression2(T value) {
-            this.value = value;
-        }
-
-        @Override
-        public T evaluate(ReportParameters reportParameters) {
-            return value;
-        }
-    }
-
-    private class Expression3 extends AbstractSimpleExpression<Integer> {
-        private static final long serialVersionUID = 1L;
-
-        @Override
-        public Integer evaluate(ReportParameters reportParameters) {
-            return 1000;
-        }
-    }
-
-    private class Expression4 extends Expression3 {
-        private static final long serialVersionUID = 1L;
-    }
+	@SuppressWarnings("unchecked")
+	@Override
+	protected void configureReport(final JasperReportBuilder rb)
+	{
+		rb.setLocale(Locale.ENGLISH)
+			.title(
+				cmp.text(new Expression1()),
+				cmp.text(new Expression2<>("text2")),
+				cmp.text(new Expression4()).setDataType(type.integerType()));
+	}
+	
+	@Override
+	public void test()
+	{
+		super.test();
+		
+		this.numberOfPagesTest(1);
+		
+		this.elementValueTest("title.textField1", "text1");
+		this.elementValueTest("title.textField2", "text2");
+		this.elementValueTest("title.textField3", "1,000");
+	}
+	
+	@SuppressWarnings("rawtypes")
+	static class Expression1 extends AbstractSimpleExpression
+	{
+		@Override
+		public Object evaluate(final ReportParameters reportParameters)
+		{
+			return "text1";
+		}
+	}
+	
+	
+	static class Expression2<T> extends AbstractSimpleExpression<T>
+	{
+		private final T value;
+		
+		Expression2(final T value)
+		{
+			this.value = value;
+		}
+		
+		@Override
+		public T evaluate(final ReportParameters reportParameters)
+		{
+			return this.value;
+		}
+	}
+	
+	
+	static class Expression3 extends AbstractSimpleExpression<Integer>
+	{
+		@Override
+		public Integer evaluate(final ReportParameters reportParameters)
+		{
+			return 1000;
+		}
+	}
+	
+	
+	static class Expression4 extends Expression3
+	{
+	}
 }

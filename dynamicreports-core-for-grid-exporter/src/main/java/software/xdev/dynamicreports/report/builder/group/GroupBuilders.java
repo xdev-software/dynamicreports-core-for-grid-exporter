@@ -21,101 +21,51 @@ import software.xdev.dynamicreports.report.builder.FieldBuilder;
 import software.xdev.dynamicreports.report.builder.column.ValueColumnBuilder;
 import software.xdev.dynamicreports.report.definition.expression.DRIExpression;
 
-/**
- * A set of methods of creating report groups
- *
- * @author Ricardo Mariaca
- * 
- */
-public class GroupBuilders {
 
-    // column
-
-    /**
-     * <p>group.</p>
-     *
-     * @param groupColumn a {@link software.xdev.dynamicreports.report.builder.column.ValueColumnBuilder} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.group.ColumnGroupBuilder} object.
-     */
-    public ColumnGroupBuilder group(ValueColumnBuilder<?, ?> groupColumn) {
-        return Groups.group(groupColumn);
-    }
-
-    /**
-     * <p>group.</p>
-     *
-     * @param name        a {@link java.lang.String} object.
-     * @param groupColumn a {@link software.xdev.dynamicreports.report.builder.column.ValueColumnBuilder} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.group.ColumnGroupBuilder} object.
-     */
-    public ColumnGroupBuilder group(String name, ValueColumnBuilder<?, ?> groupColumn) {
-        return Groups.group(name, groupColumn);
-    }
-
-    // custom
-
-    /**
-     * <p>group.</p>
-     *
-     * @param fieldName  a {@link java.lang.String} object.
-     * @param valueClass a {@link java.lang.Class} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.group.CustomGroupBuilder} object.
-     */
-    public CustomGroupBuilder group(String fieldName, Class<?> valueClass) {
-        return Groups.group(fieldName, valueClass);
-    }
-
-    /**
-     * <p>group.</p>
-     *
-     * @param name       a {@link java.lang.String} object.
-     * @param fieldName  a {@link java.lang.String} object.
-     * @param valueClass a {@link java.lang.Class} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.group.CustomGroupBuilder} object.
-     */
-    public CustomGroupBuilder group(String name, String fieldName, Class<?> valueClass) {
-        return Groups.group(name, fieldName, valueClass);
-    }
-
-    /**
-     * <p>group.</p>
-     *
-     * @param field a {@link software.xdev.dynamicreports.report.builder.FieldBuilder} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.group.CustomGroupBuilder} object.
-     */
-    public CustomGroupBuilder group(FieldBuilder<?> field) {
-        return Groups.group(field);
-    }
-
-    /**
-     * <p>group.</p>
-     *
-     * @param name  a {@link java.lang.String} object.
-     * @param field a {@link software.xdev.dynamicreports.report.builder.FieldBuilder} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.group.CustomGroupBuilder} object.
-     */
-    public CustomGroupBuilder group(String name, FieldBuilder<?> field) {
-        return Groups.group(name, field);
-    }
-
-    /**
-     * <p>group.</p>
-     *
-     * @param expression a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.group.CustomGroupBuilder} object.
-     */
-    public CustomGroupBuilder group(DRIExpression<?> expression) {
-        return Groups.group(expression);
-    }
-
-    /**
-     * <p>group.</p>
-     *
-     * @param name       a {@link java.lang.String} object.
-     * @param expression a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.group.CustomGroupBuilder} object.
-     */
-    public CustomGroupBuilder group(String name, DRIExpression<?> expression) {
-        return Groups.group(name, expression);
-    }
+public class GroupBuilders
+{
+	
+	// column
+	
+	public ColumnGroupBuilder group(final ValueColumnBuilder<?, ?> groupColumn)
+	{
+		return Groups.group(groupColumn);
+	}
+	
+	public ColumnGroupBuilder group(final String name, final ValueColumnBuilder<?, ?> groupColumn)
+	{
+		return Groups.group(name, groupColumn);
+	}
+	
+	// custom
+	
+	public CustomGroupBuilder group(final String fieldName, final Class<?> valueClass)
+	{
+		return Groups.group(fieldName, valueClass);
+	}
+	
+	public CustomGroupBuilder group(final String name, final String fieldName, final Class<?> valueClass)
+	{
+		return Groups.group(name, fieldName, valueClass);
+	}
+	
+	public CustomGroupBuilder group(final FieldBuilder<?> field)
+	{
+		return Groups.group(field);
+	}
+	
+	public CustomGroupBuilder group(final String name, final FieldBuilder<?> field)
+	{
+		return Groups.group(name, field);
+	}
+	
+	public CustomGroupBuilder group(final DRIExpression<?> expression)
+	{
+		return Groups.group(expression);
+	}
+	
+	public CustomGroupBuilder group(final String name, final DRIExpression<?> expression)
+	{
+		return Groups.group(name, expression);
+	}
 }

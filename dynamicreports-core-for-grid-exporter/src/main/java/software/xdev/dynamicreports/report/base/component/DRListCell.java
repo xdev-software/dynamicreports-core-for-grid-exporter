@@ -17,81 +17,61 @@
  */
 package software.xdev.dynamicreports.report.base.component;
 
-import software.xdev.dynamicreports.report.constant.Constants;
+import org.apache.commons.lang3.Validate;
+
 import software.xdev.dynamicreports.report.constant.HorizontalCellComponentAlignment;
 import software.xdev.dynamicreports.report.constant.VerticalCellComponentAlignment;
 import software.xdev.dynamicreports.report.definition.component.DRIListCell;
-import org.apache.commons.lang3.Validate;
 
-/**
- * <p>DRListCell class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class DRListCell implements DRIListCell {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    private HorizontalCellComponentAlignment horizontalAlignment;
-    private VerticalCellComponentAlignment verticalAlignment;
-    private DRComponent component;
+public class DRListCell implements DRIListCell
+{
 
-    /**
-     * <p>Constructor for DRListCell.</p>
-     *
-     * @param component a {@link software.xdev.dynamicreports.report.base.component.DRComponent} object.
-     */
-    public DRListCell(DRComponent component) {
-        Validate.notNull(component, "component must not be null");
-        this.component = component;
-    }
-
-    /**
-     * <p>Constructor for DRListCell.</p>
-     *
-     * @param horizontalAlignment a {@link software.xdev.dynamicreports.report.constant.HorizontalCellComponentAlignment} object.
-     * @param verticalAlignment   a {@link software.xdev.dynamicreports.report.constant.VerticalCellComponentAlignment} object.
-     * @param component           a {@link software.xdev.dynamicreports.report.base.component.DRComponent} object.
-     */
-    public DRListCell(HorizontalCellComponentAlignment horizontalAlignment, VerticalCellComponentAlignment verticalAlignment, DRComponent component) {
-        this(component);
-        this.horizontalAlignment = horizontalAlignment;
-        this.verticalAlignment = verticalAlignment;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public HorizontalCellComponentAlignment getHorizontalAlignment() {
-        return horizontalAlignment;
-    }
-
-    /**
-     * <p>Setter for the field <code>horizontalAlignment</code>.</p>
-     *
-     * @param horizontalAlignment a {@link software.xdev.dynamicreports.report.constant.HorizontalCellComponentAlignment} object.
-     */
-    public void setHorizontalAlignment(HorizontalCellComponentAlignment horizontalAlignment) {
-        this.horizontalAlignment = horizontalAlignment;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public VerticalCellComponentAlignment getVerticalAlignment() {
-        return verticalAlignment;
-    }
-
-    /**
-     * <p>Setter for the field <code>verticalAlignment</code>.</p>
-     *
-     * @param verticalAlignment a {@link software.xdev.dynamicreports.report.constant.VerticalCellComponentAlignment} object.
-     */
-    public void setVerticalAlignment(VerticalCellComponentAlignment verticalAlignment) {
-        this.verticalAlignment = verticalAlignment;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRComponent getComponent() {
-        return component;
-    }
+	private HorizontalCellComponentAlignment horizontalAlignment;
+	private VerticalCellComponentAlignment verticalAlignment;
+	private final DRComponent component;
+	
+	public DRListCell(final DRComponent component)
+	{
+		Validate.notNull(component, "component must not be null");
+		this.component = component;
+	}
+	
+	public DRListCell(
+		final HorizontalCellComponentAlignment horizontalAlignment,
+		final VerticalCellComponentAlignment verticalAlignment,
+		final DRComponent component)
+	{
+		this(component);
+		this.horizontalAlignment = horizontalAlignment;
+		this.verticalAlignment = verticalAlignment;
+	}
+	
+	@Override
+	public HorizontalCellComponentAlignment getHorizontalAlignment()
+	{
+		return this.horizontalAlignment;
+	}
+	
+	public void setHorizontalAlignment(final HorizontalCellComponentAlignment horizontalAlignment)
+	{
+		this.horizontalAlignment = horizontalAlignment;
+	}
+	
+	@Override
+	public VerticalCellComponentAlignment getVerticalAlignment()
+	{
+		return this.verticalAlignment;
+	}
+	
+	public void setVerticalAlignment(final VerticalCellComponentAlignment verticalAlignment)
+	{
+		this.verticalAlignment = verticalAlignment;
+	}
+	
+	@Override
+	public DRComponent getComponent()
+	{
+		return this.component;
+	}
 }

@@ -17,39 +17,19 @@
  */
 package software.xdev.dynamicreports.jasper.definition;
 
-import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
-import software.xdev.dynamicreports.report.exception.DRException;
-import net.sf.jasperreports.engine.JasperPrint;
-
 import java.util.List;
 
-/**
- * <p>JasperReportHandler interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface JasperReportHandler {
+import net.sf.jasperreports.engine.JasperPrint;
+import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
+import software.xdev.dynamicreports.report.exception.DRException;
 
-    /**
-     * <p>concatenate.</p>
-     *
-     * @param jasperReportBuilders a {@link software.xdev.dynamicreports.jasper.builder.JasperReportBuilder} object.
-     */
-    public void concatenate(JasperReportBuilder... jasperReportBuilders);
 
-    /**
-     * <p>setContinuousPageNumbering.</p>
-     *
-     * @param continuousPageNumbering a boolean.
-     */
-    public void setContinuousPageNumbering(boolean continuousPageNumbering);
-
-    /**
-     * <p>getPrintList.</p>
-     *
-     * @return a {@link java.util.List} object.
-     * @throws software.xdev.dynamicreports.report.exception.DRException if any.
-     */
-    public List<JasperPrint> getPrintList() throws DRException;
+public interface JasperReportHandler
+{
+	
+	public void concatenate(JasperReportBuilder... jasperReportBuilders);
+	
+	public void setContinuousPageNumbering(boolean continuousPageNumbering);
+	
+	public List<JasperPrint> getPrintList() throws DRException;
 }

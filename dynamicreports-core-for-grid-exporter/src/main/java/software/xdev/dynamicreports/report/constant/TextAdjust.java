@@ -17,11 +17,7 @@
  */
 package software.xdev.dynamicreports.report.constant;
 
-/**
- *
- * @author Jan Moxter
- *
- */
-public enum TextAdjust {
-    CUT_TEXT, STRETCH_HEIGHT, SCALE_FONT
+public enum TextAdjust
+{
+	CUT_TEXT, STRETCH_HEIGHT, SCALE_FONT
 }

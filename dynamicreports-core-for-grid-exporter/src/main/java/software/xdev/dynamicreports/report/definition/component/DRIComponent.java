@@ -17,54 +17,25 @@
  */
 package software.xdev.dynamicreports.report.definition.component;
 
+import java.io.Serializable;
+import java.util.List;
+
 import software.xdev.dynamicreports.report.definition.DRITableOfContentsHeading;
 import software.xdev.dynamicreports.report.definition.expression.DRIExpression;
 import software.xdev.dynamicreports.report.definition.expression.DRIPropertyExpression;
 import software.xdev.dynamicreports.report.definition.style.DRIReportStyle;
 
-import java.io.Serializable;
-import java.util.List;
 
-/**
- * <p>DRIComponent interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface DRIComponent extends Serializable {
-
-    /**
-     * <p>getStyle.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.definition.style.DRIReportStyle} object.
-     */
-    public DRIReportStyle getStyle();
-
-    /**
-     * <p>getPrintWhenExpression.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     */
-    public DRIExpression<Boolean> getPrintWhenExpression();
-
-    /**
-     * <p>getRemoveLineWhenBlank.</p>
-     *
-     * @return a {@link java.lang.Boolean} object.
-     */
-    public Boolean getRemoveLineWhenBlank();
-
-    /**
-     * <p>getPropertyExpressions.</p>
-     *
-     * @return a {@link java.util.List} object.
-     */
-    public List<DRIPropertyExpression> getPropertyExpressions();
-
-    /**
-     * <p>getTableOfContentsHeading.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.definition.DRITableOfContentsHeading} object.
-     */
-    public DRITableOfContentsHeading getTableOfContentsHeading();
+public interface DRIComponent extends Serializable
+{
+	
+	public DRIReportStyle getStyle();
+	
+	public DRIExpression<Boolean> getPrintWhenExpression();
+	
+	public Boolean getRemoveLineWhenBlank();
+	
+	public List<DRIPropertyExpression> getPropertyExpressions();
+	
+	public DRITableOfContentsHeading getTableOfContentsHeading();
 }

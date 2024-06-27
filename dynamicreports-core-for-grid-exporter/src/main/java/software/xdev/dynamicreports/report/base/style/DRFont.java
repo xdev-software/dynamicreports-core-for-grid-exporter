@@ -17,199 +17,145 @@
  */
 package software.xdev.dynamicreports.report.base.style;
 
-import software.xdev.dynamicreports.report.constant.Constants;
-import software.xdev.dynamicreports.report.definition.style.DRIFont;
 import org.apache.commons.lang3.Validate;
 
-/**
- * <p>DRFont class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class DRFont implements DRIFont {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
+import software.xdev.dynamicreports.report.definition.style.DRIFont;
 
-    private String fontName;
-    private Integer fontSize;
-    private Boolean bold;
-    private Boolean italic;
-    private Boolean underline;
-    private Boolean strikeThrough;
-    private String pdfFontName;
-    private String pdfEncoding;
-    private Boolean pdfEmbedded;
 
-    /**
-     * <p>Constructor for DRFont.</p>
-     */
-    public DRFont() {
-    }
+public class DRFont implements DRIFont
+{
 
-    /**
-     * <p>Constructor for DRFont.</p>
-     *
-     * @param fontName a {@link java.lang.String} object.
-     * @param fontSize a int.
-     */
-    public DRFont(String fontName, int fontSize) {
-        this.fontName = fontName;
-        this.setFontSize(fontSize);
-    }
-
-    /**
-     * <p>Constructor for DRFont.</p>
-     *
-     * @param fontName a {@link java.lang.String} object.
-     * @param bold     a boolean.
-     * @param italic   a boolean.
-     * @param fontSize a int.
-     */
-    public DRFont(String fontName, boolean bold, boolean italic, int fontSize) {
-        this.fontName = fontName;
-        this.bold = bold;
-        this.italic = italic;
-        this.setFontSize(fontSize);
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public String getFontName() {
-        return fontName;
-    }
-
-    /**
-     * <p>Setter for the field <code>fontName</code>.</p>
-     *
-     * @param fontName a {@link java.lang.String} object.
-     */
-    public void setFontName(String fontName) {
-        this.fontName = fontName;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Boolean getBold() {
-        return bold;
-    }
-
-    /**
-     * <p>Setter for the field <code>bold</code>.</p>
-     *
-     * @param bold a {@link java.lang.Boolean} object.
-     */
-    public void setBold(Boolean bold) {
-        this.bold = bold;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Boolean getItalic() {
-        return italic;
-    }
-
-    /**
-     * <p>Setter for the field <code>italic</code>.</p>
-     *
-     * @param italic a {@link java.lang.Boolean} object.
-     */
-    public void setItalic(Boolean italic) {
-        this.italic = italic;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Boolean getUnderline() {
-        return underline;
-    }
-
-    /**
-     * <p>Setter for the field <code>underline</code>.</p>
-     *
-     * @param underline a {@link java.lang.Boolean} object.
-     */
-    public void setUnderline(Boolean underline) {
-        this.underline = underline;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Boolean getStrikeThrough() {
-        return strikeThrough;
-    }
-
-    /**
-     * <p>Setter for the field <code>strikeThrough</code>.</p>
-     *
-     * @param strikeThrough a {@link java.lang.Boolean} object.
-     */
-    public void setStrikeThrough(Boolean strikeThrough) {
-        this.strikeThrough = strikeThrough;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Integer getFontSize() {
-        return fontSize;
-    }
-
-    /**
-     * <p>Setter for the field <code>fontSize</code>.</p>
-     *
-     * @param fontSize a {@link java.lang.Integer} object.
-     */
-    public void setFontSize(Integer fontSize) {
-        if (fontSize != null) {
-            Validate.isTrue(fontSize >= 0, "fontSize must be >= 0");
-        }
-        this.fontSize = fontSize;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public String getPdfFontName() {
-        return pdfFontName;
-    }
-
-    /**
-     * <p>Setter for the field <code>pdfFontName</code>.</p>
-     *
-     * @param pdfFontName a {@link java.lang.String} object.
-     */
-    @Deprecated
-    public void setPdfFontName(String pdfFontName) {
-        this.pdfFontName = pdfFontName;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public String getPdfEncoding() {
-        return pdfEncoding;
-    }
-
-    /**
-     * <p>Setter for the field <code>pdfEncoding</code>.</p>
-     *
-     * @param pdfEncoding a {@link java.lang.String} object.
-     */
-    @Deprecated
-    public void setPdfEncoding(String pdfEncoding) {
-        this.pdfEncoding = pdfEncoding;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Boolean getPdfEmbedded() {
-        return pdfEmbedded;
-    }
-
-    /**
-     * <p>Setter for the field <code>pdfEmbedded</code>.</p>
-     *
-     * @param pdfEmbedded a {@link java.lang.Boolean} object.
-     */
-    @Deprecated
-    public void setPdfEmbedded(Boolean pdfEmbedded) {
-        this.pdfEmbedded = pdfEmbedded;
-    }
+	private String fontName;
+	private Integer fontSize;
+	private Boolean bold;
+	private Boolean italic;
+	private Boolean underline;
+	private Boolean strikeThrough;
+	private String pdfFontName;
+	private String pdfEncoding;
+	private Boolean pdfEmbedded;
+	
+	public DRFont()
+	{
+	}
+	
+	public DRFont(final String fontName, final int fontSize)
+	{
+		this.fontName = fontName;
+		this.setFontSize(fontSize);
+	}
+	
+	public DRFont(final String fontName, final boolean bold, final boolean italic, final int fontSize)
+	{
+		this.fontName = fontName;
+		this.bold = bold;
+		this.italic = italic;
+		this.setFontSize(fontSize);
+	}
+	
+	@Override
+	public String getFontName()
+	{
+		return this.fontName;
+	}
+	
+	public void setFontName(final String fontName)
+	{
+		this.fontName = fontName;
+	}
+	
+	@Override
+	public Boolean getBold()
+	{
+		return this.bold;
+	}
+	
+	public void setBold(final Boolean bold)
+	{
+		this.bold = bold;
+	}
+	
+	@Override
+	public Boolean getItalic()
+	{
+		return this.italic;
+	}
+	
+	public void setItalic(final Boolean italic)
+	{
+		this.italic = italic;
+	}
+	
+	@Override
+	public Boolean getUnderline()
+	{
+		return this.underline;
+	}
+	
+	public void setUnderline(final Boolean underline)
+	{
+		this.underline = underline;
+	}
+	
+	@Override
+	public Boolean getStrikeThrough()
+	{
+		return this.strikeThrough;
+	}
+	
+	public void setStrikeThrough(final Boolean strikeThrough)
+	{
+		this.strikeThrough = strikeThrough;
+	}
+	
+	@Override
+	public Integer getFontSize()
+	{
+		return this.fontSize;
+	}
+	
+	public void setFontSize(final Integer fontSize)
+	{
+		if(fontSize != null)
+		{
+			Validate.isTrue(fontSize >= 0, "fontSize must be >= 0");
+		}
+		this.fontSize = fontSize;
+	}
+	
+	@Override
+	public String getPdfFontName()
+	{
+		return this.pdfFontName;
+	}
+	
+	@Deprecated
+	public void setPdfFontName(final String pdfFontName)
+	{
+		this.pdfFontName = pdfFontName;
+	}
+	
+	@Override
+	public String getPdfEncoding()
+	{
+		return this.pdfEncoding;
+	}
+	
+	@Deprecated
+	public void setPdfEncoding(final String pdfEncoding)
+	{
+		this.pdfEncoding = pdfEncoding;
+	}
+	
+	@Override
+	public Boolean getPdfEmbedded()
+	{
+		return this.pdfEmbedded;
+	}
+	
+	@Deprecated
+	public void setPdfEmbedded(final Boolean pdfEmbedded)
+	{
+		this.pdfEmbedded = pdfEmbedded;
+	}
 }

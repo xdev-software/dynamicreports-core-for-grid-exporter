@@ -17,6 +17,23 @@
  */
 package software.xdev.dynamicreports.jasper.transformation;
 
+import java.text.MessageFormat;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JRGenericElementParameter;
+import net.sf.jasperreports.engine.JRGroup;
+import net.sf.jasperreports.engine.JRPropertyExpression;
+import net.sf.jasperreports.engine.JRVariable;
+import net.sf.jasperreports.engine.design.JRDesignExpression;
+import net.sf.jasperreports.engine.design.JRDesignField;
+import net.sf.jasperreports.engine.design.JRDesignGenericElementParameter;
+import net.sf.jasperreports.engine.design.JRDesignPropertyExpression;
+import net.sf.jasperreports.engine.design.JRDesignSortField;
+import net.sf.jasperreports.engine.design.JRDesignVariable;
+import net.sf.jasperreports.engine.type.SortFieldTypeEnum;
 import software.xdev.dynamicreports.design.constant.ResetType;
 import software.xdev.dynamicreports.design.definition.DRIDesignField;
 import software.xdev.dynamicreports.design.definition.DRIDesignGroup;
@@ -33,397 +50,350 @@ import software.xdev.dynamicreports.jasper.base.JasperCustomValues;
 import software.xdev.dynamicreports.jasper.constant.ValueType;
 import software.xdev.dynamicreports.jasper.exception.JasperDesignException;
 import software.xdev.dynamicreports.report.constant.SystemExpression;
-import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JRGenericElementParameter;
-import net.sf.jasperreports.engine.JRGroup;
-import net.sf.jasperreports.engine.JRPropertyExpression;
-import net.sf.jasperreports.engine.JRVariable;
-import net.sf.jasperreports.engine.design.JRDesignExpression;
-import net.sf.jasperreports.engine.design.JRDesignField;
-import net.sf.jasperreports.engine.design.JRDesignGenericElementParameter;
-import net.sf.jasperreports.engine.design.JRDesignPropertyExpression;
-import net.sf.jasperreports.engine.design.JRDesignSortField;
-import net.sf.jasperreports.engine.design.JRDesignVariable;
-import net.sf.jasperreports.engine.type.SortFieldTypeEnum;
 
-import java.text.MessageFormat;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
 
-/**
- * <p>Abstract AbstractExpressionTransform class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public abstract class AbstractExpressionTransform {
-    private static final String VALUE = "$P'{'{0}'}'.getValue(\"{1}\")";
-    private static final String FIELD_VALUE = "$F'{'{0}'}'";
-    private static final String VARIABLE_VALUE = "$V'{'{0}'}'";
-    private static final String PARAMETER_VALUE = "$P'{'{0}'}'";
-    private static final String COMPLEX_VALUE = "$P'{'{0}'}'.getValue(\"{1}\", new Object[]'{'{2}'}')";
-
-    private Map<String, JRDesignExpression> expressions;
-
-    /**
-     * <p>Constructor for AbstractExpressionTransform.</p>
-     */
-    public AbstractExpressionTransform() {
-        this.expressions = new HashMap<String, JRDesignExpression>();
-    }
-
-    /**
-     * <p>transform.</p>
-     */
-    public void transform() {
-        for (DRIDesignField field : getFields()) {
-            addField(field);
-        }
-        for (DRIDesignSystemExpression expression : getSystemExpressions()) {
-            addSystemExpression(expression);
-        }
-        for (DRIDesignJasperExpression expression : getJasperExpressions()) {
-            addJasperExpression(expression);
-        }
-        for (DRIDesignSimpleExpression expression : getSimpleExpressions()) {
-            addSimpleExpression(expression);
-        }
-        for (DRIDesignComplexExpression complexExpression : getComplexExpressions()) {
-            addComplexExpression(complexExpression);
-        }
-        for (DRIDesignVariable variable : getVariables()) {
-            addVariable(variable);
-        }
-        for (DRIDesignSort sort : getSorts()) {
-            addSort(sort);
-        }
-    }
-
-    private void addSystemExpression(DRIDesignSystemExpression systemExpression) {
-        if (systemExpression == null) {
-            return;
-        }
-        getCustomValues().addValueType(systemExpression.getName(), ValueType.SYSTEM_EXPRESSION);
-        addExpression(systemExpression);
-    }
-
-    private void addJasperExpression(DRIDesignJasperExpression jasperExpression) {
-        if (jasperExpression == null) {
-            return;
-        }
-        addExpression(jasperExpression);
-    }
-
-    /**
-     * <p>addSimpleExpression.</p>
-     *
-     * @param simpleExpression a {@link software.xdev.dynamicreports.design.definition.expression.DRIDesignSimpleExpression} object.
-     */
-    protected void addSimpleExpression(DRIDesignSimpleExpression simpleExpression) {
-        if (simpleExpression == null) {
-            return;
-        }
-        getCustomValues().addSimpleExpression(simpleExpression);
-        addExpression(simpleExpression);
-    }
-
-    private void addField(DRIDesignField field) {
-        try {
-            if (!field.isExternal()) {
-                addField(field(field));
-            }
-            getCustomValues().addValueType(field.getName(), ValueType.FIELD);
-            addExpression(field);
-        } catch (JRException e) {
-            throw new JasperDesignException("Registration failed for field \"" + field.getName() + "\"", e);
-        }
-    }
-
-    private void addVariable(DRIDesignVariable variable) {
-        try {
-            addVariable(variable(variable));
-            getCustomValues().addValueType(variable.getName(), ValueType.VARIABLE);
-            addExpression(variable);
-        } catch (JRException e) {
-            throw new JasperDesignException("Registration failed for variable \"" + variable.getName() + "\"", e);
-        }
-    }
-
-    /**
-     * <p>addComplexExpression.</p>
-     *
-     * @param complexExpression a {@link software.xdev.dynamicreports.design.definition.expression.DRIDesignComplexExpression} object.
-     */
-    protected void addComplexExpression(DRIDesignComplexExpression complexExpression) {
-        if (complexExpression == null) {
-            return;
-        }
-        getCustomValues().addComplexExpression(complexExpression);
-        addExpression(complexExpression);
-    }
-
-    private void addExpression(DRIDesignExpression expression) {
-        if (expressions.containsKey(expression.getName())) {
-            throw new JasperDesignException("Duplicate declaration of expression \"" + expression.getName() + "\"");
-        }
-        expressions.put(expression.getName(), expression(expression));
-    }
-
-    private void addSort(DRIDesignSort sort) {
-        try {
-            addSort(sort(sort));
-        } catch (JRException e) {
-            throw new JasperDesignException("Registration failed for sort \"" + sort.getExpression().getName() + "\"", e);
-        }
-    }
-
-    // field
-    private JRDesignField field(DRIDesignField field) {
-        JRDesignField jrField = new JRDesignField();
-        jrField.setName(field.getName());
-        jrField.setValueClass(field.getValueClass());
-        jrField.setDescription(field.getDescription());
-        return jrField;
-    }
-
-    // variable
-    private JRDesignVariable variable(DRIDesignVariable variable) {
-        JRDesignExpression expression = getExpression(variable.getValueExpression());
-        JRDesignExpression initialValueExpression = getExpression(variable.getInitialValueExpression());
-
-        JRDesignVariable jrVariable = new JRDesignVariable();
-        jrVariable.setName(variable.getName());
-        jrVariable.setExpression(expression);
-        jrVariable.setInitialValueExpression(initialValueExpression);
-        jrVariable.setValueClass(variable.getValueClass());
-        jrVariable.setCalculation(ConstantTransform.calculation(variable.getCalculation()));
-        ResetType resetType = variable.getResetType();
-        jrVariable.setResetType(ConstantTransform.variableResetType(resetType));
-        if (resetType.equals(ResetType.GROUP) && variable.getResetGroup() != null) {
-            jrVariable.setResetGroup(getGroup(variable.getResetGroup()));
-        }
-        return jrVariable;
-    }
-
-    /**
-     * <p>getGroup.</p>
-     *
-     * @param group a {@link software.xdev.dynamicreports.design.definition.DRIDesignGroup} object.
-     * @return a {@link net.sf.jasperreports.engine.JRGroup} object.
-     */
-    protected JRGroup getGroup(DRIDesignGroup group) {
-        return null;
-    }
-
-    // simple expression
-    private JRDesignExpression expression(DRIDesignExpression simpleExpression) {
-        JRDesignExpression expression = new JRDesignExpression();
-        expression.setText(getExpressionText(simpleExpression));
-        return expression;
-    }
-
-    private String getExpressionText(DRIDesignExpression expression) {
-        if (expression instanceof DRIDesignField) {
-            return toFieldValue(expression.getName());
-        } else if (expression instanceof DRIDesignVariable) {
-            return toVariableValue(expression.getName());
-        } else if (expression instanceof DRIDesignComplexExpression) {
-            DRIDesignComplexExpression complexExpression = (DRIDesignComplexExpression) expression;
-            String values = "";
-            for (DRIDesignExpression valueExpression : complexExpression.getExpressions()) {
-                values += ", " + getExpressionText(valueExpression);
-            }
-            if (values.length() > 0) {
-                values = values.substring(2);
-            }
-            String parameterName = getExpressionParameterName(complexExpression.getParameterName());
-            return MessageFormat.format(COMPLEX_VALUE, parameterName, expression.getName(), values);
-        } else if (expression instanceof DRIDesignSimpleExpression) {
-            String parameterName = getExpressionParameterName(((DRIDesignSimpleExpression) expression).getParameterName());
-            return MessageFormat.format(VALUE, parameterName, expression.getName());
-        } else if (expression instanceof DRIDesignSystemExpression) {
-            String name = ((DRIDesignSystemExpression) expression).getName();
-            if (name.equals(SystemExpression.PAGE_NUMBER.name())) {
-                return toVariableValue(JRVariable.PAGE_NUMBER);
-            } else {
-                return toVariableValue(name);
-            }
-            // throw new JasperDesignException("System expression \"" + name + "\" not supported");
-        } else if (expression instanceof DRIDesignJasperExpression) {
-            return ((DRIDesignJasperExpression) expression).getExpression();
-        } else {
-            throw new JasperDesignException("Expression " + expression.getClass().getName() + " not supported");
-        }
-    }
-
-    private String getExpressionParameterName(String parameterName) {
-        if (parameterName == null) {
-            return JasperCustomValues.NAME;
-        } else {
-            return parameterName;
-        }
-    }
-
-    private String toFieldValue(String expression) {
-        return MessageFormat.format(FIELD_VALUE, expression);
-    }
-
-    private String toVariableValue(String expression) {
-        return MessageFormat.format(VARIABLE_VALUE, expression);
-    }
-
-    /**
-     * <p>toParameterValue.</p>
-     *
-     * @param expression a {@link java.lang.String} object.
-     * @return a {@link java.lang.String} object.
-     */
-    protected String toParameterValue(String expression) {
-        return MessageFormat.format(PARAMETER_VALUE, expression);
-    }
-
-    /**
-     * <p>getExpression.</p>
-     *
-     * @param expression a {@link software.xdev.dynamicreports.design.definition.expression.DRIDesignExpression} object.
-     * @return a {@link net.sf.jasperreports.engine.design.JRDesignExpression} object.
-     */
-    public JRDesignExpression getExpression(DRIDesignExpression expression) {
-        if (expression == null) {
-            return null;
-        }
-        if (!expressions.containsKey(expression.getName())) {
-            throw new JasperDesignException("Expression \"" + expression.getName() + "\" is not registered");
-        }
-        return expressions.get(expression.getName());
-    }
-
-    // sort
-    private JRDesignSortField sort(DRIDesignSort sort) {
-        DRIDesignExpression expression = sort.getExpression();
-        String name;
-        SortFieldTypeEnum type;
-        if (expression instanceof DRIDesignField) {
-            name = expression.getName();
-            type = SortFieldTypeEnum.FIELD;
-        } else if (expression instanceof DRIDesignVariable) {
-            name = expression.getName();
-            type = SortFieldTypeEnum.VARIABLE;
-        } else {
-            throw new JasperDesignException("Sort expression \"" + expression.getName() + "\" not supported");
-        }
-
-        JRDesignSortField jrSort = new JRDesignSortField();
-        jrSort.setName(name);
-        jrSort.setOrder(ConstantTransform.orderType(sort.getOrderType()));
-        jrSort.setType(type);
-        return jrSort;
-    }
-
-    /**
-     * <p>getPropertyExpression.</p>
-     *
-     * @param propertyExpression a {@link software.xdev.dynamicreports.design.definition.expression.DRIDesignPropertyExpression} object.
-     * @return a {@link net.sf.jasperreports.engine.JRPropertyExpression} object.
-     */
-    protected JRPropertyExpression getPropertyExpression(DRIDesignPropertyExpression propertyExpression) {
-        JRDesignPropertyExpression jrPropertyExpression = new JRDesignPropertyExpression();
-        jrPropertyExpression.setName(propertyExpression.getName());
-        jrPropertyExpression.setValueExpression(getExpression(propertyExpression.getValueExpression()));
-        return jrPropertyExpression;
-    }
-
-    /**
-     * <p>getGenericElementParameterExpression.</p>
-     *
-     * @param parameterExpression a {@link software.xdev.dynamicreports.design.definition.expression.DRIDesignParameterExpression} object.
-     * @return a {@link net.sf.jasperreports.engine.JRGenericElementParameter} object.
-     */
-    protected JRGenericElementParameter getGenericElementParameterExpression(DRIDesignParameterExpression parameterExpression) {
-        JRDesignGenericElementParameter jrParameterExpression = new JRDesignGenericElementParameter();
-        jrParameterExpression.setName(parameterExpression.getName());
-        jrParameterExpression.setValueExpression(getExpression(parameterExpression.getValueExpression()));
-        return jrParameterExpression;
-    }
-
-    /**
-     * <p>getCustomValues.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.jasper.base.JasperCustomValues} object.
-     */
-    protected abstract JasperCustomValues getCustomValues();
-
-    /**
-     * <p>getFields.</p>
-     *
-     * @return a {@link java.util.Collection} object.
-     */
-    protected abstract Collection<DRIDesignField> getFields();
-
-    /**
-     * <p>getVariables.</p>
-     *
-     * @return a {@link java.util.Collection} object.
-     */
-    protected abstract Collection<DRIDesignVariable> getVariables();
-
-    /**
-     * <p>getSystemExpressions.</p>
-     *
-     * @return a {@link java.util.Collection} object.
-     */
-    protected abstract Collection<DRIDesignSystemExpression> getSystemExpressions();
-
-    /**
-     * <p>getJasperExpressions.</p>
-     *
-     * @return a {@link java.util.Collection} object.
-     */
-    protected abstract Collection<DRIDesignJasperExpression> getJasperExpressions();
-
-    /**
-     * <p>getSimpleExpressions.</p>
-     *
-     * @return a {@link java.util.Collection} object.
-     */
-    protected abstract Collection<DRIDesignSimpleExpression> getSimpleExpressions();
-
-    /**
-     * <p>getComplexExpressions.</p>
-     *
-     * @return a {@link java.util.Collection} object.
-     */
-    protected abstract Collection<DRIDesignComplexExpression> getComplexExpressions();
-
-    /**
-     * <p>getSorts.</p>
-     *
-     * @return a {@link java.util.Collection} object.
-     */
-    protected abstract Collection<DRIDesignSort> getSorts();
-
-    /**
-     * <p>addField.</p>
-     *
-     * @param field a {@link net.sf.jasperreports.engine.design.JRDesignField} object.
-     * @throws net.sf.jasperreports.engine.JRException if any.
-     */
-    protected abstract void addField(JRDesignField field) throws JRException;
-
-    /**
-     * <p>addVariable.</p>
-     *
-     * @param variable a {@link net.sf.jasperreports.engine.design.JRDesignVariable} object.
-     * @throws net.sf.jasperreports.engine.JRException if any.
-     */
-    protected abstract void addVariable(JRDesignVariable variable) throws JRException;
-
-    /**
-     * <p>addSort.</p>
-     *
-     * @param sort a {@link net.sf.jasperreports.engine.design.JRDesignSortField} object.
-     * @throws net.sf.jasperreports.engine.JRException if any.
-     */
-    protected abstract void addSort(JRDesignSortField sort) throws JRException;
+public abstract class AbstractExpressionTransform
+{
+	private static final String VALUE = "$P'{'{0}'}'.getValue(\"{1}\")";
+	private static final String FIELD_VALUE = "$F'{'{0}'}'";
+	private static final String VARIABLE_VALUE = "$V'{'{0}'}'";
+	private static final String PARAMETER_VALUE = "$P'{'{0}'}'";
+	private static final String COMPLEX_VALUE = "$P'{'{0}'}'.getValue(\"{1}\", new Object[]'{'{2}'}')";
+	
+	private final Map<String, JRDesignExpression> expressions;
+	
+	public AbstractExpressionTransform()
+	{
+		this.expressions = new HashMap<>();
+	}
+	
+	public void transform()
+	{
+		for(final DRIDesignField field : this.getFields())
+		{
+			this.addField(field);
+		}
+		for(final DRIDesignSystemExpression expression : this.getSystemExpressions())
+		{
+			this.addSystemExpression(expression);
+		}
+		for(final DRIDesignJasperExpression expression : this.getJasperExpressions())
+		{
+			this.addJasperExpression(expression);
+		}
+		for(final DRIDesignSimpleExpression expression : this.getSimpleExpressions())
+		{
+			this.addSimpleExpression(expression);
+		}
+		for(final DRIDesignComplexExpression complexExpression : this.getComplexExpressions())
+		{
+			this.addComplexExpression(complexExpression);
+		}
+		for(final DRIDesignVariable variable : this.getVariables())
+		{
+			this.addVariable(variable);
+		}
+		for(final DRIDesignSort sort : this.getSorts())
+		{
+			this.addSort(sort);
+		}
+	}
+	
+	private void addSystemExpression(final DRIDesignSystemExpression systemExpression)
+	{
+		if(systemExpression == null)
+		{
+			return;
+		}
+		this.getCustomValues().addValueType(systemExpression.getName(), ValueType.SYSTEM_EXPRESSION);
+		this.addExpression(systemExpression);
+	}
+	
+	private void addJasperExpression(final DRIDesignJasperExpression jasperExpression)
+	{
+		if(jasperExpression == null)
+		{
+			return;
+		}
+		this.addExpression(jasperExpression);
+	}
+	
+	protected void addSimpleExpression(final DRIDesignSimpleExpression simpleExpression)
+	{
+		if(simpleExpression == null)
+		{
+			return;
+		}
+		this.getCustomValues().addSimpleExpression(simpleExpression);
+		this.addExpression(simpleExpression);
+	}
+	
+	private void addField(final DRIDesignField field)
+	{
+		try
+		{
+			if(!field.isExternal())
+			{
+				this.addField(this.field(field));
+			}
+			this.getCustomValues().addValueType(field.getName(), ValueType.FIELD);
+			this.addExpression(field);
+		}
+		catch(final JRException e)
+		{
+			throw new JasperDesignException("Registration failed for field \"" + field.getName() + "\"", e);
+		}
+	}
+	
+	private void addVariable(final DRIDesignVariable variable)
+	{
+		try
+		{
+			this.addVariable(this.variable(variable));
+			this.getCustomValues().addValueType(variable.getName(), ValueType.VARIABLE);
+			this.addExpression(variable);
+		}
+		catch(final JRException e)
+		{
+			throw new JasperDesignException("Registration failed for variable \"" + variable.getName() + "\"", e);
+		}
+	}
+	
+	protected void addComplexExpression(final DRIDesignComplexExpression complexExpression)
+	{
+		if(complexExpression == null)
+		{
+			return;
+		}
+		this.getCustomValues().addComplexExpression(complexExpression);
+		this.addExpression(complexExpression);
+	}
+	
+	private void addExpression(final DRIDesignExpression expression)
+	{
+		if(this.expressions.containsKey(expression.getName()))
+		{
+			throw new JasperDesignException("Duplicate declaration of expression \"" + expression.getName() + "\"");
+		}
+		this.expressions.put(expression.getName(), this.expression(expression));
+	}
+	
+	private void addSort(final DRIDesignSort sort)
+	{
+		try
+		{
+			this.addSort(this.sort(sort));
+		}
+		catch(final JRException e)
+		{
+			throw new JasperDesignException(
+				"Registration failed for sort \"" + sort.getExpression().getName() + "\"",
+				e);
+		}
+	}
+	
+	// field
+	private JRDesignField field(final DRIDesignField field)
+	{
+		final JRDesignField jrField = new JRDesignField();
+		jrField.setName(field.getName());
+		jrField.setValueClass(field.getValueClass());
+		jrField.setDescription(field.getDescription());
+		return jrField;
+	}
+	
+	// variable
+	private JRDesignVariable variable(final DRIDesignVariable variable)
+	{
+		final JRDesignExpression expression = this.getExpression(variable.getValueExpression());
+		final JRDesignExpression initialValueExpression = this.getExpression(variable.getInitialValueExpression());
+		
+		final JRDesignVariable jrVariable = new JRDesignVariable();
+		jrVariable.setName(variable.getName());
+		jrVariable.setExpression(expression);
+		jrVariable.setInitialValueExpression(initialValueExpression);
+		jrVariable.setValueClass(variable.getValueClass());
+		jrVariable.setCalculation(ConstantTransform.calculation(variable.getCalculation()));
+		final ResetType resetType = variable.getResetType();
+		jrVariable.setResetType(ConstantTransform.variableResetType(resetType));
+		if(resetType.equals(ResetType.GROUP) && variable.getResetGroup() != null)
+		{
+			jrVariable.setResetGroup(this.getGroup(variable.getResetGroup()));
+		}
+		return jrVariable;
+	}
+	
+	protected JRGroup getGroup(final DRIDesignGroup group)
+	{
+		return null;
+	}
+	
+	// simple expression
+	private JRDesignExpression expression(final DRIDesignExpression simpleExpression)
+	{
+		final JRDesignExpression expression = new JRDesignExpression();
+		expression.setText(this.getExpressionText(simpleExpression));
+		return expression;
+	}
+	
+	private String getExpressionText(final DRIDesignExpression expression)
+	{
+		if(expression instanceof DRIDesignField)
+		{
+			return this.toFieldValue(expression.getName());
+		}
+		else if(expression instanceof DRIDesignVariable)
+		{
+			return this.toVariableValue(expression.getName());
+		}
+		else if(expression instanceof DRIDesignComplexExpression)
+		{
+			final DRIDesignComplexExpression complexExpression = (DRIDesignComplexExpression)expression;
+			String values = "";
+			for(final DRIDesignExpression valueExpression : complexExpression.getExpressions())
+			{
+				values += ", " + this.getExpressionText(valueExpression);
+			}
+			if(values.length() > 0)
+			{
+				values = values.substring(2);
+			}
+			final String parameterName = this.getExpressionParameterName(complexExpression.getParameterName());
+			return MessageFormat.format(COMPLEX_VALUE, parameterName, expression.getName(), values);
+		}
+		else if(expression instanceof DRIDesignSimpleExpression)
+		{
+			final String parameterName =
+				this.getExpressionParameterName(((DRIDesignSimpleExpression)expression).getParameterName());
+			return MessageFormat.format(VALUE, parameterName, expression.getName());
+		}
+		else if(expression instanceof DRIDesignSystemExpression)
+		{
+			final String name = ((DRIDesignSystemExpression)expression).getName();
+			if(name.equals(SystemExpression.PAGE_NUMBER.name()))
+			{
+				return this.toVariableValue(JRVariable.PAGE_NUMBER);
+			}
+			else
+			{
+				return this.toVariableValue(name);
+			}
+			// throw new JasperDesignException("System expression \"" + name + "\" not supported");
+		}
+		else if(expression instanceof DRIDesignJasperExpression)
+		{
+			return ((DRIDesignJasperExpression)expression).getExpression();
+		}
+		else
+		{
+			throw new JasperDesignException("Expression " + expression.getClass().getName() + " not supported");
+		}
+	}
+	
+	private String getExpressionParameterName(final String parameterName)
+	{
+		if(parameterName == null)
+		{
+			return JasperCustomValues.NAME;
+		}
+		else
+		{
+			return parameterName;
+		}
+	}
+	
+	private String toFieldValue(final String expression)
+	{
+		return MessageFormat.format(FIELD_VALUE, expression);
+	}
+	
+	private String toVariableValue(final String expression)
+	{
+		return MessageFormat.format(VARIABLE_VALUE, expression);
+	}
+	
+	protected String toParameterValue(final String expression)
+	{
+		return MessageFormat.format(PARAMETER_VALUE, expression);
+	}
+	
+	public JRDesignExpression getExpression(final DRIDesignExpression expression)
+	{
+		if(expression == null)
+		{
+			return null;
+		}
+		if(!this.expressions.containsKey(expression.getName()))
+		{
+			throw new JasperDesignException("Expression \"" + expression.getName() + "\" is not registered");
+		}
+		return this.expressions.get(expression.getName());
+	}
+	
+	// sort
+	private JRDesignSortField sort(final DRIDesignSort sort)
+	{
+		final DRIDesignExpression expression = sort.getExpression();
+		final String name;
+		final SortFieldTypeEnum type;
+		if(expression instanceof DRIDesignField)
+		{
+			name = expression.getName();
+			type = SortFieldTypeEnum.FIELD;
+		}
+		else if(expression instanceof DRIDesignVariable)
+		{
+			name = expression.getName();
+			type = SortFieldTypeEnum.VARIABLE;
+		}
+		else
+		{
+			throw new JasperDesignException("Sort expression \"" + expression.getName() + "\" not supported");
+		}
+		
+		final JRDesignSortField jrSort = new JRDesignSortField();
+		jrSort.setName(name);
+		jrSort.setOrder(ConstantTransform.orderType(sort.getOrderType()));
+		jrSort.setType(type);
+		return jrSort;
+	}
+	
+	protected JRPropertyExpression getPropertyExpression(final DRIDesignPropertyExpression propertyExpression)
+	{
+		final JRDesignPropertyExpression jrPropertyExpression = new JRDesignPropertyExpression();
+		jrPropertyExpression.setName(propertyExpression.getName());
+		jrPropertyExpression.setValueExpression(this.getExpression(propertyExpression.getValueExpression()));
+		return jrPropertyExpression;
+	}
+	
+	protected JRGenericElementParameter getGenericElementParameterExpression(
+		final DRIDesignParameterExpression parameterExpression)
+	{
+		final JRDesignGenericElementParameter jrParameterExpression = new JRDesignGenericElementParameter();
+		jrParameterExpression.setName(parameterExpression.getName());
+		jrParameterExpression.setValueExpression(this.getExpression(parameterExpression.getValueExpression()));
+		return jrParameterExpression;
+	}
+	
+	protected abstract JasperCustomValues getCustomValues();
+	
+	protected abstract Collection<DRIDesignField> getFields();
+	
+	protected abstract Collection<DRIDesignVariable> getVariables();
+	
+	protected abstract Collection<DRIDesignSystemExpression> getSystemExpressions();
+	
+	protected abstract Collection<DRIDesignJasperExpression> getJasperExpressions();
+	
+	protected abstract Collection<DRIDesignSimpleExpression> getSimpleExpressions();
+	
+	protected abstract Collection<DRIDesignComplexExpression> getComplexExpressions();
+	
+	protected abstract Collection<DRIDesignSort> getSorts();
+	
+	protected abstract void addField(JRDesignField field) throws JRException;
+	
+	protected abstract void addVariable(JRDesignVariable variable) throws JRException;
+	
+	protected abstract void addSort(JRDesignSortField sort) throws JRException;
 }

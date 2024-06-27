@@ -17,56 +17,36 @@
  */
 package software.xdev.dynamicreports.report.builder;
 
-import software.xdev.dynamicreports.report.constant.Constants;
-
 import java.io.Serializable;
 
-/**
- * <p>Abstract AbstractBuilder class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public abstract class AbstractBuilder<T extends AbstractBuilder<T, U>, U> implements Serializable {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
-    protected boolean builded;
-    private U object;
 
-    /**
-     * <p>Constructor for AbstractBuilder.</p>
-     *
-     * @param object a U object.
-     */
-    protected AbstractBuilder(U object) {
-        this.object = object;
-        this.builded = false;
-    }
-
-    /**
-     * <p>build.</p>
-     *
-     * @return a U object.
-     */
-    public U build() {
-        if (!builded) {
-            configure();
-            builded = true;
-        }
-        return object;
-    }
-
-    /**
-     * <p>Getter for the field <code>object</code>.</p>
-     *
-     * @return a U object.
-     */
-    protected U getObject() {
-        return object;
-    }
-
-    /**
-     * <p>configure.</p>
-     */
-    protected void configure() {
-    }
+public abstract class AbstractBuilder<T extends AbstractBuilder<T, U>, U> implements Serializable
+{
+	protected boolean builded;
+	private final U object;
+	
+	protected AbstractBuilder(final U object)
+	{
+		this.object = object;
+		this.builded = false;
+	}
+	
+	public U build()
+	{
+		if(!this.builded)
+		{
+			this.configure();
+			this.builded = true;
+		}
+		return this.object;
+	}
+	
+	protected U getObject()
+	{
+		return this.object;
+	}
+	
+	protected void configure()
+	{
+	}
 }

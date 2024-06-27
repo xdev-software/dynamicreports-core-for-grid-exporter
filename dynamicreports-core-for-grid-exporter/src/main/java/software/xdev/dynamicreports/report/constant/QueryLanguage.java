@@ -17,35 +17,16 @@
  */
 package software.xdev.dynamicreports.report.constant;
 
-/**
- * <p>QueryLanguage class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class QueryLanguage {
-    /**
-     * Constant <code>SQL="sql"</code>
-     */
-    public static final String SQL = "sql";
-    /**
-     * Constant <code>HQL="hql"</code>
-     */
-    public static final String HQL = "hql";
-    /**
-     * Constant <code>XPATH="xPath"</code>
-     */
-    public static final String XPATH = "xPath";
-    /**
-     * Constant <code>MDX="mdx"</code>
-     */
-    public static final String MDX = "mdx";
-    /**
-     * Constant <code>EJBQL="ejbql"</code>
-     */
-    public static final String EJBQL = "ejbql";
-    /**
-     * Constant <code>CSV="csv"</code>
-     */
-    public static final String CSV = "csv";
+public final class QueryLanguage
+{
+	private QueryLanguage()
+	{
+	}
+	
+	public static final String SQL = "sql";
+	public static final String HQL = "hql";
+	public static final String XPATH = "xPath";
+	public static final String MDX = "mdx";
+	public static final String EJBQL = "ejbql";
+	public static final String CSV = "csv";
 }

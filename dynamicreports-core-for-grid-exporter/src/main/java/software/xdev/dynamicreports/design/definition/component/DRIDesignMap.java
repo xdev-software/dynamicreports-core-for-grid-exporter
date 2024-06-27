@@ -21,46 +21,17 @@ import software.xdev.dynamicreports.design.constant.EvaluationTime;
 import software.xdev.dynamicreports.design.definition.DRIDesignGroup;
 import software.xdev.dynamicreports.design.definition.expression.DRIDesignExpression;
 
-/**
- * <p>DRIDesignMap interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface DRIDesignMap extends DRIDesignComponent {
 
-    /**
-     * <p>getEvaluationTime.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.design.constant.EvaluationTime} object.
-     */
-    public EvaluationTime getEvaluationTime();
-
-    /**
-     * <p>getEvaluationGroup.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.design.definition.DRIDesignGroup} object.
-     */
-    public DRIDesignGroup getEvaluationGroup();
-
-    /**
-     * <p>getLatitudeExpression.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.design.definition.expression.DRIDesignExpression} object.
-     */
-    public DRIDesignExpression getLatitudeExpression();
-
-    /**
-     * <p>getLongitudeExpression.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.design.definition.expression.DRIDesignExpression} object.
-     */
-    public DRIDesignExpression getLongitudeExpression();
-
-    /**
-     * <p>getZoomExpression.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.design.definition.expression.DRIDesignExpression} object.
-     */
-    public DRIDesignExpression getZoomExpression();
+public interface DRIDesignMap extends DRIDesignComponent
+{
+	
+	public EvaluationTime getEvaluationTime();
+	
+	public DRIDesignGroup getEvaluationGroup();
+	
+	public DRIDesignExpression getLatitudeExpression();
+	
+	public DRIDesignExpression getLongitudeExpression();
+	
+	public DRIDesignExpression getZoomExpression();
 }

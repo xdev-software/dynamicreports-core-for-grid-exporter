@@ -19,18 +19,9 @@ package software.xdev.dynamicreports.report.definition.style;
 
 import software.xdev.dynamicreports.report.definition.expression.DRIExpression;
 
-/**
- * <p>DRIConditionalStyle interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface DRIConditionalStyle extends DRIBaseStyle {
 
-    /**
-     * <p>getConditionExpression.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     */
-    public DRIExpression<Boolean> getConditionExpression();
+public interface DRIConditionalStyle extends DRIBaseStyle
+{
+	
+	public DRIExpression<Boolean> getConditionExpression();
 }

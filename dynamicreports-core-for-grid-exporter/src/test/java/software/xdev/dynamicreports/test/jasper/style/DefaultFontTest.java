@@ -24,56 +24,54 @@ import static software.xdev.dynamicreports.report.builder.DynamicReports.type;
 import java.awt.Color;
 import java.io.Serializable;
 
+import net.sf.jasperreports.engine.JRDataSource;
 import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
 import software.xdev.dynamicreports.report.builder.column.TextColumnBuilder;
 import software.xdev.dynamicreports.report.builder.style.FontBuilder;
 import software.xdev.dynamicreports.report.datasource.DRDataSource;
 import software.xdev.dynamicreports.test.jasper.AbstractJasperStyleTest;
-import net.sf.jasperreports.engine.JRDataSource;
 
-/**
- * Default font tests.
- * 
- * @author Ricardo Mariaca
- */
-public class DefaultFontTest extends AbstractJasperStyleTest implements Serializable {
-  private static final long serialVersionUID = 1L;
 
-  private TextColumnBuilder<String> column1;
-  private TextColumnBuilder<String> column2;
-
-  @Override
-  protected void configureReport(JasperReportBuilder rb) {
-    FontBuilder defaultFont = stl.font().setFontSize(12);
-
-    rb.setDefaultFont(defaultFont).columns(
-        column1 = col.column("Column1", "field1", type.stringType()).setStyle(stl.style().bold()),
-        column2 = col.column("Column2", "field2", type.stringType()));
-  }
-
-  @Override
-  public void test() {
-    super.test();
-
-    numberOfPagesTest(1);
-
-    // column1
-    columnDetailStyleTest(column1, 0, null, null, TEST_FONT_NAME, 12f, true, null);
-    columnDetailStyleTest(column1, 1, null, null, TEST_FONT_NAME, 12f, true, null);
-    columnDetailStyleTest(column1, 2, null, null, TEST_FONT_NAME, 12f, true, null);
-
-    // column2
-    columnDetailStyleTest(column2, 0, Color.BLACK, null, TEST_FONT_NAME, 12f, null, null);
-    columnDetailStyleTest(column2, 1, Color.BLACK, null, TEST_FONT_NAME, 12f, null, null);
-    columnDetailStyleTest(column2, 2, Color.BLACK, null, TEST_FONT_NAME, 12f, null, null);
-  }
-
-  @Override
-  protected JRDataSource createDataSource() {
-    DRDataSource dataSource = new DRDataSource("field1", "field2", "field3");
-    dataSource.add("1", "1", "1");
-    dataSource.add("1", "1", "1");
-    dataSource.add("1", "1", "1");
-    return dataSource;
-  }
+public class DefaultFontTest extends AbstractJasperStyleTest implements Serializable
+{
+	private TextColumnBuilder<String> column1;
+	private TextColumnBuilder<String> column2;
+	
+	@Override
+	protected void configureReport(final JasperReportBuilder rb)
+	{
+		final FontBuilder defaultFont = stl.font().setFontSize(12);
+		
+		rb.setDefaultFont(defaultFont).columns(
+			this.column1 = col.column("Column1", "field1", type.stringType()).setStyle(stl.style().bold()),
+			this.column2 = col.column("Column2", "field2", type.stringType()));
+	}
+	
+	@Override
+	public void test()
+	{
+		super.test();
+		
+		this.numberOfPagesTest(1);
+		
+		// column1
+		this.columnDetailStyleTest(this.column1, 0, null, null, TEST_FONT_NAME, 12f, true, null);
+		this.columnDetailStyleTest(this.column1, 1, null, null, TEST_FONT_NAME, 12f, true, null);
+		this.columnDetailStyleTest(this.column1, 2, null, null, TEST_FONT_NAME, 12f, true, null);
+		
+		// column2
+		this.columnDetailStyleTest(this.column2, 0, Color.BLACK, null, TEST_FONT_NAME, 12f, null, null);
+		this.columnDetailStyleTest(this.column2, 1, Color.BLACK, null, TEST_FONT_NAME, 12f, null, null);
+		this.columnDetailStyleTest(this.column2, 2, Color.BLACK, null, TEST_FONT_NAME, 12f, null, null);
+	}
+	
+	@Override
+	protected JRDataSource createDataSource()
+	{
+		final DRDataSource dataSource = new DRDataSource("field1", "field2", "field3");
+		dataSource.add("1", "1", "1");
+		dataSource.add("1", "1", "1");
+		dataSource.add("1", "1", "1");
+		return dataSource;
+	}
 }

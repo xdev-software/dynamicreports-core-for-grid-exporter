@@ -17,75 +17,60 @@
  */
 package software.xdev.dynamicreports.report.builder.group;
 
-import software.xdev.dynamicreports.report.base.column.DRValueColumn;
-import software.xdev.dynamicreports.report.builder.column.ValueColumnBuilder;
-import software.xdev.dynamicreports.report.constant.Constants;
-import software.xdev.dynamicreports.report.definition.datatype.DRIDataType;
 import org.apache.commons.lang3.Validate;
 
-/**
- * <p>ColumnGroupBuilder class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class ColumnGroupBuilder extends GroupBuilder<ColumnGroupBuilder> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
+import software.xdev.dynamicreports.report.base.column.DRValueColumn;
+import software.xdev.dynamicreports.report.builder.column.ValueColumnBuilder;
+import software.xdev.dynamicreports.report.definition.datatype.DRIDataType;
 
-    private DRValueColumn<?> column;
 
-    /**
-     * <p>Constructor for ColumnGroupBuilder.</p>
-     *
-     * @param column a {@link software.xdev.dynamicreports.report.builder.column.ValueColumnBuilder} object.
-     */
-    protected ColumnGroupBuilder(ValueColumnBuilder<?, ?> column) {
-        Validate.notNull(column, "column must not be null");
-        this.column = column.build();
-        init();
-    }
+public class ColumnGroupBuilder extends GroupBuilder<ColumnGroupBuilder>
+{
 
-    /**
-     * <p>Constructor for ColumnGroupBuilder.</p>
-     *
-     * @param name   a {@link java.lang.String} object.
-     * @param column a {@link software.xdev.dynamicreports.report.builder.column.ValueColumnBuilder} object.
-     */
-    protected ColumnGroupBuilder(String name, ValueColumnBuilder<?, ?> column) {
-        super(name);
-        Validate.notNull(column, "column must not be null");
-        this.column = column.build();
-        init();
-    }
-
-    @SuppressWarnings("unchecked")
-    private void init() {
-        @SuppressWarnings("rawtypes") DRIDataType dataType = column.getComponent().getDataType();
-        getObject().getValueField().setDataType(dataType);
-        getObject().getValueField().setStyle(column.getComponent().getStyle());
-        getObject().getValueField().setPattern(column.getComponent().getPattern());
-        getObject().getValueField().setPatternExpression(column.getComponent().getPatternExpression());
-        getObject().getValueField().setHorizontalTextAlignment(column.getComponent().getHorizontalTextAlignment());
-        getObject().setTitleExpression(column.getTitleExpression());
-        getObject().setTitleStyle(column.getTitleStyle());
-        getObject().setTitleWidth(column.getComponent().getWidth());
-    }
-
-    /**
-     * <p>setHideColumn.</p>
-     *
-     * @param hideColumn a {@link java.lang.Boolean} object.
-     * @return a {@link software.xdev.dynamicreports.report.builder.group.ColumnGroupBuilder} object.
-     */
-    public ColumnGroupBuilder setHideColumn(Boolean hideColumn) {
-        getObject().setHideColumn(hideColumn);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    protected void configure() {
-        setValueExpression(column);
-        super.configure();
-    }
+	private final DRValueColumn<?> column;
+	
+	protected ColumnGroupBuilder(final ValueColumnBuilder<?, ?> column)
+	{
+		Validate.notNull(column, "column must not be null");
+		this.column = column.build();
+		this.init();
+	}
+	
+	protected ColumnGroupBuilder(final String name, final ValueColumnBuilder<?, ?> column)
+	{
+		super(name);
+		Validate.notNull(column, "column must not be null");
+		this.column = column.build();
+		this.init();
+	}
+	
+	@SuppressWarnings("unchecked")
+	private void init()
+	{
+		@SuppressWarnings("rawtypes")
+		final DRIDataType dataType = this.column.getComponent().getDataType();
+		this.getObject().getValueField().setDataType(dataType);
+		this.getObject().getValueField().setStyle(this.column.getComponent().getStyle());
+		this.getObject().getValueField().setPattern(this.column.getComponent().getPattern());
+		this.getObject().getValueField().setPatternExpression(this.column.getComponent().getPatternExpression());
+		this.getObject()
+			.getValueField()
+			.setHorizontalTextAlignment(this.column.getComponent().getHorizontalTextAlignment());
+		this.getObject().setTitleExpression(this.column.getTitleExpression());
+		this.getObject().setTitleStyle(this.column.getTitleStyle());
+		this.getObject().setTitleWidth(this.column.getComponent().getWidth());
+	}
+	
+	public ColumnGroupBuilder setHideColumn(final Boolean hideColumn)
+	{
+		this.getObject().setHideColumn(hideColumn);
+		return this;
+	}
+	
+	@Override
+	protected void configure()
+	{
+		this.setValueExpression(this.column);
+		super.configure();
+	}
 }

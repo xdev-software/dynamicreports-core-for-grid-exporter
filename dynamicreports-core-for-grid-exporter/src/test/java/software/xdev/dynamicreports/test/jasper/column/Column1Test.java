@@ -17,14 +17,8 @@
  */
 package software.xdev.dynamicreports.test.jasper.column;
 
-import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
-import software.xdev.dynamicreports.report.base.expression.AbstractSimpleExpression;
-import software.xdev.dynamicreports.report.base.expression.AbstractValueFormatter;
-import software.xdev.dynamicreports.report.builder.column.TextColumnBuilder;
-import software.xdev.dynamicreports.report.datasource.DRDataSource;
-import software.xdev.dynamicreports.report.definition.ReportParameters;
-import software.xdev.dynamicreports.test.jasper.AbstractJasperValueTest;
-import net.sf.jasperreports.engine.JRDataSource;
+import static software.xdev.dynamicreports.report.builder.DynamicReports.col;
+import static software.xdev.dynamicreports.report.builder.DynamicReports.field;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -32,106 +26,124 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-import static software.xdev.dynamicreports.report.builder.DynamicReports.col;
-import static software.xdev.dynamicreports.report.builder.DynamicReports.field;
+import net.sf.jasperreports.engine.JRDataSource;
+import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
+import software.xdev.dynamicreports.report.base.expression.AbstractSimpleExpression;
+import software.xdev.dynamicreports.report.base.expression.AbstractValueFormatter;
+import software.xdev.dynamicreports.report.builder.column.TextColumnBuilder;
+import software.xdev.dynamicreports.report.datasource.DRDataSource;
+import software.xdev.dynamicreports.report.definition.ReportParameters;
+import software.xdev.dynamicreports.test.jasper.AbstractJasperValueTest;
 
-/**
- * @author Ricardo Mariaca
- */
-public class Column1Test extends AbstractJasperValueTest implements Serializable {
-    private static final long serialVersionUID = 1L;
 
-    private TextColumnBuilder<String> column2;
-    private TextColumnBuilder<Date> column3;
-    private TextColumnBuilder<Double> column4;
-    private TextColumnBuilder<BigDecimal> column5;
-    private TextColumnBuilder<Double> column6;
-    private TextColumnBuilder<Object> column7;
+public class Column1Test extends AbstractJasperValueTest implements Serializable
+{
 
-    private Date date = new Date();
+	private TextColumnBuilder<String> column2;
+	private TextColumnBuilder<Date> column3;
+	private TextColumnBuilder<Double> column4;
+	private TextColumnBuilder<BigDecimal> column5;
+	private TextColumnBuilder<Double> column6;
+	private TextColumnBuilder<Object> column7;
+	
+	private final Date date = new Date();
+	
+	@Override
+	protected void configureReport(final JasperReportBuilder rb)
+	{
+		rb.setLocale(Locale.ENGLISH)
+			.addField("field1", Integer.class)
+			.columns(
+				this.column2 = col.column("Column2\nColumn2", "field2", String.class),
+				this.column3 = col.column("Column3", "field3", Date.class).setPattern("dd.MM.yyyy"),
+				this.column4 = col.column("Column4", "field4", Double.class).setPattern("#,###.00"),
+				this.column5 =
+					col.column("Column5", "field5", BigDecimal.class).setValueFormatter(new ColumnValueFormatter()),
+				this.column6 = col.column("Column6", "field6", Double.class).setPattern(new PatternExpression()),
+				this.column7 = col.column("Column7", field("field7", Date.class).build()));
+	}
+	
+	@Override
+	public void test()
+	{
+		super.test();
+		
+		this.numberOfPagesTest(3);
+		// column2
+		this.columnDetailCountTest(this.column2, 110);
+		this.columnDetailValueTest(this.column2, 50, "test");
+		this.columnTitleCountTest(this.column2, 3);
+		this.columnTitleValueTest(this.column2, "Column2\nColumn2", "Column2\nColumn2", "Column2\nColumn2");
+		// column3
+		this.columnDetailCountTest(this.column3, 110);
+		this.columnDetailValueTest(this.column3, 50, new SimpleDateFormat("dd.MM.yyyy").format(this.date));
+		this.columnTitleCountTest(this.column3, 3);
+		this.columnTitleValueTest(this.column3, "Column3", "Column3", "Column3");
+		// column4
+		this.columnDetailCountTest(this.column4, 110);
+		this.columnDetailValueTest(this.column4, 50, "1.00");
+		this.columnTitleCountTest(this.column4, 3);
+		this.columnTitleValueTest(this.column4, "Column4", "Column4", "Column4");
+		// column5
+		this.columnDetailCountTest(this.column5, 110);
+		this.columnDetailValueTest(this.column5, 50, "value = 10");
+		this.columnTitleCountTest(this.column5, 3);
+		this.columnTitleValueTest(this.column5, "Column5", "Column5", "Column5");
+		// column6
+		this.columnDetailCountTest(this.column6, 110);
+		this.columnDetailValueTest(this.column6, 0, "1.00");
+		this.columnDetailValueTest(this.column6, 1, "1.000");
+		this.columnDetailValueTest(this.column6, 2, "1.0000");
+		this.columnDetailValueTest(this.column6, 3, "1.0");
+		this.columnDetailValueTest(this.column6, 50, "1.0");
+		this.columnTitleCountTest(this.column6, 3);
+		this.columnTitleValueTest(this.column6, "Column6", "Column6", "Column6");
+		// column7
+		this.columnDetailCountTest(this.column7, 110);
+		this.columnDetailValueTest(this.column7, 50, new SimpleDateFormat("MM/dd/yyyy").format(this.date));
+		this.columnTitleCountTest(this.column7, 3);
+		this.columnTitleValueTest(this.column7, "Column7", "Column7", "Column7");
+	}
+	
+	@Override
+	protected JRDataSource createDataSource()
+	{
+		final DRDataSource dataSource =
+			new DRDataSource("field1", "field2", "field3", "field4", "field5", "field6", "field7");
+		for(int i = 0; i < 110; i++)
+		{
+			dataSource.add(1, "test", this.date, 1d, new BigDecimal(10), 1d, this.date);
+		}
+		return dataSource;
+	}
+	
+	static class ColumnValueFormatter extends AbstractValueFormatter<String, BigDecimal>
+	{
 
-    @Override
-    protected void configureReport(JasperReportBuilder rb) {
-        rb.setLocale(Locale.ENGLISH)
-          .addField("field1", Integer.class)
-          .columns(column2 = col.column("Column2\nColumn2", "field2", String.class), column3 = col.column("Column3", "field3", Date.class).setPattern("dd.MM.yyyy"),
-                   column4 = col.column("Column4", "field4", Double.class).setPattern("#,###.00"),
-                   column5 = col.column("Column5", "field5", BigDecimal.class).setValueFormatter(new ColumnValueFormatter()),
-                   column6 = col.column("Column6", "field6", Double.class).setPattern(new PatternExpression()), column7 = col.column("Column7", field("field7", Date.class).build()));
-    }
+		@Override
+		public String format(final BigDecimal value, final ReportParameters reportParameters)
+		{
+			return "value = " + value;
+		}
+	}
+	
+	
+	static class PatternExpression extends AbstractSimpleExpression<String>
+	{
 
-    @Override
-    public void test() {
-        super.test();
-
-        numberOfPagesTest(3);
-        // column2
-        columnDetailCountTest(column2, 110);
-        columnDetailValueTest(column2, 50, "test");
-        columnTitleCountTest(column2, 3);
-        columnTitleValueTest(column2, "Column2\nColumn2", "Column2\nColumn2", "Column2\nColumn2");
-        // column3
-        columnDetailCountTest(column3, 110);
-        columnDetailValueTest(column3, 50, new SimpleDateFormat("dd.MM.yyyy").format(date));
-        columnTitleCountTest(column3, 3);
-        columnTitleValueTest(column3, "Column3", "Column3", "Column3");
-        // column4
-        columnDetailCountTest(column4, 110);
-        columnDetailValueTest(column4, 50, "1.00");
-        columnTitleCountTest(column4, 3);
-        columnTitleValueTest(column4, "Column4", "Column4", "Column4");
-        // column5
-        columnDetailCountTest(column5, 110);
-        columnDetailValueTest(column5, 50, "value = 10");
-        columnTitleCountTest(column5, 3);
-        columnTitleValueTest(column5, "Column5", "Column5", "Column5");
-        // column6
-        columnDetailCountTest(column6, 110);
-        columnDetailValueTest(column6, 0, "1.00");
-        columnDetailValueTest(column6, 1, "1.000");
-        columnDetailValueTest(column6, 2, "1.0000");
-        columnDetailValueTest(column6, 3, "1.0");
-        columnDetailValueTest(column6, 50, "1.0");
-        columnTitleCountTest(column6, 3);
-        columnTitleValueTest(column6, "Column6", "Column6", "Column6");
-        // column7
-        columnDetailCountTest(column7, 110);
-        columnDetailValueTest(column7, 50, new SimpleDateFormat("MM/dd/yyyy").format(date));
-        columnTitleCountTest(column7, 3);
-        columnTitleValueTest(column7, "Column7", "Column7", "Column7");
-    }
-
-    @Override
-    protected JRDataSource createDataSource() {
-        DRDataSource dataSource = new DRDataSource("field1", "field2", "field3", "field4", "field5", "field6", "field7");
-        for (int i = 0; i < 110; i++) {
-            dataSource.add(1, "test", date, 1d, new BigDecimal(10), 1d, date);
-        }
-        return dataSource;
-    }
-
-    private class ColumnValueFormatter extends AbstractValueFormatter<String, BigDecimal> {
-        private static final long serialVersionUID = 1L;
-
-        @Override
-        public String format(BigDecimal value, ReportParameters reportParameters) {
-            return "value = " + value;
-        }
-    }
-
-    private class PatternExpression extends AbstractSimpleExpression<String> {
-        private static final long serialVersionUID = 1L;
-
-        @Override
-        public String evaluate(ReportParameters reportParameters) {
-            String pattern = "#,###.0";
-            Integer reportRowNumber = reportParameters.getReportRowNumber();
-            if (reportRowNumber < 4) {
-                for (int i = 0; i < reportRowNumber; i++) {
-                    pattern += "0";
-                }
-            }
-            return pattern;
-        }
-    }
+		@Override
+		public String evaluate(final ReportParameters reportParameters)
+		{
+			String pattern = "#,###.0";
+			final Integer reportRowNumber = reportParameters.getReportRowNumber();
+			if(reportRowNumber < 4)
+			{
+				for(int i = 0; i < reportRowNumber; i++)
+				{
+					pattern += "0";
+				}
+			}
+			return pattern;
+		}
+	}
 }

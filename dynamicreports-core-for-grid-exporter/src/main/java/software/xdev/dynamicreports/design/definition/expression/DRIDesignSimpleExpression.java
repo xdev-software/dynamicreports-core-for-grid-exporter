@@ -19,26 +19,11 @@ package software.xdev.dynamicreports.design.definition.expression;
 
 import software.xdev.dynamicreports.report.definition.ReportParameters;
 
-/**
- * <p>DRIDesignSimpleExpression interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface DRIDesignSimpleExpression extends DRIDesignExpression {
 
-    /**
-     * <p>evaluate.</p>
-     *
-     * @param reportParameters a {@link software.xdev.dynamicreports.report.definition.ReportParameters} object.
-     * @return a {@link java.lang.Object} object.
-     */
-    public Object evaluate(ReportParameters reportParameters);
-
-    /**
-     * <p>getParameterName.</p>
-     *
-     * @return a {@link java.lang.String} object.
-     */
-    public String getParameterName();
+public interface DRIDesignSimpleExpression extends DRIDesignExpression
+{
+	
+	public Object evaluate(ReportParameters reportParameters);
+	
+	public String getParameterName();
 }

@@ -19,33 +19,13 @@ package software.xdev.dynamicreports.report.definition.component;
 
 import software.xdev.dynamicreports.report.definition.expression.DRIExpression;
 
-/**
- * <p>DRIMap interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface DRIMap extends DRIDimensionComponent {
 
-    /**
-     * <p>getLatitudeExpression.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     */
-    public DRIExpression<Float> getLatitudeExpression();
-
-    /**
-     * <p>getLongitudeExpression.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     */
-    public DRIExpression<Float> getLongitudeExpression();
-
-    /**
-     * <p>getZoomExpression.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.definition.expression.DRIExpression} object.
-     */
-    public DRIExpression<Integer> getZoomExpression();
-
+public interface DRIMap extends DRIDimensionComponent
+{
+	
+	public DRIExpression<Float> getLatitudeExpression();
+	
+	public DRIExpression<Float> getLongitudeExpression();
+	
+	public DRIExpression<Integer> getZoomExpression();
 }

@@ -17,31 +17,20 @@
  */
 package software.xdev.dynamicreports.report.builder.condition;
 
-import software.xdev.dynamicreports.report.constant.Constants;
 import software.xdev.dynamicreports.report.definition.DRIValue;
 
-/**
- * <p>GreaterValueExpression class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class GreaterValueExpression<T extends Number> extends AbstractValueExpression<T> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    /**
-     * <p>Constructor for GreaterValueExpression.</p>
-     *
-     * @param value  a {@link software.xdev.dynamicreports.report.definition.DRIValue} object.
-     * @param number a {@link java.lang.Number} object.
-     */
-    public GreaterValueExpression(DRIValue<T> value, Number number) {
-        super(value, number);
-    }
+public class GreaterValueExpression<T extends Number> extends AbstractValueExpression<T>
+{
 
-    /** {@inheritDoc} */
-    @Override
-    protected Boolean compare(Number actualValue, Number number) {
-        return actualValue.doubleValue() > number.doubleValue();
-    }
+	public GreaterValueExpression(final DRIValue<T> value, final Number number)
+	{
+		super(value, number);
+	}
+	
+	@Override
+	protected Boolean compare(final Number actualValue, final Number number)
+	{
+		return actualValue.doubleValue() > number.doubleValue();
+	}
 }

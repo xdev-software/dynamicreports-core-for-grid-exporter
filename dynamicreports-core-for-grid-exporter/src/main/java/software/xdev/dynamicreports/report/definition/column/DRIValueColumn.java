@@ -21,18 +21,9 @@ import software.xdev.dynamicreports.report.definition.DRIValue;
 import software.xdev.dynamicreports.report.definition.component.DRITextField;
 import software.xdev.dynamicreports.report.definition.expression.DRIExpression;
 
-/**
- * <p>DRIValueColumn interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface DRIValueColumn<T> extends DRIExpression<T>, DRIColumn<DRITextField<T>>, DRIValue<T> {
 
-    /**
-     * <p>getPrintRepeatedDetailValues.</p>
-     *
-     * @return a {@link java.lang.Boolean} object.
-     */
-    public Boolean getPrintRepeatedDetailValues();
+public interface DRIValueColumn<T> extends DRIExpression<T>, DRIColumn<DRITextField<T>>, DRIValue<T>
+{
+	
+	public Boolean getPrintRepeatedDetailValues();
 }

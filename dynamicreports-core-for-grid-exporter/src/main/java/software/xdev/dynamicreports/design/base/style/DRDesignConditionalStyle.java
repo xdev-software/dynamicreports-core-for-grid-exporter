@@ -17,62 +17,64 @@
  */
 package software.xdev.dynamicreports.design.base.style;
 
+import java.util.Objects;
+
 import software.xdev.dynamicreports.design.definition.DRIDesignDataset;
 import software.xdev.dynamicreports.design.definition.expression.DRIDesignExpression;
 import software.xdev.dynamicreports.design.definition.style.DRIDesignConditionalStyle;
-import software.xdev.dynamicreports.report.constant.Constants;
-import org.apache.commons.lang3.builder.EqualsBuilder;
 
-/**
- * <p>DRDesignConditionalStyle class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class DRDesignConditionalStyle extends DRDesignBaseStyle implements DRIDesignConditionalStyle {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    private DRIDesignExpression conditionExpression;
-    private DRIDesignDataset dataset;
+public class DRDesignConditionalStyle extends DRDesignBaseStyle implements DRIDesignConditionalStyle
+{
 
-    /** {@inheritDoc} */
-    @Override
-    public DRIDesignExpression getConditionExpression() {
-        return conditionExpression;
-    }
-
-    /**
-     * <p>Setter for the field <code>conditionExpression</code>.</p>
-     *
-     * @param conditionExpression a {@link software.xdev.dynamicreports.design.definition.expression.DRIDesignExpression} object.
-     */
-    public void setConditionExpression(DRIDesignExpression conditionExpression) {
-        this.conditionExpression = conditionExpression;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DRIDesignDataset getDataset() {
-        return dataset;
-    }
-
-    /**
-     * <p>Setter for the field <code>dataset</code>.</p>
-     *
-     * @param dataset a {@link software.xdev.dynamicreports.design.definition.DRIDesignDataset} object.
-     */
-    public void setDataset(DRIDesignDataset dataset) {
-        this.dataset = dataset;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public boolean equals(Object obj) {
-        EqualsBuilder equalsBuilder = new EqualsBuilder().appendSuper(super.equals(obj));
-        if (equalsBuilder.isEquals()) {
-            DRDesignConditionalStyle o = (DRDesignConditionalStyle) obj;
-            equalsBuilder.append(conditionExpression, o.conditionExpression).append(dataset, o.dataset);
-        }
-        return equalsBuilder.isEquals();
-    }
+	private DRIDesignExpression conditionExpression;
+	private DRIDesignDataset dataset;
+	
+	@Override
+	public DRIDesignExpression getConditionExpression()
+	{
+		return this.conditionExpression;
+	}
+	
+	public void setConditionExpression(final DRIDesignExpression conditionExpression)
+	{
+		this.conditionExpression = conditionExpression;
+	}
+	
+	@Override
+	public DRIDesignDataset getDataset()
+	{
+		return this.dataset;
+	}
+	
+	public void setDataset(final DRIDesignDataset dataset)
+	{
+		this.dataset = dataset;
+	}
+	
+	@Override
+	public boolean equals(final Object o)
+	{
+		if(this == o)
+		{
+			return true;
+		}
+		if(o == null || this.getClass() != o.getClass())
+		{
+			return false;
+		}
+		if(!super.equals(o))
+		{
+			return false;
+		}
+		final DRDesignConditionalStyle that = (DRDesignConditionalStyle)o;
+		return Objects.equals(this.getConditionExpression(), that.getConditionExpression())
+			&& Objects.equals(this.getDataset(), that.getDataset());
+	}
+	
+	@Override
+	public int hashCode()
+	{
+		return Objects.hash(super.hashCode(), this.getConditionExpression(), this.getDataset());
+	}
 }

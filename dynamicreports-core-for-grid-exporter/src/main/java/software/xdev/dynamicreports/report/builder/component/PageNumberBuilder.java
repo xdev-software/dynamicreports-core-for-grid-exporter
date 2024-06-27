@@ -19,30 +19,23 @@ package software.xdev.dynamicreports.report.builder.component;
 
 import software.xdev.dynamicreports.report.base.component.DRPageNumber;
 import software.xdev.dynamicreports.report.builder.expression.SystemMessageExpression;
-import software.xdev.dynamicreports.report.constant.Constants;
 
-/**
- * <p>PageNumberBuilder class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public class PageNumberBuilder extends AbstractFormatFieldBuilder<PageNumberBuilder, DRPageNumber> {
-    private static final long serialVersionUID = Constants.SERIAL_VERSION_UID;
 
-    /**
-     * <p>Constructor for PageNumberBuilder.</p>
-     */
-    protected PageNumberBuilder() {
-        super(new DRPageNumber());
-    }
+public class PageNumberBuilder extends AbstractFormatFieldBuilder<PageNumberBuilder, DRPageNumber>
+{
 
-    /** {@inheritDoc} */
-    @Override
-    protected void configure() {
-        if (getObject().getFormatExpression() == null) {
-            setFormatExpression(new SystemMessageExpression("page_number"));
-        }
-        super.configure();
-    }
+	protected PageNumberBuilder()
+	{
+		super(new DRPageNumber());
+	}
+	
+	@Override
+	protected void configure()
+	{
+		if(this.getObject().getFormatExpression() == null)
+		{
+			this.setFormatExpression(new SystemMessageExpression("page_number"));
+		}
+		super.configure();
+	}
 }

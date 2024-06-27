@@ -17,37 +17,18 @@
  */
 package software.xdev.dynamicreports.design.definition.style;
 
-import software.xdev.dynamicreports.report.constant.LineStyle;
-
 import java.awt.Color;
 import java.io.Serializable;
 
-/**
- * <p>DRIDesignPen interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface DRIDesignPen extends Serializable {
+import software.xdev.dynamicreports.report.constant.LineStyle;
 
-    /**
-     * <p>getLineWidth.</p>
-     *
-     * @return a {@link java.lang.Float} object.
-     */
-    public Float getLineWidth();
 
-    /**
-     * <p>getLineStyle.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.constant.LineStyle} object.
-     */
-    public LineStyle getLineStyle();
-
-    /**
-     * <p>getLineColor.</p>
-     *
-     * @return a {@link java.awt.Color} object.
-     */
-    public Color getLineColor();
+public interface DRIDesignPen extends Serializable
+{
+	
+	public Float getLineWidth();
+	
+	public LineStyle getLineStyle();
+	
+	public Color getLineColor();
 }

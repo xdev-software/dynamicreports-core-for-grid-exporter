@@ -17,7 +17,10 @@
  */
 package software.xdev.dynamicreports.test.design.position;
 
+import static software.xdev.dynamicreports.report.builder.DynamicReports.cmp;
+
 import org.junit.jupiter.api.Assertions;
+
 import software.xdev.dynamicreports.design.base.DRDesignBand;
 import software.xdev.dynamicreports.design.base.component.DRDesignComponent;
 import software.xdev.dynamicreports.design.base.component.DRDesignList;
@@ -27,42 +30,48 @@ import software.xdev.dynamicreports.report.constant.ListType;
 import software.xdev.dynamicreports.report.constant.PageType;
 import software.xdev.dynamicreports.test.design.AbstractBandTest;
 
-import static software.xdev.dynamicreports.report.builder.DynamicReports.cmp;
 
-/**
- * @author Ricardo Mariaca
- */
-public class HorizontalListPositionTest extends AbstractBandTest {
-
-    @Override
-    public void configureReport(ReportBuilder<?> rb) {
-        rb.setPageFormat(PageType.A2)
-          .title(cmp.horizontalList(cmp.hListCell(cmp.text("").setHeight(23)), cmp.hListCell(cmp.text("")), cmp.hListCell(cmp.text("")).widthFixed(),
-                                    cmp.hListCell(cmp.text("")).widthFixed().heightFixedOnTop(), cmp.hListCell(cmp.text("")).heightFixedOnTop(),
-                                    cmp.hListCell(cmp.text("")).widthFixed().heightFixedOnMiddle(), cmp.hListCell(cmp.text("")).heightFixedOnMiddle(),
-                                    cmp.hListCell(cmp.text("")).widthFixed().heightFixedOnBottom(), cmp.hListCell(cmp.text("")).heightFixedOnBottom()));
-    }
-
-    @Override
-    protected void titleBandTest(DRDesignBand band) {
-        DRDesignComponent component = band.getBandComponent();
-        Assertions.assertTrue(component instanceof DRDesignList);
-        DRDesignList list = (DRDesignList) component;
-        Assertions.assertEquals(ListType.HORIZONTAL, list.getType());
-        Assertions.assertEquals(9, list.getComponents().size());
-        componentPositionTest(list, 0, 0, 1170, 23);
-        for (int i = 0; i < 9; i++) {
-            Assertions.assertTrue(list.getComponents().get(i) instanceof DRDesignTextField);
-        }
-
-        componentPositionTest(list.getComponents().get(0), 0, 0, 154, 23);
-        componentPositionTest(list.getComponents().get(1), 154, 0, 154, 23);
-        componentPositionTest(list.getComponents().get(2), 308, 0, 100, 23);
-        componentPositionTest(list.getComponents().get(3), 408, 0, 100, 16);
-        componentPositionTest(list.getComponents().get(4), 508, 0, 154, 16);
-        componentPositionTest(list.getComponents().get(5), 662, 3, 100, 16);
-        componentPositionTest(list.getComponents().get(6), 762, 3, 154, 16);
-        componentPositionTest(list.getComponents().get(7), 916, 7, 100, 16);
-        componentPositionTest(list.getComponents().get(8), 1016, 7, 154, 16);
-    }
+public class HorizontalListPositionTest extends AbstractBandTest
+{
+	
+	@Override
+	public void configureReport(final ReportBuilder<?> rb)
+	{
+		rb.setPageFormat(PageType.A2)
+			.title(cmp.horizontalList(
+				cmp.hListCell(cmp.text("").setHeight(23)),
+				cmp.hListCell(cmp.text("")),
+				cmp.hListCell(cmp.text("")).widthFixed(),
+				cmp.hListCell(cmp.text("")).widthFixed().heightFixedOnTop(),
+				cmp.hListCell(cmp.text("")).heightFixedOnTop(),
+				cmp.hListCell(cmp.text("")).widthFixed().heightFixedOnMiddle(),
+				cmp.hListCell(cmp.text("")).heightFixedOnMiddle(),
+				cmp.hListCell(cmp.text("")).widthFixed().heightFixedOnBottom(),
+				cmp.hListCell(cmp.text("")).heightFixedOnBottom()));
+	}
+	
+	@Override
+	protected void titleBandTest(final DRDesignBand band)
+	{
+		final DRDesignComponent component = band.getBandComponent();
+		Assertions.assertTrue(component instanceof DRDesignList);
+		final DRDesignList list = (DRDesignList)component;
+		Assertions.assertEquals(ListType.HORIZONTAL, list.getType());
+		Assertions.assertEquals(9, list.getComponents().size());
+		this.componentPositionTest(list, 0, 0, 1170, 23);
+		for(int i = 0; i < 9; i++)
+		{
+			Assertions.assertTrue(list.getComponents().get(i) instanceof DRDesignTextField);
+		}
+		
+		this.componentPositionTest(list.getComponents().get(0), 0, 0, 154, 23);
+		this.componentPositionTest(list.getComponents().get(1), 154, 0, 154, 23);
+		this.componentPositionTest(list.getComponents().get(2), 308, 0, 100, 23);
+		this.componentPositionTest(list.getComponents().get(3), 408, 0, 100, 16);
+		this.componentPositionTest(list.getComponents().get(4), 508, 0, 154, 16);
+		this.componentPositionTest(list.getComponents().get(5), 662, 3, 100, 16);
+		this.componentPositionTest(list.getComponents().get(6), 762, 3, 154, 16);
+		this.componentPositionTest(list.getComponents().get(7), 916, 7, 100, 16);
+		this.componentPositionTest(list.getComponents().get(8), 1016, 7, 154, 16);
+	}
 }

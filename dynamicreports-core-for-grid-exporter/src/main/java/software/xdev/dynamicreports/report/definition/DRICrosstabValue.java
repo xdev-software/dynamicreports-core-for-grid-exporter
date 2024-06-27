@@ -17,12 +17,7 @@
  */
 package software.xdev.dynamicreports.report.definition;
 
-/**
- * <p>DRICrosstabValue interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface DRICrosstabValue<T> extends DRIValue<T> {
+public interface DRICrosstabValue<T> extends DRIValue<T>
+{
 
 }

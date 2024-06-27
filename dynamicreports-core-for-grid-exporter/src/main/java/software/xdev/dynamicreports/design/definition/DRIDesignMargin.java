@@ -19,39 +19,15 @@ package software.xdev.dynamicreports.design.definition;
 
 import java.io.Serializable;
 
-/**
- * <p>DRIDesignMargin interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface DRIDesignMargin extends Serializable {
 
-    /**
-     * <p>getTop.</p>
-     *
-     * @return a int.
-     */
-    public int getTop();
-
-    /**
-     * <p>getLeft.</p>
-     *
-     * @return a int.
-     */
-    public int getLeft();
-
-    /**
-     * <p>getBottom.</p>
-     *
-     * @return a int.
-     */
-    public int getBottom();
-
-    /**
-     * <p>getRight.</p>
-     *
-     * @return a int.
-     */
-    public int getRight();
+public interface DRIDesignMargin extends Serializable
+{
+	
+	public int getTop();
+	
+	public int getLeft();
+	
+	public int getBottom();
+	
+	public int getRight();
 }

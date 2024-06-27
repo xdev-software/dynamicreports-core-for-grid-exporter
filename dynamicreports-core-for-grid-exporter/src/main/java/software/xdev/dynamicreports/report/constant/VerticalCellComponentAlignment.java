@@ -17,66 +17,13 @@
  */
 package software.xdev.dynamicreports.report.constant;
 
-/**
- * <p>VerticalCellComponentAlignment class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public enum VerticalCellComponentAlignment {
-    /**
-     * <pre>
-     *
-     *  ---
-     * | - |
-     * ||C||
-     * | - |
-     * |   |
-     * |   |
-     *  ---
-     * </pre>
-     */
-    TOP,
-
-    /**
-     * <pre>
-     *
-     *  ---
-     * |   |
-     * | - |
-     * ||C||
-     * | - |
-     * |   |
-     *  ---
-     * </pre>
-     */
-    MIDDLE,
-
-    /**
-     * <pre>
-     *
-     *  ---
-     * |   |
-     * |   |
-     * | - |
-     * ||C||
-     * | - |
-     *  ---
-     * </pre>
-     */
-    BOTTOM,
-
-    /**
-     * <pre>
-     *
-     *  ---
-     * | - |
-     * || ||
-     * ||C||
-     * || ||
-     * | - |
-     *  ---
-     * </pre>
-     */
-    EXPAND
+public enum VerticalCellComponentAlignment
+{
+	TOP,
+	
+	MIDDLE,
+	
+	BOTTOM,
+	
+	EXPAND
 }

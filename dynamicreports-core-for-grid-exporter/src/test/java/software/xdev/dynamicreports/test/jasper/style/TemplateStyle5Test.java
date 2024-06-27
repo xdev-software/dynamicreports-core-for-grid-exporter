@@ -17,48 +17,67 @@
  */
 package software.xdev.dynamicreports.test.jasper.style;
 
+import static software.xdev.dynamicreports.report.builder.DynamicReports.stl;
+
+import java.awt.Color;
+import java.io.InputStream;
+import java.io.Serializable;
+
 import org.junit.jupiter.api.Assertions;
+
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.type.LineStyleEnum;
 import software.xdev.dynamicreports.jasper.builder.JasperReportBuilder;
 import software.xdev.dynamicreports.report.builder.style.TemplateStylesBuilder;
 import software.xdev.dynamicreports.report.constant.WhenNoDataType;
 import software.xdev.dynamicreports.report.exception.DRException;
 import software.xdev.dynamicreports.test.jasper.AbstractJasperStyleTest;
 import software.xdev.dynamicreports.test.jasper.templatedesign.TemplateDesign1Test;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.type.LineStyleEnum;
 
-import java.awt.Color;
-import java.io.InputStream;
-import java.io.Serializable;
 
-import static software.xdev.dynamicreports.report.builder.DynamicReports.stl;
+public class TemplateStyle5Test extends AbstractJasperStyleTest implements Serializable
+{
 
-/**
- * @author Ricardo Mariaca
- */
-public class TemplateStyle5Test extends AbstractJasperStyleTest implements Serializable {
-    private static final long serialVersionUID = 1L;
-
-    @Override
-    protected void configureReport(JasperReportBuilder rb) throws DRException {
-        TemplateStylesBuilder templateStyles =
-            stl.templateStyles().loadStyles(TemplateStyle4Test.class.getResource("StyleTemplate1.jrtx")).styles(stl.style().setName("style1").setBackgroundColor(Color.RED));
-        templateStyles.getStyle("columnTitleStyle3").setBackgroundColor(Color.LIGHT_GRAY);
-        InputStream is = TemplateDesign1Test.class.getResourceAsStream("templatedesign6.jrxml");
-        rb.setTemplateDesign(is).setWhenNoDataType(WhenNoDataType.ALL_SECTIONS_NO_DETAIL).addTemplateStyle(templateStyles);
-    }
-
-    @Override
-    public void test() {
-        super.test();
-
-        numberOfPagesTest(1);
-
-        JasperPrint jasperPrint = getJasperPrint();
-        Assertions.assertEquals("templatedesign6", jasperPrint.getName());
-
-        styleTest("templateDesign.title1", 0, Color.BLACK, Color.LIGHT_GRAY, "SansSerif", null, true, null);
-        borderTest("templateDesign.title1", 0, Color.BLACK, LineStyleEnum.SOLID, 2, Color.BLACK, LineStyleEnum.SOLID, 2, Color.BLACK, LineStyleEnum.SOLID, 2, Color.BLACK, LineStyleEnum.SOLID, 2);
-        styleTest("templateDesign.title2", 0, null, Color.RED, "SansSerif", null, null, null);
-    }
+	@Override
+	protected void configureReport(final JasperReportBuilder rb) throws DRException
+	{
+		final TemplateStylesBuilder templateStyles =
+			stl.templateStyles()
+				.loadStyles(TemplateStyle4Test.class.getResource("StyleTemplate1.jrtx"))
+				.styles(stl.style().setName("style1").setBackgroundColor(Color.RED));
+		templateStyles.getStyle("columnTitleStyle3").setBackgroundColor(Color.LIGHT_GRAY);
+		final InputStream is = TemplateDesign1Test.class.getResourceAsStream("templatedesign6.jrxml");
+		rb.setTemplateDesign(is)
+			.setWhenNoDataType(WhenNoDataType.ALL_SECTIONS_NO_DETAIL)
+			.addTemplateStyle(templateStyles);
+	}
+	
+	@Override
+	public void test()
+	{
+		super.test();
+		
+		this.numberOfPagesTest(1);
+		
+		final JasperPrint jasperPrint = this.getJasperPrint();
+		Assertions.assertEquals("templatedesign6", jasperPrint.getName());
+		
+		this.styleTest("templateDesign.title1", 0, Color.BLACK, Color.LIGHT_GRAY, "SansSerif", null, true, null);
+		this.borderTest(
+			"templateDesign.title1",
+			0,
+			Color.BLACK,
+			LineStyleEnum.SOLID,
+			2,
+			Color.BLACK,
+			LineStyleEnum.SOLID,
+			2,
+			Color.BLACK,
+			LineStyleEnum.SOLID,
+			2,
+			Color.BLACK,
+			LineStyleEnum.SOLID,
+			2);
+		this.styleTest("templateDesign.title2", 0, null, Color.RED, "SansSerif", null, null, null);
+	}
 }

@@ -19,18 +19,9 @@ package software.xdev.dynamicreports.report.definition.grid;
 
 import java.io.Serializable;
 
-/**
- * <p>DRIColumnGrid interface.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public interface DRIColumnGrid extends Serializable {
 
-    /**
-     * <p>getList.</p>
-     *
-     * @return a {@link software.xdev.dynamicreports.report.definition.grid.DRIColumnGridList} object.
-     */
-    public DRIColumnGridList getList();
+public interface DRIColumnGrid extends Serializable
+{
+	
+	public DRIColumnGridList getList();
 }

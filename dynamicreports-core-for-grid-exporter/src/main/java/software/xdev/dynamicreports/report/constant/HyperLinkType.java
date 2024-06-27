@@ -17,12 +17,7 @@
  */
 package software.xdev.dynamicreports.report.constant;
 
-/**
- * <p>HyperLinkType class.</p>
- *
- * @author Ricardo Mariaca
- * 
- */
-public enum HyperLinkType {
-    NONE, REFERENCE, LOCAL_ANCHOR, LOCAL_PAGE, REMOTE_ANCHOR, REMOTE_PAGE
+public enum HyperLinkType
+{
+	NONE, REFERENCE, LOCAL_ANCHOR, LOCAL_PAGE, REMOTE_ANCHOR, REMOTE_PAGE
 }

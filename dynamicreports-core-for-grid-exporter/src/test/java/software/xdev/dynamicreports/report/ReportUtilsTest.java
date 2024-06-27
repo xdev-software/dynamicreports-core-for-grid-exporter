@@ -32,50 +32,58 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-/**
- * Unit tests for {@link ReportUtils}.
- */
-public class ReportUtilsTest {
 
-  private static final String BASE_NAME = "any name";
-  private static final int NUMBER_OF_THREADS = 20;
-  private static final int NUMBER_OF_NAMES = 1000;
-
-  @BeforeEach
-  public void setUp() {
-    ReportUtils.setCounter(1);
-  }
-
-  @Test
-  public void shouldGenerateUniqueNamesConcurrently() throws Exception {
-    final ExecutorService executor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
-    try {
-      final List<Future<String>> futureNames = this.submitTasks(executor);
-      this.assertUniqueNames(futureNames);
-    } finally {
-      executor.shutdown();
-    }
-  }
-
-  @Test
-  public void shouldResetCounter() {
-    ReportUtils.setCounter(Integer.MAX_VALUE);
-    final String name = ReportUtils.generateUniqueName(BASE_NAME);
-    Assertions.assertTrue(name.endsWith("0_"));
-  }
-
-  private List<Future<String>> submitTasks(final ExecutorService executor) {
-    final Callable<String> task = () -> ReportUtils.generateUniqueName(BASE_NAME);
-    final List<Future<String>> futureNames = new ArrayList<>();
-    IntStream.range(0, NUMBER_OF_NAMES).forEach(i -> futureNames.add(executor.submit(task)));
-    return futureNames;
-  }
-
-  private void assertUniqueNames(final List<Future<String>> futureNames) throws Exception {
-    final Set<String> generatedNames = new HashSet<>();
-    for (final Future<String> futureName : futureNames) {
-      generatedNames.add(futureName.get());
-    }
-    Assertions.assertEquals(NUMBER_OF_NAMES, generatedNames.size());
-  }
+public class ReportUtilsTest
+{
+	
+	private static final String BASE_NAME = "any name";
+	private static final int NUMBER_OF_THREADS = 20;
+	private static final int NUMBER_OF_NAMES = 1000;
+	
+	@BeforeEach
+	public void setUp()
+	{
+		ReportUtils.setCounter(1);
+	}
+	
+	@Test
+	public void shouldGenerateUniqueNamesConcurrently() throws Exception
+	{
+		final ExecutorService executor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
+		try
+		{
+			final List<Future<String>> futureNames = this.submitTasks(executor);
+			this.assertUniqueNames(futureNames);
+		}
+		finally
+		{
+			executor.shutdown();
+		}
+	}
+	
+	@Test
+	public void shouldResetCounter()
+	{
+		ReportUtils.setCounter(Integer.MAX_VALUE);
+		final String name = ReportUtils.generateUniqueName(BASE_NAME);
+		Assertions.assertTrue(name.endsWith("0_"));
+	}
+	
+	private List<Future<String>> submitTasks(final ExecutorService executor)
+	{
+		final Callable<String> task = () -> ReportUtils.generateUniqueName(BASE_NAME);
+		final List<Future<String>> futureNames = new ArrayList<>();
+		IntStream.range(0, NUMBER_OF_NAMES).forEach(i -> futureNames.add(executor.submit(task)));
+		return futureNames;
+	}
+	
+	private void assertUniqueNames(final List<Future<String>> futureNames) throws Exception
+	{
+		final Set<String> generatedNames = new HashSet<>();
+		for(final Future<String> futureName : futureNames)
+		{
+			generatedNames.add(futureName.get());
+		}
+		Assertions.assertEquals(NUMBER_OF_NAMES, generatedNames.size());
+	}
 }
