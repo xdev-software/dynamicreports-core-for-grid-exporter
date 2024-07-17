@@ -1,3 +1,6 @@
+# 2.0.1
+* Fix textfields cutting away text
+
 # 2.0.0
 * Updated to JasperReports 7
 * Removed support for Maps

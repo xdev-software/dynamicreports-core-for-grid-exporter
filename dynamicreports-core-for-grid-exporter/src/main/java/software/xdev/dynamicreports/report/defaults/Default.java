@@ -126,6 +126,7 @@ public class Default
 	// text field
 	protected int textFieldWidth;
 	protected boolean textFieldPrintRepeatedValues;
+	protected TextAdjust textFieldTextAdjust;
 	// image
 	protected int imageWidth;
 	protected int imageHeight;
@@ -326,6 +327,7 @@ public class Default
 		
 		this.textFieldWidth = 100;
 		this.textFieldPrintRepeatedValues = true;
+		this.textFieldTextAdjust = TextAdjust.STRETCH_HEIGHT;
 		
 		this.imageWidth = 100;
 		this.imageHeight = 100;
@@ -745,7 +747,7 @@ public class Default
 	
 	public TextAdjust getTextFieldTextAdjust()
 	{
-		return null;
+		return this.textFieldTextAdjust;
 	}
 	
 	public int getImageWidth()
