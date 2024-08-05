@@ -5,8 +5,8 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>software.xdev</groupId>
-	<artifactId>template-placeholder-root</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<artifactId>dynamicreports-core-for-grid-exporter-root</artifactId>
+	<version>2.0.2-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<organization>
@@ -15,8 +15,8 @@
 	</organization>
 
 	<modules>
-		<module>template-placeholder</module>
-		<module>template-placeholder-demo</module>
+		<module>dynamicreports-core-for-grid-exporter</module>
+		<module>dynamicreports-core-for-grid-exporter-demo</module>
 	</modules>
 
 	<properties>
@@ -26,8 +26,8 @@
 
 	<licenses>
 		<license>
-			<name>Apache License, Version 2.0</name>
-			<url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<name>GNU Lesser General Public License version 3</name>
+			<url>https://www.gnu.org/licenses/lgpl-3.0.en.html</url>
 			<distribution>repo</distribution>
 		</license>
 	</licenses>
@@ -77,6 +77,11 @@
 							<rulesets>
 								<ruleset>.config/pmd/ruleset.xml</ruleset>
 							</rulesets>
+							<excludes>
+								<!-- Exclude everything as upstream is catastrophic -->
+								<!-- To fix it complete project must be rewritten which is too time-consuming -->
+								<exclude>software/xdev/dynamicreports/**</exclude>
+							</excludes>
 						</configuration>
 						<dependencies>
 							<dependency>
