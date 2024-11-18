@@ -1,3 +1,6 @@
+# 2.0.2
+* Updated dependencies (JasperReports 7.0.1)
+
 # 2.0.1
 * Fix textfields cutting away text
 
