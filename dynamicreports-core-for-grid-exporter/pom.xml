@@ -110,7 +110,7 @@
 		<dependency>
 			<groupId>net.sf.jasperreports</groupId>
 			<artifactId>jasperreports-jdt</artifactId>
-			<version>7.0.0</version>
+			<version>7.0.1</version>
 		</dependency>
 
 		<!-- Use for validation and minor shorthand methods -->
