@@ -89,7 +89,7 @@
 		<dependency>
 			<groupId>net.sf.jasperreports</groupId>
 			<artifactId>jasperreports</artifactId>
-			<version>7.0.0</version>
+			<version>7.0.1</version>
 			<exclusions>
 				<exclusion>
 					<groupId>org.apache.xmlgraphics</groupId>
@@ -104,13 +104,13 @@
 		<dependency>
 			<groupId>net.sf.jasperreports</groupId>
 			<artifactId>jasperreports-pdf</artifactId>
-			<version>7.0.0</version>
+			<version>7.0.1</version>
 		</dependency>
 		<!-- Required for compiling reports dynamically, see #12 -->
 		<dependency>
 			<groupId>net.sf.jasperreports</groupId>
 			<artifactId>jasperreports-jdt</artifactId>
-			<version>7.0.0</version>
+			<version>7.0.1</version>
 		</dependency>
 
 		<!-- Use for validation and minor shorthand methods -->
