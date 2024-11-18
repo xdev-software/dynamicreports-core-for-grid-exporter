@@ -19,6 +19,16 @@
         "maven"
       ],
       "groupName": "net.sourceforge.pmd"
+    },
+    {
+      "description": "Group net.sf.jasperreports",
+      "matchPackagePatterns": [
+        "^net.sf.jasperreports"
+      ],
+      "datasources": [
+        "maven"
+      ],
+      "groupName": "net.sf.jasperreports"
     }
   ]
 }
