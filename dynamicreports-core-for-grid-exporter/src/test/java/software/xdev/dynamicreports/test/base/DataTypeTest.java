@@ -37,6 +37,7 @@ import software.xdev.dynamicreports.report.exception.DRException;
 
 class DataTypeTest
 {
+	@SuppressWarnings("PMD.UnusedLocalVariable")
 	@Test
 	void detectTypeTest()
 	{
