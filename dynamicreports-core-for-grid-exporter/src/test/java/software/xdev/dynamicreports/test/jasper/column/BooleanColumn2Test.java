@@ -61,7 +61,7 @@ public class BooleanColumn2Test extends AbstractJasperValueTest implements Seria
 		this.elementCountTest("detail.column_field12", 3);
 		this.elementValueTest("detail.column_field12", "True", "False", "False");
 		
-		Assertions.assertNull((((JRPrintImage)this.getElementAt("detail.column_field13", 2)).getRenderer()));
+		Assertions.assertNull(((JRPrintImage)this.getElementAt("detail.column_field13", 2)).getRenderer());
 	}
 	
 	@Override
