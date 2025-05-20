@@ -1,3 +1,6 @@
+# 2.0.4
+* Migrated deployment to _Sonatype Maven Central Portal_ [#155](https://github.com/xdev-software/standard-maven-template/issues/155)
+
 # 2.0.3
 * Updated dependencies (JasperReports 7.0.3)
 
