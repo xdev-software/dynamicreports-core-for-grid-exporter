@@ -7,11 +7,11 @@
 	<parent>
 		<groupId>software.xdev</groupId>
 		<artifactId>dynamicreports-core-for-grid-exporter-root</artifactId>
-		<version>2.0.4</version>
+		<version>2.0.5-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>dynamicreports-core-for-grid-exporter-demo</artifactId>
-	<version>2.0.4</version>
+	<version>2.0.5-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<organization>
