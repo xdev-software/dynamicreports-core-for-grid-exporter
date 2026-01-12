@@ -1,3 +1,7 @@
+# 2.0.6
+* Updated dependencies
+* CVE-2025-10492 does not affect this project #268
+
 # 2.0.5
 * Updated dependencies
 
