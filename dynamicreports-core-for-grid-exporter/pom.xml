@@ -54,7 +54,7 @@
 		<dependency>
 			<groupId>net.sf.jasperreports</groupId>
 			<artifactId>jasperreports</artifactId>
-			<version>7.0.3</version>
+			<version>7.0.5</version>
 			<exclusions>
 				<exclusion>
 					<groupId>org.apache.xmlgraphics</groupId>
