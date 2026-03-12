@@ -18,6 +18,7 @@
 package software.xdev.dynamicreports.jasper.transformation;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
@@ -260,16 +261,12 @@ public class ComponentTransform
 				}
 				return jrElems;
 			case NONE:
-				final List<JRDesignElement> jrElementList = new ArrayList<>();
+				final List<JRDesignElement> jrElements = new ArrayList<>();
 				for(final DRIDesignComponent element : list.getComponents())
 				{
-					final JRDesignElement[] jrElements = this.component(element, list.getType());
-					for(final JRDesignElement jrElement : jrElements)
-					{
-						jrElementList.add(jrElement);
-					}
+					jrElements.addAll(Arrays.asList(this.component(element, list.getType())));
 				}
-				return jrElementList.toArray(new JRDesignElement[jrElementList.size()]);
+				return jrElements.toArray(JRDesignElement[]::new);
 			default:
 				throw new JasperDesignException(
 					"ComponentGroupType " + list.getComponentGroupType().getClass().getName() + " not supported");

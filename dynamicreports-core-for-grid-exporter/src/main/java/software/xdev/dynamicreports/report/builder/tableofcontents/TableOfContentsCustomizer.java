@@ -48,21 +48,10 @@ import software.xdev.dynamicreports.report.definition.ReportParameters;
 
 public class TableOfContentsCustomizer implements DRITableOfContentsCustomizer
 {
-
-	protected static String dots;
-	
-	static
-	{
-		final StringBuilder dots = new StringBuilder(200);
-		for(int i = 0; i < dots.capacity(); i++)
-		{
-			dots.append(".");
-		}
-		TableOfContentsCustomizer.dots = dots.toString();
-	}
+	protected static String dots = ".".repeat(200);
 	
 	protected ReportBuilder<?> report;
-	protected List<JasperTocHeading> headingList;
+	protected List<JasperTocHeading> tocHeadings;
 	protected int headings;
 	protected int levels;
 	protected FieldBuilder<Integer> levelField;
@@ -112,9 +101,9 @@ public class TableOfContentsCustomizer implements DRITableOfContentsCustomizer
 	}
 	
 	@Override
-	public void setHeadingList(final List<JasperTocHeading> headingList)
+	public void setHeadingList(final List<JasperTocHeading> headings)
 	{
-		this.headingList = headingList;
+		this.tocHeadings = headings;
 	}
 	
 	@Override
@@ -180,7 +169,7 @@ public class TableOfContentsCustomizer implements DRITableOfContentsCustomizer
 		}
 		
 		final TextFieldBuilder<String> dotsComponent =
-			cmp.text(dots.toString()).setTextAdjust(TextAdjust.CUT_TEXT).setHyperLink(this.referenceHyperLink);
+			cmp.text(dots).setTextAdjust(TextAdjust.CUT_TEXT).setHyperLink(this.referenceHyperLink);
 		if(this.dotsFixedWidth != null)
 		{
 			dotsComponent.setFixedWidth(this.dotsFixedWidth);
@@ -268,10 +257,9 @@ public class TableOfContentsCustomizer implements DRITableOfContentsCustomizer
 	
 	protected class PrintHeadingExpression extends AbstractSimpleExpression<Boolean>
 	{
-
 		private final int level;
 		
-		public PrintHeadingExpression(final int level)
+		protected PrintHeadingExpression(final int level)
 		{
 			this.level = level;
 		}

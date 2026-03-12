@@ -27,16 +27,15 @@ import software.xdev.dynamicreports.report.constant.TableOfContentsPosition;
 
 public interface DRITableOfContentsCustomizer extends Serializable
 {
+	void setReport(ReportBuilder<?> report);
 	
-	public void setReport(ReportBuilder<?> report);
+	void setHeadingList(List<JasperTocHeading> headings);
 	
-	public void setHeadingList(List<JasperTocHeading> headingList);
+	void setHeadings(int headings);
 	
-	public void setHeadings(int headings);
+	void setLevels(int levels);
 	
-	public void setLevels(int levels);
+	void customize();
 	
-	public void customize();
-	
-	public TableOfContentsPosition getPosition();
+	TableOfContentsPosition getPosition();
 }

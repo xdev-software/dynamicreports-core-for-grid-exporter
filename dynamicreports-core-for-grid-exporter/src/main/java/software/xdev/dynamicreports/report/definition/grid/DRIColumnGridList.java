@@ -24,10 +24,9 @@ import software.xdev.dynamicreports.report.constant.ListType;
 
 public interface DRIColumnGridList extends DRIColumnGridComponent
 {
+	List<? extends DRIColumnGridListCell> getListCells();
 	
-	public List<? extends DRIColumnGridListCell> getListCells();
+	ListType getType();
 	
-	public ListType getType();
-	
-	public int getGap();
+	int getGap();
 }

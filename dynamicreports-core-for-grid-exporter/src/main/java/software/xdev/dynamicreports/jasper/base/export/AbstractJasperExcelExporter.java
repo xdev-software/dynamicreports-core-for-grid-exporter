@@ -53,7 +53,7 @@ public abstract class AbstractJasperExcelExporter extends AbstractJasperExporter
 	private String sheetFooterLeft;
 	private String sheetFooterCenter;
 	private String sheetFooterRight;
-	private Map<String, String> formatPatternsMap;
+	private Map<String, String> formatPatterns;
 	private Boolean ignoreHyperLink;
 	private Boolean ignoreAnchors;
 	private Integer fitWidth;
@@ -346,12 +346,12 @@ public abstract class AbstractJasperExcelExporter extends AbstractJasperExporter
 	@Override
 	public Map<String, String> getFormatPatternsMap()
 	{
-		return this.formatPatternsMap;
+		return this.formatPatterns;
 	}
 	
-	public void setFormatPatternsMap(final Map<String, String> formatPatternsMap)
+	public void setFormatPatternsMap(final Map<String, String> formatPatterns)
 	{
-		this.formatPatternsMap = formatPatternsMap;
+		this.formatPatterns = formatPatterns;
 	}
 	
 	@Override

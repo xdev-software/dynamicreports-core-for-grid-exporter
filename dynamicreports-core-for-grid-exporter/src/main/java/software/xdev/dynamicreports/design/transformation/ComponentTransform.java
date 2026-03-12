@@ -274,6 +274,7 @@ public class ComponentTransform
 	
 	// list
 	
+	@SuppressWarnings("checkstyle:IllegalIdentifierName")
 	protected DRDesignList list(
 		final DRIList list,
 		final DefaultStyleType defaultStyleType,
@@ -292,9 +293,8 @@ public class ComponentTransform
 			final DRIComponent component = innerComponent.getComponent();
 			HorizontalCellComponentAlignment horizontalAlignment = innerComponent.getHorizontalAlignment();
 			VerticalCellComponentAlignment verticalAlignment = innerComponent.getVerticalAlignment();
-			if(component instanceof DRIDimensionComponent)
+			if(component instanceof final DRIDimensionComponent dimComponent)
 			{
-				final DRIDimensionComponent dimComponent = (DRIDimensionComponent)component;
 				if(horizontalAlignment == null)
 				{
 					horizontalAlignment =
@@ -318,6 +318,7 @@ public class ComponentTransform
 		return designList;
 	}
 	
+	@SuppressWarnings("checkstyle:IllegalIdentifierName")
 	protected DRDesignList xyList(
 		final DRIXyList xyList,
 		final DefaultStyleType defaultStyleType,
@@ -368,6 +369,7 @@ public class ComponentTransform
 	}
 	
 	// multi page list
+	@SuppressWarnings("checkstyle:IllegalIdentifierName")
 	private DRDesignSubreport multiPageList(final DRIMultiPageList multiPageList) throws DRException
 	{
 		final DRDesignSubreport designSubreport = new DRDesignSubreport();

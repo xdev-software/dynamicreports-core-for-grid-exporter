@@ -126,13 +126,13 @@ final class ComponentPosition
 		}
 	}
 	
+	@SuppressWarnings("checkstyle:IllegalIdentifierName")
 	private static void alignment(final DRDesignList list)
 	{
 		for(final DRDesignListCell listCell : list.getListCells())
 		{
-			if(listCell.getComponent() instanceof DRDesignList)
+			if(listCell.getComponent() instanceof final DRDesignList comList)
 			{
-				final DRDesignList comList = (DRDesignList)listCell.getComponent();
 				alignment(comList);
 				if(listCell.getHorizontalAlignment() == null)
 				{

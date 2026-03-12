@@ -589,7 +589,7 @@ public class CrosstabTransform
 		return style;
 	}
 	
-	@SuppressWarnings({"rawtypes", "unchecked"})
+	@SuppressWarnings({"rawtypes", "unchecked", "checkstyle:IllegalIdentifierName"})
 	private DRDesignCrosstabCell cell(
 		final DRICrosstab crosstab,
 		final DRIReportStyle cellStyle,

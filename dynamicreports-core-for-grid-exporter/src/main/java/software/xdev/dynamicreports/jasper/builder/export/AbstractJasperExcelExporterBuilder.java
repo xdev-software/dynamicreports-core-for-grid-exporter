@@ -191,9 +191,9 @@ public abstract class AbstractJasperExcelExporterBuilder<T extends AbstractJaspe
 		return (T)this;
 	}
 	
-	public T setFormatPatternsMap(final Map<String, String> formatPatternsMap)
+	public T setFormatPatternsMap(final Map<String, String> formatPatterns)
 	{
-		this.getObject().setFormatPatternsMap(formatPatternsMap);
+		this.getObject().setFormatPatternsMap(formatPatterns);
 		return (T)this;
 	}
 	

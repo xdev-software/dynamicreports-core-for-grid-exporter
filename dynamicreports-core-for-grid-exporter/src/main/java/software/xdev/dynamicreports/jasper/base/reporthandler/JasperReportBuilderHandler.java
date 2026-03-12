@@ -55,7 +55,7 @@ public class JasperReportBuilderHandler implements JasperReportHandler
 	@Override
 	public List<JasperPrint> getPrintList() throws DRException
 	{
-		final List<JasperPrint> printList = new ArrayList<>();
+		final List<JasperPrint> prints = new ArrayList<>();
 		int pageNumber = 1;
 		for(final JasperReportBuilder jasperReportBuilder : this.jasperReportBuilders)
 		{
@@ -68,9 +68,9 @@ public class JasperReportBuilderHandler implements JasperReportHandler
 				jasperReportBuilder.setStartPageNumber(null);
 			}
 			final JasperPrint jasperPrint = jasperReportBuilder.toJasperPrint();
-			printList.add(jasperPrint);
+			prints.add(jasperPrint);
 			pageNumber += jasperPrint.getPages().size();
 		}
-		return printList;
+		return prints;
 	}
 }

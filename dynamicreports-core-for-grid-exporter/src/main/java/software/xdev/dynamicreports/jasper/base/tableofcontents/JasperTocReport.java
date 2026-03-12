@@ -26,8 +26,6 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
 
-import org.apache.commons.lang3.StringUtils;
-
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JRParameter;
 import net.sf.jasperreports.engine.JRPrintElement;
@@ -62,24 +60,24 @@ public final class JasperTocReport
 		final Map<String, Object> parameters) throws DRException, JRException
 	{
 		final JasperCustomValues customValues = jasperReportDesign.getCustomValues();
-		final Map<String, JasperTocHeading> headings = customValues.getTocHeadings();
-		if(headings != null && !headings.isEmpty())
+		final Map<String, JasperTocHeading> tocHeadings = customValues.getTocHeadings();
+		if(tocHeadings != null && !tocHeadings.isEmpty())
 		{
 			final JasperReportBuilder tocReport = report();
 			
-			final List<JasperTocHeading> headingList = new ArrayList<>();
+			final List<JasperTocHeading> headings = new ArrayList<>();
 			int pageNumber = 1;
 			for(final JRPrintPage page : jasperPrint.getPages())
 			{
 				for(final JRPrintElement element : page.getElements())
 				{
-					addTocHeading(headings, headingList, element, pageNumber);
+					addTocHeading(tocHeadings, headings, element, pageNumber);
 				}
 				pageNumber++;
 			}
 			
 			int levels = 0;
-			for(final JasperTocHeading heading : headingList)
+			for(final JasperTocHeading heading : headings)
 			{
 				if(heading.getLevel() > levels)
 				{
@@ -100,12 +98,12 @@ public final class JasperTocReport
 			tocReport.setLocale((Locale)parameters.get(JRParameter.REPORT_LOCALE));
 			tocReport.setResourceBundle((ResourceBundle)parameters.get(JRParameter.REPORT_RESOURCE_BUNDLE));
 			tocReport.setPageMargin(tocMargin);
-			tocReport.setDataSource(new JRBeanCollectionDataSource(headingList));
+			tocReport.setDataSource(new JRBeanCollectionDataSource(headings));
 			
 			final DRITableOfContentsCustomizer tableOfContents = jasperReportDesign.getTableOfContentsCustomizer();
 			tableOfContents.setReport(tocReport);
-			tableOfContents.setHeadingList(headingList);
-			tableOfContents.setHeadings(headings.size());
+			tableOfContents.setHeadingList(headings);
+			tableOfContents.setHeadings(tocHeadings.size());
 			tableOfContents.setLevels(levels);
 			tableOfContents.customize();
 			
@@ -140,23 +138,23 @@ public final class JasperTocReport
 	}
 	
 	private static void addTocHeading(
-		final Map<String, JasperTocHeading> headings,
-		final List<JasperTocHeading> headingList,
+		final Map<String, JasperTocHeading> tocHeadings,
+		final List<JasperTocHeading> headings,
 		final JRPrintElement element,
 		final int pageNumber)
 	{
-		if(element instanceof JRPrintText && StringUtils.contains(element.getKey(), ".tocReference"))
+		if(element instanceof JRPrintText && element.getKey() != null && element.getKey().contains(".tocReference"))
 		{
 			final String id = ((JRPrintText)element).getAnchorName();
-			final JasperTocHeading heading = headings.get(id);
+			final JasperTocHeading heading = tocHeadings.get(id);
 			heading.setPageIndex(pageNumber);
-			headingList.add(heading);
+			headings.add(heading);
 		}
-		if(element instanceof JRPrintFrame)
+		if(element instanceof final JRPrintFrame printFrame)
 		{
-			for(final JRPrintElement element2 : ((JRPrintFrame)element).getElements())
+			for(final JRPrintElement element2 : printFrame.getElements())
 			{
-				addTocHeading(headings, headingList, element2, pageNumber);
+				addTocHeading(tocHeadings, headings, element2, pageNumber);
 			}
 		}
 	}

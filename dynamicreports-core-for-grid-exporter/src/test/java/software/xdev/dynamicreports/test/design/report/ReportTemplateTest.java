@@ -138,7 +138,7 @@ class ReportTemplateTest
 				.setDetailSplitType(SplitType.IMMEDIATE));
 	}
 	
-	@SuppressWarnings("checkstyle:MethodLength")
+	@SuppressWarnings({"checkstyle:MethodLength", "checkstyle:IllegalIdentifierName"})
 	@Test
 	void test()
 	{

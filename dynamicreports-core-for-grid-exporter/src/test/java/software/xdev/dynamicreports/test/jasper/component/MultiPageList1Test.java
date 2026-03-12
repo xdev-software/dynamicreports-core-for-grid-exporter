@@ -35,12 +35,12 @@ public class MultiPageList1Test extends AbstractJasperValueTest
 	@Override
 	protected void configureReport(final JasperReportBuilder rb)
 	{
-		final MultiPageListBuilder multiPageList = cmp.multiPageList();
+		final MultiPageListBuilder multiPageBuilder = cmp.multiPageList();
 		for(int i = 0; i < 150; i++)
 		{
-			multiPageList.add(cmp.text("text" + i));
+			multiPageBuilder.add(cmp.text("text" + i));
 		}
-		rb.title(multiPageList).columns(this.column1 = col.column("Column1", "field1", Integer.class));
+		rb.title(multiPageBuilder).columns(this.column1 = col.column("Column1", "field1", Integer.class));
 	}
 	
 	@Override
