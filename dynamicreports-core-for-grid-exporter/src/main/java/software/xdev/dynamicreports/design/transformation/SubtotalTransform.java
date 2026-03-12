@@ -328,13 +328,14 @@ public class SubtotalTransform
 		return list;
 	}
 	
-	private ColumnGrid getGroupGrid(final DRIGroup group, final Map<DRIGroup, ColumnGrid> groupList) throws DRException
+	private ColumnGrid getGroupGrid(final DRIGroup group, final Map<DRIGroup, ColumnGrid> groupHeader)
+		throws DRException
 	{
-		if(!groupList.containsKey(group))
+		if(!groupHeader.containsKey(group))
 		{
-			groupList.put(group, this.accessor.getColumnGridTransform().createColumnGrid());
+			groupHeader.put(group, this.accessor.getColumnGridTransform().createColumnGrid());
 		}
-		return groupList.get(group);
+		return groupHeader.get(group);
 	}
 	
 	private void setPrintGroupSubtotalsWhenExpression(final DRIGroup group, final ColumnGrid grid) throws DRException

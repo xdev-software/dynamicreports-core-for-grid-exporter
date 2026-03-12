@@ -112,9 +112,9 @@ public class JasperReportBuilder extends ReportBuilder<JasperReportBuilder>
 		return this.setDataSource(new JRBeanCollectionDataSource(collection));
 	}
 	
-	public JasperReportBuilder setDataSource(final ResultSet resultSet)
+	public JasperReportBuilder setDataSource(final ResultSet resultset)
 	{
-		return this.setDataSource(new JRResultSetDataSource(resultSet));
+		return this.setDataSource(new JRResultSetDataSource(resultset));
 	}
 	
 	public JasperReportBuilder setDataSource(final String sql, final Connection connection)

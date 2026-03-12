@@ -92,6 +92,7 @@ import software.xdev.dynamicreports.report.definition.style.DRIStyle;
 import software.xdev.dynamicreports.report.exception.DRException;
 
 
+@SuppressWarnings("checkstyle:IllegalIdentifierName")
 public class TemplateTransform
 {
 	private final DRIReport report;
@@ -1544,7 +1545,6 @@ public class TemplateTransform
 	}
 	
 	// xy list
-	
 	protected Integer getXyListWidth(final DRIXyList xyList)
 	{
 		if(xyList.getWidth() != null)

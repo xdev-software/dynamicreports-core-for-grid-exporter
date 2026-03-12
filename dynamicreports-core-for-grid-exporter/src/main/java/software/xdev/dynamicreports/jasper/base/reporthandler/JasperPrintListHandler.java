@@ -25,22 +25,22 @@ import net.sf.jasperreports.engine.JasperPrint;
 
 public class JasperPrintListHandler extends AbstractPrintListHandler
 {
-	private final List<JasperPrint> printList;
+	private final List<JasperPrint> prints;
 	
 	public JasperPrintListHandler()
 	{
-		this.printList = new ArrayList<>();
+		this.prints = new ArrayList<>();
 	}
 	
 	@Override
 	protected void add(final JasperPrint jasperPrint)
 	{
-		this.printList.add(jasperPrint);
+		this.prints.add(jasperPrint);
 	}
 	
 	@Override
 	public List<JasperPrint> getPrintList()
 	{
-		return this.printList;
+		return this.prints;
 	}
 }

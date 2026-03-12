@@ -144,7 +144,7 @@ public class TableOfContents6Test extends AbstractJasperValueTest
 			subreport.fields(this.levelField, this.textField, this.referenceField, this.pageIndexField)
 				.groupBy(group)
 				.detail(this.detailComponent())
-				.setDataSource(new JRBeanCollectionDataSource(this.headingList));
+				.setDataSource(new JRBeanCollectionDataSource(this.tocHeadings));
 			
 			return subreport;
 		}

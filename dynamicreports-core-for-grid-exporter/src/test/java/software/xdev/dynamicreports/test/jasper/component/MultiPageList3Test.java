@@ -39,15 +39,15 @@ public class MultiPageList3Test extends AbstractJasperValueTest
 	{
 		this.column1 = col.column("Column1", "field1", type.integerType());
 		
-		final MultiPageListBuilder multiPageList = cmp.multiPageList();
-		multiPageList.add(cmp.subreport(this.createSubreport(80)));
-		multiPageList.newPage();
-		multiPageList.add(cmp.subreport(this.createSubreport(80)));
-		multiPageList.newPage();
-		multiPageList.add(cmp.subreport(this.createSubreport(10)));
-		multiPageList.newPage();
-		multiPageList.add(cmp.subreport(this.createSubreport(10)));
-		rb.title(multiPageList);
+		final MultiPageListBuilder multiPageBuilder = cmp.multiPageList();
+		multiPageBuilder.add(cmp.subreport(this.createSubreport(80)));
+		multiPageBuilder.newPage();
+		multiPageBuilder.add(cmp.subreport(this.createSubreport(80)));
+		multiPageBuilder.newPage();
+		multiPageBuilder.add(cmp.subreport(this.createSubreport(10)));
+		multiPageBuilder.newPage();
+		multiPageBuilder.add(cmp.subreport(this.createSubreport(10)));
+		rb.title(multiPageBuilder);
 	}
 	
 	@Override

@@ -27,7 +27,7 @@ import software.xdev.dynamicreports.report.constant.VerticalCellComponentAlignme
 import software.xdev.dynamicreports.report.definition.column.DRIColumn;
 
 
-class ColumnGrid
+public class ColumnGrid
 {
 	private DRDesignList list;
 	private final Map<DRIColumn<?>, DRDesignList> columnsLists;

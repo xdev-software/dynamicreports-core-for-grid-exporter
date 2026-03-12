@@ -42,6 +42,7 @@ import software.xdev.dynamicreports.report.definition.grid.DRIColumnTitleGroup;
 import software.xdev.dynamicreports.report.exception.DRException;
 
 
+@SuppressWarnings("checkstyle:IllegalIdentifierName")
 public class ColumnGridTransform
 {
 	private final DesignTransformAccessor accessor;
