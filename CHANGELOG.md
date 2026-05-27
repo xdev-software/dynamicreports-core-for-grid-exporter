@@ -1,3 +1,6 @@
+# 2.0.8
+* Updated dependencies (JasperReports 7.0.6)
+
 # 2.0.7
 * Minor code cleanup
 * Updated dependencies (JasperReports 7.0.5)
