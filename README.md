@@ -10,7 +10,7 @@ Differences from the original project are roughly described in the [changelog](.
 [Installation guide for the latest release](https://github.com/xdev-software/dynamicreports-core-for-grid-exporter/releases/latest#Installation)
 
 ## Support
-If you need support as soon as possible and you can't wait for any pull request, feel free to use [our support](https://xdev.software/en/services/support).
+If you need support as soon as possible and you can't wait for any pull request, feel free to use [our support](https://xdev.software/en/services-products/support).
 
 ## Contributing
 See the [contributing guide](./CONTRIBUTING.md) for detailed instructions on how to get started with our project.
