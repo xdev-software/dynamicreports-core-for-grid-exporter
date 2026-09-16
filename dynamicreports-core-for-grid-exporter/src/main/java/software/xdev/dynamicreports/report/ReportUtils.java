@@ -24,6 +24,7 @@ import java.util.concurrent.locks.ReentrantLock;
 import software.xdev.dynamicreports.report.constant.Calculation;
 
 
+@SuppressWarnings("checkstyle:IllegalIdentifierName")
 public final class ReportUtils
 {
 	private ReportUtils()

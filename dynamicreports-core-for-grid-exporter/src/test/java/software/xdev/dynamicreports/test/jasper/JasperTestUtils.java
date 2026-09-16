@@ -29,25 +29,23 @@ import software.xdev.dynamicreports.report.builder.group.GroupBuilder;
 import software.xdev.dynamicreports.report.builder.subtotal.BaseSubtotalBuilder;
 
 
+@SuppressWarnings("checkstyle:IllegalIdentifierName")
 public final class JasperTestUtils
 {
 	private JasperTestUtils()
 	{
 	}
 	
-	// column detail
 	public static String getColumnDetailName(final ColumnBuilder<?, ?> column)
 	{
 		return "detail.column_" + column.build().getName() + "1";
 	}
 	
-	// column title
 	public static String getColumnTitleName(final ColumnBuilder<?, ?> column)
 	{
 		return "columnHeader.column_" + column.build().getName() + ".title1";
 	}
 	
-	// subtotal
 	private static String getSubtotalName(final BaseSubtotalBuilder<?, ?> subtotal)
 	{
 		String band = null;

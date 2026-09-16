@@ -43,7 +43,7 @@ public final class Units
 	{
 		if(value != null)
 		{
-			return (int)((value.doubleValue()) * unitValue);
+			return (int)(value.doubleValue() * unitValue);
 		}
 		return 0;
 	}
